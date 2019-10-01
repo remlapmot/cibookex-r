@@ -21,7 +21,7 @@
   <meta name="twitter:description" content="Code examples from the Causal Inference Book by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
   
 
-<meta name="author" content="Book by M. A. Hernán and J. M. Robins, R code by Joy Shi and Roger Logan, R Markdown code and tweaks by Tom Palmer" />
+<meta name="author" content="Book by M. A. Hernán and J. M. Robins, R code by Joy Shi and Sean McGrath, R Markdown code and tweaks by Tom Palmer" />
 
 
 <meta name="date" content="2019-10-01" />
@@ -1006,15 +1006,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb263-47"><a href="outcome-regression-and-propensity-scores.html#cb263-47"></a>                                <span class="st">&quot;Treatment - No Treatment&quot;</span>), mean, se, ll, ul))</span>
 <span id="cb263-48"><a href="outcome-regression-and-propensity-scores.html#cb263-48"></a>bootstrap</span></code></pre></div>
 <pre><code>##                         V1             mean                se
-## 1                 Observed 2.63384609228479 0.177467862664638
-## 2             No Treatment 1.71983636149843 0.255132558439265
-## 3                Treatment 5.35072300362993 0.190720572921649
-## 4 Treatment - No Treatment 3.63088664213151 0.315474638211532
+## 1                 Observed 2.63384609228479 0.129082208513456
+## 2             No Treatment 1.71983636149843 0.176279843226703
+## 3                Treatment 5.35072300362993 0.384477580684978
+## 4 Treatment - No Treatment 3.63088664213151 0.478818874725521
 ##                 ll               ul
-## 1  2.2860154730488 2.98167671152079
-## 2  1.2197857356739 2.21988698732295
-## 3 4.97691754959265 5.72452845766721
-## 4  3.0125677132011 4.24920557106191</code></pre>
+## 1 2.38084961255353 2.88684257201606
+## 2 1.37433421757372 2.06533850542313
+## 3 4.59716079262428 6.10428521463558
+## 4 2.69241889255149 4.56935439171152</code></pre>
 <div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="outcome-regression-and-propensity-scores.html#cb265-1"></a><span class="co"># regression on the propensity score (linear term)</span></span>
 <span id="cb265-2"><a href="outcome-regression-and-propensity-scores.html#cb265-2"></a>model6 &lt;-<span class="st"> </span><span class="kw">glm</span>(wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>qsmk <span class="op">+</span><span class="st"> </span>ps, <span class="dt">data =</span> nhefs) <span class="co"># p.qsmk</span></span>
 <span id="cb265-3"><a href="outcome-regression-and-propensity-scores.html#cb265-3"></a><span class="kw">summary</span>(model6)</span></code></pre></div>
@@ -1105,7 +1105,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb273-40"><a href="outcome-regression-and-propensity-scores.html#cb273-40"></a>  }</span>
 <span id="cb273-41"><a href="outcome-regression-and-propensity-scores.html#cb273-41"></a>}</span></code></pre></div>
 <pre><code>## 95% CI for the causal mean difference
-## 2.583219 , 4.3969</code></pre>
+## 2.578625 , 4.492086</code></pre>
 <p>A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.</p>
 
 </div>
