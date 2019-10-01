@@ -1,0 +1,7 @@
+# R session information {-}
+
+For reproducibility.
+```{r}
+# install.packages("sessioninfo")
+sessioninfo::session_info()
+```

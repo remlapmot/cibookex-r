@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Causal Inference Book: Exercises – R code</title>
+  <meta name="description" content="Code examples from the Causal Inference Book by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Causal Inference Book: Exercises – R code" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Code examples from the Causal Inference Book by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Causal Inference Book: Exercises – R code" />
+  
+  <meta name="twitter:description" content="Code examples from the Causal Inference Book by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
+  
+
+<meta name="author" content="Book by M. A. Hernán and J. M. Robins, R code by Joy Shi and Roger Logan, R Markdown code and tweaks by Tom Palmer" />
+
+
+<meta name="date" content="2019-10-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="why-model.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Table of Contents</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#packages-to-install"><i class="fa fa-check"></i>Packages to install</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#downloading-the-datasets"><i class="fa fa-check"></i>Downloading the datasets</a></li>
+</ul></li>
+<li class="part"><span><b>R code</b></span></li>
+<li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html"><i class="fa fa-check"></i>11. Why model?</a><ul>
+<li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html#program-11.1"><i class="fa fa-check"></i>Program 11.1</a></li>
+<li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html#program-11.2"><i class="fa fa-check"></i>Program 11.2</a></li>
+<li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html#program-11.3"><i class="fa fa-check"></i>Program 11.3</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html"><i class="fa fa-check"></i>12. IP Weighting and Marginal Structural Models</a><ul>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.1"><i class="fa fa-check"></i>Program 12.1</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.2"><i class="fa fa-check"></i>Program 12.2</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.3"><i class="fa fa-check"></i>Program 12.3</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.4"><i class="fa fa-check"></i>Program 12.4</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.5"><i class="fa fa-check"></i>Program 12.5</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.6"><i class="fa fa-check"></i>Program 12.6</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.7"><i class="fa fa-check"></i>Program 12.7</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html"><i class="fa fa-check"></i>13. Standardization and the parametric G-formula</a><ul>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.1"><i class="fa fa-check"></i>Program 13.1</a></li>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.2"><i class="fa fa-check"></i>Program 13.2</a></li>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.3"><i class="fa fa-check"></i>Program 13.3</a></li>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.4"><i class="fa fa-check"></i>Program 13.4</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html"><i class="fa fa-check"></i>14. G-estimation of Structural Nested Models</a><ul>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.1"><i class="fa fa-check"></i>Program 14.1</a></li>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.2"><i class="fa fa-check"></i>Program 14.2</a><ul>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-checking-one-possible-value-of-psi"><i class="fa fa-check"></i>G-estimation: Checking one possible value of psi</a></li>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-checking-multiple-possible-values-of-psi"><i class="fa fa-check"></i>G-estimation: Checking multiple possible values of psi</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.3"><i class="fa fa-check"></i>Program 14.3</a><ul>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-closed-form-estimator-linear-mean-models"><i class="fa fa-check"></i>G-estimation: Closed form estimator linear mean models</a></li>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-closed-form-estimator-for-2-parameter-model"><i class="fa fa-check"></i>G-estimation: Closed form estimator for 2-parameter model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html"><i class="fa fa-check"></i>15. Outcome regression and propensity scores</a><ul>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.1"><i class="fa fa-check"></i>Program 15.1</a></li>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.2"><i class="fa fa-check"></i>Program 15.2</a></li>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.3"><i class="fa fa-check"></i>Program 15.3</a></li>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.4"><i class="fa fa-check"></i>Program 15.4</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html"><i class="fa fa-check"></i>16. Instrumental variables estimation</a><ul>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.1"><i class="fa fa-check"></i>Program 16.1</a></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.2"><i class="fa fa-check"></i>Program 16.2</a></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.3"><i class="fa fa-check"></i>Program 16.3</a></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.4"><i class="fa fa-check"></i>Program 16.4</a></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.5"><i class="fa fa-check"></i>Program 16.5</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html"><i class="fa fa-check"></i>17. Causal survival analysis</a><ul>
+<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.1"><i class="fa fa-check"></i>Program 17.1</a></li>
+<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.2"><i class="fa fa-check"></i>Program 17.2</a></li>
+<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.3"><i class="fa fa-check"></i>Program 17.3</a></li>
+<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.4"><i class="fa fa-check"></i>Program 17.4</a></li>
+<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.5"><i class="fa fa-check"></i>Program 17.5</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="r-session-information.html"><a href="r-session-information.html"><i class="fa fa-check"></i>R session information</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Causal Inference Book: Exercises – R code</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Causal Inference Book: Exercises – R code</h1>
+<p class="author"><em>Book by M. A. Hernán and J. M. Robins, R code by Joy Shi and Roger Logan, R Markdown code and tweaks by Tom Palmer</em></p>
+<p class="date"><em>2019-10-01</em></p>
+</div>
+<div id="preface" class="section level1 unnumbered">
+<h1>Preface</h1>
+<p>This book presents code examples from the Causal Inference Book by Hernán and Robins, which is available in draft form from the following webpage.</p>
+<p><a href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" class="uri">https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/</a></p>
+<p>The R code is based on the code by Joy Shi and Sean McGrath given <a href="https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/1268/20/Rcode_CIpart2.zip">here</a>.</p>
+<div id="packages-to-install" class="section level2">
+<h2>Packages to install</h2>
+<p>To install the R packages required for this book please copy/fork the repository and run:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1"></a><span class="co"># install.packages(&#39;devtools&#39;) # uncomment if devtools not</span></span>
+<span id="cb1-2"><a href="index.html#cb1-2"></a><span class="co"># installed</span></span>
+<span id="cb1-3"><a href="index.html#cb1-3"></a>devtools<span class="op">::</span><span class="kw">install_deps</span>()</span></code></pre></div>
+</div>
+<div id="downloading-the-datasets" class="section level2">
+<h2>Downloading the datasets</h2>
+<p>We assume that you have downloaded the data from the Causal Inference Book website and saved it to a <code>data</code> subdirectory. You can do this manually or with the following code (nb. we use the <a href="https://here.r-lib.org/"><code>here</code></a> package to reference the data subdirectory).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1"></a><span class="kw">library</span>(here)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1"></a>dataurls &lt;-<span class="st"> </span><span class="kw">list</span>()</span>
+<span id="cb3-2"><a href="index.html#cb3-2"></a>dataurls[[<span class="dv">1</span>]] &lt;-<span class="st"> &quot;https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/2012/10/nhefs_sas.zip&quot;</span></span>
+<span id="cb3-3"><a href="index.html#cb3-3"></a>dataurls[[<span class="dv">2</span>]] &lt;-<span class="st"> &quot;https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/2012/10/nhefs_stata.zip&quot;</span></span>
+<span id="cb3-4"><a href="index.html#cb3-4"></a>dataurls[[<span class="dv">3</span>]] &lt;-<span class="st"> &quot;https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/2017/01/nhefs_excel.zip&quot;</span></span>
+<span id="cb3-5"><a href="index.html#cb3-5"></a>dataurls[[<span class="dv">4</span>]] &lt;-<span class="st"> &quot;https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/1268/20/nhefs.csv&quot;</span></span>
+<span id="cb3-6"><a href="index.html#cb3-6"></a></span>
+<span id="cb3-7"><a href="index.html#cb3-7"></a>temp &lt;-<span class="st"> </span><span class="kw">tempfile</span>()</span>
+<span id="cb3-8"><a href="index.html#cb3-8"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) {</span>
+<span id="cb3-9"><a href="index.html#cb3-9"></a>    <span class="kw">download.file</span>(dataurls[[i]], temp)</span>
+<span id="cb3-10"><a href="index.html#cb3-10"></a>    <span class="kw">unzip</span>(temp, <span class="dt">exdir =</span> <span class="st">&quot;data&quot;</span>)</span>
+<span id="cb3-11"><a href="index.html#cb3-11"></a>}</span>
+<span id="cb3-12"><a href="index.html#cb3-12"></a></span>
+<span id="cb3-13"><a href="index.html#cb3-13"></a><span class="kw">download.file</span>(dataurls[[<span class="dv">4</span>]], <span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;nhefs.csv&quot;</span>))</span></code></pre></div>
+
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="why-model.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/remlapmot/cibookex-r/edit/master/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["cibookex-r.pdf", "cibookex-r.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

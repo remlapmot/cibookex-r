@@ -1,0 +1,17 @@
+book_filename: "cibookex-r"
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "
+output_dir: "docs"
+rmd_files:
+  - "index.Rmd"
+  - "11-why-model-r.Rmd"
+  - "12-ipw-msm-r.Rmd"
+  - "13-stand-gformula-r.Rmd"
+  - "14-g-est-snms-r.Rmd"
+  - "15-prop-scores-r.Rmd"
+  - "16-iv-r.Rmd"
+  - "17-causal-surv-r.Rmd"
+  - "18-session-info-r.Rmd"
+new_session: true

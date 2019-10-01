@@ -1,0 +1,62 @@
+# (PART\*) R code{-}
+
+# 11. Why model?{-}
+
+## Program 11.1
+
+- Sample averages by treatment level
+- Data from Figures 11.1 and 11.2
+
+```{r out.width="85%", fig.align='center'}
+A <- c(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+Y <- c(200, 150, 220, 110, 50, 180, 90, 170, 170, 30,
+       70, 110, 80, 50, 10, 20)
+
+plot(A, Y)
+summary(Y[A == 0])
+summary(Y[A == 1])
+
+A2 <- c(1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4)
+Y2 <- c(110, 80, 50, 40, 170, 30, 70, 50, 110, 50, 180,
+        130, 200, 150, 220, 210)
+
+plot(A2, Y2)
+summary(Y2[A2 == 1])
+summary(Y2[A2 == 2])
+summary(Y2[A2 == 3])
+summary(Y2[A2 == 4])
+```
+
+
+## Program 11.2
+
+- 2-parameter linear model
+- Data from Figures 11.3 and 11.1
+
+```{r out.width="85%", fig.align='center'}
+A3 <-
+  c(3, 11, 17, 23, 29, 37, 41, 53, 67, 79, 83, 97, 60, 71, 15, 45)
+Y3 <-
+  c(21, 54, 33, 101, 85, 65, 157, 120, 111, 200, 140, 220, 230, 217,
+    11, 190)
+
+plot(Y3 ~ A3)
+
+summary(glm(Y3 ~ A3))
+predict(glm(Y3 ~ A3), data.frame(A3 = 90))
+
+summary(glm(Y ~ A))
+```
+
+## Program 11.3
+
+- 3-parameter linear model
+- Data from Figure 11.3
+
+```{r}
+Asq <- A3 * A3
+
+mod3 <- glm(Y3 ~ A3 + Asq)
+summary(mod3)
+predict(mod3, data.frame(cbind(A3 = 90, Asq = 8100)))
+```
