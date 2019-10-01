@@ -473,7 +473,7 @@ ggplot(nhefs, aes(x = ps, fill = qsmk)) + geom_density(alpha = 0.2) +
   theme(legend.position = 'bottom', legend.direction = 'vertical')
 ```
 
-<img src="15-prop-scores-r_files/figure-epub3/unnamed-chunk-3-1.png" width="85%" style="display: block; margin: auto;" />
+<img src="15-prop-scores-r_files/figure-html/unnamed-chunk-3-1.png" width="85%" style="display: block; margin: auto;" />
 
 ```r
 # alternative plot with histograms
@@ -490,7 +490,7 @@ ggplot(nhefs, aes(x = ps, fill = as.factor(qsmk), color = as.factor(qsmk))) +
   theme(legend.position = 'bottom', legend.direction = 'vertical')
 ```
 
-<img src="15-prop-scores-r_files/figure-epub3/unnamed-chunk-3-2.png" width="85%" style="display: block; margin: auto;" />
+<img src="15-prop-scores-r_files/figure-html/unnamed-chunk-3-2.png" width="85%" style="display: block; margin: auto;" />
 
 
 ```r
@@ -940,16 +940,16 @@ bootstrap
 ```
 
 ```
-##                         V1             mean                 se
-## 1                 Observed 2.63384609228479  0.135914960649541
-## 2             No Treatment 1.71983636149843 0.0407217598516196
-## 3                Treatment 5.35072300362993  0.306944891761689
-## 4 Treatment - No Treatment 3.63088664213151  0.302594732304446
+##                         V1             mean                se
+## 1                 Observed 2.63384609228479 0.177467862664638
+## 2             No Treatment 1.71983636149843 0.255132558439265
+## 3                Treatment 5.35072300362993 0.190720572921649
+## 4 Treatment - No Treatment 3.63088664213151 0.315474638211532
 ##                 ll               ul
-## 1 2.36745766445152 2.90023452011807
-## 2 1.64002317880216 1.79964954419469
-## 3 4.74912207053848 5.95232393672139
-## 4 3.03781186490325 4.22396141935976
+## 1  2.2860154730488 2.98167671152079
+## 2  1.2197857356739 2.21988698732295
+## 3 4.97691754959265 5.72452845766721
+## 4  3.0125677132011 4.24920557106191
 ```
 
 
@@ -1071,7 +1071,7 @@ for(i in 1:nboot) {
 
 ```
 ## 95% CI for the causal mean difference
-## 2.587623 , 4.537993
+## 2.583219 , 4.3969
 ```
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.
