@@ -151,9 +151,8 @@ confint.lm(fit.psdec)
 
 ## Program 15.4
 
-- Standardization using the propensity score                                    
-- Data from NHEFS                                                               
-
+- Standardization using the propensity score
+- Data from NHEFS
 ```{r}
 #install.packages("boot") # install package if required
 library("boot")
@@ -275,19 +274,4 @@ for(i in 1:nboot) {
 }
 ```
 
-```{r, eval=FALSE}
-# a more flexible and elegant way to do this is to write a function 
-# to perform the model fitting, prediction, bootstrapping, and reporting all at once
-# view the code contained in the file mstandardize.R to learn more
-
-# load the code for the mstandardize() function 
-# (you may need to change the filepath)
-source('chapter15_mstandardize.R') 
-
-# performt the standardization
-mstandardize(formula = wt82_71 ~ qsmk + decile(p.qsmk), 
-             family = 'gaussian',
-             trt = 'qsmk', 
-             nboot = 100, 
-             data = nhefs)
-```
+A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.
