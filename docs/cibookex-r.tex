@@ -27,7 +27,7 @@
 \usepackage{hyperref}
 \hypersetup{unicode=true,
             pdftitle={Causal Inference Book: Exercises -- R code},
-            pdfauthor={Book by M. A. Hernán and J. M. Robins, R code by Joy Shi and Sean McGrath, R Markdown code and tweaks by Tom Palmer},
+            pdfauthor={Book by M. A. Hernán and J. M. Robins, R code by Joy Shi and Sean McGrath, R Markdown code by Tom Palmer},
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
@@ -122,7 +122,7 @@
   \title{Causal Inference Book: Exercises -- R code}
     \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
-    \author{Book by M. A. Hernán and J. M. Robins, R code by Joy Shi and Sean McGrath, R Markdown code and tweaks by Tom Palmer}
+    \author{Book by M. A. Hernán and J. M. Robins, R code by Joy Shi and Sean McGrath, R Markdown code by Tom Palmer}
     \preauthor{\centering\large\emph}
   \postauthor{\par}
       \predate{\centering\large\emph}
@@ -2431,15 +2431,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ##                         V1             mean                se
-## 1                 Observed 2.56188497106103 0.243609094948392
-## 2             No Treatment 1.65212306626746 0.312288494756289
-## 3                Treatment 5.11474489549347 0.313895079375006
-## 4 Treatment - No Treatment 3.46262182922601 0.429584740611856
+## 1                 Observed 2.56188497106103 0.183165473784329
+## 2             No Treatment 1.65212306626746 0.118259558794318
+## 3                Treatment 5.11474489549347 0.521838669146721
+## 4 Treatment - No Treatment 3.46262182922601 0.494068331641177
 ##                 ll               ul
-## 1 2.08441991865579 3.03935002346628
-## 2 1.04004886375891 2.26419726877601
-## 3 4.49952184499411 5.72996794599282
-## 4 2.62065120931879 4.30459244913322
+## 1 2.20288723923253 2.92088270288953
+## 2   1.420338590203 1.88390754233192
+## 3 4.09195989822558 6.13752989276135
+## 4 2.49426569330751  4.4309779651445
 \end{verbatim}
 
 \hypertarget{g-estimation-of-structural-nested-models}{%
@@ -4017,15 +4017,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ##                         V1             mean                se
-## 1                 Observed 2.63384609228479 0.158999154297509
-## 2             No Treatment 1.71983636149843 0.125872404698782
-## 3                Treatment 5.35072300362993 0.574075504110132
-## 4 Treatment - No Treatment 3.63088664213151 0.618926968636548
-##                 ll               ul
-## 1 2.32221347628935 2.94547870828024
-## 2 1.47313098164136 1.96654174135549
-## 3  4.2255556911674 6.47589031609246
-## 4 2.41781207454332 4.84396120971969
+## 1                 Observed 2.63384609228479 0.211907881812535
+## 2             No Treatment 1.71983636149843 0.407033276190538
+## 3                Treatment 5.35072300362993 0.329039146109479
+## 4 Treatment - No Treatment 3.63088664213151 0.639564046239437
+##                  ll               ul
+## 1  2.21851427589206 3.04917790867753
+## 2 0.922065799655627 2.51760692334122
+## 3  4.70581812775154 5.99562787950832
+## 4   2.3773641456955 4.88440913856751
 \end{verbatim}
 
 \begin{Shaded}
@@ -4156,7 +4156,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ## 95% CI for the causal mean difference
-## 2.613774 , 4.406582
+## 2.623614 , 4.656303
 \end{verbatim}
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.

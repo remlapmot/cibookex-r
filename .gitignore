@@ -39,3 +39,7 @@ vignettes/*.pdf
 .Rprofile
 
 .DS_Store
+
+cibookex-r.rds
+
+_bookdown_files
