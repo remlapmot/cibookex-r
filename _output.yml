@@ -11,6 +11,11 @@ bookdown::gitbook:
       github: yes
       facebook: no
       twitter: no
+      google: no
+      linkedin: no
+      weibo: no
+      instapaper: no
+      vk: no
     edit:
       link: https://github.com/remlapmot/cibookex-r/edit/master/%s
       text: "Edit"
