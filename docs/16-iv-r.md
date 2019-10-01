@@ -105,8 +105,7 @@ confint(model1)  # note the wide confidence intervals
 
 - Estimating the average causal using the standard IV estimator via additive marginal structural models
 - Data from NHEFS
-
-- G-estimation: Checking one possible value of psi      
+- G-estimation: Checking one possible value of psi
 - See Chapter 14 for program that checks several values and computes 95% confidence intervals                 
 
 

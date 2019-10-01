@@ -1169,9 +1169,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \begin{itemize}
 \tightlist
 \item
-  Estimating the parameters of a marginal structural mean model
-\item
-  with a continuous treatment Data from NHEFS
+  Estimating the parameters of a marginal structural mean model with a continuous treatment Data from NHEFS
 \end{itemize}
 
 \begin{Shaded}
@@ -2433,15 +2431,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ##                         V1             mean                se
-## 1                 Observed 2.56188497106103 0.159937821007211
-## 2             No Treatment 1.65212306626746 0.241861788400554
-## 3                Treatment 5.11474489549347 0.273126121957566
-## 4 Treatment - No Treatment 3.46262182922601 0.413039995732375
+## 1                 Observed 2.56188497106103 0.143746528513805
+## 2             No Treatment 1.65212306626746 0.196707928034904
+## 3                Treatment 5.11474489549347 0.509234029529476
+## 4 Treatment - No Treatment 3.46262182922601 0.623247033505222
 ##                 ll               ul
-## 1 2.24841260212109 2.87535734000098
-## 2 1.17808267176593 2.12616346076899
-## 3 4.57942753321954 5.65006225776739
-## 4 2.65307831341597 4.27216534503604
+## 1 2.28014695227132 2.84362298985075
+## 2 1.26658261184555 2.03766352068937
+## 3 4.11666453791349 6.11282525307345
+## 4 2.24108009008434 4.68416356836767
 \end{verbatim}
 
 \hypertarget{g-estimation-of-structural-nested-models}{%
@@ -3935,7 +3933,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \begin{itemize}
 \tightlist
 \item
-  Standardization using the propensity score\\
+  Standardization using the propensity score
 \item
   Data from NHEFS
 \end{itemize}
@@ -4019,15 +4017,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ##                         V1             mean                se
-## 1                 Observed 2.63384609228479  0.22526872792539
-## 2             No Treatment 1.71983636149843 0.154045680376301
-## 3                Treatment 5.35072300362993 0.453076061359725
-## 4 Treatment - No Treatment 3.63088664213151 0.419996599224293
+## 1                 Observed 2.63384609228479 0.139460634517311
+## 2             No Treatment 1.71983636149843 0.218464734296926
+## 3                Treatment 5.35072300362993 0.632937541379902
+## 4 Treatment - No Treatment 3.63088664213151 0.729777367173091
 ##                 ll               ul
-## 1 2.19232749870788 3.07536468586171
-## 2 1.41791237598691 2.02176034700994
-## 3 4.46271024110761 6.23873576615225
-## 4 2.80770843402259 4.45406485024042
+## 1 2.36050827136976 2.90718391319983
+## 2 1.29165335038434 2.14801937261251
+## 3 4.11018821806199 6.59125778919787
+## 4 2.20054928573978 5.06122399852323
 \end{verbatim}
 
 \begin{Shaded}
@@ -4158,27 +4156,10 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ## 95% CI for the causal mean difference
-## 2.638017 , 4.485086
+## 2.585271 , 4.448191
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# a more flexible and elegant way to do this is to write a function }
-\CommentTok{# to perform the model fitting, prediction, bootstrapping, and reporting all at once}
-\CommentTok{# view the code contained in the file mstandardize.R to learn more}
-
-\CommentTok{# load the code for the mstandardize() function }
-\CommentTok{# (you may need to change the filepath)}
-\KeywordTok{source}\NormalTok{(}\StringTok{'chapter15_mstandardize.R'}\NormalTok{) }
-
-\CommentTok{# performt the standardization}
-\KeywordTok{mstandardize}\NormalTok{(}\DataTypeTok{formula =}\NormalTok{ wt82_}\DecValTok{71} \OperatorTok{~}\StringTok{ }\NormalTok{qsmk }\OperatorTok{+}\StringTok{ }\KeywordTok{decile}\NormalTok{(p.qsmk), }
-             \DataTypeTok{family =} \StringTok{'gaussian'}\NormalTok{,}
-             \DataTypeTok{trt =} \StringTok{'qsmk'}\NormalTok{, }
-             \DataTypeTok{nboot =} \DecValTok{100}\NormalTok{, }
-             \DataTypeTok{data =}\NormalTok{ nhefs)}
-\end{Highlighting}
-\end{Shaded}
+A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.
 
 \hypertarget{instrumental-variables-estimation}{%
 \chapter*{16. Instrumental variables estimation}\label{instrumental-variables-estimation}}
@@ -4311,12 +4292,13 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \section{Program 16.3}\label{program-16.3}}
 
 \begin{itemize}
+\tightlist
 \item
   Estimating the average causal using the standard IV estimator via additive marginal structural models
 \item
   Data from NHEFS
 \item
-  G-estimation: Checking one possible value of psi\\
+  G-estimation: Checking one possible value of psi
 \item
   See Chapter 14 for program that checks several values and computes 95\% confidence intervals
 \end{itemize}

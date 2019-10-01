@@ -614,8 +614,7 @@ xtabs(nhefs.nmv$sw ~ nhefs.nmv$sex + nhefs.nmv$qsmk)
 
 ## Program 12.4
 
-- Estimating the parameters of a marginal structural mean model
-- with a continuous treatment Data from NHEFS
+- Estimating the parameters of a marginal structural mean model with a continuous treatment Data from NHEFS
 
 
 ```r

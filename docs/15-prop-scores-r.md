@@ -863,9 +863,8 @@ confint.lm(fit.psdec)
 
 ## Program 15.4
 
-- Standardization using the propensity score                                    
-- Data from NHEFS                                                               
-
+- Standardization using the propensity score
+- Data from NHEFS
 
 ```r
 #install.packages("boot") # install package if required
@@ -941,16 +940,16 @@ bootstrap
 ```
 
 ```
-##                         V1             mean                se
-## 1                 Observed 2.63384609228479 0.156871857124193
-## 2             No Treatment 1.71983636149843 0.191670530997984
-## 3                Treatment 5.35072300362993 0.414504835867509
-## 4 Treatment - No Treatment 3.63088664213151 0.505376172814929
+##                         V1             mean                 se
+## 1                 Observed 2.63384609228479  0.135914960649541
+## 2             No Treatment 1.71983636149843 0.0407217598516196
+## 3                Treatment 5.35072300362993  0.306944891761689
+## 4 Treatment - No Treatment 3.63088664213151  0.302594732304446
 ##                 ll               ul
-## 1 2.32638290213346 2.94130928243613
-## 2 1.34416902384471 2.09550369915214
-## 3 4.53830845391193 6.16313755334794
-## 4 2.64036754476955 4.62140573949346
+## 1 2.36745766445152 2.90023452011807
+## 2 1.64002317880216 1.79964954419469
+## 3 4.74912207053848 5.95232393672139
+## 4 3.03781186490325 4.22396141935976
 ```
 
 
@@ -1072,23 +1071,7 @@ for(i in 1:nboot) {
 
 ```
 ## 95% CI for the causal mean difference
-## 2.734331 , 4.570278
+## 2.587623 , 4.537993
 ```
 
-
-```r
-# a more flexible and elegant way to do this is to write a function 
-# to perform the model fitting, prediction, bootstrapping, and reporting all at once
-# view the code contained in the file mstandardize.R to learn more
-
-# load the code for the mstandardize() function 
-# (you may need to change the filepath)
-source('chapter15_mstandardize.R') 
-
-# performt the standardization
-mstandardize(formula = wt82_71 ~ qsmk + decile(p.qsmk), 
-             family = 'gaussian',
-             trt = 'qsmk', 
-             nboot = 100, 
-             data = nhefs)
-```
+A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.

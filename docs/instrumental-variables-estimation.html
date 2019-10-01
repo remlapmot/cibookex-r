@@ -215,26 +215,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Estimating the average causal using the standard IV estimator via the calculation of sample averages</li>
 <li>Data from NHEFS</li>
 </ul>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="instrumental-variables-estimation.html#cb276-1"></a><span class="kw">library</span>(here)</span></code></pre></div>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="instrumental-variables-estimation.html#cb277-1"></a><span class="co">#install.packages(&quot;readxl&quot;) # install package if required</span></span>
-<span id="cb277-2"><a href="instrumental-variables-estimation.html#cb277-2"></a><span class="kw">library</span>(<span class="st">&quot;readxl&quot;</span>)</span>
-<span id="cb277-3"><a href="instrumental-variables-estimation.html#cb277-3"></a>nhefs &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;NHEFS.xls&quot;</span>))</span>
-<span id="cb277-4"><a href="instrumental-variables-estimation.html#cb277-4"></a></span>
-<span id="cb277-5"><a href="instrumental-variables-estimation.html#cb277-5"></a><span class="co"># some preprocessing of the data</span></span>
-<span id="cb277-6"><a href="instrumental-variables-estimation.html#cb277-6"></a>nhefs<span class="op">$</span>cens &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span class="kw">is.na</span>(nhefs<span class="op">$</span>wt82), <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb277-7"><a href="instrumental-variables-estimation.html#cb277-7"></a><span class="kw">summary</span>(nhefs<span class="op">$</span>price82)</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="instrumental-variables-estimation.html#cb275-1"></a><span class="kw">library</span>(here)</span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="instrumental-variables-estimation.html#cb276-1"></a><span class="co">#install.packages(&quot;readxl&quot;) # install package if required</span></span>
+<span id="cb276-2"><a href="instrumental-variables-estimation.html#cb276-2"></a><span class="kw">library</span>(<span class="st">&quot;readxl&quot;</span>)</span>
+<span id="cb276-3"><a href="instrumental-variables-estimation.html#cb276-3"></a>nhefs &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;NHEFS.xls&quot;</span>))</span>
+<span id="cb276-4"><a href="instrumental-variables-estimation.html#cb276-4"></a></span>
+<span id="cb276-5"><a href="instrumental-variables-estimation.html#cb276-5"></a><span class="co"># some preprocessing of the data</span></span>
+<span id="cb276-6"><a href="instrumental-variables-estimation.html#cb276-6"></a>nhefs<span class="op">$</span>cens &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span class="kw">is.na</span>(nhefs<span class="op">$</span>wt82), <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb276-7"><a href="instrumental-variables-estimation.html#cb276-7"></a><span class="kw">summary</span>(nhefs<span class="op">$</span>price82)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
 ##   1.452   1.740   1.815   1.806   1.868   2.103      92</code></pre>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="instrumental-variables-estimation.html#cb279-1"></a><span class="co"># for simplicity, ignore subjects with missing outcome or missing instrument</span></span>
-<span id="cb279-2"><a href="instrumental-variables-estimation.html#cb279-2"></a>nhefs.iv &lt;-<span class="st"> </span>nhefs[<span class="kw">which</span>(<span class="op">!</span><span class="kw">is.na</span>(nhefs<span class="op">$</span>wt82) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(nhefs<span class="op">$</span>price82)),]</span>
-<span id="cb279-3"><a href="instrumental-variables-estimation.html#cb279-3"></a>nhefs.iv<span class="op">$</span>highprice &lt;-<span class="st"> </span><span class="kw">ifelse</span>(nhefs.iv<span class="op">$</span>price82<span class="op">&gt;=</span><span class="fl">1.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb279-4"><a href="instrumental-variables-estimation.html#cb279-4"></a></span>
-<span id="cb279-5"><a href="instrumental-variables-estimation.html#cb279-5"></a><span class="kw">table</span>(nhefs.iv<span class="op">$</span>highprice, nhefs.iv<span class="op">$</span>qsmk)</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="instrumental-variables-estimation.html#cb278-1"></a><span class="co"># for simplicity, ignore subjects with missing outcome or missing instrument</span></span>
+<span id="cb278-2"><a href="instrumental-variables-estimation.html#cb278-2"></a>nhefs.iv &lt;-<span class="st"> </span>nhefs[<span class="kw">which</span>(<span class="op">!</span><span class="kw">is.na</span>(nhefs<span class="op">$</span>wt82) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(nhefs<span class="op">$</span>price82)),]</span>
+<span id="cb278-3"><a href="instrumental-variables-estimation.html#cb278-3"></a>nhefs.iv<span class="op">$</span>highprice &lt;-<span class="st"> </span><span class="kw">ifelse</span>(nhefs.iv<span class="op">$</span>price82<span class="op">&gt;=</span><span class="fl">1.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb278-4"><a href="instrumental-variables-estimation.html#cb278-4"></a></span>
+<span id="cb278-5"><a href="instrumental-variables-estimation.html#cb278-5"></a><span class="kw">table</span>(nhefs.iv<span class="op">$</span>highprice, nhefs.iv<span class="op">$</span>qsmk)</span></code></pre></div>
 <pre><code>##    
 ##        0    1
 ##   0   33    8
 ##   1 1065  370</code></pre>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="instrumental-variables-estimation.html#cb281-1"></a><span class="kw">t.test</span>(wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>highprice, <span class="dt">data=</span>nhefs.iv)</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="instrumental-variables-estimation.html#cb280-1"></a><span class="kw">t.test</span>(wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>highprice, <span class="dt">data=</span>nhefs.iv)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -253,11 +253,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Estimating the average causal effect using the standard IV estimator via two-stage-least-squares regression</li>
 <li>Data from NHEFS</li>
 </ul>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="instrumental-variables-estimation.html#cb283-1"></a><span class="co">#install.packages (&quot;sem&quot;) # install package if required</span></span>
-<span id="cb283-2"><a href="instrumental-variables-estimation.html#cb283-2"></a><span class="kw">library</span>(sem) </span>
-<span id="cb283-3"><a href="instrumental-variables-estimation.html#cb283-3"></a></span>
-<span id="cb283-4"><a href="instrumental-variables-estimation.html#cb283-4"></a>model1 &lt;-<span class="st"> </span><span class="kw">tsls</span>(wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>qsmk, <span class="op">~</span><span class="st"> </span>highprice, <span class="dt">data =</span> nhefs.iv)</span>
-<span id="cb283-5"><a href="instrumental-variables-estimation.html#cb283-5"></a><span class="kw">summary</span>(model1)</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="instrumental-variables-estimation.html#cb282-1"></a><span class="co">#install.packages (&quot;sem&quot;) # install package if required</span></span>
+<span id="cb282-2"><a href="instrumental-variables-estimation.html#cb282-2"></a><span class="kw">library</span>(sem) </span>
+<span id="cb282-3"><a href="instrumental-variables-estimation.html#cb282-3"></a></span>
+<span id="cb282-4"><a href="instrumental-variables-estimation.html#cb282-4"></a>model1 &lt;-<span class="st"> </span><span class="kw">tsls</span>(wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>qsmk, <span class="op">~</span><span class="st"> </span>highprice, <span class="dt">data =</span> nhefs.iv)</span>
+<span id="cb282-5"><a href="instrumental-variables-estimation.html#cb282-5"></a><span class="kw">summary</span>(model1)</span></code></pre></div>
 <pre><code>## 
 ##  2SLS Estimates
 ## 
@@ -274,7 +274,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## qsmk         2.396270  19.840037 0.12078  0.90388
 ## 
 ## Residual standard error: 7.8561141 on 1474 degrees of freedom</code></pre>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="instrumental-variables-estimation.html#cb285-1"></a><span class="kw">confint</span>(model1)  <span class="co"># note the wide confidence intervals</span></span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="instrumental-variables-estimation.html#cb284-1"></a><span class="kw">confint</span>(model1)  <span class="co"># note the wide confidence intervals</span></span></code></pre></div>
 <pre><code>##                  2.5 %   97.5 %
 ## (Intercept)  -7.898445 12.03477
 ## qsmk        -36.489487 41.28203</code></pre>
@@ -282,20 +282,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="program-16.3" class="section level2">
 <h2>Program 16.3</h2>
 <ul>
-<li><p>Estimating the average causal using the standard IV estimator via additive marginal structural models</p></li>
-<li><p>Data from NHEFS</p></li>
-<li><p>G-estimation: Checking one possible value of psi<br />
-</p></li>
-<li><p>See Chapter 14 for program that checks several values and computes 95% confidence intervals</p></li>
+<li>Estimating the average causal using the standard IV estimator via additive marginal structural models</li>
+<li>Data from NHEFS</li>
+<li>G-estimation: Checking one possible value of psi</li>
+<li>See Chapter 14 for program that checks several values and computes 95% confidence intervals</li>
 </ul>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="instrumental-variables-estimation.html#cb287-1"></a>nhefs.iv<span class="op">$</span>psi &lt;-<span class="st"> </span><span class="fl">2.396</span></span>
-<span id="cb287-2"><a href="instrumental-variables-estimation.html#cb287-2"></a>nhefs.iv<span class="op">$</span>Hpsi &lt;-<span class="st"> </span>nhefs.iv<span class="op">$</span>wt82_<span class="dv">71</span><span class="op">-</span>nhefs.iv<span class="op">$</span>psi<span class="op">*</span>nhefs.iv<span class="op">$</span>qsmk</span>
-<span id="cb287-3"><a href="instrumental-variables-estimation.html#cb287-3"></a></span>
-<span id="cb287-4"><a href="instrumental-variables-estimation.html#cb287-4"></a><span class="co">#install.packages(&quot;geepack&quot;) # install package if required</span></span>
-<span id="cb287-5"><a href="instrumental-variables-estimation.html#cb287-5"></a><span class="kw">library</span>(<span class="st">&quot;geepack&quot;</span>)</span>
-<span id="cb287-6"><a href="instrumental-variables-estimation.html#cb287-6"></a>g.est &lt;-<span class="st"> </span><span class="kw">geeglm</span>(highprice <span class="op">~</span><span class="st"> </span>Hpsi, <span class="dt">data=</span>nhefs.iv, <span class="dt">id=</span>seqn, <span class="dt">family=</span><span class="kw">binomial</span>(),</span>
-<span id="cb287-7"><a href="instrumental-variables-estimation.html#cb287-7"></a>                <span class="dt">corstr=</span><span class="st">&quot;independence&quot;</span>)</span>
-<span id="cb287-8"><a href="instrumental-variables-estimation.html#cb287-8"></a><span class="kw">summary</span>(g.est)</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="instrumental-variables-estimation.html#cb286-1"></a>nhefs.iv<span class="op">$</span>psi &lt;-<span class="st"> </span><span class="fl">2.396</span></span>
+<span id="cb286-2"><a href="instrumental-variables-estimation.html#cb286-2"></a>nhefs.iv<span class="op">$</span>Hpsi &lt;-<span class="st"> </span>nhefs.iv<span class="op">$</span>wt82_<span class="dv">71</span><span class="op">-</span>nhefs.iv<span class="op">$</span>psi<span class="op">*</span>nhefs.iv<span class="op">$</span>qsmk</span>
+<span id="cb286-3"><a href="instrumental-variables-estimation.html#cb286-3"></a></span>
+<span id="cb286-4"><a href="instrumental-variables-estimation.html#cb286-4"></a><span class="co">#install.packages(&quot;geepack&quot;) # install package if required</span></span>
+<span id="cb286-5"><a href="instrumental-variables-estimation.html#cb286-5"></a><span class="kw">library</span>(<span class="st">&quot;geepack&quot;</span>)</span>
+<span id="cb286-6"><a href="instrumental-variables-estimation.html#cb286-6"></a>g.est &lt;-<span class="st"> </span><span class="kw">geeglm</span>(highprice <span class="op">~</span><span class="st"> </span>Hpsi, <span class="dt">data=</span>nhefs.iv, <span class="dt">id=</span>seqn, <span class="dt">family=</span><span class="kw">binomial</span>(),</span>
+<span id="cb286-7"><a href="instrumental-variables-estimation.html#cb286-7"></a>                <span class="dt">corstr=</span><span class="st">&quot;independence&quot;</span>)</span>
+<span id="cb286-8"><a href="instrumental-variables-estimation.html#cb286-8"></a><span class="kw">summary</span>(g.est)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## geeglm(formula = highprice ~ Hpsi, family = binomial(), data = nhefs.iv, 
@@ -313,11 +312,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## (Intercept)        1  0.7607
 ## 
 ## Correlation: Structure = independenceNumber of clusters:   1476   Maximum cluster size: 1</code></pre>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="instrumental-variables-estimation.html#cb289-1"></a>beta &lt;-<span class="st"> </span><span class="kw">coef</span>(g.est)</span>
-<span id="cb289-2"><a href="instrumental-variables-estimation.html#cb289-2"></a>SE &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(g.est))[,<span class="dv">2</span>]</span>
-<span id="cb289-3"><a href="instrumental-variables-estimation.html#cb289-3"></a>lcl &lt;-<span class="st"> </span>beta<span class="op">-</span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)<span class="op">*</span>SE </span>
-<span id="cb289-4"><a href="instrumental-variables-estimation.html#cb289-4"></a>ucl &lt;-<span class="st"> </span>beta<span class="op">+</span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)<span class="op">*</span>SE</span>
-<span id="cb289-5"><a href="instrumental-variables-estimation.html#cb289-5"></a><span class="kw">cbind</span>(beta, lcl, ucl)</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="instrumental-variables-estimation.html#cb288-1"></a>beta &lt;-<span class="st"> </span><span class="kw">coef</span>(g.est)</span>
+<span id="cb288-2"><a href="instrumental-variables-estimation.html#cb288-2"></a>SE &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(g.est))[,<span class="dv">2</span>]</span>
+<span id="cb288-3"><a href="instrumental-variables-estimation.html#cb288-3"></a>lcl &lt;-<span class="st"> </span>beta<span class="op">-</span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)<span class="op">*</span>SE </span>
+<span id="cb288-4"><a href="instrumental-variables-estimation.html#cb288-4"></a>ucl &lt;-<span class="st"> </span>beta<span class="op">+</span><span class="kw">qnorm</span>(<span class="fl">0.975</span>)<span class="op">*</span>SE</span>
+<span id="cb288-5"><a href="instrumental-variables-estimation.html#cb288-5"></a><span class="kw">cbind</span>(beta, lcl, ucl)</span></code></pre></div>
 <pre><code>##                  beta      lcl     ucl
 ## (Intercept) 3.555e+00  3.23152 3.87917
 ## Hpsi        2.748e-07 -0.04456 0.04456</code></pre>
@@ -328,7 +327,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Estimating the average causal using the standard IV estimator with altnerative proposed instruments</li>
 <li>Data from NHEFS</li>
 </ul>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="instrumental-variables-estimation.html#cb291-1"></a><span class="kw">summary</span>(<span class="kw">tsls</span>(wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>qsmk, <span class="op">~</span><span class="st"> </span><span class="kw">ifelse</span>(price82 <span class="op">&gt;=</span><span class="st"> </span><span class="fl">1.6</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="dt">data =</span> nhefs.iv))</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="instrumental-variables-estimation.html#cb290-1"></a><span class="kw">summary</span>(<span class="kw">tsls</span>(wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>qsmk, <span class="op">~</span><span class="st"> </span><span class="kw">ifelse</span>(price82 <span class="op">&gt;=</span><span class="st"> </span><span class="fl">1.6</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="dt">data =</span> nhefs.iv))</span></code></pre></div>
 <pre><code>## 
 ##  2SLS Estimates
 ## 
@@ -345,7 +344,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## qsmk           41.28     164.95   0.250    0.802
 ## 
 ## Residual standard error: 18.6055 on 1474 degrees of freedom</code></pre>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="instrumental-variables-estimation.html#cb293-1"></a><span class="kw">summary</span>(<span class="kw">tsls</span>(wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>qsmk, <span class="op">~</span><span class="st"> </span><span class="kw">ifelse</span>(price82 <span class="op">&gt;=</span><span class="st"> </span><span class="fl">1.7</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="dt">data =</span> nhefs.iv))</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="instrumental-variables-estimation.html#cb292-1"></a><span class="kw">summary</span>(<span class="kw">tsls</span>(wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>qsmk, <span class="op">~</span><span class="st"> </span><span class="kw">ifelse</span>(price82 <span class="op">&gt;=</span><span class="st"> </span><span class="fl">1.7</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="dt">data =</span> nhefs.iv))</span></code></pre></div>
 <pre><code>## 
 ##  2SLS Estimates
 ## 
@@ -362,7 +361,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## qsmk          -40.91     187.74  -0.218    0.828
 ## 
 ## Residual standard error: 20.591 on 1474 degrees of freedom</code></pre>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="instrumental-variables-estimation.html#cb295-1"></a><span class="kw">summary</span>(<span class="kw">tsls</span>(wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>qsmk, <span class="op">~</span><span class="st"> </span><span class="kw">ifelse</span>(price82 <span class="op">&gt;=</span><span class="st"> </span><span class="fl">1.8</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="dt">data =</span> nhefs.iv))</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="instrumental-variables-estimation.html#cb294-1"></a><span class="kw">summary</span>(<span class="kw">tsls</span>(wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>qsmk, <span class="op">~</span><span class="st"> </span><span class="kw">ifelse</span>(price82 <span class="op">&gt;=</span><span class="st"> </span><span class="fl">1.8</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="dt">data =</span> nhefs.iv))</span></code></pre></div>
 <pre><code>## 
 ##  2SLS Estimates
 ## 
@@ -379,7 +378,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## qsmk         -21.103     28.428  -0.742    0.458
 ## 
 ## Residual standard error: 13.0188 on 1474 degrees of freedom</code></pre>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="instrumental-variables-estimation.html#cb297-1"></a><span class="kw">summary</span>(<span class="kw">tsls</span>(wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>qsmk, <span class="op">~</span><span class="st"> </span><span class="kw">ifelse</span>(price82 <span class="op">&gt;=</span><span class="st"> </span><span class="fl">1.9</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="dt">data =</span> nhefs.iv))</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="instrumental-variables-estimation.html#cb296-1"></a><span class="kw">summary</span>(<span class="kw">tsls</span>(wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>qsmk, <span class="op">~</span><span class="st"> </span><span class="kw">ifelse</span>(price82 <span class="op">&gt;=</span><span class="st"> </span><span class="fl">1.9</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="dt">data =</span> nhefs.iv))</span></code></pre></div>
 <pre><code>## 
 ##  2SLS Estimates
 ## 
@@ -404,11 +403,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Conditional on baseline covariates</li>
 <li>Data from NHEFS</li>
 </ul>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="instrumental-variables-estimation.html#cb299-1"></a>model2 &lt;-<span class="st"> </span><span class="kw">tsls</span>(wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>qsmk <span class="op">+</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>smokeintensity <span class="op">+</span><span class="st"> </span>smokeyrs <span class="op">+</span><span class="st"> </span></span>
-<span id="cb299-2"><a href="instrumental-variables-estimation.html#cb299-2"></a><span class="st">                      </span><span class="kw">as.factor</span>(exercise) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(active) <span class="op">+</span><span class="st"> </span>wt71,</span>
-<span id="cb299-3"><a href="instrumental-variables-estimation.html#cb299-3"></a>             <span class="op">~</span><span class="st"> </span>highprice <span class="op">+</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>smokeintensity <span class="op">+</span><span class="st"> </span>smokeyrs <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(exercise) <span class="op">+</span></span>
-<span id="cb299-4"><a href="instrumental-variables-estimation.html#cb299-4"></a><span class="st">               </span><span class="kw">as.factor</span>(active) <span class="op">+</span><span class="st"> </span>wt71, <span class="dt">data =</span> nhefs.iv)</span>
-<span id="cb299-5"><a href="instrumental-variables-estimation.html#cb299-5"></a><span class="kw">summary</span>(model2)</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="instrumental-variables-estimation.html#cb298-1"></a>model2 &lt;-<span class="st"> </span><span class="kw">tsls</span>(wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>qsmk <span class="op">+</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>smokeintensity <span class="op">+</span><span class="st"> </span>smokeyrs <span class="op">+</span><span class="st"> </span></span>
+<span id="cb298-2"><a href="instrumental-variables-estimation.html#cb298-2"></a><span class="st">                      </span><span class="kw">as.factor</span>(exercise) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(active) <span class="op">+</span><span class="st"> </span>wt71,</span>
+<span id="cb298-3"><a href="instrumental-variables-estimation.html#cb298-3"></a>             <span class="op">~</span><span class="st"> </span>highprice <span class="op">+</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>smokeintensity <span class="op">+</span><span class="st"> </span>smokeyrs <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(exercise) <span class="op">+</span></span>
+<span id="cb298-4"><a href="instrumental-variables-estimation.html#cb298-4"></a><span class="st">               </span><span class="kw">as.factor</span>(active) <span class="op">+</span><span class="st"> </span>wt71, <span class="dt">data =</span> nhefs.iv)</span>
+<span id="cb298-5"><a href="instrumental-variables-estimation.html#cb298-5"></a><span class="kw">summary</span>(model2)</span></code></pre></div>
 <pre><code>## 
 ##  2SLS Estimates
 ## 

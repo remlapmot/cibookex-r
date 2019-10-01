@@ -944,8 +944,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="program-15.4" class="section level2">
 <h2>Program 15.4</h2>
 <ul>
-<li>Standardization using the propensity score<br />
-</li>
+<li>Standardization using the propensity score</li>
 <li>Data from NHEFS</li>
 </ul>
 <div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="outcome-regression-and-propensity-scores.html#cb259-1"></a><span class="co">#install.packages(&quot;boot&quot;) # install package if required</span></span>
@@ -1007,15 +1006,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb263-47"><a href="outcome-regression-and-propensity-scores.html#cb263-47"></a>                                <span class="st">&quot;Treatment - No Treatment&quot;</span>), mean, se, ll, ul))</span>
 <span id="cb263-48"><a href="outcome-regression-and-propensity-scores.html#cb263-48"></a>bootstrap</span></code></pre></div>
 <pre><code>##                         V1             mean                se
-## 1                 Observed 2.63384609228479  0.22837179599451
-## 2             No Treatment 1.71983636149843 0.277763868688965
-## 3                Treatment 5.35072300362993 0.503884554686384
-## 4 Treatment - No Treatment 3.63088664213151 0.708588964135142
+## 1                 Observed 2.63384609228479 0.168253142266061
+## 2             No Treatment 1.71983636149843  0.23473104662503
+## 3                Treatment 5.35072300362993 0.188814062916669
+## 4 Treatment - No Treatment 3.63088664213151 0.258443014043272
 ##                 ll               ul
-## 1 2.18624559705083 3.08144658751876
-## 2 1.17542918266154 2.26424354033531
-## 3 4.36312742407862 6.33831858318125
-## 4 2.24207779258408 5.01969549167893</code></pre>
+## 1 2.30407599315762 2.96361619141197
+## 2 1.25977196405997 2.17990075893688
+## 3 4.98065424053858 5.72079176672128
+## 4 3.12434764255071  4.1374256417123</code></pre>
 <div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="outcome-regression-and-propensity-scores.html#cb265-1"></a><span class="co"># regression on the propensity score (linear term)</span></span>
 <span id="cb265-2"><a href="outcome-regression-and-propensity-scores.html#cb265-2"></a>model6 &lt;-<span class="st"> </span><span class="kw">glm</span>(wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>qsmk <span class="op">+</span><span class="st"> </span>ps, <span class="dt">data =</span> nhefs) <span class="co"># p.qsmk</span></span>
 <span id="cb265-3"><a href="outcome-regression-and-propensity-scores.html#cb265-3"></a><span class="kw">summary</span>(model6)</span></code></pre></div>
@@ -1106,21 +1105,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb273-40"><a href="outcome-regression-and-propensity-scores.html#cb273-40"></a>  }</span>
 <span id="cb273-41"><a href="outcome-regression-and-propensity-scores.html#cb273-41"></a>}</span></code></pre></div>
 <pre><code>## 95% CI for the causal mean difference
-## 2.501458 , 4.569183</code></pre>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="outcome-regression-and-propensity-scores.html#cb275-1"></a><span class="co"># a more flexible and elegant way to do this is to write a function </span></span>
-<span id="cb275-2"><a href="outcome-regression-and-propensity-scores.html#cb275-2"></a><span class="co"># to perform the model fitting, prediction, bootstrapping, and reporting all at once</span></span>
-<span id="cb275-3"><a href="outcome-regression-and-propensity-scores.html#cb275-3"></a><span class="co"># view the code contained in the file mstandardize.R to learn more</span></span>
-<span id="cb275-4"><a href="outcome-regression-and-propensity-scores.html#cb275-4"></a></span>
-<span id="cb275-5"><a href="outcome-regression-and-propensity-scores.html#cb275-5"></a><span class="co"># load the code for the mstandardize() function </span></span>
-<span id="cb275-6"><a href="outcome-regression-and-propensity-scores.html#cb275-6"></a><span class="co"># (you may need to change the filepath)</span></span>
-<span id="cb275-7"><a href="outcome-regression-and-propensity-scores.html#cb275-7"></a><span class="kw">source</span>(<span class="st">&#39;chapter15_mstandardize.R&#39;</span>) </span>
-<span id="cb275-8"><a href="outcome-regression-and-propensity-scores.html#cb275-8"></a></span>
-<span id="cb275-9"><a href="outcome-regression-and-propensity-scores.html#cb275-9"></a><span class="co"># performt the standardization</span></span>
-<span id="cb275-10"><a href="outcome-regression-and-propensity-scores.html#cb275-10"></a><span class="kw">mstandardize</span>(<span class="dt">formula =</span> wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>qsmk <span class="op">+</span><span class="st"> </span><span class="kw">decile</span>(p.qsmk), </span>
-<span id="cb275-11"><a href="outcome-regression-and-propensity-scores.html#cb275-11"></a>             <span class="dt">family =</span> <span class="st">&#39;gaussian&#39;</span>,</span>
-<span id="cb275-12"><a href="outcome-regression-and-propensity-scores.html#cb275-12"></a>             <span class="dt">trt =</span> <span class="st">&#39;qsmk&#39;</span>, </span>
-<span id="cb275-13"><a href="outcome-regression-and-propensity-scores.html#cb275-13"></a>             <span class="dt">nboot =</span> <span class="dv">100</span>, </span>
-<span id="cb275-14"><a href="outcome-regression-and-propensity-scores.html#cb275-14"></a>             <span class="dt">data =</span> nhefs)</span></code></pre></div>
+## 2.545181 , 4.489571</code></pre>
+<p>A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.</p>
 
 </div>
 </div>
