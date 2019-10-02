@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>13. Standardization and the parametric G-formula | Causal Inference Book: Exercises – R code</title>
   <meta name="description" content="Code examples from the Causal Inference Book by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
   <meta property="og:title" content="13. Standardization and the parametric G-formula | Causal Inference Book: Exercises – R code" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Book by M. A. Hernán and J. M. Robins, R code by Joy Shi and Sean McGrath, R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2019-10-01" />
+<meta name="date" content="2019-10-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -40,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -594,15 +597,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb181-71"><a href="standardization-and-the-parametric-g-formula.html#cb181-71"></a>  ))</span>
 <span id="cb181-72"><a href="standardization-and-the-parametric-g-formula.html#cb181-72"></a>bootstrap</span></code></pre></div>
 <pre><code>##                         V1             mean                se
-## 1                 Observed 2.56188497106103 0.248986692928406
-## 2             No Treatment 1.65212306626746 0.388174407213879
-## 3                Treatment 5.11474489549347 0.315067582480786
-## 4 Treatment - No Treatment 3.46262182922601 0.605984281651336
-##                  ll               ul
-## 1  2.07388002029162 3.04988992183044
-## 2 0.891315208408071 2.41293092412685
-## 3  4.49722378113502 5.73226600985191
-## 4  2.27491446199201    4.65032919646</code></pre>
+## 1                 Observed 2.56188497106103 0.136697619208489
+## 2             No Treatment 1.65212306626746 0.101402988831188
+## 3                Treatment 5.11474489549347 0.253996225011968
+## 4 Treatment - No Treatment 3.46262182922601  0.27945171459375
+##                 ll               ul
+## 1 2.29396256064002 2.82980738148204
+## 2 1.45337686023361 1.85086927230131
+## 3 4.61692144226088 5.61256834872605
+## 4 2.91490653320429 4.01033712524772</code></pre>
 
 </div>
 </div>
@@ -617,11 +620,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({

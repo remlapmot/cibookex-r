@@ -1,7 +1,7 @@
 --- 
 title: "Causal Inference Book: Exercises -- R code"
 author: "Book by M. A. Hernán and J. M. Robins, R code by Joy Shi and Sean McGrath, R Markdown code by Tom Palmer"
-date: "2019-10-01"
+date: "2019-10-02"
 site: bookdown::bookdown_site
 documentclass: book
 #bibliography: [book.bib, packages.bib]
