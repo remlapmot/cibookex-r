@@ -23,6 +23,7 @@ Imports:
   splitstackshape,
   survival,
   survminer,
-  tidyverse
+  tidyverse,
+  tinytex
 SystemRequirements: 
   pandoc (>= 2.3.1) - https://pandoc.org/

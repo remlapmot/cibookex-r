@@ -1,4 +1,4 @@
-# Repository of R code for the Causal Inference Book Examples
+# Repository of R code for the Causal Inference Book Examples by Hernán and Robins
 
 The R code by Joy Shi and Sean McGrath available [here](https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/1268/20/Rcode_CIpart2.zip) of the [Causal Inference Book](https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/) by Hernán MA and Robins JM rendered using [bookdown](https://bookdown.org/).
 
@@ -10,6 +10,11 @@ devtools::install_deps()
 ```
 
 ## Building the book
+
+- If you need to install LaTeX, install the R tinytex package (which is included in the dependencies) and run
+``` r
+tinytex::install_tinytex()
+```
 
 - Render all formats
 ```r
