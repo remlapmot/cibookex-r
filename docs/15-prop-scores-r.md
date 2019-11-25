@@ -40,50 +40,28 @@ summary(fit)
 ## -42.056   -4.171   -0.343    3.891   44.606  
 ## 
 ## Coefficients:
-##                                      Estimate Std. Error t value Pr(>|t|)
-## (Intercept)                        -1.5881657  4.3130359  -0.368 0.712756
-## qsmk                                2.5595941  0.8091486   3.163 0.001590
-## sex                                -1.4302717  0.4689576  -3.050 0.002328
-## race                                0.5601096  0.5818888   0.963 0.335913
-## age                                 0.3596353  0.1633188   2.202 0.027809
-## I(age * age)                       -0.0061010  0.0017261  -3.534 0.000421
-## as.factor(education)2               0.7904440  0.6070005   1.302 0.193038
-## as.factor(education)3               0.5563124  0.5561016   1.000 0.317284
-## as.factor(education)4               1.4915695  0.8322704   1.792 0.073301
-## as.factor(education)5              -0.1949770  0.7413692  -0.263 0.792589
-## smokeintensity                      0.0491365  0.0517254   0.950 0.342287
-## I(smokeintensity * smokeintensity) -0.0009907  0.0009380  -1.056 0.291097
-## smokeyrs                            0.1343686  0.0917122   1.465 0.143094
-## I(smokeyrs * smokeyrs)             -0.0018664  0.0015437  -1.209 0.226830
-## as.factor(exercise)1                0.2959754  0.5351533   0.553 0.580298
-## as.factor(exercise)2                0.3539128  0.5588587   0.633 0.526646
-## as.factor(active)1                 -0.9475695  0.4099344  -2.312 0.020935
-## as.factor(active)2                 -0.2613779  0.6845577  -0.382 0.702647
-## wt71                                0.0455018  0.0833709   0.546 0.585299
-## I(wt71 * wt71)                     -0.0009653  0.0005247  -1.840 0.066001
-## I(qsmk * smokeintensity)            0.0466628  0.0351448   1.328 0.184463
-##                                       
-## (Intercept)                           
-## qsmk                               ** 
-## sex                                ** 
-## race                                  
-## age                                *  
-## I(age * age)                       ***
-## as.factor(education)2                 
-## as.factor(education)3                 
-## as.factor(education)4              .  
-## as.factor(education)5                 
-## smokeintensity                        
-## I(smokeintensity * smokeintensity)    
-## smokeyrs                              
-## I(smokeyrs * smokeyrs)                
-## as.factor(exercise)1                  
-## as.factor(exercise)2                  
-## as.factor(active)1                 *  
-## as.factor(active)2                    
-## wt71                                  
-## I(wt71 * wt71)                     .  
-## I(qsmk * smokeintensity)              
+##                                      Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                        -1.5881657  4.3130359  -0.368 0.712756    
+## qsmk                                2.5595941  0.8091486   3.163 0.001590 ** 
+## sex                                -1.4302717  0.4689576  -3.050 0.002328 ** 
+## race                                0.5601096  0.5818888   0.963 0.335913    
+## age                                 0.3596353  0.1633188   2.202 0.027809 *  
+## I(age * age)                       -0.0061010  0.0017261  -3.534 0.000421 ***
+## as.factor(education)2               0.7904440  0.6070005   1.302 0.193038    
+## as.factor(education)3               0.5563124  0.5561016   1.000 0.317284    
+## as.factor(education)4               1.4915695  0.8322704   1.792 0.073301 .  
+## as.factor(education)5              -0.1949770  0.7413692  -0.263 0.792589    
+## smokeintensity                      0.0491365  0.0517254   0.950 0.342287    
+## I(smokeintensity * smokeintensity) -0.0009907  0.0009380  -1.056 0.291097    
+## smokeyrs                            0.1343686  0.0917122   1.465 0.143094    
+## I(smokeyrs * smokeyrs)             -0.0018664  0.0015437  -1.209 0.226830    
+## as.factor(exercise)1                0.2959754  0.5351533   0.553 0.580298    
+## as.factor(exercise)2                0.3539128  0.5588587   0.633 0.526646    
+## as.factor(active)1                 -0.9475695  0.4099344  -2.312 0.020935 *  
+## as.factor(active)2                 -0.2613779  0.6845577  -0.382 0.702647    
+## wt71                                0.0455018  0.0833709   0.546 0.585299    
+## I(wt71 * wt71)                     -0.0009653  0.0005247  -1.840 0.066001 .  
+## I(qsmk * smokeintensity)            0.0466628  0.0351448   1.328 0.184463    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -149,12 +127,12 @@ K1
 ```
 
 ```
-##                                                    (Intercept) qsmk sex
-## Effect of Quitting Smoking at Smokeintensity of 5            0    1   0
-## Effect of Quitting Smoking at Smokeintensity of 40           0    1   0
-##                                                    race age I(age * age)
-## Effect of Quitting Smoking at Smokeintensity of 5     0   0            0
-## Effect of Quitting Smoking at Smokeintensity of 40    0   0            0
+##                                                    (Intercept) qsmk sex race
+## Effect of Quitting Smoking at Smokeintensity of 5            0    1   0    0
+## Effect of Quitting Smoking at Smokeintensity of 40           0    1   0    0
+##                                                    age I(age * age)
+## Effect of Quitting Smoking at Smokeintensity of 5    0            0
+## Effect of Quitting Smoking at Smokeintensity of 40   0            0
 ##                                                    as.factor(education)2
 ## Effect of Quitting Smoking at Smokeintensity of 5                      0
 ## Effect of Quitting Smoking at Smokeintensity of 40                     0
@@ -216,15 +194,12 @@ estimates1 <- glht(fit, K1)
 ##     data = nhefs)
 ## 
 ## Linear Hypotheses:
-##                                                         Estimate
-## Effect of Quitting Smoking at Smokeintensity of 5 == 0    2.7929
-## Effect of Quitting Smoking at Smokeintensity of 40 == 0   4.4261
-##                                                         Std. Error z value
-## Effect of Quitting Smoking at Smokeintensity of 5 == 0      0.6683   4.179
-## Effect of Quitting Smoking at Smokeintensity of 40 == 0     0.8478   5.221
-##                                                         Pr(>|z|)    
-## Effect of Quitting Smoking at Smokeintensity of 5 == 0  5.84e-05 ***
-## Effect of Quitting Smoking at Smokeintensity of 40 == 0 3.56e-07 ***
+##                                                         Estimate Std. Error
+## Effect of Quitting Smoking at Smokeintensity of 5 == 0    2.7929     0.6683
+## Effect of Quitting Smoking at Smokeintensity of 40 == 0   4.4261     0.8478
+##                                                         z value Pr(>|z|)    
+## Effect of Quitting Smoking at Smokeintensity of 5 == 0    4.179 5.84e-05 ***
+## Effect of Quitting Smoking at Smokeintensity of 40 == 0   5.221 3.56e-07 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## (Adjusted p values reported -- single-step method)
@@ -249,12 +224,9 @@ estimates1 <- glht(fit, K1)
 ##  
 ## 
 ## Linear Hypotheses:
-##                                                         Estimate lwr   
-## Effect of Quitting Smoking at Smokeintensity of 5 == 0  2.7929   1.3039
-## Effect of Quitting Smoking at Smokeintensity of 40 == 0 4.4261   2.5372
-##                                                         upr   
-## Effect of Quitting Smoking at Smokeintensity of 5 == 0  4.2819
-## Effect of Quitting Smoking at Smokeintensity of 40 == 0 6.3151
+##                                                         Estimate lwr    upr   
+## Effect of Quitting Smoking at Smokeintensity of 5 == 0  2.7929   1.3039 4.2819
+## Effect of Quitting Smoking at Smokeintensity of 40 == 0 4.4261   2.5372 6.3151
 ```
 
 ```r
@@ -280,48 +252,27 @@ summary(fit2)
 ## -42.332   -4.216   -0.318    3.807   44.668  
 ## 
 ## Coefficients:
-##                                      Estimate Std. Error t value Pr(>|t|)
-## (Intercept)                        -1.6586176  4.3137734  -0.384 0.700666
-## qsmk                                3.4626218  0.4384543   7.897 5.36e-15
-## sex                                -1.4650496  0.4683410  -3.128 0.001792
-## race                                0.5864117  0.5816949   1.008 0.313560
-## age                                 0.3626624  0.1633431   2.220 0.026546
-## I(age * age)                       -0.0061377  0.0017263  -3.555 0.000389
-## as.factor(education)2               0.8185263  0.6067815   1.349 0.177546
-## as.factor(education)3               0.5715004  0.5561211   1.028 0.304273
-## as.factor(education)4               1.5085173  0.8323778   1.812 0.070134
-## as.factor(education)5              -0.1708264  0.7413289  -0.230 0.817786
-## smokeintensity                      0.0651533  0.0503115   1.295 0.195514
-## I(smokeintensity * smokeintensity) -0.0010468  0.0009373  -1.117 0.264261
-## smokeyrs                            0.1333931  0.0917319   1.454 0.146104
-## I(smokeyrs * smokeyrs)             -0.0018270  0.0015438  -1.183 0.236818
-## as.factor(exercise)1                0.3206824  0.5349616   0.599 0.548961
-## as.factor(exercise)2                0.3628786  0.5589557   0.649 0.516300
-## as.factor(active)1                 -0.9429574  0.4100208  -2.300 0.021593
-## as.factor(active)2                 -0.2580374  0.6847219  -0.377 0.706337
-## wt71                                0.0373642  0.0831658   0.449 0.653297
-## I(wt71 * wt71)                     -0.0009158  0.0005235  -1.749 0.080426
-##                                       
-## (Intercept)                           
-## qsmk                               ***
-## sex                                ** 
-## race                                  
-## age                                *  
-## I(age * age)                       ***
-## as.factor(education)2                 
-## as.factor(education)3                 
-## as.factor(education)4              .  
-## as.factor(education)5                 
-## smokeintensity                        
-## I(smokeintensity * smokeintensity)    
-## smokeyrs                              
-## I(smokeyrs * smokeyrs)                
-## as.factor(exercise)1                  
-## as.factor(exercise)2                  
-## as.factor(active)1                 *  
-## as.factor(active)2                    
-## wt71                                  
-## I(wt71 * wt71)                     .  
+##                                      Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                        -1.6586176  4.3137734  -0.384 0.700666    
+## qsmk                                3.4626218  0.4384543   7.897 5.36e-15 ***
+## sex                                -1.4650496  0.4683410  -3.128 0.001792 ** 
+## race                                0.5864117  0.5816949   1.008 0.313560    
+## age                                 0.3626624  0.1633431   2.220 0.026546 *  
+## I(age * age)                       -0.0061377  0.0017263  -3.555 0.000389 ***
+## as.factor(education)2               0.8185263  0.6067815   1.349 0.177546    
+## as.factor(education)3               0.5715004  0.5561211   1.028 0.304273    
+## as.factor(education)4               1.5085173  0.8323778   1.812 0.070134 .  
+## as.factor(education)5              -0.1708264  0.7413289  -0.230 0.817786    
+## smokeintensity                      0.0651533  0.0503115   1.295 0.195514    
+## I(smokeintensity * smokeintensity) -0.0010468  0.0009373  -1.117 0.264261    
+## smokeyrs                            0.1333931  0.0917319   1.454 0.146104    
+## I(smokeyrs * smokeyrs)             -0.0018270  0.0015438  -1.183 0.236818    
+## as.factor(exercise)1                0.3206824  0.5349616   0.599 0.548961    
+## as.factor(exercise)2                0.3628786  0.5589557   0.649 0.516300    
+## as.factor(active)1                 -0.9429574  0.4100208  -2.300 0.021593 *  
+## as.factor(active)2                 -0.2580374  0.6847219  -0.377 0.706337    
+## wt71                                0.0373642  0.0831658   0.449 0.653297    
+## I(wt71 * wt71)                     -0.0009158  0.0005235  -1.749 0.080426 .  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -362,46 +313,26 @@ summary(fit3)
 ## -1.4646  -0.8044  -0.6460   1.0578   2.3550  
 ## 
 ## Coefficients:
-##                                      Estimate Std. Error z value Pr(>|z|)
-## (Intercept)                        -1.9889022  1.2412792  -1.602 0.109089
-## sex                                -0.5075218  0.1482316  -3.424 0.000617
-## race                               -0.8502312  0.2058720  -4.130 3.63e-05
-## age                                 0.1030132  0.0488996   2.107 0.035150
-## I(age * age)                       -0.0006052  0.0005074  -1.193 0.232973
-## as.factor(education)2              -0.0983203  0.1906553  -0.516 0.606066
-## as.factor(education)3               0.0156987  0.1707139   0.092 0.926730
-## as.factor(education)4              -0.0425260  0.2642761  -0.161 0.872160
-## as.factor(education)5               0.3796632  0.2203947   1.723 0.084952
-## smokeintensity                     -0.0651561  0.0147589  -4.415 1.01e-05
-## I(smokeintensity * smokeintensity)  0.0008461  0.0002758   3.067 0.002160
-## smokeyrs                           -0.0733708  0.0269958  -2.718 0.006571
-## I(smokeyrs * smokeyrs)              0.0008384  0.0004435   1.891 0.058669
-## as.factor(exercise)1                0.2914117  0.1735543   1.679 0.093136
-## as.factor(exercise)2                0.3550517  0.1799293   1.973 0.048463
-## as.factor(active)1                  0.0108754  0.1298320   0.084 0.933243
-## as.factor(active)2                  0.0683123  0.2087269   0.327 0.743455
-## wt71                               -0.0128478  0.0222829  -0.577 0.564226
-## I(wt71 * wt71)                      0.0001209  0.0001352   0.895 0.370957
-##                                       
-## (Intercept)                           
-## sex                                ***
-## race                               ***
-## age                                *  
-## I(age * age)                          
-## as.factor(education)2                 
-## as.factor(education)3                 
-## as.factor(education)4                 
-## as.factor(education)5              .  
-## smokeintensity                     ***
-## I(smokeintensity * smokeintensity) ** 
-## smokeyrs                           ** 
-## I(smokeyrs * smokeyrs)             .  
-## as.factor(exercise)1               .  
-## as.factor(exercise)2               *  
-## as.factor(active)1                    
-## as.factor(active)2                    
-## wt71                                  
-## I(wt71 * wt71)                        
+##                                      Estimate Std. Error z value Pr(>|z|)    
+## (Intercept)                        -1.9889022  1.2412792  -1.602 0.109089    
+## sex                                -0.5075218  0.1482316  -3.424 0.000617 ***
+## race                               -0.8502312  0.2058720  -4.130 3.63e-05 ***
+## age                                 0.1030132  0.0488996   2.107 0.035150 *  
+## I(age * age)                       -0.0006052  0.0005074  -1.193 0.232973    
+## as.factor(education)2              -0.0983203  0.1906553  -0.516 0.606066    
+## as.factor(education)3               0.0156987  0.1707139   0.092 0.926730    
+## as.factor(education)4              -0.0425260  0.2642761  -0.161 0.872160    
+## as.factor(education)5               0.3796632  0.2203947   1.723 0.084952 .  
+## smokeintensity                     -0.0651561  0.0147589  -4.415 1.01e-05 ***
+## I(smokeintensity * smokeintensity)  0.0008461  0.0002758   3.067 0.002160 ** 
+## smokeyrs                           -0.0733708  0.0269958  -2.718 0.006571 ** 
+## I(smokeyrs * smokeyrs)              0.0008384  0.0004435   1.891 0.058669 .  
+## as.factor(exercise)1                0.2914117  0.1735543   1.679 0.093136 .  
+## as.factor(exercise)2                0.3550517  0.1799293   1.973 0.048463 *  
+## as.factor(active)1                  0.0108754  0.1298320   0.084 0.933243    
+## as.factor(active)2                  0.0683123  0.2087269   0.327 0.743455    
+## wt71                               -0.0128478  0.0222829  -0.577 0.564226    
+## I(wt71 * wt71)                      0.0001209  0.0001352   0.895 0.370957    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -473,7 +404,7 @@ ggplot(nhefs, aes(x = ps, fill = qsmk)) + geom_density(alpha = 0.2) +
   theme(legend.position = 'bottom', legend.direction = 'vertical')
 ```
 
-<img src="15-prop-scores-r_files/figure-epub3/unnamed-chunk-3-1.png" width="85%" style="display: block; margin: auto;" />
+<img src="15-prop-scores-r_files/figure-html/unnamed-chunk-3-1.png" width="85%" style="display: block; margin: auto;" />
 
 ```r
 # alternative plot with histograms
@@ -490,7 +421,7 @@ ggplot(nhefs, aes(x = ps, fill = as.factor(qsmk), color = as.factor(qsmk))) +
   theme(legend.position = 'bottom', legend.direction = 'vertical')
 ```
 
-<img src="15-prop-scores-r_files/figure-epub3/unnamed-chunk-3-2.png" width="85%" style="display: block; margin: auto;" />
+<img src="15-prop-scores-r_files/figure-html/unnamed-chunk-3-2.png" width="85%" style="display: block; margin: auto;" />
 
 
 ```r
@@ -550,121 +481,103 @@ describeBy(nhefs$ps, list(nhefs$ps.dec, nhefs$qsmk))
 ##  Descriptive statistics by group 
 ## : 1
 ## : 0
-##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis
-## X1    1 151  0.1 0.02   0.11     0.1 0.02 0.05 0.13  0.08 -0.55    -0.53
-##    se
-## X1  0
-## -------------------------------------------------------- 
+##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se
+## X1    1 151  0.1 0.02   0.11     0.1 0.02 0.05 0.13  0.08 -0.55    -0.53  0
+## ------------------------------------------------------------ 
 ## : 2
 ## : 0
-##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis
-## X1    1 136 0.15 0.01   0.15    0.15 0.01 0.13 0.17  0.04 -0.04    -1.23
-##    se
-## X1  0
-## -------------------------------------------------------- 
+##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se
+## X1    1 136 0.15 0.01   0.15    0.15 0.01 0.13 0.17  0.04 -0.04    -1.23  0
+## ------------------------------------------------------------ 
 ## : 3
 ## : 0
-##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis
-## X1    1 134 0.18 0.01   0.18    0.18 0.01 0.17 0.19  0.03 -0.08    -1.34
-##    se
-## X1  0
-## -------------------------------------------------------- 
+##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se
+## X1    1 134 0.18 0.01   0.18    0.18 0.01 0.17 0.19  0.03 -0.08    -1.34  0
+## ------------------------------------------------------------ 
 ## : 4
 ## : 0
-##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis
-## X1    1 129 0.21 0.01   0.21    0.21 0.01 0.19 0.22  0.02 -0.04    -1.13
-##    se
-## X1  0
-## -------------------------------------------------------- 
+##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se
+## X1    1 129 0.21 0.01   0.21    0.21 0.01 0.19 0.22  0.02 -0.04    -1.13  0
+## ------------------------------------------------------------ 
 ## : 5
 ## : 0
 ##    vars   n mean   sd median trimmed  mad  min  max range skew kurtosis se
 ## X1    1 120 0.23 0.01   0.23    0.23 0.01 0.22 0.25  0.03 0.24    -1.22  0
-## -------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## : 6
 ## : 0
-##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis
-## X1    1 117 0.26 0.01   0.26    0.26 0.01 0.25 0.27  0.03 -0.11    -1.29
-##    se
-## X1  0
-## -------------------------------------------------------- 
+##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se
+## X1    1 117 0.26 0.01   0.26    0.26 0.01 0.25 0.27  0.03 -0.11    -1.29  0
+## ------------------------------------------------------------ 
 ## : 7
 ## : 0
-##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis
-## X1    1 120 0.29 0.01   0.29    0.29 0.01 0.27 0.31  0.03 -0.23    -1.19
-##    se
-## X1  0
-## -------------------------------------------------------- 
+##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se
+## X1    1 120 0.29 0.01   0.29    0.29 0.01 0.27 0.31  0.03 -0.23    -1.19  0
+## ------------------------------------------------------------ 
 ## : 8
 ## : 0
 ##    vars   n mean   sd median trimmed  mad  min  max range skew kurtosis se
 ## X1    1 112 0.33 0.01   0.33    0.33 0.02 0.31 0.35  0.04 0.15     -1.1  0
-## -------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## : 9
 ## : 0
 ##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se
 ## X1    1 96 0.38 0.02   0.38    0.38 0.02 0.35 0.42  0.06 0.13    -1.15  0
-## -------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## : 10
 ## : 0
-##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis
-## X1    1 86 0.49 0.06   0.47    0.48 0.05 0.42 0.66  0.24  1.1     0.47
-##      se
-## X1 0.01
-## -------------------------------------------------------- 
+##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
+## X1    1 86 0.49 0.06   0.47    0.48 0.05 0.42 0.66  0.24  1.1     0.47 0.01
+## ------------------------------------------------------------ 
 ## : 1
 ## : 1
-##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis
-## X1    1 12  0.1 0.02   0.11     0.1 0.03 0.06 0.13  0.07 -0.5    -1.36
-##      se
-## X1 0.01
-## -------------------------------------------------------- 
+##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
+## X1    1 12  0.1 0.02   0.11     0.1 0.03 0.06 0.13  0.07 -0.5    -1.36 0.01
+## ------------------------------------------------------------ 
 ## : 2
 ## : 1
 ##    vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis se
 ## X1    1 27 0.15 0.01   0.15    0.15 0.01 0.13 0.17  0.03 -0.03    -1.34  0
-## -------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## : 3
 ## : 1
 ##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se
 ## X1    1 29 0.18 0.01   0.18    0.18 0.01 0.17 0.19  0.03 0.01    -1.34  0
-## -------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## : 4
 ## : 1
 ##    vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis se
 ## X1    1 34 0.21 0.01   0.21    0.21 0.01 0.19 0.22  0.02 -0.31    -1.23  0
-## -------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## : 5
 ## : 1
 ##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se
 ## X1    1 43 0.23 0.01   0.23    0.23 0.01 0.22 0.25  0.03 0.11    -1.23  0
-## -------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## : 6
 ## : 1
 ##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se
 ## X1    1 45 0.26 0.01   0.26    0.26 0.01 0.25 0.27  0.03  0.2    -1.12  0
-## -------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## : 7
 ## : 1
 ##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se
 ## X1    1 43 0.29 0.01   0.29    0.29 0.01 0.27 0.31  0.03 0.16    -1.25  0
-## -------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## : 8
 ## : 1
 ##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se
 ## X1    1 51 0.33 0.01   0.33    0.33 0.02 0.31 0.35  0.04 0.11    -1.19  0
-## -------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## : 9
 ## : 1
 ##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se
 ## X1    1 67 0.38 0.02   0.38    0.38 0.03 0.35 0.42  0.06 0.19    -1.27  0
-## -------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## : 10
 ## : 1
-##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis
-## X1    1 77 0.52 0.08   0.51    0.51 0.08 0.42 0.79  0.38 0.88     0.81
-##      se
-## X1 0.01
+##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
+## X1    1 77 0.52 0.08   0.51    0.51 0.08 0.42 0.79  0.38 0.88     0.81 0.01
 ```
 
 ```r
@@ -940,16 +853,16 @@ bootstrap
 ```
 
 ```
-##                         V1             mean                se
-## 1                 Observed 2.63384609228479 0.150148623194935
-## 2             No Treatment 1.71983636149843 0.137340483849364
-## 3                Treatment 5.35072300362993 0.468449635071686
-## 4 Treatment - No Treatment 3.63088664213151  0.43524104887379
-##                 ll               ul
-## 1 2.33956019849445 2.92813198607514
-## 2 1.45065395953437 1.98901876346248
-## 3  4.4325785903185 6.26886741694137
-## 4 2.77782986174544 4.48394342251757
+##                         V1             mean                se               ll
+## 1                 Observed 2.63384609228479 0.207960530086705 2.22625094310899
+## 2             No Treatment 1.71983636149843 0.198804117937759 1.33018745036216
+## 3                Treatment 5.35072300362993 0.445170484698943 4.47820488663977
+## 4 Treatment - No Treatment 3.63088664213151 0.574916972661123 2.50407008161491
+##                 ul
+## 1 3.04144124146059
+## 2 2.10948527263469
+## 3  6.2232411206201
+## 4  4.7577032026481
 ```
 
 
@@ -1071,7 +984,7 @@ for(i in 1:nboot) {
 
 ```
 ## 95% CI for the causal mean difference
-## 2.736963 , 4.597638
+## 2.605426 , 4.474772
 ```
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.

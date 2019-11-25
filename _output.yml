@@ -11,6 +11,8 @@ bookdown::gitbook:
     edit:
       link: https://github.com/remlapmot/cibookex-r/edit/master/%s
       text: "Edit"
+    view:
+      link: https://github.com/remlapmot/cibookex-r/blob/master/%s
   number_sections: false
 bookdown::pdf_book:
   includes:

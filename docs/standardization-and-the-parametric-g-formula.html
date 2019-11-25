@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>13. Standardization and the parametric G-formula | Causal Inference Book: Exercises – R code</title>
   <meta name="description" content="Code examples from the Causal Inference Book by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
   <meta property="og:title" content="13. Standardization and the parametric G-formula | Causal Inference Book: Exercises – R code" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Book by M. A. Hernán and J. M. Robins, R code by Joy Shi and Sean McGrath, R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2019-10-02" />
+<meta name="date" content="2019-11-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -248,50 +248,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## -42.056   -4.171   -0.343    3.891   44.606  
 ## 
 ## Coefficients:
-##                                      Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)                        -1.5881657  4.3130359  -0.368 0.712756
-## qsmk                                2.5595941  0.8091486   3.163 0.001590
-## sex                                -1.4302717  0.4689576  -3.050 0.002328
-## race                                0.5601096  0.5818888   0.963 0.335913
-## age                                 0.3596353  0.1633188   2.202 0.027809
-## I(age * age)                       -0.0061010  0.0017261  -3.534 0.000421
-## as.factor(education)2               0.7904440  0.6070005   1.302 0.193038
-## as.factor(education)3               0.5563124  0.5561016   1.000 0.317284
-## as.factor(education)4               1.4915695  0.8322704   1.792 0.073301
-## as.factor(education)5              -0.1949770  0.7413692  -0.263 0.792589
-## smokeintensity                      0.0491365  0.0517254   0.950 0.342287
-## I(smokeintensity * smokeintensity) -0.0009907  0.0009380  -1.056 0.291097
-## smokeyrs                            0.1343686  0.0917122   1.465 0.143094
-## I(smokeyrs * smokeyrs)             -0.0018664  0.0015437  -1.209 0.226830
-## as.factor(exercise)1                0.2959754  0.5351533   0.553 0.580298
-## as.factor(exercise)2                0.3539128  0.5588587   0.633 0.526646
-## as.factor(active)1                 -0.9475695  0.4099344  -2.312 0.020935
-## as.factor(active)2                 -0.2613779  0.6845577  -0.382 0.702647
-## wt71                                0.0455018  0.0833709   0.546 0.585299
-## I(wt71 * wt71)                     -0.0009653  0.0005247  -1.840 0.066001
-## qsmk:smokeintensity                 0.0466628  0.0351448   1.328 0.184463
-##                                       
-## (Intercept)                           
-## qsmk                               ** 
-## sex                                ** 
-## race                                  
-## age                                *  
-## I(age * age)                       ***
-## as.factor(education)2                 
-## as.factor(education)3                 
-## as.factor(education)4              .  
-## as.factor(education)5                 
-## smokeintensity                        
-## I(smokeintensity * smokeintensity)    
-## smokeyrs                              
-## I(smokeyrs * smokeyrs)                
-## as.factor(exercise)1                  
-## as.factor(exercise)2                  
-## as.factor(active)1                 *  
-## as.factor(active)2                    
-## wt71                                  
-## I(wt71 * wt71)                     .  
-## qsmk:smokeintensity                   
+##                                      Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                        -1.5881657  4.3130359  -0.368 0.712756    
+## qsmk                                2.5595941  0.8091486   3.163 0.001590 ** 
+## sex                                -1.4302717  0.4689576  -3.050 0.002328 ** 
+## race                                0.5601096  0.5818888   0.963 0.335913    
+## age                                 0.3596353  0.1633188   2.202 0.027809 *  
+## I(age * age)                       -0.0061010  0.0017261  -3.534 0.000421 ***
+## as.factor(education)2               0.7904440  0.6070005   1.302 0.193038    
+## as.factor(education)3               0.5563124  0.5561016   1.000 0.317284    
+## as.factor(education)4               1.4915695  0.8322704   1.792 0.073301 .  
+## as.factor(education)5              -0.1949770  0.7413692  -0.263 0.792589    
+## smokeintensity                      0.0491365  0.0517254   0.950 0.342287    
+## I(smokeintensity * smokeintensity) -0.0009907  0.0009380  -1.056 0.291097    
+## smokeyrs                            0.1343686  0.0917122   1.465 0.143094    
+## I(smokeyrs * smokeyrs)             -0.0018664  0.0015437  -1.209 0.226830    
+## as.factor(exercise)1                0.2959754  0.5351533   0.553 0.580298    
+## as.factor(exercise)2                0.3539128  0.5588587   0.633 0.526646    
+## as.factor(active)1                 -0.9475695  0.4099344  -2.312 0.020935 *  
+## as.factor(active)2                 -0.2613779  0.6845577  -0.382 0.702647    
+## wt71                                0.0455018  0.0833709   0.546 0.585299    
+## I(wt71 * wt71)                     -0.0009653  0.0005247  -1.840 0.066001 .  
+## qsmk:smokeintensity                 0.0466628  0.0351448   1.328 0.184463    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -451,50 +429,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## -42.056   -4.171   -0.343    3.891   44.606  
 ## 
 ## Coefficients:
-##                                      Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)                        -1.5881657  4.3130359  -0.368 0.712756
-## qsmk                                2.5595941  0.8091486   3.163 0.001590
-## sex                                -1.4302717  0.4689576  -3.050 0.002328
-## race                                0.5601096  0.5818888   0.963 0.335913
-## age                                 0.3596353  0.1633188   2.202 0.027809
-## I(age * age)                       -0.0061010  0.0017261  -3.534 0.000421
-## as.factor(education)2               0.7904440  0.6070005   1.302 0.193038
-## as.factor(education)3               0.5563124  0.5561016   1.000 0.317284
-## as.factor(education)4               1.4915695  0.8322704   1.792 0.073301
-## as.factor(education)5              -0.1949770  0.7413692  -0.263 0.792589
-## smokeintensity                      0.0491365  0.0517254   0.950 0.342287
-## I(smokeintensity * smokeintensity) -0.0009907  0.0009380  -1.056 0.291097
-## smokeyrs                            0.1343686  0.0917122   1.465 0.143094
-## I(smokeyrs * smokeyrs)             -0.0018664  0.0015437  -1.209 0.226830
-## as.factor(exercise)1                0.2959754  0.5351533   0.553 0.580298
-## as.factor(exercise)2                0.3539128  0.5588587   0.633 0.526646
-## as.factor(active)1                 -0.9475695  0.4099344  -2.312 0.020935
-## as.factor(active)2                 -0.2613779  0.6845577  -0.382 0.702647
-## wt71                                0.0455018  0.0833709   0.546 0.585299
-## I(wt71 * wt71)                     -0.0009653  0.0005247  -1.840 0.066001
-## I(qsmk * smokeintensity)            0.0466628  0.0351448   1.328 0.184463
-##                                       
-## (Intercept)                           
-## qsmk                               ** 
-## sex                                ** 
-## race                                  
-## age                                *  
-## I(age * age)                       ***
-## as.factor(education)2                 
-## as.factor(education)3                 
-## as.factor(education)4              .  
-## as.factor(education)5                 
-## smokeintensity                        
-## I(smokeintensity * smokeintensity)    
-## smokeyrs                              
-## I(smokeyrs * smokeyrs)                
-## as.factor(exercise)1                  
-## as.factor(exercise)2                  
-## as.factor(active)1                 *  
-## as.factor(active)2                    
-## wt71                                  
-## I(wt71 * wt71)                     .  
-## I(qsmk * smokeintensity)              
+##                                      Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                        -1.5881657  4.3130359  -0.368 0.712756    
+## qsmk                                2.5595941  0.8091486   3.163 0.001590 ** 
+## sex                                -1.4302717  0.4689576  -3.050 0.002328 ** 
+## race                                0.5601096  0.5818888   0.963 0.335913    
+## age                                 0.3596353  0.1633188   2.202 0.027809 *  
+## I(age * age)                       -0.0061010  0.0017261  -3.534 0.000421 ***
+## as.factor(education)2               0.7904440  0.6070005   1.302 0.193038    
+## as.factor(education)3               0.5563124  0.5561016   1.000 0.317284    
+## as.factor(education)4               1.4915695  0.8322704   1.792 0.073301 .  
+## as.factor(education)5              -0.1949770  0.7413692  -0.263 0.792589    
+## smokeintensity                      0.0491365  0.0517254   0.950 0.342287    
+## I(smokeintensity * smokeintensity) -0.0009907  0.0009380  -1.056 0.291097    
+## smokeyrs                            0.1343686  0.0917122   1.465 0.143094    
+## I(smokeyrs * smokeyrs)             -0.0018664  0.0015437  -1.209 0.226830    
+## as.factor(exercise)1                0.2959754  0.5351533   0.553 0.580298    
+## as.factor(exercise)2                0.3539128  0.5588587   0.633 0.526646    
+## as.factor(active)1                 -0.9475695  0.4099344  -2.312 0.020935 *  
+## as.factor(active)2                 -0.2613779  0.6845577  -0.382 0.702647    
+## wt71                                0.0455018  0.0833709   0.546 0.585299    
+## I(wt71 * wt71)                     -0.0009653  0.0005247  -1.840 0.066001 .  
+## I(qsmk * smokeintensity)            0.0466628  0.0351448   1.328 0.184463    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -596,16 +552,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb181-70"><a href="standardization-and-the-parametric-g-formula.html#cb181-70"></a>    ul</span>
 <span id="cb181-71"><a href="standardization-and-the-parametric-g-formula.html#cb181-71"></a>  ))</span>
 <span id="cb181-72"><a href="standardization-and-the-parametric-g-formula.html#cb181-72"></a>bootstrap</span></code></pre></div>
-<pre><code>##                         V1             mean                se
-## 1                 Observed 2.56188497106103 0.136697619208489
-## 2             No Treatment 1.65212306626746 0.101402988831188
-## 3                Treatment 5.11474489549347 0.253996225011968
-## 4 Treatment - No Treatment 3.46262182922601  0.27945171459375
-##                 ll               ul
-## 1 2.29396256064002 2.82980738148204
-## 2 1.45337686023361 1.85086927230131
-## 3 4.61692144226088 5.61256834872605
-## 4 2.91490653320429 4.01033712524772</code></pre>
+<pre><code>##                         V1             mean                se                ll
+## 1                 Observed 2.56188497106103 0.303985714365777  1.96608391908943
+## 2             No Treatment 1.65212306626746 0.338230923757464 0.989202637245117
+## 3                Treatment 5.11474489549347 0.348902332699155  4.43090888928111
+## 4 Treatment - No Treatment 3.46262182922601  0.40066730823661  2.67732833529964
+##                 ul
+## 1 3.15768602303263
+## 2  2.3150434952898
+## 3 5.79858090170582
+## 4 4.24791532315237</code></pre>
 
 </div>
 </div>
@@ -642,6 +598,10 @@ gitbook.start({
 },
 "history": {
 "link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/remlapmot/cibookex-r/blob/master/13-stand-gformula-r.Rmd",
 "text": null
 },
 "download": ["cibookex-r.pdf", "cibookex-r.epub"],

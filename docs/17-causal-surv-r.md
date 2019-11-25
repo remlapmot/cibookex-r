@@ -76,7 +76,7 @@ ggsurvplot(fit, data = nhefs, xlab="Months of follow-up",
            main="Product-Limit Survival Estimates", risk.table = TRUE)
 ```
 
-<img src="17-causal-surv-r_files/figure-epub3/unnamed-chunk-2-1.png" width="85%" style="display: block; margin: auto;" />
+<img src="17-causal-surv-r_files/figure-html/unnamed-chunk-2-1.png" width="85%" style="display: block; margin: auto;" />
 
 ## Program 17.2
 
@@ -164,7 +164,7 @@ ggplot(hazards.graph, aes(x=time, y=surv)) +
   theme(legend.position="bottom")
 ```
 
-<img src="17-causal-surv-r_files/figure-epub3/unnamed-chunk-3-1.png" width="85%" style="display: block; margin: auto;" />
+<img src="17-causal-surv-r_files/figure-html/unnamed-chunk-3-1.png" width="85%" style="display: block; margin: auto;" />
 
 ## Program 17.3
 
@@ -210,8 +210,7 @@ ipw.model <- glm(event==0 ~ qsmk + I(qsmk*time) + I(qsmk*timesq) +
 ```
 
 ```
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 ```
 
 ```r
@@ -282,7 +281,7 @@ ggplot(ipw.graph, aes(x=time, y=surv)) +
   theme(legend.position="bottom")
 ```
 
-<img src="17-causal-surv-r_files/figure-epub3/unnamed-chunk-4-1.png" width="85%" style="display: block; margin: auto;" />
+<img src="17-causal-surv-r_files/figure-html/unnamed-chunk-4-1.png" width="85%" style="display: block; margin: auto;" />
 
 ## Program 17.4
 
@@ -316,58 +315,32 @@ summary(gf.model)
 ## -4.3160   0.0244   0.0395   0.0640   0.3303  
 ## 
 ## Coefficients:
-##                                      Estimate Std. Error z value Pr(>|z|)
-## (Intercept)                         9.272e+00  1.379e+00   6.724 1.76e-11
-## qsmk                                5.959e-02  4.154e-01   0.143 0.885924
-## I(qsmk * time)                     -1.485e-02  1.506e-02  -0.987 0.323824
-## I(qsmk * timesq)                    1.702e-04  1.245e-04   1.367 0.171643
-## time                               -2.270e-02  8.437e-03  -2.690 0.007142
-## timesq                              1.174e-04  6.709e-05   1.751 0.080020
-## sex                                 4.368e-01  1.409e-01   3.101 0.001930
-## race                               -5.240e-02  1.734e-01  -0.302 0.762572
-## age                                -8.750e-02  5.907e-02  -1.481 0.138536
-## I(age * age)                        8.128e-05  5.470e-04   0.149 0.881865
-## as.factor(education)2               1.401e-01  1.566e-01   0.895 0.370980
-## as.factor(education)3               4.335e-01  1.526e-01   2.841 0.004502
-## as.factor(education)4               2.350e-01  2.790e-01   0.842 0.399750
-## as.factor(education)5               3.750e-01  2.386e-01   1.571 0.116115
-## smokeintensity                     -1.626e-03  1.430e-02  -0.114 0.909431
-## I(smokeintensity * smokeintensity) -7.182e-05  2.390e-04  -0.301 0.763741
-## smkintensity82_71                  -1.686e-03  6.501e-03  -0.259 0.795399
-## smokeyrs                           -1.677e-02  3.065e-02  -0.547 0.584153
-## I(smokeyrs * smokeyrs)             -5.280e-05  4.244e-04  -0.124 0.900997
-## as.factor(exercise)1                1.469e-01  1.792e-01   0.820 0.412300
-## as.factor(exercise)2               -1.504e-01  1.762e-01  -0.854 0.393177
-## as.factor(active)1                 -1.601e-01  1.300e-01  -1.232 0.218048
-## as.factor(active)2                 -2.294e-01  1.877e-01  -1.222 0.221766
-## wt71                                6.222e-02  1.902e-02   3.271 0.001073
-## I(wt71 * wt71)                     -4.046e-04  1.129e-04  -3.584 0.000338
-##                                       
-## (Intercept)                        ***
-## qsmk                                  
-## I(qsmk * time)                        
-## I(qsmk * timesq)                      
-## time                               ** 
-## timesq                             .  
-## sex                                ** 
-## race                                  
-## age                                   
-## I(age * age)                          
-## as.factor(education)2                 
-## as.factor(education)3              ** 
-## as.factor(education)4                 
-## as.factor(education)5                 
-## smokeintensity                        
-## I(smokeintensity * smokeintensity)    
-## smkintensity82_71                     
-## smokeyrs                              
-## I(smokeyrs * smokeyrs)                
-## as.factor(exercise)1                  
-## as.factor(exercise)2                  
-## as.factor(active)1                    
-## as.factor(active)2                    
-## wt71                               ** 
-## I(wt71 * wt71)                     ***
+##                                      Estimate Std. Error z value Pr(>|z|)    
+## (Intercept)                         9.272e+00  1.379e+00   6.724 1.76e-11 ***
+## qsmk                                5.959e-02  4.154e-01   0.143 0.885924    
+## I(qsmk * time)                     -1.485e-02  1.506e-02  -0.987 0.323824    
+## I(qsmk * timesq)                    1.702e-04  1.245e-04   1.367 0.171643    
+## time                               -2.270e-02  8.437e-03  -2.690 0.007142 ** 
+## timesq                              1.174e-04  6.709e-05   1.751 0.080020 .  
+## sex                                 4.368e-01  1.409e-01   3.101 0.001930 ** 
+## race                               -5.240e-02  1.734e-01  -0.302 0.762572    
+## age                                -8.750e-02  5.907e-02  -1.481 0.138536    
+## I(age * age)                        8.128e-05  5.470e-04   0.149 0.881865    
+## as.factor(education)2               1.401e-01  1.566e-01   0.895 0.370980    
+## as.factor(education)3               4.335e-01  1.526e-01   2.841 0.004502 ** 
+## as.factor(education)4               2.350e-01  2.790e-01   0.842 0.399750    
+## as.factor(education)5               3.750e-01  2.386e-01   1.571 0.116115    
+## smokeintensity                     -1.626e-03  1.430e-02  -0.114 0.909431    
+## I(smokeintensity * smokeintensity) -7.182e-05  2.390e-04  -0.301 0.763741    
+## smkintensity82_71                  -1.686e-03  6.501e-03  -0.259 0.795399    
+## smokeyrs                           -1.677e-02  3.065e-02  -0.547 0.584153    
+## I(smokeyrs * smokeyrs)             -5.280e-05  4.244e-04  -0.124 0.900997    
+## as.factor(exercise)1                1.469e-01  1.792e-01   0.820 0.412300    
+## as.factor(exercise)2               -1.504e-01  1.762e-01  -0.854 0.393177    
+## as.factor(active)1                 -1.601e-01  1.300e-01  -1.232 0.218048    
+## as.factor(active)2                 -2.294e-01  1.877e-01  -1.222 0.221766    
+## wt71                                6.222e-02  1.902e-02   3.271 0.001073 ** 
+## I(wt71 * wt71)                     -4.046e-04  1.129e-04  -3.584 0.000338 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -439,7 +412,7 @@ ggplot(gf.graph, aes(x=time, y=surv)) +
   theme(legend.position="bottom")
 ```
 
-<img src="17-causal-surv-r_files/figure-epub3/unnamed-chunk-5-1.png" width="85%" style="display: block; margin: auto;" />
+<img src="17-causal-surv-r_files/figure-html/unnamed-chunk-5-1.png" width="85%" style="display: block; margin: auto;" />
 
 ## Program 17.5
 

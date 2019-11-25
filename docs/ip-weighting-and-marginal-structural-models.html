@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>12. IP Weighting and Marginal Structural Models | Causal Inference Book: Exercises – R code</title>
   <meta name="description" content="Code examples from the Causal Inference Book by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
   <meta property="og:title" content="12. IP Weighting and Marginal Structural Models | Causal Inference Book: Exercises – R code" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Book by M. A. Hernán and J. M. Robins, R code by Joy Shi and Sean McGrath, R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2019-10-02" />
+<meta name="date" content="2019-11-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -669,14 +669,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##     corstr = &quot;independence&quot;)
 ## 
 ##  Coefficients:
-##                                          Estimate  Std.err  Wald Pr(&gt;|W|)
-## (Intercept)                               2.00452  0.29512 46.13  1.1e-11
-## smkintensity82_71                        -0.10899  0.03154 11.94  0.00055
-## I(smkintensity82_71 * smkintensity82_71)  0.00269  0.00242  1.24  0.26489
-##                                             
-## (Intercept)                              ***
-## smkintensity82_71                        ***
-## I(smkintensity82_71 * smkintensity82_71)    
+##                                          Estimate  Std.err  Wald Pr(&gt;|W|)    
+## (Intercept)                               2.00452  0.29512 46.13  1.1e-11 ***
+## smkintensity82_71                        -0.10899  0.03154 11.94  0.00055 ***
+## I(smkintensity82_71 * smkintensity82_71)  0.00269  0.00242  1.24  0.26489    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -716,8 +712,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb106-8"><a href="ip-weighting-and-marginal-structural-models.html#cb106-8"></a>  <span class="dt">family =</span> <span class="kw">binomial</span>(),</span>
 <span id="cb106-9"><a href="ip-weighting-and-marginal-structural-models.html#cb106-9"></a>  <span class="dt">corstr =</span> <span class="st">&quot;independence&quot;</span></span>
 <span id="cb106-10"><a href="ip-weighting-and-marginal-structural-models.html#cb106-10"></a>)</span></code></pre></div>
-<pre><code>## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!</code></pre>
+<pre><code>## Warning in eval(family$initialize): non-integer #successes in a binomial glm!</code></pre>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="ip-weighting-and-marginal-structural-models.html#cb108-1"></a><span class="kw">summary</span>(msm.logistic)</span></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -1161,6 +1156,10 @@ gitbook.start({
 },
 "history": {
 "link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/remlapmot/cibookex-r/blob/master/12-ipw-msm-r.Rmd",
 "text": null
 },
 "download": ["cibookex-r.pdf", "cibookex-r.epub"],

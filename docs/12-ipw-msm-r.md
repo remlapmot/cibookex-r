@@ -673,14 +673,10 @@ summary(msm.sw.cont)
 ##     corstr = "independence")
 ## 
 ##  Coefficients:
-##                                          Estimate  Std.err  Wald Pr(>|W|)
-## (Intercept)                               2.00452  0.29512 46.13  1.1e-11
-## smkintensity82_71                        -0.10899  0.03154 11.94  0.00055
-## I(smkintensity82_71 * smkintensity82_71)  0.00269  0.00242  1.24  0.26489
-##                                             
-## (Intercept)                              ***
-## smkintensity82_71                        ***
-## I(smkintensity82_71 * smkintensity82_71)    
+##                                          Estimate  Std.err  Wald Pr(>|W|)    
+## (Intercept)                               2.00452  0.29512 46.13  1.1e-11 ***
+## smkintensity82_71                        -0.10899  0.03154 11.94  0.00055 ***
+## I(smkintensity82_71 * smkintensity82_71)  0.00269  0.00242  1.24  0.26489    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -737,8 +733,7 @@ msm.logistic <- geeglm(
 ```
 
 ```
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 ```
 
 ```r

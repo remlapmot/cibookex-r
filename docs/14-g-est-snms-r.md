@@ -152,8 +152,7 @@ fit <- geeglm(qsmk ~ sex + race + age + I(age*age) + as.factor(education)
 ```
 
 ```
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 ```
 
 ```r
@@ -170,48 +169,27 @@ summary(fit)
 ##     weights = wc, id = seqn, corstr = "independence")
 ## 
 ##  Coefficients:
-##                                      Estimate    Std.err   Wald Pr(>|W|)
-## (Intercept)                        -2.403e+00  1.329e+00  3.269 0.070604
-## sex                                -5.137e-01  1.536e-01 11.193 0.000821
-## race                               -8.609e-01  2.099e-01 16.826 4.10e-05
-## age                                 1.152e-01  5.020e-02  5.263 0.021779
-## I(age * age)                       -7.593e-04  5.296e-04  2.056 0.151619
-## as.factor(education)2              -2.894e-02  1.964e-01  0.022 0.882859
-## as.factor(education)3               8.771e-02  1.726e-01  0.258 0.611329
-## as.factor(education)4               6.637e-02  2.698e-01  0.061 0.805645
-## as.factor(education)5               4.711e-01  2.247e-01  4.395 0.036036
-## smokeintensity                     -7.834e-02  1.464e-02 28.635 8.74e-08
-## I(smokeintensity * smokeintensity)  1.072e-03  2.650e-04 16.368 5.21e-05
-## smokeyrs                           -7.111e-02  2.639e-02  7.261 0.007047
-## I(smokeyrs * smokeyrs)              8.153e-04  4.490e-04  3.298 0.069384
-## as.factor(exercise)1                3.363e-01  1.828e-01  3.384 0.065844
-## as.factor(exercise)2                3.800e-01  1.889e-01  4.049 0.044187
-## as.factor(active)1                  3.412e-02  1.339e-01  0.065 0.798778
-## as.factor(active)2                  2.135e-01  2.121e-01  1.012 0.314308
-## wt71                               -7.661e-03  2.562e-02  0.089 0.764963
-## I(wt71 * wt71)                      8.655e-05  1.582e-04  0.299 0.584233
-## Hpsi                               -1.903e-06  8.839e-03  0.000 0.999828
-##                                       
-## (Intercept)                        .  
-## sex                                ***
-## race                               ***
-## age                                *  
-## I(age * age)                          
-## as.factor(education)2                 
-## as.factor(education)3                 
-## as.factor(education)4                 
-## as.factor(education)5              *  
-## smokeintensity                     ***
-## I(smokeintensity * smokeintensity) ***
-## smokeyrs                           ** 
-## I(smokeyrs * smokeyrs)             .  
-## as.factor(exercise)1               .  
-## as.factor(exercise)2               *  
-## as.factor(active)1                    
-## as.factor(active)2                    
-## wt71                                  
-## I(wt71 * wt71)                        
-## Hpsi                                  
+##                                      Estimate    Std.err   Wald Pr(>|W|)    
+## (Intercept)                        -2.403e+00  1.329e+00  3.269 0.070604 .  
+## sex                                -5.137e-01  1.536e-01 11.193 0.000821 ***
+## race                               -8.609e-01  2.099e-01 16.826 4.10e-05 ***
+## age                                 1.152e-01  5.020e-02  5.263 0.021779 *  
+## I(age * age)                       -7.593e-04  5.296e-04  2.056 0.151619    
+## as.factor(education)2              -2.894e-02  1.964e-01  0.022 0.882859    
+## as.factor(education)3               8.771e-02  1.726e-01  0.258 0.611329    
+## as.factor(education)4               6.637e-02  2.698e-01  0.061 0.805645    
+## as.factor(education)5               4.711e-01  2.247e-01  4.395 0.036036 *  
+## smokeintensity                     -7.834e-02  1.464e-02 28.635 8.74e-08 ***
+## I(smokeintensity * smokeintensity)  1.072e-03  2.650e-04 16.368 5.21e-05 ***
+## smokeyrs                           -7.111e-02  2.639e-02  7.261 0.007047 ** 
+## I(smokeyrs * smokeyrs)              8.153e-04  4.490e-04  3.298 0.069384 .  
+## as.factor(exercise)1                3.363e-01  1.828e-01  3.384 0.065844 .  
+## as.factor(exercise)2                3.800e-01  1.889e-01  4.049 0.044187 *  
+## as.factor(active)1                  3.412e-02  1.339e-01  0.065 0.798778    
+## as.factor(active)2                  2.135e-01  2.121e-01  1.012 0.314308    
+## wt71                               -7.661e-03  2.562e-02  0.089 0.764963    
+## I(wt71 * wt71)                      8.655e-05  1.582e-04  0.299 0.584233    
+## Hpsi                               -1.903e-06  8.839e-03  0.000 0.999828    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -248,98 +226,67 @@ for (i in grid){
 ```
 
 ```
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 ```
 
 ```r
@@ -398,8 +345,7 @@ logit.est <- glm(qsmk ~ sex + race + age + I(age^2) + as.factor(education)
 ```
 
 ```
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 ```
 
 ```r
