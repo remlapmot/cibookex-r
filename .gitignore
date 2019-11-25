@@ -41,5 +41,6 @@ vignettes/*.pdf
 .DS_Store
 
 cibookex-r.rds
+render*.rds
 
 _bookdown_files
