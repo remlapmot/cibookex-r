@@ -197,13 +197,14 @@ summarize sw_a
 logistic death qsmk [pweight=sw_a], cluster(seqn) 
 ```
 
-***************************************************************
-*PROGRAM 12.6
-*Assessing effect modification by sex using a marginal structural mean model
-*Data from NHEFS
+## Program 12.6
+- Assessing effect modification by sex using a marginal structural mean model
+- Data from NHEFS
+
+```{stata}
 *Section 12.5
-***************************************************************/
-drop pd_qsmk pn_qsmk sw_a
+
+* drop pd_qsmk pn_qsmk sw_a
 
 /*Check distribution of sex*/
 tab sex
@@ -226,7 +227,7 @@ summarize sw_a
 
 /*Fit marginal structural model in the pseudopopulation, including interaction term between quitting smoking and sex*/
 regress wt82_71 qsmk##sex [pw=sw_a], cluster(seqn)
-
+```
 
 
 /***************************************************************
