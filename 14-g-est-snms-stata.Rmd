@@ -1,4 +1,4 @@
-# 14. G-estimation of Structural Nested Models{-}
+# 14. G-estimation of Structural Nested Models: Stata{-}
 
 ```{r, results='hide', message=FALSE, warning=FALSE}
 library(Statamarkdown)
