@@ -17,7 +17,7 @@ For errors contact: ejmurray@bu.edu
 - Estimating the mean outcome within levels of treatment and confounders: Data from NHEFS
 
 ```{stata}
-Section 13.2
+* Section 13.2
 
 use ./data/nhefs, clear
 
@@ -33,12 +33,12 @@ list meanY if seqn == 24770
 summarize wt82_71
 ```
 
-/***************************************************************
-PROGRAM 13.2
-Standardizing the mean outcome to the baseline confounders
-Data from Table 2.2
-Section 13.3
-****************************************************************/
+## Program 13.2
+- Standardizing the mean outcome to the baseline confounders
+- Data from Table 2.2
+
+```{stata}
+* Section 13.3
 
 clear
 input str10 ID L A Y
@@ -117,7 +117,7 @@ matrix list observe
 *row 2, column 2, is the mean outcome value if everyone had not quit smoking*
 *row 3, column 2, is the mean outcome value if everyone had quit smoking*
 *row 4, column 2, is the mean difference outcome value if everyone had quit smoking compared to if everyone had not quit smoking*
-
+```
 
 /***************************************************************
  PROGRAM 13.3
