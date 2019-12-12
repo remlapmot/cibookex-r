@@ -1,6 +1,6 @@
 # (PART\*) Stata code{-}
 
-# 11. Why model?{-}
+# 11. Why model: Stata{-}
 
 ```{r, results='hide', message=FALSE, warning=FALSE}
 library(Statamarkdown)
