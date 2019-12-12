@@ -90,16 +90,12 @@ by ps_dec: ttest wt82_71, by(qsmk)
 regress wt82_71 qsmk ib(last).ps_dec
 ```
 
-/***************************************************************
-PROGRAM 15.4
-Standardization and outcome regression using the propensity score
-Data from NHEFS
-Section 15.3
-***************************************************************/
+## Program 15.4
+- Standardization and outcome regression using the propensity score
+- Data from NHEFS
+- Section 15.3
 
-clear
-use "nhefs.dta"
-
+```{stata}
 /*Estimate the propensity score*/
 logit qsmk sex race c.age##c.age ib(last).education c.smokeintensity##c.smokeintensity ///
 c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active c.wt71##c.wt71 
@@ -176,4 +172,4 @@ matrix pe = observe[2..4, 2]'
 matrix list pe
 bstat, stat(pe) n(1629) 
 estat bootstrap, p
-
+```
