@@ -3,7 +3,6 @@
 # 11. Why model?{-}
 
 ```{r, results='hide', message=FALSE, warning=FALSE}
-library(here)
 library(Statamarkdown)
 ```
 
