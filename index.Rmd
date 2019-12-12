@@ -11,6 +11,8 @@ description: "Code examples from the Causal Inference Book by M. A. Hernán and 
 geometry: margin=1in
 fontsize: 10pt
 linestretch: 1.1
+bibliography: bibliography.bib
+link-citations: true
 ---
 
 ```{r setup, include=FALSE}
@@ -19,7 +21,7 @@ knitr::opts_chunk$set(tidy = 'formatR', digits = 4, tidy.opts = list(width.cutof
 
 # Preface{-}
 
-This book presents code examples from the Causal Inference Book by Hernán and Robins, which is available in draft form from the following webpage.
+This book presents code examples from @ci-book, which is available in draft form from the following webpage.
 
 https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/
 
