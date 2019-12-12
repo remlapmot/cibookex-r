@@ -133,16 +133,14 @@ replace highprice = (price82 >1.9 & price82 < .)
 ivregress 2sls wt82_71 (qsmk = highprice)
 ```
 
+## Program 16.5
+- Estimating the average causal effect using the standard IV estimator conditional on baseline covariates
+- Data from NHEFS
+- Section 16.5
 
-/***************************************************************************
-PROGRAM 16.5
-Estimating the average causal effect using the standard IV estimator
-conditional on baseline covariates
-Data from NHEFS
-Section 16.5
-***************************************************************************/
-
+```{stata}
 replace highprice = .
 replace highprice = (price82 >1.5 & price82 < .)
 
 ivregress 2sls wt82_71 sex race c.age c.smokeintensity c.smokeyrs i.exercise i.active c.wt7 (qsmk = highprice)
+```
