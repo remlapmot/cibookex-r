@@ -41,13 +41,12 @@ regress wt82_71 qsmk c.smokeintensity##c.smokeintensity sex race c.age##c.age //
 ib(last).education c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active c.wt71##c.wt71 
 ```
 
-/***************************************************************
-PROGRAM 15.2
-Estimating and plotting the propensity score
-Data from NHEFS
-Section 15.2
-***************************************************************/
+## Prorgam 15.2
+- Estimating and plotting the propensity score
+- Data from NHEFS
+- Section 15.2
 
+```{stata}
 /*Fit a model for the exposure, quitting smoking*/
 logit qsmk sex race c.age##c.age ib(last).education c.smokeintensity##c.smokeintensity ///
 c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active c.wt71##c.wt71 
@@ -70,7 +69,7 @@ histogram ps, width(0.05) start(0.025) frequency fcolor(none) lcolor(black) lpat
 ytitle(No. Subjects) ylabel(#4) xtitle(Estimated Propensity Score) xlabel(#15)  ///
 by(, title(Estimated Propensity Score Distribution) subtitle(By Quit Smoking Status)) ///
 by(, legend(off)) by(qsmk, style(compact)  colfirst) subtitle(, size(small) box bexpand)
-
+```
 
 /***************************************************************************
 PROGRAM 15.3
