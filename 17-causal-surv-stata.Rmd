@@ -1,19 +1,28 @@
+# 17. Causal survival analysis{-}
+
+```{r, results='hide', message=FALSE, warning=FALSE}
+library(Statamarkdown)
+```
+
+```
 /***************************************************************
 Stata code for Causal Inference: What If by Miguel Hernan & Jamie Robins
 Date: 10/10/2019
 Author: Eleanor Murray 
 For errors contact: ejmurray@bu.edu
 ***************************************************************/
+```
 
-/***************************************************************
-PROGRAM 17.1
-Nonparametric estimation of survival curves
-Data from NHEFS
-Section 17.1
-***************************************************************/
-clear
-use "nhefs.dta"
+## Program 17.1
+- Nonparametric estimation of survival curves
+- Data from NHEFS
+- Section 17.1
 
+```{stata, collectcode=TRUE}
+use nhefs-formatted, clear
+```
+
+```{stata}
 /*Some preprocessing of the data*/
 gen survtime = .
 replace survtime = 120 if death == 0
@@ -26,7 +35,12 @@ tab death qsmk
 *For now, we use the stset function in Stata*
 stset survtime, failure(death=1)
 sts graph, by(qsmk) xlabel(0(12)120)
+gr export ./figs/stata-fig-17-1.png, replace
+```
 
+```{r}
+knitr::include_graphics("./figs/stata-fig-17-1.png")
+```
 
 /***************************************************************
 PROGRAM 17.2
