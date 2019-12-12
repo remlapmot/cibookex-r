@@ -1,4 +1,4 @@
-# 15. Outcome regression and propensity scores{-}
+# 15. Outcome regression and propensity scores: Stata{-}
 
 ```{r, results='hide', message=FALSE, warning=FALSE}
 library(Statamarkdown)
