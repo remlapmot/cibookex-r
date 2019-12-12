@@ -1,4 +1,4 @@
-# R session information {-}
+# Session information: R {-}
 
 For reproducibility.
 ```{r}
