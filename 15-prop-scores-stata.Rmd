@@ -1,22 +1,28 @@
+# 15. Outcome regression and propensity scores{-}
+
+```{r, results='hide', message=FALSE, warning=FALSE}
+library(Statamarkdown)
+```
+
+```
 /***************************************************************
 Stata code for Causal Inference: What If by Miguel Hernan & Jamie Robins
 Date: 10/10/2019
 Author: Eleanor Murray 
 For errors contact: ejmurray@bu.edu
 ***************************************************************/
+```
 
-/***************************************************************
-PROGRAM 15.1
-Estimating the average causal effect within levels of confounders
-under the assumption of effect-measure modification by smoking
-intensity ONLY 
-Data from NHEFS
-Section 15.1
-***************************************************************/
+## Program 15.1
+- Estimating the average causal effect within levels of confounders under the assumption of effect-measure modification by smoking intensity ONLY 
+- Data from NHEFS
+- Section 15.1
 
-clear
-use "nhefs.dta"
+```{stata, collectcode=TRUE}
+use nhefs-formatted, clear
+```
 
+```{stata}
 /*generate smoking intensity among smokers product term*/
 gen qsmkintensity = qsmk*smokeintensity
 
@@ -30,11 +36,10 @@ lincom 1*_b[qsmk] + 5*1*_b[qsmkintensity]
 *Output the estimated mean difference between quitting and not quitting value when smoke intensity = 40 cigarettes/ day*
 lincom 1*_b[qsmk] + 40*1*_b[qsmkintensity]
 
-
 /* regression on covariates, with no product terms*/
 regress wt82_71 qsmk c.smokeintensity##c.smokeintensity sex race c.age##c.age ///
 ib(last).education c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active c.wt71##c.wt71 
-
+```
 
 /***************************************************************
 PROGRAM 15.2
