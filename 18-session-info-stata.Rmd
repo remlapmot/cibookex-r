@@ -1,0 +1,6 @@
+# Stata session information {-}
+
+For reproducibility.
+```{stata}
+about
+```
