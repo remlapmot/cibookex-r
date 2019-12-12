@@ -75,10 +75,10 @@ tab event
 gen timesq = time*time
 
 *Save the dataset to your working directory for future use*
-save nhefs_surv, replace
+save ./data/nhefs_surv, replace
 
 /**Hazard ratios**/
-use "nhefs_surv.dta", clear
+use ./data/nhefs_surv, clear
 
 *Fit a pooled logistic hazards model *
 logistic event qsmk qsmk#c.time qsmk#c.time#c.time c.time c.time#c.time 
@@ -128,16 +128,14 @@ gr export ./figs/stata-fig-17-2.png, replace
 knitr::include_graphics("./figs/stata-fig-17-2.png")
 ```
 
-/***************************************************************
-PROGRAM 17.3
-Estimation of survival curves via IP weighted hazards model
-Data from NHEFS
-Section 17.4
-Generates Figure 17.6
-***************************************************************/
+## Program 17.3
+- Estimation of survival curves via IP weighted hazards model
+- Data from NHEFS
+- Section 17.4
+- Generates Figure 17.6
 
-clear
-use "nhefs_surv.dta"
+```{stata}
+use ./data/nhefs_surv, clear
 
 keep seqn event qsmk time sex race age education smokeintensity smkintensity82_71  smokeyrs exercise active wt71
 preserve 
@@ -187,7 +185,6 @@ quietly summarize psurv if(interv==1 & time ==119)
 matrix observe = (observe \1,`r(mean)')
 matrix observe = (observe \3, observe[2,2]-observe[1,2]) 
 matrix list observe
-
 
 *Graph of standardized survival over time, under interventions*
 *Note: since our outcome model has no covariates, we can plot psurv directly. If we had covariates we would need to stratify or average across the values*
@@ -254,7 +251,7 @@ set rmsg off
  
 matrix pe = observe[1..3, 2]'
 bstat, stat(pe) n(1629)
-
+```
 
 /***************************************************************
 PROGRAM 17.4
