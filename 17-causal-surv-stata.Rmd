@@ -42,21 +42,20 @@ gr export ./figs/stata-fig-17-1.png, replace
 knitr::include_graphics("./figs/stata-fig-17-1.png")
 ```
 
-/***************************************************************
-PROGRAM 17.2
-Parametric estimation of survival curves via hazards model
-Data from NHEFS
-Section 17.1
-Generates Figure 17.4
-***************************************************************/
+## Program 17.2
+- Parametric estimation of survival curves via hazards model
+- Data from NHEFS
+- Section 17.1
+- Generates Figure 17.4
 
+```{stata}
 /**Create person-month dataset for survival analyses**/
 
 /*We want our new dataset to include 1 observation per person per month alive, starting at time = 0*/
 *Individuals who survive to the end of follow-up will have 119 time points*
 *Individuals who die will have survtime - 1 time points*
-clear
-use "nhefs.dta"
+
+* use "nhefs.dta", clear
 
 gen survtime = .
 replace survtime = 120 if death == 0
@@ -79,13 +78,10 @@ gen timesq = time*time
 save nhefs_surv, replace
 
 /**Hazard ratios**/
-clear
-
-use "nhefs_surv.dta"
+use "nhefs_surv.dta", clear
 
 *Fit a pooled logistic hazards model *
 logistic event qsmk qsmk#c.time qsmk#c.time#c.time c.time c.time#c.time 
-
 
 /**Survival curves: run regression then do:**/
 
@@ -125,7 +121,12 @@ replace time2 = time + 1 if newtime == 0
 separate psurv, by(interv) 
 *Plot the curves*
 twoway (line psurv0 time2, sort) (line psurv1 time2, sort) if interv > -1, ylabel(0.5(0.1)1.0) xlabel(0(12)120) ytitle("Survival probability") xtitle("Months of follow-up") legend(label(1 "A=0") label(2 "A=1"))
+gr export ./figs/stata-fig-17-2.png, replace
+```
 
+```{r}
+knitr::include_graphics("./figs/stata-fig-17-2.png")
+```
 
 /***************************************************************
 PROGRAM 17.3
