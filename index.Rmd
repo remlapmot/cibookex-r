@@ -1,5 +1,5 @@
 --- 
-title: "Causal Inference Book: Exercises -- R code"
+title: "Causal Inference: What If. Exercises -- R code"
 author: "Book by M. A. Hernán and J. M. Robins, R code by Joy Shi and Sean McGrath, R Markdown code by Tom Palmer"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
