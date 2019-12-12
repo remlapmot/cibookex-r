@@ -1,23 +1,26 @@
 --- 
-title: "Causal Inference Book: Exercises -- R code"
-author: "Book by M. A. Hernán and J. M. Robins, R code by Joy Shi and Sean McGrath, R Markdown code by Tom Palmer"
-date: "2019-11-25"
+title: "Causal Inference: What If. Exercises -- R code"
+author: 
+ - Book by M. A. Hernán and J. M. Robins
+ - R code by Joy Shi and Sean McGrath
+ - R Markdown code by Tom Palmer
+date: "12 December 2019"
 site: bookdown::bookdown_site
 documentclass: book
-#bibliography: [book.bib, packages.bib]
 #biblio-style: apalike
 link-citations: yes
-description: "Code examples from the Causal Inference Book by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/"
+description: "Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/"
 geometry: margin=1in
 fontsize: 10pt
 linestretch: 1.1
+bibliography: bibliography.bib
 ---
 
 
 
 # Preface{-}
 
-This book presents code examples from the Causal Inference Book by Hernán and Robins, which is available in draft form from the following webpage.
+This book presents code examples from @ci-book, which is available in draft form from the following webpage.
 
 https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/
 

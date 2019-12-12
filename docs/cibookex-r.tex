@@ -1,38 +1,49 @@
-\documentclass[10pt,]{book}
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  10pt,
+]{book}
 \usepackage{lmodern}
 \usepackage{setspace}
-\setstretch{1.1}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-\else % if luatex or xelatex
-  \ifxetex
-    \usepackage{mathspec}
-  \else
-    \usepackage{fontspec}
-  \fi
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
-% use upquote if available, for straight quotes in verbatim environments
+% Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-\IfFileExists{microtype.sty}{%
-\usepackage{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Causal Inference: What If. Exercises -- R code},
+  pdfauthor={Book by M. A. Hernán and J. M. Robins; R code by Joy Shi and Sean McGrath; R Markdown code by Tom Palmer},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
-\usepackage{hyperref}
-\hypersetup{unicode=true,
-            pdftitle={Causal Inference Book: Exercises -- R code},
-            pdfauthor={Book by M. A. Hernán and J. M. Robins, R code by Joy Shi and Sean McGrath, R Markdown code by Tom Palmer},
-            pdfborder={0 0 0},
-            breaklinks=true}
-\urlstyle{same}  % don't use monospace font for urls
-\usepackage{natbib}
-\bibliographystyle{plainnat}
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -74,6 +85,14 @@
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -83,52 +102,14 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{0}
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
-
-%%% Use protect on footnotes to avoid problems with footnotes in titles
-\let\rmarkdownfootnote\footnote%
-\def\footnote{\protect\rmarkdownfootnote}
-
-%%% Change title format to be more compact
-\usepackage{titling}
-
-% Create subtitle command for use in maketitle
-\providecommand{\subtitle}[1]{
-  \posttitle{
-    \begin{center}\large#1\end{center}
-    }
-}
-
-\setlength{\droptitle}{-2em}
-
-  \title{Causal Inference Book: Exercises -- R code}
-    \pretitle{\vspace{\droptitle}\centering\huge}
-  \posttitle{\par}
-    \author{Book by M. A. Hernán and J. M. Robins, R code by Joy Shi and Sean McGrath, R Markdown code by Tom Palmer}
-    \preauthor{\centering\large\emph}
-  \postauthor{\par}
-      \predate{\centering\large\emph}
-  \postdate{\par}
-    \date{2019-10-02}
-
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \usepackage{booktabs}
 \usepackage[none]{hyphenat}
 \pagestyle{plain}
@@ -136,7 +117,14 @@
 \usepackage{hyperref}
 \usepackage{floatpag}
 \floatpagestyle{empty}
+\usepackage[sort, round]{natbib}
 \frontmatter
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+
+\title{Causal Inference: What If. Exercises -- R code}
+\author{Book by M. A. Hernán and J. M. Robins \and R code by Joy Shi and Sean McGrath \and R Markdown code by Tom Palmer}
+\date{12 December 2019}
 
 \begin{document}
 \maketitle
@@ -147,11 +135,12 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
+\setstretch{1.1}
 \hypertarget{preface}{%
 \chapter*{Preface}\label{preface}}
 \addcontentsline{toc}{chapter}{Preface}
 
-This book presents code examples from the Causal Inference Book by Hernán and Robins, which is available in draft form from the following webpage.
+This book presents code examples from \citet{ci-book}, which is available in draft form from the following webpage.
 
 \url{https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/}
 
@@ -1232,14 +1221,10 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 ##     corstr = "independence")
 ## 
 ##  Coefficients:
-##                                          Estimate  Std.err  Wald Pr(>|W|)
-## (Intercept)                               2.00452  0.29512 46.13  1.1e-11
-## smkintensity82_71                        -0.10899  0.03154 11.94  0.00055
-## I(smkintensity82_71 * smkintensity82_71)  0.00269  0.00242  1.24  0.26489
-##                                             
-## (Intercept)                              ***
-## smkintensity82_71                        ***
-## I(smkintensity82_71 * smkintensity82_71)    
+##                                          Estimate  Std.err  Wald Pr(>|W|)    
+## (Intercept)                               2.00452  0.29512 46.13  1.1e-11 ***
+## smkintensity82_71                        -0.10899  0.03154 11.94  0.00055 ***
+## I(smkintensity82_71 * smkintensity82_71)  0.00269  0.00242  1.24  0.26489    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -1307,8 +1292,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 \end{verbatim}
 
 \begin{Shaded}
@@ -1974,50 +1958,28 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 ## -42.056   -4.171   -0.343    3.891   44.606  
 ## 
 ## Coefficients:
-##                                      Estimate Std. Error t value Pr(>|t|)
-## (Intercept)                        -1.5881657  4.3130359  -0.368 0.712756
-## qsmk                                2.5595941  0.8091486   3.163 0.001590
-## sex                                -1.4302717  0.4689576  -3.050 0.002328
-## race                                0.5601096  0.5818888   0.963 0.335913
-## age                                 0.3596353  0.1633188   2.202 0.027809
-## I(age * age)                       -0.0061010  0.0017261  -3.534 0.000421
-## as.factor(education)2               0.7904440  0.6070005   1.302 0.193038
-## as.factor(education)3               0.5563124  0.5561016   1.000 0.317284
-## as.factor(education)4               1.4915695  0.8322704   1.792 0.073301
-## as.factor(education)5              -0.1949770  0.7413692  -0.263 0.792589
-## smokeintensity                      0.0491365  0.0517254   0.950 0.342287
-## I(smokeintensity * smokeintensity) -0.0009907  0.0009380  -1.056 0.291097
-## smokeyrs                            0.1343686  0.0917122   1.465 0.143094
-## I(smokeyrs * smokeyrs)             -0.0018664  0.0015437  -1.209 0.226830
-## as.factor(exercise)1                0.2959754  0.5351533   0.553 0.580298
-## as.factor(exercise)2                0.3539128  0.5588587   0.633 0.526646
-## as.factor(active)1                 -0.9475695  0.4099344  -2.312 0.020935
-## as.factor(active)2                 -0.2613779  0.6845577  -0.382 0.702647
-## wt71                                0.0455018  0.0833709   0.546 0.585299
-## I(wt71 * wt71)                     -0.0009653  0.0005247  -1.840 0.066001
-## qsmk:smokeintensity                 0.0466628  0.0351448   1.328 0.184463
-##                                       
-## (Intercept)                           
-## qsmk                               ** 
-## sex                                ** 
-## race                                  
-## age                                *  
-## I(age * age)                       ***
-## as.factor(education)2                 
-## as.factor(education)3                 
-## as.factor(education)4              .  
-## as.factor(education)5                 
-## smokeintensity                        
-## I(smokeintensity * smokeintensity)    
-## smokeyrs                              
-## I(smokeyrs * smokeyrs)                
-## as.factor(exercise)1                  
-## as.factor(exercise)2                  
-## as.factor(active)1                 *  
-## as.factor(active)2                    
-## wt71                                  
-## I(wt71 * wt71)                     .  
-## qsmk:smokeintensity                   
+##                                      Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                        -1.5881657  4.3130359  -0.368 0.712756    
+## qsmk                                2.5595941  0.8091486   3.163 0.001590 ** 
+## sex                                -1.4302717  0.4689576  -3.050 0.002328 ** 
+## race                                0.5601096  0.5818888   0.963 0.335913    
+## age                                 0.3596353  0.1633188   2.202 0.027809 *  
+## I(age * age)                       -0.0061010  0.0017261  -3.534 0.000421 ***
+## as.factor(education)2               0.7904440  0.6070005   1.302 0.193038    
+## as.factor(education)3               0.5563124  0.5561016   1.000 0.317284    
+## as.factor(education)4               1.4915695  0.8322704   1.792 0.073301 .  
+## as.factor(education)5              -0.1949770  0.7413692  -0.263 0.792589    
+## smokeintensity                      0.0491365  0.0517254   0.950 0.342287    
+## I(smokeintensity * smokeintensity) -0.0009907  0.0009380  -1.056 0.291097    
+## smokeyrs                            0.1343686  0.0917122   1.465 0.143094    
+## I(smokeyrs * smokeyrs)             -0.0018664  0.0015437  -1.209 0.226830    
+## as.factor(exercise)1                0.2959754  0.5351533   0.553 0.580298    
+## as.factor(exercise)2                0.3539128  0.5588587   0.633 0.526646    
+## as.factor(active)1                 -0.9475695  0.4099344  -2.312 0.020935 *  
+## as.factor(active)2                 -0.2613779  0.6845577  -0.382 0.702647    
+## wt71                                0.0455018  0.0833709   0.546 0.585299    
+## I(wt71 * wt71)                     -0.0009653  0.0005247  -1.840 0.066001 .  
+## qsmk:smokeintensity                 0.0466628  0.0351448   1.328 0.184463    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -2056,7 +2018,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 ##   predicted.meanY  qsmk   sex  race   age education smokeintensity smokeyrs
 ##             <dbl> <dbl> <dbl> <dbl> <dbl>     <dbl>          <dbl>    <dbl>
 ## 1           0.342     0     0     0    26         4             15       12
-## # ... with 3 more variables: exercise <dbl>, active <dbl>, wt71 <dbl>
+## # … with 3 more variables: exercise <dbl>, active <dbl>, wt71 <dbl>
 \end{verbatim}
 
 \begin{Shaded}
@@ -2249,50 +2211,28 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 ## -42.056   -4.171   -0.343    3.891   44.606  
 ## 
 ## Coefficients:
-##                                      Estimate Std. Error t value Pr(>|t|)
-## (Intercept)                        -1.5881657  4.3130359  -0.368 0.712756
-## qsmk                                2.5595941  0.8091486   3.163 0.001590
-## sex                                -1.4302717  0.4689576  -3.050 0.002328
-## race                                0.5601096  0.5818888   0.963 0.335913
-## age                                 0.3596353  0.1633188   2.202 0.027809
-## I(age * age)                       -0.0061010  0.0017261  -3.534 0.000421
-## as.factor(education)2               0.7904440  0.6070005   1.302 0.193038
-## as.factor(education)3               0.5563124  0.5561016   1.000 0.317284
-## as.factor(education)4               1.4915695  0.8322704   1.792 0.073301
-## as.factor(education)5              -0.1949770  0.7413692  -0.263 0.792589
-## smokeintensity                      0.0491365  0.0517254   0.950 0.342287
-## I(smokeintensity * smokeintensity) -0.0009907  0.0009380  -1.056 0.291097
-## smokeyrs                            0.1343686  0.0917122   1.465 0.143094
-## I(smokeyrs * smokeyrs)             -0.0018664  0.0015437  -1.209 0.226830
-## as.factor(exercise)1                0.2959754  0.5351533   0.553 0.580298
-## as.factor(exercise)2                0.3539128  0.5588587   0.633 0.526646
-## as.factor(active)1                 -0.9475695  0.4099344  -2.312 0.020935
-## as.factor(active)2                 -0.2613779  0.6845577  -0.382 0.702647
-## wt71                                0.0455018  0.0833709   0.546 0.585299
-## I(wt71 * wt71)                     -0.0009653  0.0005247  -1.840 0.066001
-## I(qsmk * smokeintensity)            0.0466628  0.0351448   1.328 0.184463
-##                                       
-## (Intercept)                           
-## qsmk                               ** 
-## sex                                ** 
-## race                                  
-## age                                *  
-## I(age * age)                       ***
-## as.factor(education)2                 
-## as.factor(education)3                 
-## as.factor(education)4              .  
-## as.factor(education)5                 
-## smokeintensity                        
-## I(smokeintensity * smokeintensity)    
-## smokeyrs                              
-## I(smokeyrs * smokeyrs)                
-## as.factor(exercise)1                  
-## as.factor(exercise)2                  
-## as.factor(active)1                 *  
-## as.factor(active)2                    
-## wt71                                  
-## I(wt71 * wt71)                     .  
-## I(qsmk * smokeintensity)              
+##                                      Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                        -1.5881657  4.3130359  -0.368 0.712756    
+## qsmk                                2.5595941  0.8091486   3.163 0.001590 ** 
+## sex                                -1.4302717  0.4689576  -3.050 0.002328 ** 
+## race                                0.5601096  0.5818888   0.963 0.335913    
+## age                                 0.3596353  0.1633188   2.202 0.027809 *  
+## I(age * age)                       -0.0061010  0.0017261  -3.534 0.000421 ***
+## as.factor(education)2               0.7904440  0.6070005   1.302 0.193038    
+## as.factor(education)3               0.5563124  0.5561016   1.000 0.317284    
+## as.factor(education)4               1.4915695  0.8322704   1.792 0.073301 .  
+## as.factor(education)5              -0.1949770  0.7413692  -0.263 0.792589    
+## smokeintensity                      0.0491365  0.0517254   0.950 0.342287    
+## I(smokeintensity * smokeintensity) -0.0009907  0.0009380  -1.056 0.291097    
+## smokeyrs                            0.1343686  0.0917122   1.465 0.143094    
+## I(smokeyrs * smokeyrs)             -0.0018664  0.0015437  -1.209 0.226830    
+## as.factor(exercise)1                0.2959754  0.5351533   0.553 0.580298    
+## as.factor(exercise)2                0.3539128  0.5588587   0.633 0.526646    
+## as.factor(active)1                 -0.9475695  0.4099344  -2.312 0.020935 *  
+## as.factor(active)2                 -0.2613779  0.6845577  -0.382 0.702647    
+## wt71                                0.0455018  0.0833709   0.546 0.585299    
+## I(wt71 * wt71)                     -0.0009653  0.0005247  -1.840 0.066001 .  
+## I(qsmk * smokeintensity)            0.0466628  0.0351448   1.328 0.184463    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -2430,16 +2370,16 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Shaded}
 
 \begin{verbatim}
-##                         V1             mean                se
-## 1                 Observed 2.56188497106103 0.196821258955131
-## 2             No Treatment 1.65212306626746 0.156859659349977
-## 3                Treatment 5.11474489549347 0.453115935788573
-## 4 Treatment - No Treatment 3.46262182922601 0.406373056272699
-##                 ll               ul
-## 1 2.17612239211714 2.94764755000492
-## 2 1.34468378331428 1.95956234922064
-## 3  4.2266539805267 6.00283581046023
-## 4 2.66614527464405 4.25909838380796
+##                         V1             mean                se                ll
+## 1                 Observed 2.56188497106103 0.239354808977166  2.09275816593932
+## 2             No Treatment 1.65212306626746 0.421093323271437 0.826795318525161
+## 3                Treatment 5.11474489549347 0.557051540774175  4.02294393804354
+## 4 Treatment - No Treatment 3.46262182922601 0.860390023466464  1.77628837057416
+##                 ul
+## 1 3.03101177618274
+## 2 2.47745081400976
+## 3 6.20654585294339
+## 4 5.14895528787785
 \end{verbatim}
 
 \hypertarget{g-estimation-of-structural-nested-models}{%
@@ -2620,8 +2560,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 \end{verbatim}
 
 \begin{Shaded}
@@ -2640,48 +2579,27 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 ##     weights = wc, id = seqn, corstr = "independence")
 ## 
 ##  Coefficients:
-##                                      Estimate    Std.err   Wald Pr(>|W|)
-## (Intercept)                        -2.403e+00  1.329e+00  3.269 0.070604
-## sex                                -5.137e-01  1.536e-01 11.193 0.000821
-## race                               -8.609e-01  2.099e-01 16.826 4.10e-05
-## age                                 1.152e-01  5.020e-02  5.263 0.021779
-## I(age * age)                       -7.593e-04  5.296e-04  2.056 0.151619
-## as.factor(education)2              -2.894e-02  1.964e-01  0.022 0.882859
-## as.factor(education)3               8.771e-02  1.726e-01  0.258 0.611329
-## as.factor(education)4               6.637e-02  2.698e-01  0.061 0.805645
-## as.factor(education)5               4.711e-01  2.247e-01  4.395 0.036036
-## smokeintensity                     -7.834e-02  1.464e-02 28.635 8.74e-08
-## I(smokeintensity * smokeintensity)  1.072e-03  2.650e-04 16.368 5.21e-05
-## smokeyrs                           -7.111e-02  2.639e-02  7.261 0.007047
-## I(smokeyrs * smokeyrs)              8.153e-04  4.490e-04  3.298 0.069384
-## as.factor(exercise)1                3.363e-01  1.828e-01  3.384 0.065844
-## as.factor(exercise)2                3.800e-01  1.889e-01  4.049 0.044187
-## as.factor(active)1                  3.412e-02  1.339e-01  0.065 0.798778
-## as.factor(active)2                  2.135e-01  2.121e-01  1.012 0.314308
-## wt71                               -7.661e-03  2.562e-02  0.089 0.764963
-## I(wt71 * wt71)                      8.655e-05  1.582e-04  0.299 0.584233
-## Hpsi                               -1.903e-06  8.839e-03  0.000 0.999828
-##                                       
-## (Intercept)                        .  
-## sex                                ***
-## race                               ***
-## age                                *  
-## I(age * age)                          
-## as.factor(education)2                 
-## as.factor(education)3                 
-## as.factor(education)4                 
-## as.factor(education)5              *  
-## smokeintensity                     ***
-## I(smokeintensity * smokeintensity) ***
-## smokeyrs                           ** 
-## I(smokeyrs * smokeyrs)             .  
-## as.factor(exercise)1               .  
-## as.factor(exercise)2               *  
-## as.factor(active)1                    
-## as.factor(active)2                    
-## wt71                                  
-## I(wt71 * wt71)                        
-## Hpsi                                  
+##                                      Estimate    Std.err   Wald Pr(>|W|)    
+## (Intercept)                        -2.403e+00  1.329e+00  3.269 0.070604 .  
+## sex                                -5.137e-01  1.536e-01 11.193 0.000821 ***
+## race                               -8.609e-01  2.099e-01 16.826 4.10e-05 ***
+## age                                 1.152e-01  5.020e-02  5.263 0.021779 *  
+## I(age * age)                       -7.593e-04  5.296e-04  2.056 0.151619    
+## as.factor(education)2              -2.894e-02  1.964e-01  0.022 0.882859    
+## as.factor(education)3               8.771e-02  1.726e-01  0.258 0.611329    
+## as.factor(education)4               6.637e-02  2.698e-01  0.061 0.805645    
+## as.factor(education)5               4.711e-01  2.247e-01  4.395 0.036036 *  
+## smokeintensity                     -7.834e-02  1.464e-02 28.635 8.74e-08 ***
+## I(smokeintensity * smokeintensity)  1.072e-03  2.650e-04 16.368 5.21e-05 ***
+## smokeyrs                           -7.111e-02  2.639e-02  7.261 0.007047 ** 
+## I(smokeyrs * smokeyrs)              8.153e-04  4.490e-04  3.298 0.069384 .  
+## as.factor(exercise)1                3.363e-01  1.828e-01  3.384 0.065844 .  
+## as.factor(exercise)2                3.800e-01  1.889e-01  4.049 0.044187 *  
+## as.factor(active)1                  3.412e-02  1.339e-01  0.065 0.798778    
+## as.factor(active)2                  2.135e-01  2.121e-01  1.012 0.314308    
+## wt71                               -7.661e-03  2.562e-02  0.089 0.764963    
+## I(wt71 * wt71)                      8.655e-05  1.582e-04  0.299 0.584233    
+## Hpsi                               -1.903e-06  8.839e-03  0.000 0.999828    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -2720,98 +2638,67 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 \end{verbatim}
 
 \begin{Shaded}
@@ -2882,8 +2769,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 \end{verbatim}
 
 \begin{Shaded}
@@ -3062,50 +2948,28 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 ## -42.056   -4.171   -0.343    3.891   44.606  
 ## 
 ## Coefficients:
-##                                      Estimate Std. Error t value Pr(>|t|)
-## (Intercept)                        -1.5881657  4.3130359  -0.368 0.712756
-## qsmk                                2.5595941  0.8091486   3.163 0.001590
-## sex                                -1.4302717  0.4689576  -3.050 0.002328
-## race                                0.5601096  0.5818888   0.963 0.335913
-## age                                 0.3596353  0.1633188   2.202 0.027809
-## I(age * age)                       -0.0061010  0.0017261  -3.534 0.000421
-## as.factor(education)2               0.7904440  0.6070005   1.302 0.193038
-## as.factor(education)3               0.5563124  0.5561016   1.000 0.317284
-## as.factor(education)4               1.4915695  0.8322704   1.792 0.073301
-## as.factor(education)5              -0.1949770  0.7413692  -0.263 0.792589
-## smokeintensity                      0.0491365  0.0517254   0.950 0.342287
-## I(smokeintensity * smokeintensity) -0.0009907  0.0009380  -1.056 0.291097
-## smokeyrs                            0.1343686  0.0917122   1.465 0.143094
-## I(smokeyrs * smokeyrs)             -0.0018664  0.0015437  -1.209 0.226830
-## as.factor(exercise)1                0.2959754  0.5351533   0.553 0.580298
-## as.factor(exercise)2                0.3539128  0.5588587   0.633 0.526646
-## as.factor(active)1                 -0.9475695  0.4099344  -2.312 0.020935
-## as.factor(active)2                 -0.2613779  0.6845577  -0.382 0.702647
-## wt71                                0.0455018  0.0833709   0.546 0.585299
-## I(wt71 * wt71)                     -0.0009653  0.0005247  -1.840 0.066001
-## I(qsmk * smokeintensity)            0.0466628  0.0351448   1.328 0.184463
-##                                       
-## (Intercept)                           
-## qsmk                               ** 
-## sex                                ** 
-## race                                  
-## age                                *  
-## I(age * age)                       ***
-## as.factor(education)2                 
-## as.factor(education)3                 
-## as.factor(education)4              .  
-## as.factor(education)5                 
-## smokeintensity                        
-## I(smokeintensity * smokeintensity)    
-## smokeyrs                              
-## I(smokeyrs * smokeyrs)                
-## as.factor(exercise)1                  
-## as.factor(exercise)2                  
-## as.factor(active)1                 *  
-## as.factor(active)2                    
-## wt71                                  
-## I(wt71 * wt71)                     .  
-## I(qsmk * smokeintensity)              
+##                                      Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                        -1.5881657  4.3130359  -0.368 0.712756    
+## qsmk                                2.5595941  0.8091486   3.163 0.001590 ** 
+## sex                                -1.4302717  0.4689576  -3.050 0.002328 ** 
+## race                                0.5601096  0.5818888   0.963 0.335913    
+## age                                 0.3596353  0.1633188   2.202 0.027809 *  
+## I(age * age)                       -0.0061010  0.0017261  -3.534 0.000421 ***
+## as.factor(education)2               0.7904440  0.6070005   1.302 0.193038    
+## as.factor(education)3               0.5563124  0.5561016   1.000 0.317284    
+## as.factor(education)4               1.4915695  0.8322704   1.792 0.073301 .  
+## as.factor(education)5              -0.1949770  0.7413692  -0.263 0.792589    
+## smokeintensity                      0.0491365  0.0517254   0.950 0.342287    
+## I(smokeintensity * smokeintensity) -0.0009907  0.0009380  -1.056 0.291097    
+## smokeyrs                            0.1343686  0.0917122   1.465 0.143094    
+## I(smokeyrs * smokeyrs)             -0.0018664  0.0015437  -1.209 0.226830    
+## as.factor(exercise)1                0.2959754  0.5351533   0.553 0.580298    
+## as.factor(exercise)2                0.3539128  0.5588587   0.633 0.526646    
+## as.factor(active)1                 -0.9475695  0.4099344  -2.312 0.020935 *  
+## as.factor(active)2                 -0.2613779  0.6845577  -0.382 0.702647    
+## wt71                                0.0455018  0.0833709   0.546 0.585299    
+## I(wt71 * wt71)                     -0.0009653  0.0005247  -1.840 0.066001 .  
+## I(qsmk * smokeintensity)            0.0466628  0.0351448   1.328 0.184463    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -3175,12 +3039,12 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Shaded}
 
 \begin{verbatim}
-##                                                    (Intercept) qsmk sex
-## Effect of Quitting Smoking at Smokeintensity of 5            0    1   0
-## Effect of Quitting Smoking at Smokeintensity of 40           0    1   0
-##                                                    race age I(age * age)
-## Effect of Quitting Smoking at Smokeintensity of 5     0   0            0
-## Effect of Quitting Smoking at Smokeintensity of 40    0   0            0
+##                                                    (Intercept) qsmk sex race
+## Effect of Quitting Smoking at Smokeintensity of 5            0    1   0    0
+## Effect of Quitting Smoking at Smokeintensity of 40           0    1   0    0
+##                                                    age I(age * age)
+## Effect of Quitting Smoking at Smokeintensity of 5    0            0
+## Effect of Quitting Smoking at Smokeintensity of 40   0            0
 ##                                                    as.factor(education)2
 ## Effect of Quitting Smoking at Smokeintensity of 5                      0
 ## Effect of Quitting Smoking at Smokeintensity of 40                     0
@@ -3244,15 +3108,12 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 ##     data = nhefs)
 ## 
 ## Linear Hypotheses:
-##                                                         Estimate
-## Effect of Quitting Smoking at Smokeintensity of 5 == 0    2.7929
-## Effect of Quitting Smoking at Smokeintensity of 40 == 0   4.4261
-##                                                         Std. Error z value
-## Effect of Quitting Smoking at Smokeintensity of 5 == 0      0.6683   4.179
-## Effect of Quitting Smoking at Smokeintensity of 40 == 0     0.8478   5.221
-##                                                         Pr(>|z|)    
-## Effect of Quitting Smoking at Smokeintensity of 5 == 0  5.84e-05 ***
-## Effect of Quitting Smoking at Smokeintensity of 40 == 0 3.56e-07 ***
+##                                                         Estimate Std. Error
+## Effect of Quitting Smoking at Smokeintensity of 5 == 0    2.7929     0.6683
+## Effect of Quitting Smoking at Smokeintensity of 40 == 0   4.4261     0.8478
+##                                                         z value Pr(>|z|)    
+## Effect of Quitting Smoking at Smokeintensity of 5 == 0    4.179 5.84e-05 ***
+## Effect of Quitting Smoking at Smokeintensity of 40 == 0   5.221 3.56e-07 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## (Adjusted p values reported -- single-step method)
@@ -3279,12 +3140,9 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 ##  
 ## 
 ## Linear Hypotheses:
-##                                                         Estimate lwr   
-## Effect of Quitting Smoking at Smokeintensity of 5 == 0  2.7929   1.3039
-## Effect of Quitting Smoking at Smokeintensity of 40 == 0 4.4261   2.5372
-##                                                         upr   
-## Effect of Quitting Smoking at Smokeintensity of 5 == 0  4.2819
-## Effect of Quitting Smoking at Smokeintensity of 40 == 0 6.3151
+##                                                         Estimate lwr    upr   
+## Effect of Quitting Smoking at Smokeintensity of 5 == 0  2.7929   1.3039 4.2819
+## Effect of Quitting Smoking at Smokeintensity of 40 == 0 4.4261   2.5372 6.3151
 \end{verbatim}
 
 \begin{Shaded}
@@ -3312,48 +3170,27 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 ## -42.332   -4.216   -0.318    3.807   44.668  
 ## 
 ## Coefficients:
-##                                      Estimate Std. Error t value Pr(>|t|)
-## (Intercept)                        -1.6586176  4.3137734  -0.384 0.700666
-## qsmk                                3.4626218  0.4384543   7.897 5.36e-15
-## sex                                -1.4650496  0.4683410  -3.128 0.001792
-## race                                0.5864117  0.5816949   1.008 0.313560
-## age                                 0.3626624  0.1633431   2.220 0.026546
-## I(age * age)                       -0.0061377  0.0017263  -3.555 0.000389
-## as.factor(education)2               0.8185263  0.6067815   1.349 0.177546
-## as.factor(education)3               0.5715004  0.5561211   1.028 0.304273
-## as.factor(education)4               1.5085173  0.8323778   1.812 0.070134
-## as.factor(education)5              -0.1708264  0.7413289  -0.230 0.817786
-## smokeintensity                      0.0651533  0.0503115   1.295 0.195514
-## I(smokeintensity * smokeintensity) -0.0010468  0.0009373  -1.117 0.264261
-## smokeyrs                            0.1333931  0.0917319   1.454 0.146104
-## I(smokeyrs * smokeyrs)             -0.0018270  0.0015438  -1.183 0.236818
-## as.factor(exercise)1                0.3206824  0.5349616   0.599 0.548961
-## as.factor(exercise)2                0.3628786  0.5589557   0.649 0.516300
-## as.factor(active)1                 -0.9429574  0.4100208  -2.300 0.021593
-## as.factor(active)2                 -0.2580374  0.6847219  -0.377 0.706337
-## wt71                                0.0373642  0.0831658   0.449 0.653297
-## I(wt71 * wt71)                     -0.0009158  0.0005235  -1.749 0.080426
-##                                       
-## (Intercept)                           
-## qsmk                               ***
-## sex                                ** 
-## race                                  
-## age                                *  
-## I(age * age)                       ***
-## as.factor(education)2                 
-## as.factor(education)3                 
-## as.factor(education)4              .  
-## as.factor(education)5                 
-## smokeintensity                        
-## I(smokeintensity * smokeintensity)    
-## smokeyrs                              
-## I(smokeyrs * smokeyrs)                
-## as.factor(exercise)1                  
-## as.factor(exercise)2                  
-## as.factor(active)1                 *  
-## as.factor(active)2                    
-## wt71                                  
-## I(wt71 * wt71)                     .  
+##                                      Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                        -1.6586176  4.3137734  -0.384 0.700666    
+## qsmk                                3.4626218  0.4384543   7.897 5.36e-15 ***
+## sex                                -1.4650496  0.4683410  -3.128 0.001792 ** 
+## race                                0.5864117  0.5816949   1.008 0.313560    
+## age                                 0.3626624  0.1633431   2.220 0.026546 *  
+## I(age * age)                       -0.0061377  0.0017263  -3.555 0.000389 ***
+## as.factor(education)2               0.8185263  0.6067815   1.349 0.177546    
+## as.factor(education)3               0.5715004  0.5561211   1.028 0.304273    
+## as.factor(education)4               1.5085173  0.8323778   1.812 0.070134 .  
+## as.factor(education)5              -0.1708264  0.7413289  -0.230 0.817786    
+## smokeintensity                      0.0651533  0.0503115   1.295 0.195514    
+## I(smokeintensity * smokeintensity) -0.0010468  0.0009373  -1.117 0.264261    
+## smokeyrs                            0.1333931  0.0917319   1.454 0.146104    
+## I(smokeyrs * smokeyrs)             -0.0018270  0.0015438  -1.183 0.236818    
+## as.factor(exercise)1                0.3206824  0.5349616   0.599 0.548961    
+## as.factor(exercise)2                0.3628786  0.5589557   0.649 0.516300    
+## as.factor(active)1                 -0.9429574  0.4100208  -2.300 0.021593 *  
+## as.factor(active)2                 -0.2580374  0.6847219  -0.377 0.706337    
+## wt71                                0.0373642  0.0831658   0.449 0.653297    
+## I(wt71 * wt71)                     -0.0009158  0.0005235  -1.749 0.080426 .  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -3401,46 +3238,26 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 ## -1.4646  -0.8044  -0.6460   1.0578   2.3550  
 ## 
 ## Coefficients:
-##                                      Estimate Std. Error z value Pr(>|z|)
-## (Intercept)                        -1.9889022  1.2412792  -1.602 0.109089
-## sex                                -0.5075218  0.1482316  -3.424 0.000617
-## race                               -0.8502312  0.2058720  -4.130 3.63e-05
-## age                                 0.1030132  0.0488996   2.107 0.035150
-## I(age * age)                       -0.0006052  0.0005074  -1.193 0.232973
-## as.factor(education)2              -0.0983203  0.1906553  -0.516 0.606066
-## as.factor(education)3               0.0156987  0.1707139   0.092 0.926730
-## as.factor(education)4              -0.0425260  0.2642761  -0.161 0.872160
-## as.factor(education)5               0.3796632  0.2203947   1.723 0.084952
-## smokeintensity                     -0.0651561  0.0147589  -4.415 1.01e-05
-## I(smokeintensity * smokeintensity)  0.0008461  0.0002758   3.067 0.002160
-## smokeyrs                           -0.0733708  0.0269958  -2.718 0.006571
-## I(smokeyrs * smokeyrs)              0.0008384  0.0004435   1.891 0.058669
-## as.factor(exercise)1                0.2914117  0.1735543   1.679 0.093136
-## as.factor(exercise)2                0.3550517  0.1799293   1.973 0.048463
-## as.factor(active)1                  0.0108754  0.1298320   0.084 0.933243
-## as.factor(active)2                  0.0683123  0.2087269   0.327 0.743455
-## wt71                               -0.0128478  0.0222829  -0.577 0.564226
-## I(wt71 * wt71)                      0.0001209  0.0001352   0.895 0.370957
-##                                       
-## (Intercept)                           
-## sex                                ***
-## race                               ***
-## age                                *  
-## I(age * age)                          
-## as.factor(education)2                 
-## as.factor(education)3                 
-## as.factor(education)4                 
-## as.factor(education)5              .  
-## smokeintensity                     ***
-## I(smokeintensity * smokeintensity) ** 
-## smokeyrs                           ** 
-## I(smokeyrs * smokeyrs)             .  
-## as.factor(exercise)1               .  
-## as.factor(exercise)2               *  
-## as.factor(active)1                    
-## as.factor(active)2                    
-## wt71                                  
-## I(wt71 * wt71)                        
+##                                      Estimate Std. Error z value Pr(>|z|)    
+## (Intercept)                        -1.9889022  1.2412792  -1.602 0.109089    
+## sex                                -0.5075218  0.1482316  -3.424 0.000617 ***
+## race                               -0.8502312  0.2058720  -4.130 3.63e-05 ***
+## age                                 0.1030132  0.0488996   2.107 0.035150 *  
+## I(age * age)                       -0.0006052  0.0005074  -1.193 0.232973    
+## as.factor(education)2              -0.0983203  0.1906553  -0.516 0.606066    
+## as.factor(education)3               0.0156987  0.1707139   0.092 0.926730    
+## as.factor(education)4              -0.0425260  0.2642761  -0.161 0.872160    
+## as.factor(education)5               0.3796632  0.2203947   1.723 0.084952 .  
+## smokeintensity                     -0.0651561  0.0147589  -4.415 1.01e-05 ***
+## I(smokeintensity * smokeintensity)  0.0008461  0.0002758   3.067 0.002160 ** 
+## smokeyrs                           -0.0733708  0.0269958  -2.718 0.006571 ** 
+## I(smokeyrs * smokeyrs)              0.0008384  0.0004435   1.891 0.058669 .  
+## as.factor(exercise)1                0.2914117  0.1735543   1.679 0.093136 .  
+## as.factor(exercise)2                0.3550517  0.1799293   1.973 0.048463 *  
+## as.factor(active)1                  0.0108754  0.1298320   0.084 0.933243    
+## as.factor(active)2                  0.0683123  0.2087269   0.327 0.743455    
+## wt71                               -0.0128478  0.0222829  -0.577 0.564226    
+## I(wt71 * wt71)                      0.0001209  0.0001352   0.895 0.370957    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -3610,121 +3427,103 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 ##  Descriptive statistics by group 
 ## : 1
 ## : 0
-##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis
-## X1    1 151  0.1 0.02   0.11     0.1 0.02 0.05 0.13  0.08 -0.55    -0.53
-##    se
-## X1  0
-## -------------------------------------------------------- 
+##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se
+## X1    1 151  0.1 0.02   0.11     0.1 0.02 0.05 0.13  0.08 -0.55    -0.53  0
+## ------------------------------------------------------------ 
 ## : 2
 ## : 0
-##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis
-## X1    1 136 0.15 0.01   0.15    0.15 0.01 0.13 0.17  0.04 -0.04    -1.23
-##    se
-## X1  0
-## -------------------------------------------------------- 
+##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se
+## X1    1 136 0.15 0.01   0.15    0.15 0.01 0.13 0.17  0.04 -0.04    -1.23  0
+## ------------------------------------------------------------ 
 ## : 3
 ## : 0
-##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis
-## X1    1 134 0.18 0.01   0.18    0.18 0.01 0.17 0.19  0.03 -0.08    -1.34
-##    se
-## X1  0
-## -------------------------------------------------------- 
+##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se
+## X1    1 134 0.18 0.01   0.18    0.18 0.01 0.17 0.19  0.03 -0.08    -1.34  0
+## ------------------------------------------------------------ 
 ## : 4
 ## : 0
-##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis
-## X1    1 129 0.21 0.01   0.21    0.21 0.01 0.19 0.22  0.02 -0.04    -1.13
-##    se
-## X1  0
-## -------------------------------------------------------- 
+##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se
+## X1    1 129 0.21 0.01   0.21    0.21 0.01 0.19 0.22  0.02 -0.04    -1.13  0
+## ------------------------------------------------------------ 
 ## : 5
 ## : 0
 ##    vars   n mean   sd median trimmed  mad  min  max range skew kurtosis se
 ## X1    1 120 0.23 0.01   0.23    0.23 0.01 0.22 0.25  0.03 0.24    -1.22  0
-## -------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## : 6
 ## : 0
-##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis
-## X1    1 117 0.26 0.01   0.26    0.26 0.01 0.25 0.27  0.03 -0.11    -1.29
-##    se
-## X1  0
-## -------------------------------------------------------- 
+##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se
+## X1    1 117 0.26 0.01   0.26    0.26 0.01 0.25 0.27  0.03 -0.11    -1.29  0
+## ------------------------------------------------------------ 
 ## : 7
 ## : 0
-##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis
-## X1    1 120 0.29 0.01   0.29    0.29 0.01 0.27 0.31  0.03 -0.23    -1.19
-##    se
-## X1  0
-## -------------------------------------------------------- 
+##    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se
+## X1    1 120 0.29 0.01   0.29    0.29 0.01 0.27 0.31  0.03 -0.23    -1.19  0
+## ------------------------------------------------------------ 
 ## : 8
 ## : 0
 ##    vars   n mean   sd median trimmed  mad  min  max range skew kurtosis se
 ## X1    1 112 0.33 0.01   0.33    0.33 0.02 0.31 0.35  0.04 0.15     -1.1  0
-## -------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## : 9
 ## : 0
 ##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se
 ## X1    1 96 0.38 0.02   0.38    0.38 0.02 0.35 0.42  0.06 0.13    -1.15  0
-## -------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## : 10
 ## : 0
-##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis
-## X1    1 86 0.49 0.06   0.47    0.48 0.05 0.42 0.66  0.24  1.1     0.47
-##      se
-## X1 0.01
-## -------------------------------------------------------- 
+##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
+## X1    1 86 0.49 0.06   0.47    0.48 0.05 0.42 0.66  0.24  1.1     0.47 0.01
+## ------------------------------------------------------------ 
 ## : 1
 ## : 1
-##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis
-## X1    1 12  0.1 0.02   0.11     0.1 0.03 0.06 0.13  0.07 -0.5    -1.36
-##      se
-## X1 0.01
-## -------------------------------------------------------- 
+##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
+## X1    1 12  0.1 0.02   0.11     0.1 0.03 0.06 0.13  0.07 -0.5    -1.36 0.01
+## ------------------------------------------------------------ 
 ## : 2
 ## : 1
 ##    vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis se
 ## X1    1 27 0.15 0.01   0.15    0.15 0.01 0.13 0.17  0.03 -0.03    -1.34  0
-## -------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## : 3
 ## : 1
 ##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se
 ## X1    1 29 0.18 0.01   0.18    0.18 0.01 0.17 0.19  0.03 0.01    -1.34  0
-## -------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## : 4
 ## : 1
 ##    vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis se
 ## X1    1 34 0.21 0.01   0.21    0.21 0.01 0.19 0.22  0.02 -0.31    -1.23  0
-## -------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## : 5
 ## : 1
 ##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se
 ## X1    1 43 0.23 0.01   0.23    0.23 0.01 0.22 0.25  0.03 0.11    -1.23  0
-## -------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## : 6
 ## : 1
 ##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se
 ## X1    1 45 0.26 0.01   0.26    0.26 0.01 0.25 0.27  0.03  0.2    -1.12  0
-## -------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## : 7
 ## : 1
 ##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se
 ## X1    1 43 0.29 0.01   0.29    0.29 0.01 0.27 0.31  0.03 0.16    -1.25  0
-## -------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## : 8
 ## : 1
 ##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se
 ## X1    1 51 0.33 0.01   0.33    0.33 0.02 0.31 0.35  0.04 0.11    -1.19  0
-## -------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## : 9
 ## : 1
 ##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se
 ## X1    1 67 0.38 0.02   0.38    0.38 0.03 0.35 0.42  0.06 0.19    -1.27  0
-## -------------------------------------------------------- 
+## ------------------------------------------------------------ 
 ## : 10
 ## : 1
-##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis
-## X1    1 77 0.52 0.08   0.51    0.51 0.08 0.42 0.79  0.38 0.88     0.81
-##      se
-## X1 0.01
+##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
+## X1    1 77 0.52 0.08   0.51    0.51 0.08 0.42 0.79  0.38 0.88     0.81 0.01
 \end{verbatim}
 
 \begin{Shaded}
@@ -4016,16 +3815,16 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Shaded}
 
 \begin{verbatim}
-##                         V1             mean                se
-## 1                 Observed 2.63384609228479 0.194461632915776
-## 2             No Treatment 1.71983636149843 0.238038648388876
-## 3                Treatment 5.35072300362993 0.439399620871625
-## 4 Treatment - No Treatment 3.63088664213151 0.422213269021722
-##                 ll               ul
-## 1 2.25270829539502 3.01498388917456
-## 2 1.25328918372763 2.18638353926922
-## 3 4.48951557190099 6.21193043535887
-## 4 2.80336384105401   4.458409443209
+##                         V1             mean                 se               ll
+## 1                 Observed 2.63384609228479 0.0507040735551285 2.53446793424727
+## 2             No Treatment 1.71983636149843 0.0843031345589121 1.55460525397912
+## 3                Treatment 5.35072300362993  0.188364082722202 4.98153618551349
+## 4 Treatment - No Treatment 3.63088664213151  0.218438975903448 3.20275411654093
+##                 ul
+## 1 2.73322425032232
+## 2 1.88506746901773
+## 3 5.71990982174637
+## 4 4.05901916772208
 \end{verbatim}
 
 \begin{Shaded}
@@ -4156,7 +3955,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ## 95% CI for the causal mean difference
-## 2.580653 , 4.514927
+## 2.501167 , 4.558509
 \end{verbatim}
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.
@@ -4769,8 +4568,7 @@ A more flexible and elegant way to do this is to write a function to perform the
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in eval(family$initialize): non-integer #successes in a binomial
-## glm!
+## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 \end{verbatim}
 
 \begin{Shaded}
@@ -4887,58 +4685,32 @@ A more flexible and elegant way to do this is to write a function to perform the
 ## -4.3160   0.0244   0.0395   0.0640   0.3303  
 ## 
 ## Coefficients:
-##                                      Estimate Std. Error z value Pr(>|z|)
-## (Intercept)                         9.272e+00  1.379e+00   6.724 1.76e-11
-## qsmk                                5.959e-02  4.154e-01   0.143 0.885924
-## I(qsmk * time)                     -1.485e-02  1.506e-02  -0.987 0.323824
-## I(qsmk * timesq)                    1.702e-04  1.245e-04   1.367 0.171643
-## time                               -2.270e-02  8.437e-03  -2.690 0.007142
-## timesq                              1.174e-04  6.709e-05   1.751 0.080020
-## sex                                 4.368e-01  1.409e-01   3.101 0.001930
-## race                               -5.240e-02  1.734e-01  -0.302 0.762572
-## age                                -8.750e-02  5.907e-02  -1.481 0.138536
-## I(age * age)                        8.128e-05  5.470e-04   0.149 0.881865
-## as.factor(education)2               1.401e-01  1.566e-01   0.895 0.370980
-## as.factor(education)3               4.335e-01  1.526e-01   2.841 0.004502
-## as.factor(education)4               2.350e-01  2.790e-01   0.842 0.399750
-## as.factor(education)5               3.750e-01  2.386e-01   1.571 0.116115
-## smokeintensity                     -1.626e-03  1.430e-02  -0.114 0.909431
-## I(smokeintensity * smokeintensity) -7.182e-05  2.390e-04  -0.301 0.763741
-## smkintensity82_71                  -1.686e-03  6.501e-03  -0.259 0.795399
-## smokeyrs                           -1.677e-02  3.065e-02  -0.547 0.584153
-## I(smokeyrs * smokeyrs)             -5.280e-05  4.244e-04  -0.124 0.900997
-## as.factor(exercise)1                1.469e-01  1.792e-01   0.820 0.412300
-## as.factor(exercise)2               -1.504e-01  1.762e-01  -0.854 0.393177
-## as.factor(active)1                 -1.601e-01  1.300e-01  -1.232 0.218048
-## as.factor(active)2                 -2.294e-01  1.877e-01  -1.222 0.221766
-## wt71                                6.222e-02  1.902e-02   3.271 0.001073
-## I(wt71 * wt71)                     -4.046e-04  1.129e-04  -3.584 0.000338
-##                                       
-## (Intercept)                        ***
-## qsmk                                  
-## I(qsmk * time)                        
-## I(qsmk * timesq)                      
-## time                               ** 
-## timesq                             .  
-## sex                                ** 
-## race                                  
-## age                                   
-## I(age * age)                          
-## as.factor(education)2                 
-## as.factor(education)3              ** 
-## as.factor(education)4                 
-## as.factor(education)5                 
-## smokeintensity                        
-## I(smokeintensity * smokeintensity)    
-## smkintensity82_71                     
-## smokeyrs                              
-## I(smokeyrs * smokeyrs)                
-## as.factor(exercise)1                  
-## as.factor(exercise)2                  
-## as.factor(active)1                    
-## as.factor(active)2                    
-## wt71                               ** 
-## I(wt71 * wt71)                     ***
+##                                      Estimate Std. Error z value Pr(>|z|)    
+## (Intercept)                         9.272e+00  1.379e+00   6.724 1.76e-11 ***
+## qsmk                                5.959e-02  4.154e-01   0.143 0.885924    
+## I(qsmk * time)                     -1.485e-02  1.506e-02  -0.987 0.323824    
+## I(qsmk * timesq)                    1.702e-04  1.245e-04   1.367 0.171643    
+## time                               -2.270e-02  8.437e-03  -2.690 0.007142 ** 
+## timesq                              1.174e-04  6.709e-05   1.751 0.080020 .  
+## sex                                 4.368e-01  1.409e-01   3.101 0.001930 ** 
+## race                               -5.240e-02  1.734e-01  -0.302 0.762572    
+## age                                -8.750e-02  5.907e-02  -1.481 0.138536    
+## I(age * age)                        8.128e-05  5.470e-04   0.149 0.881865    
+## as.factor(education)2               1.401e-01  1.566e-01   0.895 0.370980    
+## as.factor(education)3               4.335e-01  1.526e-01   2.841 0.004502 ** 
+## as.factor(education)4               2.350e-01  2.790e-01   0.842 0.399750    
+## as.factor(education)5               3.750e-01  2.386e-01   1.571 0.116115    
+## smokeintensity                     -1.626e-03  1.430e-02  -0.114 0.909431    
+## I(smokeintensity * smokeintensity) -7.182e-05  2.390e-04  -0.301 0.763741    
+## smkintensity82_71                  -1.686e-03  6.501e-03  -0.259 0.795399    
+## smokeyrs                           -1.677e-02  3.065e-02  -0.547 0.584153    
+## I(smokeyrs * smokeyrs)             -5.280e-05  4.244e-04  -0.124 0.900997    
+## as.factor(exercise)1                1.469e-01  1.792e-01   0.820 0.412300    
+## as.factor(exercise)2               -1.504e-01  1.762e-01  -0.854 0.393177    
+## as.factor(active)1                 -1.601e-01  1.300e-01  -1.232 0.218048    
+## as.factor(active)2                 -2.294e-01  1.877e-01  -1.222 0.221766    
+## wt71                                6.222e-02  1.902e-02   3.271 0.001073 ** 
+## I(wt71 * wt71)                     -4.046e-04  1.129e-04  -3.584 0.000338 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -5188,7 +4960,7 @@ For reproducibility.
 \end{Shaded}
 
 \begin{verbatim}
-## - Session info ----------------------------------------------------------
+## - Session info ---------------------------------------------------------------
 ##  setting  value                       
 ##  version  R version 3.6.1 (2019-07-05)
 ##  os       Windows 10 x64              
@@ -5198,33 +4970,37 @@ For reproducibility.
 ##  collate  English_United Kingdom.1252 
 ##  ctype    English_United Kingdom.1252 
 ##  tz       Europe/London               
-##  date     2019-10-02                  
+##  date     2019-12-12                  
 ## 
-## - Packages --------------------------------------------------------------
-##  package     * version date       lib source        
-##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 3.6.0)
-##  bookdown      0.14    2019-10-01 [1] CRAN (R 3.6.1)
-##  cli           1.1.0   2019-03-19 [1] CRAN (R 3.6.0)
-##  crayon        1.3.4   2017-09-16 [1] CRAN (R 3.6.0)
-##  digest        0.6.21  2019-09-20 [1] CRAN (R 3.6.1)
-##  evaluate      0.14    2019-05-28 [1] CRAN (R 3.6.0)
-##  htmltools     0.3.6   2017-04-28 [1] CRAN (R 3.6.0)
-##  knitr         1.25    2019-09-18 [1] CRAN (R 3.6.1)
-##  magrittr      1.5     2014-11-22 [1] CRAN (R 3.6.0)
-##  Rcpp          1.0.2   2019-07-25 [1] CRAN (R 3.6.1)
-##  rmarkdown     1.16    2019-10-01 [1] CRAN (R 3.6.1)
-##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 3.6.0)
-##  stringi       1.4.3   2019-03-12 [1] CRAN (R 3.6.0)
-##  stringr       1.4.0   2019-02-10 [1] CRAN (R 3.6.0)
-##  withr         2.1.2   2018-03-15 [1] CRAN (R 3.6.0)
-##  xfun          0.10    2019-10-01 [1] CRAN (R 3.6.1)
-##  yaml          2.2.0   2018-07-25 [1] CRAN (R 3.6.0)
+## - Packages -------------------------------------------------------------------
+##  package     * version date       lib source                            
+##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 3.6.0)                    
+##  bookdown      0.16.5  2019-12-09 [1] Github (rstudio/bookdown@70f9c07) 
+##  cli           2.0.0   2019-12-09 [1] CRAN (R 3.6.1)                    
+##  crayon        1.3.4   2017-09-16 [1] CRAN (R 3.6.0)                    
+##  digest        0.6.23  2019-11-23 [1] CRAN (R 3.6.1)                    
+##  evaluate      0.14    2019-05-28 [1] CRAN (R 3.6.0)                    
+##  fansi         0.4.0   2018-10-05 [1] CRAN (R 3.6.0)                    
+##  glue          1.3.1   2019-03-12 [1] CRAN (R 3.6.0)                    
+##  htmltools     0.4.0   2019-10-04 [1] CRAN (R 3.6.1)                    
+##  knitr         1.26    2019-11-12 [1] CRAN (R 3.6.1)                    
+##  magrittr      1.5     2014-11-22 [1] CRAN (R 3.6.0)                    
+##  Rcpp          1.0.3   2019-11-08 [1] CRAN (R 3.6.1)                    
+##  rlang         0.4.2   2019-11-23 [1] CRAN (R 3.6.1)                    
+##  rmarkdown     1.18.7  2019-12-12 [1] Github (rstudio/rmarkdown@af6a777)
+##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 3.6.0)                    
+##  stringi       1.4.3   2019-03-12 [1] CRAN (R 3.6.0)                    
+##  stringr       1.4.0   2019-02-10 [1] CRAN (R 3.6.0)                    
+##  withr         2.1.2   2018-03-15 [1] CRAN (R 3.6.0)                    
+##  xfun          0.11    2019-11-12 [1] CRAN (R 3.6.1)                    
+##  yaml          2.2.0   2018-07-25 [1] CRAN (R 3.6.0)                    
 ## 
 ## [1] C:/Users/palmertm/library
 ## [2] C:/Program Files/R/R-3.6.1/library
 \end{verbatim}
 
-\backmatter
+  \bibliography{bibliography.bib}
 
+\backmatter
 
 \end{document}
