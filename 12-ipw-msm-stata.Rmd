@@ -1,17 +1,25 @@
+# 12. IP Weighting and Marginal Structural Models{-}
+
+```{r, results='hide', message=FALSE, warning=FALSE}
+library(here)
+library(Statamarkdown)
+```
+
+```{stata}
 /***************************************************************
 Stata code for Causal Inference: What If by Miguel Hernan & Jamie Robins
 Date: 10/10/2019
 Author: Eleanor Murray 
 For errors contact: ejmurray@bu.edu
 ***************************************************************/
+```
+  
+## Program 12.1
+- Descriptive statistics from NHEFS data (Table 12.1)
 
-/***************************************************************
-PROGRAM 12.1
-Descriptive statistics from NHEFS data (Table 12.1)
-***************************************************************/
-
+```{stata}
 clear
-use "nhefs.dta"
+use "data/nhefs.dta"
 
 /*Provisionally ignore subjects with missing values for follow-up weight*/
 /*Sample size after exclusion: N = 1566*/
@@ -41,9 +49,9 @@ label var inactive "Inactive daily life"
 
 /*Output table*/
 foreach var of varlist years male  white university kg cigs meansmkyrs noexer inactive {
-tabdisp qsmk, cell(`var') format(%3.1f)
+  tabdisp qsmk, cell(`var') format(%3.1f)
 }
-
+```
 
 
 /***************************************************************
