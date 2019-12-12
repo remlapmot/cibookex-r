@@ -1,4 +1,4 @@
-# 12. IP Weighting and Marginal Structural Models{-}
+# 12. IP Weighting and Marginal Structural Models: Stata{-}
 
 ```{r, results='hide', message=FALSE, warning=FALSE}
 library(Statamarkdown)
