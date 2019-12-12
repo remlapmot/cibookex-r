@@ -81,12 +81,12 @@ summarize w
 regress wt82_71 qsmk [pweight=w], cluster(seqn) 
 ```
 
+## Program 12.3
+- Estimating stabilized IP weights for Section 12.3
+- Data from NHEFS
 
-/***************************************************************
-PROGRAM 12.3
-Estimating stabilized IP weights for Section 12.3
-Data from NHEFS
-***************************************************************/
+```{stata}
+use "data/nhefs-formatted", clear
 
 /*Fit a logistic model for the denominator of the IP weights and predict the conditional probability of smoking*/ 
 logit qsmk sex race c.age##c.age ib(last).education c.smokeintensity##c.smokeintensity ///
@@ -108,7 +108,6 @@ summarize sw_a
 /*Fit marginal structural model in the pseudopopulation*/
 regress wt82_71 qsmk [pweight=sw_a], cluster(seqn) 
 
-
 /**********************************************************
 FINE POINT 12.2
 Checking positivity
@@ -117,7 +116,7 @@ Checking positivity
 /*Check for missing values within strata of covariates, for example: */
 tab  age qsmk if race==0 & sex==1 & wt82!=.
 tab  age qsmk if race==1 & sex==1 & wt82!=.
-
+```
 
 
 /***************************************************************
