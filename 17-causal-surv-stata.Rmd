@@ -194,6 +194,8 @@ gen time2 = 0 if newtime ==1
 replace time2 = time + 1 if newtime == 0
 separate psurv, by(interv) 
 twoway (line psurv0 time2, sort) (line psurv1 time2, sort) if interv > -1, ylabel(0.5(0.1)1.0) xlabel(0(12)120) ytitle("Survival probability") xtitle("Months of follow-up") legend(label(1 "A=0") label(2 "A=1"))
+gr export ./figs/stata-fig-17-3.png, replace
+
 *remove extra timepoint*
 drop if newtime == 1
 drop time2
@@ -253,15 +255,18 @@ matrix pe = observe[1..3, 2]'
 bstat, stat(pe) n(1629)
 ```
 
-/***************************************************************
-PROGRAM 17.4
-Estimating of survival curves via g-formula
-Data from NHEFS
-Section 17.5
-Generates Figure 17.7
-***************************************************************/
-clear
-use "nhefs_surv.dta"
+```{r}
+knitr::include_graphics("./figs/stata-fig-17-3.png")
+```
+
+## Program 17.4
+- Estimating of survival curves via g-formula
+- Data from NHEFS
+- Section 17.5
+- Generates Figure 17.7
+
+```{stata}
+use ./data/nhefs_surv, clear
 
 keep seqn event qsmk time sex race age education smokeintensity smkintensity82_71  smokeyrs exercise active wt71 
 preserve 
@@ -298,7 +303,6 @@ matrix observe = (observe \2, observe[2,2]-observe[1,2])
 matrix rownames observe =  P(Y(a=0)=1) P(Y(a=1)=1) difference
 matrix colnames observe = interv survival
 
-
 *Graph standardized survival over time, under interventions*
 *Note: unlike in PROGRAM 17.3, we now have covariates so we first need to average survival across strata*
 bysort interv time : egen meanS_t = mean(psurv)
@@ -309,6 +313,8 @@ gen time2 = 0 if newtime ==1
 replace time2 = time + 1 if newtime == 0
 separate meanS_t, by(interv) 
 twoway (line meanS_t0 time2, sort) (line meanS_t1 time2, sort), ylabel(0.5(0.1)1.0) xlabel(0(12)120) ytitle("Survival probability") xtitle("Months of follow-up") legend(label(1 "A=0") label(2 "A=1"))
+gr export ./figs/stata-fig-17-4.png, replace
+
 *remove extra timepoint*
 drop if newtime == 1
 
@@ -359,3 +365,8 @@ set rmsg off
  
 matrix pe = observe[1..3, 2]'
 bstat, stat(pe) n(1629)
+```
+
+```{r}
+knitr::include_graphics("./figs/stata-fig-17-4.png")
+```
