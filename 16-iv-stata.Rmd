@@ -102,20 +102,17 @@ gen hspi = wt82_71 -psi*qsmk
 logit highprice hspi
 ```
 
-/***************************************************************************
-PROGRAM 16.4
-Estimating the average causal effect using the standard IV estimator
-based on alternative proposed instruments
-Data from NHEFS
-Section 16.5
-***************************************************************************/
+## Program 16.4
+- Estimating the average causal effect using the standard IV estimator based on alternative proposed instruments
+- Data from NHEFS
+- Section 16.5
 
+```{stata}
 /*Instrument cut-point: 1.6*/
 replace highprice = .
 replace highprice = (price82 >1.6 & price82 < .)
 
 ivregress 2sls wt82_71 (qsmk = highprice)
-
 
 /*Instrument cut-point: 1.7*/
 replace highprice = .
@@ -123,20 +120,18 @@ replace highprice = (price82 >1.7 & price82 < .)
 
 ivregress 2sls wt82_71 (qsmk = highprice)
 
-
 /*Instrument cut-point: 1.8*/
 replace highprice = .
 replace highprice = (price82 >1.8 & price82 < .)
 
 ivregress 2sls wt82_71 (qsmk = highprice)
 
-
 /*Instrument cut-point: 1.9*/
 replace highprice = .
 replace highprice = (price82 >1.9 & price82 < .)
 
 ivregress 2sls wt82_71 (qsmk = highprice)
-
+```
 
 
 /***************************************************************************
