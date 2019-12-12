@@ -229,16 +229,15 @@ summarize sw_a
 regress wt82_71 qsmk##sex [pw=sw_a], cluster(seqn)
 ```
 
+## Program 12.7
+- Estimating IP weights to adjust for selection bias due to censoring
+- Data from NHEFS
 
-/***************************************************************
-PROGRAM 12.7
-Estimating IP weights to adjust for selection bias due to censoring
-Data from NHEFS
-Section 12.6
-***************************************************************/
+```{stata}
+* Section 12.6
 
-clear
-use "nhefs.dta"
+* clear
+* use "nhefs.dta"
 
 /*Analysis including all individuals regardless of missing wt82 status: N=1629*/
 /*Generate censoring indicator: C = 1 if wt82 missing*/
@@ -283,3 +282,4 @@ summarize sw
 
 /*Fit marginal structural model in the pseudopopulation*/
 regress wt82_71 qsmk [pw=sw], cluster(seqn)
+```
