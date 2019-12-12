@@ -76,18 +76,18 @@ iv_est
 end
 ```
 
-/***************************************************************
-PROGRAM 16.2
-Estimating the average causal effect using the standard IV estimator
-via two-stage-least-squares regression
-Data from NHEFS
-Section 16.2
-***************************************************************/
+## Program 16.2
+- Estimating the average causal effect using the standard IV estimator via two-stage-least-squares regression
+- Data from NHEFS
+- Section 16.2
 
+```{stata}
 /*ivregress fits the model in two stages: */
 /*first model: qsmk = highprice*/
 /*second model: wt82_71 = predicted_qsmk*/
 ivregress 2sls wt82_71 (qsmk = highprice)
+```
+
 
 /***************************************************************************
 PROGRAM 16.3
