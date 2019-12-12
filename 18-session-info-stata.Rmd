@@ -1,4 +1,8 @@
-# Stata session information {-}
+# Session information: Stata{-}
+
+```{r, results='hide', message=FALSE, warning=FALSE}
+library(Statamarkdown)
+```
 
 For reproducibility.
 ```{stata}
