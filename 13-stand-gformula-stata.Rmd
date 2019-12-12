@@ -1,18 +1,25 @@
+# 13. Standardization and the parametric G-formula{-}
+
+```{r, results='hide', message=FALSE, warning=FALSE}
+library(Statamarkdown)
+```
+
+```
 /***************************************************************
 Stata code for Causal Inference: What If by Miguel Hernan & Jamie Robins
 Date: 10/10/2019
 Author: Eleanor Murray 
 For errors contact: ejmurray@bu.edu
 ***************************************************************/
+```
 
-/***************************************************************
-PROGRAM 13.1
-Estimating the mean outcome within levels of treatment 
-and confounders: Data from NHEFS
+## Program 13.1
+- Estimating the mean outcome within levels of treatment and confounders: Data from NHEFS
+
+```{stata}
 Section 13.2
-***************************************************************/
-clear
-use "nhefs.dta"
+
+use ./data/nhefs, clear
 
 *Estimate the the conditional mean outcome within strata of quitting smoking and covariates, among the uncensored*/
 glm wt82_71 qsmk sex race c.age##c.age ib(last).education c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active c.wt71##c.wt71 qsmk##c.smokeintensity
@@ -24,7 +31,7 @@ list meanY if seqn == 24770
 
 /*Observed mean outcome for comparison */
 summarize wt82_71
-
+```
 
 /***************************************************************
 PROGRAM 13.2
