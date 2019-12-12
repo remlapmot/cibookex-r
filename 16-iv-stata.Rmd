@@ -1,28 +1,34 @@
+# 16. Instrumental variables estimation{-}
+
+```{r, results='hide', message=FALSE, warning=FALSE}
+library(Statamarkdown)
+```
+
+```
 /***************************************************************
 Stata code for Causal Inference: What If by Miguel Hernan & Jamie Robins
 Date: 10/10/2019
 Author: Eleanor Murray 
 For errors contact: ejmurray@bu.edu
 ***************************************************************/
+```
 
-/***************************************************************
-PROGRAM 16.1
-Estimating the average causal effect using the standard IV estimator
-via the calculation of sample averages
-Data from NHEFS
-Section 16.2
-***************************************************************/
+## Program 16.1
+- Estimating the average causal effect using the standard IV estimator via the calculation of sample averages
+- Data from NHEFS
+- Section 16.2
 
-clear
-use "nhefs.dta"
+```{stata, collectcode=TRUE}
+use nhefs-formatted, clear
+```
 
+```{stata}
 summarize price82
 
 /* ignore subjects with missing outcome or missing instrument for simplicity*/
 foreach var of varlist wt82 price82 {
 drop if `var'==.
 }
-
 
 /*Create categorical instrument*/
 gen byte highprice  = (price82 > 1.5 & price82 < .)
@@ -68,7 +74,7 @@ num
 denom
 iv_est
 end
-
+```
 
 /***************************************************************
 PROGRAM 16.2
