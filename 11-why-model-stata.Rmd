@@ -1,15 +1,27 @@
+# (PART\*) Stata code{-}
+
+# 11. Why model?{-}
+
+```{r, results='hide', message=FALSE, warning=FALSE}
+library(here)
+library(Statamarkdown)
+```
+
+```{stata}
 /***************************************************************
 Stata code for Causal Inference: What If by Miguel Hernan & Jamie Robins
 Date: 10/10/2019
 Author: Eleanor Murray 
 For errors contact: ejmurray@bu.edu
 ***************************************************************/
+```
 
-/***************************************************************
-PROGRAM 11.1 
-Figures 11.1, 11.2, and 11.3
-Sample averages by treatment level
-***************************************************************/
+  
+## PROGRAM 11.1
+- Figures 11.1, 11.2, and 11.3
+- Sample averages by treatment level
+
+```{stata}
 clear
 
 **Figure 11.1**
@@ -38,8 +50,10 @@ scatter Y A, ylab(0(50)250) xlab(0 1) xscale(range(-0.5 1.5))
 *Output the mean values for Y in each level of A*
 bysort A: sum Y
 *Save the data*
-save fig1, replace
+* save fig1, replace
+```
 
+```{stata}
 *Clear the workspace to be able to use a new dataset*
 clear
 
@@ -65,7 +79,10 @@ end
 
 scatter Y A, ylab(0(50)250) xlab(0(1)4) xscale(range(0 4.5))
 bysort A: sum Y
-save fig2, replace
+*save fig2, replace
+```
+
+```{stata}
 clear
 
 **Figure 11.3**
@@ -89,9 +106,9 @@ input A Y
 end
 
 scatter Y A, ylab(0(50)250) xlab(0(10)100) xscale(range(0 100))
-save fig3, replace
+*save fig3, replace
 clear
-
+```
 
 /***************************************************************
 PROGRAM 11.2 
