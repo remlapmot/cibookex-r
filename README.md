@@ -1,4 +1,4 @@
-# Repository of R code for the Causal Inference Book Examples by Hernán and Robins
+# Repository of R code for the exercises in Causal Inference: What If by Hernán and Robins
 
 The R code by Joy Shi and Sean McGrath available [here](https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/1268/20/Rcode_CIpart2.zip) of the [Causal Inference Book](https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/) by Hernán MA and Robins JM rendered using [bookdown](https://bookdown.org/).
 
@@ -29,6 +29,11 @@ rmarkdown::render_site(output_format = 'bookdown::pdf_book', encoding = 'UTF-8')
 - Render the HTML book
 ``` r
 rmarkdown::render_site(output_format = 'bookdown::gitbook_book', encoding = 'UTF-8')
+```
+
+- Render the EPUB book
+```r
+rmarkdown::render_site(output_format = 'bookdown::epub_book', encoding = 'UTF-8')
 ```
 
 - Preview a specific chapter
