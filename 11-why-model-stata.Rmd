@@ -184,11 +184,10 @@ clear
 ```
 
 ## Program 11.3
-3-parameter linear model
-Creates Figure 11.5 and 
-Parameter estimates for Section 11.4
-***************************************************************/
+- 3-parameter linear model
+- Creates Figure 11.5 and Parameter estimates for Section 11.4
 
+```{stata}
 *Create the data, or reload with the command "use fig3, clear"*
 input A Y
 3   21	
@@ -209,7 +208,6 @@ input A Y
 45  190
 end
 
-
 *Create the product term*
 gen Asq = A*A
 
@@ -222,4 +220,4 @@ lincom _b[_cons] + 90*_b[A] + 90*90*_b[Asq]
 *Plot the data with the regression line: Fig 11.5*
 scatter Y A, ylab(0(50)250) xlab(0(10)100) xscale(range(0 100)) || qfit Y A
 clear
-
+```
