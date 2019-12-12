@@ -71,16 +71,13 @@ by(, title(Estimated Propensity Score Distribution) subtitle(By Quit Smoking Sta
 by(, legend(off)) by(qsmk, style(compact)  colfirst) subtitle(, size(small) box bexpand)
 ```
 
-/***************************************************************************
-PROGRAM 15.3
-Stratification and outcome regression using deciles of the propensity score
-Data from NHEFS
-Section 15.3
-NOTE: Stata decides borderline cutpoints differently from SAS, 
-so, despite identically distributed propensity scores, 
-the results of regression using deciles are not an exact match with the book.
-***************************************************************************/
+## Program 15.3
+- Stratification and outcome regression using deciles of the propensity score
+- Data from NHEFS
+- Section 15.3
+- NOTE: Stata decides borderline cutpoints differently from SAS, so, despite identically distributed propensity scores, the results of regression using deciles are not an exact match with the book.
 
+```{stata}
 /*Calculation of deciles of ps*/
 xtile ps_dec = ps, nq(10)
 by ps_dec, sort: summarize ps
@@ -91,7 +88,7 @@ by ps_dec: ttest wt82_71, by(qsmk)
 
 /*Regression on PS deciles, with no product terms*/
 regress wt82_71 qsmk ib(last).ps_dec
-
+```
 
 /***************************************************************
 PROGRAM 15.4
