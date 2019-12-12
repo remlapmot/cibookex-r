@@ -46,6 +46,7 @@ by qsmk, sort: egen noexer = mean(100 * (exercise == 2)) if exercise < .
 label var noexer "Little/no exercise"
 by qsmk, sort: egen inactive = mean(100 * (active==2)) if active < . 
 label var inactive "Inactive daily life"
+save "data/nhefs-formatted.dta", replace
 
 /*Output table*/
 foreach var of varlist years male  white university kg cigs meansmkyrs noexer inactive {
@@ -53,12 +54,12 @@ foreach var of varlist years male  white university kg cigs meansmkyrs noexer in
 }
 ```
 
+## Program 12.2
+- Estimating IP weights for Section 12.2
+- Data from NHEFS
 
-/***************************************************************
-PROGRAM 12.2
-Estimating IP weights for Section 12.2
-Data from NHEFS
-***************************************************************/
+```{stata}
+use "data/nhefs-formatted", clear
 
 /*Fit a logistic model for the IP weights*/ 
 logit qsmk sex race c.age##c.age ib(last).education c.smokeintensity##c.smokeintensity ///
@@ -78,7 +79,7 @@ summarize w
 /*Weights assigned using pweight = w*/
 /*Robust standard errors using cluster() option where 'seqn' is the ID variable*/
 regress wt82_71 qsmk [pweight=w], cluster(seqn) 
-
+```
 
 
 /***************************************************************
