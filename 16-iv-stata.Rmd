@@ -1,4 +1,4 @@
-# 16. Instrumental variables estimation{-}
+# 16. Instrumental variables estimation: Stata{-}
 
 ```{r, results='hide', message=FALSE, warning=FALSE}
 library(Statamarkdown)
