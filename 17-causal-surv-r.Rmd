@@ -1,4 +1,4 @@
-# 17. Causal survival analysis{-}
+# 17. Causal survival analysis: Stata{-}
 
 ## Program 17.1
 
