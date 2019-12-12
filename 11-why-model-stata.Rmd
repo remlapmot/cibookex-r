@@ -17,7 +17,7 @@ For errors contact: ejmurray@bu.edu
 ```
 
   
-## PROGRAM 11.1
+## Program 11.1
 - Figures 11.1, 11.2, and 11.3
 - Sample averages by treatment level
 
@@ -110,15 +110,11 @@ scatter Y A, ylab(0(50)250) xlab(0(10)100) xscale(range(0 100))
 clear
 ```
 
-/***************************************************************
-PROGRAM 11.2 
-2-parameter linear model
-Creates Figure 11.4,
-parameter estimates with 95% confidence intervals from Section 11.2,
-and parameter estimates with 95% confidence intervals from Section 11.3
-***************************************************************/
-clear 
+## Program 11.2 
+- 2-parameter linear model
+- Creates Figure 11.4, parameter estimates with 95% confidence intervals from Section 11.2, and parameter estimates with 95% confidence intervals from Section 11.3
 
+```{stata}
 **Section 11.2: parametric estimators**
 *Create the data, or reload with the command "use fig3, clear"*
 input A Y
@@ -152,9 +148,11 @@ lincom _b[_cons] + 90*_b[A]
 *Plot the data with the regression line: Fig 11.4*
 scatter Y A, ylab(0(50)250) xlab(0(10)100) xscale(range(0 100)) || lfit Y A
 
-save fig3, replace
+*save fig3, replace
 clear
+```
 
+```{stata}
 **Section 11.3: non-parametric estimation*
 *Create the data, or reload with the command "use fig1, clear"*
 input A Y
@@ -183,9 +181,9 @@ regress Y A, noheader cformat(%5.2f)
 di 67.50 + 78.75
 
 clear
+```
 
-/***************************************************************
-PROGRAM 11.3 
+## Program 11.3
 3-parameter linear model
 Creates Figure 11.5 and 
 Parameter estimates for Section 11.4
