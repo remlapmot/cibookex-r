@@ -1,8 +1,9 @@
 --- 
-title: "Causal Inference: What If. Exercises -- R code"
+title: "Causal Inference: What If. R and Stata code for Exercises"
 author: 
  - Book by M. A. Hernán and J. M. Robins
  - R code by Joy Shi and Sean McGrath
+ - Stata code by Eleanor Murray and Roger Logan
  - R Markdown code by Tom Palmer
 date: "`r format(Sys.Date(), '%d %B %Y')`"
 site: bookdown::bookdown_site
@@ -27,6 +28,8 @@ This book presents code examples from @ci-book, which is available in draft form
 https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/
 
 The R code is based on the code by Joy Shi and Sean McGrath given [here](https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/1268/20/Rcode_CIpart2.zip).
+
+The Stata code is based on the code by Eleanor Murray and Roger Logan given [here](https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/2019/11/stata_part2.zip).
 
 ## Packages to install
 To install the R packages required for this book please copy/fork the repository and run:
