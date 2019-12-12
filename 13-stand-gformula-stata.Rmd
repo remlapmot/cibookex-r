@@ -186,13 +186,11 @@ matrix list observe
 *row 4, column 2, is the mean difference outcome value if everyone had quit smoking compared to if everyone had not quit smoking*
 ```
 
+## Program 13.4
+- Computing the 95% confidence interval of the standardized means and their difference: Data from NHEFS
 
-/***************************************************************
-PROGRAM 13.4
-Computing the 95% confidence interval of the standardized means 
-and their difference: Data from NHEFS
-Section 13.3
-***************************************************************/
+```{stata}
+* Section 13.3
 
 *Run program 13.3 to obtain point estimates, and then the code below*
 
@@ -200,6 +198,7 @@ Section 13.3
 drop if interv != -1
 gen meanY_b =.
 save nhefs_std, replace
+
 capture program drop bootstdz
 program define bootstdz, rclass
 	u nhefs_std, clear
@@ -244,4 +243,4 @@ matrix list pe
 *The default results use a normal approximation to calcutlate the confidence intervals*
 *note, n contains the original sample size of your data before censoring*
 bstat, stat(pe) n(1629) 
-
+```
