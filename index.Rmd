@@ -12,7 +12,6 @@ geometry: margin=1in
 fontsize: 10pt
 linestretch: 1.1
 bibliography: bibliography.bib
-link-citations: true
 ---
 
 ```{r setup, include=FALSE}
