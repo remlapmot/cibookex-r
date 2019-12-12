@@ -1,4 +1,4 @@
-# 13. Standardization and the parametric G-formula{-}
+# 13. Standardization and the parametric G-formula: Stata{-}
 
 ```{r, results='hide', message=FALSE, warning=FALSE}
 library(Statamarkdown)
