@@ -1,29 +1,34 @@
+# 14. G-estimation of Structural Nested Models{-}
+
+```{r, results='hide', message=FALSE, warning=FALSE}
+library(Statamarkdown)
+```
+
+```
 /***************************************************************
 Stata code for Causal Inference: What If by Miguel Hernan & Jamie Robins
 Date: 10/10/2019
 Author: Eleanor Murray 
 For errors contact: ejmurray@bu.edu
 ***************************************************************/
+```
 
-/*********************
+```{stata, collectcode=TRUE}
 *Data preprocessing***
-**********************/
 
-clear
-use "nhefs.dta"
+use ./data/nhefs-formatted, clear
 gen byte cens = (wt82 == .)
+```
 
+## Program 14.1
+- Ranks of extreme observations
+- Data from NHEFS
 
-/***************************************************************
-# PROGRAM 14.1
-# Ranks of extreme observations
-# Data from NHEFS
-#Section 14.4
-**************************************************************/
+```{stata}
+* Section 14.4
 
-/*For Stata 15 or later, first install the extremes function using this code:
+/*For Stata 15 or later, first install the extremes function using this code:*/
 ssc install extremes 
-*/
 
 /*Ranking of extreme observations*/
 extremes wt82_71 seqn
@@ -38,6 +43,7 @@ summarize w_cens
 /*Analyses restricted to N=1566*/
 drop if wt82 == .
 summarize wt82_71
+```
 
 /***************************************************************
 # PROGRAM 14.2
