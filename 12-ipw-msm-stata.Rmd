@@ -161,15 +161,16 @@ lincom _b[_cons]
 lincom _b[_cons] + 20*_b[smkintensity82_71 ] +400*_b[c.smkintensity82_71#c.smkintensity82_71]
 ```
 
-/***************************************************************
-PROGRAM 12.5
-Estimating the parameters of a marginal structural logistic model
-Data from NHEFS
-Section 12.4
+## Program 12.5
+- Estimating the parameters of a marginal structural logistic model
+- Data from NHEFS
+
+```{stata}
+* Section 12.4
 ***************************************************************/
 
-clear
-use "nhefs.dta"
+*clear
+*use "nhefs.dta"
 
 /*Provisionally ignore subjects with missing values for follow-up weight*/
 /*Sample size after exclusion: N = 1566*/
@@ -194,7 +195,7 @@ summarize sw_a
 /*Using logistic allows us to output the odds ratios directly*/
 /*We can also output odds ratios from the logit command using the or option (default logit output is regression coefficients*/
 logistic death qsmk [pweight=sw_a], cluster(seqn) 
-
+```
 
 ***************************************************************
 *PROGRAM 12.6
