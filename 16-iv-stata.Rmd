@@ -88,23 +88,19 @@ end
 ivregress 2sls wt82_71 (qsmk = highprice)
 ```
 
+## Program 16.3
+- Estimating the average causal effect using the standard IV estimator via an additive marginal structural model
+- Data from NHEFS
+- Checking one possible value of psi.
+- See Chapter 14 for program that checks several values and computes 95% confidence intervals   
+- Section 16.2
 
-/***************************************************************************
-PROGRAM 16.3
-Estimating the average causal effect using the standard IV estimator 
-via an additive marginal structural model
-Data from NHEFS
-Checking one possible value of psi.
-See Chapter 14 for program that checks several values 
-and computes 95% confidence intervals   
-Section 16.2
-***************************************************************************/
-
+```{stata}
 gen psi = 2.396
 gen hspi = wt82_71 -psi*qsmk
 
 logit highprice hspi
-
+```
 
 /***************************************************************************
 PROGRAM 16.4
