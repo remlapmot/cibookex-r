@@ -16,7 +16,6 @@ For errors contact: ejmurray@bu.edu
 ***************************************************************/
 ```
 
-  
 ## Program 11.1
 - Figures 11.1, 11.2, and 11.3
 - Sample averages by treatment level
