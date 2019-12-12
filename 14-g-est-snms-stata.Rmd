@@ -103,20 +103,21 @@ end
 * Setting seq_by = 0.01 will yield the result 3.46
 ```
 
-/***************************************************************
-# PROGRAM 14.3
-# G-estimation for 2-parameter structural nested mean model
-# Closed form estimator
-# Data from NHEFS
-Section 14.6
-***************************************************************/
+## Program 14.3
+- G-estimation for 2-parameter structural nested mean model
+- Closed form estimator
+- Data from NHEFS
+
+```{stata}
+* Section 14.6
+
 /*create weights*/
 logit qsmk sex race c.age##c.age ib(last).education c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active c.wt71##c.wt71 [pw = w_cens], cluster(seqn)  
 predict pr_qsmk
 summarize pr_qsmk
 
 /* Closed form estimator linear mean models  **/
-ssc inst tomata
+ssc install tomata
 putmata *, replace
 mata: diff = qsmk - pr_qsmk
 mata: part1 = w_cens :* wt82_71 :* diff
@@ -143,4 +144,4 @@ psi
 psi = (invsym(lhs'lhs)*lhs'rhs)'
 psi
 end
-
+```
