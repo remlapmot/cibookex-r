@@ -47,10 +47,16 @@ end
 
 *Build the scatterplot*
 scatter Y A, ylab(0(50)250) xlab(0 1) xscale(range(-0.5 1.5))
+qui gr export figs/stata-fig-11-1.png, replace
+
 *Output the mean values for Y in each level of A*
 bysort A: sum Y
 *Save the data*
 * save fig1, replace
+```
+
+```{r}
+knitr::include_graphics("figs/stata-fig-11-1.png")
 ```
 
 ```{stata}
@@ -78,8 +84,14 @@ input A Y
 end
 
 scatter Y A, ylab(0(50)250) xlab(0(1)4) xscale(range(0 4.5))
+qui gr export figs/stata-fig-11-2.png, replace
+
 bysort A: sum Y
 *save fig2, replace
+```
+
+```{r}
+knitr::include_graphics("figs/stata-fig-11-2.png")
 ```
 
 ```{stata}
@@ -106,8 +118,14 @@ input A Y
 end
 
 scatter Y A, ylab(0(50)250) xlab(0(10)100) xscale(range(0 100))
+gr export figs/stata-fig-11-3.png, replace
+
 *save fig3, replace
 clear
+```
+
+```{r}
+knitr::include_graphics("figs/stata-fig-11-3.png")
 ```
 
 ## Program 11.2 
@@ -147,9 +165,14 @@ lincom _b[_cons] + 90*_b[A]
 
 *Plot the data with the regression line: Fig 11.4*
 scatter Y A, ylab(0(50)250) xlab(0(10)100) xscale(range(0 100)) || lfit Y A
+gr export figs/stata-fig-11-4.png, replace
 
 *save fig3, replace
 clear
+```
+
+```{r}
+knitr::include_graphics("figs/stata-fig-11-4.png")
 ```
 
 ```{stata}
@@ -219,5 +242,10 @@ lincom _b[_cons] + 90*_b[A] + 90*90*_b[Asq]
 
 *Plot the data with the regression line: Fig 11.5*
 scatter Y A, ylab(0(50)250) xlab(0(10)100) xscale(range(0 100)) || qfit Y A
+gr export figs/stata-fig-11-5.png, replace
 clear
+```
+
+```{r}
+knitr::include_graphics("figs/stata-fig-11-5.png")
 ```
