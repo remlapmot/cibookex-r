@@ -47,7 +47,13 @@ label var noexer "Little/no exercise"
 by qsmk, sort: egen inactive = mean(100 * (active==2)) if active < . 
 label var inactive "Inactive daily life"
 save "data/nhefs-formatted.dta", replace
+```
 
+```{stata, , collectcode=TRUE}
+use data/nhefs-formatted, clear
+```
+
+```{stata}
 /*Output table*/
 foreach var of varlist years male  white university kg cigs meansmkyrs noexer inactive {
   tabdisp qsmk, cell(`var') format(%3.1f)
@@ -59,8 +65,6 @@ foreach var of varlist years male  white university kg cigs meansmkyrs noexer in
 - Data from NHEFS
 
 ```{stata}
-use "data/nhefs-formatted", clear
-
 /*Fit a logistic model for the IP weights*/ 
 logit qsmk sex race c.age##c.age ib(last).education c.smokeintensity##c.smokeintensity ///
 c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active c.wt71##c.wt71 
@@ -86,8 +90,6 @@ regress wt82_71 qsmk [pweight=w], cluster(seqn)
 - Data from NHEFS
 
 ```{stata}
-use "data/nhefs-formatted", clear
-
 /*Fit a logistic model for the denominator of the IP weights and predict the conditional probability of smoking*/ 
 logit qsmk sex race c.age##c.age ib(last).education c.smokeintensity##c.smokeintensity ///
 c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active c.wt71##c.wt71  
@@ -118,17 +120,16 @@ tab  age qsmk if race==0 & sex==1 & wt82!=.
 tab  age qsmk if race==1 & sex==1 & wt82!=.
 ```
 
+## Program 12.4
+- Estimating the parameters of a marginal structural mean model with a continuous treatment Data from NHEFS
 
-/***************************************************************
-PROGRAM 12.4
-Estimating the parameters of a marginal structural mean model
-with a continuous treatment Data from NHEFS
-Section 12.4
-***************************************************************/
-drop sw_a
+```{stata}
+* Section 12.4
+
+* drop sw_a
 
 /*Analysis restricted to subjects reporting <=25 cig/day at baseline: N = 1162*/
-keep if  smokeintensity <=25
+keep if smokeintensity <=25
 
 /*Fit a linear model for the denominator of the IP weights and calculate the mean expected smoking intensity*/ 
 regress smkintensity82_71 sex race c.age##c.age ib(last).education c.smokeintensity##c.smokeintensity ///
@@ -158,7 +159,7 @@ lincom _b[_cons]
 
 /*Output the estimated mean Y value when smoke intensity increases by 20 from baseline to 1982*/
 lincom _b[_cons] + 20*_b[smkintensity82_71 ] +400*_b[c.smkintensity82_71#c.smkintensity82_71]
-
+```
 
 /***************************************************************
 PROGRAM 12.5
