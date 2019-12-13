@@ -44,7 +44,7 @@ by qsmk, sort: egen noexer = mean(100 * (exercise == 2)) if exercise < .
 label var noexer "Little/no exercise"
 by qsmk, sort: egen inactive = mean(100 * (active==2)) if active < . 
 label var inactive "Inactive daily life"
-save ./data/nhefs-formatted, replace
+qui save ./data/nhefs-formatted, replace
 ```
 
 ```{stata, collectcode=TRUE}
@@ -114,8 +114,8 @@ Checking positivity
 **********************************************************/
 
 /*Check for missing values within strata of covariates, for example: */
-tab  age qsmk if race==0 & sex==1 & wt82!=.
-tab  age qsmk if race==1 & sex==1 & wt82!=.
+tab age qsmk if race==0 & sex==1 & wt82!=.
+tab age qsmk if race==1 & sex==1 & wt82!=.
 ```
 
 ## Program 12.4
@@ -136,7 +136,6 @@ quietly predict p_den
 /*Generate the denisty of the denomiator expectation using the mean expected smoking intensity and the residuals, assuming a normal distribution*/
 /*Note: The regress command in STATA saves the root mean squared error for the immediate regression as e(rmse), thus there is no need to calculate it again. */
 gen dens_den = normalden(smkintensity82_71, p_den, e(rmse))
-
 
 /*Fit a linear model for the numerator of ip weights, calculate the mean expected value, and generate the density*/
 quietly regress smkintensity82_71
@@ -227,7 +226,7 @@ regress wt82_71 qsmk##sex [pw=sw_a], cluster(seqn)
 - Section 12.6
 
 ```{stata}
-use nhefs, clear
+* use ./data/nhefs-formatted, clear
 
 /*Analysis including all individuals regardless of missing wt82 status: N=1629*/
 /*Generate censoring indicator: C = 1 if wt82 missing*/
