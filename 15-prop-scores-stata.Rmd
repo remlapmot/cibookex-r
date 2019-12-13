@@ -69,10 +69,10 @@ histogram ps, width(0.05) start(0.025) frequency fcolor(none) lcolor(black) lpat
 ytitle(No. Subjects) ylabel(#4) xtitle(Estimated Propensity Score) xlabel(#15)  ///
 by(, title(Estimated Propensity Score Distribution) subtitle(By Quit Smoking Status)) ///
 by(, legend(off)) by(qsmk, style(compact)  colfirst) subtitle(, size(small) box bexpand)
-gr export ./figs/stata-fig-15-2.png, replace
+qui gr export ./figs/stata-fig-15-2.png, replace
 ```
 
-```{r}
+```{r, echo=FALSE}
 knitr::include_graphics("stata-fig-15-2.png")
 ```
 
@@ -136,7 +136,7 @@ matrix list observe
 /*bootstrap program*/
 drop if interv != -1
 gen meanY_b =.
-save ./data/nhefs_std, replace
+qui save ./data/nhefs_std, replace
 capture program drop bootstdz
 program define bootstdz, rclass
 	use ./data/nhefs_std, clear
