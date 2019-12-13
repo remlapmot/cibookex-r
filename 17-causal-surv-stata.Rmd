@@ -19,7 +19,7 @@ For errors contact: ejmurray@bu.edu
 - Section 17.1
 
 ```{stata, collectcode=TRUE}
-use nhefs-formatted, clear
+use ./data/nhefs-formatted, clear
 ```
 
 ```{stata}
