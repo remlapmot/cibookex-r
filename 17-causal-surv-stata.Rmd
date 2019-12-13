@@ -35,10 +35,10 @@ tab death qsmk
 *For now, we use the stset function in Stata*
 stset survtime, failure(death=1)
 sts graph, by(qsmk) xlabel(0(12)120)
-gr export ./figs/stata-fig-17-1.png, replace
+qui gr export ./figs/stata-fig-17-1.png, replace
 ```
 
-```{r}
+```{r, echo=FALSE}
 knitr::include_graphics("./figs/stata-fig-17-1.png")
 ```
 
@@ -75,7 +75,7 @@ tab event
 gen timesq = time*time
 
 *Save the dataset to your working directory for future use*
-save ./data/nhefs_surv, replace
+qui save ./data/nhefs_surv, replace
 
 /**Hazard ratios**/
 use ./data/nhefs_surv, clear
@@ -121,10 +121,10 @@ replace time2 = time + 1 if newtime == 0
 separate psurv, by(interv) 
 *Plot the curves*
 twoway (line psurv0 time2, sort) (line psurv1 time2, sort) if interv > -1, ylabel(0.5(0.1)1.0) xlabel(0(12)120) ytitle("Survival probability") xtitle("Months of follow-up") legend(label(1 "A=0") label(2 "A=1"))
-gr export ./figs/stata-fig-17-2.png, replace
+qui gr export ./figs/stata-fig-17-2.png, replace
 ```
 
-```{r}
+```{r, echo=FALSE}
 knitr::include_graphics("./figs/stata-fig-17-2.png")
 ```
 
@@ -194,7 +194,7 @@ gen time2 = 0 if newtime ==1
 replace time2 = time + 1 if newtime == 0
 separate psurv, by(interv) 
 twoway (line psurv0 time2, sort) (line psurv1 time2, sort) if interv > -1, ylabel(0.5(0.1)1.0) xlabel(0(12)120) ytitle("Survival probability") xtitle("Months of follow-up") legend(label(1 "A=0") label(2 "A=1"))
-gr export ./figs/stata-fig-17-3.png, replace
+qui gr export ./figs/stata-fig-17-3.png, replace
 
 *remove extra timepoint*
 drop if newtime == 1
@@ -203,7 +203,7 @@ drop time2
 restore
 
 **Bootstraps**
-save ./data/nhefs_std1 , replace
+qui save ./data/nhefs_std1 , replace
  
 capture program drop bootipw_surv 
 program define bootipw_surv , rclass
@@ -255,7 +255,7 @@ matrix pe = observe[1..3, 2]'
 bstat, stat(pe) n(1629)
 ```
 
-```{r}
+```{r, echo=FALSE}
 knitr::include_graphics("./figs/stata-fig-17-3.png")
 ```
 
@@ -321,7 +321,7 @@ drop if newtime == 1
 restore
 
 *Bootstraps*
-save ./data/nhefs_std2 , replace
+qui save ./data/nhefs_std2 , replace
  
 capture program drop bootstdz_surv 
 program define bootstdz_surv , rclass
@@ -367,6 +367,6 @@ matrix pe = observe[1..3, 2]'
 bstat, stat(pe) n(1629)
 ```
 
-```{r}
+```{r, echo=FALSE}
 knitr::include_graphics("./figs/stata-fig-17-4.png")
 ```
