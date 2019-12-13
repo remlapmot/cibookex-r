@@ -193,11 +193,12 @@ summary(fit)
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
+## Correlation structure = independence 
 ## Estimated Scale Parameters:
+## 
 ##             Estimate Std.err
 ## (Intercept)   0.9969 0.06717
-## 
-## Correlation: Structure = independenceNumber of clusters:   1566   Maximum cluster size: 1
+## Number of clusters:   1566  Maximum cluster size: 1
 ```
 
 

@@ -351,11 +351,12 @@ summary(msm.w)
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
+## Correlation structure = independence 
 ## Estimated Scale Parameters:
+## 
 ##             Estimate Std.err
 ## (Intercept)    65.06   4.221
-## 
-## Correlation: Structure = independenceNumber of clusters:   1566   Maximum cluster size: 1
+## Number of clusters:   1566  Maximum cluster size: 1
 ```
 
 ```r
@@ -579,11 +580,12 @@ summary(msm.sw)
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
+## Correlation structure = independence 
 ## Estimated Scale Parameters:
+## 
 ##             Estimate Std.err
 ## (Intercept)     60.7    3.71
-## 
-## Correlation: Structure = independenceNumber of clusters:   1566   Maximum cluster size: 1
+## Number of clusters:   1566  Maximum cluster size: 1
 ```
 
 ```r
@@ -680,11 +682,12 @@ summary(msm.sw.cont)
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
+## Correlation structure = independence 
 ## Estimated Scale Parameters:
+## 
 ##             Estimate Std.err
 ## (Intercept)     60.5     4.5
-## 
-## Correlation: Structure = independenceNumber of clusters:   1162   Maximum cluster size: 1
+## Number of clusters:   1162  Maximum cluster size: 1
 ```
 
 ```r
@@ -753,11 +756,12 @@ summary(msm.logistic)
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
+## Correlation structure = independence 
 ## Estimated Scale Parameters:
+## 
 ##             Estimate Std.err
 ## (Intercept)        1  0.0678
-## 
-## Correlation: Structure = independenceNumber of clusters:   1566   Maximum cluster size: 1
+## Number of clusters:   1566  Maximum cluster size: 1
 ```
 
 ```r
@@ -935,11 +939,12 @@ summary(msm.emm)
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
+## Correlation structure = independence 
 ## Estimated Scale Parameters:
+## 
 ##             Estimate Std.err
 ## (Intercept)     60.8    3.71
-## 
-## Correlation: Structure = independenceNumber of clusters:   1566   Maximum cluster size: 1
+## Number of clusters:   1566  Maximum cluster size: 1
 ```
 
 ```r
@@ -1264,11 +1269,12 @@ summary(msm.sw)
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
+## Correlation structure = independence 
 ## Estimated Scale Parameters:
+## 
 ##             Estimate Std.err
 ## (Intercept)     61.8    3.83
-## 
-## Correlation: Structure = independenceNumber of clusters:   1566   Maximum cluster size: 1
+## Number of clusters:   1566  Maximum cluster size: 1
 ```
 
 ```r

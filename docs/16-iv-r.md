@@ -133,11 +133,12 @@ summary(g.est)
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
+## Correlation structure = independence 
 ## Estimated Scale Parameters:
+## 
 ##             Estimate Std.err
 ## (Intercept)        1  0.7607
-## 
-## Correlation: Structure = independenceNumber of clusters:   1476   Maximum cluster size: 1
+## Number of clusters:   1476  Maximum cluster size: 1
 ```
 
 ```r

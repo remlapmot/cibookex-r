@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>16. Instrumental variables estimation: Stata | Causal Inference: What If. R and Stata code for Exercises</title>
+  <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
+  <meta name="generator" content="bookdown 0.16.5 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="16. Instrumental variables estimation: Stata | Causal Inference: What If. R and Stata code for Exercises" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="16. Instrumental variables estimation: Stata | Causal Inference: What If. R and Stata code for Exercises" />
+  
+  <meta name="twitter:description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
+  
+
+<meta name="author" content="Book by M. A. Hernán and J. M. Robins" />
+<meta name="author" content="R code by Joy Shi and Sean McGrath" />
+<meta name="author" content="Stata code by Eleanor Murray and Roger Logan" />
+<meta name="author" content="R Markdown code by Tom Palmer" />
+
+
+<meta name="date" content="2019-12-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="outcome-regression-and-propensity-scores-stata.html"/>
+<link rel="next" href="causal-survival-analysis-stata.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Table of Contents</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#packages-to-install"><i class="fa fa-check"></i>Packages to install</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#downloading-the-datasets"><i class="fa fa-check"></i>Downloading the datasets</a></li>
+</ul></li>
+<li class="part"><span><b>R code</b></span></li>
+<li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html"><i class="fa fa-check"></i>11. Why model?</a><ul>
+<li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html#program-11.1"><i class="fa fa-check"></i>Program 11.1</a></li>
+<li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html#program-11.2"><i class="fa fa-check"></i>Program 11.2</a></li>
+<li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html#program-11.3"><i class="fa fa-check"></i>Program 11.3</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html"><i class="fa fa-check"></i>12. IP Weighting and Marginal Structural Models</a><ul>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.1"><i class="fa fa-check"></i>Program 12.1</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.2"><i class="fa fa-check"></i>Program 12.2</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.3"><i class="fa fa-check"></i>Program 12.3</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.4"><i class="fa fa-check"></i>Program 12.4</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.5"><i class="fa fa-check"></i>Program 12.5</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.6"><i class="fa fa-check"></i>Program 12.6</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.7"><i class="fa fa-check"></i>Program 12.7</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html"><i class="fa fa-check"></i>13. Standardization and the parametric G-formula</a><ul>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.1"><i class="fa fa-check"></i>Program 13.1</a></li>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.2"><i class="fa fa-check"></i>Program 13.2</a></li>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.3"><i class="fa fa-check"></i>Program 13.3</a></li>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.4"><i class="fa fa-check"></i>Program 13.4</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html"><i class="fa fa-check"></i>14. G-estimation of Structural Nested Models</a><ul>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.1"><i class="fa fa-check"></i>Program 14.1</a></li>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.2"><i class="fa fa-check"></i>Program 14.2</a><ul>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-checking-one-possible-value-of-psi"><i class="fa fa-check"></i>G-estimation: Checking one possible value of psi</a></li>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-checking-multiple-possible-values-of-psi"><i class="fa fa-check"></i>G-estimation: Checking multiple possible values of psi</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.3"><i class="fa fa-check"></i>Program 14.3</a><ul>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-closed-form-estimator-linear-mean-models"><i class="fa fa-check"></i>G-estimation: Closed form estimator linear mean models</a></li>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-closed-form-estimator-for-2-parameter-model"><i class="fa fa-check"></i>G-estimation: Closed form estimator for 2-parameter model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html"><i class="fa fa-check"></i>15. Outcome regression and propensity scores</a><ul>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.1"><i class="fa fa-check"></i>Program 15.1</a></li>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.2"><i class="fa fa-check"></i>Program 15.2</a></li>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.3"><i class="fa fa-check"></i>Program 15.3</a></li>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.4"><i class="fa fa-check"></i>Program 15.4</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html"><i class="fa fa-check"></i>16. Instrumental variables estimation</a><ul>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.1"><i class="fa fa-check"></i>Program 16.1</a></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.2"><i class="fa fa-check"></i>Program 16.2</a></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.3"><i class="fa fa-check"></i>Program 16.3</a></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.4"><i class="fa fa-check"></i>Program 16.4</a></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.5"><i class="fa fa-check"></i>Program 16.5</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html"><i class="fa fa-check"></i>17. Causal survival analysis</a><ul>
+<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.1"><i class="fa fa-check"></i>Program 17.1</a></li>
+<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.2"><i class="fa fa-check"></i>Program 17.2</a></li>
+<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.3"><i class="fa fa-check"></i>Program 17.3</a></li>
+<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.4"><i class="fa fa-check"></i>Program 17.4</a></li>
+<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.5"><i class="fa fa-check"></i>Program 17.5</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="session-information-r.html"><a href="session-information-r.html"><i class="fa fa-check"></i>Session information: R</a></li>
+<li class="part"><span><b>Stata code</b></span></li>
+<li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html"><i class="fa fa-check"></i>11. Why model: Stata</a><ul>
+<li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html#program-11.1-1"><i class="fa fa-check"></i>Program 11.1</a></li>
+<li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html#program-11.2-1"><i class="fa fa-check"></i>Program 11.2</a></li>
+<li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html#program-11.3-1"><i class="fa fa-check"></i>Program 11.3</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html"><i class="fa fa-check"></i>12. IP Weighting and Marginal Structural Models: Stata</a><ul>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.1-1"><i class="fa fa-check"></i>Program 12.1</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.2-1"><i class="fa fa-check"></i>Program 12.2</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.3-1"><i class="fa fa-check"></i>Program 12.3</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.4-1"><i class="fa fa-check"></i>Program 12.4</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.5-1"><i class="fa fa-check"></i>Program 12.5</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.6-1"><i class="fa fa-check"></i>Program 12.6</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.7-1"><i class="fa fa-check"></i>Program 12.7</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html"><i class="fa fa-check"></i>13. Standardization and the parametric G-formula: Stata</a><ul>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html#program-13.1-1"><i class="fa fa-check"></i>Program 13.1</a></li>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html#program-13.2-1"><i class="fa fa-check"></i>Program 13.2</a></li>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html#program-13.3-1"><i class="fa fa-check"></i>Program 13.3</a></li>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html#program-13.4-1"><i class="fa fa-check"></i>Program 13.4</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models-stata.html"><a href="g-estimation-of-structural-nested-models-stata.html"><i class="fa fa-check"></i>14. G-estimation of Structural Nested Models: Stata</a><ul>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models-stata.html"><a href="g-estimation-of-structural-nested-models-stata.html#program-14.1-1"><i class="fa fa-check"></i>Program 14.1</a></li>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models-stata.html"><a href="g-estimation-of-structural-nested-models-stata.html#program-14.2-1"><i class="fa fa-check"></i>Program 14.2</a></li>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models-stata.html"><a href="g-estimation-of-structural-nested-models-stata.html#program-14.3-1"><i class="fa fa-check"></i>Program 14.3</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html"><i class="fa fa-check"></i>15. Outcome regression and propensity scores: Stata</a><ul>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html#program-15.1-1"><i class="fa fa-check"></i>Program 15.1</a></li>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html#prorgam-15.2"><i class="fa fa-check"></i>Prorgam 15.2</a></li>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html#program-15.3-1"><i class="fa fa-check"></i>Program 15.3</a></li>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html#program-15.4-1"><i class="fa fa-check"></i>Program 15.4</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html"><i class="fa fa-check"></i>16. Instrumental variables estimation: Stata</a><ul>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.1-1"><i class="fa fa-check"></i>Program 16.1</a></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.2-1"><i class="fa fa-check"></i>Program 16.2</a></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.3-1"><i class="fa fa-check"></i>Program 16.3</a></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.4-1"><i class="fa fa-check"></i>Program 16.4</a></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.5-1"><i class="fa fa-check"></i>Program 16.5</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html"><i class="fa fa-check"></i>17. Causal survival analysis: Stata</a><ul>
+<li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html#program-17.1-1"><i class="fa fa-check"></i>Program 17.1</a></li>
+<li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html#program-17.2-1"><i class="fa fa-check"></i>Program 17.2</a></li>
+<li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html#program-17.3-1"><i class="fa fa-check"></i>Program 17.3</a></li>
+<li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html#program-17.4-1"><i class="fa fa-check"></i>Program 17.4</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="session-information-stata.html"><a href="session-information-stata.html"><i class="fa fa-check"></i>Session information: Stata</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Causal Inference: What If. R and Stata code for Exercises</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="instrumental-variables-estimation-stata" class="section level1 unnumbered">
+<h1>16. Instrumental variables estimation: Stata</h1>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="instrumental-variables-estimation-stata.html#cb400-1"></a><span class="kw">library</span>(Statamarkdown)</span></code></pre></div>
+<pre><code>/***************************************************************
+Stata code for Causal Inference: What If by Miguel Hernan &amp; Jamie Robins
+Date: 10/10/2019
+Author: Eleanor Murray 
+For errors contact: ejmurray@bu.edu
+***************************************************************/</code></pre>
+<div id="program-16.1-1" class="section level2">
+<h2>Program 16.1</h2>
+<ul>
+<li>Estimating the average causal effect using the standard IV estimator via the calculation of sample averages</li>
+<li>Data from NHEFS</li>
+<li>Section 16.2</li>
+</ul>
+<div class="sourceCode" id="cb402"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb402-1"><a href="instrumental-variables-estimation-stata.html#cb402-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span></code></pre></div>
+<pre><code>end of do-file</code></pre>
+<div class="sourceCode" id="cb404"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb404-1"><a href="instrumental-variables-estimation-stata.html#cb404-1"></a><span class="kw">summarize</span> price82</span>
+<span id="cb404-2"><a href="instrumental-variables-estimation-stata.html#cb404-2"></a></span>
+<span id="cb404-3"><a href="instrumental-variables-estimation-stata.html#cb404-3"></a><span class="co">/* ignore subjects with missing outcome or missing instrument for simplicity*/</span></span>
+<span id="cb404-4"><a href="instrumental-variables-estimation-stata.html#cb404-4"></a><span class="kw">foreach</span> <span class="kw">var</span> <span class="kw">of</span> <span class="kw">varlist</span> wt82 price82 {</span>
+<span id="cb404-5"><a href="instrumental-variables-estimation-stata.html#cb404-5"></a><span class="kw">drop</span> <span class="kw">if</span> <span class="ot">`var&#39;</span>==.</span>
+<span id="cb404-6"><a href="instrumental-variables-estimation-stata.html#cb404-6"></a>}</span>
+<span id="cb404-7"><a href="instrumental-variables-estimation-stata.html#cb404-7"></a></span>
+<span id="cb404-8"><a href="instrumental-variables-estimation-stata.html#cb404-8"></a><span class="co">/*Create categorical instrument*/</span></span>
+<span id="cb404-9"><a href="instrumental-variables-estimation-stata.html#cb404-9"></a><span class="kw">gen</span> <span class="kw">byte</span> highprice  = (price82 &gt; 1.5 &amp; price82 &lt; .)</span>
+<span id="cb404-10"><a href="instrumental-variables-estimation-stata.html#cb404-10"></a></span>
+<span id="cb404-11"><a href="instrumental-variables-estimation-stata.html#cb404-11"></a><span class="co">/*Calculate P[Z|A=a]*/</span></span>
+<span id="cb404-12"><a href="instrumental-variables-estimation-stata.html#cb404-12"></a><span class="kw">tab</span> highprice qsmk, <span class="ot">row</span></span>
+<span id="cb404-13"><a href="instrumental-variables-estimation-stata.html#cb404-13"></a></span>
+<span id="cb404-14"><a href="instrumental-variables-estimation-stata.html#cb404-14"></a><span class="co">/*Calculate P[Y|Z=z]*/</span></span>
+<span id="cb404-15"><a href="instrumental-variables-estimation-stata.html#cb404-15"></a><span class="kw">ttest</span> wt82_71, <span class="kw">by</span>(highprice)</span>
+<span id="cb404-16"><a href="instrumental-variables-estimation-stata.html#cb404-16"></a></span>
+<span id="cb404-17"><a href="instrumental-variables-estimation-stata.html#cb404-17"></a><span class="co">/*Final IV estimate, OPTION 1: Hand calculations*/</span></span>
+<span id="cb404-18"><a href="instrumental-variables-estimation-stata.html#cb404-18"></a><span class="co">/*Numerator: num = E[Y|Z=1] - E[Y|Z=0] = 2.686 - 2.536 = 0.150*/</span></span>
+<span id="cb404-19"><a href="instrumental-variables-estimation-stata.html#cb404-19"></a><span class="co">/*Denominator: denom = P[A=1|Z=1] - P[A=1|Z=0] = 0.258 - 0.195 = 0.063 */</span> </span>
+<span id="cb404-20"><a href="instrumental-variables-estimation-stata.html#cb404-20"></a><span class="co">/*IV estimator: E[Ya=1] - E[Ya=0] = (E[Y|Z=1]-E[Y|Z=0])/(P[A=1|Z=1]-P[A=1|Z=0]) = 0.150/0.063 = 2.397*/</span></span>
+<span id="cb404-21"><a href="instrumental-variables-estimation-stata.html#cb404-21"></a><span class="kw">display</span> 2.686 - 2.536</span>
+<span id="cb404-22"><a href="instrumental-variables-estimation-stata.html#cb404-22"></a><span class="kw">display</span> 0.258 - 0.195 </span>
+<span id="cb404-23"><a href="instrumental-variables-estimation-stata.html#cb404-23"></a><span class="kw">display</span> 0.150/0.063</span>
+<span id="cb404-24"><a href="instrumental-variables-estimation-stata.html#cb404-24"></a></span>
+<span id="cb404-25"><a href="instrumental-variables-estimation-stata.html#cb404-25"></a><span class="co">/*OPTION 2 2: automated calculation of instrument*/</span></span>
+<span id="cb404-26"><a href="instrumental-variables-estimation-stata.html#cb404-26"></a>*Calculate P[A=1|Z=z], <span class="kw">for</span> each <span class="ot">value</span> <span class="kw">of</span> the instrument, and <span class="kw">store</span> <span class="kw">in</span> a <span class="fu">matrix</span>*</span>
+<span id="cb404-27"><a href="instrumental-variables-estimation-stata.html#cb404-27"></a><span class="kw">quietly</span> <span class="kw">summarize</span> qsmk <span class="kw">if</span> (highprice==0)</span>
+<span id="cb404-28"><a href="instrumental-variables-estimation-stata.html#cb404-28"></a><span class="fu">matrix</span> input pa = (<span class="ot">`r(mean)&#39;</span>)</span>
+<span id="cb404-29"><a href="instrumental-variables-estimation-stata.html#cb404-29"></a><span class="kw">quietly</span> <span class="kw">summarize</span> qsmk <span class="kw">if</span> (highprice==1)</span>
+<span id="cb404-30"><a href="instrumental-variables-estimation-stata.html#cb404-30"></a><span class="fu">matrix</span> pa = (pa ,<span class="ot">`r(mean)&#39;</span>)</span>
+<span id="cb404-31"><a href="instrumental-variables-estimation-stata.html#cb404-31"></a><span class="fu">matrix</span> <span class="ot">list</span> pa</span>
+<span id="cb404-32"><a href="instrumental-variables-estimation-stata.html#cb404-32"></a>*Calculate P[Y|Z=z], <span class="kw">for</span> each <span class="ot">value</span> <span class="kw">of</span> the instrument, and <span class="kw">store</span> <span class="kw">in</span> a second <span class="fu">matrix</span>*</span>
+<span id="cb404-33"><a href="instrumental-variables-estimation-stata.html#cb404-33"></a><span class="kw">quietly</span> <span class="kw">summarize</span> wt82_71 <span class="kw">if</span> (highprice==0)</span>
+<span id="cb404-34"><a href="instrumental-variables-estimation-stata.html#cb404-34"></a><span class="fu">matrix</span> input ey = (<span class="ot">`r(mean)&#39;</span>)</span>
+<span id="cb404-35"><a href="instrumental-variables-estimation-stata.html#cb404-35"></a><span class="kw">quietly</span> <span class="kw">summarize</span> wt82_71 <span class="kw">if</span> (highprice==1)</span>
+<span id="cb404-36"><a href="instrumental-variables-estimation-stata.html#cb404-36"></a><span class="fu">matrix</span> ey = (ey ,<span class="ot">`r(mean)&#39;</span>)</span>
+<span id="cb404-37"><a href="instrumental-variables-estimation-stata.html#cb404-37"></a><span class="fu">matrix</span> <span class="ot">list</span> ey</span>
+<span id="cb404-38"><a href="instrumental-variables-estimation-stata.html#cb404-38"></a>*Using Stata&#39;s built-<span class="kw">in</span> <span class="fu">matrix</span> manipulation feature (Mata), calculate numerator, denominator and IV estimator*</span>
+<span id="cb404-39"><a href="instrumental-variables-estimation-stata.html#cb404-39"></a>*Numerator: num = E[Y|Z=1] - E[Y|Z=0]*<span class="kw">mata</span></span>
+<span id="cb404-40"><a href="instrumental-variables-estimation-stata.html#cb404-40"></a>*Denominator: denom = P[A=1|Z=1] - P[A=1|Z=0]*</span>
+<span id="cb404-41"><a href="instrumental-variables-estimation-stata.html#cb404-41"></a>*IV estimator: iv_est = IV estimate <span class="kw">of</span> E[Ya=1] - E[Ya=0] *</span>
+<span id="cb404-42"><a href="instrumental-variables-estimation-stata.html#cb404-42"></a><span class="kw">mata</span></span>
+<span id="cb404-43"><a href="instrumental-variables-estimation-stata.html#cb404-43"></a>pa = st_matrix(<span class="st">&quot;pa&quot;</span>)</span>
+<span id="cb404-44"><a href="instrumental-variables-estimation-stata.html#cb404-44"></a>ey = st_matrix(<span class="st">&quot;ey&quot;</span>)</span>
+<span id="cb404-45"><a href="instrumental-variables-estimation-stata.html#cb404-45"></a>num = ey[1,2] - ey[1,1] </span>
+<span id="cb404-46"><a href="instrumental-variables-estimation-stata.html#cb404-46"></a>denom = pa[1,2] - pa[1,1]</span>
+<span id="cb404-47"><a href="instrumental-variables-estimation-stata.html#cb404-47"></a>iv_est = num / denom </span>
+<span id="cb404-48"><a href="instrumental-variables-estimation-stata.html#cb404-48"></a>num</span>
+<span id="cb404-49"><a href="instrumental-variables-estimation-stata.html#cb404-49"></a>denom</span>
+<span id="cb404-50"><a href="instrumental-variables-estimation-stata.html#cb404-50"></a>iv_est</span>
+<span id="cb404-51"><a href="instrumental-variables-estimation-stata.html#cb404-51"></a><span class="kw">end</span></span></code></pre></div>
+<pre><code>    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+     price82 |      1,476    1.805989    .1301703   1.451904   2.103027
+
+(0 observations deleted)
+(90 observations deleted)
+
+
+
++----------------+
+| Key            |
+|----------------|
+|   frequency    |
+| row percentage |
++----------------+
+
+           | quit smoking between
+           |   baseline and 1982
+ highprice | No smokin  Smoking c |     Total
+-----------+----------------------+----------
+         0 |        33          8 |        41 
+           |     80.49      19.51 |    100.00 
+-----------+----------------------+----------
+         1 |     1,065        370 |     1,435 
+           |     74.22      25.78 |    100.00 
+-----------+----------------------+----------
+     Total |     1,098        378 |     1,476 
+           |     74.39      25.61 |    100.00 
+
+
+Two-sample t test with equal variances
+------------------------------------------------------------------------------
+   Group |     Obs        Mean    Std. Err.   Std. Dev.   [95% Conf. Interval]
+---------+--------------------------------------------------------------------
+       0 |      41    2.535729    1.461629    9.358993   -.4183336    5.489792
+       1 |   1,435    2.686018    .2084888    7.897848    2.277042    3.094994
+---------+--------------------------------------------------------------------
+combined |   1,476    2.681843    .2066282    7.938395    2.276527    3.087159
+---------+--------------------------------------------------------------------
+    diff |           -.1502887    1.257776               -2.617509    2.316932
+------------------------------------------------------------------------------
+    diff = mean(0) - mean(1)                                      t =  -0.1195
+Ho: diff = 0                                     degrees of freedom =     1474
+
+    Ha: diff &lt; 0                 Ha: diff != 0                 Ha: diff &gt; 0
+ Pr(T &lt; t) = 0.4525         Pr(|T| &gt; |t|) = 0.9049          Pr(T &gt; t) = 0.5475
+
+.15
+
+.063
+
+2.3809524
+
+
+
+
+
+
+pa[1,2]
+           c1         c2
+r1  .19512195  .25783972
+
+
+
+
+
+
+ey[1,2]
+           c1         c2
+r1   2.535729  2.6860178
+
+------------------------------------------------- mata (type end to exit) ------
+: pa = st_matrix(&quot;pa&quot;)
+
+: ey = st_matrix(&quot;ey&quot;)
+
+: num = ey[1,2] - ey[1,1] 
+
+: denom = pa[1,2] - pa[1,1]
+
+: iv_est = num / denom 
+
+: num
+  .1502887173
+
+: denom
+  .06271777
+
+: iv_est
+
+: end
+--------------------------------------------------------------------------------</code></pre>
+</div>
+<div id="program-16.2-1" class="section level2">
+<h2>Program 16.2</h2>
+<ul>
+<li>Estimating the average causal effect using the standard IV estimator via two-stage-least-squares regression</li>
+<li>Data from NHEFS</li>
+<li>Section 16.2</li>
+</ul>
+<div class="sourceCode" id="cb406"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb406-1"><a href="instrumental-variables-estimation-stata.html#cb406-1"></a><span class="co">/*ivregress fits the model in two stages: */</span></span>
+<span id="cb406-2"><a href="instrumental-variables-estimation-stata.html#cb406-2"></a><span class="co">/*first model: qsmk = highprice*/</span></span>
+<span id="cb406-3"><a href="instrumental-variables-estimation-stata.html#cb406-3"></a><span class="co">/*second model: wt82_71 = predicted_qsmk*/</span></span>
+<span id="cb406-4"><a href="instrumental-variables-estimation-stata.html#cb406-4"></a>ivregress 2sls wt82_71 (qsmk = highprice)</span></code></pre></div>
+<pre><code>variable highprice not found
+r(111);
+
+end of do-file
+r(111);</code></pre>
+</div>
+<div id="program-16.3-1" class="section level2">
+<h2>Program 16.3</h2>
+<ul>
+<li>Estimating the average causal effect using the standard IV estimator via an additive marginal structural model</li>
+<li>Data from NHEFS</li>
+<li>Checking one possible value of psi.</li>
+<li>See Chapter 14 for program that checks several values and computes 95% confidence intervals<br />
+</li>
+<li>Section 16.2</li>
+</ul>
+<div class="sourceCode" id="cb408"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb408-1"><a href="instrumental-variables-estimation-stata.html#cb408-1"></a><span class="kw">gen</span> psi = 2.396</span>
+<span id="cb408-2"><a href="instrumental-variables-estimation-stata.html#cb408-2"></a><span class="kw">gen</span> hspi = wt82_71 -psi*qsmk</span>
+<span id="cb408-3"><a href="instrumental-variables-estimation-stata.html#cb408-3"></a></span>
+<span id="cb408-4"><a href="instrumental-variables-estimation-stata.html#cb408-4"></a><span class="kw">logit</span> highprice hspi</span></code></pre></div>
+<pre><code>variable highprice not found
+r(111);
+
+end of do-file
+r(111);</code></pre>
+</div>
+<div id="program-16.4-1" class="section level2">
+<h2>Program 16.4</h2>
+<ul>
+<li>Estimating the average causal effect using the standard IV estimator based on alternative proposed instruments</li>
+<li>Data from NHEFS</li>
+<li>Section 16.5</li>
+</ul>
+<div class="sourceCode" id="cb410"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb410-1"><a href="instrumental-variables-estimation-stata.html#cb410-1"></a><span class="co">/*Instrument cut-point: 1.6*/</span></span>
+<span id="cb410-2"><a href="instrumental-variables-estimation-stata.html#cb410-2"></a><span class="kw">replace</span> highprice = .</span>
+<span id="cb410-3"><a href="instrumental-variables-estimation-stata.html#cb410-3"></a><span class="kw">replace</span> highprice = (price82 &gt;1.6 &amp; price82 &lt; .)</span>
+<span id="cb410-4"><a href="instrumental-variables-estimation-stata.html#cb410-4"></a></span>
+<span id="cb410-5"><a href="instrumental-variables-estimation-stata.html#cb410-5"></a>ivregress 2sls wt82_71 (qsmk = highprice)</span>
+<span id="cb410-6"><a href="instrumental-variables-estimation-stata.html#cb410-6"></a></span>
+<span id="cb410-7"><a href="instrumental-variables-estimation-stata.html#cb410-7"></a><span class="co">/*Instrument cut-point: 1.7*/</span></span>
+<span id="cb410-8"><a href="instrumental-variables-estimation-stata.html#cb410-8"></a><span class="kw">replace</span> highprice = .</span>
+<span id="cb410-9"><a href="instrumental-variables-estimation-stata.html#cb410-9"></a><span class="kw">replace</span> highprice = (price82 &gt;1.7 &amp; price82 &lt; .)</span>
+<span id="cb410-10"><a href="instrumental-variables-estimation-stata.html#cb410-10"></a></span>
+<span id="cb410-11"><a href="instrumental-variables-estimation-stata.html#cb410-11"></a>ivregress 2sls wt82_71 (qsmk = highprice)</span>
+<span id="cb410-12"><a href="instrumental-variables-estimation-stata.html#cb410-12"></a></span>
+<span id="cb410-13"><a href="instrumental-variables-estimation-stata.html#cb410-13"></a><span class="co">/*Instrument cut-point: 1.8*/</span></span>
+<span id="cb410-14"><a href="instrumental-variables-estimation-stata.html#cb410-14"></a><span class="kw">replace</span> highprice = .</span>
+<span id="cb410-15"><a href="instrumental-variables-estimation-stata.html#cb410-15"></a><span class="kw">replace</span> highprice = (price82 &gt;1.8 &amp; price82 &lt; .)</span>
+<span id="cb410-16"><a href="instrumental-variables-estimation-stata.html#cb410-16"></a></span>
+<span id="cb410-17"><a href="instrumental-variables-estimation-stata.html#cb410-17"></a>ivregress 2sls wt82_71 (qsmk = highprice)</span>
+<span id="cb410-18"><a href="instrumental-variables-estimation-stata.html#cb410-18"></a></span>
+<span id="cb410-19"><a href="instrumental-variables-estimation-stata.html#cb410-19"></a><span class="co">/*Instrument cut-point: 1.9*/</span></span>
+<span id="cb410-20"><a href="instrumental-variables-estimation-stata.html#cb410-20"></a><span class="kw">replace</span> highprice = .</span>
+<span id="cb410-21"><a href="instrumental-variables-estimation-stata.html#cb410-21"></a><span class="kw">replace</span> highprice = (price82 &gt;1.9 &amp; price82 &lt; .)</span>
+<span id="cb410-22"><a href="instrumental-variables-estimation-stata.html#cb410-22"></a></span>
+<span id="cb410-23"><a href="instrumental-variables-estimation-stata.html#cb410-23"></a>ivregress 2sls wt82_71 (qsmk = highprice)</span></code></pre></div>
+<pre><code>variable highprice not found
+r(111);
+
+end of do-file
+r(111);</code></pre>
+</div>
+<div id="program-16.5-1" class="section level2">
+<h2>Program 16.5</h2>
+<ul>
+<li>Estimating the average causal effect using the standard IV estimator conditional on baseline covariates</li>
+<li>Data from NHEFS</li>
+<li>Section 16.5</li>
+</ul>
+<div class="sourceCode" id="cb412"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb412-1"><a href="instrumental-variables-estimation-stata.html#cb412-1"></a><span class="kw">replace</span> highprice = .</span>
+<span id="cb412-2"><a href="instrumental-variables-estimation-stata.html#cb412-2"></a><span class="kw">replace</span> highprice = (price82 &gt;1.5 &amp; price82 &lt; .)</span>
+<span id="cb412-3"><a href="instrumental-variables-estimation-stata.html#cb412-3"></a></span>
+<span id="cb412-4"><a href="instrumental-variables-estimation-stata.html#cb412-4"></a>ivregress 2sls wt82_71 sex race c.age c.smokeintensity c.smokeyrs i.exercise i.active c.wt7 (qsmk = highprice)</span></code></pre></div>
+<pre><code>variable highprice not found
+r(111);
+
+end of do-file
+r(111);</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="outcome-regression-and-propensity-scores-stata.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="causal-survival-analysis-stata.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/remlapmot/cibookex-r/edit/master/16-iv-stata.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/remlapmot/cibookex-r/blob/master/16-iv-stata.Rmd",
+"text": null
+},
+"download": ["cibookex-r.pdf", "cibookex-r.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>14. G-estimation of Structural Nested Models: Stata | Causal Inference: What If. R and Stata code for Exercises</title>
+  <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
+  <meta name="generator" content="bookdown 0.16.5 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="14. G-estimation of Structural Nested Models: Stata | Causal Inference: What If. R and Stata code for Exercises" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="14. G-estimation of Structural Nested Models: Stata | Causal Inference: What If. R and Stata code for Exercises" />
+  
+  <meta name="twitter:description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
+  
+
+<meta name="author" content="Book by M. A. Hernán and J. M. Robins" />
+<meta name="author" content="R code by Joy Shi and Sean McGrath" />
+<meta name="author" content="Stata code by Eleanor Murray and Roger Logan" />
+<meta name="author" content="R Markdown code by Tom Palmer" />
+
+
+<meta name="date" content="2019-12-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="standardization-and-the-parametric-g-formula-stata.html"/>
+<link rel="next" href="outcome-regression-and-propensity-scores-stata.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Table of Contents</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#packages-to-install"><i class="fa fa-check"></i>Packages to install</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#downloading-the-datasets"><i class="fa fa-check"></i>Downloading the datasets</a></li>
+</ul></li>
+<li class="part"><span><b>R code</b></span></li>
+<li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html"><i class="fa fa-check"></i>11. Why model?</a><ul>
+<li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html#program-11.1"><i class="fa fa-check"></i>Program 11.1</a></li>
+<li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html#program-11.2"><i class="fa fa-check"></i>Program 11.2</a></li>
+<li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html#program-11.3"><i class="fa fa-check"></i>Program 11.3</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html"><i class="fa fa-check"></i>12. IP Weighting and Marginal Structural Models</a><ul>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.1"><i class="fa fa-check"></i>Program 12.1</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.2"><i class="fa fa-check"></i>Program 12.2</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.3"><i class="fa fa-check"></i>Program 12.3</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.4"><i class="fa fa-check"></i>Program 12.4</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.5"><i class="fa fa-check"></i>Program 12.5</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.6"><i class="fa fa-check"></i>Program 12.6</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.7"><i class="fa fa-check"></i>Program 12.7</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html"><i class="fa fa-check"></i>13. Standardization and the parametric G-formula</a><ul>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.1"><i class="fa fa-check"></i>Program 13.1</a></li>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.2"><i class="fa fa-check"></i>Program 13.2</a></li>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.3"><i class="fa fa-check"></i>Program 13.3</a></li>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.4"><i class="fa fa-check"></i>Program 13.4</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html"><i class="fa fa-check"></i>14. G-estimation of Structural Nested Models</a><ul>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.1"><i class="fa fa-check"></i>Program 14.1</a></li>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.2"><i class="fa fa-check"></i>Program 14.2</a><ul>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-checking-one-possible-value-of-psi"><i class="fa fa-check"></i>G-estimation: Checking one possible value of psi</a></li>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-checking-multiple-possible-values-of-psi"><i class="fa fa-check"></i>G-estimation: Checking multiple possible values of psi</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.3"><i class="fa fa-check"></i>Program 14.3</a><ul>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-closed-form-estimator-linear-mean-models"><i class="fa fa-check"></i>G-estimation: Closed form estimator linear mean models</a></li>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-closed-form-estimator-for-2-parameter-model"><i class="fa fa-check"></i>G-estimation: Closed form estimator for 2-parameter model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html"><i class="fa fa-check"></i>15. Outcome regression and propensity scores</a><ul>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.1"><i class="fa fa-check"></i>Program 15.1</a></li>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.2"><i class="fa fa-check"></i>Program 15.2</a></li>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.3"><i class="fa fa-check"></i>Program 15.3</a></li>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.4"><i class="fa fa-check"></i>Program 15.4</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html"><i class="fa fa-check"></i>16. Instrumental variables estimation</a><ul>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.1"><i class="fa fa-check"></i>Program 16.1</a></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.2"><i class="fa fa-check"></i>Program 16.2</a></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.3"><i class="fa fa-check"></i>Program 16.3</a></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.4"><i class="fa fa-check"></i>Program 16.4</a></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.5"><i class="fa fa-check"></i>Program 16.5</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html"><i class="fa fa-check"></i>17. Causal survival analysis</a><ul>
+<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.1"><i class="fa fa-check"></i>Program 17.1</a></li>
+<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.2"><i class="fa fa-check"></i>Program 17.2</a></li>
+<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.3"><i class="fa fa-check"></i>Program 17.3</a></li>
+<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.4"><i class="fa fa-check"></i>Program 17.4</a></li>
+<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.5"><i class="fa fa-check"></i>Program 17.5</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="session-information-r.html"><a href="session-information-r.html"><i class="fa fa-check"></i>Session information: R</a></li>
+<li class="part"><span><b>Stata code</b></span></li>
+<li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html"><i class="fa fa-check"></i>11. Why model: Stata</a><ul>
+<li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html#program-11.1-1"><i class="fa fa-check"></i>Program 11.1</a></li>
+<li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html#program-11.2-1"><i class="fa fa-check"></i>Program 11.2</a></li>
+<li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html#program-11.3-1"><i class="fa fa-check"></i>Program 11.3</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html"><i class="fa fa-check"></i>12. IP Weighting and Marginal Structural Models: Stata</a><ul>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.1-1"><i class="fa fa-check"></i>Program 12.1</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.2-1"><i class="fa fa-check"></i>Program 12.2</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.3-1"><i class="fa fa-check"></i>Program 12.3</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.4-1"><i class="fa fa-check"></i>Program 12.4</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.5-1"><i class="fa fa-check"></i>Program 12.5</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.6-1"><i class="fa fa-check"></i>Program 12.6</a></li>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.7-1"><i class="fa fa-check"></i>Program 12.7</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html"><i class="fa fa-check"></i>13. Standardization and the parametric G-formula: Stata</a><ul>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html#program-13.1-1"><i class="fa fa-check"></i>Program 13.1</a></li>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html#program-13.2-1"><i class="fa fa-check"></i>Program 13.2</a></li>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html#program-13.3-1"><i class="fa fa-check"></i>Program 13.3</a></li>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html#program-13.4-1"><i class="fa fa-check"></i>Program 13.4</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models-stata.html"><a href="g-estimation-of-structural-nested-models-stata.html"><i class="fa fa-check"></i>14. G-estimation of Structural Nested Models: Stata</a><ul>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models-stata.html"><a href="g-estimation-of-structural-nested-models-stata.html#program-14.1-1"><i class="fa fa-check"></i>Program 14.1</a></li>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models-stata.html"><a href="g-estimation-of-structural-nested-models-stata.html#program-14.2-1"><i class="fa fa-check"></i>Program 14.2</a></li>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models-stata.html"><a href="g-estimation-of-structural-nested-models-stata.html#program-14.3-1"><i class="fa fa-check"></i>Program 14.3</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html"><i class="fa fa-check"></i>15. Outcome regression and propensity scores: Stata</a><ul>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html#program-15.1-1"><i class="fa fa-check"></i>Program 15.1</a></li>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html#prorgam-15.2"><i class="fa fa-check"></i>Prorgam 15.2</a></li>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html#program-15.3-1"><i class="fa fa-check"></i>Program 15.3</a></li>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html#program-15.4-1"><i class="fa fa-check"></i>Program 15.4</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html"><i class="fa fa-check"></i>16. Instrumental variables estimation: Stata</a><ul>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.1-1"><i class="fa fa-check"></i>Program 16.1</a></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.2-1"><i class="fa fa-check"></i>Program 16.2</a></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.3-1"><i class="fa fa-check"></i>Program 16.3</a></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.4-1"><i class="fa fa-check"></i>Program 16.4</a></li>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.5-1"><i class="fa fa-check"></i>Program 16.5</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html"><i class="fa fa-check"></i>17. Causal survival analysis: Stata</a><ul>
+<li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html#program-17.1-1"><i class="fa fa-check"></i>Program 17.1</a></li>
+<li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html#program-17.2-1"><i class="fa fa-check"></i>Program 17.2</a></li>
+<li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html#program-17.3-1"><i class="fa fa-check"></i>Program 17.3</a></li>
+<li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html#program-17.4-1"><i class="fa fa-check"></i>Program 17.4</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="session-information-stata.html"><a href="session-information-stata.html"><i class="fa fa-check"></i>Session information: Stata</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Causal Inference: What If. R and Stata code for Exercises</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="g-estimation-of-structural-nested-models-stata" class="section level1 unnumbered">
+<h1>14. G-estimation of Structural Nested Models: Stata</h1>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="g-estimation-of-structural-nested-models-stata.html#cb378-1"></a><span class="kw">library</span>(Statamarkdown)</span></code></pre></div>
+<pre><code>/***************************************************************
+Stata code for Causal Inference: What If by Miguel Hernan &amp; Jamie Robins
+Date: 10/10/2019
+Author: Eleanor Murray 
+For errors contact: ejmurray@bu.edu
+***************************************************************/</code></pre>
+<div class="sourceCode" id="cb380"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb380-1"><a href="g-estimation-of-structural-nested-models-stata.html#cb380-1"></a>*Data preprocessing***</span>
+<span id="cb380-2"><a href="g-estimation-of-structural-nested-models-stata.html#cb380-2"></a></span>
+<span id="cb380-3"><a href="g-estimation-of-structural-nested-models-stata.html#cb380-3"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span>
+<span id="cb380-4"><a href="g-estimation-of-structural-nested-models-stata.html#cb380-4"></a><span class="kw">gen</span> <span class="kw">byte</span> cens = (wt82 == .)</span></code></pre></div>
+<pre><code></code></pre>
+<div id="program-14.1-1" class="section level2">
+<h2>Program 14.1</h2>
+<ul>
+<li>Ranks of extreme observations</li>
+<li>Data from NHEFS</li>
+<li>Section 14.4</li>
+</ul>
+<div class="sourceCode" id="cb382"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb382-1"><a href="g-estimation-of-structural-nested-models-stata.html#cb382-1"></a><span class="co">/*For Stata 15 or later, first install the extremes function using this code:*/</span></span>
+<span id="cb382-2"><a href="g-estimation-of-structural-nested-models-stata.html#cb382-2"></a><span class="kw">ssc</span> install extremes </span>
+<span id="cb382-3"><a href="g-estimation-of-structural-nested-models-stata.html#cb382-3"></a></span>
+<span id="cb382-4"><a href="g-estimation-of-structural-nested-models-stata.html#cb382-4"></a><span class="co">/*Ranking of extreme observations*/</span></span>
+<span id="cb382-5"><a href="g-estimation-of-structural-nested-models-stata.html#cb382-5"></a>extremes wt82_71 seqn</span>
+<span id="cb382-6"><a href="g-estimation-of-structural-nested-models-stata.html#cb382-6"></a></span>
+<span id="cb382-7"><a href="g-estimation-of-structural-nested-models-stata.html#cb382-7"></a><span class="co">/*Estimate unstabilized censoring weights for use in g-estimation models*/</span></span>
+<span id="cb382-8"><a href="g-estimation-of-structural-nested-models-stata.html#cb382-8"></a><span class="kw">glm</span> cens qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71, <span class="kw">family</span>(binomial)</span>
+<span id="cb382-9"><a href="g-estimation-of-structural-nested-models-stata.html#cb382-9"></a><span class="kw">predict</span> pr_cens</span>
+<span id="cb382-10"><a href="g-estimation-of-structural-nested-models-stata.html#cb382-10"></a><span class="kw">gen</span> w_cens = 1/(1-pr_cens)</span>
+<span id="cb382-11"><a href="g-estimation-of-structural-nested-models-stata.html#cb382-11"></a><span class="kw">replace</span> w_cens = . <span class="kw">if</span> cens == 1 <span class="co">/*observations with cens = 1 contribute to censoring models but not outcome model*/</span></span>
+<span id="cb382-12"><a href="g-estimation-of-structural-nested-models-stata.html#cb382-12"></a><span class="kw">summarize</span> w_cens</span>
+<span id="cb382-13"><a href="g-estimation-of-structural-nested-models-stata.html#cb382-13"></a></span>
+<span id="cb382-14"><a href="g-estimation-of-structural-nested-models-stata.html#cb382-14"></a><span class="co">/*Analyses restricted to N=1566*/</span></span>
+<span id="cb382-15"><a href="g-estimation-of-structural-nested-models-stata.html#cb382-15"></a><span class="kw">drop</span> <span class="kw">if</span> wt82 == .</span>
+<span id="cb382-16"><a href="g-estimation-of-structural-nested-models-stata.html#cb382-16"></a><span class="kw">summarize</span> wt82_71</span></code></pre></div>
+<pre><code>checking extremes consistency and verifying not already installed...
+all files already exist and are up to date.
+
+
+  +------------------------------+
+  |  obs:        wt82_71    seqn |
+  |------------------------------|
+  | 1101.   -41.28046982   23321 |
+  |  490.   -30.50192161   13593 |
+  | 1027.   -30.05007421   24363 |
+  |  421.   -29.02579305    5412 |
+  |  145.   -25.97055814   21897 |
+  +------------------------------+
+
+  +-----------------------------+
+  |  576.   34.01779932    5415 |
+  |  577.   36.96925111   22342 |
+  |  364.   37.65051215    1769 |
+  | 1164.   47.51130337    6928 |
+  |  939.   48.53838568   23522 |
+  +-----------------------------+
+
+outcome does not vary; remember:
+                                  0 = negative outcome,
+        all other nonmissing values = positive outcome
+r(2000);
+
+end of do-file
+r(2000);</code></pre>
+</div>
+<div id="program-14.2-1" class="section level2">
+<h2>Program 14.2</h2>
+<ul>
+<li>G-estimation of a 1-parameter structural nested mean model</li>
+<li>Brute force search</li>
+<li>Data from NHEFS</li>
+<li>Section 14.5</li>
+</ul>
+<div class="sourceCode" id="cb384"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb384-1"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-1"></a><span class="co">/*Generate test value of Psi = 3.446*/</span></span>
+<span id="cb384-2"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-2"></a><span class="kw">gen</span> psi = 3.446</span>
+<span id="cb384-3"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-3"></a></span>
+<span id="cb384-4"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-4"></a><span class="co">/*Generate H(Psi) for each individual using test value of Psi and their own values of weight change and smoking status*/</span></span>
+<span id="cb384-5"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-5"></a><span class="kw">gen</span> Hpsi = wt82_71 - psi * qsmk </span>
+<span id="cb384-6"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-6"></a></span>
+<span id="cb384-7"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-7"></a><span class="co">/*Fit a model for smoking status, given confounders and H(Psi) value, with censoring weights and display H(Psi) coefficient*/</span></span>
+<span id="cb384-8"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-8"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 Hpsi [pw = w_cens], <span class="kw">cluster</span>(seqn)</span>
+<span id="cb384-9"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-9"></a><span class="kw">di</span> _b[Hpsi]</span>
+<span id="cb384-10"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-10"></a></span>
+<span id="cb384-11"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-11"></a><span class="co">/*G-estimation*/</span></span>
+<span id="cb384-12"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-12"></a><span class="co">/*Checking multiple possible values of psi*/</span></span>
+<span id="cb384-13"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-13"></a><span class="kw">drop</span> psi Hpsi</span>
+<span id="cb384-14"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-14"></a></span>
+<span id="cb384-15"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-15"></a><span class="kw">local</span> seq_start = 2</span>
+<span id="cb384-16"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-16"></a><span class="kw">local</span> seq_end = 5</span>
+<span id="cb384-17"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-17"></a><span class="kw">local</span> seq_by = 0.1 <span class="co">// Setting seq_by = 0.01 will yield the result 3.46</span></span>
+<span id="cb384-18"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-18"></a><span class="kw">local</span> seq_len = (<span class="ot">`seq_end&#39;</span>-<span class="ot">`seq_start&#39;</span>)/<span class="ot">`seq_by&#39;</span> + 1</span>
+<span id="cb384-19"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-19"></a><span class="fu">matrix</span> results = <span class="fu">J</span>(<span class="ot">`seq_len&#39;</span>,4,0)</span>
+<span id="cb384-20"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-20"></a><span class="fu">matrix</span> <span class="ot">list</span> results</span>
+<span id="cb384-21"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-21"></a><span class="kw">gen</span> psi = .</span>
+<span id="cb384-22"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-22"></a><span class="kw">gen</span> Hpsi = .</span>
+<span id="cb384-23"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-23"></a><span class="kw">local</span> j = 0</span>
+<span id="cb384-24"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-24"></a><span class="kw">forvalues</span> i =  <span class="ot">`seq_start&#39;</span>(<span class="ot">`seq_by&#39;</span>)<span class="ot">`seq_end&#39;</span> {</span>
+<span id="cb384-25"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-25"></a>    <span class="kw">local</span> j = <span class="ot">`j&#39;</span>+1</span>
+<span id="cb384-26"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-26"></a>    <span class="kw">replace</span> psi = <span class="ot">`i&#39;</span></span>
+<span id="cb384-27"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-27"></a>    <span class="kw">replace</span> Hpsi = wt82_71 - psi * qsmk </span>
+<span id="cb384-28"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-28"></a>    <span class="kw">quietly</span> <span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 Hpsi [pw = w_cens], <span class="kw">cluster</span>(seqn)</span>
+<span id="cb384-29"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-29"></a>    <span class="fu">matrix</span> p_mat = <span class="fu">r</span>(<span class="kw">table</span>)[<span class="st">&quot;pvalue&quot;</span>,<span class="st">&quot;qsmk:Hpsi&quot;</span>]</span>
+<span id="cb384-30"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-30"></a>    <span class="kw">local</span> <span class="kw">p</span> = p_mat[1,1]</span>
+<span id="cb384-31"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-31"></a>    <span class="kw">local</span> b = _b[Hpsi]</span>
+<span id="cb384-32"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-32"></a>    <span class="kw">di</span> <span class="st">&quot;coeff `b&#39; is generated from psi `i&#39;&quot;</span></span>
+<span id="cb384-33"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-33"></a>    <span class="fu">matrix</span> results[<span class="ot">`j&#39;</span>,1]= <span class="ot">`i&#39;</span></span>
+<span id="cb384-34"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-34"></a>    <span class="fu">matrix</span> results[<span class="ot">`j&#39;</span>,2]= <span class="ot">`b&#39;</span></span>
+<span id="cb384-35"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-35"></a>    <span class="fu">matrix</span> results[<span class="ot">`j&#39;</span>,3]= <span class="fu">abs</span>(<span class="ot">`b&#39;</span>)</span>
+<span id="cb384-36"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-36"></a>    <span class="fu">matrix</span> results[<span class="ot">`j&#39;</span>,4]= <span class="ot">`p&#39;</span></span>
+<span id="cb384-37"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-37"></a></span>
+<span id="cb384-38"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-38"></a>}</span>
+<span id="cb384-39"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-39"></a><span class="fu">matrix</span> <span class="ot">colnames</span> results = <span class="st">&quot;psi&quot;</span> <span class="st">&quot;B(Hpsi)&quot;</span> <span class="st">&quot;AbsB(Hpsi)&quot;</span> <span class="st">&quot;pvalue&quot;</span></span>
+<span id="cb384-40"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-40"></a>mat li results </span>
+<span id="cb384-41"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-41"></a></span>
+<span id="cb384-42"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-42"></a><span class="kw">mata</span></span>
+<span id="cb384-43"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-43"></a>res = st_matrix(<span class="st">&quot;results&quot;</span>)</span>
+<span id="cb384-44"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-44"></a><span class="kw">for</span>(i=1; i&lt;= <span class="bn">rows</span>(res); i++) { </span>
+<span id="cb384-45"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-45"></a><span class="kw">if</span> (res[i,3] == <span class="kw">colmin</span>(res[,3])) res[i,1]   </span>
+<span id="cb384-46"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-46"></a>}</span>
+<span id="cb384-47"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-47"></a><span class="kw">end</span></span>
+<span id="cb384-48"><a href="g-estimation-of-structural-nested-models-stata.html#cb384-48"></a>* Setting seq_by = 0.01 will yield the result 3.46</span></code></pre></div>
+<pre><code>w_cens not found
+r(111);
+
+end of do-file
+r(111);</code></pre>
+</div>
+<div id="program-14.3-1" class="section level2">
+<h2>Program 14.3</h2>
+<ul>
+<li>G-estimation for 2-parameter structural nested mean model</li>
+<li>Closed form estimator</li>
+<li>Data from NHEFS</li>
+<li>Section 14.6</li>
+</ul>
+<div class="sourceCode" id="cb386"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb386-1"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-1"></a><span class="co">/*create weights*/</span></span>
+<span id="cb386-2"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-2"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 [pw = w_cens], <span class="kw">cluster</span>(seqn)  </span>
+<span id="cb386-3"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-3"></a><span class="kw">predict</span> pr_qsmk</span>
+<span id="cb386-4"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-4"></a><span class="kw">summarize</span> pr_qsmk</span>
+<span id="cb386-5"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-5"></a></span>
+<span id="cb386-6"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-6"></a><span class="co">/* Closed form estimator linear mean models  **/</span></span>
+<span id="cb386-7"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-7"></a><span class="kw">ssc</span> install tomata</span>
+<span id="cb386-8"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-8"></a>putmata *, <span class="kw">replace</span></span>
+<span id="cb386-9"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-9"></a><span class="kw">mata</span>: <span class="fu">diff</span> = qsmk - pr_qsmk</span>
+<span id="cb386-10"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-10"></a><span class="kw">mata</span>: part1 = w_cens :* wt82_71 :* <span class="fu">diff</span></span>
+<span id="cb386-11"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-11"></a><span class="kw">mata</span>: part2 = w_cens :* qsmk :* <span class="fu">diff</span></span>
+<span id="cb386-12"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-12"></a><span class="kw">mata</span>: psi = <span class="kw">sum</span>(part1)/<span class="kw">sum</span>(part2)</span>
+<span id="cb386-13"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-13"></a></span>
+<span id="cb386-14"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-14"></a><span class="co">/*** Closed form estimator for 2-parameter model **/</span></span>
+<span id="cb386-15"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-15"></a><span class="kw">mata</span></span>
+<span id="cb386-16"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-16"></a><span class="fu">diff</span> = qsmk - pr_qsmk</span>
+<span id="cb386-17"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-17"></a>diff2 = w_cens :* <span class="fu">diff</span></span>
+<span id="cb386-18"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-18"></a></span>
+<span id="cb386-19"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-19"></a>lhs = <span class="fu">J</span>(2,2, 0)</span>
+<span id="cb386-20"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-20"></a>lhs[1,1] = <span class="kw">sum</span>( qsmk :* diff2)</span>
+<span id="cb386-21"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-21"></a>lhs[1,2] = <span class="kw">sum</span>( qsmk :* smokeintensity :* diff2 )</span>
+<span id="cb386-22"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-22"></a>lhs[2,1] = <span class="kw">sum</span>( qsmk :* smokeintensity :* diff2)</span>
+<span id="cb386-23"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-23"></a>lhs[2,2] = <span class="kw">sum</span>( qsmk :* smokeintensity :* smokeintensity :* diff2 )</span>
+<span id="cb386-24"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-24"></a>                                                                </span>
+<span id="cb386-25"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-25"></a>rhs = <span class="fu">J</span>(2,1,0)</span>
+<span id="cb386-26"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-26"></a>rhs[1] = <span class="kw">sum</span>(wt82_71 :* diff2 )</span>
+<span id="cb386-27"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-27"></a>rhs[2] = <span class="kw">sum</span>(wt82_71 :* smokeintensity :* diff2 )</span>
+<span id="cb386-28"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-28"></a></span>
+<span id="cb386-29"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-29"></a>psi = (<span class="kw">lusolve</span>(lhs, rhs))&#39;</span>
+<span id="cb386-30"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-30"></a>psi</span>
+<span id="cb386-31"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-31"></a>psi = (<span class="fu">invsym</span>(lhs&#39;lhs)*lhs&#39;rhs)&#39;</span>
+<span id="cb386-32"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-32"></a>psi</span>
+<span id="cb386-33"><a href="g-estimation-of-structural-nested-models-stata.html#cb386-33"></a><span class="kw">end</span></span></code></pre></div>
+<pre><code>w_cens not found
+r(111);
+
+end of do-file
+r(111);</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="standardization-and-the-parametric-g-formula-stata.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="outcome-regression-and-propensity-scores-stata.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/remlapmot/cibookex-r/edit/master/14-g-est-snms-stata.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/remlapmot/cibookex-r/blob/master/14-g-est-snms-stata.Rmd",
+"text": null
+},
+"download": ["cibookex-r.pdf", "cibookex-r.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
