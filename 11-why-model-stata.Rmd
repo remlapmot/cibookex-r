@@ -43,14 +43,15 @@ input A Y
 0 20
 end
 
+*Save the data*
+save ./data/fig1, replace
+
 *Build the scatterplot*
 scatter Y A, ylab(0(50)250) xlab(0 1) xscale(range(-0.5 1.5))
 qui gr export figs/stata-fig-11-1.png, replace
 
 *Output the mean values for Y in each level of A*
 bysort A: sum Y
-*Save the data*
-* save fig1, replace
 ```
 
 ```{r}
@@ -81,11 +82,12 @@ input A Y
 4 210
 end
 
+save ./data/fig2, replace
+
 scatter Y A, ylab(0(50)250) xlab(0(1)4) xscale(range(0 4.5))
 qui gr export figs/stata-fig-11-2.png, replace
 
 bysort A: sum Y
-*save fig2, replace
 ```
 
 ```{r}
@@ -115,11 +117,10 @@ input A Y
 45  190
 end
 
+save ./data/fig3, replace
+
 scatter Y A, ylab(0(50)250) xlab(0(10)100) xscale(range(0 100))
 gr export figs/stata-fig-11-3.png, replace
-
-*save fig3, replace
-clear
 ```
 
 ```{r}
@@ -132,25 +133,8 @@ knitr::include_graphics("figs/stata-fig-11-3.png")
 
 ```{stata}
 **Section 11.2: parametric estimators**
-*Create the data, or reload with the command "use fig3, clear"*
-input A Y
-3   21	
-11	54
-17	33
-23	101
-29	85
-37	65
-41	157
-53	120
-67	111
-79	200
-83	140
-97	220
-60	230
-71	217
-15	11
-45  190
-end
+*Reload data
+use ./data/fig3, clear
 
 *Plot the data*
 scatter Y A, ylab(0(50)250) xlab(0(10)100) xscale(range(0 100))
@@ -164,9 +148,6 @@ lincom _b[_cons] + 90*_b[A]
 *Plot the data with the regression line: Fig 11.4*
 scatter Y A, ylab(0(50)250) xlab(0(10)100) xscale(range(0 100)) || lfit Y A
 gr export figs/stata-fig-11-4.png, replace
-
-*save fig3, replace
-clear
 ```
 
 ```{r}
@@ -175,33 +156,14 @@ knitr::include_graphics("figs/stata-fig-11-4.png")
 
 ```{stata}
 **Section 11.3: non-parametric estimation*
-*Create the data, or reload with the command "use fig1, clear"*
-input A Y
-1 200
-1 150
-1 220
-1 110
-1 50
-1 180
-1 90
-1 170
-0 170
-0 30
-0 70
-0 110
-0 80
-0 50
-0 10
-0 20
-end
+* Reload the data
+use ./data/fig1, clear
 
 *Fit the regression model*
 regress Y A, noheader cformat(%5.2f)
 
 *E[Y|A=1]*
 di 67.50 + 78.75
-
-clear
 ```
 
 ## Program 11.3
@@ -209,25 +171,8 @@ clear
 - Creates Figure 11.5 and Parameter estimates for Section 11.4
 
 ```{stata}
-*Create the data, or reload with the command "use fig3, clear"*
-input A Y
-3   21	
-11	54
-17	33
-23	101
-29	85
-37	65
-41	157
-53	120
-67	111
-79	200
-83	140
-97	220
-60	230
-71	217
-15	11
-45  190
-end
+* Reload the data
+use ./data/fig3, clear
 
 *Create the product term*
 gen Asq = A*A
@@ -241,7 +186,6 @@ lincom _b[_cons] + 90*_b[A] + 90*90*_b[Asq]
 *Plot the data with the regression line: Fig 11.5*
 scatter Y A, ylab(0(50)250) xlab(0(10)100) xscale(range(0 100)) || qfit Y A
 gr export figs/stata-fig-11-5.png, replace
-clear
 ```
 
 ```{r}
