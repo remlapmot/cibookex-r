@@ -19,10 +19,9 @@ use ./data/nhefs-formatted, clear
 
 ## Program 13.1
 - Estimating the mean outcome within levels of treatment and confounders: Data from NHEFS
+- Section 13.2
 
 ```{stata}
-* Section 13.2
-
 * use ./data/nhefs, clear
 
 *Estimate the the conditional mean outcome within strata of quitting smoking and covariates, among the uncensored*/
@@ -40,10 +39,9 @@ summarize wt82_71
 ## Program 13.2
 - Standardizing the mean outcome to the baseline confounders
 - Data from Table 2.2
+- Section 13.3
 
 ```{stata}
-* Section 13.3
-
 clear
 input str10 ID L A Y
 "Rheia" 	0 0 0 
@@ -126,11 +124,10 @@ matrix list observe
 ## Program 13.3
 - Standardizing the mean outcome to the baseline confounders:
 - Data from NHEFS
+- Section 13.3
 
 ```{stata}
-* Section 13.3
-
-* use "nhefs.dta", clear
+* use nhefs, clear
 
 *i.Data set up for standardization: create 3 copies of each subject*
 *first, duplicate the dataset and create a variable 'interv' which indicates which copy is the duplicate (interv =1)
@@ -188,20 +185,19 @@ matrix list observe
 
 ## Program 13.4
 - Computing the 95% confidence interval of the standardized means and their difference: Data from NHEFS
+- Section 13.3
 
 ```{stata}
-* Section 13.3
-
 *Run program 13.3 to obtain point estimates, and then the code below*
 
 *drop the copies*
 drop if interv != -1
 gen meanY_b =.
-save nhefs_std, replace
+save ./data/nhefs_std, replace
 
 capture program drop bootstdz
 program define bootstdz, rclass
-	u nhefs_std, clear
+	use ./data/nhefs_std, clear
 		preserve
 		*draw bootstrap sample from original observations*
 		bsample 
