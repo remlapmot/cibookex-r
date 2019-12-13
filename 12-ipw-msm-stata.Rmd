@@ -17,8 +17,7 @@ For errors contact: ejmurray@bu.edu
 - Descriptive statistics from NHEFS data (Table 12.1)
 
 ```{stata}
-clear
-use "data/nhefs.dta"
+use ./data/nhefs, clear
 
 /*Provisionally ignore subjects with missing values for follow-up weight*/
 /*Sample size after exclusion: N = 1566*/
@@ -45,11 +44,11 @@ by qsmk, sort: egen noexer = mean(100 * (exercise == 2)) if exercise < .
 label var noexer "Little/no exercise"
 by qsmk, sort: egen inactive = mean(100 * (active==2)) if active < . 
 label var inactive "Inactive daily life"
-save "data/nhefs-formatted.dta", replace
+save ./data/nhefs-formatted, replace
 ```
 
-```{stata, , collectcode=TRUE}
-use data/nhefs-formatted, clear
+```{stata, collectcode=TRUE}
+use ./data/nhefs-formatted, clear
 ```
 
 ```{stata}
@@ -121,10 +120,9 @@ tab  age qsmk if race==1 & sex==1 & wt82!=.
 
 ## Program 12.4
 - Estimating the parameters of a marginal structural mean model with a continuous treatment Data from NHEFS
+- Section 12.4
 
 ```{stata}
-* Section 12.4
-
 * drop sw_a
 
 /*Analysis restricted to subjects reporting <=25 cig/day at baseline: N = 1162*/
@@ -152,7 +150,6 @@ summarize sw_a
 /*Fit a marginal structural model in the pseudopopulation*/
 regress wt82_71  c.smkintensity82_71##c.smkintensity82_71 [pweight=sw_a], cluster(seqn)
 
-
 /*Output the estimated mean Y value when smoke intensity is unchanged from baseline to 1982 */
 lincom _b[_cons]
 
@@ -163,13 +160,10 @@ lincom _b[_cons] + 20*_b[smkintensity82_71 ] +400*_b[c.smkintensity82_71#c.smkin
 ## Program 12.5
 - Estimating the parameters of a marginal structural logistic model
 - Data from NHEFS
+- Section 12.4
 
 ```{stata}
-* Section 12.4
-***************************************************************/
-
-*clear
-*use "nhefs.dta"
+*use ./data/nhefs, clear
 
 /*Provisionally ignore subjects with missing values for follow-up weight*/
 /*Sample size after exclusion: N = 1566*/
@@ -199,10 +193,9 @@ logistic death qsmk [pweight=sw_a], cluster(seqn)
 ## Program 12.6
 - Assessing effect modification by sex using a marginal structural mean model
 - Data from NHEFS
+- Section 12.5
 
 ```{stata}
-*Section 12.5
-
 * drop pd_qsmk pn_qsmk sw_a
 
 /*Check distribution of sex*/
@@ -231,12 +224,10 @@ regress wt82_71 qsmk##sex [pw=sw_a], cluster(seqn)
 ## Program 12.7
 - Estimating IP weights to adjust for selection bias due to censoring
 - Data from NHEFS
+- Section 12.6
 
 ```{stata}
-* Section 12.6
-
-* clear
-* use "nhefs.dta"
+use nhefs, clear
 
 /*Analysis including all individuals regardless of missing wt82 status: N=1629*/
 /*Generate censoring indicator: C = 1 if wt82 missing*/
