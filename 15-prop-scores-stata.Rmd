@@ -73,7 +73,7 @@ qui gr export ./figs/stata-fig-15-2.png, replace
 ```
 
 ```{r, echo=FALSE}
-knitr::include_graphics("stata-fig-15-2.png")
+knitr::include_graphics("./figs/stata-fig-15-2.png")
 ```
 
 ## Program 15.3
