@@ -55,7 +55,7 @@ knitr::include_graphics("./figs/stata-fig-17-1.png")
 *Individuals who survive to the end of follow-up will have 119 time points*
 *Individuals who die will have survtime - 1 time points*
 
-* use "nhefs.dta", clear
+* use ./data/nhefs-formatted, clear
 
 gen survtime = .
 replace survtime = 120 if death == 0
@@ -203,11 +203,11 @@ drop time2
 restore
 
 **Bootstraps**
-save nhefs_std1 , replace
+save ./data/nhefs_std1 , replace
  
 capture program drop bootipw_surv 
 program define bootipw_surv , rclass
-        u nhefs_std1 , clear
+    use ./data/nhefs_std1 , clear
 		preserve
 		bsample, cluster(seqn) idcluster(newseqn)  	
 		
@@ -238,14 +238,14 @@ program define bootipw_surv , rclass
 		drop if time != 119
 		bysort interv_b: egen meanS_b = mean(psurv)
 		keep newseqn qsmk  meanS_b 
-        drop if newseqn != 1  /* only need one pair */
+    drop if newseqn != 1  /* only need one pair */
 	
 		drop newseqn 		
 		
-	    return scalar boot_0 = meanS_b[1]
-	    return scalar boot_1 = meanS_b[2]
-	    return scalar  boot_diff = return(boot_1) - return(boot_0)
-	   restore
+	  return scalar boot_0 = meanS_b[1]
+	  return scalar boot_1 = meanS_b[2]
+	  return scalar  boot_diff = return(boot_1) - return(boot_0)
+	  restore
 end		
 set rmsg on
 simulate PrY_a0 = r(boot_0) PrY_a1 = r(boot_1)	difference=r(boot_diff) , reps(10) seed(1)  : bootipw_surv
@@ -321,14 +321,14 @@ drop if newtime == 1
 restore
 
 *Bootstraps*
-save nhefs_std2 , replace
+save ./data/nhefs_std2 , replace
  
 capture program drop bootstdz_surv 
 program define bootstdz_surv , rclass
-        u nhefs_std2 , clear
+    use ./data/nhefs_std2 , clear
 		preserve
 		bsample, cluster(seqn) idcluster(newseqn)  		
-        logistic event  qsmk qsmk#c.time  qsmk#c.time#c.time time c.time#c.time   ///
+    logistic event  qsmk qsmk#c.time  qsmk#c.time#c.time time c.time#c.time   ///
 			sex race c.age##c.age ib(last).education ///
 			c.smokeintensity##c.smokeintensity c.smkintensity82_71  ///
 			c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active c.wt71##c.wt71 
@@ -340,24 +340,24 @@ program define bootstdz_surv , rclass
 	    replace qsmk = interv_b 		 
 	    predict pevent_k, pr
 	    gen psurv_k = 1-pevent_k
-        keep newseqn  time qsmk psurv_k 		       	
-		sort newseqn qsmk time
+      keep newseqn  time qsmk psurv_k 		       	
+		  sort newseqn qsmk time
 	    gen _t = time + 1
 	    gen psurv = psurv_k if _t ==1 	
 	    bysort newseqn  qsmk:   replace psurv = psurv_k*psurv[_t-1] if _t >1 
 	    drop  if time != 119   /* keep only last observation */
-		keep  newseqn qsmk psurv    
+		  keep  newseqn qsmk psurv    
 		/* if time is in data for complete graph add time to bysort */	
 	    bysort qsmk  : egen meanS_b = mean(psurv)
-		keep newseqn qsmk  meanS_b 
-        drop if newseqn != 1  /* only need one pair */
+		  keep newseqn qsmk  meanS_b 
+      drop if newseqn != 1  /* only need one pair */
 	
-		drop newseqn 		
+		  drop newseqn 		
 		
 	    return scalar boot_0 = meanS_b[1]
 	    return scalar boot_1 = meanS_b[2]
 	    return scalar  boot_diff = return(boot_1) - return(boot_0)
-	   restore
+	    restore
 end		
 set rmsg on
 simulate PrY_a0 = r(boot_0) PrY_a1 = r(boot_1)	difference=r(boot_diff) , reps(10) seed(1)  : bootstdz_surv
