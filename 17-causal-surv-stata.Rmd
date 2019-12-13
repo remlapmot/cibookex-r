@@ -1,4 +1,4 @@
-# 17. Causal survival analysis{-}
+# 17. Causal survival analysis: Stata{-}
 
 ```{r, results='hide', message=FALSE, warning=FALSE}
 library(Statamarkdown)
