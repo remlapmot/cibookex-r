@@ -22,7 +22,7 @@ use ./data/nhefs-formatted, clear
 - Section 13.2
 
 ```{stata}
-* use ./data/nhefs, clear
+* use ./data/nhefs-formatted, clear
 
 *Estimate the the conditional mean outcome within strata of quitting smoking and covariates, among the uncensored*/
 glm wt82_71 qsmk sex race c.age##c.age ib(last).education c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active c.wt71##c.wt71 qsmk##c.smokeintensity
@@ -127,7 +127,7 @@ matrix list observe
 - Section 13.3
 
 ```{stata}
-* use nhefs, clear
+* use ./data/nhefs-formatted, clear
 
 *i.Data set up for standardization: create 3 copies of each subject*
 *first, duplicate the dataset and create a variable 'interv' which indicates which copy is the duplicate (interv =1)
@@ -193,7 +193,7 @@ matrix list observe
 *drop the copies*
 drop if interv != -1
 gen meanY_b =.
-save ./data/nhefs_std, replace
+qui save ./data/nhefs_std, replace
 
 capture program drop bootstdz
 program define bootstdz, rclass
