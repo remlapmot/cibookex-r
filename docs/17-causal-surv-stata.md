@@ -24,9 +24,7 @@ For errors contact: ejmurray@bu.edu
 use ./data/nhefs-formatted, clear
 ```
 
-```
-end of do-file
-```
+``````
 
 
 ```stata
@@ -81,7 +79,7 @@ obs. time interval:  (0, survtime]
    analysis time _t:  survtime
 ```
 
-<img src="./figs/stata-fig-17-1.png" width="955" />
+<img src="./figs/stata-fig-17-1.png" width="518" />
 
 ## Program 17.2
 - Parametric estimation of survival curves via hazards model
@@ -93,9 +91,11 @@ obs. time interval:  (0, survtime]
 ```stata
 /**Create person-month dataset for survival analyses**/
 
-/*We want our new dataset to include 1 observation per person per month alive, starting at time = 0*/
-*Individuals who survive to the end of follow-up will have 119 time points*
-*Individuals who die will have survtime - 1 time points*
+/* We want our new dataset to include 1 observation per person 
+per month alive, starting at time = 0.
+Individuals who survive to the end of follow-up will have 
+119 time points
+Individuals who die will have survtime - 1 time points*/
 
 * use ./data/nhefs-formatted, clear
 
@@ -123,7 +123,8 @@ qui save ./data/nhefs_surv, replace
 use ./data/nhefs_surv, clear
 
 *Fit a pooled logistic hazards model *
-logistic event qsmk qsmk#c.time qsmk#c.time#c.time c.time c.time#c.time 
+logistic event qsmk qsmk#c.time qsmk#c.time#c.time ///
+  c.time c.time#c.time 
 
 /**Survival curves: run regression then do:**/
 
@@ -133,11 +134,13 @@ drop if time != 0
 expand 120 if time ==0 
 bysort seqn: replace time = _n - 1	 
 		
-*Create 2 copies of each subject, and set outcome to missing and treatment -- use only the newobs*
+/*Create 2 copies of each subject, and set outcome to missing 
+and treatment -- use only the newobs*/
 expand 2 , generate(interv) 
 replace qsmk = interv	
 
-*Generate predicted event and survival probabilities for each person each month in copies*		 
+/*Generate predicted event and survival probabilities 
+for each person each month in copies*/
 predict pevent_k, pr
 gen psurv_k = 1-pevent_k
 keep seqn time qsmk interv psurv_k 
@@ -154,15 +157,23 @@ bysort seqn interv: replace psurv = psurv_k*psurv[_t-1] if _t >1
 by interv, sort: summarize psurv if time == 119
 
 *Graph of standardized survival over time, under interventions*
-*Note, we want our graph to start at 100% survival, so add an extra time point with P(surv) = 1*
+/*Note, we want our graph to start at 100% survival, 
+so add an extra time point with P(surv) = 1*/
 expand 2 if time ==0, generate(newtime)
 replace psurv  = 1 if newtime == 1
 gen time2 = 0 if newtime ==1
 replace time2 = time + 1 if newtime == 0
-*Separate the survival probabilities to allow plotting by intervention on qsmk*
-separate psurv, by(interv) 
+
+/*Separate the survival probabilities to allow plotting by 
+intervention on qsmk*/
+separate psurv, by(interv)
+
 *Plot the curves*
-twoway (line psurv0 time2, sort) (line psurv1 time2, sort) if interv > -1, ylabel(0.5(0.1)1.0) xlabel(0(12)120) ytitle("Survival probability") xtitle("Months of follow-up") legend(label(1 "A=0") label(2 "A=1"))
+twoway (line psurv0 time2, sort) ///
+  (line psurv1 time2, sort) if interv > -1 ///
+  , ylabel(0.5(0.1)1.0) xlabel(0(12)120) ///
+  ytitle("Survival probability") xtitle("Months of follow-up") ///
+  legend(label(1 "A=0") label(2 "A=1"))
 qui gr export ./figs/stata-fig-17-2.png, replace
 ```
 
@@ -197,24 +208,25 @@ Logistic regression                             Number of obs     =    171,076
                                                 Prob > chi2       =     0.0002
 Log likelihood = -2134.1973                     Pseudo R2         =     0.0057
 
--------------------------------------------------------------------------------
-        event | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
---------------+----------------------------------------------------------------
-         qsmk |   1.402527   .6000025     0.79   0.429     .6064099    3.243815
-              |
-  qsmk#c.time |
-Smoking ce..  |   1.012318   .0162153     0.76   0.445     .9810299    1.044603
-              |
-  qsmk#c.time#|
-       c.time |
-Smoking ce..  |   .9998342   .0001321    -1.25   0.210     .9995753    1.000093
-              |
-         time |   1.022048   .0090651     2.46   0.014     1.004434    1.039971
-              |
-c.time#c.time |   .9998637   .0000699    -1.95   0.051     .9997266    1.000001
-              |
-        _cons |   .0007992   .0001972   -28.90   0.000     .0004927    .0012963
--------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+       event | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        qsmk |   1.402527   .6000025     0.79   0.429     .6064099    3.243815
+             |
+ qsmk#c.time |
+Smoking c..  |   1.012318   .0162153     0.76   0.445     .9810299    1.044603
+             |
+ qsmk#c.time#|
+      c.time |
+Smoking c..  |   .9998342   .0001321    -1.25   0.210     .9995753    1.000093
+             |
+        time |   1.022048   .0090651     2.46   0.014     1.004434    1.039971
+             |
+      c.time#|
+      c.time |   .9998637   .0000699    -1.95   0.051     .9997266    1.000001
+             |
+       _cons |   .0007992   .0001972   -28.90   0.000     .0004927    .0012963
+------------------------------------------------------------------------------
 Note: _cons estimates baseline odds.
 
 (169,510 observations deleted)
@@ -237,14 +249,14 @@ Note: _cons estimates baseline odds.
 (372,708 real changes made)
 
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -> interv = 0
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
        psurv |      1,566    .8279829           0   .8279829   .8279829
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -> interv = 1
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
@@ -262,13 +274,13 @@ Note: _cons estimates baseline odds.
 
               storage   display    value
 variable name   type    format     label      variable label
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 psurv0          float   %9.0g                 psurv, interv == 0
 psurv1          float   %9.0g                 psurv, interv == 1
 
 ```
 
-<img src="./figs/stata-fig-17-2.png" width="955" />
+<img src="./figs/stata-fig-17-2.png" width="518" />
 
 ## Program 17.3
 - Estimation of survival curves via IP weighted hazards model
@@ -280,13 +292,18 @@ psurv1          float   %9.0g                 psurv, interv == 1
 ```stata
 use ./data/nhefs_surv, clear
 
-keep seqn event qsmk time sex race age education smokeintensity smkintensity82_71  smokeyrs exercise active wt71
+keep seqn event qsmk time sex race age education ///
+  smokeintensity smkintensity82_71 smokeyrs ///
+  exercise active wt71
 preserve 
 
 *Estimate weights*
-logit qsmk sex race c.age##c.age ib(last).education c.smokeintensity##c.smokeintensity ///
-c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active c.wt71##c.wt71 if time == 0
+logit qsmk sex race c.age##c.age ib(last).education ///
+  c.smokeintensity##c.smokeintensity ///
+  c.smokeyrs##c.smokeyrs ib(last).exercise ///
+  ib(last).active c.wt71##c.wt71 if time == 0
 predict p_qsmk, pr
+
 logit qsmk if time ==0 
 predict num, pr
 gen sw=num/p_qsmk if qsmk==1
@@ -294,7 +311,8 @@ replace sw=(1-num)/(1-p_qsmk) if qsmk==0
 summarize sw
 
 *IP weighted survival by smoking cessation*
-logit event qsmk qsmk#c.time qsmk#c.time#c.time c.time c.time#c.time [pweight=sw] , cluster(seqn) 
+logit event qsmk qsmk#c.time qsmk#c.time#c.time ///
+  c.time c.time#c.time [pweight=sw] , cluster(seqn) 
 
 *Create a dataset with all time points under each treatment level*
 *Re-expand data with rows for all timepoints*
@@ -302,17 +320,20 @@ drop if time != 0
 expand 120 if time ==0 
 bysort seqn: replace time = _n - 1		 
 		
-*Create 2 copies of each subject, and set outcome to missing and treatment -- use only the newobs*
+/*Create 2 copies of each subject, and set outcome 
+to missing and treatment -- use only the newobs*/
 expand 2 , generate(interv) 
 replace qsmk = interv	
 
-*Generate predicted event and survival probabilities for each person each month in copies*		 
+/*Generate predicted event and survival probabilities 
+for each person each month in copies*/
 predict pevent_k, pr
 gen psurv_k = 1-pevent_k
 keep seqn time qsmk interv psurv_k 
 
 *Within copies, generate predicted survival over time*
-*Remember, survival is the product of conditional survival probabilities in each interval*	
+/*Remember, survival is the product of conditional survival
+probabilities in each interval*/
 sort seqn interv time
 gen _t = time + 1
 gen psurv = psurv_k if _t ==1 		
@@ -330,13 +351,19 @@ matrix observe = (observe \3, observe[2,2]-observe[1,2])
 matrix list observe
 
 *Graph of standardized survival over time, under interventions*
-*Note: since our outcome model has no covariates, we can plot psurv directly. If we had covariates we would need to stratify or average across the values*
+/*Note: since our outcome model has no covariates, 
+we can plot psurv directly. 
+If we had covariates we would need to stratify or average across the values*/
 expand 2 if time ==0, generate(newtime)
 replace psurv  = 1 if newtime == 1
 gen time2 = 0 if newtime ==1
 replace time2 = time + 1 if newtime == 0
 separate psurv, by(interv) 
-twoway (line psurv0 time2, sort) (line psurv1 time2, sort) if interv > -1, ylabel(0.5(0.1)1.0) xlabel(0(12)120) ytitle("Survival probability") xtitle("Months of follow-up") legend(label(1 "A=0") label(2 "A=1"))
+twoway (line psurv0 time2, sort) ///
+  (line psurv1 time2, sort) if interv > -1 ///
+  , ylabel(0.5(0.1)1.0) xlabel(0(12)120) ///
+  ytitle("Survival probability") xtitle("Months of follow-up") ///
+  legend(label(1 "A=0") label(2 "A=1"))
 qui gr export ./figs/stata-fig-17-3.png, replace
 
 *remove extra timepoint*
@@ -349,49 +376,58 @@ restore
 qui save ./data/nhefs_std1 , replace
  
 capture program drop bootipw_surv 
+
 program define bootipw_surv , rclass
-    use ./data/nhefs_std1 , clear
-		preserve
-		bsample, cluster(seqn) idcluster(newseqn)  	
+use ./data/nhefs_std1 , clear
+preserve
+bsample, cluster(seqn) idcluster(newseqn)  	
 		
-		logit qsmk sex race c.age##c.age ib(last).education c.smokeintensity##c.smokeintensity ///
-		c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active c.wt71##c.wt71 if time == 0
-		predict p_qsmk, pr
-		logit qsmk if time ==0 
-		predict num, pr
-		gen sw=num/p_qsmk if qsmk==1
-		replace sw=(1-num)/(1-p_qsmk) if qsmk==0
+logit qsmk sex race c.age##c.age ib(last).education ///
+  c.smokeintensity##c.smokeintensity ///
+	c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active ///
+	c.wt71##c.wt71 if time == 0
+predict p_qsmk, pr
 
-		logit event qsmk qsmk#c.time qsmk#c.time#c.time c.time c.time#c.time  [pweight=sw] , cluster(newseqn) 
-	
-		drop if time != 0
-		expand 120 if time ==0 
-		bysort newseqn: replace time = _n - 1		 
-		expand 2 , generate(interv_b) 
-		replace qsmk = interv_b	
-		
-		predict pevent_k, pr
-		gen psurv_k = 1-pevent_k
-		keep newseqn time qsmk interv_b psurv_k 
+logit qsmk if time ==0 
+predict num, pr
 
-		sort newseqn interv_b time
-		gen _t = time + 1
-		gen psurv = psurv_k if _t ==1 		
-		bysort newseqn interv_b: replace psurv = psurv_k*psurv[_t-1] if _t >1 
-		drop if time != 119
-		bysort interv_b: egen meanS_b = mean(psurv)
-		keep newseqn qsmk  meanS_b 
-    drop if newseqn != 1  /* only need one pair */
+gen sw=num/p_qsmk if qsmk==1
+replace sw=(1-num)/(1-p_qsmk) if qsmk==0
+
+logit event qsmk qsmk#c.time qsmk#c.time#c.time ///
+  c.time c.time#c.time [pweight=sw], cluster(newseqn) 
 	
-		drop newseqn 		
+drop if time != 0
+expand 120 if time ==0 
+bysort newseqn: replace time = _n - 1		 
+expand 2 , generate(interv_b) 
+replace qsmk = interv_b	
 		
-	  return scalar boot_0 = meanS_b[1]
-	  return scalar boot_1 = meanS_b[2]
-	  return scalar  boot_diff = return(boot_1) - return(boot_0)
-	  restore
+predict pevent_k, pr
+gen psurv_k = 1-pevent_k
+keep newseqn time qsmk interv_b psurv_k 
+
+sort newseqn interv_b time
+gen _t = time + 1
+gen psurv = psurv_k if _t ==1 		
+bysort newseqn interv_b: ///
+  replace psurv = psurv_k*psurv[_t-1] if _t >1 
+drop if time != 119
+bysort interv_b: egen meanS_b = mean(psurv)
+keep newseqn qsmk  meanS_b 
+drop if newseqn != 1  /* only need one pair */
+	
+drop newseqn 		
+		
+return scalar boot_0 = meanS_b[1]
+return scalar boot_1 = meanS_b[2]
+return scalar  boot_diff = return(boot_1) - return(boot_0)
+restore
 end		
+
 set rmsg on
-simulate PrY_a0 = r(boot_0) PrY_a1 = r(boot_1)	difference=r(boot_diff) , reps(10) seed(1)  : bootipw_surv
+simulate PrY_a0 = r(boot_0) PrY_a1 = r(boot_1) ///
+  difference=r(boot_diff), reps(10) seed(1): bootipw_surv
 set rmsg off 
  
 matrix pe = observe[1..3, 2]'
@@ -410,47 +446,48 @@ Logistic regression                             Number of obs     =      1,566
                                                 Prob > chi2       =     0.0000
 Log likelihood = -838.44842                     Pseudo R2         =     0.0611
 
--------------------------------------------------------------------------------
-         qsmk |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
---------------+----------------------------------------------------------------
-          sex |  -.5274782   .1540497    -3.42   0.001      -.82941   -.2255463
-         race |  -.8392636   .2100668    -4.00   0.000    -1.250987   -.4275404
-          age |   .1212052   .0512663     2.36   0.018     .0207251    .2216853
-              |
-  c.age#c.age |  -.0008246   .0005361    -1.54   0.124    -.0018753    .0002262
-              |
-    education |
-           1  |  -.4759606   .2262238    -2.10   0.035    -.9193511   -.0325701
-           2  |  -.5047361    .217597    -2.32   0.020    -.9312184   -.0782538
-           3  |  -.3895288   .1914353    -2.03   0.042    -.7647351   -.0143226
-           4  |  -.4123596   .2772868    -1.49   0.137    -.9558318    .1311126
-              |
-smokeintens~y |  -.0772704   .0152499    -5.07   0.000    -.1071596   -.0473812
-              |
-           c. |
-smokeintens~y#|
-           c. |
-smokeintens~y |   .0010451   .0002866     3.65   0.000     .0004835    .0016068
-              |
-     smokeyrs |  -.0735966   .0277775    -2.65   0.008    -.1280395   -.0191538
-              |
-   c.smokeyrs#|
-   c.smokeyrs |   .0008441   .0004632     1.82   0.068    -.0000637    .0017519
-              |
-     exercise |
-           0  |   -.395704   .1872401    -2.11   0.035    -.7626878   -.0287201
-           1  |  -.0408635   .1382674    -0.30   0.768    -.3118627    .2301357
-              |
-       active |
-           0  |   -.176784   .2149721    -0.82   0.411    -.5981215    .2445535
-           1  |  -.1448395   .2111472    -0.69   0.493    -.5586806    .2690015
-              |
-         wt71 |  -.0152357   .0263161    -0.58   0.563    -.0668144     .036343
-              |
-c.wt71#c.wt71 |   .0001352   .0001632     0.83   0.407    -.0001846     .000455
-              |
-        _cons |   -1.19407   1.398493    -0.85   0.393    -3.935066    1.546925
--------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+        qsmk |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+         sex |  -.5274782   .1540497    -3.42   0.001      -.82941   -.2255463
+        race |  -.8392636   .2100668    -4.00   0.000    -1.250987   -.4275404
+         age |   .1212052   .0512663     2.36   0.018     .0207251    .2216853
+             |
+ c.age#c.age |  -.0008246   .0005361    -1.54   0.124    -.0018753    .0002262
+             |
+   education |
+          1  |  -.4759606   .2262238    -2.10   0.035    -.9193511   -.0325701
+          2  |  -.5047361    .217597    -2.32   0.020    -.9312184   -.0782538
+          3  |  -.3895288   .1914353    -2.03   0.042    -.7647351   -.0143226
+          4  |  -.4123596   .2772868    -1.49   0.137    -.9558318    .1311126
+             |
+smokeinten~y |  -.0772704   .0152499    -5.07   0.000    -.1071596   -.0473812
+             |
+          c. |
+smokeinten~y#|
+          c. |
+smokeinten~y |   .0010451   .0002866     3.65   0.000     .0004835    .0016068
+             |
+    smokeyrs |  -.0735966   .0277775    -2.65   0.008    -.1280395   -.0191538
+             |
+  c.smokeyrs#|
+  c.smokeyrs |   .0008441   .0004632     1.82   0.068    -.0000637    .0017519
+             |
+    exercise |
+          0  |   -.395704   .1872401    -2.11   0.035    -.7626878   -.0287201
+          1  |  -.0408635   .1382674    -0.30   0.768    -.3118627    .2301357
+             |
+      active |
+          0  |   -.176784   .2149721    -0.82   0.411    -.5981215    .2445535
+          1  |  -.1448395   .2111472    -0.69   0.493    -.5586806    .2690015
+             |
+        wt71 |  -.0152357   .0263161    -0.58   0.563    -.0668144     .036343
+             |
+      c.wt71#|
+      c.wt71 |   .0001352   .0001632     0.83   0.407    -.0001846     .000455
+             |
+       _cons |   -1.19407   1.398493    -0.85   0.393    -3.935066    1.546925
+------------------------------------------------------------------------------
 
 
 
@@ -488,26 +525,27 @@ Logistic regression                             Number of obs     =    171,076
                                                 Prob > chi2       =     0.0004
 Log pseudolikelihood = -2126.8554               Pseudo R2         =     0.0045
 
-                                (Std. Err. adjusted for 1,566 clusters in seqn)
--------------------------------------------------------------------------------
-              |               Robust
-        event |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
---------------+----------------------------------------------------------------
-         qsmk |  -.1301273   .4186673    -0.31   0.756    -.9507002    .6904456
-              |
-  qsmk#c.time |
-Smoking ce..  |     .01916   .0151318     1.27   0.205    -.0104978    .0488178
-              |
-  qsmk#c.time#|
-       c.time |
-Smoking ce..  |  -.0002152   .0001213    -1.77   0.076    -.0004528    .0000225
-              |
-         time |   .0208179   .0077769     2.68   0.007     .0055754    .0360604
-              |
-c.time#c.time |  -.0001278   .0000643    -1.99   0.047    -.0002537   -1.84e-06
-              |
-        _cons |  -7.038847   .2142855   -32.85   0.000    -7.458839   -6.618855
--------------------------------------------------------------------------------
+                               (Std. Err. adjusted for 1,566 clusters in seqn)
+------------------------------------------------------------------------------
+             |               Robust
+       event |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        qsmk |  -.1301273   .4186673    -0.31   0.756    -.9507002    .6904456
+             |
+ qsmk#c.time |
+Smoking c..  |     .01916   .0151318     1.27   0.205    -.0104978    .0488178
+             |
+ qsmk#c.time#|
+      c.time |
+Smoking c..  |  -.0002152   .0001213    -1.77   0.076    -.0004528    .0000225
+             |
+        time |   .0208179   .0077769     2.68   0.007     .0055754    .0360604
+             |
+      c.time#|
+      c.time |  -.0001278   .0000643    -1.99   0.047    -.0002537   -1.84e-06
+             |
+       _cons |  -7.038847   .2142855   -32.85   0.000    -7.458839   -6.618855
+------------------------------------------------------------------------------
 
 (169,510 observations deleted)
 
@@ -529,14 +567,14 @@ c.time#c.time |  -.0001278   .0000643    -1.99   0.047    -.0002537   -1.84e-06
 (372,708 real changes made)
 
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -> interv = 0
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
        psurv |      1,566    .8161003           0   .8161003   .8161003
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -> interv = 1
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
@@ -566,7 +604,7 @@ r3           3  -.00442189
 
               storage   display    value
 variable name   type    format     label      variable label
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 psurv0          float   %9.0g                 psurv, interv == 0
 psurv1          float   %9.0g                 psurv, interv == 1
 
@@ -579,7 +617,7 @@ psurv1          float   %9.0g                 psurv, interv == 1
 
 
 
-r; t=0.00 3:43:56
+r; t=0.00 11:22:17
 
       command:  bootipw_surv
        PrY_a0:  r(boot_0)
@@ -589,7 +627,7 @@ r; t=0.00 3:43:56
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=73.00 3:45:09
+r; t=41.39 11:22:59
 
 
 
@@ -607,7 +645,7 @@ Bootstrap results                               Number of obs     =      1,629
 ------------------------------------------------------------------------------
 ```
 
-<img src="./figs/stata-fig-17-3.png" width="955" />
+<img src="./figs/stata-fig-17-3.png" width="518" />
 
 ## Program 17.4
 - Estimating of survival curves via g-formula
@@ -619,12 +657,17 @@ Bootstrap results                               Number of obs     =      1,629
 ```stata
 use ./data/nhefs_surv, clear
 
-keep seqn event qsmk time sex race age education smokeintensity smkintensity82_71  smokeyrs exercise active wt71 
-preserve 
+keep seqn event qsmk time sex race age education ///
+  smokeintensity smkintensity82_71  smokeyrs exercise ///
+  active wt71 
+preserve
  
-quietly logistic event qsmk qsmk#c.time  qsmk#c.time#c.time time c.time#c.time  ///
-	sex race c.age##c.age ib(last).education c.smokeintensity##c.smokeintensity ///
-	c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active c.wt71##c.wt71 , cluster(seqn) 
+quietly logistic event qsmk qsmk#c.time ///
+  qsmk#c.time#c.time time c.time#c.time  ///
+	sex race c.age##c.age ib(last).education ///
+	c.smokeintensity##c.smokeintensity ///
+	c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active ///
+	c.wt71##c.wt71 , cluster(seqn) 
 			
 drop if time != 0
 expand 120 if time ==0 
@@ -637,7 +680,7 @@ keep seqn  time qsmk interv psurv_k
 sort seqn interv time
 gen _t = time + 1
 gen psurv = psurv_k if _t ==1 		
-bysort seqn interv:   replace psurv = psurv_k*psurv[_t-1] if _t >1 
+bysort seqn interv: replace psurv = psurv_k*psurv[_t-1] if _t >1 
 by interv, sort: summarize psurv if time == 119
 
 keep qsmk interv psurv time   
@@ -655,15 +698,22 @@ matrix rownames observe =  P(Y(a=0)=1) P(Y(a=1)=1) difference
 matrix colnames observe = interv survival
 
 *Graph standardized survival over time, under interventions*
-*Note: unlike in PROGRAM 17.3, we now have covariates so we first need to average survival across strata*
+/*Note: unlike in Program 17.3, we now have covariates 
+so we first need to average survival across strata*/
 bysort interv time : egen meanS_t = mean(psurv)
+
 *Now we can continue with the graph*
 expand 2 if time ==0, generate(newtime)
 replace meanS_t  = 1 if newtime == 1
 gen time2 = 0 if newtime ==1
 replace time2 = time + 1 if newtime == 0
 separate meanS_t, by(interv) 
-twoway (line meanS_t0 time2, sort) (line meanS_t1 time2, sort), ylabel(0.5(0.1)1.0) xlabel(0(12)120) ytitle("Survival probability") xtitle("Months of follow-up") legend(label(1 "A=0") label(2 "A=1"))
+
+twoway (line meanS_t0 time2, sort) ///
+  (line meanS_t1 time2, sort) ///
+  , ylabel(0.5(0.1)1.0) xlabel(0(12)120) ///
+  ytitle("Survival probability") xtitle("Months of follow-up") ///
+  legend(label(1 "A=0") label(2 "A=1"))
 gr export ./figs/stata-fig-17-4.png, replace
 
 *remove extra timepoint*
@@ -674,44 +724,49 @@ restore
 *Bootstraps*
 qui save ./data/nhefs_std2 , replace
  
-capture program drop bootstdz_surv 
+capture program drop bootstdz_surv
+
 program define bootstdz_surv , rclass
-    use ./data/nhefs_std2 , clear
-		preserve
-		bsample, cluster(seqn) idcluster(newseqn)  		
-    logistic event  qsmk qsmk#c.time  qsmk#c.time#c.time time c.time#c.time   ///
-			sex race c.age##c.age ib(last).education ///
-			c.smokeintensity##c.smokeintensity c.smkintensity82_71  ///
-			c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active c.wt71##c.wt71 
-		 drop if time != 0	
-		/*only predict on new version of data */
-	    expand 120 if time ==0 
-	    bysort newseqn: replace time = _n - 1		 		
-	    expand 2 , generate(interv_b) 
-	    replace qsmk = interv_b 		 
-	    predict pevent_k, pr
-	    gen psurv_k = 1-pevent_k
-      keep newseqn  time qsmk psurv_k 		       	
-		  sort newseqn qsmk time
-	    gen _t = time + 1
-	    gen psurv = psurv_k if _t ==1 	
-	    bysort newseqn  qsmk:   replace psurv = psurv_k*psurv[_t-1] if _t >1 
-	    drop  if time != 119   /* keep only last observation */
-		  keep  newseqn qsmk psurv    
-		/* if time is in data for complete graph add time to bysort */	
-	    bysort qsmk  : egen meanS_b = mean(psurv)
-		  keep newseqn qsmk  meanS_b 
-      drop if newseqn != 1  /* only need one pair */
+use ./data/nhefs_std2 , clear
+preserve
+
+bsample, cluster(seqn) idcluster(newseqn)  		
+logistic event qsmk qsmk#c.time qsmk#c.time#c.time ///
+  time c.time#c.time ///
+	sex race c.age##c.age ib(last).education ///
+	c.smokeintensity##c.smokeintensity c.smkintensity82_71 ///
+	c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active ///
+	c.wt71##c.wt71 
+drop if time != 0	
+/*only predict on new version of data */
+expand 120 if time ==0 
+bysort newseqn: replace time = _n - 1		 		
+expand 2 , generate(interv_b) 
+replace qsmk = interv_b 		 
+predict pevent_k, pr
+gen psurv_k = 1-pevent_k
+keep newseqn  time qsmk psurv_k 		       	
+sort newseqn qsmk time
+gen _t = time + 1
+gen psurv = psurv_k if _t ==1 	
+bysort newseqn  qsmk: replace psurv = psurv_k*psurv[_t-1] if _t >1 
+drop  if time != 119   /* keep only last observation */
+keep newseqn qsmk psurv    
+/* if time is in data for complete graph add time to bysort */	
+bysort qsmk  : egen meanS_b = mean(psurv)
+keep newseqn qsmk  meanS_b 
+drop if newseqn != 1  /* only need one pair */
+drop newseqn 		
 	
-		  drop newseqn 		
-		
-	    return scalar boot_0 = meanS_b[1]
-	    return scalar boot_1 = meanS_b[2]
-	    return scalar  boot_diff = return(boot_1) - return(boot_0)
-	    restore
-end		
+return scalar boot_0 = meanS_b[1]
+return scalar boot_1 = meanS_b[2]
+return scalar  boot_diff = return(boot_1) - return(boot_0)
+restore
+end
+
 set rmsg on
-simulate PrY_a0 = r(boot_0) PrY_a1 = r(boot_1)	difference=r(boot_diff) , reps(10) seed(1)  : bootstdz_surv
+simulate PrY_a0 = r(boot_0) PrY_a1 = r(boot_1) ///
+  difference=r(boot_diff), reps(10) seed(1): bootstdz_surv
 set rmsg off 
  
 matrix pe = observe[1..3, 2]'
@@ -739,14 +794,14 @@ bstat, stat(pe) n(1629)
 (372,708 real changes made)
 
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -> interv = 0
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
        psurv |      1,566    .8160697    .2014345    .014127   .9903372
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -> interv = 1
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
@@ -758,14 +813,14 @@ bstat, stat(pe) n(1629)
 (372708 missing values generated)
 
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -> interv = 0
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
        meanS |      1,566    .8160697           0   .8160697   .8160697
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -> interv = 1
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
@@ -791,7 +846,7 @@ bstat, stat(pe) n(1629)
 
               storage   display    value
 variable name   type    format     label      variable label
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 meanS_t0        float   %9.0g                 meanS_t, interv == 0
 meanS_t1        float   %9.0g                 meanS_t, interv == 1
 
@@ -804,7 +859,7 @@ meanS_t1        float   %9.0g                 meanS_t, interv == 1
 
 
 
-r; t=0.00 3:45:47
+r; t=0.00 11:23:15
 
       command:  bootstdz_surv
        PrY_a0:  r(boot_0)
@@ -814,7 +869,7 @@ r; t=0.00 3:45:47
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=105.34 3:47:33
+r; t=50.23 11:24:05
 
 
 
@@ -832,4 +887,4 @@ Bootstrap results                               Number of obs     =      1,629
 ------------------------------------------------------------------------------
 ```
 
-<img src="./figs/stata-fig-17-4.png" width="955" />
+<img src="./figs/stata-fig-17-4.png" width="518" />

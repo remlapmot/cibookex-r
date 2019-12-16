@@ -140,11 +140,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#packages-to-install"><i class="fa fa-check"></i>Packages to install</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#downloading-the-datasets"><i class="fa fa-check"></i>Downloading the datasets</a></li>
 </ul></li>
-<li class="part"><span><b>R code</b></span></li>
-<li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html"><i class="fa fa-check"></i>11. Why model?</a><ul>
-<li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html#program-11.1"><i class="fa fa-check"></i>Program 11.1</a></li>
-<li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html#program-11.2"><i class="fa fa-check"></i>Program 11.2</a></li>
-<li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html#program-11.3"><i class="fa fa-check"></i>Program 11.3</a></li>
+<li class="part"><span><b>R code</b></span><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#program-11.1"><i class="fa fa-check"></i>Program 11.1</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#program-11.2"><i class="fa fa-check"></i>Program 11.2</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#program-11.3"><i class="fa fa-check"></i>Program 11.3</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html"><i class="fa fa-check"></i>12. IP Weighting and Marginal Structural Models</a><ul>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.1"><i class="fa fa-check"></i>Program 12.1</a></li>
@@ -193,11 +192,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.5"><i class="fa fa-check"></i>Program 17.5</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="session-information-r.html"><a href="session-information-r.html"><i class="fa fa-check"></i>Session information: R</a></li>
-<li class="part"><span><b>Stata code</b></span></li>
-<li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html"><i class="fa fa-check"></i>11. Why model: Stata</a><ul>
-<li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html#program-11.1-1"><i class="fa fa-check"></i>Program 11.1</a></li>
-<li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html#program-11.2-1"><i class="fa fa-check"></i>Program 11.2</a></li>
-<li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html#program-11.3-1"><i class="fa fa-check"></i>Program 11.3</a></li>
+<li class="part"><span><b>Stata code</b></span><ul>
+<li class="chapter" data-level="" data-path="session-information-r.html"><a href="session-information-r.html#program-11.1-1"><i class="fa fa-check"></i>Program 11.1</a></li>
+<li class="chapter" data-level="" data-path="session-information-r.html"><a href="session-information-r.html#program-11.2-1"><i class="fa fa-check"></i>Program 11.2</a></li>
+<li class="chapter" data-level="" data-path="session-information-r.html"><a href="session-information-r.html#program-11.3-1"><i class="fa fa-check"></i>Program 11.3</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html"><i class="fa fa-check"></i>12. IP Weighting and Marginal Structural Models: Stata</a><ul>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.1-1"><i class="fa fa-check"></i>Program 12.1</a></li>
@@ -261,7 +259,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="causal-survival-analysis-stata" class="section level1 unnumbered">
 <h1>17. Causal survival analysis: Stata</h1>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="causal-survival-analysis-stata.html#cb414-1"></a><span class="kw">library</span>(Statamarkdown)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="causal-survival-analysis-stata.html#cb1-1"></a><span class="kw">library</span>(Statamarkdown)</span></code></pre></div>
 <pre><code>/***************************************************************
 Stata code for Causal Inference: What If by Miguel Hernan &amp; Jamie Robins
 Date: 10/10/2019
@@ -275,21 +273,21 @@ For errors contact: ejmurray@bu.edu
 <li>Data from NHEFS</li>
 <li>Section 17.1</li>
 </ul>
-<div class="sourceCode" id="cb416"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb416-1"><a href="causal-survival-analysis-stata.html#cb416-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span></code></pre></div>
-<pre><code>end of do-file</code></pre>
-<div class="sourceCode" id="cb418"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb418-1"><a href="causal-survival-analysis-stata.html#cb418-1"></a><span class="co">/*Some preprocessing of the data*/</span></span>
-<span id="cb418-2"><a href="causal-survival-analysis-stata.html#cb418-2"></a><span class="kw">gen</span> survtime = .</span>
-<span id="cb418-3"><a href="causal-survival-analysis-stata.html#cb418-3"></a><span class="kw">replace</span> survtime = 120 <span class="kw">if</span> death == 0</span>
-<span id="cb418-4"><a href="causal-survival-analysis-stata.html#cb418-4"></a><span class="kw">replace</span> survtime = (yrdth - 83)*12 + modth <span class="kw">if</span> death ==1</span>
-<span id="cb418-5"><a href="causal-survival-analysis-stata.html#cb418-5"></a>* yrdth ranges from 83 to 92*</span>
-<span id="cb418-6"><a href="causal-survival-analysis-stata.html#cb418-6"></a></span>
-<span id="cb418-7"><a href="causal-survival-analysis-stata.html#cb418-7"></a><span class="kw">tab</span> death qsmk</span>
-<span id="cb418-8"><a href="causal-survival-analysis-stata.html#cb418-8"></a></span>
-<span id="cb418-9"><a href="causal-survival-analysis-stata.html#cb418-9"></a><span class="co">/*Kaplan-Meier graph of observed survival over time, by quitting smoking*/</span></span>
-<span id="cb418-10"><a href="causal-survival-analysis-stata.html#cb418-10"></a>*For now, we <span class="kw">use</span> the <span class="kw">stset</span> <span class="kw">function</span> <span class="kw">in</span> Stata*</span>
-<span id="cb418-11"><a href="causal-survival-analysis-stata.html#cb418-11"></a><span class="kw">stset</span> survtime, failure(death=1)</span>
-<span id="cb418-12"><a href="causal-survival-analysis-stata.html#cb418-12"></a><span class="kw">sts</span> <span class="kw">graph</span>, <span class="kw">by</span>(qsmk) <span class="kw">xlabel</span>(0(12)120)</span>
-<span id="cb418-13"><a href="causal-survival-analysis-stata.html#cb418-13"></a><span class="kw">qui</span> <span class="kw">gr</span> <span class="kw">export</span> ./figs/stata-fig-17-1.png, <span class="kw">replace</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb3-1"><a href="causal-survival-analysis-stata.html#cb3-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span></code></pre></div>
+<p>``````</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb4-1"><a href="causal-survival-analysis-stata.html#cb4-1"></a><span class="co">/*Some preprocessing of the data*/</span></span>
+<span id="cb4-2"><a href="causal-survival-analysis-stata.html#cb4-2"></a><span class="kw">gen</span> survtime = .</span>
+<span id="cb4-3"><a href="causal-survival-analysis-stata.html#cb4-3"></a><span class="kw">replace</span> survtime = 120 <span class="kw">if</span> death == 0</span>
+<span id="cb4-4"><a href="causal-survival-analysis-stata.html#cb4-4"></a><span class="kw">replace</span> survtime = (yrdth - 83)*12 + modth <span class="kw">if</span> death ==1</span>
+<span id="cb4-5"><a href="causal-survival-analysis-stata.html#cb4-5"></a>* yrdth ranges from 83 to 92*</span>
+<span id="cb4-6"><a href="causal-survival-analysis-stata.html#cb4-6"></a></span>
+<span id="cb4-7"><a href="causal-survival-analysis-stata.html#cb4-7"></a><span class="kw">tab</span> death qsmk</span>
+<span id="cb4-8"><a href="causal-survival-analysis-stata.html#cb4-8"></a></span>
+<span id="cb4-9"><a href="causal-survival-analysis-stata.html#cb4-9"></a><span class="co">/*Kaplan-Meier graph of observed survival over time, by quitting smoking*/</span></span>
+<span id="cb4-10"><a href="causal-survival-analysis-stata.html#cb4-10"></a>*For now, we <span class="kw">use</span> the <span class="kw">stset</span> <span class="kw">function</span> <span class="kw">in</span> Stata*</span>
+<span id="cb4-11"><a href="causal-survival-analysis-stata.html#cb4-11"></a><span class="kw">stset</span> survtime, failure(death=1)</span>
+<span id="cb4-12"><a href="causal-survival-analysis-stata.html#cb4-12"></a><span class="kw">sts</span> <span class="kw">graph</span>, <span class="kw">by</span>(qsmk) <span class="kw">xlabel</span>(0(12)120)</span>
+<span id="cb4-13"><a href="causal-survival-analysis-stata.html#cb4-13"></a><span class="kw">qui</span> <span class="kw">gr</span> <span class="kw">export</span> ./figs/stata-fig-17-1.png, <span class="kw">replace</span></span></code></pre></div>
 <pre><code>(1,566 missing values generated)
 
 (1,275 real changes made)
@@ -323,7 +321,7 @@ obs. time interval:  (0, survtime]
 
          failure _d:  death == 1
    analysis time _t:  survtime</code></pre>
-<p><img src="figs/stata-fig-17-1.png" width="955" /></p>
+<p><img src="figs/stata-fig-17-1.png" width="518" /></p>
 </div>
 <div id="program-17.2-1" class="section level2">
 <h2>Program 17.2</h2>
@@ -333,79 +331,92 @@ obs. time interval:  (0, survtime]
 <li>Section 17.1</li>
 <li>Generates Figure 17.4</li>
 </ul>
-<div class="sourceCode" id="cb420"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb420-1"><a href="causal-survival-analysis-stata.html#cb420-1"></a><span class="co">/**Create person-month dataset for survival analyses**/</span></span>
-<span id="cb420-2"><a href="causal-survival-analysis-stata.html#cb420-2"></a></span>
-<span id="cb420-3"><a href="causal-survival-analysis-stata.html#cb420-3"></a><span class="co">/*We want our new dataset to include 1 observation per person per month alive, starting at time = 0*/</span></span>
-<span id="cb420-4"><a href="causal-survival-analysis-stata.html#cb420-4"></a>*Individuals who survive to the <span class="kw">end</span> <span class="kw">of</span> follow-up will have 119 time points*</span>
-<span id="cb420-5"><a href="causal-survival-analysis-stata.html#cb420-5"></a>*Individuals who die will have survtime - 1 time points*</span>
-<span id="cb420-6"><a href="causal-survival-analysis-stata.html#cb420-6"></a></span>
-<span id="cb420-7"><a href="causal-survival-analysis-stata.html#cb420-7"></a>* <span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span>
-<span id="cb420-8"><a href="causal-survival-analysis-stata.html#cb420-8"></a></span>
-<span id="cb420-9"><a href="causal-survival-analysis-stata.html#cb420-9"></a><span class="kw">gen</span> survtime = .</span>
-<span id="cb420-10"><a href="causal-survival-analysis-stata.html#cb420-10"></a><span class="kw">replace</span> survtime = 120 <span class="kw">if</span> death == 0</span>
-<span id="cb420-11"><a href="causal-survival-analysis-stata.html#cb420-11"></a><span class="kw">replace</span> survtime = (yrdth - 83)*12 + modth <span class="kw">if</span> death ==1</span>
-<span id="cb420-12"><a href="causal-survival-analysis-stata.html#cb420-12"></a></span>
-<span id="cb420-13"><a href="causal-survival-analysis-stata.html#cb420-13"></a>*expand <span class="kw">data</span> to person-time*</span>
-<span id="cb420-14"><a href="causal-survival-analysis-stata.html#cb420-14"></a><span class="kw">gen</span> time = 0</span>
-<span id="cb420-15"><a href="causal-survival-analysis-stata.html#cb420-15"></a>expand survtime <span class="kw">if</span> time == 0</span>
-<span id="cb420-16"><a href="causal-survival-analysis-stata.html#cb420-16"></a><span class="kw">bysort</span> seqn: <span class="kw">replace</span> time = <span class="dt">_n</span> - 1</span>
-<span id="cb420-17"><a href="causal-survival-analysis-stata.html#cb420-17"></a></span>
-<span id="cb420-18"><a href="causal-survival-analysis-stata.html#cb420-18"></a>*Create event <span class="kw">variable</span>*</span>
-<span id="cb420-19"><a href="causal-survival-analysis-stata.html#cb420-19"></a><span class="kw">gen</span> event = 0</span>
-<span id="cb420-20"><a href="causal-survival-analysis-stata.html#cb420-20"></a><span class="kw">replace</span> event = 1 <span class="kw">if</span> time == survtime - 1 &amp; death == 1</span>
-<span id="cb420-21"><a href="causal-survival-analysis-stata.html#cb420-21"></a><span class="kw">tab</span> event</span>
-<span id="cb420-22"><a href="causal-survival-analysis-stata.html#cb420-22"></a></span>
-<span id="cb420-23"><a href="causal-survival-analysis-stata.html#cb420-23"></a>*Create time-squared <span class="kw">variable</span> <span class="kw">for</span> analyses*</span>
-<span id="cb420-24"><a href="causal-survival-analysis-stata.html#cb420-24"></a><span class="kw">gen</span> timesq = time*time</span>
-<span id="cb420-25"><a href="causal-survival-analysis-stata.html#cb420-25"></a></span>
-<span id="cb420-26"><a href="causal-survival-analysis-stata.html#cb420-26"></a>*Save the dataset to your working directory <span class="kw">for</span> future <span class="kw">use</span>*</span>
-<span id="cb420-27"><a href="causal-survival-analysis-stata.html#cb420-27"></a><span class="kw">qui</span> <span class="kw">save</span> ./<span class="kw">data</span>/nhefs_surv, <span class="kw">replace</span></span>
-<span id="cb420-28"><a href="causal-survival-analysis-stata.html#cb420-28"></a></span>
-<span id="cb420-29"><a href="causal-survival-analysis-stata.html#cb420-29"></a><span class="co">/**Hazard ratios**/</span></span>
-<span id="cb420-30"><a href="causal-survival-analysis-stata.html#cb420-30"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs_surv, <span class="kw">clear</span></span>
-<span id="cb420-31"><a href="causal-survival-analysis-stata.html#cb420-31"></a></span>
-<span id="cb420-32"><a href="causal-survival-analysis-stata.html#cb420-32"></a>*Fit a pooled <span class="kw">logistic</span> hazards <span class="kw">model</span> *</span>
-<span id="cb420-33"><a href="causal-survival-analysis-stata.html#cb420-33"></a><span class="kw">logistic</span> event qsmk qsmk#c.time qsmk#c.time#c.time c.time c.time#c.time </span>
-<span id="cb420-34"><a href="causal-survival-analysis-stata.html#cb420-34"></a></span>
-<span id="cb420-35"><a href="causal-survival-analysis-stata.html#cb420-35"></a><span class="co">/**Survival curves: run regression then do:**/</span></span>
-<span id="cb420-36"><a href="causal-survival-analysis-stata.html#cb420-36"></a></span>
-<span id="cb420-37"><a href="causal-survival-analysis-stata.html#cb420-37"></a>*Create a dataset with <span class="ot">all</span> time points under each treatment <span class="dv">level</span>*</span>
-<span id="cb420-38"><a href="causal-survival-analysis-stata.html#cb420-38"></a>*Re-expand <span class="kw">data</span> with <span class="bn">rows</span> <span class="kw">for</span> <span class="ot">all</span> timepoints*</span>
-<span id="cb420-39"><a href="causal-survival-analysis-stata.html#cb420-39"></a><span class="kw">drop</span> <span class="kw">if</span> time != 0</span>
-<span id="cb420-40"><a href="causal-survival-analysis-stata.html#cb420-40"></a>expand 120 <span class="kw">if</span> time ==0 </span>
-<span id="cb420-41"><a href="causal-survival-analysis-stata.html#cb420-41"></a><span class="kw">bysort</span> seqn: <span class="kw">replace</span> time = <span class="dt">_n</span> - 1   </span>
-<span id="cb420-42"><a href="causal-survival-analysis-stata.html#cb420-42"></a>        </span>
-<span id="cb420-43"><a href="causal-survival-analysis-stata.html#cb420-43"></a>*Create 2 copies <span class="kw">of</span> each subject, and <span class="kw">set</span> outcome to <span class="fu">missing</span> and treatment -- <span class="kw">use</span> only the newobs*</span>
-<span id="cb420-44"><a href="causal-survival-analysis-stata.html#cb420-44"></a>expand 2 , <span class="kw">generate</span>(interv) </span>
-<span id="cb420-45"><a href="causal-survival-analysis-stata.html#cb420-45"></a><span class="kw">replace</span> qsmk = interv   </span>
-<span id="cb420-46"><a href="causal-survival-analysis-stata.html#cb420-46"></a></span>
-<span id="cb420-47"><a href="causal-survival-analysis-stata.html#cb420-47"></a>*Generate predicted event and survival probabilities <span class="kw">for</span> each person each <span class="fu">month</span> <span class="kw">in</span> copies*       </span>
-<span id="cb420-48"><a href="causal-survival-analysis-stata.html#cb420-48"></a><span class="kw">predict</span> pevent_k, pr</span>
-<span id="cb420-49"><a href="causal-survival-analysis-stata.html#cb420-49"></a><span class="kw">gen</span> psurv_k = 1-pevent_k</span>
-<span id="cb420-50"><a href="causal-survival-analysis-stata.html#cb420-50"></a><span class="kw">keep</span> seqn time qsmk interv psurv_k </span>
-<span id="cb420-51"><a href="causal-survival-analysis-stata.html#cb420-51"></a></span>
-<span id="cb420-52"><a href="causal-survival-analysis-stata.html#cb420-52"></a>*Within copies, <span class="kw">generate</span> predicted survival <span class="bn">over</span> time*</span>
-<span id="cb420-53"><a href="causal-survival-analysis-stata.html#cb420-53"></a>*Remember, survival is the product <span class="kw">of</span> conditional survival probabilities <span class="kw">in</span> each interval*  </span>
-<span id="cb420-54"><a href="causal-survival-analysis-stata.html#cb420-54"></a><span class="kw">sort</span> seqn interv time</span>
-<span id="cb420-55"><a href="causal-survival-analysis-stata.html#cb420-55"></a><span class="kw">gen</span> _t = time + 1</span>
-<span id="cb420-56"><a href="causal-survival-analysis-stata.html#cb420-56"></a><span class="kw">gen</span> psurv = psurv_k <span class="kw">if</span> _t ==1       </span>
-<span id="cb420-57"><a href="causal-survival-analysis-stata.html#cb420-57"></a><span class="kw">bysort</span> seqn interv: <span class="kw">replace</span> psurv = psurv_k*psurv[_t-1] <span class="kw">if</span> _t &gt;1 </span>
-<span id="cb420-58"><a href="causal-survival-analysis-stata.html#cb420-58"></a></span>
-<span id="cb420-59"><a href="causal-survival-analysis-stata.html#cb420-59"></a>*Display 10-<span class="fu">year</span> standardized survival, under interventions*</span>
-<span id="cb420-60"><a href="causal-survival-analysis-stata.html#cb420-60"></a>*Note: since time starts <span class="fu">at</span> 0, <span class="fu">month</span> 119 is 10-<span class="fu">year</span> survival*</span>
-<span id="cb420-61"><a href="causal-survival-analysis-stata.html#cb420-61"></a><span class="kw">by</span> interv, <span class="kw">sort</span>: <span class="kw">summarize</span> psurv <span class="kw">if</span> time == 119</span>
-<span id="cb420-62"><a href="causal-survival-analysis-stata.html#cb420-62"></a></span>
-<span id="cb420-63"><a href="causal-survival-analysis-stata.html#cb420-63"></a>*Graph <span class="kw">of</span> standardized survival <span class="bn">over</span> time, under interventions*</span>
-<span id="cb420-64"><a href="causal-survival-analysis-stata.html#cb420-64"></a>*Note, we want our <span class="kw">graph</span> to <span class="bn">start</span> <span class="fu">at</span> 100% survival, so add an extra time point with P(surv) = 1*</span>
-<span id="cb420-65"><a href="causal-survival-analysis-stata.html#cb420-65"></a>expand 2 <span class="kw">if</span> time ==0, <span class="kw">generate</span>(newtime)</span>
-<span id="cb420-66"><a href="causal-survival-analysis-stata.html#cb420-66"></a><span class="kw">replace</span> psurv  = 1 <span class="kw">if</span> newtime == 1</span>
-<span id="cb420-67"><a href="causal-survival-analysis-stata.html#cb420-67"></a><span class="kw">gen</span> time2 = 0 <span class="kw">if</span> newtime ==1</span>
-<span id="cb420-68"><a href="causal-survival-analysis-stata.html#cb420-68"></a><span class="kw">replace</span> time2 = time + 1 <span class="kw">if</span> newtime == 0</span>
-<span id="cb420-69"><a href="causal-survival-analysis-stata.html#cb420-69"></a>*Separate the survival probabilities to allow plotting <span class="kw">by</span> intervention <span class="kw">on</span> qsmk*</span>
-<span id="cb420-70"><a href="causal-survival-analysis-stata.html#cb420-70"></a><span class="kw">separate</span> psurv, <span class="kw">by</span>(interv) </span>
-<span id="cb420-71"><a href="causal-survival-analysis-stata.html#cb420-71"></a>*Plot the curves*</span>
-<span id="cb420-72"><a href="causal-survival-analysis-stata.html#cb420-72"></a><span class="kw">twoway</span> (<span class="kw">line</span> psurv0 time2, <span class="kw">sort</span>) (<span class="kw">line</span> psurv1 time2, <span class="kw">sort</span>) <span class="kw">if</span> interv &gt; -1, <span class="kw">ylabel</span>(0.5(0.1)1.0) <span class="kw">xlabel</span>(0(12)120) <span class="bn">ytitle</span>(<span class="st">&quot;Survival probability&quot;</span>) <span class="bn">xtitle</span>(<span class="st">&quot;Months of follow-up&quot;</span>) <span class="bn">legend</span>(<span class="kw">label</span>(1 <span class="st">&quot;A=0&quot;</span>) <span class="kw">label</span>(2 <span class="st">&quot;A=1&quot;</span>))</span>
-<span id="cb420-73"><a href="causal-survival-analysis-stata.html#cb420-73"></a><span class="kw">qui</span> <span class="kw">gr</span> <span class="kw">export</span> ./figs/stata-fig-17-2.png, <span class="kw">replace</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb6-1"><a href="causal-survival-analysis-stata.html#cb6-1"></a><span class="co">/**Create person-month dataset for survival analyses**/</span></span>
+<span id="cb6-2"><a href="causal-survival-analysis-stata.html#cb6-2"></a></span>
+<span id="cb6-3"><a href="causal-survival-analysis-stata.html#cb6-3"></a><span class="co">/* We want our new dataset to include 1 observation per person </span></span>
+<span id="cb6-4"><a href="causal-survival-analysis-stata.html#cb6-4"></a><span class="co">per month alive, starting at time = 0.</span></span>
+<span id="cb6-5"><a href="causal-survival-analysis-stata.html#cb6-5"></a><span class="co">Individuals who survive to the end of follow-up will have </span></span>
+<span id="cb6-6"><a href="causal-survival-analysis-stata.html#cb6-6"></a><span class="co">119 time points</span></span>
+<span id="cb6-7"><a href="causal-survival-analysis-stata.html#cb6-7"></a><span class="co">Individuals who die will have survtime - 1 time points*/</span></span>
+<span id="cb6-8"><a href="causal-survival-analysis-stata.html#cb6-8"></a></span>
+<span id="cb6-9"><a href="causal-survival-analysis-stata.html#cb6-9"></a>* <span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span>
+<span id="cb6-10"><a href="causal-survival-analysis-stata.html#cb6-10"></a></span>
+<span id="cb6-11"><a href="causal-survival-analysis-stata.html#cb6-11"></a><span class="kw">gen</span> survtime = .</span>
+<span id="cb6-12"><a href="causal-survival-analysis-stata.html#cb6-12"></a><span class="kw">replace</span> survtime = 120 <span class="kw">if</span> death == 0</span>
+<span id="cb6-13"><a href="causal-survival-analysis-stata.html#cb6-13"></a><span class="kw">replace</span> survtime = (yrdth - 83)*12 + modth <span class="kw">if</span> death ==1</span>
+<span id="cb6-14"><a href="causal-survival-analysis-stata.html#cb6-14"></a></span>
+<span id="cb6-15"><a href="causal-survival-analysis-stata.html#cb6-15"></a>*expand <span class="kw">data</span> to person-time*</span>
+<span id="cb6-16"><a href="causal-survival-analysis-stata.html#cb6-16"></a><span class="kw">gen</span> time = 0</span>
+<span id="cb6-17"><a href="causal-survival-analysis-stata.html#cb6-17"></a>expand survtime <span class="kw">if</span> time == 0</span>
+<span id="cb6-18"><a href="causal-survival-analysis-stata.html#cb6-18"></a><span class="kw">bysort</span> seqn: <span class="kw">replace</span> time = <span class="dt">_n</span> - 1</span>
+<span id="cb6-19"><a href="causal-survival-analysis-stata.html#cb6-19"></a></span>
+<span id="cb6-20"><a href="causal-survival-analysis-stata.html#cb6-20"></a>*Create event <span class="kw">variable</span>*</span>
+<span id="cb6-21"><a href="causal-survival-analysis-stata.html#cb6-21"></a><span class="kw">gen</span> event = 0</span>
+<span id="cb6-22"><a href="causal-survival-analysis-stata.html#cb6-22"></a><span class="kw">replace</span> event = 1 <span class="kw">if</span> time == survtime - 1 &amp; death == 1</span>
+<span id="cb6-23"><a href="causal-survival-analysis-stata.html#cb6-23"></a><span class="kw">tab</span> event</span>
+<span id="cb6-24"><a href="causal-survival-analysis-stata.html#cb6-24"></a></span>
+<span id="cb6-25"><a href="causal-survival-analysis-stata.html#cb6-25"></a>*Create time-squared <span class="kw">variable</span> <span class="kw">for</span> analyses*</span>
+<span id="cb6-26"><a href="causal-survival-analysis-stata.html#cb6-26"></a><span class="kw">gen</span> timesq = time*time</span>
+<span id="cb6-27"><a href="causal-survival-analysis-stata.html#cb6-27"></a></span>
+<span id="cb6-28"><a href="causal-survival-analysis-stata.html#cb6-28"></a>*Save the dataset to your working directory <span class="kw">for</span> future <span class="kw">use</span>*</span>
+<span id="cb6-29"><a href="causal-survival-analysis-stata.html#cb6-29"></a><span class="kw">qui</span> <span class="kw">save</span> ./<span class="kw">data</span>/nhefs_surv, <span class="kw">replace</span></span>
+<span id="cb6-30"><a href="causal-survival-analysis-stata.html#cb6-30"></a></span>
+<span id="cb6-31"><a href="causal-survival-analysis-stata.html#cb6-31"></a><span class="co">/**Hazard ratios**/</span></span>
+<span id="cb6-32"><a href="causal-survival-analysis-stata.html#cb6-32"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs_surv, <span class="kw">clear</span></span>
+<span id="cb6-33"><a href="causal-survival-analysis-stata.html#cb6-33"></a></span>
+<span id="cb6-34"><a href="causal-survival-analysis-stata.html#cb6-34"></a>*Fit a pooled <span class="kw">logistic</span> hazards <span class="kw">model</span> *</span>
+<span id="cb6-35"><a href="causal-survival-analysis-stata.html#cb6-35"></a><span class="kw">logistic</span> event qsmk qsmk#c.time qsmk#c.time#c.time <span class="co">///</span></span>
+<span id="cb6-36"><a href="causal-survival-analysis-stata.html#cb6-36"></a>  c.time c.time#c.time </span>
+<span id="cb6-37"><a href="causal-survival-analysis-stata.html#cb6-37"></a></span>
+<span id="cb6-38"><a href="causal-survival-analysis-stata.html#cb6-38"></a><span class="co">/**Survival curves: run regression then do:**/</span></span>
+<span id="cb6-39"><a href="causal-survival-analysis-stata.html#cb6-39"></a></span>
+<span id="cb6-40"><a href="causal-survival-analysis-stata.html#cb6-40"></a>*Create a dataset with <span class="ot">all</span> time points under each treatment <span class="dv">level</span>*</span>
+<span id="cb6-41"><a href="causal-survival-analysis-stata.html#cb6-41"></a>*Re-expand <span class="kw">data</span> with <span class="bn">rows</span> <span class="kw">for</span> <span class="ot">all</span> timepoints*</span>
+<span id="cb6-42"><a href="causal-survival-analysis-stata.html#cb6-42"></a><span class="kw">drop</span> <span class="kw">if</span> time != 0</span>
+<span id="cb6-43"><a href="causal-survival-analysis-stata.html#cb6-43"></a>expand 120 <span class="kw">if</span> time ==0 </span>
+<span id="cb6-44"><a href="causal-survival-analysis-stata.html#cb6-44"></a><span class="kw">bysort</span> seqn: <span class="kw">replace</span> time = <span class="dt">_n</span> - 1   </span>
+<span id="cb6-45"><a href="causal-survival-analysis-stata.html#cb6-45"></a>        </span>
+<span id="cb6-46"><a href="causal-survival-analysis-stata.html#cb6-46"></a><span class="co">/*Create 2 copies of each subject, and set outcome to missing </span></span>
+<span id="cb6-47"><a href="causal-survival-analysis-stata.html#cb6-47"></a><span class="co">and treatment -- use only the newobs*/</span></span>
+<span id="cb6-48"><a href="causal-survival-analysis-stata.html#cb6-48"></a>expand 2 , <span class="kw">generate</span>(interv) </span>
+<span id="cb6-49"><a href="causal-survival-analysis-stata.html#cb6-49"></a><span class="kw">replace</span> qsmk = interv   </span>
+<span id="cb6-50"><a href="causal-survival-analysis-stata.html#cb6-50"></a></span>
+<span id="cb6-51"><a href="causal-survival-analysis-stata.html#cb6-51"></a><span class="co">/*Generate predicted event and survival probabilities </span></span>
+<span id="cb6-52"><a href="causal-survival-analysis-stata.html#cb6-52"></a><span class="co">for each person each month in copies*/</span></span>
+<span id="cb6-53"><a href="causal-survival-analysis-stata.html#cb6-53"></a><span class="kw">predict</span> pevent_k, pr</span>
+<span id="cb6-54"><a href="causal-survival-analysis-stata.html#cb6-54"></a><span class="kw">gen</span> psurv_k = 1-pevent_k</span>
+<span id="cb6-55"><a href="causal-survival-analysis-stata.html#cb6-55"></a><span class="kw">keep</span> seqn time qsmk interv psurv_k </span>
+<span id="cb6-56"><a href="causal-survival-analysis-stata.html#cb6-56"></a></span>
+<span id="cb6-57"><a href="causal-survival-analysis-stata.html#cb6-57"></a>*Within copies, <span class="kw">generate</span> predicted survival <span class="bn">over</span> time*</span>
+<span id="cb6-58"><a href="causal-survival-analysis-stata.html#cb6-58"></a>*Remember, survival is the product <span class="kw">of</span> conditional survival probabilities <span class="kw">in</span> each interval*  </span>
+<span id="cb6-59"><a href="causal-survival-analysis-stata.html#cb6-59"></a><span class="kw">sort</span> seqn interv time</span>
+<span id="cb6-60"><a href="causal-survival-analysis-stata.html#cb6-60"></a><span class="kw">gen</span> _t = time + 1</span>
+<span id="cb6-61"><a href="causal-survival-analysis-stata.html#cb6-61"></a><span class="kw">gen</span> psurv = psurv_k <span class="kw">if</span> _t ==1       </span>
+<span id="cb6-62"><a href="causal-survival-analysis-stata.html#cb6-62"></a><span class="kw">bysort</span> seqn interv: <span class="kw">replace</span> psurv = psurv_k*psurv[_t-1] <span class="kw">if</span> _t &gt;1 </span>
+<span id="cb6-63"><a href="causal-survival-analysis-stata.html#cb6-63"></a></span>
+<span id="cb6-64"><a href="causal-survival-analysis-stata.html#cb6-64"></a>*Display 10-<span class="fu">year</span> standardized survival, under interventions*</span>
+<span id="cb6-65"><a href="causal-survival-analysis-stata.html#cb6-65"></a>*Note: since time starts <span class="fu">at</span> 0, <span class="fu">month</span> 119 is 10-<span class="fu">year</span> survival*</span>
+<span id="cb6-66"><a href="causal-survival-analysis-stata.html#cb6-66"></a><span class="kw">by</span> interv, <span class="kw">sort</span>: <span class="kw">summarize</span> psurv <span class="kw">if</span> time == 119</span>
+<span id="cb6-67"><a href="causal-survival-analysis-stata.html#cb6-67"></a></span>
+<span id="cb6-68"><a href="causal-survival-analysis-stata.html#cb6-68"></a>*Graph <span class="kw">of</span> standardized survival <span class="bn">over</span> time, under interventions*</span>
+<span id="cb6-69"><a href="causal-survival-analysis-stata.html#cb6-69"></a><span class="co">/*Note, we want our graph to start at 100% survival, </span></span>
+<span id="cb6-70"><a href="causal-survival-analysis-stata.html#cb6-70"></a><span class="co">so add an extra time point with P(surv) = 1*/</span></span>
+<span id="cb6-71"><a href="causal-survival-analysis-stata.html#cb6-71"></a>expand 2 <span class="kw">if</span> time ==0, <span class="kw">generate</span>(newtime)</span>
+<span id="cb6-72"><a href="causal-survival-analysis-stata.html#cb6-72"></a><span class="kw">replace</span> psurv  = 1 <span class="kw">if</span> newtime == 1</span>
+<span id="cb6-73"><a href="causal-survival-analysis-stata.html#cb6-73"></a><span class="kw">gen</span> time2 = 0 <span class="kw">if</span> newtime ==1</span>
+<span id="cb6-74"><a href="causal-survival-analysis-stata.html#cb6-74"></a><span class="kw">replace</span> time2 = time + 1 <span class="kw">if</span> newtime == 0</span>
+<span id="cb6-75"><a href="causal-survival-analysis-stata.html#cb6-75"></a></span>
+<span id="cb6-76"><a href="causal-survival-analysis-stata.html#cb6-76"></a><span class="co">/*Separate the survival probabilities to allow plotting by </span></span>
+<span id="cb6-77"><a href="causal-survival-analysis-stata.html#cb6-77"></a><span class="co">intervention on qsmk*/</span></span>
+<span id="cb6-78"><a href="causal-survival-analysis-stata.html#cb6-78"></a><span class="kw">separate</span> psurv, <span class="kw">by</span>(interv)</span>
+<span id="cb6-79"><a href="causal-survival-analysis-stata.html#cb6-79"></a></span>
+<span id="cb6-80"><a href="causal-survival-analysis-stata.html#cb6-80"></a>*Plot the curves*</span>
+<span id="cb6-81"><a href="causal-survival-analysis-stata.html#cb6-81"></a><span class="kw">twoway</span> (<span class="kw">line</span> psurv0 time2, <span class="kw">sort</span>) <span class="co">///</span></span>
+<span id="cb6-82"><a href="causal-survival-analysis-stata.html#cb6-82"></a>  (<span class="kw">line</span> psurv1 time2, <span class="kw">sort</span>) <span class="kw">if</span> interv &gt; -1 <span class="co">///</span></span>
+<span id="cb6-83"><a href="causal-survival-analysis-stata.html#cb6-83"></a>  , <span class="kw">ylabel</span>(0.5(0.1)1.0) <span class="kw">xlabel</span>(0(12)120) <span class="co">///</span></span>
+<span id="cb6-84"><a href="causal-survival-analysis-stata.html#cb6-84"></a>  <span class="bn">ytitle</span>(<span class="st">&quot;Survival probability&quot;</span>) <span class="bn">xtitle</span>(<span class="st">&quot;Months of follow-up&quot;</span>) <span class="co">///</span></span>
+<span id="cb6-85"><a href="causal-survival-analysis-stata.html#cb6-85"></a>  <span class="bn">legend</span>(<span class="kw">label</span>(1 <span class="st">&quot;A=0&quot;</span>) <span class="kw">label</span>(2 <span class="st">&quot;A=1&quot;</span>))</span>
+<span id="cb6-86"><a href="causal-survival-analysis-stata.html#cb6-86"></a><span class="kw">qui</span> <span class="kw">gr</span> <span class="kw">export</span> ./figs/stata-fig-17-2.png, <span class="kw">replace</span></span></code></pre></div>
 <pre><code>(1,566 missing values generated)
 
 (1,275 real changes made)
@@ -436,24 +447,25 @@ Logistic regression                             Number of obs     =    171,076
                                                 Prob &gt; chi2       =     0.0002
 Log likelihood = -2134.1973                     Pseudo R2         =     0.0057
 
--------------------------------------------------------------------------------
-        event | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
---------------+----------------------------------------------------------------
-         qsmk |   1.402527   .6000025     0.79   0.429     .6064099    3.243815
-              |
-  qsmk#c.time |
-Smoking ce..  |   1.012318   .0162153     0.76   0.445     .9810299    1.044603
-              |
-  qsmk#c.time#|
-       c.time |
-Smoking ce..  |   .9998342   .0001321    -1.25   0.210     .9995753    1.000093
-              |
-         time |   1.022048   .0090651     2.46   0.014     1.004434    1.039971
-              |
-c.time#c.time |   .9998637   .0000699    -1.95   0.051     .9997266    1.000001
-              |
-        _cons |   .0007992   .0001972   -28.90   0.000     .0004927    .0012963
--------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+       event | Odds Ratio   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        qsmk |   1.402527   .6000025     0.79   0.429     .6064099    3.243815
+             |
+ qsmk#c.time |
+Smoking c..  |   1.012318   .0162153     0.76   0.445     .9810299    1.044603
+             |
+ qsmk#c.time#|
+      c.time |
+Smoking c..  |   .9998342   .0001321    -1.25   0.210     .9995753    1.000093
+             |
+        time |   1.022048   .0090651     2.46   0.014     1.004434    1.039971
+             |
+      c.time#|
+      c.time |   .9998637   .0000699    -1.95   0.051     .9997266    1.000001
+             |
+       _cons |   .0007992   .0001972   -28.90   0.000     .0004927    .0012963
+------------------------------------------------------------------------------
 Note: _cons estimates baseline odds.
 
 (169,510 observations deleted)
@@ -476,14 +488,14 @@ Note: _cons estimates baseline odds.
 (372,708 real changes made)
 
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -&gt; interv = 0
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
        psurv |      1,566    .8279829           0   .8279829   .8279829
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -&gt; interv = 1
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
@@ -501,11 +513,11 @@ Note: _cons estimates baseline odds.
 
               storage   display    value
 variable name   type    format     label      variable label
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 psurv0          float   %9.0g                 psurv, interv == 0
 psurv1          float   %9.0g                 psurv, interv == 1
 </code></pre>
-<p><img src="figs/stata-fig-17-2.png" width="955" /></p>
+<p><img src="figs/stata-fig-17-2.png" width="518" /></p>
 </div>
 <div id="program-17.3-1" class="section level2">
 <h2>Program 17.3</h2>
@@ -515,124 +527,148 @@ psurv1          float   %9.0g                 psurv, interv == 1
 <li>Section 17.4</li>
 <li>Generates Figure 17.6</li>
 </ul>
-<div class="sourceCode" id="cb422"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb422-1"><a href="causal-survival-analysis-stata.html#cb422-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs_surv, <span class="kw">clear</span></span>
-<span id="cb422-2"><a href="causal-survival-analysis-stata.html#cb422-2"></a></span>
-<span id="cb422-3"><a href="causal-survival-analysis-stata.html#cb422-3"></a><span class="kw">keep</span> seqn event qsmk time sex race age education smokeintensity smkintensity82_71  smokeyrs exercise active wt71</span>
-<span id="cb422-4"><a href="causal-survival-analysis-stata.html#cb422-4"></a><span class="kw">preserve</span> </span>
-<span id="cb422-5"><a href="causal-survival-analysis-stata.html#cb422-5"></a></span>
-<span id="cb422-6"><a href="causal-survival-analysis-stata.html#cb422-6"></a>*Estimate weights*</span>
-<span id="cb422-7"><a href="causal-survival-analysis-stata.html#cb422-7"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
-<span id="cb422-8"><a href="causal-survival-analysis-stata.html#cb422-8"></a>c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 <span class="kw">if</span> time == 0</span>
-<span id="cb422-9"><a href="causal-survival-analysis-stata.html#cb422-9"></a><span class="kw">predict</span> p_qsmk, pr</span>
-<span id="cb422-10"><a href="causal-survival-analysis-stata.html#cb422-10"></a><span class="kw">logit</span> qsmk <span class="kw">if</span> time ==0 </span>
-<span id="cb422-11"><a href="causal-survival-analysis-stata.html#cb422-11"></a><span class="kw">predict</span> num, pr</span>
-<span id="cb422-12"><a href="causal-survival-analysis-stata.html#cb422-12"></a><span class="kw">gen</span> <span class="kw">sw</span>=num/p_qsmk <span class="kw">if</span> qsmk==1</span>
-<span id="cb422-13"><a href="causal-survival-analysis-stata.html#cb422-13"></a><span class="kw">replace</span> <span class="kw">sw</span>=(1-num)/(1-p_qsmk) <span class="kw">if</span> qsmk==0</span>
-<span id="cb422-14"><a href="causal-survival-analysis-stata.html#cb422-14"></a><span class="kw">summarize</span> <span class="kw">sw</span></span>
-<span id="cb422-15"><a href="causal-survival-analysis-stata.html#cb422-15"></a></span>
-<span id="cb422-16"><a href="causal-survival-analysis-stata.html#cb422-16"></a>*IP weighted survival <span class="kw">by</span> smoking cessation*</span>
-<span id="cb422-17"><a href="causal-survival-analysis-stata.html#cb422-17"></a><span class="kw">logit</span> event qsmk qsmk#c.time qsmk#c.time#c.time c.time c.time#c.time [<span class="kw">pweight</span>=<span class="kw">sw</span>] , <span class="kw">cluster</span>(seqn) </span>
-<span id="cb422-18"><a href="causal-survival-analysis-stata.html#cb422-18"></a></span>
-<span id="cb422-19"><a href="causal-survival-analysis-stata.html#cb422-19"></a>*Create a dataset with <span class="ot">all</span> time points under each treatment <span class="dv">level</span>*</span>
-<span id="cb422-20"><a href="causal-survival-analysis-stata.html#cb422-20"></a>*Re-expand <span class="kw">data</span> with <span class="bn">rows</span> <span class="kw">for</span> <span class="ot">all</span> timepoints*</span>
-<span id="cb422-21"><a href="causal-survival-analysis-stata.html#cb422-21"></a><span class="kw">drop</span> <span class="kw">if</span> time != 0</span>
-<span id="cb422-22"><a href="causal-survival-analysis-stata.html#cb422-22"></a>expand 120 <span class="kw">if</span> time ==0 </span>
-<span id="cb422-23"><a href="causal-survival-analysis-stata.html#cb422-23"></a><span class="kw">bysort</span> seqn: <span class="kw">replace</span> time = <span class="dt">_n</span> - 1       </span>
-<span id="cb422-24"><a href="causal-survival-analysis-stata.html#cb422-24"></a>        </span>
-<span id="cb422-25"><a href="causal-survival-analysis-stata.html#cb422-25"></a>*Create 2 copies <span class="kw">of</span> each subject, and <span class="kw">set</span> outcome to <span class="fu">missing</span> and treatment -- <span class="kw">use</span> only the newobs*</span>
-<span id="cb422-26"><a href="causal-survival-analysis-stata.html#cb422-26"></a>expand 2 , <span class="kw">generate</span>(interv) </span>
-<span id="cb422-27"><a href="causal-survival-analysis-stata.html#cb422-27"></a><span class="kw">replace</span> qsmk = interv   </span>
-<span id="cb422-28"><a href="causal-survival-analysis-stata.html#cb422-28"></a></span>
-<span id="cb422-29"><a href="causal-survival-analysis-stata.html#cb422-29"></a>*Generate predicted event and survival probabilities <span class="kw">for</span> each person each <span class="fu">month</span> <span class="kw">in</span> copies*       </span>
-<span id="cb422-30"><a href="causal-survival-analysis-stata.html#cb422-30"></a><span class="kw">predict</span> pevent_k, pr</span>
-<span id="cb422-31"><a href="causal-survival-analysis-stata.html#cb422-31"></a><span class="kw">gen</span> psurv_k = 1-pevent_k</span>
-<span id="cb422-32"><a href="causal-survival-analysis-stata.html#cb422-32"></a><span class="kw">keep</span> seqn time qsmk interv psurv_k </span>
-<span id="cb422-33"><a href="causal-survival-analysis-stata.html#cb422-33"></a></span>
-<span id="cb422-34"><a href="causal-survival-analysis-stata.html#cb422-34"></a>*Within copies, <span class="kw">generate</span> predicted survival <span class="bn">over</span> time*</span>
-<span id="cb422-35"><a href="causal-survival-analysis-stata.html#cb422-35"></a>*Remember, survival is the product <span class="kw">of</span> conditional survival probabilities <span class="kw">in</span> each interval*  </span>
-<span id="cb422-36"><a href="causal-survival-analysis-stata.html#cb422-36"></a><span class="kw">sort</span> seqn interv time</span>
-<span id="cb422-37"><a href="causal-survival-analysis-stata.html#cb422-37"></a><span class="kw">gen</span> _t = time + 1</span>
-<span id="cb422-38"><a href="causal-survival-analysis-stata.html#cb422-38"></a><span class="kw">gen</span> psurv = psurv_k <span class="kw">if</span> _t ==1       </span>
-<span id="cb422-39"><a href="causal-survival-analysis-stata.html#cb422-39"></a><span class="kw">bysort</span> seqn interv: <span class="kw">replace</span> psurv = psurv_k*psurv[_t-1] <span class="kw">if</span> _t &gt;1 </span>
-<span id="cb422-40"><a href="causal-survival-analysis-stata.html#cb422-40"></a></span>
-<span id="cb422-41"><a href="causal-survival-analysis-stata.html#cb422-41"></a>*Display 10-<span class="fu">year</span> standardized survival, under interventions*</span>
-<span id="cb422-42"><a href="causal-survival-analysis-stata.html#cb422-42"></a>*Note: since time starts <span class="fu">at</span> 0, <span class="fu">month</span> 119 is 10-<span class="fu">year</span> survival*</span>
-<span id="cb422-43"><a href="causal-survival-analysis-stata.html#cb422-43"></a><span class="kw">by</span> interv, <span class="kw">sort</span>: <span class="kw">summarize</span> psurv <span class="kw">if</span> time == 119</span>
-<span id="cb422-44"><a href="causal-survival-analysis-stata.html#cb422-44"></a></span>
-<span id="cb422-45"><a href="causal-survival-analysis-stata.html#cb422-45"></a><span class="kw">quietly</span> <span class="kw">summarize</span> psurv <span class="kw">if</span>(interv==0 &amp; time ==119)</span>
-<span id="cb422-46"><a href="causal-survival-analysis-stata.html#cb422-46"></a><span class="fu">matrix</span> input observe = (0,<span class="ot">`r(mean)&#39;</span>)</span>
-<span id="cb422-47"><a href="causal-survival-analysis-stata.html#cb422-47"></a><span class="kw">quietly</span> <span class="kw">summarize</span> psurv <span class="kw">if</span>(interv==1 &amp; time ==119)</span>
-<span id="cb422-48"><a href="causal-survival-analysis-stata.html#cb422-48"></a><span class="fu">matrix</span> observe = (observe \1,<span class="ot">`r(mean)&#39;</span>)</span>
-<span id="cb422-49"><a href="causal-survival-analysis-stata.html#cb422-49"></a><span class="fu">matrix</span> observe = (observe \3, observe[2,2]-observe[1,2]) </span>
-<span id="cb422-50"><a href="causal-survival-analysis-stata.html#cb422-50"></a><span class="fu">matrix</span> <span class="ot">list</span> observe</span>
-<span id="cb422-51"><a href="causal-survival-analysis-stata.html#cb422-51"></a></span>
-<span id="cb422-52"><a href="causal-survival-analysis-stata.html#cb422-52"></a>*Graph <span class="kw">of</span> standardized survival <span class="bn">over</span> time, under interventions*</span>
-<span id="cb422-53"><a href="causal-survival-analysis-stata.html#cb422-53"></a>*Note: since our outcome <span class="kw">model</span> has no covariates, we can plot psurv directly. If we had covariates we would need to stratify <span class="kw">or</span> average across the <span class="kw">values</span>*</span>
-<span id="cb422-54"><a href="causal-survival-analysis-stata.html#cb422-54"></a>expand 2 <span class="kw">if</span> time ==0, <span class="kw">generate</span>(newtime)</span>
-<span id="cb422-55"><a href="causal-survival-analysis-stata.html#cb422-55"></a><span class="kw">replace</span> psurv  = 1 <span class="kw">if</span> newtime == 1</span>
-<span id="cb422-56"><a href="causal-survival-analysis-stata.html#cb422-56"></a><span class="kw">gen</span> time2 = 0 <span class="kw">if</span> newtime ==1</span>
-<span id="cb422-57"><a href="causal-survival-analysis-stata.html#cb422-57"></a><span class="kw">replace</span> time2 = time + 1 <span class="kw">if</span> newtime == 0</span>
-<span id="cb422-58"><a href="causal-survival-analysis-stata.html#cb422-58"></a><span class="kw">separate</span> psurv, <span class="kw">by</span>(interv) </span>
-<span id="cb422-59"><a href="causal-survival-analysis-stata.html#cb422-59"></a><span class="kw">twoway</span> (<span class="kw">line</span> psurv0 time2, <span class="kw">sort</span>) (<span class="kw">line</span> psurv1 time2, <span class="kw">sort</span>) <span class="kw">if</span> interv &gt; -1, <span class="kw">ylabel</span>(0.5(0.1)1.0) <span class="kw">xlabel</span>(0(12)120) <span class="bn">ytitle</span>(<span class="st">&quot;Survival probability&quot;</span>) <span class="bn">xtitle</span>(<span class="st">&quot;Months of follow-up&quot;</span>) <span class="bn">legend</span>(<span class="kw">label</span>(1 <span class="st">&quot;A=0&quot;</span>) <span class="kw">label</span>(2 <span class="st">&quot;A=1&quot;</span>))</span>
-<span id="cb422-60"><a href="causal-survival-analysis-stata.html#cb422-60"></a><span class="kw">qui</span> <span class="kw">gr</span> <span class="kw">export</span> ./figs/stata-fig-17-3.png, <span class="kw">replace</span></span>
-<span id="cb422-61"><a href="causal-survival-analysis-stata.html#cb422-61"></a></span>
-<span id="cb422-62"><a href="causal-survival-analysis-stata.html#cb422-62"></a>*remove extra timepoint*</span>
-<span id="cb422-63"><a href="causal-survival-analysis-stata.html#cb422-63"></a><span class="kw">drop</span> <span class="kw">if</span> newtime == 1</span>
-<span id="cb422-64"><a href="causal-survival-analysis-stata.html#cb422-64"></a><span class="kw">drop</span> time2</span>
-<span id="cb422-65"><a href="causal-survival-analysis-stata.html#cb422-65"></a></span>
-<span id="cb422-66"><a href="causal-survival-analysis-stata.html#cb422-66"></a><span class="kw">restore</span></span>
-<span id="cb422-67"><a href="causal-survival-analysis-stata.html#cb422-67"></a></span>
-<span id="cb422-68"><a href="causal-survival-analysis-stata.html#cb422-68"></a>**Bootstraps**</span>
-<span id="cb422-69"><a href="causal-survival-analysis-stata.html#cb422-69"></a><span class="kw">qui</span> <span class="kw">save</span> ./<span class="kw">data</span>/nhefs_std1 , <span class="kw">replace</span></span>
-<span id="cb422-70"><a href="causal-survival-analysis-stata.html#cb422-70"></a> </span>
-<span id="cb422-71"><a href="causal-survival-analysis-stata.html#cb422-71"></a><span class="kw">capture</span> <span class="kw">program</span> <span class="kw">drop</span> bootipw_surv </span>
-<span id="cb422-72"><a href="causal-survival-analysis-stata.html#cb422-72"></a><span class="kw">program</span> <span class="kw">define</span> bootipw_surv , rclass</span>
-<span id="cb422-73"><a href="causal-survival-analysis-stata.html#cb422-73"></a>    <span class="kw">use</span> ./<span class="kw">data</span>/nhefs_std1 , <span class="kw">clear</span></span>
-<span id="cb422-74"><a href="causal-survival-analysis-stata.html#cb422-74"></a>        <span class="kw">preserve</span></span>
-<span id="cb422-75"><a href="causal-survival-analysis-stata.html#cb422-75"></a>        <span class="kw">bsample</span>, <span class="kw">cluster</span>(seqn) idcluster(newseqn)   </span>
-<span id="cb422-76"><a href="causal-survival-analysis-stata.html#cb422-76"></a>        </span>
-<span id="cb422-77"><a href="causal-survival-analysis-stata.html#cb422-77"></a>        <span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
-<span id="cb422-78"><a href="causal-survival-analysis-stata.html#cb422-78"></a>        c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 <span class="kw">if</span> time == 0</span>
-<span id="cb422-79"><a href="causal-survival-analysis-stata.html#cb422-79"></a>        <span class="kw">predict</span> p_qsmk, pr</span>
-<span id="cb422-80"><a href="causal-survival-analysis-stata.html#cb422-80"></a>        <span class="kw">logit</span> qsmk <span class="kw">if</span> time ==0 </span>
-<span id="cb422-81"><a href="causal-survival-analysis-stata.html#cb422-81"></a>        <span class="kw">predict</span> num, pr</span>
-<span id="cb422-82"><a href="causal-survival-analysis-stata.html#cb422-82"></a>        <span class="kw">gen</span> <span class="kw">sw</span>=num/p_qsmk <span class="kw">if</span> qsmk==1</span>
-<span id="cb422-83"><a href="causal-survival-analysis-stata.html#cb422-83"></a>        <span class="kw">replace</span> <span class="kw">sw</span>=(1-num)/(1-p_qsmk) <span class="kw">if</span> qsmk==0</span>
-<span id="cb422-84"><a href="causal-survival-analysis-stata.html#cb422-84"></a></span>
-<span id="cb422-85"><a href="causal-survival-analysis-stata.html#cb422-85"></a>        <span class="kw">logit</span> event qsmk qsmk#c.time qsmk#c.time#c.time c.time c.time#c.time  [<span class="kw">pweight</span>=<span class="kw">sw</span>] , <span class="kw">cluster</span>(newseqn) </span>
-<span id="cb422-86"><a href="causal-survival-analysis-stata.html#cb422-86"></a>    </span>
-<span id="cb422-87"><a href="causal-survival-analysis-stata.html#cb422-87"></a>        <span class="kw">drop</span> <span class="kw">if</span> time != 0</span>
-<span id="cb422-88"><a href="causal-survival-analysis-stata.html#cb422-88"></a>        expand 120 <span class="kw">if</span> time ==0 </span>
-<span id="cb422-89"><a href="causal-survival-analysis-stata.html#cb422-89"></a>        <span class="kw">bysort</span> newseqn: <span class="kw">replace</span> time = <span class="dt">_n</span> - 1        </span>
-<span id="cb422-90"><a href="causal-survival-analysis-stata.html#cb422-90"></a>        expand 2 , <span class="kw">generate</span>(interv_b) </span>
-<span id="cb422-91"><a href="causal-survival-analysis-stata.html#cb422-91"></a>        <span class="kw">replace</span> qsmk = interv_b </span>
-<span id="cb422-92"><a href="causal-survival-analysis-stata.html#cb422-92"></a>        </span>
-<span id="cb422-93"><a href="causal-survival-analysis-stata.html#cb422-93"></a>        <span class="kw">predict</span> pevent_k, pr</span>
-<span id="cb422-94"><a href="causal-survival-analysis-stata.html#cb422-94"></a>        <span class="kw">gen</span> psurv_k = 1-pevent_k</span>
-<span id="cb422-95"><a href="causal-survival-analysis-stata.html#cb422-95"></a>        <span class="kw">keep</span> newseqn time qsmk interv_b psurv_k </span>
-<span id="cb422-96"><a href="causal-survival-analysis-stata.html#cb422-96"></a></span>
-<span id="cb422-97"><a href="causal-survival-analysis-stata.html#cb422-97"></a>        <span class="kw">sort</span> newseqn interv_b time</span>
-<span id="cb422-98"><a href="causal-survival-analysis-stata.html#cb422-98"></a>        <span class="kw">gen</span> _t = time + 1</span>
-<span id="cb422-99"><a href="causal-survival-analysis-stata.html#cb422-99"></a>        <span class="kw">gen</span> psurv = psurv_k <span class="kw">if</span> _t ==1       </span>
-<span id="cb422-100"><a href="causal-survival-analysis-stata.html#cb422-100"></a>        <span class="kw">bysort</span> newseqn interv_b: <span class="kw">replace</span> psurv = psurv_k*psurv[_t-1] <span class="kw">if</span> _t &gt;1 </span>
-<span id="cb422-101"><a href="causal-survival-analysis-stata.html#cb422-101"></a>        <span class="kw">drop</span> <span class="kw">if</span> time != 119</span>
-<span id="cb422-102"><a href="causal-survival-analysis-stata.html#cb422-102"></a>        <span class="kw">bysort</span> interv_b: <span class="kw">egen</span> meanS_b = <span class="kw">mean</span>(psurv)</span>
-<span id="cb422-103"><a href="causal-survival-analysis-stata.html#cb422-103"></a>        <span class="kw">keep</span> newseqn qsmk  meanS_b </span>
-<span id="cb422-104"><a href="causal-survival-analysis-stata.html#cb422-104"></a>    <span class="kw">drop</span> <span class="kw">if</span> newseqn != 1  <span class="co">/* only need one pair */</span></span>
-<span id="cb422-105"><a href="causal-survival-analysis-stata.html#cb422-105"></a>    </span>
-<span id="cb422-106"><a href="causal-survival-analysis-stata.html#cb422-106"></a>        <span class="kw">drop</span> newseqn        </span>
-<span id="cb422-107"><a href="causal-survival-analysis-stata.html#cb422-107"></a>        </span>
-<span id="cb422-108"><a href="causal-survival-analysis-stata.html#cb422-108"></a>      <span class="fu">return</span> <span class="fu">scalar</span> boot_0 = meanS_b[1]</span>
-<span id="cb422-109"><a href="causal-survival-analysis-stata.html#cb422-109"></a>      <span class="fu">return</span> <span class="fu">scalar</span> boot_1 = meanS_b[2]</span>
-<span id="cb422-110"><a href="causal-survival-analysis-stata.html#cb422-110"></a>      <span class="fu">return</span> <span class="fu">scalar</span>  boot_diff = <span class="fu">return</span>(boot_1) - <span class="fu">return</span>(boot_0)</span>
-<span id="cb422-111"><a href="causal-survival-analysis-stata.html#cb422-111"></a>      <span class="kw">restore</span></span>
-<span id="cb422-112"><a href="causal-survival-analysis-stata.html#cb422-112"></a><span class="kw">end</span>     </span>
-<span id="cb422-113"><a href="causal-survival-analysis-stata.html#cb422-113"></a><span class="kw">set</span> <span class="dv">rmsg</span> <span class="kw">on</span></span>
-<span id="cb422-114"><a href="causal-survival-analysis-stata.html#cb422-114"></a><span class="kw">simulate</span> PrY_a0 = <span class="fu">r</span>(boot_0) PrY_a1 = <span class="fu">r</span>(boot_1)  difference=<span class="fu">r</span>(boot_diff) , reps(10) <span class="dv">seed</span>(1)  : bootipw_surv</span>
-<span id="cb422-115"><a href="causal-survival-analysis-stata.html#cb422-115"></a><span class="kw">set</span> <span class="dv">rmsg</span> <span class="kw">off</span> </span>
-<span id="cb422-116"><a href="causal-survival-analysis-stata.html#cb422-116"></a> </span>
-<span id="cb422-117"><a href="causal-survival-analysis-stata.html#cb422-117"></a><span class="fu">matrix</span> pe = observe[1..3, 2]&#39;</span>
-<span id="cb422-118"><a href="causal-survival-analysis-stata.html#cb422-118"></a><span class="kw">bstat</span>, stat(pe) n(1629)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb8-1"><a href="causal-survival-analysis-stata.html#cb8-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs_surv, <span class="kw">clear</span></span>
+<span id="cb8-2"><a href="causal-survival-analysis-stata.html#cb8-2"></a></span>
+<span id="cb8-3"><a href="causal-survival-analysis-stata.html#cb8-3"></a><span class="kw">keep</span> seqn event qsmk time sex race age education <span class="co">///</span></span>
+<span id="cb8-4"><a href="causal-survival-analysis-stata.html#cb8-4"></a>  smokeintensity smkintensity82_71 smokeyrs <span class="co">///</span></span>
+<span id="cb8-5"><a href="causal-survival-analysis-stata.html#cb8-5"></a>  exercise active wt71</span>
+<span id="cb8-6"><a href="causal-survival-analysis-stata.html#cb8-6"></a><span class="kw">preserve</span> </span>
+<span id="cb8-7"><a href="causal-survival-analysis-stata.html#cb8-7"></a></span>
+<span id="cb8-8"><a href="causal-survival-analysis-stata.html#cb8-8"></a>*Estimate weights*</span>
+<span id="cb8-9"><a href="causal-survival-analysis-stata.html#cb8-9"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education <span class="co">///</span></span>
+<span id="cb8-10"><a href="causal-survival-analysis-stata.html#cb8-10"></a>  c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
+<span id="cb8-11"><a href="causal-survival-analysis-stata.html#cb8-11"></a>  c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise <span class="co">///</span></span>
+<span id="cb8-12"><a href="causal-survival-analysis-stata.html#cb8-12"></a>  ib(<span class="fu">last</span>).active c.wt71##c.wt71 <span class="kw">if</span> time == 0</span>
+<span id="cb8-13"><a href="causal-survival-analysis-stata.html#cb8-13"></a><span class="kw">predict</span> p_qsmk, pr</span>
+<span id="cb8-14"><a href="causal-survival-analysis-stata.html#cb8-14"></a></span>
+<span id="cb8-15"><a href="causal-survival-analysis-stata.html#cb8-15"></a><span class="kw">logit</span> qsmk <span class="kw">if</span> time ==0 </span>
+<span id="cb8-16"><a href="causal-survival-analysis-stata.html#cb8-16"></a><span class="kw">predict</span> num, pr</span>
+<span id="cb8-17"><a href="causal-survival-analysis-stata.html#cb8-17"></a><span class="kw">gen</span> <span class="kw">sw</span>=num/p_qsmk <span class="kw">if</span> qsmk==1</span>
+<span id="cb8-18"><a href="causal-survival-analysis-stata.html#cb8-18"></a><span class="kw">replace</span> <span class="kw">sw</span>=(1-num)/(1-p_qsmk) <span class="kw">if</span> qsmk==0</span>
+<span id="cb8-19"><a href="causal-survival-analysis-stata.html#cb8-19"></a><span class="kw">summarize</span> <span class="kw">sw</span></span>
+<span id="cb8-20"><a href="causal-survival-analysis-stata.html#cb8-20"></a></span>
+<span id="cb8-21"><a href="causal-survival-analysis-stata.html#cb8-21"></a>*IP weighted survival <span class="kw">by</span> smoking cessation*</span>
+<span id="cb8-22"><a href="causal-survival-analysis-stata.html#cb8-22"></a><span class="kw">logit</span> event qsmk qsmk#c.time qsmk#c.time#c.time <span class="co">///</span></span>
+<span id="cb8-23"><a href="causal-survival-analysis-stata.html#cb8-23"></a>  c.time c.time#c.time [<span class="kw">pweight</span>=<span class="kw">sw</span>] , <span class="kw">cluster</span>(seqn) </span>
+<span id="cb8-24"><a href="causal-survival-analysis-stata.html#cb8-24"></a></span>
+<span id="cb8-25"><a href="causal-survival-analysis-stata.html#cb8-25"></a>*Create a dataset with <span class="ot">all</span> time points under each treatment <span class="dv">level</span>*</span>
+<span id="cb8-26"><a href="causal-survival-analysis-stata.html#cb8-26"></a>*Re-expand <span class="kw">data</span> with <span class="bn">rows</span> <span class="kw">for</span> <span class="ot">all</span> timepoints*</span>
+<span id="cb8-27"><a href="causal-survival-analysis-stata.html#cb8-27"></a><span class="kw">drop</span> <span class="kw">if</span> time != 0</span>
+<span id="cb8-28"><a href="causal-survival-analysis-stata.html#cb8-28"></a>expand 120 <span class="kw">if</span> time ==0 </span>
+<span id="cb8-29"><a href="causal-survival-analysis-stata.html#cb8-29"></a><span class="kw">bysort</span> seqn: <span class="kw">replace</span> time = <span class="dt">_n</span> - 1       </span>
+<span id="cb8-30"><a href="causal-survival-analysis-stata.html#cb8-30"></a>        </span>
+<span id="cb8-31"><a href="causal-survival-analysis-stata.html#cb8-31"></a><span class="co">/*Create 2 copies of each subject, and set outcome </span></span>
+<span id="cb8-32"><a href="causal-survival-analysis-stata.html#cb8-32"></a><span class="co">to missing and treatment -- use only the newobs*/</span></span>
+<span id="cb8-33"><a href="causal-survival-analysis-stata.html#cb8-33"></a>expand 2 , <span class="kw">generate</span>(interv) </span>
+<span id="cb8-34"><a href="causal-survival-analysis-stata.html#cb8-34"></a><span class="kw">replace</span> qsmk = interv   </span>
+<span id="cb8-35"><a href="causal-survival-analysis-stata.html#cb8-35"></a></span>
+<span id="cb8-36"><a href="causal-survival-analysis-stata.html#cb8-36"></a><span class="co">/*Generate predicted event and survival probabilities </span></span>
+<span id="cb8-37"><a href="causal-survival-analysis-stata.html#cb8-37"></a><span class="co">for each person each month in copies*/</span></span>
+<span id="cb8-38"><a href="causal-survival-analysis-stata.html#cb8-38"></a><span class="kw">predict</span> pevent_k, pr</span>
+<span id="cb8-39"><a href="causal-survival-analysis-stata.html#cb8-39"></a><span class="kw">gen</span> psurv_k = 1-pevent_k</span>
+<span id="cb8-40"><a href="causal-survival-analysis-stata.html#cb8-40"></a><span class="kw">keep</span> seqn time qsmk interv psurv_k </span>
+<span id="cb8-41"><a href="causal-survival-analysis-stata.html#cb8-41"></a></span>
+<span id="cb8-42"><a href="causal-survival-analysis-stata.html#cb8-42"></a>*Within copies, <span class="kw">generate</span> predicted survival <span class="bn">over</span> time*</span>
+<span id="cb8-43"><a href="causal-survival-analysis-stata.html#cb8-43"></a><span class="co">/*Remember, survival is the product of conditional survival</span></span>
+<span id="cb8-44"><a href="causal-survival-analysis-stata.html#cb8-44"></a><span class="co">probabilities in each interval*/</span></span>
+<span id="cb8-45"><a href="causal-survival-analysis-stata.html#cb8-45"></a><span class="kw">sort</span> seqn interv time</span>
+<span id="cb8-46"><a href="causal-survival-analysis-stata.html#cb8-46"></a><span class="kw">gen</span> _t = time + 1</span>
+<span id="cb8-47"><a href="causal-survival-analysis-stata.html#cb8-47"></a><span class="kw">gen</span> psurv = psurv_k <span class="kw">if</span> _t ==1       </span>
+<span id="cb8-48"><a href="causal-survival-analysis-stata.html#cb8-48"></a><span class="kw">bysort</span> seqn interv: <span class="kw">replace</span> psurv = psurv_k*psurv[_t-1] <span class="kw">if</span> _t &gt;1 </span>
+<span id="cb8-49"><a href="causal-survival-analysis-stata.html#cb8-49"></a></span>
+<span id="cb8-50"><a href="causal-survival-analysis-stata.html#cb8-50"></a>*Display 10-<span class="fu">year</span> standardized survival, under interventions*</span>
+<span id="cb8-51"><a href="causal-survival-analysis-stata.html#cb8-51"></a>*Note: since time starts <span class="fu">at</span> 0, <span class="fu">month</span> 119 is 10-<span class="fu">year</span> survival*</span>
+<span id="cb8-52"><a href="causal-survival-analysis-stata.html#cb8-52"></a><span class="kw">by</span> interv, <span class="kw">sort</span>: <span class="kw">summarize</span> psurv <span class="kw">if</span> time == 119</span>
+<span id="cb8-53"><a href="causal-survival-analysis-stata.html#cb8-53"></a></span>
+<span id="cb8-54"><a href="causal-survival-analysis-stata.html#cb8-54"></a><span class="kw">quietly</span> <span class="kw">summarize</span> psurv <span class="kw">if</span>(interv==0 &amp; time ==119)</span>
+<span id="cb8-55"><a href="causal-survival-analysis-stata.html#cb8-55"></a><span class="fu">matrix</span> input observe = (0,<span class="ot">`r(mean)&#39;</span>)</span>
+<span id="cb8-56"><a href="causal-survival-analysis-stata.html#cb8-56"></a><span class="kw">quietly</span> <span class="kw">summarize</span> psurv <span class="kw">if</span>(interv==1 &amp; time ==119)</span>
+<span id="cb8-57"><a href="causal-survival-analysis-stata.html#cb8-57"></a><span class="fu">matrix</span> observe = (observe \1,<span class="ot">`r(mean)&#39;</span>)</span>
+<span id="cb8-58"><a href="causal-survival-analysis-stata.html#cb8-58"></a><span class="fu">matrix</span> observe = (observe \3, observe[2,2]-observe[1,2]) </span>
+<span id="cb8-59"><a href="causal-survival-analysis-stata.html#cb8-59"></a><span class="fu">matrix</span> <span class="ot">list</span> observe</span>
+<span id="cb8-60"><a href="causal-survival-analysis-stata.html#cb8-60"></a></span>
+<span id="cb8-61"><a href="causal-survival-analysis-stata.html#cb8-61"></a>*Graph <span class="kw">of</span> standardized survival <span class="bn">over</span> time, under interventions*</span>
+<span id="cb8-62"><a href="causal-survival-analysis-stata.html#cb8-62"></a><span class="co">/*Note: since our outcome model has no covariates, </span></span>
+<span id="cb8-63"><a href="causal-survival-analysis-stata.html#cb8-63"></a><span class="co">we can plot psurv directly. </span></span>
+<span id="cb8-64"><a href="causal-survival-analysis-stata.html#cb8-64"></a><span class="co">If we had covariates we would need to stratify or average across the values*/</span></span>
+<span id="cb8-65"><a href="causal-survival-analysis-stata.html#cb8-65"></a>expand 2 <span class="kw">if</span> time ==0, <span class="kw">generate</span>(newtime)</span>
+<span id="cb8-66"><a href="causal-survival-analysis-stata.html#cb8-66"></a><span class="kw">replace</span> psurv  = 1 <span class="kw">if</span> newtime == 1</span>
+<span id="cb8-67"><a href="causal-survival-analysis-stata.html#cb8-67"></a><span class="kw">gen</span> time2 = 0 <span class="kw">if</span> newtime ==1</span>
+<span id="cb8-68"><a href="causal-survival-analysis-stata.html#cb8-68"></a><span class="kw">replace</span> time2 = time + 1 <span class="kw">if</span> newtime == 0</span>
+<span id="cb8-69"><a href="causal-survival-analysis-stata.html#cb8-69"></a><span class="kw">separate</span> psurv, <span class="kw">by</span>(interv) </span>
+<span id="cb8-70"><a href="causal-survival-analysis-stata.html#cb8-70"></a><span class="kw">twoway</span> (<span class="kw">line</span> psurv0 time2, <span class="kw">sort</span>) <span class="co">///</span></span>
+<span id="cb8-71"><a href="causal-survival-analysis-stata.html#cb8-71"></a>  (<span class="kw">line</span> psurv1 time2, <span class="kw">sort</span>) <span class="kw">if</span> interv &gt; -1 <span class="co">///</span></span>
+<span id="cb8-72"><a href="causal-survival-analysis-stata.html#cb8-72"></a>  , <span class="kw">ylabel</span>(0.5(0.1)1.0) <span class="kw">xlabel</span>(0(12)120) <span class="co">///</span></span>
+<span id="cb8-73"><a href="causal-survival-analysis-stata.html#cb8-73"></a>  <span class="bn">ytitle</span>(<span class="st">&quot;Survival probability&quot;</span>) <span class="bn">xtitle</span>(<span class="st">&quot;Months of follow-up&quot;</span>) <span class="co">///</span></span>
+<span id="cb8-74"><a href="causal-survival-analysis-stata.html#cb8-74"></a>  <span class="bn">legend</span>(<span class="kw">label</span>(1 <span class="st">&quot;A=0&quot;</span>) <span class="kw">label</span>(2 <span class="st">&quot;A=1&quot;</span>))</span>
+<span id="cb8-75"><a href="causal-survival-analysis-stata.html#cb8-75"></a><span class="kw">qui</span> <span class="kw">gr</span> <span class="kw">export</span> ./figs/stata-fig-17-3.png, <span class="kw">replace</span></span>
+<span id="cb8-76"><a href="causal-survival-analysis-stata.html#cb8-76"></a></span>
+<span id="cb8-77"><a href="causal-survival-analysis-stata.html#cb8-77"></a>*remove extra timepoint*</span>
+<span id="cb8-78"><a href="causal-survival-analysis-stata.html#cb8-78"></a><span class="kw">drop</span> <span class="kw">if</span> newtime == 1</span>
+<span id="cb8-79"><a href="causal-survival-analysis-stata.html#cb8-79"></a><span class="kw">drop</span> time2</span>
+<span id="cb8-80"><a href="causal-survival-analysis-stata.html#cb8-80"></a></span>
+<span id="cb8-81"><a href="causal-survival-analysis-stata.html#cb8-81"></a><span class="kw">restore</span></span>
+<span id="cb8-82"><a href="causal-survival-analysis-stata.html#cb8-82"></a></span>
+<span id="cb8-83"><a href="causal-survival-analysis-stata.html#cb8-83"></a>**Bootstraps**</span>
+<span id="cb8-84"><a href="causal-survival-analysis-stata.html#cb8-84"></a><span class="kw">qui</span> <span class="kw">save</span> ./<span class="kw">data</span>/nhefs_std1 , <span class="kw">replace</span></span>
+<span id="cb8-85"><a href="causal-survival-analysis-stata.html#cb8-85"></a> </span>
+<span id="cb8-86"><a href="causal-survival-analysis-stata.html#cb8-86"></a><span class="kw">capture</span> <span class="kw">program</span> <span class="kw">drop</span> bootipw_surv </span>
+<span id="cb8-87"><a href="causal-survival-analysis-stata.html#cb8-87"></a></span>
+<span id="cb8-88"><a href="causal-survival-analysis-stata.html#cb8-88"></a><span class="kw">program</span> <span class="kw">define</span> bootipw_surv , rclass</span>
+<span id="cb8-89"><a href="causal-survival-analysis-stata.html#cb8-89"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs_std1 , <span class="kw">clear</span></span>
+<span id="cb8-90"><a href="causal-survival-analysis-stata.html#cb8-90"></a><span class="kw">preserve</span></span>
+<span id="cb8-91"><a href="causal-survival-analysis-stata.html#cb8-91"></a><span class="kw">bsample</span>, <span class="kw">cluster</span>(seqn) idcluster(newseqn)   </span>
+<span id="cb8-92"><a href="causal-survival-analysis-stata.html#cb8-92"></a>        </span>
+<span id="cb8-93"><a href="causal-survival-analysis-stata.html#cb8-93"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education <span class="co">///</span></span>
+<span id="cb8-94"><a href="causal-survival-analysis-stata.html#cb8-94"></a>  c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
+<span id="cb8-95"><a href="causal-survival-analysis-stata.html#cb8-95"></a>    c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active <span class="co">///</span></span>
+<span id="cb8-96"><a href="causal-survival-analysis-stata.html#cb8-96"></a>    c.wt71##c.wt71 <span class="kw">if</span> time == 0</span>
+<span id="cb8-97"><a href="causal-survival-analysis-stata.html#cb8-97"></a><span class="kw">predict</span> p_qsmk, pr</span>
+<span id="cb8-98"><a href="causal-survival-analysis-stata.html#cb8-98"></a></span>
+<span id="cb8-99"><a href="causal-survival-analysis-stata.html#cb8-99"></a><span class="kw">logit</span> qsmk <span class="kw">if</span> time ==0 </span>
+<span id="cb8-100"><a href="causal-survival-analysis-stata.html#cb8-100"></a><span class="kw">predict</span> num, pr</span>
+<span id="cb8-101"><a href="causal-survival-analysis-stata.html#cb8-101"></a></span>
+<span id="cb8-102"><a href="causal-survival-analysis-stata.html#cb8-102"></a><span class="kw">gen</span> <span class="kw">sw</span>=num/p_qsmk <span class="kw">if</span> qsmk==1</span>
+<span id="cb8-103"><a href="causal-survival-analysis-stata.html#cb8-103"></a><span class="kw">replace</span> <span class="kw">sw</span>=(1-num)/(1-p_qsmk) <span class="kw">if</span> qsmk==0</span>
+<span id="cb8-104"><a href="causal-survival-analysis-stata.html#cb8-104"></a></span>
+<span id="cb8-105"><a href="causal-survival-analysis-stata.html#cb8-105"></a><span class="kw">logit</span> event qsmk qsmk#c.time qsmk#c.time#c.time <span class="co">///</span></span>
+<span id="cb8-106"><a href="causal-survival-analysis-stata.html#cb8-106"></a>  c.time c.time#c.time [<span class="kw">pweight</span>=<span class="kw">sw</span>], <span class="kw">cluster</span>(newseqn) </span>
+<span id="cb8-107"><a href="causal-survival-analysis-stata.html#cb8-107"></a>    </span>
+<span id="cb8-108"><a href="causal-survival-analysis-stata.html#cb8-108"></a><span class="kw">drop</span> <span class="kw">if</span> time != 0</span>
+<span id="cb8-109"><a href="causal-survival-analysis-stata.html#cb8-109"></a>expand 120 <span class="kw">if</span> time ==0 </span>
+<span id="cb8-110"><a href="causal-survival-analysis-stata.html#cb8-110"></a><span class="kw">bysort</span> newseqn: <span class="kw">replace</span> time = <span class="dt">_n</span> - 1        </span>
+<span id="cb8-111"><a href="causal-survival-analysis-stata.html#cb8-111"></a>expand 2 , <span class="kw">generate</span>(interv_b) </span>
+<span id="cb8-112"><a href="causal-survival-analysis-stata.html#cb8-112"></a><span class="kw">replace</span> qsmk = interv_b </span>
+<span id="cb8-113"><a href="causal-survival-analysis-stata.html#cb8-113"></a>        </span>
+<span id="cb8-114"><a href="causal-survival-analysis-stata.html#cb8-114"></a><span class="kw">predict</span> pevent_k, pr</span>
+<span id="cb8-115"><a href="causal-survival-analysis-stata.html#cb8-115"></a><span class="kw">gen</span> psurv_k = 1-pevent_k</span>
+<span id="cb8-116"><a href="causal-survival-analysis-stata.html#cb8-116"></a><span class="kw">keep</span> newseqn time qsmk interv_b psurv_k </span>
+<span id="cb8-117"><a href="causal-survival-analysis-stata.html#cb8-117"></a></span>
+<span id="cb8-118"><a href="causal-survival-analysis-stata.html#cb8-118"></a><span class="kw">sort</span> newseqn interv_b time</span>
+<span id="cb8-119"><a href="causal-survival-analysis-stata.html#cb8-119"></a><span class="kw">gen</span> _t = time + 1</span>
+<span id="cb8-120"><a href="causal-survival-analysis-stata.html#cb8-120"></a><span class="kw">gen</span> psurv = psurv_k <span class="kw">if</span> _t ==1       </span>
+<span id="cb8-121"><a href="causal-survival-analysis-stata.html#cb8-121"></a><span class="kw">bysort</span> newseqn interv_b: <span class="co">///</span></span>
+<span id="cb8-122"><a href="causal-survival-analysis-stata.html#cb8-122"></a>  <span class="kw">replace</span> psurv = psurv_k*psurv[_t-1] <span class="kw">if</span> _t &gt;1 </span>
+<span id="cb8-123"><a href="causal-survival-analysis-stata.html#cb8-123"></a><span class="kw">drop</span> <span class="kw">if</span> time != 119</span>
+<span id="cb8-124"><a href="causal-survival-analysis-stata.html#cb8-124"></a><span class="kw">bysort</span> interv_b: <span class="kw">egen</span> meanS_b = <span class="kw">mean</span>(psurv)</span>
+<span id="cb8-125"><a href="causal-survival-analysis-stata.html#cb8-125"></a><span class="kw">keep</span> newseqn qsmk  meanS_b </span>
+<span id="cb8-126"><a href="causal-survival-analysis-stata.html#cb8-126"></a><span class="kw">drop</span> <span class="kw">if</span> newseqn != 1  <span class="co">/* only need one pair */</span></span>
+<span id="cb8-127"><a href="causal-survival-analysis-stata.html#cb8-127"></a>    </span>
+<span id="cb8-128"><a href="causal-survival-analysis-stata.html#cb8-128"></a><span class="kw">drop</span> newseqn        </span>
+<span id="cb8-129"><a href="causal-survival-analysis-stata.html#cb8-129"></a>        </span>
+<span id="cb8-130"><a href="causal-survival-analysis-stata.html#cb8-130"></a><span class="fu">return</span> <span class="fu">scalar</span> boot_0 = meanS_b[1]</span>
+<span id="cb8-131"><a href="causal-survival-analysis-stata.html#cb8-131"></a><span class="fu">return</span> <span class="fu">scalar</span> boot_1 = meanS_b[2]</span>
+<span id="cb8-132"><a href="causal-survival-analysis-stata.html#cb8-132"></a><span class="fu">return</span> <span class="fu">scalar</span>  boot_diff = <span class="fu">return</span>(boot_1) - <span class="fu">return</span>(boot_0)</span>
+<span id="cb8-133"><a href="causal-survival-analysis-stata.html#cb8-133"></a><span class="kw">restore</span></span>
+<span id="cb8-134"><a href="causal-survival-analysis-stata.html#cb8-134"></a><span class="kw">end</span>     </span>
+<span id="cb8-135"><a href="causal-survival-analysis-stata.html#cb8-135"></a></span>
+<span id="cb8-136"><a href="causal-survival-analysis-stata.html#cb8-136"></a><span class="kw">set</span> <span class="dv">rmsg</span> <span class="kw">on</span></span>
+<span id="cb8-137"><a href="causal-survival-analysis-stata.html#cb8-137"></a><span class="kw">simulate</span> PrY_a0 = <span class="fu">r</span>(boot_0) PrY_a1 = <span class="fu">r</span>(boot_1) <span class="co">///</span></span>
+<span id="cb8-138"><a href="causal-survival-analysis-stata.html#cb8-138"></a>  difference=<span class="fu">r</span>(boot_diff), reps(10) <span class="dv">seed</span>(1): bootipw_surv</span>
+<span id="cb8-139"><a href="causal-survival-analysis-stata.html#cb8-139"></a><span class="kw">set</span> <span class="dv">rmsg</span> <span class="kw">off</span> </span>
+<span id="cb8-140"><a href="causal-survival-analysis-stata.html#cb8-140"></a> </span>
+<span id="cb8-141"><a href="causal-survival-analysis-stata.html#cb8-141"></a><span class="fu">matrix</span> pe = observe[1..3, 2]&#39;</span>
+<span id="cb8-142"><a href="causal-survival-analysis-stata.html#cb8-142"></a><span class="kw">bstat</span>, stat(pe) n(1629)</span></code></pre></div>
 <pre><code>Iteration 0:   log likelihood = -893.02712  
 Iteration 1:   log likelihood = -839.70016  
 Iteration 2:   log likelihood = -838.45045  
@@ -644,47 +680,48 @@ Logistic regression                             Number of obs     =      1,566
                                                 Prob &gt; chi2       =     0.0000
 Log likelihood = -838.44842                     Pseudo R2         =     0.0611
 
--------------------------------------------------------------------------------
-         qsmk |      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
---------------+----------------------------------------------------------------
-          sex |  -.5274782   .1540497    -3.42   0.001      -.82941   -.2255463
-         race |  -.8392636   .2100668    -4.00   0.000    -1.250987   -.4275404
-          age |   .1212052   .0512663     2.36   0.018     .0207251    .2216853
-              |
-  c.age#c.age |  -.0008246   .0005361    -1.54   0.124    -.0018753    .0002262
-              |
-    education |
-           1  |  -.4759606   .2262238    -2.10   0.035    -.9193511   -.0325701
-           2  |  -.5047361    .217597    -2.32   0.020    -.9312184   -.0782538
-           3  |  -.3895288   .1914353    -2.03   0.042    -.7647351   -.0143226
-           4  |  -.4123596   .2772868    -1.49   0.137    -.9558318    .1311126
-              |
-smokeintens~y |  -.0772704   .0152499    -5.07   0.000    -.1071596   -.0473812
-              |
-           c. |
-smokeintens~y#|
-           c. |
-smokeintens~y |   .0010451   .0002866     3.65   0.000     .0004835    .0016068
-              |
-     smokeyrs |  -.0735966   .0277775    -2.65   0.008    -.1280395   -.0191538
-              |
-   c.smokeyrs#|
-   c.smokeyrs |   .0008441   .0004632     1.82   0.068    -.0000637    .0017519
-              |
-     exercise |
-           0  |   -.395704   .1872401    -2.11   0.035    -.7626878   -.0287201
-           1  |  -.0408635   .1382674    -0.30   0.768    -.3118627    .2301357
-              |
-       active |
-           0  |   -.176784   .2149721    -0.82   0.411    -.5981215    .2445535
-           1  |  -.1448395   .2111472    -0.69   0.493    -.5586806    .2690015
-              |
-         wt71 |  -.0152357   .0263161    -0.58   0.563    -.0668144     .036343
-              |
-c.wt71#c.wt71 |   .0001352   .0001632     0.83   0.407    -.0001846     .000455
-              |
-        _cons |   -1.19407   1.398493    -0.85   0.393    -3.935066    1.546925
--------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+        qsmk |      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+         sex |  -.5274782   .1540497    -3.42   0.001      -.82941   -.2255463
+        race |  -.8392636   .2100668    -4.00   0.000    -1.250987   -.4275404
+         age |   .1212052   .0512663     2.36   0.018     .0207251    .2216853
+             |
+ c.age#c.age |  -.0008246   .0005361    -1.54   0.124    -.0018753    .0002262
+             |
+   education |
+          1  |  -.4759606   .2262238    -2.10   0.035    -.9193511   -.0325701
+          2  |  -.5047361    .217597    -2.32   0.020    -.9312184   -.0782538
+          3  |  -.3895288   .1914353    -2.03   0.042    -.7647351   -.0143226
+          4  |  -.4123596   .2772868    -1.49   0.137    -.9558318    .1311126
+             |
+smokeinten~y |  -.0772704   .0152499    -5.07   0.000    -.1071596   -.0473812
+             |
+          c. |
+smokeinten~y#|
+          c. |
+smokeinten~y |   .0010451   .0002866     3.65   0.000     .0004835    .0016068
+             |
+    smokeyrs |  -.0735966   .0277775    -2.65   0.008    -.1280395   -.0191538
+             |
+  c.smokeyrs#|
+  c.smokeyrs |   .0008441   .0004632     1.82   0.068    -.0000637    .0017519
+             |
+    exercise |
+          0  |   -.395704   .1872401    -2.11   0.035    -.7626878   -.0287201
+          1  |  -.0408635   .1382674    -0.30   0.768    -.3118627    .2301357
+             |
+      active |
+          0  |   -.176784   .2149721    -0.82   0.411    -.5981215    .2445535
+          1  |  -.1448395   .2111472    -0.69   0.493    -.5586806    .2690015
+             |
+        wt71 |  -.0152357   .0263161    -0.58   0.563    -.0668144     .036343
+             |
+      c.wt71#|
+      c.wt71 |   .0001352   .0001632     0.83   0.407    -.0001846     .000455
+             |
+       _cons |   -1.19407   1.398493    -0.85   0.393    -3.935066    1.546925
+------------------------------------------------------------------------------
 
 
 
@@ -722,26 +759,27 @@ Logistic regression                             Number of obs     =    171,076
                                                 Prob &gt; chi2       =     0.0004
 Log pseudolikelihood = -2126.8554               Pseudo R2         =     0.0045
 
-                                (Std. Err. adjusted for 1,566 clusters in seqn)
--------------------------------------------------------------------------------
-              |               Robust
-        event |      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
---------------+----------------------------------------------------------------
-         qsmk |  -.1301273   .4186673    -0.31   0.756    -.9507002    .6904456
-              |
-  qsmk#c.time |
-Smoking ce..  |     .01916   .0151318     1.27   0.205    -.0104978    .0488178
-              |
-  qsmk#c.time#|
-       c.time |
-Smoking ce..  |  -.0002152   .0001213    -1.77   0.076    -.0004528    .0000225
-              |
-         time |   .0208179   .0077769     2.68   0.007     .0055754    .0360604
-              |
-c.time#c.time |  -.0001278   .0000643    -1.99   0.047    -.0002537   -1.84e-06
-              |
-        _cons |  -7.038847   .2142855   -32.85   0.000    -7.458839   -6.618855
--------------------------------------------------------------------------------
+                               (Std. Err. adjusted for 1,566 clusters in seqn)
+------------------------------------------------------------------------------
+             |               Robust
+       event |      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        qsmk |  -.1301273   .4186673    -0.31   0.756    -.9507002    .6904456
+             |
+ qsmk#c.time |
+Smoking c..  |     .01916   .0151318     1.27   0.205    -.0104978    .0488178
+             |
+ qsmk#c.time#|
+      c.time |
+Smoking c..  |  -.0002152   .0001213    -1.77   0.076    -.0004528    .0000225
+             |
+        time |   .0208179   .0077769     2.68   0.007     .0055754    .0360604
+             |
+      c.time#|
+      c.time |  -.0001278   .0000643    -1.99   0.047    -.0002537   -1.84e-06
+             |
+       _cons |  -7.038847   .2142855   -32.85   0.000    -7.458839   -6.618855
+------------------------------------------------------------------------------
 
 (169,510 observations deleted)
 
@@ -763,14 +801,14 @@ c.time#c.time |  -.0001278   .0000643    -1.99   0.047    -.0002537   -1.84e-06
 (372,708 real changes made)
 
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -&gt; interv = 0
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
        psurv |      1,566    .8161003           0   .8161003   .8161003
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -&gt; interv = 1
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
@@ -800,7 +838,7 @@ r3           3  -.00442189
 
               storage   display    value
 variable name   type    format     label      variable label
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 psurv0          float   %9.0g                 psurv, interv == 0
 psurv1          float   %9.0g                 psurv, interv == 1
 
@@ -813,7 +851,7 @@ psurv1          float   %9.0g                 psurv, interv == 1
 
 
 
-r; t=0.00 3:43:56
+r; t=0.00 11:22:17
 
       command:  bootipw_surv
        PrY_a0:  r(boot_0)
@@ -823,7 +861,7 @@ r; t=0.00 3:43:56
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=73.00 3:45:09
+r; t=41.39 11:22:59
 
 
 
@@ -839,7 +877,7 @@ Bootstrap results                               Number of obs     =      1,629
       PrY_a1 |   .8116784   .0237581    34.16   0.000     .7651133    .8582435
   difference |  -.0044219   .0225007    -0.20   0.844    -.0485224    .0396786
 ------------------------------------------------------------------------------</code></pre>
-<p><img src="figs/stata-fig-17-3.png" width="955" /></p>
+<p><img src="figs/stata-fig-17-3.png" width="518" /></p>
 </div>
 <div id="program-17.4-1" class="section level2">
 <h2>Program 17.4</h2>
@@ -849,105 +887,122 @@ Bootstrap results                               Number of obs     =      1,629
 <li>Section 17.5</li>
 <li>Generates Figure 17.7</li>
 </ul>
-<div class="sourceCode" id="cb424"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb424-1"><a href="causal-survival-analysis-stata.html#cb424-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs_surv, <span class="kw">clear</span></span>
-<span id="cb424-2"><a href="causal-survival-analysis-stata.html#cb424-2"></a></span>
-<span id="cb424-3"><a href="causal-survival-analysis-stata.html#cb424-3"></a><span class="kw">keep</span> seqn event qsmk time sex race age education smokeintensity smkintensity82_71  smokeyrs exercise active wt71 </span>
-<span id="cb424-4"><a href="causal-survival-analysis-stata.html#cb424-4"></a><span class="kw">preserve</span> </span>
-<span id="cb424-5"><a href="causal-survival-analysis-stata.html#cb424-5"></a> </span>
-<span id="cb424-6"><a href="causal-survival-analysis-stata.html#cb424-6"></a><span class="kw">quietly</span> <span class="kw">logistic</span> event qsmk qsmk#c.time  qsmk#c.time#c.time time c.time#c.time  <span class="co">///</span></span>
-<span id="cb424-7"><a href="causal-survival-analysis-stata.html#cb424-7"></a>    sex race c.age##c.age ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
-<span id="cb424-8"><a href="causal-survival-analysis-stata.html#cb424-8"></a>    c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 , <span class="kw">cluster</span>(seqn) </span>
-<span id="cb424-9"><a href="causal-survival-analysis-stata.html#cb424-9"></a>            </span>
-<span id="cb424-10"><a href="causal-survival-analysis-stata.html#cb424-10"></a><span class="kw">drop</span> <span class="kw">if</span> time != 0</span>
-<span id="cb424-11"><a href="causal-survival-analysis-stata.html#cb424-11"></a>expand 120 <span class="kw">if</span> time ==0 </span>
-<span id="cb424-12"><a href="causal-survival-analysis-stata.html#cb424-12"></a><span class="kw">bysort</span> seqn: <span class="kw">replace</span> time = <span class="dt">_n</span> - 1              </span>
-<span id="cb424-13"><a href="causal-survival-analysis-stata.html#cb424-13"></a>expand 2 , <span class="kw">generate</span>(interv) </span>
-<span id="cb424-14"><a href="causal-survival-analysis-stata.html#cb424-14"></a><span class="kw">replace</span> qsmk = interv        </span>
-<span id="cb424-15"><a href="causal-survival-analysis-stata.html#cb424-15"></a><span class="kw">predict</span> pevent_k, pr</span>
-<span id="cb424-16"><a href="causal-survival-analysis-stata.html#cb424-16"></a><span class="kw">gen</span> psurv_k = 1-pevent_k</span>
-<span id="cb424-17"><a href="causal-survival-analysis-stata.html#cb424-17"></a><span class="kw">keep</span> seqn  time qsmk interv psurv_k                 </span>
-<span id="cb424-18"><a href="causal-survival-analysis-stata.html#cb424-18"></a><span class="kw">sort</span> seqn interv time</span>
-<span id="cb424-19"><a href="causal-survival-analysis-stata.html#cb424-19"></a><span class="kw">gen</span> _t = time + 1</span>
-<span id="cb424-20"><a href="causal-survival-analysis-stata.html#cb424-20"></a><span class="kw">gen</span> psurv = psurv_k <span class="kw">if</span> _t ==1       </span>
-<span id="cb424-21"><a href="causal-survival-analysis-stata.html#cb424-21"></a><span class="kw">bysort</span> seqn interv:   <span class="kw">replace</span> psurv = psurv_k*psurv[_t-1] <span class="kw">if</span> _t &gt;1 </span>
-<span id="cb424-22"><a href="causal-survival-analysis-stata.html#cb424-22"></a><span class="kw">by</span> interv, <span class="kw">sort</span>: <span class="kw">summarize</span> psurv <span class="kw">if</span> time == 119</span>
-<span id="cb424-23"><a href="causal-survival-analysis-stata.html#cb424-23"></a></span>
-<span id="cb424-24"><a href="causal-survival-analysis-stata.html#cb424-24"></a><span class="kw">keep</span> qsmk interv psurv time   </span>
-<span id="cb424-25"><a href="causal-survival-analysis-stata.html#cb424-25"></a>        </span>
-<span id="cb424-26"><a href="causal-survival-analysis-stata.html#cb424-26"></a><span class="kw">bysort</span> interv : <span class="kw">egen</span> meanS = <span class="kw">mean</span>(psurv) <span class="kw">if</span> time == 119</span>
-<span id="cb424-27"><a href="causal-survival-analysis-stata.html#cb424-27"></a><span class="kw">by</span> interv: <span class="kw">summarize</span> meanS</span>
-<span id="cb424-28"><a href="causal-survival-analysis-stata.html#cb424-28"></a></span>
-<span id="cb424-29"><a href="causal-survival-analysis-stata.html#cb424-29"></a><span class="kw">quietly</span> <span class="kw">summarize</span> meanS <span class="kw">if</span>(qsmk==0  &amp; time ==119)</span>
-<span id="cb424-30"><a href="causal-survival-analysis-stata.html#cb424-30"></a><span class="fu">matrix</span> input observe = ( 0,<span class="ot">`r(mean)&#39;</span>)</span>
-<span id="cb424-31"><a href="causal-survival-analysis-stata.html#cb424-31"></a><span class="kw">quietly</span> <span class="kw">summarize</span> meanS <span class="kw">if</span>(qsmk==1  &amp; time ==119)</span>
-<span id="cb424-32"><a href="causal-survival-analysis-stata.html#cb424-32"></a><span class="fu">matrix</span> observe = (observe \1,<span class="ot">`r(mean)&#39;</span>)</span>
-<span id="cb424-33"><a href="causal-survival-analysis-stata.html#cb424-33"></a><span class="fu">matrix</span> observe = (observe \2, observe[2,2]-observe[1,2]) </span>
-<span id="cb424-34"><a href="causal-survival-analysis-stata.html#cb424-34"></a>*Add some <span class="ot">row</span>/column descriptions and <span class="kw">print</span> results to screen*</span>
-<span id="cb424-35"><a href="causal-survival-analysis-stata.html#cb424-35"></a><span class="fu">matrix</span> <span class="ot">rownames</span> observe =  P(Y(a=0)=1) P(Y(a=1)=1) difference</span>
-<span id="cb424-36"><a href="causal-survival-analysis-stata.html#cb424-36"></a><span class="fu">matrix</span> <span class="ot">colnames</span> observe = interv survival</span>
-<span id="cb424-37"><a href="causal-survival-analysis-stata.html#cb424-37"></a></span>
-<span id="cb424-38"><a href="causal-survival-analysis-stata.html#cb424-38"></a>*Graph standardized survival <span class="bn">over</span> time, under interventions*</span>
-<span id="cb424-39"><a href="causal-survival-analysis-stata.html#cb424-39"></a>*Note: unlike <span class="kw">in</span> PROGRAM 17.3, we now have covariates so we first need to average survival across <span class="kw">strata</span>*</span>
-<span id="cb424-40"><a href="causal-survival-analysis-stata.html#cb424-40"></a><span class="kw">bysort</span> interv time : <span class="kw">egen</span> meanS_t = <span class="kw">mean</span>(psurv)</span>
-<span id="cb424-41"><a href="causal-survival-analysis-stata.html#cb424-41"></a>*Now we can <span class="kw">continue</span> with the <span class="kw">graph</span>*</span>
-<span id="cb424-42"><a href="causal-survival-analysis-stata.html#cb424-42"></a>expand 2 <span class="kw">if</span> time ==0, <span class="kw">generate</span>(newtime)</span>
-<span id="cb424-43"><a href="causal-survival-analysis-stata.html#cb424-43"></a><span class="kw">replace</span> meanS_t  = 1 <span class="kw">if</span> newtime == 1</span>
-<span id="cb424-44"><a href="causal-survival-analysis-stata.html#cb424-44"></a><span class="kw">gen</span> time2 = 0 <span class="kw">if</span> newtime ==1</span>
-<span id="cb424-45"><a href="causal-survival-analysis-stata.html#cb424-45"></a><span class="kw">replace</span> time2 = time + 1 <span class="kw">if</span> newtime == 0</span>
-<span id="cb424-46"><a href="causal-survival-analysis-stata.html#cb424-46"></a><span class="kw">separate</span> meanS_t, <span class="kw">by</span>(interv) </span>
-<span id="cb424-47"><a href="causal-survival-analysis-stata.html#cb424-47"></a><span class="kw">twoway</span> (<span class="kw">line</span> meanS_t0 time2, <span class="kw">sort</span>) (<span class="kw">line</span> meanS_t1 time2, <span class="kw">sort</span>), <span class="kw">ylabel</span>(0.5(0.1)1.0) <span class="kw">xlabel</span>(0(12)120) <span class="bn">ytitle</span>(<span class="st">&quot;Survival probability&quot;</span>) <span class="bn">xtitle</span>(<span class="st">&quot;Months of follow-up&quot;</span>) <span class="bn">legend</span>(<span class="kw">label</span>(1 <span class="st">&quot;A=0&quot;</span>) <span class="kw">label</span>(2 <span class="st">&quot;A=1&quot;</span>))</span>
-<span id="cb424-48"><a href="causal-survival-analysis-stata.html#cb424-48"></a><span class="kw">gr</span> <span class="kw">export</span> ./figs/stata-fig-17-4.png, <span class="kw">replace</span></span>
-<span id="cb424-49"><a href="causal-survival-analysis-stata.html#cb424-49"></a></span>
-<span id="cb424-50"><a href="causal-survival-analysis-stata.html#cb424-50"></a>*remove extra timepoint*</span>
-<span id="cb424-51"><a href="causal-survival-analysis-stata.html#cb424-51"></a><span class="kw">drop</span> <span class="kw">if</span> newtime == 1</span>
-<span id="cb424-52"><a href="causal-survival-analysis-stata.html#cb424-52"></a></span>
-<span id="cb424-53"><a href="causal-survival-analysis-stata.html#cb424-53"></a><span class="kw">restore</span></span>
-<span id="cb424-54"><a href="causal-survival-analysis-stata.html#cb424-54"></a></span>
-<span id="cb424-55"><a href="causal-survival-analysis-stata.html#cb424-55"></a>*Bootstraps*</span>
-<span id="cb424-56"><a href="causal-survival-analysis-stata.html#cb424-56"></a><span class="kw">qui</span> <span class="kw">save</span> ./<span class="kw">data</span>/nhefs_std2 , <span class="kw">replace</span></span>
-<span id="cb424-57"><a href="causal-survival-analysis-stata.html#cb424-57"></a> </span>
-<span id="cb424-58"><a href="causal-survival-analysis-stata.html#cb424-58"></a><span class="kw">capture</span> <span class="kw">program</span> <span class="kw">drop</span> bootstdz_surv </span>
-<span id="cb424-59"><a href="causal-survival-analysis-stata.html#cb424-59"></a><span class="kw">program</span> <span class="kw">define</span> bootstdz_surv , rclass</span>
-<span id="cb424-60"><a href="causal-survival-analysis-stata.html#cb424-60"></a>    <span class="kw">use</span> ./<span class="kw">data</span>/nhefs_std2 , <span class="kw">clear</span></span>
-<span id="cb424-61"><a href="causal-survival-analysis-stata.html#cb424-61"></a>        <span class="kw">preserve</span></span>
-<span id="cb424-62"><a href="causal-survival-analysis-stata.html#cb424-62"></a>        <span class="kw">bsample</span>, <span class="kw">cluster</span>(seqn) idcluster(newseqn)       </span>
-<span id="cb424-63"><a href="causal-survival-analysis-stata.html#cb424-63"></a>    <span class="kw">logistic</span> event  qsmk qsmk#c.time  qsmk#c.time#c.time time c.time#c.time   <span class="co">///</span></span>
-<span id="cb424-64"><a href="causal-survival-analysis-stata.html#cb424-64"></a>            sex race c.age##c.age ib(<span class="fu">last</span>).education <span class="co">///</span></span>
-<span id="cb424-65"><a href="causal-survival-analysis-stata.html#cb424-65"></a>            c.smokeintensity##c.smokeintensity c.smkintensity82_71  <span class="co">///</span></span>
-<span id="cb424-66"><a href="causal-survival-analysis-stata.html#cb424-66"></a>            c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 </span>
-<span id="cb424-67"><a href="causal-survival-analysis-stata.html#cb424-67"></a>         <span class="kw">drop</span> <span class="kw">if</span> time != 0  </span>
-<span id="cb424-68"><a href="causal-survival-analysis-stata.html#cb424-68"></a>        <span class="co">/*only predict on new version of data */</span></span>
-<span id="cb424-69"><a href="causal-survival-analysis-stata.html#cb424-69"></a>        expand 120 <span class="kw">if</span> time ==0 </span>
-<span id="cb424-70"><a href="causal-survival-analysis-stata.html#cb424-70"></a>        <span class="kw">bysort</span> newseqn: <span class="kw">replace</span> time = <span class="dt">_n</span> - 1               </span>
-<span id="cb424-71"><a href="causal-survival-analysis-stata.html#cb424-71"></a>        expand 2 , <span class="kw">generate</span>(interv_b) </span>
-<span id="cb424-72"><a href="causal-survival-analysis-stata.html#cb424-72"></a>        <span class="kw">replace</span> qsmk = interv_b          </span>
-<span id="cb424-73"><a href="causal-survival-analysis-stata.html#cb424-73"></a>        <span class="kw">predict</span> pevent_k, pr</span>
-<span id="cb424-74"><a href="causal-survival-analysis-stata.html#cb424-74"></a>        <span class="kw">gen</span> psurv_k = 1-pevent_k</span>
-<span id="cb424-75"><a href="causal-survival-analysis-stata.html#cb424-75"></a>      <span class="kw">keep</span> newseqn  time qsmk psurv_k               </span>
-<span id="cb424-76"><a href="causal-survival-analysis-stata.html#cb424-76"></a>          <span class="kw">sort</span> newseqn qsmk time</span>
-<span id="cb424-77"><a href="causal-survival-analysis-stata.html#cb424-77"></a>        <span class="kw">gen</span> _t = time + 1</span>
-<span id="cb424-78"><a href="causal-survival-analysis-stata.html#cb424-78"></a>        <span class="kw">gen</span> psurv = psurv_k <span class="kw">if</span> _t ==1   </span>
-<span id="cb424-79"><a href="causal-survival-analysis-stata.html#cb424-79"></a>        <span class="kw">bysort</span> newseqn  qsmk:   <span class="kw">replace</span> psurv = psurv_k*psurv[_t-1] <span class="kw">if</span> _t &gt;1 </span>
-<span id="cb424-80"><a href="causal-survival-analysis-stata.html#cb424-80"></a>        <span class="kw">drop</span>  <span class="kw">if</span> time != 119   <span class="co">/* keep only last observation */</span></span>
-<span id="cb424-81"><a href="causal-survival-analysis-stata.html#cb424-81"></a>          <span class="kw">keep</span>  newseqn qsmk psurv    </span>
-<span id="cb424-82"><a href="causal-survival-analysis-stata.html#cb424-82"></a>        <span class="co">/* if time is in data for complete graph add time to bysort */</span>  </span>
-<span id="cb424-83"><a href="causal-survival-analysis-stata.html#cb424-83"></a>        <span class="kw">bysort</span> qsmk  : <span class="kw">egen</span> meanS_b = <span class="kw">mean</span>(psurv)</span>
-<span id="cb424-84"><a href="causal-survival-analysis-stata.html#cb424-84"></a>          <span class="kw">keep</span> newseqn qsmk  meanS_b </span>
-<span id="cb424-85"><a href="causal-survival-analysis-stata.html#cb424-85"></a>      <span class="kw">drop</span> <span class="kw">if</span> newseqn != 1  <span class="co">/* only need one pair */</span></span>
-<span id="cb424-86"><a href="causal-survival-analysis-stata.html#cb424-86"></a>    </span>
-<span id="cb424-87"><a href="causal-survival-analysis-stata.html#cb424-87"></a>          <span class="kw">drop</span> newseqn      </span>
-<span id="cb424-88"><a href="causal-survival-analysis-stata.html#cb424-88"></a>        </span>
-<span id="cb424-89"><a href="causal-survival-analysis-stata.html#cb424-89"></a>        <span class="fu">return</span> <span class="fu">scalar</span> boot_0 = meanS_b[1]</span>
-<span id="cb424-90"><a href="causal-survival-analysis-stata.html#cb424-90"></a>        <span class="fu">return</span> <span class="fu">scalar</span> boot_1 = meanS_b[2]</span>
-<span id="cb424-91"><a href="causal-survival-analysis-stata.html#cb424-91"></a>        <span class="fu">return</span> <span class="fu">scalar</span>  boot_diff = <span class="fu">return</span>(boot_1) - <span class="fu">return</span>(boot_0)</span>
-<span id="cb424-92"><a href="causal-survival-analysis-stata.html#cb424-92"></a>        <span class="kw">restore</span></span>
-<span id="cb424-93"><a href="causal-survival-analysis-stata.html#cb424-93"></a><span class="kw">end</span>     </span>
-<span id="cb424-94"><a href="causal-survival-analysis-stata.html#cb424-94"></a><span class="kw">set</span> <span class="dv">rmsg</span> <span class="kw">on</span></span>
-<span id="cb424-95"><a href="causal-survival-analysis-stata.html#cb424-95"></a><span class="kw">simulate</span> PrY_a0 = <span class="fu">r</span>(boot_0) PrY_a1 = <span class="fu">r</span>(boot_1)  difference=<span class="fu">r</span>(boot_diff) , reps(10) <span class="dv">seed</span>(1)  : bootstdz_surv</span>
-<span id="cb424-96"><a href="causal-survival-analysis-stata.html#cb424-96"></a><span class="kw">set</span> <span class="dv">rmsg</span> <span class="kw">off</span> </span>
-<span id="cb424-97"><a href="causal-survival-analysis-stata.html#cb424-97"></a> </span>
-<span id="cb424-98"><a href="causal-survival-analysis-stata.html#cb424-98"></a><span class="fu">matrix</span> pe = observe[1..3, 2]&#39;</span>
-<span id="cb424-99"><a href="causal-survival-analysis-stata.html#cb424-99"></a><span class="kw">bstat</span>, stat(pe) n(1629)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb10-1"><a href="causal-survival-analysis-stata.html#cb10-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs_surv, <span class="kw">clear</span></span>
+<span id="cb10-2"><a href="causal-survival-analysis-stata.html#cb10-2"></a></span>
+<span id="cb10-3"><a href="causal-survival-analysis-stata.html#cb10-3"></a><span class="kw">keep</span> seqn event qsmk time sex race age education <span class="co">///</span></span>
+<span id="cb10-4"><a href="causal-survival-analysis-stata.html#cb10-4"></a>  smokeintensity smkintensity82_71  smokeyrs exercise <span class="co">///</span></span>
+<span id="cb10-5"><a href="causal-survival-analysis-stata.html#cb10-5"></a>  active wt71 </span>
+<span id="cb10-6"><a href="causal-survival-analysis-stata.html#cb10-6"></a><span class="kw">preserve</span></span>
+<span id="cb10-7"><a href="causal-survival-analysis-stata.html#cb10-7"></a> </span>
+<span id="cb10-8"><a href="causal-survival-analysis-stata.html#cb10-8"></a><span class="kw">quietly</span> <span class="kw">logistic</span> event qsmk qsmk#c.time <span class="co">///</span></span>
+<span id="cb10-9"><a href="causal-survival-analysis-stata.html#cb10-9"></a>  qsmk#c.time#c.time time c.time#c.time  <span class="co">///</span></span>
+<span id="cb10-10"><a href="causal-survival-analysis-stata.html#cb10-10"></a>    sex race c.age##c.age ib(<span class="fu">last</span>).education <span class="co">///</span></span>
+<span id="cb10-11"><a href="causal-survival-analysis-stata.html#cb10-11"></a>    c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
+<span id="cb10-12"><a href="causal-survival-analysis-stata.html#cb10-12"></a>    c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active <span class="co">///</span></span>
+<span id="cb10-13"><a href="causal-survival-analysis-stata.html#cb10-13"></a>    c.wt71##c.wt71 , <span class="kw">cluster</span>(seqn) </span>
+<span id="cb10-14"><a href="causal-survival-analysis-stata.html#cb10-14"></a>            </span>
+<span id="cb10-15"><a href="causal-survival-analysis-stata.html#cb10-15"></a><span class="kw">drop</span> <span class="kw">if</span> time != 0</span>
+<span id="cb10-16"><a href="causal-survival-analysis-stata.html#cb10-16"></a>expand 120 <span class="kw">if</span> time ==0 </span>
+<span id="cb10-17"><a href="causal-survival-analysis-stata.html#cb10-17"></a><span class="kw">bysort</span> seqn: <span class="kw">replace</span> time = <span class="dt">_n</span> - 1              </span>
+<span id="cb10-18"><a href="causal-survival-analysis-stata.html#cb10-18"></a>expand 2 , <span class="kw">generate</span>(interv) </span>
+<span id="cb10-19"><a href="causal-survival-analysis-stata.html#cb10-19"></a><span class="kw">replace</span> qsmk = interv        </span>
+<span id="cb10-20"><a href="causal-survival-analysis-stata.html#cb10-20"></a><span class="kw">predict</span> pevent_k, pr</span>
+<span id="cb10-21"><a href="causal-survival-analysis-stata.html#cb10-21"></a><span class="kw">gen</span> psurv_k = 1-pevent_k</span>
+<span id="cb10-22"><a href="causal-survival-analysis-stata.html#cb10-22"></a><span class="kw">keep</span> seqn  time qsmk interv psurv_k                 </span>
+<span id="cb10-23"><a href="causal-survival-analysis-stata.html#cb10-23"></a><span class="kw">sort</span> seqn interv time</span>
+<span id="cb10-24"><a href="causal-survival-analysis-stata.html#cb10-24"></a><span class="kw">gen</span> _t = time + 1</span>
+<span id="cb10-25"><a href="causal-survival-analysis-stata.html#cb10-25"></a><span class="kw">gen</span> psurv = psurv_k <span class="kw">if</span> _t ==1       </span>
+<span id="cb10-26"><a href="causal-survival-analysis-stata.html#cb10-26"></a><span class="kw">bysort</span> seqn interv: <span class="kw">replace</span> psurv = psurv_k*psurv[_t-1] <span class="kw">if</span> _t &gt;1 </span>
+<span id="cb10-27"><a href="causal-survival-analysis-stata.html#cb10-27"></a><span class="kw">by</span> interv, <span class="kw">sort</span>: <span class="kw">summarize</span> psurv <span class="kw">if</span> time == 119</span>
+<span id="cb10-28"><a href="causal-survival-analysis-stata.html#cb10-28"></a></span>
+<span id="cb10-29"><a href="causal-survival-analysis-stata.html#cb10-29"></a><span class="kw">keep</span> qsmk interv psurv time   </span>
+<span id="cb10-30"><a href="causal-survival-analysis-stata.html#cb10-30"></a>        </span>
+<span id="cb10-31"><a href="causal-survival-analysis-stata.html#cb10-31"></a><span class="kw">bysort</span> interv : <span class="kw">egen</span> meanS = <span class="kw">mean</span>(psurv) <span class="kw">if</span> time == 119</span>
+<span id="cb10-32"><a href="causal-survival-analysis-stata.html#cb10-32"></a><span class="kw">by</span> interv: <span class="kw">summarize</span> meanS</span>
+<span id="cb10-33"><a href="causal-survival-analysis-stata.html#cb10-33"></a></span>
+<span id="cb10-34"><a href="causal-survival-analysis-stata.html#cb10-34"></a><span class="kw">quietly</span> <span class="kw">summarize</span> meanS <span class="kw">if</span>(qsmk==0  &amp; time ==119)</span>
+<span id="cb10-35"><a href="causal-survival-analysis-stata.html#cb10-35"></a><span class="fu">matrix</span> input observe = ( 0,<span class="ot">`r(mean)&#39;</span>)</span>
+<span id="cb10-36"><a href="causal-survival-analysis-stata.html#cb10-36"></a><span class="kw">quietly</span> <span class="kw">summarize</span> meanS <span class="kw">if</span>(qsmk==1  &amp; time ==119)</span>
+<span id="cb10-37"><a href="causal-survival-analysis-stata.html#cb10-37"></a><span class="fu">matrix</span> observe = (observe \1,<span class="ot">`r(mean)&#39;</span>)</span>
+<span id="cb10-38"><a href="causal-survival-analysis-stata.html#cb10-38"></a><span class="fu">matrix</span> observe = (observe \2, observe[2,2]-observe[1,2]) </span>
+<span id="cb10-39"><a href="causal-survival-analysis-stata.html#cb10-39"></a>*Add some <span class="ot">row</span>/column descriptions and <span class="kw">print</span> results to screen*</span>
+<span id="cb10-40"><a href="causal-survival-analysis-stata.html#cb10-40"></a><span class="fu">matrix</span> <span class="ot">rownames</span> observe =  P(Y(a=0)=1) P(Y(a=1)=1) difference</span>
+<span id="cb10-41"><a href="causal-survival-analysis-stata.html#cb10-41"></a><span class="fu">matrix</span> <span class="ot">colnames</span> observe = interv survival</span>
+<span id="cb10-42"><a href="causal-survival-analysis-stata.html#cb10-42"></a></span>
+<span id="cb10-43"><a href="causal-survival-analysis-stata.html#cb10-43"></a>*Graph standardized survival <span class="bn">over</span> time, under interventions*</span>
+<span id="cb10-44"><a href="causal-survival-analysis-stata.html#cb10-44"></a><span class="co">/*Note: unlike in Program 17.3, we now have covariates </span></span>
+<span id="cb10-45"><a href="causal-survival-analysis-stata.html#cb10-45"></a><span class="co">so we first need to average survival across strata*/</span></span>
+<span id="cb10-46"><a href="causal-survival-analysis-stata.html#cb10-46"></a><span class="kw">bysort</span> interv time : <span class="kw">egen</span> meanS_t = <span class="kw">mean</span>(psurv)</span>
+<span id="cb10-47"><a href="causal-survival-analysis-stata.html#cb10-47"></a></span>
+<span id="cb10-48"><a href="causal-survival-analysis-stata.html#cb10-48"></a>*Now we can <span class="kw">continue</span> with the <span class="kw">graph</span>*</span>
+<span id="cb10-49"><a href="causal-survival-analysis-stata.html#cb10-49"></a>expand 2 <span class="kw">if</span> time ==0, <span class="kw">generate</span>(newtime)</span>
+<span id="cb10-50"><a href="causal-survival-analysis-stata.html#cb10-50"></a><span class="kw">replace</span> meanS_t  = 1 <span class="kw">if</span> newtime == 1</span>
+<span id="cb10-51"><a href="causal-survival-analysis-stata.html#cb10-51"></a><span class="kw">gen</span> time2 = 0 <span class="kw">if</span> newtime ==1</span>
+<span id="cb10-52"><a href="causal-survival-analysis-stata.html#cb10-52"></a><span class="kw">replace</span> time2 = time + 1 <span class="kw">if</span> newtime == 0</span>
+<span id="cb10-53"><a href="causal-survival-analysis-stata.html#cb10-53"></a><span class="kw">separate</span> meanS_t, <span class="kw">by</span>(interv) </span>
+<span id="cb10-54"><a href="causal-survival-analysis-stata.html#cb10-54"></a></span>
+<span id="cb10-55"><a href="causal-survival-analysis-stata.html#cb10-55"></a><span class="kw">twoway</span> (<span class="kw">line</span> meanS_t0 time2, <span class="kw">sort</span>) <span class="co">///</span></span>
+<span id="cb10-56"><a href="causal-survival-analysis-stata.html#cb10-56"></a>  (<span class="kw">line</span> meanS_t1 time2, <span class="kw">sort</span>) <span class="co">///</span></span>
+<span id="cb10-57"><a href="causal-survival-analysis-stata.html#cb10-57"></a>  , <span class="kw">ylabel</span>(0.5(0.1)1.0) <span class="kw">xlabel</span>(0(12)120) <span class="co">///</span></span>
+<span id="cb10-58"><a href="causal-survival-analysis-stata.html#cb10-58"></a>  <span class="bn">ytitle</span>(<span class="st">&quot;Survival probability&quot;</span>) <span class="bn">xtitle</span>(<span class="st">&quot;Months of follow-up&quot;</span>) <span class="co">///</span></span>
+<span id="cb10-59"><a href="causal-survival-analysis-stata.html#cb10-59"></a>  <span class="bn">legend</span>(<span class="kw">label</span>(1 <span class="st">&quot;A=0&quot;</span>) <span class="kw">label</span>(2 <span class="st">&quot;A=1&quot;</span>))</span>
+<span id="cb10-60"><a href="causal-survival-analysis-stata.html#cb10-60"></a><span class="kw">gr</span> <span class="kw">export</span> ./figs/stata-fig-17-4.png, <span class="kw">replace</span></span>
+<span id="cb10-61"><a href="causal-survival-analysis-stata.html#cb10-61"></a></span>
+<span id="cb10-62"><a href="causal-survival-analysis-stata.html#cb10-62"></a>*remove extra timepoint*</span>
+<span id="cb10-63"><a href="causal-survival-analysis-stata.html#cb10-63"></a><span class="kw">drop</span> <span class="kw">if</span> newtime == 1</span>
+<span id="cb10-64"><a href="causal-survival-analysis-stata.html#cb10-64"></a></span>
+<span id="cb10-65"><a href="causal-survival-analysis-stata.html#cb10-65"></a><span class="kw">restore</span></span>
+<span id="cb10-66"><a href="causal-survival-analysis-stata.html#cb10-66"></a></span>
+<span id="cb10-67"><a href="causal-survival-analysis-stata.html#cb10-67"></a>*Bootstraps*</span>
+<span id="cb10-68"><a href="causal-survival-analysis-stata.html#cb10-68"></a><span class="kw">qui</span> <span class="kw">save</span> ./<span class="kw">data</span>/nhefs_std2 , <span class="kw">replace</span></span>
+<span id="cb10-69"><a href="causal-survival-analysis-stata.html#cb10-69"></a> </span>
+<span id="cb10-70"><a href="causal-survival-analysis-stata.html#cb10-70"></a><span class="kw">capture</span> <span class="kw">program</span> <span class="kw">drop</span> bootstdz_surv</span>
+<span id="cb10-71"><a href="causal-survival-analysis-stata.html#cb10-71"></a></span>
+<span id="cb10-72"><a href="causal-survival-analysis-stata.html#cb10-72"></a><span class="kw">program</span> <span class="kw">define</span> bootstdz_surv , rclass</span>
+<span id="cb10-73"><a href="causal-survival-analysis-stata.html#cb10-73"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs_std2 , <span class="kw">clear</span></span>
+<span id="cb10-74"><a href="causal-survival-analysis-stata.html#cb10-74"></a><span class="kw">preserve</span></span>
+<span id="cb10-75"><a href="causal-survival-analysis-stata.html#cb10-75"></a></span>
+<span id="cb10-76"><a href="causal-survival-analysis-stata.html#cb10-76"></a><span class="kw">bsample</span>, <span class="kw">cluster</span>(seqn) idcluster(newseqn)       </span>
+<span id="cb10-77"><a href="causal-survival-analysis-stata.html#cb10-77"></a><span class="kw">logistic</span> event qsmk qsmk#c.time qsmk#c.time#c.time <span class="co">///</span></span>
+<span id="cb10-78"><a href="causal-survival-analysis-stata.html#cb10-78"></a>  time c.time#c.time <span class="co">///</span></span>
+<span id="cb10-79"><a href="causal-survival-analysis-stata.html#cb10-79"></a>    sex race c.age##c.age ib(<span class="fu">last</span>).education <span class="co">///</span></span>
+<span id="cb10-80"><a href="causal-survival-analysis-stata.html#cb10-80"></a>    c.smokeintensity##c.smokeintensity c.smkintensity82_71 <span class="co">///</span></span>
+<span id="cb10-81"><a href="causal-survival-analysis-stata.html#cb10-81"></a>    c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active <span class="co">///</span></span>
+<span id="cb10-82"><a href="causal-survival-analysis-stata.html#cb10-82"></a>    c.wt71##c.wt71 </span>
+<span id="cb10-83"><a href="causal-survival-analysis-stata.html#cb10-83"></a><span class="kw">drop</span> <span class="kw">if</span> time != 0   </span>
+<span id="cb10-84"><a href="causal-survival-analysis-stata.html#cb10-84"></a><span class="co">/*only predict on new version of data */</span></span>
+<span id="cb10-85"><a href="causal-survival-analysis-stata.html#cb10-85"></a>expand 120 <span class="kw">if</span> time ==0 </span>
+<span id="cb10-86"><a href="causal-survival-analysis-stata.html#cb10-86"></a><span class="kw">bysort</span> newseqn: <span class="kw">replace</span> time = <span class="dt">_n</span> - 1               </span>
+<span id="cb10-87"><a href="causal-survival-analysis-stata.html#cb10-87"></a>expand 2 , <span class="kw">generate</span>(interv_b) </span>
+<span id="cb10-88"><a href="causal-survival-analysis-stata.html#cb10-88"></a><span class="kw">replace</span> qsmk = interv_b          </span>
+<span id="cb10-89"><a href="causal-survival-analysis-stata.html#cb10-89"></a><span class="kw">predict</span> pevent_k, pr</span>
+<span id="cb10-90"><a href="causal-survival-analysis-stata.html#cb10-90"></a><span class="kw">gen</span> psurv_k = 1-pevent_k</span>
+<span id="cb10-91"><a href="causal-survival-analysis-stata.html#cb10-91"></a><span class="kw">keep</span> newseqn  time qsmk psurv_k                 </span>
+<span id="cb10-92"><a href="causal-survival-analysis-stata.html#cb10-92"></a><span class="kw">sort</span> newseqn qsmk time</span>
+<span id="cb10-93"><a href="causal-survival-analysis-stata.html#cb10-93"></a><span class="kw">gen</span> _t = time + 1</span>
+<span id="cb10-94"><a href="causal-survival-analysis-stata.html#cb10-94"></a><span class="kw">gen</span> psurv = psurv_k <span class="kw">if</span> _t ==1   </span>
+<span id="cb10-95"><a href="causal-survival-analysis-stata.html#cb10-95"></a><span class="kw">bysort</span> newseqn  qsmk: <span class="kw">replace</span> psurv = psurv_k*psurv[_t-1] <span class="kw">if</span> _t &gt;1 </span>
+<span id="cb10-96"><a href="causal-survival-analysis-stata.html#cb10-96"></a><span class="kw">drop</span>  <span class="kw">if</span> time != 119   <span class="co">/* keep only last observation */</span></span>
+<span id="cb10-97"><a href="causal-survival-analysis-stata.html#cb10-97"></a><span class="kw">keep</span> newseqn qsmk psurv    </span>
+<span id="cb10-98"><a href="causal-survival-analysis-stata.html#cb10-98"></a><span class="co">/* if time is in data for complete graph add time to bysort */</span>  </span>
+<span id="cb10-99"><a href="causal-survival-analysis-stata.html#cb10-99"></a><span class="kw">bysort</span> qsmk  : <span class="kw">egen</span> meanS_b = <span class="kw">mean</span>(psurv)</span>
+<span id="cb10-100"><a href="causal-survival-analysis-stata.html#cb10-100"></a><span class="kw">keep</span> newseqn qsmk  meanS_b </span>
+<span id="cb10-101"><a href="causal-survival-analysis-stata.html#cb10-101"></a><span class="kw">drop</span> <span class="kw">if</span> newseqn != 1  <span class="co">/* only need one pair */</span></span>
+<span id="cb10-102"><a href="causal-survival-analysis-stata.html#cb10-102"></a><span class="kw">drop</span> newseqn        </span>
+<span id="cb10-103"><a href="causal-survival-analysis-stata.html#cb10-103"></a>    </span>
+<span id="cb10-104"><a href="causal-survival-analysis-stata.html#cb10-104"></a><span class="fu">return</span> <span class="fu">scalar</span> boot_0 = meanS_b[1]</span>
+<span id="cb10-105"><a href="causal-survival-analysis-stata.html#cb10-105"></a><span class="fu">return</span> <span class="fu">scalar</span> boot_1 = meanS_b[2]</span>
+<span id="cb10-106"><a href="causal-survival-analysis-stata.html#cb10-106"></a><span class="fu">return</span> <span class="fu">scalar</span>  boot_diff = <span class="fu">return</span>(boot_1) - <span class="fu">return</span>(boot_0)</span>
+<span id="cb10-107"><a href="causal-survival-analysis-stata.html#cb10-107"></a><span class="kw">restore</span></span>
+<span id="cb10-108"><a href="causal-survival-analysis-stata.html#cb10-108"></a><span class="kw">end</span></span>
+<span id="cb10-109"><a href="causal-survival-analysis-stata.html#cb10-109"></a></span>
+<span id="cb10-110"><a href="causal-survival-analysis-stata.html#cb10-110"></a><span class="kw">set</span> <span class="dv">rmsg</span> <span class="kw">on</span></span>
+<span id="cb10-111"><a href="causal-survival-analysis-stata.html#cb10-111"></a><span class="kw">simulate</span> PrY_a0 = <span class="fu">r</span>(boot_0) PrY_a1 = <span class="fu">r</span>(boot_1) <span class="co">///</span></span>
+<span id="cb10-112"><a href="causal-survival-analysis-stata.html#cb10-112"></a>  difference=<span class="fu">r</span>(boot_diff), reps(10) <span class="dv">seed</span>(1): bootstdz_surv</span>
+<span id="cb10-113"><a href="causal-survival-analysis-stata.html#cb10-113"></a><span class="kw">set</span> <span class="dv">rmsg</span> <span class="kw">off</span> </span>
+<span id="cb10-114"><a href="causal-survival-analysis-stata.html#cb10-114"></a> </span>
+<span id="cb10-115"><a href="causal-survival-analysis-stata.html#cb10-115"></a><span class="fu">matrix</span> pe = observe[1..3, 2]&#39;</span>
+<span id="cb10-116"><a href="causal-survival-analysis-stata.html#cb10-116"></a><span class="kw">bstat</span>, stat(pe) n(1629)</span></code></pre></div>
 <pre><code>(169,510 observations deleted)
 
 (186,354 observations created)
@@ -968,14 +1023,14 @@ Bootstrap results                               Number of obs     =      1,629
 (372,708 real changes made)
 
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -&gt; interv = 0
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
        psurv |      1,566    .8160697    .2014345    .014127   .9903372
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -&gt; interv = 1
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
@@ -987,14 +1042,14 @@ Bootstrap results                               Number of obs     =      1,629
 (372708 missing values generated)
 
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -&gt; interv = 0
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
        meanS |      1,566    .8160697           0   .8160697   .8160697
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -&gt; interv = 1
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
@@ -1020,7 +1075,7 @@ Bootstrap results                               Number of obs     =      1,629
 
               storage   display    value
 variable name   type    format     label      variable label
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 meanS_t0        float   %9.0g                 meanS_t, interv == 0
 meanS_t1        float   %9.0g                 meanS_t, interv == 1
 
@@ -1033,7 +1088,7 @@ meanS_t1        float   %9.0g                 meanS_t, interv == 1
 
 
 
-r; t=0.00 3:45:47
+r; t=0.00 11:23:15
 
       command:  bootstdz_surv
        PrY_a0:  r(boot_0)
@@ -1043,7 +1098,7 @@ r; t=0.00 3:45:47
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=105.34 3:47:33
+r; t=50.23 11:24:05
 
 
 
@@ -1059,7 +1114,7 @@ Bootstrap results                               Number of obs     =      1,629
       PrY_a1 |   .8117629   .0292177    27.78   0.000     .7544973    .8690286
   difference |  -.0043068   .0307674    -0.14   0.889    -.0646099    .0559963
 ------------------------------------------------------------------------------</code></pre>
-<p><img src="figs/stata-fig-17-4.png" width="955" /></p>
+<p><img src="figs/stata-fig-17-4.png" width="518" /></p>
 
 </div>
 </div>
