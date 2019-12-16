@@ -15,6 +15,7 @@ For errors contact: ejmurray@bu.edu
 ```
 
 ## Program 16.1
+
 - Estimating the average causal effect using the standard IV estimator via the calculation of sample averages
 - Data from NHEFS
 - Section 16.2
@@ -184,6 +185,7 @@ r1   2.535729  2.6860178
 ```
 
 ## Program 16.2
+
 - Estimating the average causal effect using the standard IV estimator via two-stage-least-squares regression
 - Data from NHEFS
 - Section 16.2
@@ -192,9 +194,9 @@ r1   2.535729  2.6860178
 ```stata
 use ./data/nhefs-highprice, clear
 
-/*ivregress fits the model in two stages: */
-/*first model: qsmk = highprice*/
-/*second model: wt82_71 = predicted_qsmk*/
+/* ivregress fits the model in two stages:
+- first model: qsmk = highprice
+- second model: wt82_71 = predicted_qsmk */
 ivregress 2sls wt82_71 (qsmk = highprice)
 ```
 
@@ -216,6 +218,7 @@ Instruments:   highprice
 ```
 
 ## Program 16.3
+
 - Estimating the average causal effect using the standard IV estimator via an additive marginal structural model
 - Data from NHEFS
 - Checking one possible value of psi.
@@ -250,6 +253,7 @@ Log likelihood = -187.34948                     Pseudo R2         =     0.0000
 ```
 
 ## Program 16.4
+
 - Estimating the average causal effect using the standard IV estimator based on alternative proposed instruments
 - Data from NHEFS
 - Section 16.5
@@ -366,6 +370,7 @@ Instruments:   highprice
 ```
 
 ## Program 16.5
+
 - Estimating the average causal effect using the standard IV estimator conditional on baseline covariates
 - Data from NHEFS
 - Section 16.5

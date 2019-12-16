@@ -15,6 +15,7 @@ For errors contact: ejmurray@bu.edu
 ```
   
 ## Program 12.1
+
 - Descriptive statistics from NHEFS data (Table 12.1)
 
 
@@ -55,14 +56,10 @@ qui save ./data/nhefs-formatted, replace
 ```
 
 
+
 ```stata
 use ./data/nhefs-formatted, clear
-```
 
-``````
-
-
-```stata
 /*Output table*/
 foreach var of varlist years male  white university kg cigs meansmkyrs noexer inactive {
   tabdisp qsmk, cell(`var') format(%3.1f)
@@ -143,11 +140,14 @@ No smoking cessation |                 8.9
 ```
 
 ## Program 12.2
+
 - Estimating IP weights for Section 12.2
 - Data from NHEFS
 
 
 ```stata
+use ./data/nhefs-formatted, clear
+
 /*Fit a logistic model for the IP weights*/ 
 logit qsmk sex race c.age##c.age ib(last).education c.smokeintensity##c.smokeintensity ///
 c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active c.wt71##c.wt71 
@@ -253,11 +253,14 @@ Linear regression                               Number of obs     =      1,566
 ```
 
 ## Program 12.3
+
 - Estimating stabilized IP weights for Section 12.3
 - Data from NHEFS
 
 
 ```stata
+use ./data/nhefs-formatted, clear
+
 /*Fit a logistic model for the denominator of the IP weights and predict the conditional probability of smoking*/ 
 logit qsmk sex race c.age##c.age ib(last).education c.smokeintensity##c.smokeintensity ///
 c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active c.wt71##c.wt71  
@@ -289,8 +292,6 @@ tab age qsmk if race==1 & sex==1 & wt82!=.
 ```
 
 ```
-> conditional probability of smoking*/ 
-
 Iteration 0:   log likelihood = -893.02712  
 Iteration 1:   log likelihood = -839.70016  
 Iteration 2:   log likelihood = -838.45045  
@@ -490,11 +491,14 @@ Linear regression                               Number of obs     =      1,566
 ```
 
 ## Program 12.4
+
 - Estimating the parameters of a marginal structural mean model with a continuous treatment Data from NHEFS
 - Section 12.4
 
 
 ```stata
+use ./data/nhefs-formatted, clear
+
 * drop sw_a
 
 /*Analysis restricted to subjects reporting <=25 cig/day at baseline: N = 1162*/
@@ -629,6 +633,7 @@ smkintens~71 |   .0026949   .0024203     1.11   0.266    -.0020537    .0074436
 ```
 
 ## Program 12.5
+
 - Estimating the parameters of a marginal structural logistic model
 - Data from NHEFS
 - Section 12.4
@@ -765,6 +770,7 @@ Note: _cons estimates baseline odds.
 ```
 
 ## Program 12.6
+
 - Assessing effect modification by sex using a marginal structural mean model
 - Data from NHEFS
 - Section 12.5
@@ -913,6 +919,7 @@ Linear regression                               Number of obs     =      1,566
 ```
 
 ## Program 12.7
+
 - Estimating IP weights to adjust for selection bias due to censoring
 - Data from NHEFS
 - Section 12.6

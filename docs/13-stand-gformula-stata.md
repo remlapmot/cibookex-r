@@ -14,20 +14,14 @@ For errors contact: ejmurray@bu.edu
 ***************************************************************/
 ```
 
-
-```stata
-use ./data/nhefs-formatted, clear
-```
-
-``````
-
 ## Program 13.1
+
 - Estimating the mean outcome within levels of treatment and confounders: Data from NHEFS
 - Section 13.2
 
 
 ```stata
-* use ./data/nhefs-formatted, clear
+use ./data/nhefs-formatted, clear
 
 /* Estimate the the conditional mean outcome within strata of quitting 
 smoking and covariates, among the uncensored */
@@ -134,6 +128,7 @@ Smoking c..  |   .0466628   .0351448     1.33   0.184    -.0222197    .1155453
 ```
 
 ## Program 13.2
+
 - Standardizing the mean outcome to the baseline confounders
 - Data from Table 2.2
 - Section 13.3
@@ -341,13 +336,14 @@ difference          .          0
 ```
 
 ## Program 13.3
+
 - Standardizing the mean outcome to the baseline confounders:
 - Data from NHEFS
 - Section 13.3
 
 
 ```stata
-* use ./data/nhefs-formatted, clear
+use ./data/nhefs-formatted, clear
 
 *i.Data set up for standardization: create 3 copies of each subject*
 *first, duplicate the dataset and create a variable 'interv' which indicates which copy is the duplicate (interv =1)
@@ -386,12 +382,18 @@ predict predY, xb
 *These are the standardized outcome estimates: you can subtract them to get the standardized difference*
 by interv, sort: summarize predY
 
-*iii.OPTIONAL: Output standardized point estimates and difference*
-*The summary from the last command gives you the standardized estimates*
-*We can stop there, or we can ask Stata to calculate the standardized difference and display all the results in a simple table*
-*The code below can be used as-is without changing any variable names*
-*The option "quietly" asks Stata not to display the output of some intermediate calculations*
-*You can delete this option if you want to see what is happening step-by-step*
+/* iii.OPTIONAL: Output standardized point estimates and difference
+- The summary from the last command gives you the 
+standardized estimates
+- We can stop there, or we can ask Stata to calculate the 
+standardized difference and display all the results 
+in a simple table
+- The code below can be used as-is without changing any
+variable names
+- The option `quietly` asks Stata not to display the output of 
+some intermediate calculations
+- You can delete this option if you want to see what is 
+happening step-by-step */
 quietly summarize predY if(interv == -1)
 matrix input observe = (-1,`r(mean)')
 quietly summarize predY if(interv == 0)
@@ -400,16 +402,21 @@ quietly summarize predY if(interv == 1)
 matrix observe = (observe \1,`r(mean)')
 matrix observe = (observe \., observe[3,2]-observe[2,2]) 
 
-*Add some row/column descriptions and print results to screen*
+* Add some row/column descriptions and print results to screen
 matrix rownames observe = observed E(Y(a=0)) E(Y(a=1)) difference
 matrix colnames observe = interv value
 matrix list observe 
 
-*to interpret these results:*
-*row 1, column 2, is the observed mean outcome value in our original sample*
-*row 2, column 2, is the mean outcome value if everyone had not quit smoking*
-*row 3, column 2, is the mean outcome value if everyone had quit smoking*
-*row 4, column 2, is the mean difference outcome value if everyone had quit smoking compared to if everyone had not quit smoking*
+/* To interpret these results:
+- row 1, column 2, is the observed mean outcome value 
+in our original sample
+- row 2, column 2, is the mean outcome value 
+if everyone had not quit smoking
+- row 3, column 2, is the mean outcome value 
+if everyone had quit smoking
+- row 4, column 2, is the mean difference outcome value 
+if everyone had quit smoking compared to if everyone 
+had not quit smoking */
 
 /* Addition due to way Statamarkdown works 
 i.e. each code chunk is a separate Stata session */
@@ -572,6 +579,7 @@ file ./data/observe.mmat saved
 ```
 
 ## Program 13.4
+
 - Computing the 95% confidence interval of the standardized means and their difference: Data from NHEFS
 - Section 13.3
 
@@ -635,7 +643,8 @@ end
 times as we want.
 Start with reps(10) to make sure your code runs, and then change to
 reps(1000) to generate your final CIs.*/
-simulate EY_a0=r(boot_0) EY_a1 = r(boot_1) difference = r(boot_diff), reps(10) seed(1): bootstdz /
+simulate EY_a0=r(boot_0) EY_a1 = r(boot_1) ///
+  difference = r(boot_diff), reps(10) seed(1): bootstdz
 
 /* Next, format the point estimate to allow Stata to calculate our
 standard errors and confidence intervals*/
@@ -656,7 +665,7 @@ bstat, stat(pe) n(1629)
 ```
 
 ```
-      command:  bootstdz /
+      command:  bootstdz
         EY_a0:  r(boot_0)
         EY_a1:  r(boot_1)
    difference:  r(boot_diff)

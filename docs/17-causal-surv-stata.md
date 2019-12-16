@@ -15,6 +15,7 @@ For errors contact: ejmurray@bu.edu
 ```
 
 ## Program 17.1
+
 - Nonparametric estimation of survival curves
 - Data from NHEFS
 - Section 17.1
@@ -22,12 +23,7 @@ For errors contact: ejmurray@bu.edu
 
 ```stata
 use ./data/nhefs-formatted, clear
-```
 
-``````
-
-
-```stata
 /*Some preprocessing of the data*/
 gen survtime = .
 replace survtime = 120 if death == 0
@@ -79,9 +75,10 @@ obs. time interval:  (0, survtime]
    analysis time _t:  survtime
 ```
 
-<img src="./figs/stata-fig-17-1.png" width="518" />
+<img src="./figs/stata-fig-17-1.png" width="75%" />
 
 ## Program 17.2
+
 - Parametric estimation of survival curves via hazards model
 - Data from NHEFS
 - Section 17.1
@@ -97,7 +94,7 @@ Individuals who survive to the end of follow-up will have
 119 time points
 Individuals who die will have survtime - 1 time points*/
 
-* use ./data/nhefs-formatted, clear
+use ./data/nhefs-formatted, clear
 
 gen survtime = .
 replace survtime = 120 if death == 0
@@ -280,9 +277,10 @@ psurv1          float   %9.0g                 psurv, interv == 1
 
 ```
 
-<img src="./figs/stata-fig-17-2.png" width="518" />
+<img src="./figs/stata-fig-17-2.png" width="75%" />
 
 ## Program 17.3
+
 - Estimation of survival curves via IP weighted hazards model
 - Data from NHEFS
 - Section 17.4
@@ -617,7 +615,7 @@ psurv1          float   %9.0g                 psurv, interv == 1
 
 
 
-r; t=0.00 11:22:17
+r; t=0.00 14:51:29
 
       command:  bootipw_surv
        PrY_a0:  r(boot_0)
@@ -627,7 +625,7 @@ r; t=0.00 11:22:17
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=41.39 11:22:59
+r; t=41.03 14:52:10
 
 
 
@@ -645,9 +643,10 @@ Bootstrap results                               Number of obs     =      1,629
 ------------------------------------------------------------------------------
 ```
 
-<img src="./figs/stata-fig-17-3.png" width="518" />
+<img src="./figs/stata-fig-17-3.png" width="75%" />
 
 ## Program 17.4
+
 - Estimating of survival curves via g-formula
 - Data from NHEFS
 - Section 17.5
@@ -760,7 +759,7 @@ drop newseqn
 	
 return scalar boot_0 = meanS_b[1]
 return scalar boot_1 = meanS_b[2]
-return scalar  boot_diff = return(boot_1) - return(boot_0)
+return scalar boot_diff = return(boot_1) - return(boot_0)
 restore
 end
 
@@ -859,7 +858,7 @@ meanS_t1        float   %9.0g                 meanS_t, interv == 1
 
 
 
-r; t=0.00 11:23:15
+r; t=0.00 14:52:25
 
       command:  bootstdz_surv
        PrY_a0:  r(boot_0)
@@ -869,7 +868,7 @@ r; t=0.00 11:23:15
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=50.23 11:24:05
+r; t=51.62 14:53:17
 
 
 
@@ -887,4 +886,4 @@ Bootstrap results                               Number of obs     =      1,629
 ------------------------------------------------------------------------------
 ```
 
-<img src="./figs/stata-fig-17-4.png" width="518" />
+<img src="./figs/stata-fig-17-4.png" width="75%" />

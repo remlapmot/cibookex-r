@@ -17,6 +17,7 @@ For errors contact: ejmurray@bu.edu
 ```
 
 ## Program 11.1
+
 - Figures 11.1, 11.2, and 11.3
 - Sample averages by treatment level
 
@@ -63,14 +64,14 @@ bysort A: sum Y
 
 
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -> A = 0
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
            Y |          8        67.5    53.11712         10        170
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -> A = 1
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
@@ -78,7 +79,7 @@ bysort A: sum Y
            Y |          8      146.25     58.2942         50        220
 ```
 
-<img src="figs/stata-fig-11-1.png" width="955" />
+<img src="figs/stata-fig-11-1.png" width="75%" />
 
 
 ```stata
@@ -120,28 +121,28 @@ bysort A: sum Y
 
 
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -> A = 1
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
            Y |          4          70    31.62278         40        110
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -> A = 2
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
            Y |          4          80    62.18253         30        170
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -> A = 3
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
            Y |          4       117.5    53.77422         50        180
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 -> A = 4
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
@@ -149,7 +150,7 @@ bysort A: sum Y
            Y |          4         195    31.09126        150        220
 ```
 
-<img src="figs/stata-fig-11-2.png" width="955" />
+<img src="figs/stata-fig-11-2.png" width="75%" />
 
 
 ```stata
@@ -186,9 +187,10 @@ qui gr export figs/stata-fig-11-3.png, replace
 
 ```
 
-<img src="figs/stata-fig-11-3.png" width="955" />
+<img src="figs/stata-fig-11-3.png" width="75%" />
 
-## Program 11.2 
+## Program 11.2
+
 - 2-parameter linear model
 - Creates Figure 11.4, parameter estimates with 95% confidence intervals from Section 11.2, and parameter estimates with 95% confidence intervals from Section 11.3
 
@@ -230,7 +232,7 @@ qui gr export figs/stata-fig-11-4.png, replace
 
 ```
 
-<img src="figs/stata-fig-11-4.png" width="955" />
+<img src="figs/stata-fig-11-4.png" width="75%" />
 
 
 ```stata
@@ -256,6 +258,7 @@ di 67.50 + 78.75
 ```
 
 ## Program 11.3
+
 - 3-parameter linear model
 - Creates Figure 11.5 and Parameter estimates for Section 11.4
 
@@ -297,4 +300,4 @@ qui gr export figs/stata-fig-11-5.png, replace
 
 ```
 
-<img src="figs/stata-fig-11-5.png" width="955" />
+<img src="figs/stata-fig-11-5.png" width="75%" />

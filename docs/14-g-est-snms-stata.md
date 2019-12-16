@@ -15,6 +15,7 @@ For errors contact: ejmurray@bu.edu
 ```
 
 ## Program 14.1
+
 - Ranks of extreme observations
 - Data from NHEFS
 - Section 14.4
@@ -157,6 +158,7 @@ file ./data/nhefs-wcens.dta saved
 ```
 
 ## Program 14.2
+
 - G-estimation of a 1-parameter structural nested mean model
 - Brute force search
 - Data from NHEFS
@@ -375,6 +377,7 @@ r31           5  -.02998926   .02998926   .00213639
 ```
 
 ## Program 14.3
+
 - G-estimation for 2-parameter structural nested mean model
 - Closed form estimator
 - Data from NHEFS

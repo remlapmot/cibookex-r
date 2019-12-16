@@ -124,7 +124,8 @@ summary(cw.denom)
 
 ```r
 nhefs$pd.c <- predict(cw.denom, nhefs, type="response")
-nhefs$wc <- ifelse(nhefs$cens==0, 1/nhefs$pd.c, NA)  # observations with cens=1 only contribute to censoring models
+nhefs$wc <- ifelse(nhefs$cens==0, 1/nhefs$pd.c, NA) 
+# observations with cens=1 only contribute to censoring models
 ```
 
 

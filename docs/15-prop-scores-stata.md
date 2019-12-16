@@ -15,6 +15,7 @@ For errors contact: ejmurray@bu.edu
 ```
 
 ## Program 15.1
+
 - Estimating the average causal effect within levels of confounders under the assumption of effect-measure modification by smoking intensity ONLY 
 - Data from NHEFS
 - Section 15.1
@@ -22,12 +23,7 @@ For errors contact: ejmurray@bu.edu
 
 ```stata
 use ./data/nhefs-formatted, clear
-```
 
-``````
-
-
-```stata
 /* Generate smoking intensity among smokers product term */
 gen qsmkintensity = qsmk*smokeintensity
 
@@ -176,12 +172,15 @@ smokeinten~y |  -.0010468   .0009373    -1.12   0.264    -.0028853    .0007918
 ```
 
 ## Prorgam 15.2
+
 - Estimating and plotting the propensity score
 - Data from NHEFS
 - Section 15.2
 
 
 ```stata
+use ./data/nhefs-formatted, clear
+
 /*Fit a model for the exposure, quitting smoking*/
 logit qsmk sex race c.age##c.age ib(last).education ///
   c.smokeintensity##c.smokeintensity ///
@@ -352,14 +351,14 @@ smokeinten~y |   .0010451   .0002866     3.65   0.000     .0004835    .0016068
   | 1495.   .7768887   24949 |
   +--------------------------+
 
-(note: file ./data/nhefs-ps.dta not found)
 file ./data/nhefs-ps.dta saved
 
 ```
 
-<img src="./figs/stata-fig-15-2.png" width="518" />
+<img src="./figs/stata-fig-15-2.png" width="75%" />
 
 ## Program 15.3
+
 - Stratification and outcome regression using deciles of the propensity score
 - Data from NHEFS
 - Section 15.3
@@ -681,12 +680,15 @@ Ho: diff = 0                                     degrees of freedom =      154
 ```
 
 ## Program 15.4
+
 - Standardization and outcome regression using the propensity score
 - Data from NHEFS
 - Section 15.3
 
 
 ```stata
+use ./data/nhefs-formatted, clear
+
 /*Estimate the propensity score*/
 logit qsmk sex race c.age##c.age ib(last).education ///
   c.smokeintensity##c.smokeintensity ///

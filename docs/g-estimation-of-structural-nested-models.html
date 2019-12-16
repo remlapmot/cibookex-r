@@ -27,7 +27,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2019-12-13" />
+<meta name="date" content="2019-12-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -347,7 +347,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Number of Fisher Scoring iterations: 7</code></pre>
 <div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="g-estimation-of-structural-nested-models.html#cb195-1"></a>nhefs<span class="op">$</span>pd.c &lt;-<span class="st"> </span><span class="kw">predict</span>(cw.denom, nhefs, <span class="dt">type=</span><span class="st">&quot;response&quot;</span>)</span>
-<span id="cb195-2"><a href="g-estimation-of-structural-nested-models.html#cb195-2"></a>nhefs<span class="op">$</span>wc &lt;-<span class="st"> </span><span class="kw">ifelse</span>(nhefs<span class="op">$</span>cens<span class="op">==</span><span class="dv">0</span>, <span class="dv">1</span><span class="op">/</span>nhefs<span class="op">$</span>pd.c, <span class="ot">NA</span>)  <span class="co"># observations with cens=1 only contribute to censoring models</span></span></code></pre></div>
+<span id="cb195-2"><a href="g-estimation-of-structural-nested-models.html#cb195-2"></a>nhefs<span class="op">$</span>wc &lt;-<span class="st"> </span><span class="kw">ifelse</span>(nhefs<span class="op">$</span>cens<span class="op">==</span><span class="dv">0</span>, <span class="dv">1</span><span class="op">/</span>nhefs<span class="op">$</span>pd.c, <span class="ot">NA</span>) </span>
+<span id="cb195-3"><a href="g-estimation-of-structural-nested-models.html#cb195-3"></a><span class="co"># observations with cens=1 only contribute to censoring models</span></span></code></pre></div>
 </div>
 <div id="program-14.2" class="section level2">
 <h2>Program 14.2</h2>
