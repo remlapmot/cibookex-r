@@ -92,9 +92,9 @@ di scalar(iv_est)
 ```{stata}
 use ./data/nhefs-highprice, clear
 
-/*ivregress fits the model in two stages: */
-/*first model: qsmk = highprice*/
-/*second model: wt82_71 = predicted_qsmk*/
+/* ivregress fits the model in two stages:
+- first model: qsmk = highprice
+- second model: wt82_71 = predicted_qsmk */
 ivregress 2sls wt82_71 (qsmk = highprice)
 ```
 
