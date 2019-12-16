@@ -1,9 +1,12 @@
 # Repository of R and Stata code for the exercises in Causal Inference: What If by Hernán and Robins
 
-The R code by Joy Shi and Sean McGrath available [here](https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/1268/20/Rcode_CIpart2.zip) and the Stata code of Eleanor Murray and Roger Logan [here](https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/2019/11/stata_part2.zip) of [Causal Inference: What If](https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/) by Hernán MA and Robins JM rendered using [bookdown](https://bookdown.org/).
+- The R code by Joy Shi and Sean McGrath is available [here](https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/1268/20/Rcode_CIpart2.zip)
+- The Stata code by Eleanor Murray and Roger Logan is available [here](https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/2019/11/stata_part2.zip) 
+- The book by by Hernán MA and Robins JM is available [here](https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/) 
+- These files are rendered using [bookdown](https://bookdown.org/).
 
 ## Install dependencies
-If you have downloaded/forked this repository you can install the dependencies that are on CRAN with (assuming your working directory is at the top level of the repo):
+If you have downloaded/forked this repository you can install the dependencies with (assuming your working directory is at the top level of the repo):
 ```r
 # install.packages("devtools") # uncomment if devtools not installed
 devtools::install_deps()
@@ -11,7 +14,7 @@ devtools::install_deps()
 
 ## Building the book
 
-- If you need to install LaTeX, install the R tinytex package (which is included in the dependencies) and run
+- If you need to install LaTeX, in R install the tinytex package (which is included in the dependencies) and run
 ``` r
 tinytex::install_tinytex()
 ```
