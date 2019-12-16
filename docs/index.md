@@ -1,10 +1,11 @@
 --- 
-title: "Causal Inference: What If. Exercises -- R code"
+title: "Causal Inference: What If. R and Stata code for Exercises"
 author: 
  - Book by M. A. Hernán and J. M. Robins
  - R code by Joy Shi and Sean McGrath
+ - Stata code by Eleanor Murray and Roger Logan
  - R Markdown code by Tom Palmer
-date: "12 December 2019"
+date: "16 December 2019"
 site: bookdown::bookdown_site
 documentclass: book
 #biblio-style: apalike
@@ -26,8 +27,10 @@ https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/
 
 The R code is based on the code by Joy Shi and Sean McGrath given [here](https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/1268/20/Rcode_CIpart2.zip).
 
+The Stata code is based on the code by Eleanor Murray and Roger Logan given [here](https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/2019/11/stata_part2.zip).
+
 ## Packages to install
-To install the R packages required for this book please copy/fork the repository and run:
+To install the R packages required for this book please copy/fork the repository. It is easiest to open the repo in RStudio as an RStudio project, by doubling click the `.Rproj` file. This makes sure that R's working directory is at the top level of the repo. If you don't want to open the repo as a project set the working directory to the top level of the repo directories using `setwd()`. Then run:
 
 ```r
 # install.packages('devtools') # uncomment if devtools not

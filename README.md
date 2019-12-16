@@ -1,6 +1,6 @@
-# Repository of R code for the exercises in Causal Inference: What If by Hernán and Robins
+# Repository of R and Stata code for the exercises in Causal Inference: What If by Hernán and Robins
 
-The R code by Joy Shi and Sean McGrath available [here](https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/1268/20/Rcode_CIpart2.zip) of [Causal Inference: What If](https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/) by Hernán MA and Robins JM rendered using [bookdown](https://bookdown.org/).
+The R code by Joy Shi and Sean McGrath available [here](https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/1268/20/Rcode_CIpart2.zip) and the Stata code of Eleanor Murray and Roger Logan [here](https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/2019/11/stata_part2.zip) of [Causal Inference: What If](https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/) by Hernán MA and Robins JM rendered using [bookdown](https://bookdown.org/).
 
 ## Install dependencies
 If you have downloaded/forked this repository you can install the dependencies that are on CRAN with (assuming your working directory is at the top level of the repo):
@@ -40,3 +40,8 @@ rmarkdown::render_site(output_format = 'bookdown::epub_book', encoding = 'UTF-8'
 ``` r
 bookdown::preview_chapter("chapter-filename.Rmd")
 ```
+
+- To build the chapters containing Stata code:
+  - You need Stata installed on your machine.
+  - Running `devtools::install_deps()` should install the Statamarkdown package from GitHub.
+  - The Statamarkdown package needs to be able to find your installed Stata.

@@ -1,0 +1,15 @@
+# Session information: Stata{-}
+
+```{r, results='hide', message=FALSE, warning=FALSE}
+library(Statamarkdown)
+```
+
+For reproducibility.
+```{stata}
+about
+```
+
+```{r}
+# install.packages("sessioninfo")
+sessioninfo::session_info()
+```

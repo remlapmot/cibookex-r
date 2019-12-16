@@ -30,7 +30,8 @@ cw.denom <- glm(cens==0 ~ qsmk + sex + race + age + I(age^2)
                      data = nhefs, family = binomial("logit"))
 summary(cw.denom)
 nhefs$pd.c <- predict(cw.denom, nhefs, type="response")
-nhefs$wc <- ifelse(nhefs$cens==0, 1/nhefs$pd.c, NA)  # observations with cens=1 only contribute to censoring models
+nhefs$wc <- ifelse(nhefs$cens==0, 1/nhefs$pd.c, NA) 
+# observations with cens=1 only contribute to censoring models
 ```
 
 

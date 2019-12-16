@@ -124,7 +124,8 @@ summary(cw.denom)
 
 ```r
 nhefs$pd.c <- predict(cw.denom, nhefs, type="response")
-nhefs$wc <- ifelse(nhefs$cens==0, 1/nhefs$pd.c, NA)  # observations with cens=1 only contribute to censoring models
+nhefs$wc <- ifelse(nhefs$cens==0, 1/nhefs$pd.c, NA) 
+# observations with cens=1 only contribute to censoring models
 ```
 
 
@@ -193,11 +194,12 @@ summary(fit)
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
+## Correlation structure = independence 
 ## Estimated Scale Parameters:
+## 
 ##             Estimate Std.err
 ## (Intercept)   0.9969 0.06717
-## 
-## Correlation: Structure = independenceNumber of clusters:   1566   Maximum cluster size: 1
+## Number of clusters:   1566  Maximum cluster size: 1
 ```
 
 
