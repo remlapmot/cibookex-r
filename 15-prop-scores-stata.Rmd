@@ -89,7 +89,7 @@ histogram ps, width(0.05) start(0.025) ///
 qui gr export ./figs/stata-fig-15-2.png, replace
 ```
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, out.width='75%'}
 knitr::include_graphics("./figs/stata-fig-15-2.png")
 ```
 
