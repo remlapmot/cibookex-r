@@ -18,6 +18,7 @@ use ./data/nhefs-formatted, clear
 ```
 
 ## Program 13.1
+
 - Estimating the mean outcome within levels of treatment and confounders: Data from NHEFS
 - Section 13.2
 
@@ -41,6 +42,7 @@ summarize wt82_71
 ```
 
 ## Program 13.2
+
 - Standardizing the mean outcome to the baseline confounders
 - Data from Table 2.2
 - Section 13.3
@@ -143,6 +145,7 @@ matrix list observe
 ```
 
 ## Program 13.3
+
 - Standardizing the mean outcome to the baseline confounders:
 - Data from NHEFS
 - Section 13.3
@@ -224,6 +227,7 @@ qui save ./data/nhefs_std, replace
 ```
 
 ## Program 13.4
+
 - Computing the 95% confidence interval of the standardized means and their difference: Data from NHEFS
 - Section 13.3
 
