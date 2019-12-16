@@ -18,20 +18,20 @@ For errors contact: ejmurray@bu.edu
 - Data from NHEFS
 - Section 16.2
 
-```{stata, collectcode=TRUE}
-use ./data/nhefs-formatted, clear
-```
-
 ```{stata}
+use ./data/nhefs-formatted, clear
+
 summarize price82
 
 /* ignore subjects with missing outcome or missing instrument for simplicity*/
 foreach var of varlist wt82 price82 {
-drop if `var'==.
+  drop if `var'==.
 }
 
 /*Create categorical instrument*/
-gen byte highprice  = (price82 > 1.5 & price82 < .)
+gen byte highprice = (price82 > 1.5 & price82 < .)
+
+save ./data/nhefs-highprice, replace
 
 /*Calculate P[Z|A=a]*/
 tab highprice qsmk, row
@@ -43,28 +43,33 @@ ttest wt82_71, by(highprice)
 /*Numerator: num = E[Y|Z=1] - E[Y|Z=0] = 2.686 - 2.536 = 0.150*/
 /*Denominator: denom = P[A=1|Z=1] - P[A=1|Z=0] = 0.258 - 0.195 = 0.063 */ 
 /*IV estimator: E[Ya=1] - E[Ya=0] = (E[Y|Z=1]-E[Y|Z=0])/(P[A=1|Z=1]-P[A=1|Z=0]) = 0.150/0.063 = 2.397*/
-display 2.686 - 2.536
-display 0.258 - 0.195 
-display 0.150/0.063
+display "Numerator, E[Y|Z=1] - E[Y|Z=0] =", 2.686 - 2.536
+display "Denominator: denom = P[A=1|Z=1] - P[A=1|Z=0] =", 0.258 - 0.195
+display "IV estimator =", 0.150/0.063
 
 /*OPTION 2 2: automated calculation of instrument*/
-*Calculate P[A=1|Z=z], for each value of the instrument, and store in a matrix*
+/*Calculate P[A=1|Z=z], for each value of the instrument, 
+and store in a matrix*/
 quietly summarize qsmk if (highprice==0)
 matrix input pa = (`r(mean)')
 quietly summarize qsmk if (highprice==1)
 matrix pa = (pa ,`r(mean)')
 matrix list pa
-*Calculate P[Y|Z=z], for each value of the instrument, and store in a second matrix*
+
+/*Calculate P[Y|Z=z], for each value of the instrument, 
+and store in a second matrix*/
 quietly summarize wt82_71 if (highprice==0)
 matrix input ey = (`r(mean)')
 quietly summarize wt82_71 if (highprice==1)
 matrix ey = (ey ,`r(mean)')
 matrix list ey
-*Using Stata's built-in matrix manipulation feature (Mata), calculate numerator, denominator and IV estimator*
+
+/*Using Stata's built-in matrix manipulation feature (Mata), 
+calculate numerator, denominator and IV estimator*/
 *Numerator: num = E[Y|Z=1] - E[Y|Z=0]*mata
 *Denominator: denom = P[A=1|Z=1] - P[A=1|Z=0]*
 *IV estimator: iv_est = IV estimate of E[Ya=1] - E[Ya=0] *
-mata
+mata 
 pa = st_matrix("pa")
 ey = st_matrix("ey")
 num = ey[1,2] - ey[1,1] 
@@ -72,8 +77,9 @@ denom = pa[1,2] - pa[1,1]
 iv_est = num / denom 
 num
 denom
-iv_est
+st_numscalar("iv_est", iv_est)
 end
+di scalar(iv_est)
 ```
 
 ## Program 16.2
@@ -82,6 +88,8 @@ end
 - Section 16.2
 
 ```{stata}
+use ./data/nhefs-highprice, clear
+
 /*ivregress fits the model in two stages: */
 /*first model: qsmk = highprice*/
 /*second model: wt82_71 = predicted_qsmk*/
@@ -96,8 +104,10 @@ ivregress 2sls wt82_71 (qsmk = highprice)
 - Section 16.2
 
 ```{stata}
+use ./data/nhefs-highprice, clear
+
 gen psi = 2.396
-gen hspi = wt82_71 -psi*qsmk
+gen hspi = wt82_71 - psi*qsmk
 
 logit highprice hspi
 ```
@@ -108,6 +118,8 @@ logit highprice hspi
 - Section 16.5
 
 ```{stata}
+use ./data/nhefs-highprice, clear
+
 /*Instrument cut-point: 1.6*/
 replace highprice = .
 replace highprice = (price82 >1.6 & price82 < .)
@@ -139,8 +151,12 @@ ivregress 2sls wt82_71 (qsmk = highprice)
 - Section 16.5
 
 ```{stata}
+use ./data/nhefs-highprice, clear
+
 replace highprice = .
 replace highprice = (price82 >1.5 & price82 < .)
 
-ivregress 2sls wt82_71 sex race c.age c.smokeintensity c.smokeyrs i.exercise i.active c.wt7 (qsmk = highprice)
+ivregress 2sls wt82_71 sex race c.age c.smokeintensity ///
+  c.smokeyrs i.exercise i.active c.wt7 ///
+  (qsmk = highprice)
 ```
