@@ -408,7 +408,7 @@ drop newseqn
 	
 return scalar boot_0 = meanS_b[1]
 return scalar boot_1 = meanS_b[2]
-return scalar  boot_diff = return(boot_1) - return(boot_0)
+return scalar boot_diff = return(boot_1) - return(boot_0)
 restore
 end
 
