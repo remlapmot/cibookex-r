@@ -40,3 +40,8 @@ rmarkdown::render_site(output_format = 'bookdown::epub_book', encoding = 'UTF-8'
 ``` r
 bookdown::preview_chapter("chapter-filename.Rmd")
 ```
+
+- To build the chapters containing Stata code:
+  - You need Stata installed on your machine.
+  - Running `devtools::install_deps()` should install the Statamarkdown package from GitHub.
+  - The Statamarkdown package needs to be able to find your installed Stata.
