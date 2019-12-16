@@ -13,17 +13,13 @@ For errors contact: ejmurray@bu.edu
 ***************************************************************/
 ```
 
-```{stata, collectcode=TRUE}
-use ./data/nhefs-formatted, clear
-```
-
 ## Program 13.1
 
 - Estimating the mean outcome within levels of treatment and confounders: Data from NHEFS
 - Section 13.2
 
 ```{stata}
-* use ./data/nhefs-formatted, clear
+use ./data/nhefs-formatted, clear
 
 /* Estimate the the conditional mean outcome within strata of quitting 
 smoking and covariates, among the uncensored */
@@ -151,7 +147,7 @@ matrix list observe
 - Section 13.3
 
 ```{stata}
-* use ./data/nhefs-formatted, clear
+use ./data/nhefs-formatted, clear
 
 *i.Data set up for standardization: create 3 copies of each subject*
 *first, duplicate the dataset and create a variable 'interv' which indicates which copy is the duplicate (interv =1)
