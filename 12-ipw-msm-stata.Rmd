@@ -52,6 +52,7 @@ qui save ./data/nhefs-formatted, replace
 use ./data/nhefs-formatted, clear
 ```
 
+
 ```{stata}
 /*Output table*/
 foreach var of varlist years male  white university kg cigs meansmkyrs noexer inactive {
