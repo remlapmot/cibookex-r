@@ -14,6 +14,7 @@ For errors contact: ejmurray@bu.edu
 ```
   
 ## Program 12.1
+
 - Descriptive statistics from NHEFS data (Table 12.1)
 
 ```{stata}
@@ -59,6 +60,7 @@ foreach var of varlist years male  white university kg cigs meansmkyrs noexer in
 ```
 
 ## Program 12.2
+
 - Estimating IP weights for Section 12.2
 - Data from NHEFS
 
@@ -84,6 +86,7 @@ regress wt82_71 qsmk [pweight=w], cluster(seqn)
 ```
 
 ## Program 12.3
+
 - Estimating stabilized IP weights for Section 12.3
 - Data from NHEFS
 
@@ -119,6 +122,7 @@ tab age qsmk if race==1 & sex==1 & wt82!=.
 ```
 
 ## Program 12.4
+
 - Estimating the parameters of a marginal structural mean model with a continuous treatment Data from NHEFS
 - Section 12.4
 
@@ -157,6 +161,7 @@ lincom _b[_cons] + 20*_b[smkintensity82_71 ] +400*_b[c.smkintensity82_71#c.smkin
 ```
 
 ## Program 12.5
+
 - Estimating the parameters of a marginal structural logistic model
 - Data from NHEFS
 - Section 12.4
@@ -190,6 +195,7 @@ logistic death qsmk [pweight=sw_a], cluster(seqn)
 ```
 
 ## Program 12.6
+
 - Assessing effect modification by sex using a marginal structural mean model
 - Data from NHEFS
 - Section 12.5
@@ -223,6 +229,7 @@ regress wt82_71 qsmk##sex [pw=sw_a], cluster(seqn)
 ```
 
 ## Program 12.7
+
 - Estimating IP weights to adjust for selection bias due to censoring
 - Data from NHEFS
 - Section 12.6
