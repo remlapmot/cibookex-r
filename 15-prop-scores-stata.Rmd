@@ -19,12 +19,9 @@ For errors contact: ejmurray@bu.edu
 - Data from NHEFS
 - Section 15.1
 
-```{stata, collectcode=TRUE}
-use ./data/nhefs-formatted, clear
-```
-
-
 ```{stata}
+use ./data/nhefs-formatted, clear
+
 /* Generate smoking intensity among smokers product term */
 gen qsmkintensity = qsmk*smokeintensity
 
@@ -56,6 +53,8 @@ regress wt82_71 qsmk c.smokeintensity##c.smokeintensity ///
 - Section 15.2
 
 ```{stata}
+use ./data/nhefs-formatted, clear
+
 /*Fit a model for the exposure, quitting smoking*/
 logit qsmk sex race c.age##c.age ib(last).education ///
   c.smokeintensity##c.smokeintensity ///
@@ -125,6 +124,8 @@ regress wt82_71 qsmk ib(last).ps_dec
 - Section 15.3
 
 ```{stata}
+use ./data/nhefs-formatted, clear
+
 /*Estimate the propensity score*/
 logit qsmk sex race c.age##c.age ib(last).education ///
   c.smokeintensity##c.smokeintensity ///
