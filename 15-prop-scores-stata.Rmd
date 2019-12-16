@@ -14,6 +14,7 @@ For errors contact: ejmurray@bu.edu
 ```
 
 ## Program 15.1
+
 - Estimating the average causal effect within levels of confounders under the assumption of effect-measure modification by smoking intensity ONLY 
 - Data from NHEFS
 - Section 15.1
@@ -21,6 +22,7 @@ For errors contact: ejmurray@bu.edu
 ```{stata, collectcode=TRUE}
 use ./data/nhefs-formatted, clear
 ```
+
 
 ```{stata}
 /* Generate smoking intensity among smokers product term */
@@ -48,6 +50,7 @@ regress wt82_71 qsmk c.smokeintensity##c.smokeintensity ///
 ```
 
 ## Prorgam 15.2
+
 - Estimating and plotting the propensity score
 - Data from NHEFS
 - Section 15.2
@@ -94,6 +97,7 @@ knitr::include_graphics("./figs/stata-fig-15-2.png")
 ```
 
 ## Program 15.3
+
 - Stratification and outcome regression using deciles of the propensity score
 - Data from NHEFS
 - Section 15.3
@@ -115,6 +119,7 @@ regress wt82_71 qsmk ib(last).ps_dec
 ```
 
 ## Program 15.4
+
 - Standardization and outcome regression using the propensity score
 - Data from NHEFS
 - Section 15.3
