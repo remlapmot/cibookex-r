@@ -129,10 +129,12 @@ matrix observe = (observe \0,`r(mean)')
 quietly summarize predY if(interv == 1)
 matrix observe = (observe \1,`r(mean)')
 matrix observe = (observe \., observe[3,2]-observe[2,2]) 
+
 *Add some row/column descriptions and print results to screen*
 matrix rownames observe = observed E(Y(a=0)) E(Y(a=1)) difference
 matrix colnames observe = interv value
 matrix list observe 
+
 *to interpret these results:*
 *row 1, column 2, is the observed mean outcome value in our original sample*
 *row 2, column 2, is the mean outcome value if everyone had not quit smoking*
@@ -203,11 +205,17 @@ matrix observe = (observe \., observe[3,2]-observe[2,2])
 matrix rownames observe = observed E(Y(a=0)) E(Y(a=1)) difference
 matrix colnames observe = interv value
 matrix list observe 
+
 *to interpret these results:*
 *row 1, column 2, is the observed mean outcome value in our original sample*
 *row 2, column 2, is the mean outcome value if everyone had not quit smoking*
 *row 3, column 2, is the mean outcome value if everyone had quit smoking*
 *row 4, column 2, is the mean difference outcome value if everyone had quit smoking compared to if everyone had not quit smoking*
+
+/* Addition due to way Statamarkdown works 
+i.e. each code chunk is a separate Stata session */
+mata observe = st_matrix("observe")
+mata mata matsave ./data/observe observe, replace
 
 *drop the copies*
 drop if interv != -1
@@ -223,35 +231,55 @@ qui save ./data/nhefs_std, replace
 *Run program 13.3 to obtain point estimates, and then the code below*
 
 capture program drop bootstdz
+
 program define bootstdz, rclass
-	use ./data/nhefs_std, clear
-		preserve
-		*draw bootstrap sample from original observations*
-		bsample 
-		*create copies with each value of qsmk in bootstrap sample*
-		*first, duplicate the dataset and create a variable 'interv' which indicates which copy is the duplicate (interv =1)
-		expand 2, generate(interv_b)
-		*next, duplicate the original copy (interv = 0) again, and create another variable 'interv2' to indicate the copy
-		expand 2 if interv_b == 0, generate(interv2_b)
-		*now, change the value of 'interv' to -1 in one of the copies so that there are unique values of interv for each copy*
-		replace interv_b = -1  if interv2_b ==1
-		drop interv2_b
-		*two of the copies will be for computing the standardized result*
-		*for these two copies (interv = 0 and interv = 1), set the outcome to missing and force qsmk to either 0 or 1, respectively*
-		replace wt82_71 = . if interv_b != -1
-		replace qsmk = 0 if interv_b == 0
-		replace qsmk = 1 if interv_b == 1
-		*run regression*
-		regress wt82_71 qsmk sex race c.age##c.age ib(last).education c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active c.wt71##c.wt71 qsmk#c.smokeintensity
-		*Ask Stata for expected values - Stata will give you expected values for all copies, not just the original ones*
-		predict predY_b, xb
-		summarize predY_b if interv_b == 0
-		return scalar boot_0 = r(mean)
-		summarize predY_b if interv_b == 1
-		return scalar boot_1 = r(mean)
-		return scalar boot_diff = return(boot_1) - return(boot_0)
-	drop meanY_b
-	restore
+use ./data/nhefs_std, clear
+
+preserve
+
+* Draw bootstrap sample from original observations
+bsample 
+		
+/* Create copies with each value of qsmk in bootstrap sample.
+First, duplicate the dataset and create a variable `interv` which
+indicates which copy is the duplicate (interv =1)*/
+expand 2, generate(interv_b)
+
+/* Next, duplicate the original copy (interv = 0) again, and create
+another variable `interv2` to indicate the copy*/
+expand 2 if interv_b == 0, generate(interv2_b)
+
+/* Now, change the value of interv to -1 in one of the copies so that
+there are unique values of interv for each copy*/
+replace interv_b = -1  if interv2_b ==1
+drop interv2_b
+
+/* Two of the copies will be for computing the standardized result.
+For these two copies (interv = 0 and interv = 1), set the outcome to
+missing and force qsmk to either 0 or 1, respectively*/
+replace wt82_71 = . if interv_b != -1
+replace qsmk = 0 if interv_b == 0
+replace qsmk = 1 if interv_b == 1
+
+* Run regression
+regress wt82_71 qsmk sex race c.age##c.age ib(last).education ///
+  c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs ///
+  ib(last).exercise ib(last).active c.wt71##c.wt71 ///
+  qsmk#c.smokeintensity
+
+/* Ask Stata for expected values.
+Stata will give you expected values for all copies, not just the
+original ones*/
+predict predY_b, xb
+summarize predY_b if interv_b == 0
+return scalar boot_0 = r(mean)
+summarize predY_b if interv_b == 1
+return scalar boot_1 = r(mean)
+return scalar boot_diff = return(boot_1) - return(boot_0)
+drop meanY_b
+
+restore
+
 end
 
 /* Then we use the `simulate` command to run the bootstraps as many
@@ -262,6 +290,11 @@ simulate EY_a0=r(boot_0) EY_a1 = r(boot_1) difference = r(boot_diff), reps(10) s
 
 /* Next, format the point estimate to allow Stata to calculate our
 standard errors and confidence intervals*/
+  
+* Addition: read back in the observe matrix  
+mata mata matuse ./data/observe, replace
+mata st_matrix("observe", observe)
+
 matrix pe = observe[2..4, 2]'
 matrix list pe
 
