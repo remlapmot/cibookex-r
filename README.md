@@ -15,34 +15,34 @@
 ## Building the book
 
 - If you need to install LaTeX, in R install the tinytex package (which is included in the dependencies) and run
-``` r
-tinytex::install_tinytex()
-```
+    ``` r
+    tinytex::install_tinytex()
+    ```
 
 - Render all formats
-```r
-rmarkdown::render_site(encoding = 'UTF-8')
-```
+    ```r
+    rmarkdown::render_site(encoding = 'UTF-8')
+    ```
 
 - Render the PDF book
-``` r
-rmarkdown::render_site(output_format = 'bookdown::pdf_book', encoding = 'UTF-8')
-```
+    ``` r
+    rmarkdown::render_site(output_format = 'bookdown::pdf_book', encoding = 'UTF-8')
+    ```
 
 - Render the HTML book
-``` r
-rmarkdown::render_site(output_format = 'bookdown::gitbook_book', encoding = 'UTF-8')
-```
+    ``` r
+    rmarkdown::render_site(output_format = 'bookdown::gitbook_book', encoding = 'UTF-8')
+    ```
 
 - Render the EPUB book
-```r
-rmarkdown::render_site(output_format = 'bookdown::epub_book', encoding = 'UTF-8')
-```
+    ```r
+    rmarkdown::render_site(output_format = 'bookdown::epub_book', encoding = 'UTF-8')
+    ```
 
 - Preview a specific chapter
-``` r
-bookdown::preview_chapter("chapter-filename.Rmd")
-```
+    ``` r
+    bookdown::preview_chapter("chapter-filename.Rmd")
+    ```
 
 - To build the chapters containing Stata code:
   - You need Stata installed on your machine.
