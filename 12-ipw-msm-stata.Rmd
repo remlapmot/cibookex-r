@@ -162,7 +162,7 @@ lincom _b[_cons] + 20*_b[smkintensity82_71 ] +400*_b[c.smkintensity82_71#c.smkin
 - Section 12.4
 
 ```{stata}
-*use ./data/nhefs, clear
+use ./data/nhefs, clear
 
 /*Provisionally ignore subjects with missing values for follow-up weight*/
 /*Sample size after exclusion: N = 1566*/
@@ -195,6 +195,8 @@ logistic death qsmk [pweight=sw_a], cluster(seqn)
 - Section 12.5
 
 ```{stata}
+use ./data/nhefs, clear
+
 * drop pd_qsmk pn_qsmk sw_a
 
 /*Check distribution of sex*/
@@ -226,7 +228,7 @@ regress wt82_71 qsmk##sex [pw=sw_a], cluster(seqn)
 - Section 12.6
 
 ```{stata}
-* use ./data/nhefs-formatted, clear
+use ./data/nhefs, clear
 
 /*Analysis including all individuals regardless of missing wt82 status: N=1629*/
 /*Generate censoring indicator: C = 1 if wt82 missing*/
