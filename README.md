@@ -6,7 +6,7 @@
 - These files are rendered using [bookdown](https://bookdown.org/).
 
 ## Install dependencies
-If you have downloaded/forked this repository you can install the dependencies with (assuming your working directory is at the top level of the repo):
+- If you have downloaded/forked this repository you can install the dependencies with (assuming your working directory is at the top level of the repo):
 ```r
 # install.packages("devtools") # uncomment if devtools not installed
 devtools::install_deps()
