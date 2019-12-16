@@ -48,12 +48,10 @@ label var inactive "Inactive daily life"
 qui save ./data/nhefs-formatted, replace
 ```
 
-```{stata, collectcode=TRUE}
-use ./data/nhefs-formatted, clear
-```
-
 
 ```{stata}
+use ./data/nhefs-formatted, clear
+
 /*Output table*/
 foreach var of varlist years male  white university kg cigs meansmkyrs noexer inactive {
   tabdisp qsmk, cell(`var') format(%3.1f)
@@ -66,6 +64,8 @@ foreach var of varlist years male  white university kg cigs meansmkyrs noexer in
 - Data from NHEFS
 
 ```{stata}
+use ./data/nhefs-formatted, clear
+
 /*Fit a logistic model for the IP weights*/ 
 logit qsmk sex race c.age##c.age ib(last).education c.smokeintensity##c.smokeintensity ///
 c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active c.wt71##c.wt71 
@@ -92,6 +92,8 @@ regress wt82_71 qsmk [pweight=w], cluster(seqn)
 - Data from NHEFS
 
 ```{stata}
+use ./data/nhefs-formatted, clear
+
 /*Fit a logistic model for the denominator of the IP weights and predict the conditional probability of smoking*/ 
 logit qsmk sex race c.age##c.age ib(last).education c.smokeintensity##c.smokeintensity ///
 c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active c.wt71##c.wt71  
@@ -128,6 +130,8 @@ tab age qsmk if race==1 & sex==1 & wt82!=.
 - Section 12.4
 
 ```{stata}
+use ./data/nhefs-formatted, clear
+
 * drop sw_a
 
 /*Analysis restricted to subjects reporting <=25 cig/day at baseline: N = 1162*/
