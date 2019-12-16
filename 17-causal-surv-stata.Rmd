@@ -19,12 +19,9 @@ For errors contact: ejmurray@bu.edu
 - Data from NHEFS
 - Section 17.1
 
-```{stata, collectcode=TRUE}
-use ./data/nhefs-formatted, clear
-```
-
-
 ```{stata}
+use ./data/nhefs-formatted, clear
+
 /*Some preprocessing of the data*/
 gen survtime = .
 replace survtime = 120 if death == 0
@@ -60,7 +57,7 @@ Individuals who survive to the end of follow-up will have
 119 time points
 Individuals who die will have survtime - 1 time points*/
 
-* use ./data/nhefs-formatted, clear
+use ./data/nhefs-formatted, clear
 
 gen survtime = .
 replace survtime = 120 if death == 0
