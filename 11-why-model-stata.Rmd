@@ -16,6 +16,7 @@ For errors contact: ejmurray@bu.edu
 ```
 
 ## Program 11.1
+
 - Figures 11.1, 11.2, and 11.3
 - Sample averages by treatment level
 
@@ -127,7 +128,8 @@ qui gr export figs/stata-fig-11-3.png, replace
 knitr::include_graphics("figs/stata-fig-11-3.png")
 ```
 
-## Program 11.2 
+## Program 11.2
+
 - 2-parameter linear model
 - Creates Figure 11.4, parameter estimates with 95% confidence intervals from Section 11.2, and parameter estimates with 95% confidence intervals from Section 11.3
 
@@ -167,6 +169,7 @@ di 67.50 + 78.75
 ```
 
 ## Program 11.3
+
 - 3-parameter linear model
 - Creates Figure 11.5 and Parameter estimates for Section 11.4
 
