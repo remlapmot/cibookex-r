@@ -24,8 +24,12 @@ use ./data/nhefs-formatted, clear
 ```{stata}
 * use ./data/nhefs-formatted, clear
 
-*Estimate the the conditional mean outcome within strata of quitting smoking and covariates, among the uncensored*/
-glm wt82_71 qsmk sex race c.age##c.age ib(last).education c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active c.wt71##c.wt71 qsmk##c.smokeintensity
+/* Estimate the the conditional mean outcome within strata of quitting 
+smoking and covariates, among the uncensored */
+glm wt82_71 qsmk sex race c.age##c.age ib(last).education ///
+  c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs ///
+  ib(last).exercise ib(last).active c.wt71##c.wt71 ///
+  qsmk##c.smokeintensity
 predict meanY
 summarize meanY
 
@@ -66,23 +70,36 @@ input str10 ID L A Y
 "Dionysus"	1 1	0 
 end
 
-*i.Data set up for standardization: create 3 copies of each subject*
-*first, duplicate the dataset and create a variable 'interv' which indicates which copy is the duplicate (interv =1)
+/* i. Data set up for standardization: 
+ - create 3 copies of each subject first, 
+ - duplicate the dataset and create a variable `interv` which indicates
+which copy is the duplicate (interv =1) */
 expand 2, generate(interv)
-*next, duplicate the original copy (interv = 0) again, and create another variable 'interv2' to indicate the copy
+
+/* Next, duplicate the original copy (interv = 0) again, and create
+another variable 'interv2' to indicate the copy */
 expand 2 if interv == 0, generate(interv2)
-*now, change the value of 'interv' to -1 in one of the copies so that there are unique values of interv for each copy*
+
+/* Now, change the value of 'interv' to -1 in one of the copies so that
+there are unique values of interv for each copy */
 replace interv = -1  if interv2 ==1
-drop interv2 
-*check that the data has the structure you want: there should be 1566 people in each of the 3 levels of interv*
+drop interv2
+
+/* Check that the data has the structure you want: 
+ - there should be 1566 people in each of the 3 levels of interv*/
 tab interv
-*two of the copies will be for computing the standardized result*
-*for these two copies (interv = 0 and interv = 1), set the outcome to missing and force qsmk to either 0 or 1, respectively*
-*you may need to edit this part of the code for your outcome and exposure variables*
+
+/* Two of the copies will be for computing the standardized result
+for these two copies (interv = 0 and interv = 1), set the outcome to
+missing and force qsmk to either 0 or 1, respectively.
+You may need to edit this part of the code for your outcome and exposure variables */
 replace Y = . if interv != -1
 replace A = 0 if interv == 0
 replace A = 1 if interv == 1
-*check that the data has the structure you want: for interv = -1, some people quit and some do not; for interv = 0 or 1, noone quits or everyone quits, respectively*
+
+/* Check that the data has the structure you want: 
+for interv = -1, some people quit and some do not; 
+for interv = 0 or 1, noone quits or everyone quits, respectively */
 by interv, sort: summarize A
 
 *ii.Estimation in original sample*
