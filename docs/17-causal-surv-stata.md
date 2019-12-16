@@ -75,7 +75,8 @@ obs. time interval:  (0, survtime]
    analysis time _t:  survtime
 ```
 
-<img src="./figs/stata-fig-17-1.png" width="75%" />
+
+\includegraphics[width=0.75\linewidth]{./figs/stata-fig-17-1} 
 
 ## Program 17.2
 
@@ -277,7 +278,8 @@ psurv1          float   %9.0g                 psurv, interv == 1
 
 ```
 
-<img src="./figs/stata-fig-17-2.png" width="75%" />
+
+\includegraphics[width=0.75\linewidth]{./figs/stata-fig-17-2} 
 
 ## Program 17.3
 
@@ -615,7 +617,7 @@ psurv1          float   %9.0g                 psurv, interv == 1
 
 
 
-r; t=0.00 14:51:29
+r; t=0.00 15:01:19
 
       command:  bootipw_surv
        PrY_a0:  r(boot_0)
@@ -625,7 +627,7 @@ r; t=0.00 14:51:29
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=41.03 14:52:10
+r; t=42.38 15:02:01
 
 
 
@@ -643,7 +645,8 @@ Bootstrap results                               Number of obs     =      1,629
 ------------------------------------------------------------------------------
 ```
 
-<img src="./figs/stata-fig-17-3.png" width="75%" />
+
+\includegraphics[width=0.75\linewidth]{./figs/stata-fig-17-3} 
 
 ## Program 17.4
 
@@ -858,7 +861,7 @@ meanS_t1        float   %9.0g                 meanS_t, interv == 1
 
 
 
-r; t=0.00 14:52:25
+r; t=0.00 15:02:16
 
       command:  bootstdz_surv
        PrY_a0:  r(boot_0)
@@ -868,7 +871,7 @@ r; t=0.00 14:52:25
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=51.62 14:53:17
+r; t=52.41 15:03:08
 
 
 
@@ -886,4 +889,5 @@ Bootstrap results                               Number of obs     =      1,629
 ------------------------------------------------------------------------------
 ```
 
-<img src="./figs/stata-fig-17-4.png" width="75%" />
+
+\includegraphics[width=0.75\linewidth]{./figs/stata-fig-17-4} 
