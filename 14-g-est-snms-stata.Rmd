@@ -21,7 +21,7 @@ For errors contact: ejmurray@bu.edu
 
 ```{stata}
 /*For Stata 15 or later, first install the extremes function using this code:*/
-ssc install extremes 
+* ssc install extremes 
 
 *Data preprocessing***
 
@@ -137,7 +137,7 @@ predict pr_qsmk
 summarize pr_qsmk
 
 /* Closed form estimator linear mean models  **/
-ssc install tomata
+* ssc install tomata
 putmata *, replace
 mata: diff = qsmk - pr_qsmk
 mata: part1 = w_cens :* wt82_71 :* diff

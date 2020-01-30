@@ -23,7 +23,7 @@ For errors contact: ejmurray@bu.edu
 
 ```stata
 /*For Stata 15 or later, first install the extremes function using this code:*/
-ssc install extremes 
+* ssc install extremes 
 
 *Data preprocessing***
 
@@ -51,13 +51,6 @@ save ./data/nhefs-wcens, replace
 ```
 
 ```
-checking extremes consistency and verifying not already installed...
-all files already exist and are up to date.
-
-
-
-
-  +------------------------------+
   |  obs:        wt82_71    seqn |
   |------------------------------|
   | 1329.   -41.28046982   23321 |
@@ -396,7 +389,7 @@ predict pr_qsmk
 summarize pr_qsmk
 
 /* Closed form estimator linear mean models  **/
-ssc install tomata
+* ssc install tomata
 putmata *, replace
 mata: diff = qsmk - pr_qsmk
 mata: part1 = w_cens :* wt82_71 :* diff
@@ -487,9 +480,6 @@ smokeinten~y |   .0010722   .0002655     4.04   0.000     .0005518    .0015925
     Variable |        Obs        Mean    Std. Dev.       Min        Max
 -------------+---------------------------------------------------------
      pr_qsmk |      1,566    .2607709    .1177584   .0514466   .7891403
-
-checking tomata consistency and verifying not already installed...
-all files already exist and are up to date.
 
 (68 vectors posted)
 

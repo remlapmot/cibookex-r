@@ -55,7 +55,7 @@ qui gr export figs/stata-fig-11-1.png, replace
 bysort A: sum Y
 ```
 
-```{r, echo=FALSE, out.width='75%'}
+```{r, echo=FALSE, out.width='85%', fig.align='center'}
 knitr::include_graphics("figs/stata-fig-11-1.png")
 ```
 
@@ -91,7 +91,7 @@ qui gr export figs/stata-fig-11-2.png, replace
 bysort A: sum Y
 ```
 
-```{r, echo=FALSE, out.width='75%'}
+```{r, echo=FALSE, out.width='85%', fig.align='center'}
 knitr::include_graphics("figs/stata-fig-11-2.png")
 ```
 
@@ -124,7 +124,7 @@ scatter Y A, ylab(0(50)250) xlab(0(10)100) xscale(range(0 100))
 qui gr export figs/stata-fig-11-3.png, replace
 ```
 
-```{r, echo=FALSE, out.width='75%'}
+```{r, echo=FALSE, out.width="85%", fig.align='center'}
 knitr::include_graphics("figs/stata-fig-11-3.png")
 ```
 
@@ -152,7 +152,7 @@ scatter Y A, ylab(0(50)250) xlab(0(10)100) xscale(range(0 100)) || lfit Y A
 qui gr export figs/stata-fig-11-4.png, replace
 ```
 
-```{r, echo=FALSE, out.width='75%'}
+```{r, echo=FALSE, out.width="85%", fig.align='center'}
 knitr::include_graphics("figs/stata-fig-11-4.png")
 ```
 
@@ -191,6 +191,6 @@ scatter Y A, ylab(0(50)250) xlab(0(10)100) xscale(range(0 100)) || qfit Y A
 qui gr export figs/stata-fig-11-5.png, replace
 ```
 
-```{r, echo=FALSE, out.width='75%'}
+```{r, echo=FALSE, out.width="85%", fig.align='center'}
 knitr::include_graphics("figs/stata-fig-11-5.png")
 ```

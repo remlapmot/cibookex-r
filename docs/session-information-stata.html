@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Session information: Stata | Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.16.5 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Session information: Stata | Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
@@ -27,7 +27,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2019-12-16" />
+<meta name="date" content="2020-01-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -36,6 +36,7 @@
   
 <link rel="prev" href="causal-survival-analysis-stata.html"/>
 
+<script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -56,18 +57,17 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -136,17 +136,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Table of Contents</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#packages-to-install"><i class="fa fa-check"></i>Packages to install</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#downloading-the-datasets"><i class="fa fa-check"></i>Downloading the datasets</a></li>
 </ul></li>
 <li class="part"><span><b>R code</b></span></li>
-<li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html"><i class="fa fa-check"></i>11. Why model?</a><ul>
+<li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html"><i class="fa fa-check"></i>11. Why model?</a>
+<ul>
 <li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html#program-11.1"><i class="fa fa-check"></i>Program 11.1</a></li>
 <li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html#program-11.2"><i class="fa fa-check"></i>Program 11.2</a></li>
 <li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html#program-11.3"><i class="fa fa-check"></i>Program 11.3</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html"><i class="fa fa-check"></i>12. IP Weighting and Marginal Structural Models</a><ul>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html"><i class="fa fa-check"></i>12. IP Weighting and Marginal Structural Models</a>
+<ul>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.1"><i class="fa fa-check"></i>Program 12.1</a></li>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.2"><i class="fa fa-check"></i>Program 12.2</a></li>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.3"><i class="fa fa-check"></i>Program 12.3</a></li>
@@ -155,37 +158,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.6"><i class="fa fa-check"></i>Program 12.6</a></li>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.7"><i class="fa fa-check"></i>Program 12.7</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html"><i class="fa fa-check"></i>13. Standardization and the parametric G-formula</a><ul>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html"><i class="fa fa-check"></i>13. Standardization and the parametric G-formula</a>
+<ul>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.1"><i class="fa fa-check"></i>Program 13.1</a></li>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.2"><i class="fa fa-check"></i>Program 13.2</a></li>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.3"><i class="fa fa-check"></i>Program 13.3</a></li>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.4"><i class="fa fa-check"></i>Program 13.4</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html"><i class="fa fa-check"></i>14. G-estimation of Structural Nested Models</a><ul>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html"><i class="fa fa-check"></i>14. G-estimation of Structural Nested Models</a>
+<ul>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.1"><i class="fa fa-check"></i>Program 14.1</a></li>
-<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.2"><i class="fa fa-check"></i>Program 14.2</a><ul>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.2"><i class="fa fa-check"></i>Program 14.2</a>
+<ul>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-checking-one-possible-value-of-psi"><i class="fa fa-check"></i>G-estimation: Checking one possible value of psi</a></li>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-checking-multiple-possible-values-of-psi"><i class="fa fa-check"></i>G-estimation: Checking multiple possible values of psi</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.3"><i class="fa fa-check"></i>Program 14.3</a><ul>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.3"><i class="fa fa-check"></i>Program 14.3</a>
+<ul>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-closed-form-estimator-linear-mean-models"><i class="fa fa-check"></i>G-estimation: Closed form estimator linear mean models</a></li>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-closed-form-estimator-for-2-parameter-model"><i class="fa fa-check"></i>G-estimation: Closed form estimator for 2-parameter model</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html"><i class="fa fa-check"></i>15. Outcome regression and propensity scores</a><ul>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html"><i class="fa fa-check"></i>15. Outcome regression and propensity scores</a>
+<ul>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.1"><i class="fa fa-check"></i>Program 15.1</a></li>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.2"><i class="fa fa-check"></i>Program 15.2</a></li>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.3"><i class="fa fa-check"></i>Program 15.3</a></li>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.4"><i class="fa fa-check"></i>Program 15.4</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html"><i class="fa fa-check"></i>16. Instrumental variables estimation</a><ul>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html"><i class="fa fa-check"></i>16. Instrumental variables estimation</a>
+<ul>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.1"><i class="fa fa-check"></i>Program 16.1</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.2"><i class="fa fa-check"></i>Program 16.2</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.3"><i class="fa fa-check"></i>Program 16.3</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.4"><i class="fa fa-check"></i>Program 16.4</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.5"><i class="fa fa-check"></i>Program 16.5</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html"><i class="fa fa-check"></i>17. Causal survival analysis</a><ul>
+<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html"><i class="fa fa-check"></i>17. Causal survival analysis</a>
+<ul>
 <li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.1"><i class="fa fa-check"></i>Program 17.1</a></li>
 <li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.2"><i class="fa fa-check"></i>Program 17.2</a></li>
 <li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.3"><i class="fa fa-check"></i>Program 17.3</a></li>
@@ -194,12 +204,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="session-information-r.html"><a href="session-information-r.html"><i class="fa fa-check"></i>Session information: R</a></li>
 <li class="part"><span><b>Stata code</b></span></li>
-<li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html"><i class="fa fa-check"></i>11. Why model: Stata</a><ul>
+<li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html"><i class="fa fa-check"></i>11. Why model: Stata</a>
+<ul>
 <li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html#program-11.1-1"><i class="fa fa-check"></i>Program 11.1</a></li>
 <li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html#program-11.2-1"><i class="fa fa-check"></i>Program 11.2</a></li>
 <li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html#program-11.3-1"><i class="fa fa-check"></i>Program 11.3</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html"><i class="fa fa-check"></i>12. IP Weighting and Marginal Structural Models: Stata</a><ul>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html"><i class="fa fa-check"></i>12. IP Weighting and Marginal Structural Models: Stata</a>
+<ul>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.1-1"><i class="fa fa-check"></i>Program 12.1</a></li>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.2-1"><i class="fa fa-check"></i>Program 12.2</a></li>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.3-1"><i class="fa fa-check"></i>Program 12.3</a></li>
@@ -208,31 +220,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.6-1"><i class="fa fa-check"></i>Program 12.6</a></li>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.7-1"><i class="fa fa-check"></i>Program 12.7</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html"><i class="fa fa-check"></i>13. Standardization and the parametric G-formula: Stata</a><ul>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html"><i class="fa fa-check"></i>13. Standardization and the parametric G-formula: Stata</a>
+<ul>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html#program-13.1-1"><i class="fa fa-check"></i>Program 13.1</a></li>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html#program-13.2-1"><i class="fa fa-check"></i>Program 13.2</a></li>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html#program-13.3-1"><i class="fa fa-check"></i>Program 13.3</a></li>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html#program-13.4-1"><i class="fa fa-check"></i>Program 13.4</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models-stata.html"><a href="g-estimation-of-structural-nested-models-stata.html"><i class="fa fa-check"></i>14. G-estimation of Structural Nested Models: Stata</a><ul>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models-stata.html"><a href="g-estimation-of-structural-nested-models-stata.html"><i class="fa fa-check"></i>14. G-estimation of Structural Nested Models: Stata</a>
+<ul>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models-stata.html"><a href="g-estimation-of-structural-nested-models-stata.html#program-14.1-1"><i class="fa fa-check"></i>Program 14.1</a></li>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models-stata.html"><a href="g-estimation-of-structural-nested-models-stata.html#program-14.2-1"><i class="fa fa-check"></i>Program 14.2</a></li>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models-stata.html"><a href="g-estimation-of-structural-nested-models-stata.html#program-14.3-1"><i class="fa fa-check"></i>Program 14.3</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html"><i class="fa fa-check"></i>15. Outcome regression and propensity scores: Stata</a><ul>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html"><i class="fa fa-check"></i>15. Outcome regression and propensity scores: Stata</a>
+<ul>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html#program-15.1-1"><i class="fa fa-check"></i>Program 15.1</a></li>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html#prorgam-15.2"><i class="fa fa-check"></i>Prorgam 15.2</a></li>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html#program-15.3-1"><i class="fa fa-check"></i>Program 15.3</a></li>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html#program-15.4-1"><i class="fa fa-check"></i>Program 15.4</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html"><i class="fa fa-check"></i>16. Instrumental variables estimation: Stata</a><ul>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html"><i class="fa fa-check"></i>16. Instrumental variables estimation: Stata</a>
+<ul>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.1-1"><i class="fa fa-check"></i>Program 16.1</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.2-1"><i class="fa fa-check"></i>Program 16.2</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.3-1"><i class="fa fa-check"></i>Program 16.3</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.4-1"><i class="fa fa-check"></i>Program 16.4</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.5-1"><i class="fa fa-check"></i>Program 16.5</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html"><i class="fa fa-check"></i>17. Causal survival analysis: Stata</a><ul>
+<li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html"><i class="fa fa-check"></i>17. Causal survival analysis: Stata</a>
+<ul>
 <li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html#program-17.1-1"><i class="fa fa-check"></i>Program 17.1</a></li>
 <li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html#program-17.2-1"><i class="fa fa-check"></i>Program 17.2</a></li>
 <li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html#program-17.3-1"><i class="fa fa-check"></i>Program 17.3</a></li>
@@ -264,16 +281,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="session-information-stata.html#cb414-1"></a><span class="kw">library</span>(Statamarkdown)</span></code></pre></div>
 <p>For reproducibility.</p>
 <div class="sourceCode" id="cb415"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb415-1"><a href="session-information-stata.html#cb415-1"></a>about</span></code></pre></div>
-<pre><code>Stata/SE 15.1 for Windows (64-bit x86-64)
-Revision 26 Aug 2019
+<pre><code>Revision 26 Aug 2019
 Copyright 1985-2017 StataCorp LLC
 
-Total physical memory:    16718024 KB
-Available physical memory: 6819536 KB
+Total physical memory:    16607288 KB
+Available physical memory: 9104640 KB
 
 Single-user Stata perpetual license:
-       Serial number:  401506207283
-         Licensed to:  Thomas Palmer
+       Serial number:  401506207292
+         Licensed to:  Tom Palmer
                        Lancaster University</code></pre>
 <div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="session-information-stata.html#cb417-1"></a><span class="co"># install.packages(&quot;sessioninfo&quot;)</span></span>
 <span id="cb417-2"><a href="session-information-stata.html#cb417-2"></a>sessioninfo<span class="op">::</span><span class="kw">session_info</span>()</span></code></pre></div>
@@ -287,36 +303,36 @@ Single-user Stata perpetual license:
  collate  English_United Kingdom.1252 
  ctype    English_United Kingdom.1252 
  tz       Europe/London               
- date     2019-12-16                  
+ date     2020-01-30                  
 
 - Packages -------------------------------------------------------------------
  package       * version date       lib source                               
- assertthat      0.2.1   2019-03-21 [1] CRAN (R 3.6.0)                       
- bookdown        0.16.5  2019-12-09 [1] Github (rstudio/bookdown@70f9c07)    
- cli             2.0.0   2019-12-09 [1] CRAN (R 3.6.1)                       
- crayon          1.3.4   2017-09-16 [1] CRAN (R 3.6.0)                       
- digest          0.6.23  2019-11-23 [1] CRAN (R 3.6.1)                       
- evaluate        0.14    2019-05-28 [1] CRAN (R 3.6.0)                       
- fansi           0.4.0   2018-10-05 [1] CRAN (R 3.6.0)                       
- glue            1.3.1   2019-03-12 [1] CRAN (R 3.6.0)                       
- htmltools       0.4.0   2019-10-04 [1] CRAN (R 3.6.1)                       
- knitr           1.26    2019-11-12 [1] CRAN (R 3.6.1)                       
- magrittr        1.5     2014-11-22 [1] CRAN (R 3.6.0)                       
- Rcpp            1.0.3   2019-11-08 [1] CRAN (R 3.6.1)                       
- rlang           0.4.2   2019-11-23 [1] CRAN (R 3.6.1)                       
- rmarkdown       2.0     2019-12-12 [1] CRAN (R 3.6.2)                       
- sessioninfo     1.1.1   2018-11-05 [1] CRAN (R 3.6.0)                       
- Statamarkdown * 0.4.0   2019-11-25 [1] Github (Hemken/Statamarkdown@92563cc)
- stringi         1.4.3   2019-03-12 [1] CRAN (R 3.6.0)                       
- stringr         1.4.0   2019-02-10 [1] CRAN (R 3.6.0)                       
- withr           2.1.2   2018-03-15 [1] CRAN (R 3.6.0)                       
- xfun            0.11    2019-11-12 [1] CRAN (R 3.6.1)                       
+ assertthat      0.2.1   2019-03-21 [1] CRAN (R 3.6.2)                       
+ bookdown        0.17    2020-01-11 [1] CRAN (R 3.6.2)                       
+ cli             2.0.1   2020-01-08 [1] CRAN (R 3.6.2)                       
+ crayon          1.3.4   2017-09-16 [1] CRAN (R 3.6.2)                       
+ digest          0.6.23  2019-11-23 [1] CRAN (R 3.6.2)                       
+ evaluate        0.14    2019-05-28 [1] CRAN (R 3.6.2)                       
+ fansi           0.4.1   2020-01-08 [1] CRAN (R 3.6.2)                       
+ glue            1.3.1   2019-03-12 [1] CRAN (R 3.6.2)                       
+ htmltools       0.4.0   2019-10-04 [1] CRAN (R 3.6.2)                       
+ knitr           1.27    2020-01-16 [1] CRAN (R 3.6.2)                       
+ magrittr        1.5     2014-11-22 [1] CRAN (R 3.6.2)                       
+ Rcpp            1.0.3   2019-11-08 [1] CRAN (R 3.6.2)                       
+ rlang           0.4.4   2020-01-28 [1] CRAN (R 3.6.2)                       
+ rmarkdown       2.1     2020-01-20 [1] CRAN (R 3.6.2)                       
+ sessioninfo     1.1.1   2018-11-05 [1] CRAN (R 3.6.2)                       
+ Statamarkdown * 0.4.4   2020-01-30 [1] Github (Hemken/Statamarkdown@093dd44)
+ stringi         1.4.5   2020-01-11 [1] CRAN (R 3.6.2)                       
+ stringr         1.4.0   2019-02-10 [1] CRAN (R 3.6.2)                       
+ withr           2.1.2   2018-03-15 [1] CRAN (R 3.6.2)                       
+ xfun            0.12    2020-01-13 [1] CRAN (R 3.6.2)                       
  yaml            2.2.0   2018-07-25 [1] CRAN (R 3.6.0)                       
 
-[1] C:/Users/palmertm/library
+[1] C:/Users/palmertm/Documents/R/win-library/3.6
 [2] C:/Program Files/R/R-3.6.2/library</code></pre>
 
-<div id="refs" class="references">
+<div id="refs" class="references hanging-indent">
 <div>
 <p>Hernán, Miguel A, and James M Robins. 2020. <em>Causal Inference: What If</em>. Boca Raton: Chapman &amp; Hall/CRC.</p>
 </div>
