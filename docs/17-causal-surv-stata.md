@@ -75,8 +75,7 @@ obs. time interval:  (0, survtime]
    analysis time _t:  survtime
 ```
 
-
-\begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-1} \end{center}
+<img src="./figs/stata-fig-17-1.png" width="85%" style="display: block; margin: auto;" />
 
 ## Program 17.2
 
@@ -278,8 +277,7 @@ psurv1          float   %9.0g                 psurv, interv == 1
 
 ```
 
-
-\begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-2} \end{center}
+<img src="./figs/stata-fig-17-2.png" width="85%" style="display: block; margin: auto;" />
 
 ## Program 17.3
 
@@ -617,7 +615,7 @@ psurv1          float   %9.0g                 psurv, interv == 1
 
 
 
-r; t=0.00 22:08:05
+r; t=0.00 22:18:57
 
       command:  bootipw_surv
        PrY_a0:  r(boot_0)
@@ -627,7 +625,7 @@ r; t=0.00 22:08:05
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=43.30 22:08:49
+r; t=50.50 22:19:47
 
 
 
@@ -645,8 +643,7 @@ Bootstrap results                               Number of obs     =      1,629
 ------------------------------------------------------------------------------
 ```
 
-
-\begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-3} \end{center}
+<img src="./figs/stata-fig-17-3.png" width="85%" style="display: block; margin: auto;" />
 
 ## Program 17.4
 
@@ -861,7 +858,7 @@ meanS_t1        float   %9.0g                 meanS_t, interv == 1
 
 
 
-r; t=0.00 22:09:01
+r; t=0.00 22:20:02
 
       command:  bootstdz_surv
        PrY_a0:  r(boot_0)
@@ -871,7 +868,7 @@ r; t=0.00 22:09:01
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=46.35 22:09:48
+r; t=93.54 22:21:36
 
 
 
@@ -889,5 +886,4 @@ Bootstrap results                               Number of obs     =      1,629
 ------------------------------------------------------------------------------
 ```
 
-
-\begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-4} \end{center}
+<img src="./figs/stata-fig-17-4.png" width="85%" style="display: block; margin: auto;" />

@@ -404,9 +404,7 @@ ggplot(nhefs, aes(x = ps, fill = qsmk)) + geom_density(alpha = 0.2) +
   theme(legend.position = 'bottom', legend.direction = 'vertical')
 ```
 
-
-
-\begin{center}\includegraphics[width=0.85\linewidth]{15-prop-scores-r_files/figure-latex/unnamed-chunk-3-1} \end{center}
+<img src="15-prop-scores-r_files/figure-epub3/unnamed-chunk-3-1.png" width="85%" style="display: block; margin: auto;" />
 
 ```r
 # alternative plot with histograms
@@ -423,9 +421,7 @@ ggplot(nhefs, aes(x = ps, fill = as.factor(qsmk), color = as.factor(qsmk))) +
   theme(legend.position = 'bottom', legend.direction = 'vertical')
 ```
 
-
-
-\begin{center}\includegraphics[width=0.85\linewidth]{15-prop-scores-r_files/figure-latex/unnamed-chunk-3-2} \end{center}
+<img src="15-prop-scores-r_files/figure-epub3/unnamed-chunk-3-2.png" width="85%" style="display: block; margin: auto;" />
 
 
 ```r
@@ -858,15 +854,15 @@ bootstrap
 
 ```
 ##                         V1             mean                se               ll
-## 1                 Observed 2.63384609228479 0.152431666703603 2.33508551544232
-## 2             No Treatment 1.71983636149843 0.183921604636763 1.35935664043155
-## 3                Treatment 5.35072300362993 0.463083250277325 4.44309651124263
-## 4 Treatment - No Treatment 3.63088664213151 0.502225911043452 2.64654194438352
+## 1                 Observed 2.63384609228479 0.133465771328147 2.37225798731277
+## 2             No Treatment 1.71983636149843  0.11959110536648 1.48544210210879
+## 3                Treatment 5.35072300362993 0.520416835675253 4.33072474875814
+## 4 Treatment - No Treatment 3.63088664213151 0.625899941472921 2.40414529891885
 ##                 ul
-## 1 2.93260666912727
-## 2  2.0803160825653
-## 3 6.25834949601724
-## 4 4.61523133987949
+## 1 2.89543419725682
+## 2 1.95423062088806
+## 3 6.37072125850173
+## 4 4.85762798534416
 ```
 
 
@@ -988,7 +984,7 @@ for(i in 1:nboot) {
 
 ```
 ## 95% CI for the causal mean difference
-## 2.701929 , 4.409822
+## 2.474964 , 4.620953
 ```
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.
