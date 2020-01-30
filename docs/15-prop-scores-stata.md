@@ -355,7 +355,8 @@ file ./data/nhefs-ps.dta saved
 
 ```
 
-<img src="./figs/stata-fig-15-2.png" width="85%" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-15-2} \end{center}
 
 ## Program 15.3
 

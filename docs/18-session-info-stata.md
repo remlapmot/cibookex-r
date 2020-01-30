@@ -16,7 +16,7 @@ Revision 26 Aug 2019
 Copyright 1985-2017 StataCorp LLC
 
 Total physical memory:    16607288 KB
-Available physical memory: 9104640 KB
+Available physical memory: 8983840 KB
 
 Single-user Stata perpetual license:
        Serial number:  401506207292

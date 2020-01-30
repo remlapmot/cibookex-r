@@ -16,7 +16,9 @@ Y <- c(200, 150, 220, 110, 50, 180, 90, 170, 170, 30,
 plot(A, Y)
 ```
 
-<img src="11-why-model-r_files/figure-html/unnamed-chunk-1-1.png" width="85%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.85\linewidth]{11-why-model-r_files/figure-latex/unnamed-chunk-1-1} \end{center}
 
 ```r
 summary(Y[A == 0])
@@ -44,7 +46,9 @@ Y2 <- c(110, 80, 50, 40, 170, 30, 70, 50, 110, 50, 180,
 plot(A2, Y2)
 ```
 
-<img src="11-why-model-r_files/figure-html/unnamed-chunk-1-2.png" width="85%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.85\linewidth]{11-why-model-r_files/figure-latex/unnamed-chunk-1-2} \end{center}
 
 ```r
 summary(Y2[A2 == 1])
@@ -99,7 +103,9 @@ Y3 <-
 plot(Y3 ~ A3)
 ```
 
-<img src="11-why-model-r_files/figure-html/unnamed-chunk-2-1.png" width="85%" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics[width=0.85\linewidth]{11-why-model-r_files/figure-latex/unnamed-chunk-2-1} \end{center}
 
 ```r
 summary(glm(Y3 ~ A3))
