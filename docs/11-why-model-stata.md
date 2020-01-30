@@ -79,7 +79,7 @@ bysort A: sum Y
            Y |          8      146.25     58.2942         50        220
 ```
 
-<img src="figs/stata-fig-11-1.png" width="75%" />
+<img src="figs/stata-fig-11-1.png" width="85%" style="display: block; margin: auto;" />
 
 
 ```stata
@@ -150,7 +150,7 @@ bysort A: sum Y
            Y |          4         195    31.09126        150        220
 ```
 
-<img src="figs/stata-fig-11-2.png" width="75%" />
+<img src="figs/stata-fig-11-2.png" width="85%" style="display: block; margin: auto;" />
 
 
 ```stata
@@ -187,7 +187,7 @@ qui gr export figs/stata-fig-11-3.png, replace
 
 ```
 
-<img src="figs/stata-fig-11-3.png" width="75%" />
+<img src="figs/stata-fig-11-3.png" width="85%" style="display: block; margin: auto;" />
 
 ## Program 11.2
 
@@ -232,7 +232,7 @@ qui gr export figs/stata-fig-11-4.png, replace
 
 ```
 
-<img src="figs/stata-fig-11-4.png" width="75%" />
+<img src="figs/stata-fig-11-4.png" width="85%" style="display: block; margin: auto;" />
 
 
 ```stata
@@ -300,4 +300,4 @@ qui gr export figs/stata-fig-11-5.png, replace
 
 ```
 
-<img src="figs/stata-fig-11-5.png" width="75%" />
+<img src="figs/stata-fig-11-5.png" width="85%" style="display: block; margin: auto;" />
