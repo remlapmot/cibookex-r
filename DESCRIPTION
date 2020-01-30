@@ -3,7 +3,7 @@ Title: cibookex-r is not really an R package. This file lists the dependencies a
 Version: 0.1
 Authors@R: person("Tom", "Palmer", email = "remlapmot@hotmail.com",
                   role = c("aut", "cre"))
-Depends: R (>= 3.1.0)
+Depends: R (>= 3.5.0)
 URL: https://github.com/remlapmot/cibookex-r
 Imports:
   bookdown,
