@@ -37,7 +37,7 @@ sts graph, by(qsmk) xlabel(0(12)120)
 qui gr export ./figs/stata-fig-17-1.png, replace
 ```
 
-```{r, echo=FALSE, out.width='75%'}
+```{r, echo=FALSE, out.width="85%", fig.align='center'}
 knitr::include_graphics("./figs/stata-fig-17-1.png")
 ```
 
@@ -137,7 +137,7 @@ twoway (line psurv0 time2, sort) ///
 qui gr export ./figs/stata-fig-17-2.png, replace
 ```
 
-```{r, echo=FALSE, out.width='75%'}
+```{r, echo=FALSE, out.width="85%", fig.align='center'}
 knitr::include_graphics("./figs/stata-fig-17-2.png")
 ```
 
@@ -293,7 +293,7 @@ matrix pe = observe[1..3, 2]'
 bstat, stat(pe) n(1629)
 ```
 
-```{r, echo=FALSE, out.width='75%'}
+```{r, echo=FALSE, out.width="85%", fig.align='center'}
 knitr::include_graphics("./figs/stata-fig-17-3.png")
 ```
 
@@ -423,6 +423,6 @@ matrix pe = observe[1..3, 2]'
 bstat, stat(pe) n(1629)
 ```
 
-```{r, echo=FALSE, out.width='75%'}
+```{r, echo=FALSE, out.width="85%", fig.align='center'}
 knitr::include_graphics("./figs/stata-fig-17-4.png")
 ```
