@@ -50,5 +50,6 @@
 
 - To build the chapters containing Stata code:
   - You need Stata installed on your machine.
-  - Running `devtools::install_deps()` should install the Statamarkdown package from GitHub.
+  - Running `devtools::install_deps()` should install the [Statamarkdown](https://github.com/Hemken/Statamarkdown) package by Doug Hemken.
   - The Statamarkdown package needs to be able to find your installed Stata.
+  - In Stata, install the Stata dependencies with: `do dependency`.
