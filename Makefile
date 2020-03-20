@@ -16,12 +16,5 @@ rdeps:
 	Rscript -e "options(pkgType = 'binary'); devtools::install_dev_deps()"
 	Rscript -e "if (!tinytex:::is_tinytex()) tinytex::install_tinytex()"
 
-statadeps:
-	ifeq ($(OS),Windows_NT)     # is Windows_NT on XP, 2000, 7, Vista, 10...
-		StataSE-64 /e do dependency.do
-	else
-		stata-se -b do dependency.do
-	endif
-
 clean:
 	rm ./docs/*
