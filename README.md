@@ -9,9 +9,9 @@
 - If you have downloaded/forked this repository you can install the R dependencies with (assuming your working directory is at the top level of the repo):
     ```r
     # install.packages("devtools") # uncomment if devtools not installed
-    devtools::install_deps()
+    devtools::install_dev_deps()
     ```
-- You can install the Stata dependencies with
+- You can install the Stata dependencies, in Stata, with
     ```
     do depdendency
     ```
@@ -50,6 +50,6 @@
 
 - To build the chapters containing Stata code:
   - You need Stata installed on your machine.
-  - Running `devtools::install_deps()` should install the [Statamarkdown](https://github.com/Hemken/Statamarkdown) package by Doug Hemken.
+  - Running `devtools::install_dev_deps()` should install the [Statamarkdown](https://github.com/Hemken/Statamarkdown) package by Doug Hemken.
   - The Statamarkdown package needs to be able to find your installed Stata.
-  - In Stata, install the Stata dependencies with: `do dependency`.
+  - In Stata, install the Stata dependencies, in Stata, with: `do dependency`.
