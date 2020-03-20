@@ -6,6 +6,10 @@
 library(Statamarkdown)
 ```
 
+```{stata}
+do dependency
+```
+
 ```
 /***************************************************************
 Stata code for Causal Inference: What If by Miguel Hernan & Jamie Robins
