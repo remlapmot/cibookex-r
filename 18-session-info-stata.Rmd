@@ -6,7 +6,7 @@ library(Statamarkdown)
 
 For reproducibility.
 ```{stata}
-version
+di c(stata_version)
 di c(born_date)
 ```
 
