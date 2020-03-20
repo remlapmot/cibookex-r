@@ -44,3 +44,5 @@ cibookex-r.rds
 render*.rds
 
 _bookdown_files
+
+dependency.log
