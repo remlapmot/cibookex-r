@@ -1,7 +1,7 @@
 Package: cibookex-r
-Title: cibookex-r is not really an R package. This file lists the dependencies available from CRAN for building the book.
+Title: cibookex-r is not really an R package. This file lists the dependencies available from CRAN and GitHub for building the book.
 Version: 0.1
-Authors@R: person("Tom", "Palmer", email = "remlapmot@hotmail.com",
+Authors@R: person("Tom", "Palmer", email = "tom.palmer@bristol.ac.uk",
                   role = c("aut", "cre"))
 Depends: R (>= 3.5.0)
 URL: https://github.com/remlapmot/cibookex-r
