@@ -1,6 +1,6 @@
 .PHONY: clean
 
-all: rdeps statadeps
+all: rdeps statadeps ./docs/index.html ./docs/cibookex-r.pdf ./docs/cibookex-r.epub
 	Rscript -e "rmarkdown::render_site(encoding = 'UTF-8')"
 
 html: rdeps statadeps ./docs/index.html
@@ -13,8 +13,8 @@ epub: rdeps statadeps ./docs/cibookex-r.epub
 	Rscipt -e "rmarkdown::render_site(output_format = 'bookdown::epub_book', encoding = 'UTF-8')"
 
 rdeps:
-	Rscript -e "install.packages('devtools'); devtools::install_dev_deps()"
-	Rscript -e "if !tinytex::is_tinytex() tinytex::install_tinytex()"
+	Rscript -e "options(pkgType = 'binary'); devtools::install_dev_deps()"
+	Rscript -e "if (!tinytex:::is_tinytex()) tinytex::install_tinytex()"
 
 statadeps:
 	ifeq ($(OS),Windows_NT)     # is Windows_NT on XP, 2000, 7, Vista, 10...
