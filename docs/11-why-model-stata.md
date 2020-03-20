@@ -7,6 +7,21 @@
 library(Statamarkdown)
 ```
 
+
+```stata
+do dependency
+```
+
+```
+checking extremes consistency and verifying not already installed...
+all files already exist and are up to date.
+
+checking tomata consistency and verifying not already installed...
+all files already exist and are up to date.
+
+end of do-file
+```
+
 ```
 /***************************************************************
 Stata code for Causal Inference: What If by Miguel Hernan & Jamie Robins

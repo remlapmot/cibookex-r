@@ -5,7 +5,7 @@ author:
  - R code by Joy Shi and Sean McGrath
  - Stata code by Eleanor Murray and Roger Logan
  - R Markdown code by Tom Palmer
-date: "30 January 2020"
+date: "20 March 2020"
 site: bookdown::bookdown_site
 documentclass: book
 #biblio-style: apalike
@@ -35,7 +35,7 @@ To install the R packages required for this book please copy/fork the repository
 ```r
 # install.packages('devtools') # uncomment if devtools not
 # installed
-devtools::install_deps()
+devtools::install_dev_deps()
 ```
 
 ## Downloading the datasets

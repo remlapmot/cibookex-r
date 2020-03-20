@@ -124,7 +124,7 @@
 
 \title{Causal Inference: What If. R and Stata code for Exercises}
 \author{Book by M. A. Hernán and J. M. Robins \and R code by Joy Shi and Sean McGrath \and Stata code by Eleanor Murray and Roger Logan \and R Markdown code by Tom Palmer}
-\date{30 January 2020}
+\date{20 March 2020}
 
 \begin{document}
 \maketitle
@@ -157,7 +157,7 @@ To install the R packages required for this book please copy/fork the repository
 \begin{Highlighting}[]
 \CommentTok{\# install.packages(\textquotesingle{}devtools\textquotesingle{}) \# uncomment if devtools not}
 \CommentTok{\# installed}
-\NormalTok{devtools}\OperatorTok{::}\KeywordTok{install\_deps}\NormalTok{()}
+\NormalTok{devtools}\OperatorTok{::}\KeywordTok{install\_dev\_deps}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2379,15 +2379,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ##                         V1             mean                se               ll
-## 1                 Observed 2.56188497106103 0.147755804285643 2.27228891615442
-## 2             No Treatment 1.65212306626746 0.161619818228384 1.33535404335192
-## 3                Treatment 5.11474489549347 0.118640636505789 4.88221352083921
-## 4 Treatment - No Treatment 3.46262182922601 0.204047809544555 3.06269547139439
+## 1                 Observed 2.56188497106103  0.24668184067209 2.07839744770369
+## 2             No Treatment 1.65212306626746 0.178514468087165 1.30224113809729
+## 3                Treatment 5.11474489549347 0.522570364036168 4.09052580259459
+## 4 Treatment - No Treatment 3.46262182922601 0.435119993683595 2.60980231265286
 ##                 ul
-## 1 2.85148102596764
-## 2   1.968892089183
-## 3 5.34727627014772
-## 4 3.86254818705762
+## 1 3.04537249441838
+## 2 2.00200499443763
+## 3 6.13896398839234
+## 4 4.31544134579915
 \end{verbatim}
 
 \hypertarget{g-estimation-of-structural-nested-models}{%
@@ -3826,15 +3826,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ##                         V1             mean                se               ll
-## 1                 Observed 2.63384609228479 0.152431666703603 2.33508551544232
-## 2             No Treatment 1.71983636149843 0.183921604636763 1.35935664043155
-## 3                Treatment 5.35072300362993 0.463083250277325 4.44309651124263
-## 4 Treatment - No Treatment 3.63088664213151 0.502225911043452 2.64654194438352
+## 1                 Observed 2.63384609228479 0.192406725801889 2.25673583932982
+## 2             No Treatment 1.71983636149843 0.158859463475949 1.40847753448221
+## 3                Treatment 5.35072300362993 0.366605477687233 4.63218947082785
+## 4 Treatment - No Treatment 3.63088664213151 0.401165530794113 2.84461664993615
 ##                 ul
-## 1 2.93260666912727
-## 2  2.0803160825653
-## 3 6.25834949601724
-## 4 4.61523133987949
+## 1 3.01095634523977
+## 2 2.03119518851464
+## 3 6.06925653643201
+## 4 4.41715663432686
 \end{verbatim}
 
 \begin{Shaded}
@@ -3965,7 +3965,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ## 95% CI for the causal mean difference
-## 2.701929 , 4.409822
+## 2.686752 , 4.41442
 \end{verbatim}
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.
@@ -4425,6 +4425,11 @@ A more flexible and elegant way to do this is to write a function to perform the
            \DataTypeTok{main=}\StringTok{"Product{-}Limit Survival Estimates"}\NormalTok{, }\DataTypeTok{risk.table =} \OtherTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## Warning: Vectorized input to `element_text()` is not officially supported.
+## Results may be unexpected or may change in future versions of ggplot2.
+\end{verbatim}
 
 \begin{center}\includegraphics[width=0.85\linewidth]{17-causal-surv-r_files/figure-latex/unnamed-chunk-2-1} \end{center}
 
@@ -4973,7 +4978,7 @@ For reproducibility.
 \begin{verbatim}
 ## - Session info ---------------------------------------------------------------
 ##  setting  value                       
-##  version  R version 3.6.2 (2019-12-12)
+##  version  R version 3.6.3 (2020-02-29)
 ##  os       Windows 10 x64              
 ##  system   x86_64, mingw32             
 ##  ui       RTerm                       
@@ -4981,33 +4986,33 @@ For reproducibility.
 ##  collate  English_United Kingdom.1252 
 ##  ctype    English_United Kingdom.1252 
 ##  tz       Europe/London               
-##  date     2020-01-30                  
+##  date     2020-03-20                  
 ## 
 ## - Packages -------------------------------------------------------------------
 ##  package     * version date       lib source        
 ##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 3.6.2)
-##  bookdown      0.17    2020-01-11 [1] CRAN (R 3.6.2)
-##  cli           2.0.1   2020-01-08 [1] CRAN (R 3.6.2)
+##  bookdown      0.18    2020-03-05 [1] CRAN (R 3.6.3)
+##  cli           2.0.2   2020-02-28 [1] CRAN (R 3.6.3)
 ##  crayon        1.3.4   2017-09-16 [1] CRAN (R 3.6.2)
-##  digest        0.6.23  2019-11-23 [1] CRAN (R 3.6.2)
+##  digest        0.6.25  2020-02-23 [1] CRAN (R 3.6.2)
 ##  evaluate      0.14    2019-05-28 [1] CRAN (R 3.6.2)
 ##  fansi         0.4.1   2020-01-08 [1] CRAN (R 3.6.2)
-##  glue          1.3.1   2019-03-12 [1] CRAN (R 3.6.2)
+##  glue          1.3.2   2020-03-12 [1] CRAN (R 3.6.3)
 ##  htmltools     0.4.0   2019-10-04 [1] CRAN (R 3.6.2)
-##  knitr         1.27    2020-01-16 [1] CRAN (R 3.6.2)
+##  knitr         1.28    2020-02-06 [1] CRAN (R 3.6.2)
 ##  magrittr      1.5     2014-11-22 [1] CRAN (R 3.6.2)
-##  Rcpp          1.0.3   2019-11-08 [1] CRAN (R 3.6.2)
-##  rlang         0.4.4   2020-01-28 [1] CRAN (R 3.6.2)
+##  Rcpp          1.0.3   2019-11-08 [1] CRAN (R 3.6.3)
+##  rlang         0.4.5   2020-03-01 [1] CRAN (R 3.6.3)
 ##  rmarkdown     2.1     2020-01-20 [1] CRAN (R 3.6.2)
 ##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 3.6.2)
-##  stringi       1.4.5   2020-01-11 [1] CRAN (R 3.6.2)
+##  stringi       1.4.6   2020-02-17 [1] CRAN (R 3.6.2)
 ##  stringr       1.4.0   2019-02-10 [1] CRAN (R 3.6.2)
 ##  withr         2.1.2   2018-03-15 [1] CRAN (R 3.6.2)
 ##  xfun          0.12    2020-01-13 [1] CRAN (R 3.6.2)
-##  yaml          2.2.0   2018-07-25 [1] CRAN (R 3.6.0)
+##  yaml          2.2.1   2020-02-01 [1] CRAN (R 3.6.2)
 ## 
 ## [1] C:/Users/palmertm/Documents/R/win-library/3.6
-## [2] C:/Program Files/R/R-3.6.2/library
+## [2] C:/Program Files/R/R-3.6.3/library
 \end{verbatim}
 
 \hypertarget{part-stata-code}{%
@@ -5023,6 +5028,22 @@ For reproducibility.
 \KeywordTok{library}\NormalTok{(Statamarkdown)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{do}\NormalTok{ dependency}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+checking extremes consistency and verifying not already installed...
+all files already exist and are up to date.
+
+checking tomata consistency and verifying not already installed...
+all files already exist and are up to date.
+
+end of do-file
+\end{verbatim}
 
 \begin{verbatim}
 /***************************************************************
@@ -9609,83 +9630,12 @@ obs. time interval:  (0, survtime]
       Total |    171,076      100.00
 
 
+file ./data/nhefs_surv.dta cannot be modified or erased; likely cause is
+    read-only directory or file
+r(608);
 
-
-
-Logistic regression                             Number of obs     =    171,076
-                                                LR chi2(5)        =      24.26
-                                                Prob > chi2       =     0.0002
-Log likelihood = -2134.1973                     Pseudo R2         =     0.0057
-
-------------------------------------------------------------------------------
-       event | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
--------------+----------------------------------------------------------------
-        qsmk |   1.402527   .6000025     0.79   0.429     .6064099    3.243815
-             |
- qsmk#c.time |
-Smoking c..  |   1.012318   .0162153     0.76   0.445     .9810299    1.044603
-             |
- qsmk#c.time#|
-      c.time |
-Smoking c..  |   .9998342   .0001321    -1.25   0.210     .9995753    1.000093
-             |
-        time |   1.022048   .0090651     2.46   0.014     1.004434    1.039971
-             |
-      c.time#|
-      c.time |   .9998637   .0000699    -1.95   0.051     .9997266    1.000001
-             |
-       _cons |   .0007992   .0001972   -28.90   0.000     .0004927    .0012963
-------------------------------------------------------------------------------
-Note: _cons estimates baseline odds.
-
-(169,510 observations deleted)
-
-(186,354 observations created)
-
-(186,354 real changes made)
-
-(187,920 observations created)
-
-(187,920 real changes made)
-
-
-
-
-
-
-(372,708 missing values generated)
-
-(372,708 real changes made)
-
-
--------------------------------------------------------------------------------
--> interv = 0
-
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
--------------+---------------------------------------------------------
-       psurv |      1,566    .8279829           0   .8279829   .8279829
-
--------------------------------------------------------------------------------
--> interv = 1
-
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
--------------+---------------------------------------------------------
-       psurv |      1,566     .774282           0    .774282    .774282
-
-
-(3,132 observations created)
-
-(3,132 real changes made)
-
-(375,840 missing values generated)
-
-(375,840 real changes made)
-
-              storage   display    value
-variable name   type    format     label      variable label
--------------------------------------------------------------------------------
-psurv0          float   %9.0g                 psurv, interv == 0
-psurv1          float   %9.0g                 psurv, interv == 1
+end of do-file
+r(608);
 \end{verbatim}
 
 \begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-2} \end{center}
@@ -10035,7 +9985,7 @@ psurv1          float   %9.0g                 psurv, interv == 1
 
 
 
-r; t=0.00 22:08:05
+r; t=0.00 21:02:31
 
       command:  bootipw_surv
        PrY_a0:  r(boot_0)
@@ -10045,7 +9995,7 @@ r; t=0.00 22:08:05
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=43.30 22:08:49
+r; t=43.14 21:03:14
 
 
 
@@ -10287,7 +10237,7 @@ meanS_t1        float   %9.0g                 meanS_t, interv == 1
 
 
 
-r; t=0.00 22:09:01
+r; t=0.00 21:03:28
 
       command:  bootstdz_surv
        PrY_a0:  r(boot_0)
@@ -10297,7 +10247,7 @@ r; t=0.00 22:09:01
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=46.35 22:09:48
+r; t=58.44 21:04:27
 
 
 
@@ -10331,21 +10281,13 @@ For reproducibility.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{about}
+\KeywordTok{di}\NormalTok{ c(}\KeywordTok{version}\NormalTok{)}
+\KeywordTok{di}\NormalTok{ c(born\_date)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-Revision 26 Aug 2019
-Copyright 1985-2017 StataCorp LLC
-
-Total physical memory:    16607288 KB
-Available physical memory: 8983840 KB
-
-Single-user Stata perpetual license:
-       Serial number:  401506207292
-         Licensed to:  Tom Palmer
-                       Lancaster University
+03 Feb 2020
 \end{verbatim}
 
 \begin{Shaded}
@@ -10358,7 +10300,7 @@ Single-user Stata perpetual license:
 \begin{verbatim}
 - Session info ---------------------------------------------------------------
  setting  value                       
- version  R version 3.6.2 (2019-12-12)
+ version  R version 3.6.3 (2020-02-29)
  os       Windows 10 x64              
  system   x86_64, mingw32             
  ui       RTerm                       
@@ -10366,34 +10308,34 @@ Single-user Stata perpetual license:
  collate  English_United Kingdom.1252 
  ctype    English_United Kingdom.1252 
  tz       Europe/London               
- date     2020-01-30                  
+ date     2020-03-20                  
 
 - Packages -------------------------------------------------------------------
  package       * version date       lib source                               
  assertthat      0.2.1   2019-03-21 [1] CRAN (R 3.6.2)                       
- bookdown        0.17    2020-01-11 [1] CRAN (R 3.6.2)                       
- cli             2.0.1   2020-01-08 [1] CRAN (R 3.6.2)                       
+ bookdown        0.18    2020-03-05 [1] CRAN (R 3.6.3)                       
+ cli             2.0.2   2020-02-28 [1] CRAN (R 3.6.3)                       
  crayon          1.3.4   2017-09-16 [1] CRAN (R 3.6.2)                       
- digest          0.6.23  2019-11-23 [1] CRAN (R 3.6.2)                       
+ digest          0.6.25  2020-02-23 [1] CRAN (R 3.6.2)                       
  evaluate        0.14    2019-05-28 [1] CRAN (R 3.6.2)                       
  fansi           0.4.1   2020-01-08 [1] CRAN (R 3.6.2)                       
- glue            1.3.1   2019-03-12 [1] CRAN (R 3.6.2)                       
+ glue            1.3.2   2020-03-12 [1] CRAN (R 3.6.3)                       
  htmltools       0.4.0   2019-10-04 [1] CRAN (R 3.6.2)                       
- knitr           1.27    2020-01-16 [1] CRAN (R 3.6.2)                       
+ knitr           1.28    2020-02-06 [1] CRAN (R 3.6.2)                       
  magrittr        1.5     2014-11-22 [1] CRAN (R 3.6.2)                       
- Rcpp            1.0.3   2019-11-08 [1] CRAN (R 3.6.2)                       
- rlang           0.4.4   2020-01-28 [1] CRAN (R 3.6.2)                       
+ Rcpp            1.0.3   2019-11-08 [1] CRAN (R 3.6.3)                       
+ rlang           0.4.5   2020-03-01 [1] CRAN (R 3.6.3)                       
  rmarkdown       2.1     2020-01-20 [1] CRAN (R 3.6.2)                       
  sessioninfo     1.1.1   2018-11-05 [1] CRAN (R 3.6.2)                       
- Statamarkdown * 0.4.4   2020-01-30 [1] Github (Hemken/Statamarkdown@093dd44)
- stringi         1.4.5   2020-01-11 [1] CRAN (R 3.6.2)                       
+ Statamarkdown * 0.4.5   2020-03-20 [1] Github (Hemken/Statamarkdown@506cfc9)
+ stringi         1.4.6   2020-02-17 [1] CRAN (R 3.6.2)                       
  stringr         1.4.0   2019-02-10 [1] CRAN (R 3.6.2)                       
  withr           2.1.2   2018-03-15 [1] CRAN (R 3.6.2)                       
  xfun            0.12    2020-01-13 [1] CRAN (R 3.6.2)                       
- yaml            2.2.0   2018-07-25 [1] CRAN (R 3.6.0)                       
+ yaml            2.2.1   2020-02-01 [1] CRAN (R 3.6.2)                       
 
 [1] C:/Users/palmertm/Documents/R/win-library/3.6
-[2] C:/Program Files/R/R-3.6.2/library
+[2] C:/Program Files/R/R-3.6.3/library
 \end{verbatim}
 
   \bibliography{bibliography.bib}

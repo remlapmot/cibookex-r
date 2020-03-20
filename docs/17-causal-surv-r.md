@@ -76,6 +76,11 @@ ggsurvplot(fit, data = nhefs, xlab="Months of follow-up",
            main="Product-Limit Survival Estimates", risk.table = TRUE)
 ```
 
+```
+## Warning: Vectorized input to `element_text()` is not officially supported.
+## Results may be unexpected or may change in future versions of ggplot2.
+```
+
 <img src="17-causal-surv-r_files/figure-epub3/unnamed-chunk-2-1.png" width="85%" style="display: block; margin: auto;" />
 
 ## Program 17.2
