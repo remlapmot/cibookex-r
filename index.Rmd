@@ -35,7 +35,7 @@ The Stata code is based on the code by Eleanor Murray and Roger Logan given [her
 To install the R packages required for this book please copy/fork the repository. It is easiest to open the repo in RStudio as an RStudio project, by doubling click the `.Rproj` file. This makes sure that R's working directory is at the top level of the repo. If you don't want to open the repo as a project set the working directory to the top level of the repo directories using `setwd()`. Then run:
 ```{r eval=FALSE}
 # install.packages("devtools") # uncomment if devtools not installed
-devtools::install_deps()
+devtools::install_dev_deps()
 ```
 
 ## Downloading the datasets
