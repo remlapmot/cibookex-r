@@ -46,3 +46,5 @@ render*.rds
 _bookdown_files
 
 dependency.log
+
+*.Rout
