@@ -1,20 +1,24 @@
-.PHONY: clean
+.PHONY: clean all
 
-all: rdeps statadeps ./docs/index.html ./docs/cibookex-r.pdf ./docs/cibookex-r.epub
-	Rscript -e "rmarkdown::render_site(encoding = 'UTF-8')"
+all: html pdf epub
 
-html: rdeps statadeps ./docs/index.html
-	Rscript -e "rmarkdown::render_site(output_format = 'bookdown::gitbook_book', encoding = 'UTF-8')"
+html: ./docs/index.html
 
-pdf: rdeps statadeps ./docs/cibookex-r.pdf
-	Rscript -e "rmarkdown::render_site(output_format = 'bookdown::pdf_book', encoding = 'UTF-8')"
+./docs/index.html:
+	Rscript dependency.R && \
+	Rscript -e 'rmarkdown::render_site(output_format = "bookdown::gitbook_book", encoding = "UTF-8")'
 
-epub: rdeps statadeps ./docs/cibookex-r.epub
-	Rscipt -e "rmarkdown::render_site(output_format = 'bookdown::epub_book', encoding = 'UTF-8')"
+pdf: ./docs/cibookex-r.pdf
 
-rdeps:
-	Rscript -e "options(pkgType = 'binary'); devtools::install_dev_deps()"
-	Rscript -e "if (!tinytex:::is_tinytex()) tinytex::install_tinytex()"
+./docs/cibookex-r.pdf:
+	Rscript dependency.R && \
+	Rscript -e 'rmarkdown::render_site(output_format = "bookdown::pdf_book", encoding = "UTF-8")'
+
+epub: ./docs/cibookex-r.epub
+
+./docs/cibookex-r.epub:
+	Rscript dependency.R && \
+	Rscript -e 'rmarkdown::render_site(output_format = "bookdown::epub_book", encoding = "UTF-8")'
 
 clean:
 	rm ./docs/*
