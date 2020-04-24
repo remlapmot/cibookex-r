@@ -5,9 +5,9 @@ library(Statamarkdown)
 ```
 
 For reproducibility.
+
 ```{stata}
-di c(version)
-di c(born_date)
+about
 ```
 
 ```{r}
