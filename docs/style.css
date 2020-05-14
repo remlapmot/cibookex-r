@@ -12,3 +12,6 @@ pre {
 pre code {
   white-space: inherit;
 }
+div pre {
+  line-height: normal;
+}

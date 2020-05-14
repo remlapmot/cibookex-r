@@ -989,15 +989,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb263-47"><a href="outcome-regression-and-propensity-scores.html#cb263-47"></a>                                <span class="st">&quot;Treatment - No Treatment&quot;</span>), mean, se, ll, ul))</span>
 <span id="cb263-48"><a href="outcome-regression-and-propensity-scores.html#cb263-48"></a>bootstrap</span></code></pre></div>
 <pre><code>##                         V1             mean                se               ll
-## 1                 Observed 2.63384609228479 0.182043707707842 2.27704698156529
-## 2             No Treatment 1.71983636149843 0.165271641497582 1.39590989649735
-## 3                Treatment 5.35072300362993 0.396372697150052 4.57384679276083
-## 4 Treatment - No Treatment 3.63088664213151 0.438148474863512 2.77213141151787
+## 1                 Observed 2.63384609228479 0.144045273124388 2.35152254481776
+## 2             No Treatment 1.71983636149843 0.254258457383205 1.22149894226263
+## 3                Treatment 5.35072300362993 0.410886804543231 4.54539966500245
+## 4 Treatment - No Treatment 3.63088664213151  0.52025305281437 2.61120939576833
 ##                 ul
-## 1  2.9906452030043
-## 2  2.0437628264995
-## 3 6.12759921449904
-## 4 4.48964187274514</code></pre>
+## 1 2.91616963975183
+## 2 2.21817378073422
+## 3 6.15604634225741
+## 4 4.65056388849468</code></pre>
 <div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="outcome-regression-and-propensity-scores.html#cb265-1"></a><span class="co"># regression on the propensity score (linear term)</span></span>
 <span id="cb265-2"><a href="outcome-regression-and-propensity-scores.html#cb265-2"></a>model6 &lt;-<span class="st"> </span><span class="kw">glm</span>(wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>qsmk <span class="op">+</span><span class="st"> </span>ps, <span class="dt">data =</span> nhefs) <span class="co"># p.qsmk</span></span>
 <span id="cb265-3"><a href="outcome-regression-and-propensity-scores.html#cb265-3"></a><span class="kw">summary</span>(model6)</span></code></pre></div>
@@ -1088,7 +1088,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb273-40"><a href="outcome-regression-and-propensity-scores.html#cb273-40"></a>  }</span>
 <span id="cb273-41"><a href="outcome-regression-and-propensity-scores.html#cb273-41"></a>}</span></code></pre></div>
 <pre><code>## 95% CI for the causal mean difference
-## 2.574299 , 4.541543</code></pre>
+## 2.577491 , 4.541179</code></pre>
 <p>A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.</p>
 
 </div>
