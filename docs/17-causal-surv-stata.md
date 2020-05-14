@@ -184,7 +184,7 @@ qui gr export ./figs/stata-fig-17-2.png, replace
 
 (169,510 observations created)
 
-(169,510 real changes made)
+(169510 real changes made)
 
 
 (291 real changes made)
@@ -477,7 +477,7 @@ Smoking c..  |  -.0002152   .0001213    -1.77   0.076    -.0004528    .0000225
 
 (186,354 observations created)
 
-(186,354 real changes made)
+(186354 real changes made)
 
 (187,920 observations created)
 
@@ -490,7 +490,7 @@ Smoking c..  |  -.0002152   .0001213    -1.77   0.076    -.0004528    .0000225
 
 (372,708 missing values generated)
 
-(372,708 real changes made)
+(372708 real changes made)
 
 
 -------------------------------------------------------------------------------
@@ -543,7 +543,7 @@ psurv1          float   %9.0g                 psurv, interv == 1
 
 
 
-r; t=0.00 18:34:16
+r; t=0.00 8:39:45
 
       command:  bootipw_surv
        PrY_a0:  r(boot_0)
@@ -553,7 +553,7 @@ r; t=0.00 18:34:16
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=33.07 18:34:49
+r; t=24.08 8:40:09
 
 
 
@@ -705,7 +705,7 @@ bstat, stat(pe) n(1629)
 
 (186,354 observations created)
 
-(186,354 real changes made)
+(186354 real changes made)
 
 (187,920 observations created)
 
@@ -718,7 +718,7 @@ bstat, stat(pe) n(1629)
 
 (372,708 missing values generated)
 
-(372,708 real changes made)
+(372708 real changes made)
 
 
 -------------------------------------------------------------------------------
@@ -786,7 +786,7 @@ meanS_t1        float   %9.0g                 meanS_t, interv == 1
 
 
 
-r; t=0.00 18:35:00
+r; t=0.00 8:40:17
 
       command:  bootstdz_surv
        PrY_a0:  r(boot_0)
@@ -796,7 +796,7 @@ r; t=0.00 18:35:00
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=42.30 18:35:43
+r; t=27.73 8:40:45
 
 
 

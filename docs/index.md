@@ -5,7 +5,7 @@ author:
  - R code by Joy Shi and Sean McGrath
  - Stata code by Eleanor Murray and Roger Logan
  - R Markdown code by Tom Palmer
-date: "24 April 2020"
+date: "14 May 2020"
 site: bookdown::bookdown_site
 documentclass: book
 #biblio-style: apalike
@@ -29,8 +29,26 @@ The R code is based on the code by Joy Shi and Sean McGrath given [here](https:/
 
 The Stata code is based on the code by Eleanor Murray and Roger Logan given [here](https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/2019/11/stata_part2.zip).
 
-## Packages to install
-To install the R packages required for this book please copy/fork the repository. It is easiest to open the repo in RStudio as an RStudio project, by doubling click the `.Rproj` file. This makes sure that R's working directory is at the top level of the repo. If you don't want to open the repo as a project set the working directory to the top level of the repo directories using `setwd()`. Then run:
+This repo is rendered at <https://remlapmot.github.io/cibookex-r/>. Click the download button above for the pdf and eBook versions.
+
+<img src="figs/download.png" width="65%" style="display: block; margin: auto;" />
+
+## Downloading the code
+
+The repo is available on GitHub [here](https://github.com/remlapmot/cibookex-r). There are a number of ways to download the code.
+
+Either,
+
+* click the green *Clone or download* button then choose to *Open in Desktop* or *Download ZIP*. 
+    <img src="figs/clone-or-download.png" width="65%" style="display: block; margin: auto;" />
+    
+  The *Desktop* option means open in the [GitHub Desktop](https://desktop.github.com/) app (if you have that installed on your machine). The *ZIP* option will give you a zip archive of the repo, which you then unzip.
+
+* or fork the repo into your own GitHub account and then clone or download your forked repo to your machine.
+    <img src="figs/fork.png" width="65%" style="display: block; margin: auto;" />
+
+## Installing dependency packages
+It is easiest to open the repo in RStudio, as an RStudio project, by doubling click the `.Rproj` file. This makes sure that R's working directory is at the top level of the repo. If you don't want to open the repo as a project set the working directory to the top level of the repo directories using `setwd()`. Then run:
 
 ```r
 # install.packages('devtools') # uncomment if devtools not

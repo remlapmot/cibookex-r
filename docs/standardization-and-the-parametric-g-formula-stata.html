@@ -27,7 +27,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2020-04-24" />
+<meta name="date" content="2020-05-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -36,6 +36,7 @@
   
 <link rel="prev" href="ip-weighting-and-marginal-structural-models-stata.html"/>
 <link rel="next" href="g-estimation-of-structural-nested-models-stata.html"/>
+<script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -56,18 +57,17 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -136,17 +136,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Table of Contents</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#packages-to-install"><i class="fa fa-check"></i>Packages to install</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#downloading-the-code"><i class="fa fa-check"></i>Downloading the code</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#installing-dependency-packages"><i class="fa fa-check"></i>Installing dependency packages</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#downloading-the-datasets"><i class="fa fa-check"></i>Downloading the datasets</a></li>
 </ul></li>
 <li class="part"><span><b>R code</b></span></li>
-<li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html"><i class="fa fa-check"></i>11. Why model?</a><ul>
+<li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html"><i class="fa fa-check"></i>11. Why model?</a>
+<ul>
 <li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html#program-11.1"><i class="fa fa-check"></i>Program 11.1</a></li>
 <li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html#program-11.2"><i class="fa fa-check"></i>Program 11.2</a></li>
 <li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html#program-11.3"><i class="fa fa-check"></i>Program 11.3</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html"><i class="fa fa-check"></i>12. IP Weighting and Marginal Structural Models</a><ul>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html"><i class="fa fa-check"></i>12. IP Weighting and Marginal Structural Models</a>
+<ul>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.1"><i class="fa fa-check"></i>Program 12.1</a></li>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.2"><i class="fa fa-check"></i>Program 12.2</a></li>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.3"><i class="fa fa-check"></i>Program 12.3</a></li>
@@ -155,37 +159,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.6"><i class="fa fa-check"></i>Program 12.6</a></li>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.7"><i class="fa fa-check"></i>Program 12.7</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html"><i class="fa fa-check"></i>13. Standardization and the parametric G-formula</a><ul>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html"><i class="fa fa-check"></i>13. Standardization and the parametric G-formula</a>
+<ul>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.1"><i class="fa fa-check"></i>Program 13.1</a></li>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.2"><i class="fa fa-check"></i>Program 13.2</a></li>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.3"><i class="fa fa-check"></i>Program 13.3</a></li>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.4"><i class="fa fa-check"></i>Program 13.4</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html"><i class="fa fa-check"></i>14. G-estimation of Structural Nested Models</a><ul>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html"><i class="fa fa-check"></i>14. G-estimation of Structural Nested Models</a>
+<ul>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.1"><i class="fa fa-check"></i>Program 14.1</a></li>
-<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.2"><i class="fa fa-check"></i>Program 14.2</a><ul>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.2"><i class="fa fa-check"></i>Program 14.2</a>
+<ul>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-checking-one-possible-value-of-psi"><i class="fa fa-check"></i>G-estimation: Checking one possible value of psi</a></li>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-checking-multiple-possible-values-of-psi"><i class="fa fa-check"></i>G-estimation: Checking multiple possible values of psi</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.3"><i class="fa fa-check"></i>Program 14.3</a><ul>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.3"><i class="fa fa-check"></i>Program 14.3</a>
+<ul>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-closed-form-estimator-linear-mean-models"><i class="fa fa-check"></i>G-estimation: Closed form estimator linear mean models</a></li>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-closed-form-estimator-for-2-parameter-model"><i class="fa fa-check"></i>G-estimation: Closed form estimator for 2-parameter model</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html"><i class="fa fa-check"></i>15. Outcome regression and propensity scores</a><ul>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html"><i class="fa fa-check"></i>15. Outcome regression and propensity scores</a>
+<ul>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.1"><i class="fa fa-check"></i>Program 15.1</a></li>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.2"><i class="fa fa-check"></i>Program 15.2</a></li>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.3"><i class="fa fa-check"></i>Program 15.3</a></li>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.4"><i class="fa fa-check"></i>Program 15.4</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html"><i class="fa fa-check"></i>16. Instrumental variables estimation</a><ul>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html"><i class="fa fa-check"></i>16. Instrumental variables estimation</a>
+<ul>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.1"><i class="fa fa-check"></i>Program 16.1</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.2"><i class="fa fa-check"></i>Program 16.2</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.3"><i class="fa fa-check"></i>Program 16.3</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.4"><i class="fa fa-check"></i>Program 16.4</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.5"><i class="fa fa-check"></i>Program 16.5</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html"><i class="fa fa-check"></i>17. Causal survival analysis</a><ul>
+<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html"><i class="fa fa-check"></i>17. Causal survival analysis</a>
+<ul>
 <li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.1"><i class="fa fa-check"></i>Program 17.1</a></li>
 <li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.2"><i class="fa fa-check"></i>Program 17.2</a></li>
 <li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.3"><i class="fa fa-check"></i>Program 17.3</a></li>
@@ -194,12 +205,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="session-information-r.html"><a href="session-information-r.html"><i class="fa fa-check"></i>Session information: R</a></li>
 <li class="part"><span><b>Stata code</b></span></li>
-<li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html"><i class="fa fa-check"></i>11. Why model: Stata</a><ul>
+<li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html"><i class="fa fa-check"></i>11. Why model: Stata</a>
+<ul>
 <li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html#program-11.1-1"><i class="fa fa-check"></i>Program 11.1</a></li>
 <li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html#program-11.2-1"><i class="fa fa-check"></i>Program 11.2</a></li>
 <li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html#program-11.3-1"><i class="fa fa-check"></i>Program 11.3</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html"><i class="fa fa-check"></i>12. IP Weighting and Marginal Structural Models: Stata</a><ul>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html"><i class="fa fa-check"></i>12. IP Weighting and Marginal Structural Models: Stata</a>
+<ul>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.1-1"><i class="fa fa-check"></i>Program 12.1</a></li>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.2-1"><i class="fa fa-check"></i>Program 12.2</a></li>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.3-1"><i class="fa fa-check"></i>Program 12.3</a></li>
@@ -208,31 +221,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.6-1"><i class="fa fa-check"></i>Program 12.6</a></li>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.7-1"><i class="fa fa-check"></i>Program 12.7</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html"><i class="fa fa-check"></i>13. Standardization and the parametric G-formula: Stata</a><ul>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html"><i class="fa fa-check"></i>13. Standardization and the parametric G-formula: Stata</a>
+<ul>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html#program-13.1-1"><i class="fa fa-check"></i>Program 13.1</a></li>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html#program-13.2-1"><i class="fa fa-check"></i>Program 13.2</a></li>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html#program-13.3-1"><i class="fa fa-check"></i>Program 13.3</a></li>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html#program-13.4-1"><i class="fa fa-check"></i>Program 13.4</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models-stata.html"><a href="g-estimation-of-structural-nested-models-stata.html"><i class="fa fa-check"></i>14. G-estimation of Structural Nested Models: Stata</a><ul>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models-stata.html"><a href="g-estimation-of-structural-nested-models-stata.html"><i class="fa fa-check"></i>14. G-estimation of Structural Nested Models: Stata</a>
+<ul>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models-stata.html"><a href="g-estimation-of-structural-nested-models-stata.html#program-14.1-1"><i class="fa fa-check"></i>Program 14.1</a></li>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models-stata.html"><a href="g-estimation-of-structural-nested-models-stata.html#program-14.2-1"><i class="fa fa-check"></i>Program 14.2</a></li>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models-stata.html"><a href="g-estimation-of-structural-nested-models-stata.html#program-14.3-1"><i class="fa fa-check"></i>Program 14.3</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html"><i class="fa fa-check"></i>15. Outcome regression and propensity scores: Stata</a><ul>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html"><i class="fa fa-check"></i>15. Outcome regression and propensity scores: Stata</a>
+<ul>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html#program-15.1-1"><i class="fa fa-check"></i>Program 15.1</a></li>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html#prorgam-15.2"><i class="fa fa-check"></i>Prorgam 15.2</a></li>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html#program-15.3-1"><i class="fa fa-check"></i>Program 15.3</a></li>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html#program-15.4-1"><i class="fa fa-check"></i>Program 15.4</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html"><i class="fa fa-check"></i>16. Instrumental variables estimation: Stata</a><ul>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html"><i class="fa fa-check"></i>16. Instrumental variables estimation: Stata</a>
+<ul>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.1-1"><i class="fa fa-check"></i>Program 16.1</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.2-1"><i class="fa fa-check"></i>Program 16.2</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.3-1"><i class="fa fa-check"></i>Program 16.3</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.4-1"><i class="fa fa-check"></i>Program 16.4</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.5-1"><i class="fa fa-check"></i>Program 16.5</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html"><i class="fa fa-check"></i>17. Causal survival analysis: Stata</a><ul>
+<li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html"><i class="fa fa-check"></i>17. Causal survival analysis: Stata</a>
+<ul>
 <li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html#program-17.1-1"><i class="fa fa-check"></i>Program 17.1</a></li>
 <li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html#program-17.2-1"><i class="fa fa-check"></i>Program 17.2</a></li>
 <li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html#program-17.3-1"><i class="fa fa-check"></i>Program 17.3</a></li>
@@ -261,7 +279,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="standardization-and-the-parametric-g-formula-stata" class="section level1 unnumbered">
 <h1>13. Standardization and the parametric G-formula: Stata</h1>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="standardization-and-the-parametric-g-formula-stata.html#cb367-1"></a><span class="kw">library</span>(Statamarkdown)</span></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="standardization-and-the-parametric-g-formula-stata.html#cb366-1"></a><span class="kw">library</span>(Statamarkdown)</span></code></pre></div>
 <pre><code>/***************************************************************
 Stata code for Causal Inference: What If by Miguel Hernan &amp; Jamie Robins
 Date: 10/10/2019
@@ -274,22 +292,22 @@ For errors contact: ejmurray@bu.edu
 <li>Estimating the mean outcome within levels of treatment and confounders: Data from NHEFS</li>
 <li>Section 13.2</li>
 </ul>
-<div class="sourceCode" id="cb369"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb369-1"><a href="standardization-and-the-parametric-g-formula-stata.html#cb369-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span>
-<span id="cb369-2"><a href="standardization-and-the-parametric-g-formula-stata.html#cb369-2"></a></span>
-<span id="cb369-3"><a href="standardization-and-the-parametric-g-formula-stata.html#cb369-3"></a><span class="co">/* Estimate the the conditional mean outcome within strata of quitting </span></span>
-<span id="cb369-4"><a href="standardization-and-the-parametric-g-formula-stata.html#cb369-4"></a><span class="co">smoking and covariates, among the uncensored */</span></span>
-<span id="cb369-5"><a href="standardization-and-the-parametric-g-formula-stata.html#cb369-5"></a><span class="kw">glm</span> wt82_71 qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education <span class="co">///</span></span>
-<span id="cb369-6"><a href="standardization-and-the-parametric-g-formula-stata.html#cb369-6"></a>  c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs <span class="co">///</span></span>
-<span id="cb369-7"><a href="standardization-and-the-parametric-g-formula-stata.html#cb369-7"></a>  ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 <span class="co">///</span></span>
-<span id="cb369-8"><a href="standardization-and-the-parametric-g-formula-stata.html#cb369-8"></a>  qsmk##c.smokeintensity</span>
-<span id="cb369-9"><a href="standardization-and-the-parametric-g-formula-stata.html#cb369-9"></a><span class="kw">predict</span> meanY</span>
-<span id="cb369-10"><a href="standardization-and-the-parametric-g-formula-stata.html#cb369-10"></a><span class="kw">summarize</span> meanY</span>
-<span id="cb369-11"><a href="standardization-and-the-parametric-g-formula-stata.html#cb369-11"></a></span>
-<span id="cb369-12"><a href="standardization-and-the-parametric-g-formula-stata.html#cb369-12"></a><span class="co">/*Look at the predicted value for subject ID = 24770*/</span></span>
-<span id="cb369-13"><a href="standardization-and-the-parametric-g-formula-stata.html#cb369-13"></a><span class="ot">list</span> meanY <span class="kw">if</span> seqn == 24770</span>
-<span id="cb369-14"><a href="standardization-and-the-parametric-g-formula-stata.html#cb369-14"></a></span>
-<span id="cb369-15"><a href="standardization-and-the-parametric-g-formula-stata.html#cb369-15"></a><span class="co">/*Observed mean outcome for comparison */</span></span>
-<span id="cb369-16"><a href="standardization-and-the-parametric-g-formula-stata.html#cb369-16"></a><span class="kw">summarize</span> wt82_71</span></code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb368-1"><a href="standardization-and-the-parametric-g-formula-stata.html#cb368-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span>
+<span id="cb368-2"><a href="standardization-and-the-parametric-g-formula-stata.html#cb368-2"></a></span>
+<span id="cb368-3"><a href="standardization-and-the-parametric-g-formula-stata.html#cb368-3"></a><span class="co">/* Estimate the the conditional mean outcome within strata of quitting </span></span>
+<span id="cb368-4"><a href="standardization-and-the-parametric-g-formula-stata.html#cb368-4"></a><span class="co">smoking and covariates, among the uncensored */</span></span>
+<span id="cb368-5"><a href="standardization-and-the-parametric-g-formula-stata.html#cb368-5"></a><span class="kw">glm</span> wt82_71 qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education <span class="co">///</span></span>
+<span id="cb368-6"><a href="standardization-and-the-parametric-g-formula-stata.html#cb368-6"></a>  c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs <span class="co">///</span></span>
+<span id="cb368-7"><a href="standardization-and-the-parametric-g-formula-stata.html#cb368-7"></a>  ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 <span class="co">///</span></span>
+<span id="cb368-8"><a href="standardization-and-the-parametric-g-formula-stata.html#cb368-8"></a>  qsmk##c.smokeintensity</span>
+<span id="cb368-9"><a href="standardization-and-the-parametric-g-formula-stata.html#cb368-9"></a><span class="kw">predict</span> meanY</span>
+<span id="cb368-10"><a href="standardization-and-the-parametric-g-formula-stata.html#cb368-10"></a><span class="kw">summarize</span> meanY</span>
+<span id="cb368-11"><a href="standardization-and-the-parametric-g-formula-stata.html#cb368-11"></a></span>
+<span id="cb368-12"><a href="standardization-and-the-parametric-g-formula-stata.html#cb368-12"></a><span class="co">/*Look at the predicted value for subject ID = 24770*/</span></span>
+<span id="cb368-13"><a href="standardization-and-the-parametric-g-formula-stata.html#cb368-13"></a><span class="ot">list</span> meanY <span class="kw">if</span> seqn == 24770</span>
+<span id="cb368-14"><a href="standardization-and-the-parametric-g-formula-stata.html#cb368-14"></a></span>
+<span id="cb368-15"><a href="standardization-and-the-parametric-g-formula-stata.html#cb368-15"></a><span class="co">/*Observed mean outcome for comparison */</span></span>
+<span id="cb368-16"><a href="standardization-and-the-parametric-g-formula-stata.html#cb368-16"></a><span class="kw">summarize</span> wt82_71</span></code></pre></div>
 <pre><code>note: 1.qsmk omitted because of collinearity
 note: smokeintensity omitted because of collinearity
 
@@ -383,100 +401,100 @@ Smoking c..  |   .0466628   .0351448     1.33   0.184    -.0222197    .1155453
 <li>Data from Table 2.2</li>
 <li>Section 13.3</li>
 </ul>
-<div class="sourceCode" id="cb371"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb371-1"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-1"></a><span class="kw">clear</span></span>
-<span id="cb371-2"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-2"></a>input str10 ID L A Y</span>
-<span id="cb371-3"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-3"></a><span class="st">&quot;Rheia&quot;</span>     0 0 0 </span>
-<span id="cb371-4"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-4"></a><span class="st">&quot;Kronos&quot;</span>    0 0 1 </span>
-<span id="cb371-5"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-5"></a><span class="st">&quot;Demeter&quot;</span>   0 0 0 </span>
-<span id="cb371-6"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-6"></a><span class="st">&quot;Hades&quot;</span>     0 0 0 </span>
-<span id="cb371-7"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-7"></a><span class="st">&quot;Hestia&quot;</span>    0 1 0 </span>
-<span id="cb371-8"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-8"></a><span class="st">&quot;Poseidon&quot;</span>  0 1 0 </span>
-<span id="cb371-9"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-9"></a><span class="st">&quot;Hera&quot;</span>      0 1 0 </span>
-<span id="cb371-10"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-10"></a><span class="st">&quot;Zeus&quot;</span>      0 1 1 </span>
-<span id="cb371-11"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-11"></a><span class="st">&quot;Artemis&quot;</span>   1 0 1</span>
-<span id="cb371-12"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-12"></a><span class="st">&quot;Apollo&quot;</span>    1 0 1</span>
-<span id="cb371-13"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-13"></a><span class="st">&quot;Leto&quot;</span>      1 0 0</span>
-<span id="cb371-14"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-14"></a><span class="st">&quot;Ares&quot;</span>      1 1 1</span>
-<span id="cb371-15"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-15"></a><span class="st">&quot;Athena&quot;</span>    1 1 1</span>
-<span id="cb371-16"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-16"></a><span class="st">&quot;Hephaestus&quot;</span> 1 1 1</span>
-<span id="cb371-17"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-17"></a><span class="st">&quot;Aphrodite&quot;</span> 1 1 1</span>
-<span id="cb371-18"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-18"></a><span class="st">&quot;Cyclope&quot;</span>   1 1 1</span>
-<span id="cb371-19"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-19"></a><span class="st">&quot;Persephone&quot;</span> 1 1 1</span>
-<span id="cb371-20"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-20"></a><span class="st">&quot;Hermes&quot;</span>    1 1 0</span>
-<span id="cb371-21"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-21"></a><span class="st">&quot;Hebe&quot;</span>      1 1 0</span>
-<span id="cb371-22"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-22"></a><span class="st">&quot;Dionysus&quot;</span>  1 1 0 </span>
-<span id="cb371-23"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-23"></a><span class="kw">end</span></span>
-<span id="cb371-24"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-24"></a></span>
-<span id="cb371-25"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-25"></a><span class="co">/* i. Data set up for standardization: </span></span>
-<span id="cb371-26"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-26"></a><span class="co"> - create 3 copies of each subject first, </span></span>
-<span id="cb371-27"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-27"></a><span class="co"> - duplicate the dataset and create a variable `interv` which indicates</span></span>
-<span id="cb371-28"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-28"></a><span class="co">which copy is the duplicate (interv =1) */</span></span>
-<span id="cb371-29"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-29"></a>expand 2, <span class="kw">generate</span>(interv)</span>
-<span id="cb371-30"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-30"></a></span>
-<span id="cb371-31"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-31"></a><span class="co">/* Next, duplicate the original copy (interv = 0) again, and create</span></span>
-<span id="cb371-32"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-32"></a><span class="co">another variable &#39;interv2&#39; to indicate the copy */</span></span>
-<span id="cb371-33"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-33"></a>expand 2 <span class="kw">if</span> interv == 0, <span class="kw">generate</span>(interv2)</span>
-<span id="cb371-34"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-34"></a></span>
-<span id="cb371-35"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-35"></a><span class="co">/* Now, change the value of &#39;interv&#39; to -1 in one of the copies so that</span></span>
-<span id="cb371-36"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-36"></a><span class="co">there are unique values of interv for each copy */</span></span>
-<span id="cb371-37"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-37"></a><span class="kw">replace</span> interv = -1  <span class="kw">if</span> interv2 ==1</span>
-<span id="cb371-38"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-38"></a><span class="kw">drop</span> interv2</span>
-<span id="cb371-39"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-39"></a></span>
-<span id="cb371-40"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-40"></a><span class="co">/* Check that the data has the structure you want: </span></span>
-<span id="cb371-41"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-41"></a><span class="co"> - there should be 1566 people in each of the 3 levels of interv*/</span></span>
-<span id="cb371-42"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-42"></a><span class="kw">tab</span> interv</span>
-<span id="cb371-43"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-43"></a></span>
-<span id="cb371-44"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-44"></a><span class="co">/* Two of the copies will be for computing the standardized result</span></span>
-<span id="cb371-45"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-45"></a><span class="co">for these two copies (interv = 0 and interv = 1), set the outcome to</span></span>
-<span id="cb371-46"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-46"></a><span class="co">missing and force qsmk to either 0 or 1, respectively.</span></span>
-<span id="cb371-47"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-47"></a><span class="co">You may need to edit this part of the code for your outcome and exposure variables */</span></span>
-<span id="cb371-48"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-48"></a><span class="kw">replace</span> Y = . <span class="kw">if</span> interv != -1</span>
-<span id="cb371-49"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-49"></a><span class="kw">replace</span> A = 0 <span class="kw">if</span> interv == 0</span>
-<span id="cb371-50"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-50"></a><span class="kw">replace</span> A = 1 <span class="kw">if</span> interv == 1</span>
-<span id="cb371-51"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-51"></a></span>
-<span id="cb371-52"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-52"></a><span class="co">/* Check that the data has the structure you want: </span></span>
-<span id="cb371-53"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-53"></a><span class="co">for interv = -1, some people quit and some do not; </span></span>
-<span id="cb371-54"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-54"></a><span class="co">for interv = 0 or 1, noone quits or everyone quits, respectively */</span></span>
-<span id="cb371-55"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-55"></a><span class="kw">by</span> interv, <span class="kw">sort</span>: <span class="kw">summarize</span> A</span>
-<span id="cb371-56"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-56"></a></span>
-<span id="cb371-57"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-57"></a>*ii.Estimation <span class="kw">in</span> original <span class="kw">sample</span>*</span>
-<span id="cb371-58"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-58"></a>*Now, we <span class="kw">do</span> a parametric regression with the covariates we want to <span class="kw">adjust</span> <span class="kw">for</span>*</span>
-<span id="cb371-59"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-59"></a>*You may need to edit <span class="kw">this</span> part <span class="kw">of</span> the code <span class="kw">for</span> the variables you want.*</span>
-<span id="cb371-60"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-60"></a>*Because the copies have <span class="fu">missing</span> Y, <span class="kw">this</span> will only <span class="kw">run</span> the regression <span class="kw">in</span> the original copy*</span>
-<span id="cb371-61"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-61"></a>*The <span class="kw">double</span> hash between A &amp; L creates a regression <span class="kw">model</span> with A and L and a product term between A and L*</span>
-<span id="cb371-62"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-62"></a><span class="kw">regress</span> Y A##L</span>
-<span id="cb371-63"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-63"></a></span>
-<span id="cb371-64"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-64"></a>*Ask Stata <span class="kw">for</span> expected <span class="kw">values</span> - Stata will give you expected <span class="kw">values</span> <span class="kw">for</span> <span class="ot">all</span> copies, <span class="kw">not</span> just the original ones*</span>
-<span id="cb371-65"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-65"></a><span class="kw">predict</span> predY, <span class="kw">xb</span></span>
-<span id="cb371-66"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-66"></a></span>
-<span id="cb371-67"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-67"></a>*Now ask <span class="kw">for</span> a summary <span class="kw">of</span> these <span class="kw">values</span> <span class="kw">by</span> intervention*</span>
-<span id="cb371-68"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-68"></a>*These are the standardized outcome <span class="kw">estimates</span>: you can subtract them to <span class="fu">get</span> the standardized difference*</span>
-<span id="cb371-69"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-69"></a><span class="kw">by</span> interv, <span class="kw">sort</span>: <span class="kw">summarize</span> predY</span>
-<span id="cb371-70"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-70"></a></span>
-<span id="cb371-71"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-71"></a>*iii.OPTIONAL: Output standardized point <span class="kw">estimates</span> and difference*</span>
-<span id="cb371-72"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-72"></a>*The summary from the <span class="fu">last</span> command gives you the standardized <span class="kw">estimates</span>*</span>
-<span id="cb371-73"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-73"></a>*We can stop there, <span class="kw">or</span> we can ask Stata to calculate the standardized difference and <span class="kw">display</span> <span class="ot">all</span> the results <span class="kw">in</span> a simple <span class="kw">table</span>*</span>
-<span id="cb371-74"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-74"></a>*The code below can <span class="kw">be</span> used <span class="kw">as</span>-is without changing any <span class="kw">variable</span> names*</span>
-<span id="cb371-75"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-75"></a>*The option <span class="st">&quot;quietly&quot;</span> asks Stata <span class="kw">not</span> to <span class="kw">display</span> the output <span class="kw">of</span> some intermediate calculations*</span>
-<span id="cb371-76"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-76"></a>*You can <span class="kw">delete</span> <span class="kw">this</span> option <span class="kw">if</span> you want to see what is happening step-<span class="kw">by</span>-step*</span>
-<span id="cb371-77"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-77"></a><span class="kw">quietly</span> <span class="kw">summarize</span> predY <span class="kw">if</span>(interv == -1)</span>
-<span id="cb371-78"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-78"></a><span class="fu">matrix</span> input observe = (-1,<span class="ot">`r(mean)&#39;</span>)</span>
-<span id="cb371-79"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-79"></a><span class="kw">quietly</span> <span class="kw">summarize</span> predY <span class="kw">if</span>(interv == 0)</span>
-<span id="cb371-80"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-80"></a><span class="fu">matrix</span> observe = (observe \0,<span class="ot">`r(mean)&#39;</span>)</span>
-<span id="cb371-81"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-81"></a><span class="kw">quietly</span> <span class="kw">summarize</span> predY <span class="kw">if</span>(interv == 1)</span>
-<span id="cb371-82"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-82"></a><span class="fu">matrix</span> observe = (observe \1,<span class="ot">`r(mean)&#39;</span>)</span>
-<span id="cb371-83"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-83"></a><span class="fu">matrix</span> observe = (observe \., observe[3,2]-observe[2,2]) </span>
-<span id="cb371-84"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-84"></a></span>
-<span id="cb371-85"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-85"></a>*Add some <span class="ot">row</span>/column descriptions and <span class="kw">print</span> results to screen*</span>
-<span id="cb371-86"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-86"></a><span class="fu">matrix</span> <span class="ot">rownames</span> observe = observed E(Y(a=0)) E(Y(a=1)) difference</span>
-<span id="cb371-87"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-87"></a><span class="fu">matrix</span> <span class="ot">colnames</span> observe = interv <span class="ot">value</span></span>
-<span id="cb371-88"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-88"></a><span class="fu">matrix</span> <span class="ot">list</span> observe </span>
-<span id="cb371-89"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-89"></a></span>
-<span id="cb371-90"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-90"></a>*to interpret these results:*</span>
-<span id="cb371-91"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-91"></a>*<span class="ot">row</span> 1, column 2, is the observed <span class="kw">mean</span> outcome <span class="ot">value</span> <span class="kw">in</span> our original <span class="kw">sample</span>*</span>
-<span id="cb371-92"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-92"></a>*<span class="ot">row</span> 2, column 2, is the <span class="kw">mean</span> outcome <span class="ot">value</span> <span class="kw">if</span> everyone had <span class="kw">not</span> quit smoking*</span>
-<span id="cb371-93"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-93"></a>*<span class="ot">row</span> 3, column 2, is the <span class="kw">mean</span> outcome <span class="ot">value</span> <span class="kw">if</span> everyone had quit smoking*</span>
-<span id="cb371-94"><a href="standardization-and-the-parametric-g-formula-stata.html#cb371-94"></a>*<span class="ot">row</span> 4, column 2, is the <span class="kw">mean</span> difference outcome <span class="ot">value</span> <span class="kw">if</span> everyone had quit smoking compared to <span class="kw">if</span> everyone had <span class="kw">not</span> quit smoking*</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb370-1"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-1"></a><span class="kw">clear</span></span>
+<span id="cb370-2"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-2"></a>input str10 ID L A Y</span>
+<span id="cb370-3"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-3"></a><span class="st">&quot;Rheia&quot;</span>     0 0 0 </span>
+<span id="cb370-4"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-4"></a><span class="st">&quot;Kronos&quot;</span>    0 0 1 </span>
+<span id="cb370-5"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-5"></a><span class="st">&quot;Demeter&quot;</span>   0 0 0 </span>
+<span id="cb370-6"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-6"></a><span class="st">&quot;Hades&quot;</span>     0 0 0 </span>
+<span id="cb370-7"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-7"></a><span class="st">&quot;Hestia&quot;</span>    0 1 0 </span>
+<span id="cb370-8"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-8"></a><span class="st">&quot;Poseidon&quot;</span>  0 1 0 </span>
+<span id="cb370-9"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-9"></a><span class="st">&quot;Hera&quot;</span>      0 1 0 </span>
+<span id="cb370-10"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-10"></a><span class="st">&quot;Zeus&quot;</span>      0 1 1 </span>
+<span id="cb370-11"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-11"></a><span class="st">&quot;Artemis&quot;</span>   1 0 1</span>
+<span id="cb370-12"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-12"></a><span class="st">&quot;Apollo&quot;</span>    1 0 1</span>
+<span id="cb370-13"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-13"></a><span class="st">&quot;Leto&quot;</span>      1 0 0</span>
+<span id="cb370-14"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-14"></a><span class="st">&quot;Ares&quot;</span>      1 1 1</span>
+<span id="cb370-15"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-15"></a><span class="st">&quot;Athena&quot;</span>    1 1 1</span>
+<span id="cb370-16"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-16"></a><span class="st">&quot;Hephaestus&quot;</span> 1 1 1</span>
+<span id="cb370-17"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-17"></a><span class="st">&quot;Aphrodite&quot;</span> 1 1 1</span>
+<span id="cb370-18"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-18"></a><span class="st">&quot;Cyclope&quot;</span>   1 1 1</span>
+<span id="cb370-19"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-19"></a><span class="st">&quot;Persephone&quot;</span> 1 1 1</span>
+<span id="cb370-20"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-20"></a><span class="st">&quot;Hermes&quot;</span>    1 1 0</span>
+<span id="cb370-21"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-21"></a><span class="st">&quot;Hebe&quot;</span>      1 1 0</span>
+<span id="cb370-22"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-22"></a><span class="st">&quot;Dionysus&quot;</span>  1 1 0 </span>
+<span id="cb370-23"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-23"></a><span class="kw">end</span></span>
+<span id="cb370-24"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-24"></a></span>
+<span id="cb370-25"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-25"></a><span class="co">/* i. Data set up for standardization: </span></span>
+<span id="cb370-26"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-26"></a><span class="co"> - create 3 copies of each subject first, </span></span>
+<span id="cb370-27"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-27"></a><span class="co"> - duplicate the dataset and create a variable `interv` which indicates</span></span>
+<span id="cb370-28"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-28"></a><span class="co">which copy is the duplicate (interv =1) */</span></span>
+<span id="cb370-29"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-29"></a>expand 2, <span class="kw">generate</span>(interv)</span>
+<span id="cb370-30"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-30"></a></span>
+<span id="cb370-31"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-31"></a><span class="co">/* Next, duplicate the original copy (interv = 0) again, and create</span></span>
+<span id="cb370-32"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-32"></a><span class="co">another variable &#39;interv2&#39; to indicate the copy */</span></span>
+<span id="cb370-33"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-33"></a>expand 2 <span class="kw">if</span> interv == 0, <span class="kw">generate</span>(interv2)</span>
+<span id="cb370-34"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-34"></a></span>
+<span id="cb370-35"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-35"></a><span class="co">/* Now, change the value of &#39;interv&#39; to -1 in one of the copies so that</span></span>
+<span id="cb370-36"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-36"></a><span class="co">there are unique values of interv for each copy */</span></span>
+<span id="cb370-37"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-37"></a><span class="kw">replace</span> interv = -1  <span class="kw">if</span> interv2 ==1</span>
+<span id="cb370-38"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-38"></a><span class="kw">drop</span> interv2</span>
+<span id="cb370-39"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-39"></a></span>
+<span id="cb370-40"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-40"></a><span class="co">/* Check that the data has the structure you want: </span></span>
+<span id="cb370-41"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-41"></a><span class="co"> - there should be 1566 people in each of the 3 levels of interv*/</span></span>
+<span id="cb370-42"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-42"></a><span class="kw">tab</span> interv</span>
+<span id="cb370-43"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-43"></a></span>
+<span id="cb370-44"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-44"></a><span class="co">/* Two of the copies will be for computing the standardized result</span></span>
+<span id="cb370-45"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-45"></a><span class="co">for these two copies (interv = 0 and interv = 1), set the outcome to</span></span>
+<span id="cb370-46"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-46"></a><span class="co">missing and force qsmk to either 0 or 1, respectively.</span></span>
+<span id="cb370-47"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-47"></a><span class="co">You may need to edit this part of the code for your outcome and exposure variables */</span></span>
+<span id="cb370-48"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-48"></a><span class="kw">replace</span> Y = . <span class="kw">if</span> interv != -1</span>
+<span id="cb370-49"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-49"></a><span class="kw">replace</span> A = 0 <span class="kw">if</span> interv == 0</span>
+<span id="cb370-50"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-50"></a><span class="kw">replace</span> A = 1 <span class="kw">if</span> interv == 1</span>
+<span id="cb370-51"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-51"></a></span>
+<span id="cb370-52"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-52"></a><span class="co">/* Check that the data has the structure you want: </span></span>
+<span id="cb370-53"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-53"></a><span class="co">for interv = -1, some people quit and some do not; </span></span>
+<span id="cb370-54"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-54"></a><span class="co">for interv = 0 or 1, noone quits or everyone quits, respectively */</span></span>
+<span id="cb370-55"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-55"></a><span class="kw">by</span> interv, <span class="kw">sort</span>: <span class="kw">summarize</span> A</span>
+<span id="cb370-56"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-56"></a></span>
+<span id="cb370-57"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-57"></a>*ii.Estimation <span class="kw">in</span> original <span class="kw">sample</span>*</span>
+<span id="cb370-58"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-58"></a>*Now, we <span class="kw">do</span> a parametric regression with the covariates we want to <span class="kw">adjust</span> <span class="kw">for</span>*</span>
+<span id="cb370-59"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-59"></a>*You may need to edit <span class="kw">this</span> part <span class="kw">of</span> the code <span class="kw">for</span> the variables you want.*</span>
+<span id="cb370-60"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-60"></a>*Because the copies have <span class="fu">missing</span> Y, <span class="kw">this</span> will only <span class="kw">run</span> the regression <span class="kw">in</span> the original copy*</span>
+<span id="cb370-61"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-61"></a>*The <span class="kw">double</span> hash between A &amp; L creates a regression <span class="kw">model</span> with A and L and a product term between A and L*</span>
+<span id="cb370-62"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-62"></a><span class="kw">regress</span> Y A##L</span>
+<span id="cb370-63"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-63"></a></span>
+<span id="cb370-64"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-64"></a>*Ask Stata <span class="kw">for</span> expected <span class="kw">values</span> - Stata will give you expected <span class="kw">values</span> <span class="kw">for</span> <span class="ot">all</span> copies, <span class="kw">not</span> just the original ones*</span>
+<span id="cb370-65"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-65"></a><span class="kw">predict</span> predY, <span class="kw">xb</span></span>
+<span id="cb370-66"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-66"></a></span>
+<span id="cb370-67"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-67"></a>*Now ask <span class="kw">for</span> a summary <span class="kw">of</span> these <span class="kw">values</span> <span class="kw">by</span> intervention*</span>
+<span id="cb370-68"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-68"></a>*These are the standardized outcome <span class="kw">estimates</span>: you can subtract them to <span class="fu">get</span> the standardized difference*</span>
+<span id="cb370-69"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-69"></a><span class="kw">by</span> interv, <span class="kw">sort</span>: <span class="kw">summarize</span> predY</span>
+<span id="cb370-70"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-70"></a></span>
+<span id="cb370-71"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-71"></a>*iii.OPTIONAL: Output standardized point <span class="kw">estimates</span> and difference*</span>
+<span id="cb370-72"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-72"></a>*The summary from the <span class="fu">last</span> command gives you the standardized <span class="kw">estimates</span>*</span>
+<span id="cb370-73"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-73"></a>*We can stop there, <span class="kw">or</span> we can ask Stata to calculate the standardized difference and <span class="kw">display</span> <span class="ot">all</span> the results <span class="kw">in</span> a simple <span class="kw">table</span>*</span>
+<span id="cb370-74"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-74"></a>*The code below can <span class="kw">be</span> used <span class="kw">as</span>-is without changing any <span class="kw">variable</span> names*</span>
+<span id="cb370-75"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-75"></a>*The option <span class="st">&quot;quietly&quot;</span> asks Stata <span class="kw">not</span> to <span class="kw">display</span> the output <span class="kw">of</span> some intermediate calculations*</span>
+<span id="cb370-76"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-76"></a>*You can <span class="kw">delete</span> <span class="kw">this</span> option <span class="kw">if</span> you want to see what is happening step-<span class="kw">by</span>-step*</span>
+<span id="cb370-77"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-77"></a><span class="kw">quietly</span> <span class="kw">summarize</span> predY <span class="kw">if</span>(interv == -1)</span>
+<span id="cb370-78"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-78"></a><span class="fu">matrix</span> input observe = (-1,<span class="ot">`r(mean)&#39;</span>)</span>
+<span id="cb370-79"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-79"></a><span class="kw">quietly</span> <span class="kw">summarize</span> predY <span class="kw">if</span>(interv == 0)</span>
+<span id="cb370-80"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-80"></a><span class="fu">matrix</span> observe = (observe \0,<span class="ot">`r(mean)&#39;</span>)</span>
+<span id="cb370-81"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-81"></a><span class="kw">quietly</span> <span class="kw">summarize</span> predY <span class="kw">if</span>(interv == 1)</span>
+<span id="cb370-82"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-82"></a><span class="fu">matrix</span> observe = (observe \1,<span class="ot">`r(mean)&#39;</span>)</span>
+<span id="cb370-83"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-83"></a><span class="fu">matrix</span> observe = (observe \., observe[3,2]-observe[2,2]) </span>
+<span id="cb370-84"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-84"></a></span>
+<span id="cb370-85"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-85"></a>*Add some <span class="ot">row</span>/column descriptions and <span class="kw">print</span> results to screen*</span>
+<span id="cb370-86"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-86"></a><span class="fu">matrix</span> <span class="ot">rownames</span> observe = observed E(Y(a=0)) E(Y(a=1)) difference</span>
+<span id="cb370-87"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-87"></a><span class="fu">matrix</span> <span class="ot">colnames</span> observe = interv <span class="ot">value</span></span>
+<span id="cb370-88"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-88"></a><span class="fu">matrix</span> <span class="ot">list</span> observe </span>
+<span id="cb370-89"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-89"></a></span>
+<span id="cb370-90"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-90"></a>*to interpret these results:*</span>
+<span id="cb370-91"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-91"></a>*<span class="ot">row</span> 1, column 2, is the observed <span class="kw">mean</span> outcome <span class="ot">value</span> <span class="kw">in</span> our original <span class="kw">sample</span>*</span>
+<span id="cb370-92"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-92"></a>*<span class="ot">row</span> 2, column 2, is the <span class="kw">mean</span> outcome <span class="ot">value</span> <span class="kw">if</span> everyone had <span class="kw">not</span> quit smoking*</span>
+<span id="cb370-93"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-93"></a>*<span class="ot">row</span> 3, column 2, is the <span class="kw">mean</span> outcome <span class="ot">value</span> <span class="kw">if</span> everyone had quit smoking*</span>
+<span id="cb370-94"><a href="standardization-and-the-parametric-g-formula-stata.html#cb370-94"></a>*<span class="ot">row</span> 4, column 2, is the <span class="kw">mean</span> difference outcome <span class="ot">value</span> <span class="kw">if</span> everyone had quit smoking compared to <span class="kw">if</span> everyone had <span class="kw">not</span> quit smoking*</span></code></pre></div>
 <pre><code>             ID          L          A          Y
 
 (20 observations created)
@@ -586,90 +604,90 @@ difference          .          0</code></pre>
 <li>Data from NHEFS</li>
 <li>Section 13.3</li>
 </ul>
-<div class="sourceCode" id="cb373"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb373-1"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span>
-<span id="cb373-2"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-2"></a></span>
-<span id="cb373-3"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-3"></a>*i.Data <span class="kw">set</span> up <span class="kw">for</span> standardization: create 3 copies <span class="kw">of</span> each subject*</span>
-<span id="cb373-4"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-4"></a>*first, duplicate the dataset and create a <span class="kw">variable</span> &#39;interv&#39; which indicates which copy is the duplicate (interv =1)</span>
-<span id="cb373-5"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-5"></a>expand 2, <span class="kw">generate</span>(interv)</span>
-<span id="cb373-6"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-6"></a></span>
-<span id="cb373-7"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-7"></a>*next, duplicate the original copy (interv = 0) again, and create another <span class="kw">variable</span> &#39;interv2&#39; to indicate the copy</span>
-<span id="cb373-8"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-8"></a>expand 2 <span class="kw">if</span> interv == 0, <span class="kw">generate</span>(interv2)</span>
-<span id="cb373-9"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-9"></a></span>
-<span id="cb373-10"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-10"></a>*now, change the <span class="ot">value</span> <span class="kw">of</span> &#39;interv&#39; to -1 <span class="kw">in</span> one <span class="kw">of</span> the copies so that there are <span class="kw">unique</span> <span class="kw">values</span> <span class="kw">of</span> interv <span class="kw">for</span> each copy*</span>
-<span id="cb373-11"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-11"></a><span class="kw">replace</span> interv = -1  <span class="kw">if</span> interv2 ==1</span>
-<span id="cb373-12"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-12"></a><span class="kw">drop</span> interv2 </span>
-<span id="cb373-13"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-13"></a></span>
-<span id="cb373-14"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-14"></a>*check that the <span class="kw">data</span> has the structure you want: there should <span class="kw">be</span> 1566 people <span class="kw">in</span> each <span class="kw">of</span> the 3 <span class="kw">levels</span> <span class="kw">of</span> interv*</span>
-<span id="cb373-15"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-15"></a><span class="kw">tab</span> interv</span>
-<span id="cb373-16"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-16"></a></span>
-<span id="cb373-17"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-17"></a>*<span class="kw">two</span> <span class="kw">of</span> the copies will <span class="kw">be</span> <span class="kw">for</span> computing the standardized result*</span>
-<span id="cb373-18"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-18"></a>*<span class="kw">for</span> these <span class="kw">two</span> copies (interv = 0 and interv = 1), <span class="kw">set</span> the outcome to <span class="fu">missing</span> and <span class="kw">force</span> qsmk to either 0 <span class="kw">or</span> 1, respectively*</span>
-<span id="cb373-19"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-19"></a>*you may need to edit <span class="kw">this</span> part <span class="kw">of</span> the code <span class="kw">for</span> your outcome and exposure variables*</span>
-<span id="cb373-20"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-20"></a><span class="kw">replace</span> wt82_71 = . <span class="kw">if</span> interv != -1</span>
-<span id="cb373-21"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-21"></a><span class="kw">replace</span> qsmk = 0 <span class="kw">if</span> interv == 0</span>
-<span id="cb373-22"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-22"></a><span class="kw">replace</span> qsmk = 1 <span class="kw">if</span> interv == 1</span>
-<span id="cb373-23"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-23"></a></span>
-<span id="cb373-24"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-24"></a>*check that the <span class="kw">data</span> has the structure you want: <span class="kw">for</span> interv = -1, some people quit and some <span class="kw">do</span> <span class="kw">not</span>; <span class="kw">for</span> interv = 0 <span class="kw">or</span> 1, noone quits <span class="kw">or</span> everyone quits, respectively*</span>
-<span id="cb373-25"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-25"></a><span class="kw">by</span> interv, <span class="kw">sort</span>: <span class="kw">summarize</span> qsmk</span>
-<span id="cb373-26"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-26"></a></span>
-<span id="cb373-27"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-27"></a>*ii.Estimation <span class="kw">in</span> original <span class="kw">sample</span>*</span>
-<span id="cb373-28"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-28"></a>*Now, we <span class="kw">do</span> a parametric regression with the covariates we want to <span class="kw">adjust</span> <span class="kw">for</span>*</span>
-<span id="cb373-29"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-29"></a>*You may need to edit <span class="kw">this</span> part <span class="kw">of</span> the code <span class="kw">for</span> the variables you want.*</span>
-<span id="cb373-30"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-30"></a>*Because the copies have <span class="fu">missing</span> wt82_71, <span class="kw">this</span> will only <span class="kw">run</span> the regression <span class="kw">in</span> the original copy*</span>
-<span id="cb373-31"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-31"></a><span class="kw">regress</span> wt82_71 qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 qsmk#c.smokeintensity</span>
-<span id="cb373-32"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-32"></a></span>
-<span id="cb373-33"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-33"></a>*Ask Stata <span class="kw">for</span> expected <span class="kw">values</span> - Stata will give you expected <span class="kw">values</span> <span class="kw">for</span> <span class="ot">all</span> copies, <span class="kw">not</span> just the original ones*</span>
-<span id="cb373-34"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-34"></a><span class="kw">predict</span> predY, <span class="kw">xb</span></span>
-<span id="cb373-35"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-35"></a></span>
-<span id="cb373-36"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-36"></a>*Now ask <span class="kw">for</span> a summary <span class="kw">of</span> these <span class="kw">values</span> <span class="kw">by</span> intervention*</span>
-<span id="cb373-37"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-37"></a>*These are the standardized outcome <span class="kw">estimates</span>: you can subtract them to <span class="fu">get</span> the standardized difference*</span>
-<span id="cb373-38"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-38"></a><span class="kw">by</span> interv, <span class="kw">sort</span>: <span class="kw">summarize</span> predY</span>
-<span id="cb373-39"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-39"></a></span>
-<span id="cb373-40"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-40"></a><span class="co">/* iii.OPTIONAL: Output standardized point estimates and difference</span></span>
-<span id="cb373-41"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-41"></a><span class="co">- The summary from the last command gives you the </span></span>
-<span id="cb373-42"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-42"></a><span class="co">standardized estimates</span></span>
-<span id="cb373-43"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-43"></a><span class="co">- We can stop there, or we can ask Stata to calculate the </span></span>
-<span id="cb373-44"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-44"></a><span class="co">standardized difference and display all the results </span></span>
-<span id="cb373-45"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-45"></a><span class="co">in a simple table</span></span>
-<span id="cb373-46"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-46"></a><span class="co">- The code below can be used as-is without changing any</span></span>
-<span id="cb373-47"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-47"></a><span class="co">variable names</span></span>
-<span id="cb373-48"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-48"></a><span class="co">- The option `quietly` asks Stata not to display the output of </span></span>
-<span id="cb373-49"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-49"></a><span class="co">some intermediate calculations</span></span>
-<span id="cb373-50"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-50"></a><span class="co">- You can delete this option if you want to see what is </span></span>
-<span id="cb373-51"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-51"></a><span class="co">happening step-by-step */</span></span>
-<span id="cb373-52"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-52"></a><span class="kw">quietly</span> <span class="kw">summarize</span> predY <span class="kw">if</span>(interv == -1)</span>
-<span id="cb373-53"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-53"></a><span class="fu">matrix</span> input observe = (-1,<span class="ot">`r(mean)&#39;</span>)</span>
-<span id="cb373-54"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-54"></a><span class="kw">quietly</span> <span class="kw">summarize</span> predY <span class="kw">if</span>(interv == 0)</span>
-<span id="cb373-55"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-55"></a><span class="fu">matrix</span> observe = (observe \0,<span class="ot">`r(mean)&#39;</span>)</span>
-<span id="cb373-56"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-56"></a><span class="kw">quietly</span> <span class="kw">summarize</span> predY <span class="kw">if</span>(interv == 1)</span>
-<span id="cb373-57"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-57"></a><span class="fu">matrix</span> observe = (observe \1,<span class="ot">`r(mean)&#39;</span>)</span>
-<span id="cb373-58"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-58"></a><span class="fu">matrix</span> observe = (observe \., observe[3,2]-observe[2,2]) </span>
-<span id="cb373-59"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-59"></a></span>
-<span id="cb373-60"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-60"></a>* Add some <span class="ot">row</span>/column descriptions and <span class="kw">print</span> results to screen</span>
-<span id="cb373-61"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-61"></a><span class="fu">matrix</span> <span class="ot">rownames</span> observe = observed E(Y(a=0)) E(Y(a=1)) difference</span>
-<span id="cb373-62"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-62"></a><span class="fu">matrix</span> <span class="ot">colnames</span> observe = interv <span class="ot">value</span></span>
-<span id="cb373-63"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-63"></a><span class="fu">matrix</span> <span class="ot">list</span> observe </span>
-<span id="cb373-64"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-64"></a></span>
-<span id="cb373-65"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-65"></a><span class="co">/* To interpret these results:</span></span>
-<span id="cb373-66"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-66"></a><span class="co">- row 1, column 2, is the observed mean outcome value </span></span>
-<span id="cb373-67"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-67"></a><span class="co">in our original sample</span></span>
-<span id="cb373-68"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-68"></a><span class="co">- row 2, column 2, is the mean outcome value </span></span>
-<span id="cb373-69"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-69"></a><span class="co">if everyone had not quit smoking</span></span>
-<span id="cb373-70"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-70"></a><span class="co">- row 3, column 2, is the mean outcome value </span></span>
-<span id="cb373-71"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-71"></a><span class="co">if everyone had quit smoking</span></span>
-<span id="cb373-72"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-72"></a><span class="co">- row 4, column 2, is the mean difference outcome value </span></span>
-<span id="cb373-73"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-73"></a><span class="co">if everyone had quit smoking compared to if everyone </span></span>
-<span id="cb373-74"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-74"></a><span class="co">had not quit smoking */</span></span>
-<span id="cb373-75"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-75"></a></span>
-<span id="cb373-76"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-76"></a><span class="co">/* Addition due to way Statamarkdown works </span></span>
-<span id="cb373-77"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-77"></a><span class="co">i.e. each code chunk is a separate Stata session */</span></span>
-<span id="cb373-78"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-78"></a><span class="kw">mata</span> observe = st_matrix(<span class="st">&quot;observe&quot;</span>)</span>
-<span id="cb373-79"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-79"></a><span class="kw">mata</span> <span class="kw">mata</span> matsave ./<span class="kw">data</span>/observe observe, <span class="kw">replace</span></span>
-<span id="cb373-80"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-80"></a></span>
-<span id="cb373-81"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-81"></a>*<span class="kw">drop</span> the copies*</span>
-<span id="cb373-82"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-82"></a><span class="kw">drop</span> <span class="kw">if</span> interv != -1</span>
-<span id="cb373-83"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-83"></a><span class="kw">gen</span> meanY_b =.</span>
-<span id="cb373-84"><a href="standardization-and-the-parametric-g-formula-stata.html#cb373-84"></a><span class="kw">qui</span> <span class="kw">save</span> ./<span class="kw">data</span>/nhefs_std, <span class="kw">replace</span></span></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb372-1"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span>
+<span id="cb372-2"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-2"></a></span>
+<span id="cb372-3"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-3"></a>*i.Data <span class="kw">set</span> up <span class="kw">for</span> standardization: create 3 copies <span class="kw">of</span> each subject*</span>
+<span id="cb372-4"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-4"></a>*first, duplicate the dataset and create a <span class="kw">variable</span> &#39;interv&#39; which indicates which copy is the duplicate (interv =1)</span>
+<span id="cb372-5"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-5"></a>expand 2, <span class="kw">generate</span>(interv)</span>
+<span id="cb372-6"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-6"></a></span>
+<span id="cb372-7"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-7"></a>*next, duplicate the original copy (interv = 0) again, and create another <span class="kw">variable</span> &#39;interv2&#39; to indicate the copy</span>
+<span id="cb372-8"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-8"></a>expand 2 <span class="kw">if</span> interv == 0, <span class="kw">generate</span>(interv2)</span>
+<span id="cb372-9"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-9"></a></span>
+<span id="cb372-10"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-10"></a>*now, change the <span class="ot">value</span> <span class="kw">of</span> &#39;interv&#39; to -1 <span class="kw">in</span> one <span class="kw">of</span> the copies so that there are <span class="kw">unique</span> <span class="kw">values</span> <span class="kw">of</span> interv <span class="kw">for</span> each copy*</span>
+<span id="cb372-11"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-11"></a><span class="kw">replace</span> interv = -1  <span class="kw">if</span> interv2 ==1</span>
+<span id="cb372-12"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-12"></a><span class="kw">drop</span> interv2 </span>
+<span id="cb372-13"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-13"></a></span>
+<span id="cb372-14"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-14"></a>*check that the <span class="kw">data</span> has the structure you want: there should <span class="kw">be</span> 1566 people <span class="kw">in</span> each <span class="kw">of</span> the 3 <span class="kw">levels</span> <span class="kw">of</span> interv*</span>
+<span id="cb372-15"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-15"></a><span class="kw">tab</span> interv</span>
+<span id="cb372-16"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-16"></a></span>
+<span id="cb372-17"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-17"></a>*<span class="kw">two</span> <span class="kw">of</span> the copies will <span class="kw">be</span> <span class="kw">for</span> computing the standardized result*</span>
+<span id="cb372-18"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-18"></a>*<span class="kw">for</span> these <span class="kw">two</span> copies (interv = 0 and interv = 1), <span class="kw">set</span> the outcome to <span class="fu">missing</span> and <span class="kw">force</span> qsmk to either 0 <span class="kw">or</span> 1, respectively*</span>
+<span id="cb372-19"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-19"></a>*you may need to edit <span class="kw">this</span> part <span class="kw">of</span> the code <span class="kw">for</span> your outcome and exposure variables*</span>
+<span id="cb372-20"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-20"></a><span class="kw">replace</span> wt82_71 = . <span class="kw">if</span> interv != -1</span>
+<span id="cb372-21"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-21"></a><span class="kw">replace</span> qsmk = 0 <span class="kw">if</span> interv == 0</span>
+<span id="cb372-22"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-22"></a><span class="kw">replace</span> qsmk = 1 <span class="kw">if</span> interv == 1</span>
+<span id="cb372-23"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-23"></a></span>
+<span id="cb372-24"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-24"></a>*check that the <span class="kw">data</span> has the structure you want: <span class="kw">for</span> interv = -1, some people quit and some <span class="kw">do</span> <span class="kw">not</span>; <span class="kw">for</span> interv = 0 <span class="kw">or</span> 1, noone quits <span class="kw">or</span> everyone quits, respectively*</span>
+<span id="cb372-25"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-25"></a><span class="kw">by</span> interv, <span class="kw">sort</span>: <span class="kw">summarize</span> qsmk</span>
+<span id="cb372-26"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-26"></a></span>
+<span id="cb372-27"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-27"></a>*ii.Estimation <span class="kw">in</span> original <span class="kw">sample</span>*</span>
+<span id="cb372-28"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-28"></a>*Now, we <span class="kw">do</span> a parametric regression with the covariates we want to <span class="kw">adjust</span> <span class="kw">for</span>*</span>
+<span id="cb372-29"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-29"></a>*You may need to edit <span class="kw">this</span> part <span class="kw">of</span> the code <span class="kw">for</span> the variables you want.*</span>
+<span id="cb372-30"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-30"></a>*Because the copies have <span class="fu">missing</span> wt82_71, <span class="kw">this</span> will only <span class="kw">run</span> the regression <span class="kw">in</span> the original copy*</span>
+<span id="cb372-31"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-31"></a><span class="kw">regress</span> wt82_71 qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 qsmk#c.smokeintensity</span>
+<span id="cb372-32"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-32"></a></span>
+<span id="cb372-33"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-33"></a>*Ask Stata <span class="kw">for</span> expected <span class="kw">values</span> - Stata will give you expected <span class="kw">values</span> <span class="kw">for</span> <span class="ot">all</span> copies, <span class="kw">not</span> just the original ones*</span>
+<span id="cb372-34"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-34"></a><span class="kw">predict</span> predY, <span class="kw">xb</span></span>
+<span id="cb372-35"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-35"></a></span>
+<span id="cb372-36"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-36"></a>*Now ask <span class="kw">for</span> a summary <span class="kw">of</span> these <span class="kw">values</span> <span class="kw">by</span> intervention*</span>
+<span id="cb372-37"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-37"></a>*These are the standardized outcome <span class="kw">estimates</span>: you can subtract them to <span class="fu">get</span> the standardized difference*</span>
+<span id="cb372-38"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-38"></a><span class="kw">by</span> interv, <span class="kw">sort</span>: <span class="kw">summarize</span> predY</span>
+<span id="cb372-39"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-39"></a></span>
+<span id="cb372-40"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-40"></a><span class="co">/* iii.OPTIONAL: Output standardized point estimates and difference</span></span>
+<span id="cb372-41"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-41"></a><span class="co">- The summary from the last command gives you the </span></span>
+<span id="cb372-42"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-42"></a><span class="co">standardized estimates</span></span>
+<span id="cb372-43"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-43"></a><span class="co">- We can stop there, or we can ask Stata to calculate the </span></span>
+<span id="cb372-44"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-44"></a><span class="co">standardized difference and display all the results </span></span>
+<span id="cb372-45"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-45"></a><span class="co">in a simple table</span></span>
+<span id="cb372-46"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-46"></a><span class="co">- The code below can be used as-is without changing any</span></span>
+<span id="cb372-47"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-47"></a><span class="co">variable names</span></span>
+<span id="cb372-48"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-48"></a><span class="co">- The option `quietly` asks Stata not to display the output of </span></span>
+<span id="cb372-49"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-49"></a><span class="co">some intermediate calculations</span></span>
+<span id="cb372-50"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-50"></a><span class="co">- You can delete this option if you want to see what is </span></span>
+<span id="cb372-51"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-51"></a><span class="co">happening step-by-step */</span></span>
+<span id="cb372-52"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-52"></a><span class="kw">quietly</span> <span class="kw">summarize</span> predY <span class="kw">if</span>(interv == -1)</span>
+<span id="cb372-53"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-53"></a><span class="fu">matrix</span> input observe = (-1,<span class="ot">`r(mean)&#39;</span>)</span>
+<span id="cb372-54"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-54"></a><span class="kw">quietly</span> <span class="kw">summarize</span> predY <span class="kw">if</span>(interv == 0)</span>
+<span id="cb372-55"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-55"></a><span class="fu">matrix</span> observe = (observe \0,<span class="ot">`r(mean)&#39;</span>)</span>
+<span id="cb372-56"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-56"></a><span class="kw">quietly</span> <span class="kw">summarize</span> predY <span class="kw">if</span>(interv == 1)</span>
+<span id="cb372-57"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-57"></a><span class="fu">matrix</span> observe = (observe \1,<span class="ot">`r(mean)&#39;</span>)</span>
+<span id="cb372-58"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-58"></a><span class="fu">matrix</span> observe = (observe \., observe[3,2]-observe[2,2]) </span>
+<span id="cb372-59"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-59"></a></span>
+<span id="cb372-60"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-60"></a>* Add some <span class="ot">row</span>/column descriptions and <span class="kw">print</span> results to screen</span>
+<span id="cb372-61"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-61"></a><span class="fu">matrix</span> <span class="ot">rownames</span> observe = observed E(Y(a=0)) E(Y(a=1)) difference</span>
+<span id="cb372-62"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-62"></a><span class="fu">matrix</span> <span class="ot">colnames</span> observe = interv <span class="ot">value</span></span>
+<span id="cb372-63"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-63"></a><span class="fu">matrix</span> <span class="ot">list</span> observe </span>
+<span id="cb372-64"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-64"></a></span>
+<span id="cb372-65"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-65"></a><span class="co">/* To interpret these results:</span></span>
+<span id="cb372-66"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-66"></a><span class="co">- row 1, column 2, is the observed mean outcome value </span></span>
+<span id="cb372-67"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-67"></a><span class="co">in our original sample</span></span>
+<span id="cb372-68"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-68"></a><span class="co">- row 2, column 2, is the mean outcome value </span></span>
+<span id="cb372-69"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-69"></a><span class="co">if everyone had not quit smoking</span></span>
+<span id="cb372-70"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-70"></a><span class="co">- row 3, column 2, is the mean outcome value </span></span>
+<span id="cb372-71"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-71"></a><span class="co">if everyone had quit smoking</span></span>
+<span id="cb372-72"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-72"></a><span class="co">- row 4, column 2, is the mean difference outcome value </span></span>
+<span id="cb372-73"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-73"></a><span class="co">if everyone had quit smoking compared to if everyone </span></span>
+<span id="cb372-74"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-74"></a><span class="co">had not quit smoking */</span></span>
+<span id="cb372-75"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-75"></a></span>
+<span id="cb372-76"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-76"></a><span class="co">/* Addition due to way Statamarkdown works </span></span>
+<span id="cb372-77"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-77"></a><span class="co">i.e. each code chunk is a separate Stata session */</span></span>
+<span id="cb372-78"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-78"></a><span class="kw">mata</span> observe = st_matrix(<span class="st">&quot;observe&quot;</span>)</span>
+<span id="cb372-79"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-79"></a><span class="kw">mata</span> <span class="kw">mata</span> matsave ./<span class="kw">data</span>/observe observe, <span class="kw">replace</span></span>
+<span id="cb372-80"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-80"></a></span>
+<span id="cb372-81"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-81"></a>*<span class="kw">drop</span> the copies*</span>
+<span id="cb372-82"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-82"></a><span class="kw">drop</span> <span class="kw">if</span> interv != -1</span>
+<span id="cb372-83"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-83"></a><span class="kw">gen</span> meanY_b =.</span>
+<span id="cb372-84"><a href="standardization-and-the-parametric-g-formula-stata.html#cb372-84"></a><span class="kw">qui</span> <span class="kw">save</span> ./<span class="kw">data</span>/nhefs_std, <span class="kw">replace</span></span></code></pre></div>
 <pre><code>(1,566 observations created)
 
 (1,566 observations created)
@@ -823,83 +841,83 @@ file ./data/observe.mmat saved
 <li>Computing the 95% confidence interval of the standardized means and their difference: Data from NHEFS</li>
 <li>Section 13.3</li>
 </ul>
-<div class="sourceCode" id="cb375"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb375-1"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-1"></a>*Run <span class="kw">program</span> 13.3 to obtain point <span class="kw">estimates</span>, and then the code below*</span>
-<span id="cb375-2"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-2"></a></span>
-<span id="cb375-3"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-3"></a><span class="kw">capture</span> <span class="kw">program</span> <span class="kw">drop</span> bootstdz</span>
-<span id="cb375-4"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-4"></a></span>
-<span id="cb375-5"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-5"></a><span class="kw">program</span> <span class="kw">define</span> bootstdz, rclass</span>
-<span id="cb375-6"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-6"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs_std, <span class="kw">clear</span></span>
-<span id="cb375-7"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-7"></a></span>
-<span id="cb375-8"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-8"></a><span class="kw">preserve</span></span>
-<span id="cb375-9"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-9"></a></span>
-<span id="cb375-10"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-10"></a>* Draw <span class="kw">bootstrap</span> <span class="kw">sample</span> from original observations</span>
-<span id="cb375-11"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-11"></a><span class="kw">bsample</span> </span>
-<span id="cb375-12"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-12"></a>        </span>
-<span id="cb375-13"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-13"></a><span class="co">/* Create copies with each value of qsmk in bootstrap sample.</span></span>
-<span id="cb375-14"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-14"></a><span class="co">First, duplicate the dataset and create a variable `interv` which</span></span>
-<span id="cb375-15"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-15"></a><span class="co">indicates which copy is the duplicate (interv =1)*/</span></span>
-<span id="cb375-16"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-16"></a>expand 2, <span class="kw">generate</span>(interv_b)</span>
-<span id="cb375-17"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-17"></a></span>
-<span id="cb375-18"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-18"></a><span class="co">/* Next, duplicate the original copy (interv = 0) again, and create</span></span>
-<span id="cb375-19"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-19"></a><span class="co">another variable `interv2` to indicate the copy*/</span></span>
-<span id="cb375-20"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-20"></a>expand 2 <span class="kw">if</span> interv_b == 0, <span class="kw">generate</span>(interv2_b)</span>
-<span id="cb375-21"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-21"></a></span>
-<span id="cb375-22"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-22"></a><span class="co">/* Now, change the value of interv to -1 in one of the copies so that</span></span>
-<span id="cb375-23"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-23"></a><span class="co">there are unique values of interv for each copy*/</span></span>
-<span id="cb375-24"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-24"></a><span class="kw">replace</span> interv_b = -1  <span class="kw">if</span> interv2_b ==1</span>
-<span id="cb375-25"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-25"></a><span class="kw">drop</span> interv2_b</span>
-<span id="cb375-26"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-26"></a></span>
-<span id="cb375-27"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-27"></a><span class="co">/* Two of the copies will be for computing the standardized result.</span></span>
-<span id="cb375-28"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-28"></a><span class="co">For these two copies (interv = 0 and interv = 1), set the outcome to</span></span>
-<span id="cb375-29"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-29"></a><span class="co">missing and force qsmk to either 0 or 1, respectively*/</span></span>
-<span id="cb375-30"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-30"></a><span class="kw">replace</span> wt82_71 = . <span class="kw">if</span> interv_b != -1</span>
-<span id="cb375-31"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-31"></a><span class="kw">replace</span> qsmk = 0 <span class="kw">if</span> interv_b == 0</span>
-<span id="cb375-32"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-32"></a><span class="kw">replace</span> qsmk = 1 <span class="kw">if</span> interv_b == 1</span>
-<span id="cb375-33"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-33"></a></span>
-<span id="cb375-34"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-34"></a>* Run regression</span>
-<span id="cb375-35"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-35"></a><span class="kw">regress</span> wt82_71 qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education <span class="co">///</span></span>
-<span id="cb375-36"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-36"></a>  c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs <span class="co">///</span></span>
-<span id="cb375-37"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-37"></a>  ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 <span class="co">///</span></span>
-<span id="cb375-38"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-38"></a>  qsmk#c.smokeintensity</span>
-<span id="cb375-39"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-39"></a></span>
-<span id="cb375-40"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-40"></a><span class="co">/* Ask Stata for expected values.</span></span>
-<span id="cb375-41"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-41"></a><span class="co">Stata will give you expected values for all copies, not just the</span></span>
-<span id="cb375-42"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-42"></a><span class="co">original ones*/</span></span>
-<span id="cb375-43"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-43"></a><span class="kw">predict</span> predY_b, <span class="kw">xb</span></span>
-<span id="cb375-44"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-44"></a><span class="kw">summarize</span> predY_b <span class="kw">if</span> interv_b == 0</span>
-<span id="cb375-45"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-45"></a><span class="fu">return</span> <span class="fu">scalar</span> boot_0 = <span class="fu">r</span>(<span class="kw">mean</span>)</span>
-<span id="cb375-46"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-46"></a><span class="kw">summarize</span> predY_b <span class="kw">if</span> interv_b == 1</span>
-<span id="cb375-47"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-47"></a><span class="fu">return</span> <span class="fu">scalar</span> boot_1 = <span class="fu">r</span>(<span class="kw">mean</span>)</span>
-<span id="cb375-48"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-48"></a><span class="fu">return</span> <span class="fu">scalar</span> boot_diff = <span class="fu">return</span>(boot_1) - <span class="fu">return</span>(boot_0)</span>
-<span id="cb375-49"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-49"></a><span class="kw">drop</span> meanY_b</span>
-<span id="cb375-50"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-50"></a></span>
-<span id="cb375-51"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-51"></a><span class="kw">restore</span></span>
-<span id="cb375-52"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-52"></a></span>
-<span id="cb375-53"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-53"></a><span class="kw">end</span></span>
-<span id="cb375-54"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-54"></a></span>
-<span id="cb375-55"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-55"></a><span class="co">/* Then we use the `simulate` command to run the bootstraps as many</span></span>
-<span id="cb375-56"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-56"></a><span class="co">times as we want.</span></span>
-<span id="cb375-57"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-57"></a><span class="co">Start with reps(10) to make sure your code runs, and then change to</span></span>
-<span id="cb375-58"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-58"></a><span class="co">reps(1000) to generate your final CIs.*/</span></span>
-<span id="cb375-59"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-59"></a><span class="kw">simulate</span> EY_a0=<span class="fu">r</span>(boot_0) EY_a1 = <span class="fu">r</span>(boot_1) <span class="co">///</span></span>
-<span id="cb375-60"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-60"></a>  difference = <span class="fu">r</span>(boot_diff), reps(10) <span class="dv">seed</span>(1): bootstdz</span>
-<span id="cb375-61"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-61"></a></span>
-<span id="cb375-62"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-62"></a><span class="co">/* Next, format the point estimate to allow Stata to calculate our</span></span>
-<span id="cb375-63"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-63"></a><span class="co">standard errors and confidence intervals*/</span></span>
-<span id="cb375-64"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-64"></a>  </span>
-<span id="cb375-65"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-65"></a>* Addition: read back <span class="kw">in</span> the observe <span class="fu">matrix</span>  </span>
-<span id="cb375-66"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-66"></a><span class="kw">mata</span> <span class="kw">mata</span> matuse ./<span class="kw">data</span>/observe, <span class="kw">replace</span></span>
-<span id="cb375-67"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-67"></a><span class="kw">mata</span> st_matrix(<span class="st">&quot;observe&quot;</span>, observe)</span>
-<span id="cb375-68"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-68"></a></span>
-<span id="cb375-69"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-69"></a><span class="fu">matrix</span> pe = observe[2..4, 2]&#39;</span>
-<span id="cb375-70"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-70"></a><span class="fu">matrix</span> <span class="ot">list</span> pe</span>
-<span id="cb375-71"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-71"></a></span>
-<span id="cb375-72"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-72"></a><span class="co">/* Finally, the bstat command generates valid 95% confidence intervals</span></span>
-<span id="cb375-73"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-73"></a><span class="co">under the normal approximation using our bootstrap results.</span></span>
-<span id="cb375-74"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-74"></a><span class="co">The default results use a normal approximation to calcutlate the</span></span>
-<span id="cb375-75"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-75"></a><span class="co">confidence intervals.</span></span>
-<span id="cb375-76"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-76"></a><span class="co">Note, n contains the original sample size of your data before censoring*/</span></span>
-<span id="cb375-77"><a href="standardization-and-the-parametric-g-formula-stata.html#cb375-77"></a><span class="kw">bstat</span>, stat(pe) n(1629) </span></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb374-1"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-1"></a>*Run <span class="kw">program</span> 13.3 to obtain point <span class="kw">estimates</span>, and then the code below*</span>
+<span id="cb374-2"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-2"></a></span>
+<span id="cb374-3"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-3"></a><span class="kw">capture</span> <span class="kw">program</span> <span class="kw">drop</span> bootstdz</span>
+<span id="cb374-4"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-4"></a></span>
+<span id="cb374-5"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-5"></a><span class="kw">program</span> <span class="kw">define</span> bootstdz, rclass</span>
+<span id="cb374-6"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-6"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs_std, <span class="kw">clear</span></span>
+<span id="cb374-7"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-7"></a></span>
+<span id="cb374-8"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-8"></a><span class="kw">preserve</span></span>
+<span id="cb374-9"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-9"></a></span>
+<span id="cb374-10"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-10"></a>* Draw <span class="kw">bootstrap</span> <span class="kw">sample</span> from original observations</span>
+<span id="cb374-11"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-11"></a><span class="kw">bsample</span> </span>
+<span id="cb374-12"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-12"></a>        </span>
+<span id="cb374-13"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-13"></a><span class="co">/* Create copies with each value of qsmk in bootstrap sample.</span></span>
+<span id="cb374-14"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-14"></a><span class="co">First, duplicate the dataset and create a variable `interv` which</span></span>
+<span id="cb374-15"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-15"></a><span class="co">indicates which copy is the duplicate (interv =1)*/</span></span>
+<span id="cb374-16"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-16"></a>expand 2, <span class="kw">generate</span>(interv_b)</span>
+<span id="cb374-17"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-17"></a></span>
+<span id="cb374-18"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-18"></a><span class="co">/* Next, duplicate the original copy (interv = 0) again, and create</span></span>
+<span id="cb374-19"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-19"></a><span class="co">another variable `interv2` to indicate the copy*/</span></span>
+<span id="cb374-20"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-20"></a>expand 2 <span class="kw">if</span> interv_b == 0, <span class="kw">generate</span>(interv2_b)</span>
+<span id="cb374-21"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-21"></a></span>
+<span id="cb374-22"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-22"></a><span class="co">/* Now, change the value of interv to -1 in one of the copies so that</span></span>
+<span id="cb374-23"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-23"></a><span class="co">there are unique values of interv for each copy*/</span></span>
+<span id="cb374-24"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-24"></a><span class="kw">replace</span> interv_b = -1  <span class="kw">if</span> interv2_b ==1</span>
+<span id="cb374-25"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-25"></a><span class="kw">drop</span> interv2_b</span>
+<span id="cb374-26"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-26"></a></span>
+<span id="cb374-27"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-27"></a><span class="co">/* Two of the copies will be for computing the standardized result.</span></span>
+<span id="cb374-28"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-28"></a><span class="co">For these two copies (interv = 0 and interv = 1), set the outcome to</span></span>
+<span id="cb374-29"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-29"></a><span class="co">missing and force qsmk to either 0 or 1, respectively*/</span></span>
+<span id="cb374-30"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-30"></a><span class="kw">replace</span> wt82_71 = . <span class="kw">if</span> interv_b != -1</span>
+<span id="cb374-31"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-31"></a><span class="kw">replace</span> qsmk = 0 <span class="kw">if</span> interv_b == 0</span>
+<span id="cb374-32"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-32"></a><span class="kw">replace</span> qsmk = 1 <span class="kw">if</span> interv_b == 1</span>
+<span id="cb374-33"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-33"></a></span>
+<span id="cb374-34"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-34"></a>* Run regression</span>
+<span id="cb374-35"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-35"></a><span class="kw">regress</span> wt82_71 qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education <span class="co">///</span></span>
+<span id="cb374-36"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-36"></a>  c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs <span class="co">///</span></span>
+<span id="cb374-37"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-37"></a>  ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 <span class="co">///</span></span>
+<span id="cb374-38"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-38"></a>  qsmk#c.smokeintensity</span>
+<span id="cb374-39"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-39"></a></span>
+<span id="cb374-40"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-40"></a><span class="co">/* Ask Stata for expected values.</span></span>
+<span id="cb374-41"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-41"></a><span class="co">Stata will give you expected values for all copies, not just the</span></span>
+<span id="cb374-42"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-42"></a><span class="co">original ones*/</span></span>
+<span id="cb374-43"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-43"></a><span class="kw">predict</span> predY_b, <span class="kw">xb</span></span>
+<span id="cb374-44"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-44"></a><span class="kw">summarize</span> predY_b <span class="kw">if</span> interv_b == 0</span>
+<span id="cb374-45"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-45"></a><span class="fu">return</span> <span class="fu">scalar</span> boot_0 = <span class="fu">r</span>(<span class="kw">mean</span>)</span>
+<span id="cb374-46"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-46"></a><span class="kw">summarize</span> predY_b <span class="kw">if</span> interv_b == 1</span>
+<span id="cb374-47"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-47"></a><span class="fu">return</span> <span class="fu">scalar</span> boot_1 = <span class="fu">r</span>(<span class="kw">mean</span>)</span>
+<span id="cb374-48"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-48"></a><span class="fu">return</span> <span class="fu">scalar</span> boot_diff = <span class="fu">return</span>(boot_1) - <span class="fu">return</span>(boot_0)</span>
+<span id="cb374-49"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-49"></a><span class="kw">drop</span> meanY_b</span>
+<span id="cb374-50"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-50"></a></span>
+<span id="cb374-51"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-51"></a><span class="kw">restore</span></span>
+<span id="cb374-52"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-52"></a></span>
+<span id="cb374-53"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-53"></a><span class="kw">end</span></span>
+<span id="cb374-54"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-54"></a></span>
+<span id="cb374-55"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-55"></a><span class="co">/* Then we use the `simulate` command to run the bootstraps as many</span></span>
+<span id="cb374-56"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-56"></a><span class="co">times as we want.</span></span>
+<span id="cb374-57"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-57"></a><span class="co">Start with reps(10) to make sure your code runs, and then change to</span></span>
+<span id="cb374-58"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-58"></a><span class="co">reps(1000) to generate your final CIs.*/</span></span>
+<span id="cb374-59"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-59"></a><span class="kw">simulate</span> EY_a0=<span class="fu">r</span>(boot_0) EY_a1 = <span class="fu">r</span>(boot_1) <span class="co">///</span></span>
+<span id="cb374-60"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-60"></a>  difference = <span class="fu">r</span>(boot_diff), reps(10) <span class="dv">seed</span>(1): bootstdz</span>
+<span id="cb374-61"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-61"></a></span>
+<span id="cb374-62"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-62"></a><span class="co">/* Next, format the point estimate to allow Stata to calculate our</span></span>
+<span id="cb374-63"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-63"></a><span class="co">standard errors and confidence intervals*/</span></span>
+<span id="cb374-64"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-64"></a>  </span>
+<span id="cb374-65"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-65"></a>* Addition: read back <span class="kw">in</span> the observe <span class="fu">matrix</span>  </span>
+<span id="cb374-66"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-66"></a><span class="kw">mata</span> <span class="kw">mata</span> matuse ./<span class="kw">data</span>/observe, <span class="kw">replace</span></span>
+<span id="cb374-67"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-67"></a><span class="kw">mata</span> st_matrix(<span class="st">&quot;observe&quot;</span>, observe)</span>
+<span id="cb374-68"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-68"></a></span>
+<span id="cb374-69"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-69"></a><span class="fu">matrix</span> pe = observe[2..4, 2]&#39;</span>
+<span id="cb374-70"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-70"></a><span class="fu">matrix</span> <span class="ot">list</span> pe</span>
+<span id="cb374-71"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-71"></a></span>
+<span id="cb374-72"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-72"></a><span class="co">/* Finally, the bstat command generates valid 95% confidence intervals</span></span>
+<span id="cb374-73"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-73"></a><span class="co">under the normal approximation using our bootstrap results.</span></span>
+<span id="cb374-74"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-74"></a><span class="co">The default results use a normal approximation to calcutlate the</span></span>
+<span id="cb374-75"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-75"></a><span class="co">confidence intervals.</span></span>
+<span id="cb374-76"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-76"></a><span class="co">Note, n contains the original sample size of your data before censoring*/</span></span>
+<span id="cb374-77"><a href="standardization-and-the-parametric-g-formula-stata.html#cb374-77"></a><span class="kw">bstat</span>, stat(pe) n(1629) </span></code></pre></div>
 <pre><code>      command:  bootstdz
         EY_a0:  r(boot_0)
         EY_a1:  r(boot_1)
