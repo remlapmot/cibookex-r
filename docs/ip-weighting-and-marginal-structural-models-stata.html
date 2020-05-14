@@ -27,7 +27,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2020-04-24" />
+<meta name="date" content="2020-05-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -36,6 +36,7 @@
   
 <link rel="prev" href="why-model-stata.html"/>
 <link rel="next" href="standardization-and-the-parametric-g-formula-stata.html"/>
+<script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -56,18 +57,17 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -136,17 +136,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Table of Contents</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#packages-to-install"><i class="fa fa-check"></i>Packages to install</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#downloading-the-code"><i class="fa fa-check"></i>Downloading the code</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#installing-dependency-packages"><i class="fa fa-check"></i>Installing dependency packages</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#downloading-the-datasets"><i class="fa fa-check"></i>Downloading the datasets</a></li>
 </ul></li>
 <li class="part"><span><b>R code</b></span></li>
-<li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html"><i class="fa fa-check"></i>11. Why model?</a><ul>
+<li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html"><i class="fa fa-check"></i>11. Why model?</a>
+<ul>
 <li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html#program-11.1"><i class="fa fa-check"></i>Program 11.1</a></li>
 <li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html#program-11.2"><i class="fa fa-check"></i>Program 11.2</a></li>
 <li class="chapter" data-level="" data-path="why-model.html"><a href="why-model.html#program-11.3"><i class="fa fa-check"></i>Program 11.3</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html"><i class="fa fa-check"></i>12. IP Weighting and Marginal Structural Models</a><ul>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html"><i class="fa fa-check"></i>12. IP Weighting and Marginal Structural Models</a>
+<ul>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.1"><i class="fa fa-check"></i>Program 12.1</a></li>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.2"><i class="fa fa-check"></i>Program 12.2</a></li>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.3"><i class="fa fa-check"></i>Program 12.3</a></li>
@@ -155,37 +159,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.6"><i class="fa fa-check"></i>Program 12.6</a></li>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models.html"><a href="ip-weighting-and-marginal-structural-models.html#program-12.7"><i class="fa fa-check"></i>Program 12.7</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html"><i class="fa fa-check"></i>13. Standardization and the parametric G-formula</a><ul>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html"><i class="fa fa-check"></i>13. Standardization and the parametric G-formula</a>
+<ul>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.1"><i class="fa fa-check"></i>Program 13.1</a></li>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.2"><i class="fa fa-check"></i>Program 13.2</a></li>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.3"><i class="fa fa-check"></i>Program 13.3</a></li>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula.html"><a href="standardization-and-the-parametric-g-formula.html#program-13.4"><i class="fa fa-check"></i>Program 13.4</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html"><i class="fa fa-check"></i>14. G-estimation of Structural Nested Models</a><ul>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html"><i class="fa fa-check"></i>14. G-estimation of Structural Nested Models</a>
+<ul>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.1"><i class="fa fa-check"></i>Program 14.1</a></li>
-<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.2"><i class="fa fa-check"></i>Program 14.2</a><ul>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.2"><i class="fa fa-check"></i>Program 14.2</a>
+<ul>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-checking-one-possible-value-of-psi"><i class="fa fa-check"></i>G-estimation: Checking one possible value of psi</a></li>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-checking-multiple-possible-values-of-psi"><i class="fa fa-check"></i>G-estimation: Checking multiple possible values of psi</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.3"><i class="fa fa-check"></i>Program 14.3</a><ul>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#program-14.3"><i class="fa fa-check"></i>Program 14.3</a>
+<ul>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-closed-form-estimator-linear-mean-models"><i class="fa fa-check"></i>G-estimation: Closed form estimator linear mean models</a></li>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models.html"><a href="g-estimation-of-structural-nested-models.html#g-estimation-closed-form-estimator-for-2-parameter-model"><i class="fa fa-check"></i>G-estimation: Closed form estimator for 2-parameter model</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html"><i class="fa fa-check"></i>15. Outcome regression and propensity scores</a><ul>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html"><i class="fa fa-check"></i>15. Outcome regression and propensity scores</a>
+<ul>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.1"><i class="fa fa-check"></i>Program 15.1</a></li>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.2"><i class="fa fa-check"></i>Program 15.2</a></li>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.3"><i class="fa fa-check"></i>Program 15.3</a></li>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores.html"><a href="outcome-regression-and-propensity-scores.html#program-15.4"><i class="fa fa-check"></i>Program 15.4</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html"><i class="fa fa-check"></i>16. Instrumental variables estimation</a><ul>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html"><i class="fa fa-check"></i>16. Instrumental variables estimation</a>
+<ul>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.1"><i class="fa fa-check"></i>Program 16.1</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.2"><i class="fa fa-check"></i>Program 16.2</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.3"><i class="fa fa-check"></i>Program 16.3</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.4"><i class="fa fa-check"></i>Program 16.4</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation.html"><a href="instrumental-variables-estimation.html#program-16.5"><i class="fa fa-check"></i>Program 16.5</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html"><i class="fa fa-check"></i>17. Causal survival analysis</a><ul>
+<li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html"><i class="fa fa-check"></i>17. Causal survival analysis</a>
+<ul>
 <li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.1"><i class="fa fa-check"></i>Program 17.1</a></li>
 <li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.2"><i class="fa fa-check"></i>Program 17.2</a></li>
 <li class="chapter" data-level="" data-path="causal-survival-analysis.html"><a href="causal-survival-analysis.html#program-17.3"><i class="fa fa-check"></i>Program 17.3</a></li>
@@ -194,12 +205,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="session-information-r.html"><a href="session-information-r.html"><i class="fa fa-check"></i>Session information: R</a></li>
 <li class="part"><span><b>Stata code</b></span></li>
-<li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html"><i class="fa fa-check"></i>11. Why model: Stata</a><ul>
+<li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html"><i class="fa fa-check"></i>11. Why model: Stata</a>
+<ul>
 <li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html#program-11.1-1"><i class="fa fa-check"></i>Program 11.1</a></li>
 <li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html#program-11.2-1"><i class="fa fa-check"></i>Program 11.2</a></li>
 <li class="chapter" data-level="" data-path="why-model-stata.html"><a href="why-model-stata.html#program-11.3-1"><i class="fa fa-check"></i>Program 11.3</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html"><i class="fa fa-check"></i>12. IP Weighting and Marginal Structural Models: Stata</a><ul>
+<li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html"><i class="fa fa-check"></i>12. IP Weighting and Marginal Structural Models: Stata</a>
+<ul>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.1-1"><i class="fa fa-check"></i>Program 12.1</a></li>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.2-1"><i class="fa fa-check"></i>Program 12.2</a></li>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.3-1"><i class="fa fa-check"></i>Program 12.3</a></li>
@@ -208,31 +221,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.6-1"><i class="fa fa-check"></i>Program 12.6</a></li>
 <li class="chapter" data-level="" data-path="ip-weighting-and-marginal-structural-models-stata.html"><a href="ip-weighting-and-marginal-structural-models-stata.html#program-12.7-1"><i class="fa fa-check"></i>Program 12.7</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html"><i class="fa fa-check"></i>13. Standardization and the parametric G-formula: Stata</a><ul>
+<li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html"><i class="fa fa-check"></i>13. Standardization and the parametric G-formula: Stata</a>
+<ul>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html#program-13.1-1"><i class="fa fa-check"></i>Program 13.1</a></li>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html#program-13.2-1"><i class="fa fa-check"></i>Program 13.2</a></li>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html#program-13.3-1"><i class="fa fa-check"></i>Program 13.3</a></li>
 <li class="chapter" data-level="" data-path="standardization-and-the-parametric-g-formula-stata.html"><a href="standardization-and-the-parametric-g-formula-stata.html#program-13.4-1"><i class="fa fa-check"></i>Program 13.4</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models-stata.html"><a href="g-estimation-of-structural-nested-models-stata.html"><i class="fa fa-check"></i>14. G-estimation of Structural Nested Models: Stata</a><ul>
+<li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models-stata.html"><a href="g-estimation-of-structural-nested-models-stata.html"><i class="fa fa-check"></i>14. G-estimation of Structural Nested Models: Stata</a>
+<ul>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models-stata.html"><a href="g-estimation-of-structural-nested-models-stata.html#program-14.1-1"><i class="fa fa-check"></i>Program 14.1</a></li>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models-stata.html"><a href="g-estimation-of-structural-nested-models-stata.html#program-14.2-1"><i class="fa fa-check"></i>Program 14.2</a></li>
 <li class="chapter" data-level="" data-path="g-estimation-of-structural-nested-models-stata.html"><a href="g-estimation-of-structural-nested-models-stata.html#program-14.3-1"><i class="fa fa-check"></i>Program 14.3</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html"><i class="fa fa-check"></i>15. Outcome regression and propensity scores: Stata</a><ul>
+<li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html"><i class="fa fa-check"></i>15. Outcome regression and propensity scores: Stata</a>
+<ul>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html#program-15.1-1"><i class="fa fa-check"></i>Program 15.1</a></li>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html#prorgam-15.2"><i class="fa fa-check"></i>Prorgam 15.2</a></li>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html#program-15.3-1"><i class="fa fa-check"></i>Program 15.3</a></li>
 <li class="chapter" data-level="" data-path="outcome-regression-and-propensity-scores-stata.html"><a href="outcome-regression-and-propensity-scores-stata.html#program-15.4-1"><i class="fa fa-check"></i>Program 15.4</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html"><i class="fa fa-check"></i>16. Instrumental variables estimation: Stata</a><ul>
+<li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html"><i class="fa fa-check"></i>16. Instrumental variables estimation: Stata</a>
+<ul>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.1-1"><i class="fa fa-check"></i>Program 16.1</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.2-1"><i class="fa fa-check"></i>Program 16.2</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.3-1"><i class="fa fa-check"></i>Program 16.3</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.4-1"><i class="fa fa-check"></i>Program 16.4</a></li>
 <li class="chapter" data-level="" data-path="instrumental-variables-estimation-stata.html"><a href="instrumental-variables-estimation-stata.html#program-16.5-1"><i class="fa fa-check"></i>Program 16.5</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html"><i class="fa fa-check"></i>17. Causal survival analysis: Stata</a><ul>
+<li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html"><i class="fa fa-check"></i>17. Causal survival analysis: Stata</a>
+<ul>
 <li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html#program-17.1-1"><i class="fa fa-check"></i>Program 17.1</a></li>
 <li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html#program-17.2-1"><i class="fa fa-check"></i>Program 17.2</a></li>
 <li class="chapter" data-level="" data-path="causal-survival-analysis-stata.html"><a href="causal-survival-analysis-stata.html#program-17.3-1"><i class="fa fa-check"></i>Program 17.3</a></li>
@@ -261,7 +279,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="ip-weighting-and-marginal-structural-models-stata" class="section level1 unnumbered">
 <h1>12. IP Weighting and Marginal Structural Models: Stata</h1>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb349-1"></a><span class="kw">library</span>(Statamarkdown)</span></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb348-1"></a><span class="kw">library</span>(Statamarkdown)</span></code></pre></div>
 <pre><code>/***************************************************************
 Stata code for Causal Inference: What If by Miguel Hernan &amp; Jamie Robins
 Date: 10/10/2019
@@ -273,42 +291,42 @@ For errors contact: ejmurray@bu.edu
 <ul>
 <li>Descriptive statistics from NHEFS data (Table 12.1)</li>
 </ul>
-<div class="sourceCode" id="cb351"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb351-1"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs, <span class="kw">clear</span></span>
-<span id="cb351-2"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-2"></a></span>
-<span id="cb351-3"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-3"></a><span class="co">/*Provisionally ignore subjects with missing values for follow-up weight*/</span></span>
-<span id="cb351-4"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-4"></a><span class="co">/*Sample size after exclusion: N = 1566*/</span></span>
-<span id="cb351-5"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-5"></a><span class="kw">drop</span> <span class="kw">if</span> wt82==.</span>
-<span id="cb351-6"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-6"></a></span>
-<span id="cb351-7"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-7"></a><span class="co">/* Calculate mean weight change in those with and without smoking cessation*/</span></span>
-<span id="cb351-8"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-8"></a><span class="kw">label</span> <span class="kw">define</span> qsmk 0 <span class="st">&quot;No smoking cessation&quot;</span> 1 <span class="st">&quot;Smoking cessation&quot;</span></span>
-<span id="cb351-9"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-9"></a><span class="kw">label</span> <span class="kw">values</span> qsmk qsmk</span>
-<span id="cb351-10"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-10"></a><span class="kw">by</span> qsmk, <span class="kw">sort</span>: <span class="kw">egen</span> years = <span class="kw">mean</span>(age) <span class="kw">if</span> age &lt; . </span>
-<span id="cb351-11"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-11"></a><span class="kw">label</span> <span class="kw">var</span> years <span class="st">&quot;Age, years&quot;</span></span>
-<span id="cb351-12"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-12"></a><span class="kw">by</span> qsmk, <span class="kw">sort</span>: <span class="kw">egen</span> male = <span class="kw">mean</span>(100 * (sex==0)) <span class="kw">if</span> sex &lt; . </span>
-<span id="cb351-13"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-13"></a><span class="kw">label</span> <span class="kw">var</span> male <span class="st">&quot;Men, %&quot;</span></span>
-<span id="cb351-14"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-14"></a><span class="kw">by</span> qsmk, <span class="kw">sort</span>: <span class="kw">egen</span> <span class="bn">white</span> = <span class="kw">mean</span>(100 * (race==0)) <span class="kw">if</span> race &lt; . </span>
-<span id="cb351-15"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-15"></a><span class="kw">label</span> <span class="kw">var</span> <span class="bn">white</span> <span class="st">&quot;White, %&quot;</span></span>
-<span id="cb351-16"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-16"></a><span class="kw">by</span> qsmk, <span class="kw">sort</span>: <span class="kw">egen</span> university = <span class="kw">mean</span>(100 * (education == 5)) <span class="kw">if</span> education &lt; .</span>
-<span id="cb351-17"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-17"></a><span class="kw">label</span> <span class="kw">var</span> university <span class="st">&quot;University, %&quot;</span></span>
-<span id="cb351-18"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-18"></a><span class="kw">by</span> qsmk, <span class="kw">sort</span>: <span class="kw">egen</span> kg = <span class="kw">mean</span>(wt71) <span class="kw">if</span> wt71 &lt; .</span>
-<span id="cb351-19"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-19"></a><span class="kw">label</span> <span class="kw">var</span> kg <span class="st">&quot;Weight, kg&quot;</span></span>
-<span id="cb351-20"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-20"></a><span class="kw">by</span> qsmk, <span class="kw">sort</span>: <span class="kw">egen</span> cigs = <span class="kw">mean</span>(smokeintensity) <span class="kw">if</span> smokeintensity &lt; . </span>
-<span id="cb351-21"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-21"></a><span class="kw">label</span> <span class="kw">var</span> cigs <span class="st">&quot;Cigarettes/day&quot;</span></span>
-<span id="cb351-22"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-22"></a><span class="kw">by</span> qsmk, <span class="kw">sort</span>: <span class="kw">egen</span> meansmkyrs = <span class="kw">mean</span>(smokeyrs) <span class="kw">if</span> smokeyrs &lt; .</span>
-<span id="cb351-23"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-23"></a><span class="kw">label</span> <span class="kw">var</span> kg <span class="st">&quot;Years smoking&quot;</span></span>
-<span id="cb351-24"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-24"></a><span class="kw">by</span> qsmk, <span class="kw">sort</span>: <span class="kw">egen</span> noexer = <span class="kw">mean</span>(100 * (exercise == 2)) <span class="kw">if</span> exercise &lt; . </span>
-<span id="cb351-25"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-25"></a><span class="kw">label</span> <span class="kw">var</span> noexer <span class="st">&quot;Little/no exercise&quot;</span></span>
-<span id="cb351-26"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-26"></a><span class="kw">by</span> qsmk, <span class="kw">sort</span>: <span class="kw">egen</span> inactive = <span class="kw">mean</span>(100 * (active==2)) <span class="kw">if</span> active &lt; . </span>
-<span id="cb351-27"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-27"></a><span class="kw">label</span> <span class="kw">var</span> inactive <span class="st">&quot;Inactive daily life&quot;</span></span>
-<span id="cb351-28"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb351-28"></a><span class="kw">qui</span> <span class="kw">save</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">replace</span></span></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb350-1"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs, <span class="kw">clear</span></span>
+<span id="cb350-2"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-2"></a></span>
+<span id="cb350-3"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-3"></a><span class="co">/*Provisionally ignore subjects with missing values for follow-up weight*/</span></span>
+<span id="cb350-4"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-4"></a><span class="co">/*Sample size after exclusion: N = 1566*/</span></span>
+<span id="cb350-5"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-5"></a><span class="kw">drop</span> <span class="kw">if</span> wt82==.</span>
+<span id="cb350-6"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-6"></a></span>
+<span id="cb350-7"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-7"></a><span class="co">/* Calculate mean weight change in those with and without smoking cessation*/</span></span>
+<span id="cb350-8"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-8"></a><span class="kw">label</span> <span class="kw">define</span> qsmk 0 <span class="st">&quot;No smoking cessation&quot;</span> 1 <span class="st">&quot;Smoking cessation&quot;</span></span>
+<span id="cb350-9"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-9"></a><span class="kw">label</span> <span class="kw">values</span> qsmk qsmk</span>
+<span id="cb350-10"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-10"></a><span class="kw">by</span> qsmk, <span class="kw">sort</span>: <span class="kw">egen</span> years = <span class="kw">mean</span>(age) <span class="kw">if</span> age &lt; . </span>
+<span id="cb350-11"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-11"></a><span class="kw">label</span> <span class="kw">var</span> years <span class="st">&quot;Age, years&quot;</span></span>
+<span id="cb350-12"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-12"></a><span class="kw">by</span> qsmk, <span class="kw">sort</span>: <span class="kw">egen</span> male = <span class="kw">mean</span>(100 * (sex==0)) <span class="kw">if</span> sex &lt; . </span>
+<span id="cb350-13"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-13"></a><span class="kw">label</span> <span class="kw">var</span> male <span class="st">&quot;Men, %&quot;</span></span>
+<span id="cb350-14"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-14"></a><span class="kw">by</span> qsmk, <span class="kw">sort</span>: <span class="kw">egen</span> <span class="bn">white</span> = <span class="kw">mean</span>(100 * (race==0)) <span class="kw">if</span> race &lt; . </span>
+<span id="cb350-15"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-15"></a><span class="kw">label</span> <span class="kw">var</span> <span class="bn">white</span> <span class="st">&quot;White, %&quot;</span></span>
+<span id="cb350-16"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-16"></a><span class="kw">by</span> qsmk, <span class="kw">sort</span>: <span class="kw">egen</span> university = <span class="kw">mean</span>(100 * (education == 5)) <span class="kw">if</span> education &lt; .</span>
+<span id="cb350-17"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-17"></a><span class="kw">label</span> <span class="kw">var</span> university <span class="st">&quot;University, %&quot;</span></span>
+<span id="cb350-18"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-18"></a><span class="kw">by</span> qsmk, <span class="kw">sort</span>: <span class="kw">egen</span> kg = <span class="kw">mean</span>(wt71) <span class="kw">if</span> wt71 &lt; .</span>
+<span id="cb350-19"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-19"></a><span class="kw">label</span> <span class="kw">var</span> kg <span class="st">&quot;Weight, kg&quot;</span></span>
+<span id="cb350-20"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-20"></a><span class="kw">by</span> qsmk, <span class="kw">sort</span>: <span class="kw">egen</span> cigs = <span class="kw">mean</span>(smokeintensity) <span class="kw">if</span> smokeintensity &lt; . </span>
+<span id="cb350-21"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-21"></a><span class="kw">label</span> <span class="kw">var</span> cigs <span class="st">&quot;Cigarettes/day&quot;</span></span>
+<span id="cb350-22"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-22"></a><span class="kw">by</span> qsmk, <span class="kw">sort</span>: <span class="kw">egen</span> meansmkyrs = <span class="kw">mean</span>(smokeyrs) <span class="kw">if</span> smokeyrs &lt; .</span>
+<span id="cb350-23"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-23"></a><span class="kw">label</span> <span class="kw">var</span> kg <span class="st">&quot;Years smoking&quot;</span></span>
+<span id="cb350-24"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-24"></a><span class="kw">by</span> qsmk, <span class="kw">sort</span>: <span class="kw">egen</span> noexer = <span class="kw">mean</span>(100 * (exercise == 2)) <span class="kw">if</span> exercise &lt; . </span>
+<span id="cb350-25"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-25"></a><span class="kw">label</span> <span class="kw">var</span> noexer <span class="st">&quot;Little/no exercise&quot;</span></span>
+<span id="cb350-26"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-26"></a><span class="kw">by</span> qsmk, <span class="kw">sort</span>: <span class="kw">egen</span> inactive = <span class="kw">mean</span>(100 * (active==2)) <span class="kw">if</span> active &lt; . </span>
+<span id="cb350-27"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-27"></a><span class="kw">label</span> <span class="kw">var</span> inactive <span class="st">&quot;Inactive daily life&quot;</span></span>
+<span id="cb350-28"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb350-28"></a><span class="kw">qui</span> <span class="kw">save</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">replace</span></span></code></pre></div>
 <pre><code>(63 observations deleted)
 </code></pre>
-<div class="sourceCode" id="cb353"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb353-1"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb353-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span>
-<span id="cb353-2"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb353-2"></a></span>
-<span id="cb353-3"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb353-3"></a><span class="co">/*Output table*/</span></span>
-<span id="cb353-4"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb353-4"></a><span class="kw">foreach</span> <span class="kw">var</span> <span class="kw">of</span> <span class="kw">varlist</span> years male  <span class="bn">white</span> university kg cigs meansmkyrs noexer inactive {</span>
-<span id="cb353-5"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb353-5"></a>  tabdisp qsmk, cell(<span class="ot">`var&#39;</span>) <span class="kw">format</span>(%3.1f)</span>
-<span id="cb353-6"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb353-6"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb352-1"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb352-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span>
+<span id="cb352-2"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb352-2"></a></span>
+<span id="cb352-3"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb352-3"></a><span class="co">/*Output table*/</span></span>
+<span id="cb352-4"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb352-4"></a><span class="kw">foreach</span> <span class="kw">var</span> <span class="kw">of</span> <span class="kw">varlist</span> years male  <span class="bn">white</span> university kg cigs meansmkyrs noexer inactive {</span>
+<span id="cb352-5"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb352-5"></a>  tabdisp qsmk, cell(<span class="ot">`var&#39;</span>) <span class="kw">format</span>(%3.1f)</span>
+<span id="cb352-6"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb352-6"></a>}</span></code></pre></div>
 <pre><code>quit smoking between |
 baseline and 1982    | Age, years
 ---------------------+-----------
@@ -386,26 +404,26 @@ No smoking cessation |                 8.9
 <li>Estimating IP weights for Section 12.2</li>
 <li>Data from NHEFS</li>
 </ul>
-<div class="sourceCode" id="cb355"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb355-1"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb355-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span>
-<span id="cb355-2"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb355-2"></a></span>
-<span id="cb355-3"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb355-3"></a><span class="co">/*Fit a logistic model for the IP weights*/</span> </span>
-<span id="cb355-4"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb355-4"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
-<span id="cb355-5"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb355-5"></a>c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 </span>
-<span id="cb355-6"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb355-6"></a></span>
-<span id="cb355-7"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb355-7"></a><span class="co">/*Output predicted conditional probability of quitting smoking for each individual*/</span></span>
-<span id="cb355-8"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb355-8"></a><span class="kw">predict</span> p_qsmk, pr</span>
-<span id="cb355-9"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb355-9"></a></span>
-<span id="cb355-10"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb355-10"></a><span class="co">/*Generate nonstabilized weights as P(A=1|covariates) if A = 1 and 1-P(A=1|covariates) if A = 0*/</span></span>
-<span id="cb355-11"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb355-11"></a><span class="kw">gen</span> <span class="fu">w</span>=.</span>
-<span id="cb355-12"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb355-12"></a><span class="kw">replace</span> <span class="fu">w</span>=1/p_qsmk <span class="kw">if</span> qsmk==1</span>
-<span id="cb355-13"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb355-13"></a><span class="kw">replace</span> <span class="fu">w</span>=1/(1-p_qsmk) <span class="kw">if</span> qsmk==0</span>
-<span id="cb355-14"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb355-14"></a><span class="co">/*Check the mean of the weights; we expect it to be close to 2.0*/</span></span>
-<span id="cb355-15"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb355-15"></a><span class="kw">summarize</span> <span class="fu">w</span></span>
-<span id="cb355-16"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb355-16"></a></span>
-<span id="cb355-17"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb355-17"></a><span class="co">/*Fit marginal structural model in the pseudopopulation*/</span></span>
-<span id="cb355-18"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb355-18"></a><span class="co">/*Weights assigned using pweight = w*/</span></span>
-<span id="cb355-19"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb355-19"></a><span class="co">/*Robust standard errors using cluster() option where &#39;seqn&#39; is the ID variable*/</span></span>
-<span id="cb355-20"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb355-20"></a><span class="kw">regress</span> wt82_71 qsmk [<span class="kw">pweight</span>=<span class="fu">w</span>], <span class="kw">cluster</span>(seqn) </span></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb354-1"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb354-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span>
+<span id="cb354-2"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb354-2"></a></span>
+<span id="cb354-3"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb354-3"></a><span class="co">/*Fit a logistic model for the IP weights*/</span> </span>
+<span id="cb354-4"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb354-4"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
+<span id="cb354-5"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb354-5"></a>c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 </span>
+<span id="cb354-6"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb354-6"></a></span>
+<span id="cb354-7"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb354-7"></a><span class="co">/*Output predicted conditional probability of quitting smoking for each individual*/</span></span>
+<span id="cb354-8"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb354-8"></a><span class="kw">predict</span> p_qsmk, pr</span>
+<span id="cb354-9"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb354-9"></a></span>
+<span id="cb354-10"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb354-10"></a><span class="co">/*Generate nonstabilized weights as P(A=1|covariates) if A = 1 and 1-P(A=1|covariates) if A = 0*/</span></span>
+<span id="cb354-11"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb354-11"></a><span class="kw">gen</span> <span class="fu">w</span>=.</span>
+<span id="cb354-12"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb354-12"></a><span class="kw">replace</span> <span class="fu">w</span>=1/p_qsmk <span class="kw">if</span> qsmk==1</span>
+<span id="cb354-13"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb354-13"></a><span class="kw">replace</span> <span class="fu">w</span>=1/(1-p_qsmk) <span class="kw">if</span> qsmk==0</span>
+<span id="cb354-14"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb354-14"></a><span class="co">/*Check the mean of the weights; we expect it to be close to 2.0*/</span></span>
+<span id="cb354-15"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb354-15"></a><span class="kw">summarize</span> <span class="fu">w</span></span>
+<span id="cb354-16"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb354-16"></a></span>
+<span id="cb354-17"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb354-17"></a><span class="co">/*Fit marginal structural model in the pseudopopulation*/</span></span>
+<span id="cb354-18"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb354-18"></a><span class="co">/*Weights assigned using pweight = w*/</span></span>
+<span id="cb354-19"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb354-19"></a><span class="co">/*Robust standard errors using cluster() option where &#39;seqn&#39; is the ID variable*/</span></span>
+<span id="cb354-20"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb354-20"></a><span class="kw">regress</span> wt82_71 qsmk [<span class="kw">pweight</span>=<span class="fu">w</span>], <span class="kw">cluster</span>(seqn) </span></code></pre></div>
 <pre><code>Iteration 0:   log likelihood = -893.02712  
 Iteration 1:   log likelihood = -839.70016  
 Iteration 2:   log likelihood = -838.45045  
@@ -494,36 +512,36 @@ Linear regression                               Number of obs     =      1,566
 <li>Estimating stabilized IP weights for Section 12.3</li>
 <li>Data from NHEFS</li>
 </ul>
-<div class="sourceCode" id="cb357"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb357-1"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span>
-<span id="cb357-2"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-2"></a></span>
-<span id="cb357-3"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-3"></a><span class="co">/*Fit a logistic model for the denominator of the IP weights and predict the conditional probability of smoking*/</span> </span>
-<span id="cb357-4"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-4"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
-<span id="cb357-5"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-5"></a>c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71  </span>
-<span id="cb357-6"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-6"></a><span class="kw">predict</span> pd_qsmk, pr</span>
-<span id="cb357-7"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-7"></a></span>
-<span id="cb357-8"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-8"></a><span class="co">/*Fit a logistic model for the numerator of ip weights and predict Pr(A=1) */</span> </span>
-<span id="cb357-9"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-9"></a><span class="kw">logit</span> qsmk </span>
-<span id="cb357-10"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-10"></a><span class="kw">predict</span> pn_qsmk, pr</span>
-<span id="cb357-11"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-11"></a></span>
-<span id="cb357-12"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-12"></a><span class="co">/*Generate stabilized weights as f(A)/f(A|L)*/</span></span>
-<span id="cb357-13"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-13"></a><span class="kw">gen</span> sw_a=.</span>
-<span id="cb357-14"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-14"></a><span class="kw">replace</span> sw_a=pn_qsmk/pd_qsmk <span class="kw">if</span> qsmk==1</span>
-<span id="cb357-15"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-15"></a><span class="kw">replace</span> sw_a=(1-pn_qsmk)/(1-pd_qsmk) <span class="kw">if</span> qsmk==0</span>
-<span id="cb357-16"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-16"></a></span>
-<span id="cb357-17"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-17"></a><span class="co">/*Check distribution of the stabilized weights*/</span></span>
-<span id="cb357-18"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-18"></a><span class="kw">summarize</span> sw_a</span>
-<span id="cb357-19"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-19"></a></span>
-<span id="cb357-20"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-20"></a><span class="co">/*Fit marginal structural model in the pseudopopulation*/</span></span>
-<span id="cb357-21"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-21"></a><span class="kw">regress</span> wt82_71 qsmk [<span class="kw">pweight</span>=sw_a], <span class="kw">cluster</span>(seqn) </span>
-<span id="cb357-22"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-22"></a></span>
-<span id="cb357-23"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-23"></a><span class="co">/**********************************************************</span></span>
-<span id="cb357-24"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-24"></a><span class="co">FINE POINT 12.2</span></span>
-<span id="cb357-25"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-25"></a><span class="co">Checking positivity</span></span>
-<span id="cb357-26"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-26"></a><span class="co">**********************************************************/</span></span>
-<span id="cb357-27"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-27"></a></span>
-<span id="cb357-28"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-28"></a><span class="co">/*Check for missing values within strata of covariates, for example: */</span></span>
-<span id="cb357-29"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-29"></a><span class="kw">tab</span> age qsmk <span class="kw">if</span> race==0 &amp; sex==1 &amp; wt82!=.</span>
-<span id="cb357-30"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb357-30"></a><span class="kw">tab</span> age qsmk <span class="kw">if</span> race==1 &amp; sex==1 &amp; wt82!=.</span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb356-1"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span>
+<span id="cb356-2"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-2"></a></span>
+<span id="cb356-3"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-3"></a><span class="co">/*Fit a logistic model for the denominator of the IP weights and predict the conditional probability of smoking*/</span> </span>
+<span id="cb356-4"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-4"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
+<span id="cb356-5"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-5"></a>c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71  </span>
+<span id="cb356-6"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-6"></a><span class="kw">predict</span> pd_qsmk, pr</span>
+<span id="cb356-7"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-7"></a></span>
+<span id="cb356-8"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-8"></a><span class="co">/*Fit a logistic model for the numerator of ip weights and predict Pr(A=1) */</span> </span>
+<span id="cb356-9"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-9"></a><span class="kw">logit</span> qsmk </span>
+<span id="cb356-10"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-10"></a><span class="kw">predict</span> pn_qsmk, pr</span>
+<span id="cb356-11"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-11"></a></span>
+<span id="cb356-12"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-12"></a><span class="co">/*Generate stabilized weights as f(A)/f(A|L)*/</span></span>
+<span id="cb356-13"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-13"></a><span class="kw">gen</span> sw_a=.</span>
+<span id="cb356-14"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-14"></a><span class="kw">replace</span> sw_a=pn_qsmk/pd_qsmk <span class="kw">if</span> qsmk==1</span>
+<span id="cb356-15"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-15"></a><span class="kw">replace</span> sw_a=(1-pn_qsmk)/(1-pd_qsmk) <span class="kw">if</span> qsmk==0</span>
+<span id="cb356-16"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-16"></a></span>
+<span id="cb356-17"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-17"></a><span class="co">/*Check distribution of the stabilized weights*/</span></span>
+<span id="cb356-18"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-18"></a><span class="kw">summarize</span> sw_a</span>
+<span id="cb356-19"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-19"></a></span>
+<span id="cb356-20"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-20"></a><span class="co">/*Fit marginal structural model in the pseudopopulation*/</span></span>
+<span id="cb356-21"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-21"></a><span class="kw">regress</span> wt82_71 qsmk [<span class="kw">pweight</span>=sw_a], <span class="kw">cluster</span>(seqn) </span>
+<span id="cb356-22"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-22"></a></span>
+<span id="cb356-23"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-23"></a><span class="co">/**********************************************************</span></span>
+<span id="cb356-24"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-24"></a><span class="co">FINE POINT 12.2</span></span>
+<span id="cb356-25"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-25"></a><span class="co">Checking positivity</span></span>
+<span id="cb356-26"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-26"></a><span class="co">**********************************************************/</span></span>
+<span id="cb356-27"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-27"></a></span>
+<span id="cb356-28"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-28"></a><span class="co">/*Check for missing values within strata of covariates, for example: */</span></span>
+<span id="cb356-29"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-29"></a><span class="kw">tab</span> age qsmk <span class="kw">if</span> race==0 &amp; sex==1 &amp; wt82!=.</span>
+<span id="cb356-30"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb356-30"></a><span class="kw">tab</span> age qsmk <span class="kw">if</span> race==1 &amp; sex==1 &amp; wt82!=.</span></code></pre></div>
 <pre><code>Iteration 0:   log likelihood = -893.02712  
 Iteration 1:   log likelihood = -839.70016  
 Iteration 2:   log likelihood = -838.45045  
@@ -584,9 +602,9 @@ Iteration 0:   log likelihood = -893.02712
 Iteration 1:   log likelihood = -893.02712  
 
 Logistic regression                             Number of obs     =      1,566
-                                                LR chi2(0)        =      -0.00
+                                                LR chi2(0)        =       0.00
                                                 Prob &gt; chi2       =          .
-Log likelihood = -893.02712                     Pseudo R2         =    -0.0000
+Log likelihood = -893.02712                     Pseudo R2         =     0.0000
 
 ------------------------------------------------------------------------------
         qsmk |      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
@@ -727,39 +745,39 @@ Linear regression                               Number of obs     =      1,566
 <li>Estimating the parameters of a marginal structural mean model with a continuous treatment Data from NHEFS</li>
 <li>Section 12.4</li>
 </ul>
-<div class="sourceCode" id="cb359"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb359-1"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span>
-<span id="cb359-2"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-2"></a></span>
-<span id="cb359-3"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-3"></a>* <span class="kw">drop</span> sw_a</span>
-<span id="cb359-4"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-4"></a></span>
-<span id="cb359-5"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-5"></a><span class="co">/*Analysis restricted to subjects reporting &lt;=25 cig/day at baseline: N = 1162*/</span></span>
-<span id="cb359-6"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-6"></a><span class="kw">keep</span> <span class="kw">if</span> smokeintensity &lt;=25</span>
-<span id="cb359-7"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-7"></a></span>
-<span id="cb359-8"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-8"></a><span class="co">/*Fit a linear model for the denominator of the IP weights and calculate the mean expected smoking intensity*/</span> </span>
-<span id="cb359-9"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-9"></a><span class="kw">regress</span> smkintensity82_71 sex race c.age##c.age ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
-<span id="cb359-10"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-10"></a>c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71</span>
-<span id="cb359-11"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-11"></a><span class="kw">quietly</span> <span class="kw">predict</span> p_den</span>
-<span id="cb359-12"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-12"></a></span>
-<span id="cb359-13"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-13"></a><span class="co">/*Generate the denisty of the denomiator expectation using the mean expected smoking intensity and the residuals, assuming a normal distribution*/</span></span>
-<span id="cb359-14"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-14"></a><span class="co">/*Note: The regress command in STATA saves the root mean squared error for the immediate regression as e(rmse), thus there is no need to calculate it again. */</span></span>
-<span id="cb359-15"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-15"></a><span class="kw">gen</span> dens_den = <span class="fu">normalden</span>(smkintensity82_71, p_den, <span class="fu">e</span>(rmse))</span>
-<span id="cb359-16"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-16"></a></span>
-<span id="cb359-17"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-17"></a><span class="co">/*Fit a linear model for the numerator of ip weights, calculate the mean expected value, and generate the density*/</span></span>
-<span id="cb359-18"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-18"></a><span class="kw">quietly</span> <span class="kw">regress</span> smkintensity82_71</span>
-<span id="cb359-19"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-19"></a><span class="kw">quietly</span> <span class="kw">predict</span> p_num</span>
-<span id="cb359-20"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-20"></a><span class="kw">gen</span> dens_num = <span class="fu">normalden</span>( smkintensity82_71, p_num, <span class="fu">e</span>(rmse))</span>
-<span id="cb359-21"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-21"></a></span>
-<span id="cb359-22"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-22"></a><span class="co">/*Generate the final stabilized weights from the estimated numerator and denominator, and check the weights distribution*/</span></span>
-<span id="cb359-23"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-23"></a><span class="kw">gen</span> sw_a=dens_num/dens_den</span>
-<span id="cb359-24"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-24"></a><span class="kw">summarize</span> sw_a</span>
-<span id="cb359-25"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-25"></a></span>
-<span id="cb359-26"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-26"></a><span class="co">/*Fit a marginal structural model in the pseudopopulation*/</span></span>
-<span id="cb359-27"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-27"></a><span class="kw">regress</span> wt82_71  c.smkintensity82_71##c.smkintensity82_71 [<span class="kw">pweight</span>=sw_a], <span class="kw">cluster</span>(seqn)</span>
-<span id="cb359-28"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-28"></a></span>
-<span id="cb359-29"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-29"></a><span class="co">/*Output the estimated mean Y value when smoke intensity is unchanged from baseline to 1982 */</span></span>
-<span id="cb359-30"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-30"></a><span class="kw">lincom</span> _b[<span class="dt">_cons</span>]</span>
-<span id="cb359-31"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-31"></a></span>
-<span id="cb359-32"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-32"></a><span class="co">/*Output the estimated mean Y value when smoke intensity increases by 20 from baseline to 1982*/</span></span>
-<span id="cb359-33"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb359-33"></a><span class="kw">lincom</span> _b[<span class="dt">_cons</span>] + 20*_b[smkintensity82_71 ] +400*_b[c.smkintensity82_71#c.smkintensity82_71]</span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb358-1"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span>
+<span id="cb358-2"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-2"></a></span>
+<span id="cb358-3"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-3"></a>* <span class="kw">drop</span> sw_a</span>
+<span id="cb358-4"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-4"></a></span>
+<span id="cb358-5"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-5"></a><span class="co">/*Analysis restricted to subjects reporting &lt;=25 cig/day at baseline: N = 1162*/</span></span>
+<span id="cb358-6"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-6"></a><span class="kw">keep</span> <span class="kw">if</span> smokeintensity &lt;=25</span>
+<span id="cb358-7"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-7"></a></span>
+<span id="cb358-8"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-8"></a><span class="co">/*Fit a linear model for the denominator of the IP weights and calculate the mean expected smoking intensity*/</span> </span>
+<span id="cb358-9"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-9"></a><span class="kw">regress</span> smkintensity82_71 sex race c.age##c.age ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
+<span id="cb358-10"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-10"></a>c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71</span>
+<span id="cb358-11"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-11"></a><span class="kw">quietly</span> <span class="kw">predict</span> p_den</span>
+<span id="cb358-12"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-12"></a></span>
+<span id="cb358-13"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-13"></a><span class="co">/*Generate the denisty of the denomiator expectation using the mean expected smoking intensity and the residuals, assuming a normal distribution*/</span></span>
+<span id="cb358-14"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-14"></a><span class="co">/*Note: The regress command in STATA saves the root mean squared error for the immediate regression as e(rmse), thus there is no need to calculate it again. */</span></span>
+<span id="cb358-15"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-15"></a><span class="kw">gen</span> dens_den = <span class="fu">normalden</span>(smkintensity82_71, p_den, <span class="fu">e</span>(rmse))</span>
+<span id="cb358-16"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-16"></a></span>
+<span id="cb358-17"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-17"></a><span class="co">/*Fit a linear model for the numerator of ip weights, calculate the mean expected value, and generate the density*/</span></span>
+<span id="cb358-18"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-18"></a><span class="kw">quietly</span> <span class="kw">regress</span> smkintensity82_71</span>
+<span id="cb358-19"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-19"></a><span class="kw">quietly</span> <span class="kw">predict</span> p_num</span>
+<span id="cb358-20"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-20"></a><span class="kw">gen</span> dens_num = <span class="fu">normalden</span>( smkintensity82_71, p_num, <span class="fu">e</span>(rmse))</span>
+<span id="cb358-21"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-21"></a></span>
+<span id="cb358-22"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-22"></a><span class="co">/*Generate the final stabilized weights from the estimated numerator and denominator, and check the weights distribution*/</span></span>
+<span id="cb358-23"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-23"></a><span class="kw">gen</span> sw_a=dens_num/dens_den</span>
+<span id="cb358-24"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-24"></a><span class="kw">summarize</span> sw_a</span>
+<span id="cb358-25"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-25"></a></span>
+<span id="cb358-26"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-26"></a><span class="co">/*Fit a marginal structural model in the pseudopopulation*/</span></span>
+<span id="cb358-27"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-27"></a><span class="kw">regress</span> wt82_71  c.smkintensity82_71##c.smkintensity82_71 [<span class="kw">pweight</span>=sw_a], <span class="kw">cluster</span>(seqn)</span>
+<span id="cb358-28"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-28"></a></span>
+<span id="cb358-29"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-29"></a><span class="co">/*Output the estimated mean Y value when smoke intensity is unchanged from baseline to 1982 */</span></span>
+<span id="cb358-30"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-30"></a><span class="kw">lincom</span> _b[<span class="dt">_cons</span>]</span>
+<span id="cb358-31"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-31"></a></span>
+<span id="cb358-32"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-32"></a><span class="co">/*Output the estimated mean Y value when smoke intensity increases by 20 from baseline to 1982*/</span></span>
+<span id="cb358-33"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb358-33"></a><span class="kw">lincom</span> _b[<span class="dt">_cons</span>] + 20*_b[smkintensity82_71 ] +400*_b[c.smkintensity82_71#c.smkintensity82_71]</span></code></pre></div>
 <pre><code>(404 observations deleted)
 
       Source |       SS           df       MS      Number of obs   =     1,162
@@ -865,31 +883,31 @@ smkintens~71 |   .0026949   .0024203     1.11   0.266    -.0020537    .0074436
 <li>Data from NHEFS</li>
 <li>Section 12.4</li>
 </ul>
-<div class="sourceCode" id="cb361"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb361-1"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs, <span class="kw">clear</span></span>
-<span id="cb361-2"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-2"></a></span>
-<span id="cb361-3"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-3"></a><span class="co">/*Provisionally ignore subjects with missing values for follow-up weight*/</span></span>
-<span id="cb361-4"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-4"></a><span class="co">/*Sample size after exclusion: N = 1566*/</span></span>
-<span id="cb361-5"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-5"></a><span class="kw">drop</span> <span class="kw">if</span> wt82==.</span>
-<span id="cb361-6"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-6"></a></span>
-<span id="cb361-7"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-7"></a><span class="co">/*Estimate the stabilized weights for quitting smoking as in PROGRAM 12.3*/</span></span>
-<span id="cb361-8"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-8"></a><span class="co">/*Fit a logistic model for the denominator of the IP weights and predict the conditional probability of smoking*/</span> </span>
-<span id="cb361-9"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-9"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
-<span id="cb361-10"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-10"></a>c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71  </span>
-<span id="cb361-11"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-11"></a><span class="kw">predict</span> pd_qsmk, pr</span>
-<span id="cb361-12"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-12"></a><span class="co">/*Fit a logistic model for the numerator of ip weights and predict Pr(A=1) */</span> </span>
-<span id="cb361-13"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-13"></a><span class="kw">logit</span> qsmk </span>
-<span id="cb361-14"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-14"></a><span class="kw">predict</span> pn_qsmk, pr</span>
-<span id="cb361-15"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-15"></a><span class="co">/*Generate stabilized weights as f(A)/f(A|L)*/</span></span>
-<span id="cb361-16"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-16"></a><span class="kw">gen</span> sw_a=.</span>
-<span id="cb361-17"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-17"></a><span class="kw">replace</span> sw_a=pn_qsmk/pd_qsmk <span class="kw">if</span> qsmk==1</span>
-<span id="cb361-18"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-18"></a><span class="kw">replace</span> sw_a=(1-pn_qsmk)/(1-pd_qsmk) <span class="kw">if</span> qsmk==0</span>
-<span id="cb361-19"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-19"></a><span class="kw">summarize</span> sw_a</span>
-<span id="cb361-20"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-20"></a></span>
-<span id="cb361-21"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-21"></a><span class="co">/*Fit marginal structural model in the pseudopopulation*/</span></span>
-<span id="cb361-22"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-22"></a><span class="co">/*</span><span class="al">NOTE</span><span class="co">: Stata has two commands for logistic regression, logit and logistic*/</span></span>
-<span id="cb361-23"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-23"></a><span class="co">/*Using logistic allows us to output the odds ratios directly*/</span></span>
-<span id="cb361-24"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-24"></a><span class="co">/*We can also output odds ratios from the logit command using the or option (default logit output is regression coefficients*/</span></span>
-<span id="cb361-25"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb361-25"></a><span class="kw">logistic</span> death qsmk [<span class="kw">pweight</span>=sw_a], <span class="kw">cluster</span>(seqn) </span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb360-1"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs, <span class="kw">clear</span></span>
+<span id="cb360-2"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-2"></a></span>
+<span id="cb360-3"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-3"></a><span class="co">/*Provisionally ignore subjects with missing values for follow-up weight*/</span></span>
+<span id="cb360-4"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-4"></a><span class="co">/*Sample size after exclusion: N = 1566*/</span></span>
+<span id="cb360-5"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-5"></a><span class="kw">drop</span> <span class="kw">if</span> wt82==.</span>
+<span id="cb360-6"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-6"></a></span>
+<span id="cb360-7"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-7"></a><span class="co">/*Estimate the stabilized weights for quitting smoking as in PROGRAM 12.3*/</span></span>
+<span id="cb360-8"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-8"></a><span class="co">/*Fit a logistic model for the denominator of the IP weights and predict the conditional probability of smoking*/</span> </span>
+<span id="cb360-9"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-9"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
+<span id="cb360-10"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-10"></a>c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71  </span>
+<span id="cb360-11"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-11"></a><span class="kw">predict</span> pd_qsmk, pr</span>
+<span id="cb360-12"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-12"></a><span class="co">/*Fit a logistic model for the numerator of ip weights and predict Pr(A=1) */</span> </span>
+<span id="cb360-13"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-13"></a><span class="kw">logit</span> qsmk </span>
+<span id="cb360-14"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-14"></a><span class="kw">predict</span> pn_qsmk, pr</span>
+<span id="cb360-15"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-15"></a><span class="co">/*Generate stabilized weights as f(A)/f(A|L)*/</span></span>
+<span id="cb360-16"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-16"></a><span class="kw">gen</span> sw_a=.</span>
+<span id="cb360-17"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-17"></a><span class="kw">replace</span> sw_a=pn_qsmk/pd_qsmk <span class="kw">if</span> qsmk==1</span>
+<span id="cb360-18"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-18"></a><span class="kw">replace</span> sw_a=(1-pn_qsmk)/(1-pd_qsmk) <span class="kw">if</span> qsmk==0</span>
+<span id="cb360-19"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-19"></a><span class="kw">summarize</span> sw_a</span>
+<span id="cb360-20"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-20"></a></span>
+<span id="cb360-21"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-21"></a><span class="co">/*Fit marginal structural model in the pseudopopulation*/</span></span>
+<span id="cb360-22"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-22"></a><span class="co">/*</span><span class="al">NOTE</span><span class="co">: Stata has two commands for logistic regression, logit and logistic*/</span></span>
+<span id="cb360-23"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-23"></a><span class="co">/*Using logistic allows us to output the odds ratios directly*/</span></span>
+<span id="cb360-24"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-24"></a><span class="co">/*We can also output odds ratios from the logit command using the or option (default logit output is regression coefficients*/</span></span>
+<span id="cb360-25"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb360-25"></a><span class="kw">logistic</span> death qsmk [<span class="kw">pweight</span>=sw_a], <span class="kw">cluster</span>(seqn) </span></code></pre></div>
 <pre><code>(63 observations deleted)
 
 
@@ -997,31 +1015,31 @@ Note: _cons estimates baseline odds.</code></pre>
 <li>Data from NHEFS</li>
 <li>Section 12.5</li>
 </ul>
-<div class="sourceCode" id="cb363"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb363-1"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs, <span class="kw">clear</span></span>
-<span id="cb363-2"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-2"></a></span>
-<span id="cb363-3"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-3"></a>* <span class="kw">drop</span> pd_qsmk pn_qsmk sw_a</span>
-<span id="cb363-4"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-4"></a></span>
-<span id="cb363-5"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-5"></a><span class="co">/*Check distribution of sex*/</span></span>
-<span id="cb363-6"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-6"></a><span class="kw">tab</span> sex</span>
-<span id="cb363-7"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-7"></a></span>
-<span id="cb363-8"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-8"></a><span class="co">/*Fit logistc model for the denominator of IP weights, as in PROGRAM 12.3 */</span></span>
-<span id="cb363-9"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-9"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
-<span id="cb363-10"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-10"></a>c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 </span>
-<span id="cb363-11"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-11"></a><span class="kw">predict</span> pd_qsmk, pr</span>
-<span id="cb363-12"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-12"></a></span>
-<span id="cb363-13"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-13"></a><span class="co">/*Fit logistic model for the numerator of IP weights, no including sex */</span></span>
-<span id="cb363-14"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-14"></a><span class="kw">logit</span> qsmk sex</span>
-<span id="cb363-15"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-15"></a><span class="kw">predict</span> pn_qsmk, pr</span>
-<span id="cb363-16"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-16"></a></span>
-<span id="cb363-17"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-17"></a><span class="co">/*Generate IP weights as before*/</span></span>
-<span id="cb363-18"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-18"></a><span class="kw">gen</span> sw_a=.</span>
-<span id="cb363-19"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-19"></a><span class="kw">replace</span> sw_a=pn_qsmk/pd_qsmk <span class="kw">if</span> qsmk==1</span>
-<span id="cb363-20"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-20"></a><span class="kw">replace</span> sw_a=(1-pn_qsmk)/(1-pd_qsmk) <span class="kw">if</span> qsmk==0</span>
-<span id="cb363-21"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-21"></a></span>
-<span id="cb363-22"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-22"></a><span class="kw">summarize</span> sw_a</span>
-<span id="cb363-23"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-23"></a></span>
-<span id="cb363-24"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-24"></a><span class="co">/*Fit marginal structural model in the pseudopopulation, including interaction term between quitting smoking and sex*/</span></span>
-<span id="cb363-25"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb363-25"></a><span class="kw">regress</span> wt82_71 qsmk##sex [pw=sw_a], <span class="kw">cluster</span>(seqn)</span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb362-1"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs, <span class="kw">clear</span></span>
+<span id="cb362-2"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-2"></a></span>
+<span id="cb362-3"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-3"></a>* <span class="kw">drop</span> pd_qsmk pn_qsmk sw_a</span>
+<span id="cb362-4"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-4"></a></span>
+<span id="cb362-5"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-5"></a><span class="co">/*Check distribution of sex*/</span></span>
+<span id="cb362-6"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-6"></a><span class="kw">tab</span> sex</span>
+<span id="cb362-7"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-7"></a></span>
+<span id="cb362-8"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-8"></a><span class="co">/*Fit logistc model for the denominator of IP weights, as in PROGRAM 12.3 */</span></span>
+<span id="cb362-9"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-9"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
+<span id="cb362-10"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-10"></a>c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 </span>
+<span id="cb362-11"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-11"></a><span class="kw">predict</span> pd_qsmk, pr</span>
+<span id="cb362-12"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-12"></a></span>
+<span id="cb362-13"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-13"></a><span class="co">/*Fit logistic model for the numerator of IP weights, no including sex */</span></span>
+<span id="cb362-14"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-14"></a><span class="kw">logit</span> qsmk sex</span>
+<span id="cb362-15"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-15"></a><span class="kw">predict</span> pn_qsmk, pr</span>
+<span id="cb362-16"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-16"></a></span>
+<span id="cb362-17"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-17"></a><span class="co">/*Generate IP weights as before*/</span></span>
+<span id="cb362-18"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-18"></a><span class="kw">gen</span> sw_a=.</span>
+<span id="cb362-19"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-19"></a><span class="kw">replace</span> sw_a=pn_qsmk/pd_qsmk <span class="kw">if</span> qsmk==1</span>
+<span id="cb362-20"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-20"></a><span class="kw">replace</span> sw_a=(1-pn_qsmk)/(1-pd_qsmk) <span class="kw">if</span> qsmk==0</span>
+<span id="cb362-21"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-21"></a></span>
+<span id="cb362-22"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-22"></a><span class="kw">summarize</span> sw_a</span>
+<span id="cb362-23"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-23"></a></span>
+<span id="cb362-24"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-24"></a><span class="co">/*Fit marginal structural model in the pseudopopulation, including interaction term between quitting smoking and sex*/</span></span>
+<span id="cb362-25"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb362-25"></a><span class="kw">regress</span> wt82_71 qsmk##sex [pw=sw_a], <span class="kw">cluster</span>(seqn)</span></code></pre></div>
 <pre><code>        sex |      Freq.     Percent        Cum.
 ------------+-----------------------------------
           0 |        799       49.05       49.05
@@ -1141,51 +1159,51 @@ Linear regression                               Number of obs     =      1,566
 <li>Data from NHEFS</li>
 <li>Section 12.6</li>
 </ul>
-<div class="sourceCode" id="cb365"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb365-1"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs, <span class="kw">clear</span></span>
-<span id="cb365-2"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-2"></a></span>
-<span id="cb365-3"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-3"></a><span class="co">/*Analysis including all individuals regardless of missing wt82 status: N=1629*/</span></span>
-<span id="cb365-4"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-4"></a><span class="co">/*Generate censoring indicator: C = 1 if wt82 missing*/</span></span>
-<span id="cb365-5"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-5"></a><span class="kw">gen</span> <span class="kw">byte</span> cens = (wt82 == .)</span>
-<span id="cb365-6"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-6"></a></span>
-<span id="cb365-7"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-7"></a><span class="co">/*Check distribution of censoring by quitting smoking and baseline weight*/</span></span>
-<span id="cb365-8"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-8"></a><span class="kw">tab</span> cens qsmk, column</span>
-<span id="cb365-9"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-9"></a><span class="kw">bys</span> cens: <span class="kw">summarize</span> wt71</span>
-<span id="cb365-10"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-10"></a></span>
-<span id="cb365-11"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-11"></a><span class="co">/*Fit logistic regression model for the  denominator of IP weight for A*/</span></span>
-<span id="cb365-12"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-12"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
-<span id="cb365-13"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-13"></a>c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 </span>
-<span id="cb365-14"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-14"></a><span class="kw">predict</span> pd_qsmk, pr</span>
-<span id="cb365-15"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-15"></a></span>
-<span id="cb365-16"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-16"></a><span class="co">/*Fit logistic regression model for the  numerator of IP weights for A*/</span></span>
-<span id="cb365-17"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-17"></a><span class="kw">logit</span> qsmk</span>
-<span id="cb365-18"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-18"></a><span class="kw">predict</span> pn_qsmk, pr</span>
-<span id="cb365-19"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-19"></a></span>
-<span id="cb365-20"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-20"></a><span class="co">/*Fit logistic regression model for the  denominator of IP weights for C, including quitting smoking*/</span></span>
-<span id="cb365-21"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-21"></a><span class="kw">logit</span> cens qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
-<span id="cb365-22"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-22"></a>c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 </span>
-<span id="cb365-23"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-23"></a><span class="kw">predict</span> pd_cens, pr</span>
-<span id="cb365-24"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-24"></a></span>
-<span id="cb365-25"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-25"></a><span class="co">/*Fit logistic regression model for the  numerator of IP weights for C, including quitting smoking */</span></span>
-<span id="cb365-26"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-26"></a><span class="kw">logit</span> cens qsmk</span>
-<span id="cb365-27"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-27"></a><span class="kw">predict</span> pn_cens, pr</span>
-<span id="cb365-28"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-28"></a></span>
-<span id="cb365-29"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-29"></a><span class="co">/*Generate the stabilized weights for A (sw_a)*/</span></span>
-<span id="cb365-30"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-30"></a><span class="kw">gen</span> sw_a=.</span>
-<span id="cb365-31"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-31"></a><span class="kw">replace</span> sw_a=pn_qsmk/pd_qsmk <span class="kw">if</span> qsmk==1</span>
-<span id="cb365-32"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-32"></a><span class="kw">replace</span> sw_a=(1-pn_qsmk)/(1-pd_qsmk) <span class="kw">if</span> qsmk==0</span>
-<span id="cb365-33"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-33"></a></span>
-<span id="cb365-34"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-34"></a><span class="co">/*Generate the stabilized weights for C (sw_c)*/</span></span>
-<span id="cb365-35"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-35"></a><span class="co">/*</span><span class="al">NOTE</span><span class="co">: the conditional probability estimates generated by our logistic models for C represent the conditional probability of being censored (C=1)*/</span></span>
-<span id="cb365-36"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-36"></a><span class="co">/*We want weights for the conditional probability of bing uncensored, Pr(C=0|A,L)*/</span></span>
-<span id="cb365-37"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-37"></a><span class="kw">gen</span> sw_c=.</span>
-<span id="cb365-38"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-38"></a><span class="kw">replace</span> sw_c=(1-pn_cens)/(1-pd_cens) <span class="kw">if</span> cens==0</span>
-<span id="cb365-39"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-39"></a></span>
-<span id="cb365-40"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-40"></a><span class="co">/*Generate the final stabilized weights and check distribution*/</span></span>
-<span id="cb365-41"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-41"></a><span class="kw">gen</span> <span class="kw">sw</span>=sw_a*sw_c</span>
-<span id="cb365-42"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-42"></a><span class="kw">summarize</span> <span class="kw">sw</span></span>
-<span id="cb365-43"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-43"></a></span>
-<span id="cb365-44"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-44"></a><span class="co">/*Fit marginal structural model in the pseudopopulation*/</span></span>
-<span id="cb365-45"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb365-45"></a><span class="kw">regress</span> wt82_71 qsmk [pw=<span class="kw">sw</span>], <span class="kw">cluster</span>(seqn)</span></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb364-1"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs, <span class="kw">clear</span></span>
+<span id="cb364-2"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-2"></a></span>
+<span id="cb364-3"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-3"></a><span class="co">/*Analysis including all individuals regardless of missing wt82 status: N=1629*/</span></span>
+<span id="cb364-4"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-4"></a><span class="co">/*Generate censoring indicator: C = 1 if wt82 missing*/</span></span>
+<span id="cb364-5"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-5"></a><span class="kw">gen</span> <span class="kw">byte</span> cens = (wt82 == .)</span>
+<span id="cb364-6"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-6"></a></span>
+<span id="cb364-7"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-7"></a><span class="co">/*Check distribution of censoring by quitting smoking and baseline weight*/</span></span>
+<span id="cb364-8"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-8"></a><span class="kw">tab</span> cens qsmk, column</span>
+<span id="cb364-9"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-9"></a><span class="kw">bys</span> cens: <span class="kw">summarize</span> wt71</span>
+<span id="cb364-10"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-10"></a></span>
+<span id="cb364-11"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-11"></a><span class="co">/*Fit logistic regression model for the  denominator of IP weight for A*/</span></span>
+<span id="cb364-12"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-12"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
+<span id="cb364-13"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-13"></a>c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 </span>
+<span id="cb364-14"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-14"></a><span class="kw">predict</span> pd_qsmk, pr</span>
+<span id="cb364-15"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-15"></a></span>
+<span id="cb364-16"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-16"></a><span class="co">/*Fit logistic regression model for the  numerator of IP weights for A*/</span></span>
+<span id="cb364-17"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-17"></a><span class="kw">logit</span> qsmk</span>
+<span id="cb364-18"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-18"></a><span class="kw">predict</span> pn_qsmk, pr</span>
+<span id="cb364-19"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-19"></a></span>
+<span id="cb364-20"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-20"></a><span class="co">/*Fit logistic regression model for the  denominator of IP weights for C, including quitting smoking*/</span></span>
+<span id="cb364-21"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-21"></a><span class="kw">logit</span> cens qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
+<span id="cb364-22"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-22"></a>c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 </span>
+<span id="cb364-23"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-23"></a><span class="kw">predict</span> pd_cens, pr</span>
+<span id="cb364-24"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-24"></a></span>
+<span id="cb364-25"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-25"></a><span class="co">/*Fit logistic regression model for the  numerator of IP weights for C, including quitting smoking */</span></span>
+<span id="cb364-26"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-26"></a><span class="kw">logit</span> cens qsmk</span>
+<span id="cb364-27"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-27"></a><span class="kw">predict</span> pn_cens, pr</span>
+<span id="cb364-28"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-28"></a></span>
+<span id="cb364-29"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-29"></a><span class="co">/*Generate the stabilized weights for A (sw_a)*/</span></span>
+<span id="cb364-30"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-30"></a><span class="kw">gen</span> sw_a=.</span>
+<span id="cb364-31"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-31"></a><span class="kw">replace</span> sw_a=pn_qsmk/pd_qsmk <span class="kw">if</span> qsmk==1</span>
+<span id="cb364-32"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-32"></a><span class="kw">replace</span> sw_a=(1-pn_qsmk)/(1-pd_qsmk) <span class="kw">if</span> qsmk==0</span>
+<span id="cb364-33"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-33"></a></span>
+<span id="cb364-34"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-34"></a><span class="co">/*Generate the stabilized weights for C (sw_c)*/</span></span>
+<span id="cb364-35"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-35"></a><span class="co">/*</span><span class="al">NOTE</span><span class="co">: the conditional probability estimates generated by our logistic models for C represent the conditional probability of being censored (C=1)*/</span></span>
+<span id="cb364-36"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-36"></a><span class="co">/*We want weights for the conditional probability of bing uncensored, Pr(C=0|A,L)*/</span></span>
+<span id="cb364-37"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-37"></a><span class="kw">gen</span> sw_c=.</span>
+<span id="cb364-38"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-38"></a><span class="kw">replace</span> sw_c=(1-pn_cens)/(1-pd_cens) <span class="kw">if</span> cens==0</span>
+<span id="cb364-39"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-39"></a></span>
+<span id="cb364-40"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-40"></a><span class="co">/*Generate the final stabilized weights and check distribution*/</span></span>
+<span id="cb364-41"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-41"></a><span class="kw">gen</span> <span class="kw">sw</span>=sw_a*sw_c</span>
+<span id="cb364-42"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-42"></a><span class="kw">summarize</span> <span class="kw">sw</span></span>
+<span id="cb364-43"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-43"></a></span>
+<span id="cb364-44"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-44"></a><span class="co">/*Fit marginal structural model in the pseudopopulation*/</span></span>
+<span id="cb364-45"><a href="ip-weighting-and-marginal-structural-models-stata.html#cb364-45"></a><span class="kw">regress</span> wt82_71 qsmk [pw=<span class="kw">sw</span>], <span class="kw">cluster</span>(seqn)</span></code></pre></div>
 <pre><code>| Key               |
 |-------------------|
 |     frequency     |

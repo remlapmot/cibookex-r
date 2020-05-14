@@ -50,10 +50,6 @@ library("survminer")
 ## Loading required package: ggpubr
 ```
 
-```
-## Loading required package: magrittr
-```
-
 ```r
 survdiff(Surv(survtime, death) ~ qsmk, data=nhefs)
 ```
