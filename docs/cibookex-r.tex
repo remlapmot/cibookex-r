@@ -124,7 +124,7 @@
 
 \title{Causal Inference: What If. R and Stata code for Exercises}
 \author{Book by M. A. Hernán and J. M. Robins \and R code by Joy Shi and Sean McGrath \and Stata code by Eleanor Murray and Roger Logan \and R Markdown code by Tom Palmer}
-\date{14 May 2020}
+\date{21 June 2020}
 
 \begin{document}
 \maketitle
@@ -2402,16 +2402,16 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Shaded}
 
 \begin{verbatim}
-##                         V1             mean                 se               ll
-## 1                 Observed 2.56188497106103   0.11833271542945 2.32995711062648
-## 2             No Treatment 1.65212306626746  0.149274183026408 1.35955104371406
-## 3                Treatment 5.11474489549347  0.152007614290188 4.81681544610884
-## 4 Treatment - No Treatment 3.46262182922601 0.0778256612844246 3.31008633603552
+##                         V1             mean                se               ll
+## 1                 Observed 2.56188497106103 0.108658356441182   2.348918505817
+## 2             No Treatment 1.65212306626746 0.188805097844792 1.28207187439411
+## 3                Treatment 5.11474489549347  0.51287755294401 4.10952336324417
+## 4 Treatment - No Treatment 3.46262182922601 0.687080294221438  2.1159691980648
 ##                 ul
-## 1 2.79381283149558
-## 2 1.94469508882086
-## 3 5.41267434487809
-## 4 3.61515732241649
+## 1 2.77485143630506
+## 2 2.02217425814081
+## 3 6.11996642774276
+## 4 4.80927446038721
 \end{verbatim}
 
 \hypertarget{g-estimation-of-structural-nested-models}{%
@@ -3850,15 +3850,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ##                         V1             mean                se               ll
-## 1                 Observed 2.63384609228479 0.104454848488536 2.42911835123668
-## 2             No Treatment 1.71983636149843 0.101258698199119 1.52137295990674
-## 3                Treatment 5.35072300362993 0.415472835100134 4.53641121027892
-## 4 Treatment - No Treatment 3.63088664213151 0.457682731419862 2.73384497220266
+## 1                 Observed 2.63384609228479 0.147806936461104 2.34414982015583
+## 2             No Treatment 1.71983636149843 0.133410919495642 1.45835576414259
+## 3                Treatment 5.35072300362993 0.337306360400352 4.68961468548896
+## 4 Treatment - No Treatment 3.63088664213151 0.422341963129091 2.80311160523854
 ##                 ul
-## 1 2.83857383333291
-## 2 1.91829976309011
-## 3 6.16503479698094
-## 4 4.52792831206035
+## 1 2.92354236441376
+## 2 1.98131695885426
+## 3 6.01183132177091
+## 4 4.45866167902447
 \end{verbatim}
 
 \begin{Shaded}
@@ -3989,7 +3989,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ## 95% CI for the causal mean difference
-## 2.629013 , 4.501861
+## 2.584631 , 4.518685
 \end{verbatim}
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.
@@ -4998,7 +4998,7 @@ For reproducibility.
 \begin{verbatim}
 ## - Session info ---------------------------------------------------------------
 ##  setting  value                       
-##  version  R version 4.0.0 (2020-04-24)
+##  version  R version 4.0.1 (2020-06-06)
 ##  os       Windows 10 x64              
 ##  system   x86_64, mingw32             
 ##  ui       RTerm                       
@@ -5006,33 +5006,32 @@ For reproducibility.
 ##  collate  English_United Kingdom.1252 
 ##  ctype    English_United Kingdom.1252 
 ##  tz       Europe/London               
-##  date     2020-05-14                  
+##  date     2020-06-21                  
 ## 
 ## - Packages -------------------------------------------------------------------
 ##  package     * version date       lib source        
 ##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 4.0.0)
-##  bookdown      0.18    2020-03-05 [1] CRAN (R 4.0.0)
+##  bookdown      0.19    2020-05-15 [1] CRAN (R 4.0.0)
 ##  cli           2.0.2   2020-02-28 [1] CRAN (R 4.0.0)
 ##  crayon        1.3.4   2017-09-16 [1] CRAN (R 4.0.0)
 ##  digest        0.6.25  2020-02-23 [1] CRAN (R 4.0.0)
 ##  evaluate      0.14    2019-05-28 [1] CRAN (R 4.0.0)
 ##  fansi         0.4.1   2020-01-08 [1] CRAN (R 4.0.0)
-##  glue          1.4.0   2020-04-03 [1] CRAN (R 4.0.0)
-##  htmltools     0.4.0   2019-10-04 [1] CRAN (R 4.0.0)
+##  glue          1.4.1   2020-05-13 [1] CRAN (R 4.0.0)
+##  htmltools     0.5.0   2020-06-16 [1] CRAN (R 4.0.1)
 ##  knitr         1.28    2020-02-06 [1] CRAN (R 4.0.0)
 ##  magrittr      1.5     2014-11-22 [1] CRAN (R 4.0.0)
-##  Rcpp          1.0.4.6 2020-04-09 [1] CRAN (R 4.0.0)
 ##  rlang         0.4.6   2020-05-02 [1] CRAN (R 4.0.0)
-##  rmarkdown     2.1     2020-01-20 [1] CRAN (R 4.0.0)
+##  rmarkdown     2.3     2020-06-18 [1] CRAN (R 4.0.0)
 ##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 4.0.0)
 ##  stringi       1.4.6   2020-02-17 [1] CRAN (R 4.0.0)
 ##  stringr       1.4.0   2019-02-10 [1] CRAN (R 4.0.0)
 ##  withr         2.2.0   2020-04-20 [1] CRAN (R 4.0.0)
-##  xfun          0.13    2020-04-13 [1] CRAN (R 4.0.0)
+##  xfun          0.15    2020-06-21 [1] CRAN (R 4.0.1)
 ##  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.0.0)
 ## 
 ## [1] C:/Users/tom/Documents/R/win-library/4.0
-## [2] C:/Program Files/R/R-4.0.0/library
+## [2] C:/Program Files/R/R-4.0.1/library
 \end{verbatim}
 
 \hypertarget{part-stata-code}{%
@@ -9067,12 +9066,94 @@ For errors contact: ejmurray@bu.edu
 (90 observations deleted)
 
 
-file ./data/nhefs-highprice.dta cannot be modified or erased; likely cause is
-    read-only directory or file
-r(608);
+file ./data/nhefs-highprice.dta saved
 
-end of do-file
-r(608);
+
++----------------+
+| Key            |
+|----------------|
+|   frequency    |
+| row percentage |
++----------------+
+
+           | quit smoking between
+           |   baseline and 1982
+ highprice | No smokin  Smoking c |     Total
+-----------+----------------------+----------
+         0 |        33          8 |        41 
+           |     80.49      19.51 |    100.00 
+-----------+----------------------+----------
+         1 |     1,065        370 |     1,435 
+           |     74.22      25.78 |    100.00 
+-----------+----------------------+----------
+     Total |     1,098        378 |     1,476 
+           |     74.39      25.61 |    100.00 
+
+
+Two-sample t test with equal variances
+------------------------------------------------------------------------------
+   Group |     Obs        Mean    Std. Err.   Std. Dev.   [95% Conf. Interval]
+---------+--------------------------------------------------------------------
+       0 |      41    2.535729    1.461629    9.358993   -.4183336    5.489792
+       1 |   1,435    2.686018    .2084888    7.897848    2.277042    3.094994
+---------+--------------------------------------------------------------------
+combined |   1,476    2.681843    .2066282    7.938395    2.276527    3.087159
+---------+--------------------------------------------------------------------
+    diff |           -.1502887    1.257776               -2.617509    2.316932
+------------------------------------------------------------------------------
+    diff = mean(0) - mean(1)                                      t =  -0.1195
+Ho: diff = 0                                     degrees of freedom =     1474
+
+    Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = 0.4525         Pr(|T| > |t|) = 0.9049          Pr(T > t) = 0.5475
+
+Numerator, E[Y|Z=1] - E[Y|Z=0] = .15
+
+Denominator: denom = P[A=1|Z=1] - P[A=1|Z=0] = .063
+
+IV estimator = 2.3809524
+
+
+
+
+
+
+pa[1,2]
+           c1         c2
+r1  .19512195  .25783972
+
+
+
+
+
+
+ey[1,2]
+           c1         c2
+r1   2.535729  2.6860178
+
+------------------------------------------------- mata (type end to exit) -----
+: pa = st_matrix("pa")
+
+: ey = st_matrix("ey")
+
+: num = ey[1,2] - ey[1,1] 
+
+: denom = pa[1,2] - pa[1,1]
+
+: iv_est = num / denom 
+
+: num
+  .1502887173
+
+: denom
+  .06271777
+
+: st_numscalar("iv_est", iv_est)
+
+: end
+-------------------------------------------------------------------------------
+
+2.3962701
 \end{verbatim}
 
 \hypertarget{program-16.2-1}{%
@@ -9923,7 +10004,7 @@ psurv1          float   %9.0g                 psurv, interv == 1
 
 
 
-r; t=0.00 8:35:20
+r; t=0.00 21:18:41
 
       command:  bootipw_surv
        PrY_a0:  r(boot_0)
@@ -9933,7 +10014,7 @@ r; t=0.00 8:35:20
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=24.21 8:35:44
+r; t=24.27 21:19:05
 
 
 
@@ -10175,7 +10256,7 @@ meanS_t1        float   %9.0g                 meanS_t, interv == 1
 
 
 
-r; t=0.00 8:35:52
+r; t=0.00 21:19:13
 
       command:  bootstdz_surv
        PrY_a0:  r(boot_0)
@@ -10185,7 +10266,7 @@ r; t=0.00 8:35:52
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=27.27 8:36:20
+r; t=28.43 21:19:41
 
 
 
@@ -10228,7 +10309,7 @@ Revision 03 Feb 2020
 Copyright 1985-2017 StataCorp LLC
 
 Total physical memory:    33429480 KB
-Available physical memory: 20132500 KB
+Available physical memory: 21604120 KB
 
 94-user 2-core Stata network perpetual license:
        Serial number:  501506248171
@@ -10246,7 +10327,7 @@ Available physical memory: 20132500 KB
 \begin{verbatim}
 - Session info ---------------------------------------------------------------
  setting  value                       
- version  R version 4.0.0 (2020-04-24)
+ version  R version 4.0.1 (2020-06-06)
  os       Windows 10 x64              
  system   x86_64, mingw32             
  ui       RTerm                       
@@ -10254,34 +10335,33 @@ Available physical memory: 20132500 KB
  collate  English_United Kingdom.1252 
  ctype    English_United Kingdom.1252 
  tz       Europe/London               
- date     2020-05-14                  
+ date     2020-06-21                  
 
 - Packages -------------------------------------------------------------------
  package       * version date       lib source                               
  assertthat      0.2.1   2019-03-21 [1] CRAN (R 4.0.0)                       
- bookdown        0.18    2020-03-05 [1] CRAN (R 4.0.0)                       
+ bookdown        0.19    2020-05-15 [1] CRAN (R 4.0.0)                       
  cli             2.0.2   2020-02-28 [1] CRAN (R 4.0.0)                       
  crayon          1.3.4   2017-09-16 [1] CRAN (R 4.0.0)                       
  digest          0.6.25  2020-02-23 [1] CRAN (R 4.0.0)                       
  evaluate        0.14    2019-05-28 [1] CRAN (R 4.0.0)                       
  fansi           0.4.1   2020-01-08 [1] CRAN (R 4.0.0)                       
- glue            1.4.0   2020-04-03 [1] CRAN (R 4.0.0)                       
- htmltools       0.4.0   2019-10-04 [1] CRAN (R 4.0.0)                       
+ glue            1.4.1   2020-05-13 [1] CRAN (R 4.0.0)                       
+ htmltools       0.5.0   2020-06-16 [1] CRAN (R 4.0.1)                       
  knitr           1.28    2020-02-06 [1] CRAN (R 4.0.0)                       
  magrittr        1.5     2014-11-22 [1] CRAN (R 4.0.0)                       
- Rcpp            1.0.4.6 2020-04-09 [1] CRAN (R 4.0.0)                       
  rlang           0.4.6   2020-05-02 [1] CRAN (R 4.0.0)                       
- rmarkdown       2.1     2020-01-20 [1] CRAN (R 4.0.0)                       
+ rmarkdown       2.3     2020-06-18 [1] CRAN (R 4.0.0)                       
  sessioninfo     1.1.1   2018-11-05 [1] CRAN (R 4.0.0)                       
  Statamarkdown * 0.4.5   2020-04-26 [1] Github (Hemken/Statamarkdown@506cfc9)
  stringi         1.4.6   2020-02-17 [1] CRAN (R 4.0.0)                       
  stringr         1.4.0   2019-02-10 [1] CRAN (R 4.0.0)                       
  withr           2.2.0   2020-04-20 [1] CRAN (R 4.0.0)                       
- xfun            0.13    2020-04-13 [1] CRAN (R 4.0.0)                       
+ xfun            0.15    2020-06-21 [1] CRAN (R 4.0.1)                       
  yaml            2.2.1   2020-02-01 [1] CRAN (R 4.0.0)                       
 
 [1] C:/Users/tom/Documents/R/win-library/4.0
-[2] C:/Program Files/R/R-4.0.0/library
+[2] C:/Program Files/R/R-4.0.1/library
 \end{verbatim}
 
   \bibliography{bibliography.bib}
