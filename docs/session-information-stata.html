@@ -27,7 +27,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2020-10-14" />
+<meta name="date" content="2020-12-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -36,7 +36,7 @@
   
 <link rel="prev" href="causal-survival-analysis-stata.html"/>
 
-<script src="libs/header-attrs-2.4/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -54,7 +54,8 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -280,21 +281,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="session-information-stata" class="section level1 unnumbered">
 <h1>Session information: Stata</h1>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="session-information-stata.html#cb416-1"></a><span class="kw">library</span>(Statamarkdown)</span></code></pre></div>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="session-information-stata.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Statamarkdown)</span></code></pre></div>
 <p>For reproducibility.</p>
-<div class="sourceCode" id="cb417"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb417-1"><a href="session-information-stata.html#cb417-1"></a>about</span></code></pre></div>
-<pre><code>Revision 03 Feb 2020
+<div class="sourceCode" id="cb417"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb417-1"><a href="session-information-stata.html#cb417-1" aria-hidden="true" tabindex="-1"></a>about</span></code></pre></div>
+<pre><code>Stata/MP 15.1 for Windows (64-bit x86-64)
+Revision 03 Feb 2020
 Copyright 1985-2017 StataCorp LLC
 
-Total physical memory:    33331064 KB
-Available physical memory: 23753884 KB
+Total physical memory:    33480192 KB
+Available physical memory: 20154376 KB
 
-Single-user Stata perpetual license:
-       Serial number:  401506207291
+94-user 2-core Stata network perpetual license:
+       Serial number:  501506248171
          Licensed to:  Tom Palmer
-                       Lancaster University</code></pre>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="session-information-stata.html#cb419-1"></a><span class="co"># install.packages(&quot;sessioninfo&quot;)</span></span>
-<span id="cb419-2"><a href="session-information-stata.html#cb419-2"></a>sessioninfo<span class="op">::</span><span class="kw">session_info</span>()</span></code></pre></div>
+                       University of Bristol</code></pre>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="session-information-stata.html#cb419-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;sessioninfo&quot;)</span></span>
+<span id="cb419-2"><a href="session-information-stata.html#cb419-2" aria-hidden="true" tabindex="-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
 <pre><code>- Session info ---------------------------------------------------------------
  setting  value                       
  version  R version 4.0.3 (2020-10-10)
@@ -305,37 +307,40 @@ Single-user Stata perpetual license:
  collate  English_United Kingdom.1252 
  ctype    English_United Kingdom.1252 
  tz       Europe/London               
- date     2020-10-14                  
+ date     2020-12-01                  
 
 - Packages -------------------------------------------------------------------
  package       * version date       lib source                               
- assertthat      0.2.1   2019-03-21 [1] CRAN (R 4.0.0)                       
+ assertthat      0.2.1   2019-03-21 [1] CRAN (R 4.0.2)                       
  bookdown        0.21    2020-10-13 [1] CRAN (R 4.0.3)                       
- cli             2.1.0   2020-10-12 [1] CRAN (R 4.0.3)                       
- crayon          1.3.4   2017-09-16 [1] CRAN (R 4.0.0)                       
- digest          0.6.25  2020-02-23 [1] CRAN (R 4.0.0)                       
- evaluate        0.14    2019-05-28 [1] CRAN (R 4.0.0)                       
- fansi           0.4.1   2020-01-08 [1] CRAN (R 4.0.0)                       
+ cli             2.2.0   2020-11-20 [1] CRAN (R 4.0.3)                       
+ clisymbols      1.2.0   2017-05-21 [1] CRAN (R 4.0.3)                       
+ crayon          1.3.4   2017-09-16 [1] CRAN (R 4.0.2)                       
+ digest          0.6.27  2020-10-24 [1] CRAN (R 4.0.3)                       
+ evaluate        0.14    2019-05-28 [1] CRAN (R 4.0.2)                       
+ fansi           0.4.1   2020-01-08 [1] CRAN (R 4.0.2)                       
  glue            1.4.2   2020-08-27 [1] CRAN (R 4.0.2)                       
  htmltools       0.5.0   2020-06-16 [1] CRAN (R 4.0.2)                       
  knitr           1.30    2020-09-22 [1] CRAN (R 4.0.2)                       
- magrittr        1.5     2014-11-22 [1] CRAN (R 4.0.0)                       
- rlang           0.4.8   2020-10-08 [1] CRAN (R 4.0.2)                       
- rmarkdown       2.4     2020-09-30 [1] CRAN (R 4.0.2)                       
- sessioninfo     1.1.1   2018-11-05 [1] CRAN (R 4.0.0)                       
- Statamarkdown * 0.5.3   2020-09-29 [1] Github (hemken/statamarkdown@89ff92f)
+ magrittr        2.0.1   2020-11-17 [1] CRAN (R 4.0.3)                       
+ prompt          1.0.0   2020-10-26 [1] Github (gaborcsardi/prompt@b332c42)  
+ rlang           0.4.9   2020-11-26 [1] CRAN (R 4.0.3)                       
+ rmarkdown       2.5     2020-10-21 [1] CRAN (R 4.0.3)                       
+ rstudioapi      0.13    2020-11-12 [1] CRAN (R 4.0.3)                       
+ sessioninfo     1.1.1   2018-11-05 [1] CRAN (R 4.0.2)                       
+ Statamarkdown * 0.5.5   2020-12-01 [1] Github (hemken/statamarkdown@32f5686)
  stringi         1.5.3   2020-09-09 [1] CRAN (R 4.0.2)                       
- stringr         1.4.0   2019-02-10 [1] CRAN (R 4.0.0)                       
+ stringr         1.4.0   2019-02-10 [1] CRAN (R 4.0.2)                       
  withr           2.3.0   2020-09-22 [1] CRAN (R 4.0.2)                       
- xfun            0.18    2020-09-29 [1] CRAN (R 4.0.2)                       
+ xfun            0.19    2020-10-30 [1] CRAN (R 4.0.3)                       
  yaml            2.2.1   2020-02-01 [1] CRAN (R 4.0.0)                       
 
-[1] C:/Users/eptmp/OneDrive - University of Bristol/Documents/R/win-library/4.0
+[1] C:/Users/tom/Documents/R/win-library/4.0
 [2] C:/Program Files/R/R-4.0.3/library</code></pre>
 
-<div id="refs" class="references hanging-indent">
-<div>
-<p>Hernán, Miguel A, and James M Robins. 2020. <em>Causal Inference: What If</em>. Boca Raton: Chapman &amp; Hall/CRC.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-ci-book" class="csl-entry">
+Hernán, Miguel A, and James M Robins. 2020. <em>Causal Inference: What If</em>. Boca Raton: Chapman &amp; Hall/CRC.
 </div>
 </div>
 </div>

@@ -352,9 +352,9 @@ Iteration 0:   log likelihood = -893.02712
 Iteration 1:   log likelihood = -893.02712  
 
 Logistic regression                             Number of obs     =      1,566
-                                                LR chi2(0)        =      -0.00
+                                                LR chi2(0)        =       0.00
                                                 Prob > chi2       =          .
-Log likelihood = -893.02712                     Pseudo R2         =    -0.0000
+Log likelihood = -893.02712                     Pseudo R2         =     0.0000
 
 ------------------------------------------------------------------------------
         qsmk |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
