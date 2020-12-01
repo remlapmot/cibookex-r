@@ -27,7 +27,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2020-10-14" />
+<meta name="date" content="2020-12-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -36,7 +36,7 @@
   
 <link rel="prev" href="why-model.html"/>
 <link rel="next" href="standardization-and-the-parametric-g-formula.html"/>
-<script src="libs/header-attrs-2.4/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -54,7 +54,8 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -285,18 +286,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Descriptive statistics from NHEFS data (Table 12.1)</li>
 </ul>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="ip-weighting-and-marginal-structural-models.html#cb29-1"></a><span class="kw">library</span>(here)</span></code></pre></div>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="ip-weighting-and-marginal-structural-models.html#cb30-1"></a><span class="co"># install.packages(&quot;readxl&quot;) # install package if required</span></span>
-<span id="cb30-2"><a href="ip-weighting-and-marginal-structural-models.html#cb30-2"></a><span class="kw">library</span>(<span class="st">&quot;readxl&quot;</span>)</span>
-<span id="cb30-3"><a href="ip-weighting-and-marginal-structural-models.html#cb30-3"></a></span>
-<span id="cb30-4"><a href="ip-weighting-and-marginal-structural-models.html#cb30-4"></a>nhefs &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;NHEFS.xls&quot;</span>))</span>
-<span id="cb30-5"><a href="ip-weighting-and-marginal-structural-models.html#cb30-5"></a>nhefs<span class="op">$</span>cens &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span class="kw">is.na</span>(nhefs<span class="op">$</span>wt82), <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb30-6"><a href="ip-weighting-and-marginal-structural-models.html#cb30-6"></a></span>
-<span id="cb30-7"><a href="ip-weighting-and-marginal-structural-models.html#cb30-7"></a><span class="co"># provisionally ignore subjects with missing values for weight in 1982</span></span>
-<span id="cb30-8"><a href="ip-weighting-and-marginal-structural-models.html#cb30-8"></a>nhefs.nmv &lt;-</span>
-<span id="cb30-9"><a href="ip-weighting-and-marginal-structural-models.html#cb30-9"></a><span class="st">  </span>nhefs[<span class="kw">which</span>(<span class="op">!</span><span class="kw">is.na</span>(nhefs<span class="op">$</span>wt82)),] </span>
-<span id="cb30-10"><a href="ip-weighting-and-marginal-structural-models.html#cb30-10"></a></span>
-<span id="cb30-11"><a href="ip-weighting-and-marginal-structural-models.html#cb30-11"></a><span class="kw">lm</span>(wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>qsmk, <span class="dt">data =</span> nhefs.nmv)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="ip-weighting-and-marginal-structural-models.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="ip-weighting-and-marginal-structural-models.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;readxl&quot;) # install package if required</span></span>
+<span id="cb30-2"><a href="ip-weighting-and-marginal-structural-models.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;readxl&quot;</span>)</span>
+<span id="cb30-3"><a href="ip-weighting-and-marginal-structural-models.html#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="ip-weighting-and-marginal-structural-models.html#cb30-4" aria-hidden="true" tabindex="-1"></a>nhefs <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;NHEFS.xls&quot;</span>))</span>
+<span id="cb30-5"><a href="ip-weighting-and-marginal-structural-models.html#cb30-5" aria-hidden="true" tabindex="-1"></a>nhefs<span class="sc">$</span>cens <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(nhefs<span class="sc">$</span>wt82), <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb30-6"><a href="ip-weighting-and-marginal-structural-models.html#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="ip-weighting-and-marginal-structural-models.html#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co"># provisionally ignore subjects with missing values for weight in 1982</span></span>
+<span id="cb30-8"><a href="ip-weighting-and-marginal-structural-models.html#cb30-8" aria-hidden="true" tabindex="-1"></a>nhefs.nmv <span class="ot">&lt;-</span></span>
+<span id="cb30-9"><a href="ip-weighting-and-marginal-structural-models.html#cb30-9" aria-hidden="true" tabindex="-1"></a>  nhefs[<span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(nhefs<span class="sc">$</span>wt82)),] </span>
+<span id="cb30-10"><a href="ip-weighting-and-marginal-structural-models.html#cb30-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-11"><a href="ip-weighting-and-marginal-structural-models.html#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(wt82_71 <span class="sc">~</span> qsmk, <span class="at">data =</span> nhefs.nmv)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = wt82_71 ~ qsmk, data = nhefs.nmv)
@@ -304,85 +305,85 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Coefficients:
 ## (Intercept)         qsmk  
 ##       1.984        2.541</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="ip-weighting-and-marginal-structural-models.html#cb32-1"></a><span class="co"># Smoking cessation</span></span>
-<span id="cb32-2"><a href="ip-weighting-and-marginal-structural-models.html#cb32-2"></a><span class="kw">predict</span>(<span class="kw">lm</span>(wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>qsmk, <span class="dt">data =</span> nhefs.nmv), <span class="kw">data.frame</span>(<span class="dt">qsmk =</span> <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="ip-weighting-and-marginal-structural-models.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Smoking cessation</span></span>
+<span id="cb32-2"><a href="ip-weighting-and-marginal-structural-models.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(<span class="fu">lm</span>(wt82_71 <span class="sc">~</span> qsmk, <span class="at">data =</span> nhefs.nmv), <span class="fu">data.frame</span>(<span class="at">qsmk =</span> <span class="dv">1</span>))</span></code></pre></div>
 <pre><code>##        1 
 ## 4.525079</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="ip-weighting-and-marginal-structural-models.html#cb34-1"></a><span class="co"># No smoking cessation</span></span>
-<span id="cb34-2"><a href="ip-weighting-and-marginal-structural-models.html#cb34-2"></a><span class="kw">predict</span>(<span class="kw">lm</span>(wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>qsmk, <span class="dt">data =</span> nhefs.nmv), <span class="kw">data.frame</span>(<span class="dt">qsmk =</span> <span class="dv">0</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="ip-weighting-and-marginal-structural-models.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># No smoking cessation</span></span>
+<span id="cb34-2"><a href="ip-weighting-and-marginal-structural-models.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(<span class="fu">lm</span>(wt82_71 <span class="sc">~</span> qsmk, <span class="at">data =</span> nhefs.nmv), <span class="fu">data.frame</span>(<span class="at">qsmk =</span> <span class="dv">0</span>)) </span></code></pre></div>
 <pre><code>##        1 
 ## 1.984498</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="ip-weighting-and-marginal-structural-models.html#cb36-1"></a><span class="co"># Table</span></span>
-<span id="cb36-2"><a href="ip-weighting-and-marginal-structural-models.html#cb36-2"></a><span class="kw">summary</span>(nhefs.nmv[<span class="kw">which</span>(nhefs.nmv<span class="op">$</span>qsmk <span class="op">==</span><span class="st"> </span><span class="dv">0</span>),]<span class="op">$</span>age)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="ip-weighting-and-marginal-structural-models.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Table</span></span>
+<span id="cb36-2"><a href="ip-weighting-and-marginal-structural-models.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhefs.nmv[<span class="fu">which</span>(nhefs.nmv<span class="sc">$</span>qsmk <span class="sc">==</span> <span class="dv">0</span>),]<span class="sc">$</span>age)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   25.00   33.00   42.00   42.79   51.00   72.00</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="ip-weighting-and-marginal-structural-models.html#cb38-1"></a><span class="kw">summary</span>(nhefs.nmv[<span class="kw">which</span>(nhefs.nmv<span class="op">$</span>qsmk <span class="op">==</span><span class="st"> </span><span class="dv">0</span>),]<span class="op">$</span>wt71)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="ip-weighting-and-marginal-structural-models.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhefs.nmv[<span class="fu">which</span>(nhefs.nmv<span class="sc">$</span>qsmk <span class="sc">==</span> <span class="dv">0</span>),]<span class="sc">$</span>wt71)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   40.82   59.19   68.49   70.30   79.38  151.73</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="ip-weighting-and-marginal-structural-models.html#cb40-1"></a><span class="kw">summary</span>(nhefs.nmv[<span class="kw">which</span>(nhefs.nmv<span class="op">$</span>qsmk <span class="op">==</span><span class="st"> </span><span class="dv">0</span>),]<span class="op">$</span>smokeintensity)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="ip-weighting-and-marginal-structural-models.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhefs.nmv[<span class="fu">which</span>(nhefs.nmv<span class="sc">$</span>qsmk <span class="sc">==</span> <span class="dv">0</span>),]<span class="sc">$</span>smokeintensity)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    1.00   15.00   20.00   21.19   30.00   60.00</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="ip-weighting-and-marginal-structural-models.html#cb42-1"></a><span class="kw">summary</span>(nhefs.nmv[<span class="kw">which</span>(nhefs.nmv<span class="op">$</span>qsmk <span class="op">==</span><span class="st"> </span><span class="dv">0</span>),]<span class="op">$</span>smokeyrs)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="ip-weighting-and-marginal-structural-models.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhefs.nmv[<span class="fu">which</span>(nhefs.nmv<span class="sc">$</span>qsmk <span class="sc">==</span> <span class="dv">0</span>),]<span class="sc">$</span>smokeyrs)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    1.00   15.00   23.00   24.09   32.00   64.00</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="ip-weighting-and-marginal-structural-models.html#cb44-1"></a><span class="kw">summary</span>(nhefs.nmv[<span class="kw">which</span>(nhefs.nmv<span class="op">$</span>qsmk <span class="op">==</span><span class="st"> </span><span class="dv">1</span>),]<span class="op">$</span>age)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="ip-weighting-and-marginal-structural-models.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhefs.nmv[<span class="fu">which</span>(nhefs.nmv<span class="sc">$</span>qsmk <span class="sc">==</span> <span class="dv">1</span>),]<span class="sc">$</span>age)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   25.00   35.00   46.00   46.17   56.00   74.00</code></pre>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="ip-weighting-and-marginal-structural-models.html#cb46-1"></a><span class="kw">summary</span>(nhefs.nmv[<span class="kw">which</span>(nhefs.nmv<span class="op">$</span>qsmk <span class="op">==</span><span class="st"> </span><span class="dv">1</span>),]<span class="op">$</span>wt71)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="ip-weighting-and-marginal-structural-models.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhefs.nmv[<span class="fu">which</span>(nhefs.nmv<span class="sc">$</span>qsmk <span class="sc">==</span> <span class="dv">1</span>),]<span class="sc">$</span>wt71)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   39.58   60.67   71.21   72.35   81.08  136.98</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="ip-weighting-and-marginal-structural-models.html#cb48-1"></a><span class="kw">summary</span>(nhefs.nmv[<span class="kw">which</span>(nhefs.nmv<span class="op">$</span>qsmk <span class="op">==</span><span class="st"> </span><span class="dv">1</span>),]<span class="op">$</span>smokeintensity)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="ip-weighting-and-marginal-structural-models.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhefs.nmv[<span class="fu">which</span>(nhefs.nmv<span class="sc">$</span>qsmk <span class="sc">==</span> <span class="dv">1</span>),]<span class="sc">$</span>smokeintensity)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##     1.0    10.0    20.0    18.6    25.0    80.0</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="ip-weighting-and-marginal-structural-models.html#cb50-1"></a><span class="kw">summary</span>(nhefs.nmv[<span class="kw">which</span>(nhefs.nmv<span class="op">$</span>qsmk <span class="op">==</span><span class="st"> </span><span class="dv">1</span>),]<span class="op">$</span>smokeyrs)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="ip-weighting-and-marginal-structural-models.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhefs.nmv[<span class="fu">which</span>(nhefs.nmv<span class="sc">$</span>qsmk <span class="sc">==</span> <span class="dv">1</span>),]<span class="sc">$</span>smokeyrs)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    1.00   15.00   26.00   26.03   35.00   60.00</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="ip-weighting-and-marginal-structural-models.html#cb52-1"></a><span class="kw">table</span>(nhefs.nmv<span class="op">$</span>qsmk, nhefs.nmv<span class="op">$</span>sex)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="ip-weighting-and-marginal-structural-models.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(nhefs.nmv<span class="sc">$</span>qsmk, nhefs.nmv<span class="sc">$</span>sex)</span></code></pre></div>
 <pre><code>##    
 ##       0   1
 ##   0 542 621
 ##   1 220 183</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="ip-weighting-and-marginal-structural-models.html#cb54-1"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(nhefs.nmv<span class="op">$</span>qsmk, nhefs.nmv<span class="op">$</span>sex), <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="ip-weighting-and-marginal-structural-models.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(nhefs.nmv<span class="sc">$</span>qsmk, nhefs.nmv<span class="sc">$</span>sex), <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##    
 ##             0         1
 ##   0 0.4660361 0.5339639
 ##   1 0.5459057 0.4540943</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="ip-weighting-and-marginal-structural-models.html#cb56-1"></a><span class="kw">table</span>(nhefs.nmv<span class="op">$</span>qsmk, nhefs.nmv<span class="op">$</span>race)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="ip-weighting-and-marginal-structural-models.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(nhefs.nmv<span class="sc">$</span>qsmk, nhefs.nmv<span class="sc">$</span>race)</span></code></pre></div>
 <pre><code>##    
 ##       0   1
 ##   0 993 170
 ##   1 367  36</code></pre>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="ip-weighting-and-marginal-structural-models.html#cb58-1"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(nhefs.nmv<span class="op">$</span>qsmk, nhefs.nmv<span class="op">$</span>race), <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="ip-weighting-and-marginal-structural-models.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(nhefs.nmv<span class="sc">$</span>qsmk, nhefs.nmv<span class="sc">$</span>race), <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##    
 ##              0          1
 ##   0 0.85382631 0.14617369
 ##   1 0.91066998 0.08933002</code></pre>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="ip-weighting-and-marginal-structural-models.html#cb60-1"></a><span class="kw">table</span>(nhefs.nmv<span class="op">$</span>qsmk, nhefs.nmv<span class="op">$</span>education)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="ip-weighting-and-marginal-structural-models.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(nhefs.nmv<span class="sc">$</span>qsmk, nhefs.nmv<span class="sc">$</span>education)</span></code></pre></div>
 <pre><code>##    
 ##       1   2   3   4   5
 ##   0 210 266 480  92 115
 ##   1  81  74 157  29  62</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="ip-weighting-and-marginal-structural-models.html#cb62-1"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(nhefs.nmv<span class="op">$</span>qsmk, nhefs.nmv<span class="op">$</span>education), <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="ip-weighting-and-marginal-structural-models.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(nhefs.nmv<span class="sc">$</span>qsmk, nhefs.nmv<span class="sc">$</span>education), <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##    
 ##              1          2          3          4          5
 ##   0 0.18056750 0.22871883 0.41272571 0.07910576 0.09888220
 ##   1 0.20099256 0.18362283 0.38957816 0.07196030 0.15384615</code></pre>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="ip-weighting-and-marginal-structural-models.html#cb64-1"></a><span class="kw">table</span>(nhefs.nmv<span class="op">$</span>qsmk, nhefs.nmv<span class="op">$</span>exercise)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="ip-weighting-and-marginal-structural-models.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(nhefs.nmv<span class="sc">$</span>qsmk, nhefs.nmv<span class="sc">$</span>exercise)</span></code></pre></div>
 <pre><code>##    
 ##       0   1   2
 ##   0 237 485 441
 ##   1  63 176 164</code></pre>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="ip-weighting-and-marginal-structural-models.html#cb66-1"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(nhefs.nmv<span class="op">$</span>qsmk, nhefs.nmv<span class="op">$</span>exercise), <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="ip-weighting-and-marginal-structural-models.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(nhefs.nmv<span class="sc">$</span>qsmk, nhefs.nmv<span class="sc">$</span>exercise), <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##    
 ##             0         1         2
 ##   0 0.2037833 0.4170249 0.3791917
 ##   1 0.1563275 0.4367246 0.4069479</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="ip-weighting-and-marginal-structural-models.html#cb68-1"></a><span class="kw">table</span>(nhefs.nmv<span class="op">$</span>qsmk, nhefs.nmv<span class="op">$</span>active)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="ip-weighting-and-marginal-structural-models.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(nhefs.nmv<span class="sc">$</span>qsmk, nhefs.nmv<span class="sc">$</span>active)</span></code></pre></div>
 <pre><code>##    
 ##       0   1   2
 ##   0 532 527 104
 ##   1 170 188  45</code></pre>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="ip-weighting-and-marginal-structural-models.html#cb70-1"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(nhefs.nmv<span class="op">$</span>qsmk, nhefs.nmv<span class="op">$</span>active), <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="ip-weighting-and-marginal-structural-models.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(nhefs.nmv<span class="sc">$</span>qsmk, nhefs.nmv<span class="sc">$</span>active), <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##    
 ##             0         1         2
 ##   0 0.4574377 0.4531384 0.0894239
@@ -394,16 +395,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Estimating IP weights</li>
 <li>Data from NHEFS</li>
 </ul>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="ip-weighting-and-marginal-structural-models.html#cb72-1"></a><span class="co"># Estimation of ip weights via a logistic model</span></span>
-<span id="cb72-2"><a href="ip-weighting-and-marginal-structural-models.html#cb72-2"></a>fit &lt;-<span class="st"> </span><span class="kw">glm</span>(</span>
-<span id="cb72-3"><a href="ip-weighting-and-marginal-structural-models.html#cb72-3"></a>  qsmk <span class="op">~</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>race <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(age <span class="op">^</span><span class="st"> </span><span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb72-4"><a href="ip-weighting-and-marginal-structural-models.html#cb72-4"></a><span class="st">    </span><span class="kw">as.factor</span>(education) <span class="op">+</span><span class="st"> </span>smokeintensity <span class="op">+</span></span>
-<span id="cb72-5"><a href="ip-weighting-and-marginal-structural-models.html#cb72-5"></a><span class="st">    </span><span class="kw">I</span>(smokeintensity <span class="op">^</span><span class="st"> </span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>smokeyrs <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(smokeyrs <span class="op">^</span><span class="st"> </span><span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb72-6"><a href="ip-weighting-and-marginal-structural-models.html#cb72-6"></a><span class="st">    </span><span class="kw">as.factor</span>(exercise) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(active) <span class="op">+</span><span class="st"> </span>wt71 <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(wt71 <span class="op">^</span><span class="st"> </span><span class="dv">2</span>),</span>
-<span id="cb72-7"><a href="ip-weighting-and-marginal-structural-models.html#cb72-7"></a>  <span class="dt">family =</span> <span class="kw">binomial</span>(),</span>
-<span id="cb72-8"><a href="ip-weighting-and-marginal-structural-models.html#cb72-8"></a>  <span class="dt">data =</span> nhefs.nmv</span>
-<span id="cb72-9"><a href="ip-weighting-and-marginal-structural-models.html#cb72-9"></a>)</span>
-<span id="cb72-10"><a href="ip-weighting-and-marginal-structural-models.html#cb72-10"></a><span class="kw">summary</span>(fit)</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="ip-weighting-and-marginal-structural-models.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimation of ip weights via a logistic model</span></span>
+<span id="cb72-2"><a href="ip-weighting-and-marginal-structural-models.html#cb72-2" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb72-3"><a href="ip-weighting-and-marginal-structural-models.html#cb72-3" aria-hidden="true" tabindex="-1"></a>  qsmk <span class="sc">~</span> sex <span class="sc">+</span> race <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(age <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb72-4"><a href="ip-weighting-and-marginal-structural-models.html#cb72-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.factor</span>(education) <span class="sc">+</span> smokeintensity <span class="sc">+</span></span>
+<span id="cb72-5"><a href="ip-weighting-and-marginal-structural-models.html#cb72-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">I</span>(smokeintensity <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span> smokeyrs <span class="sc">+</span> <span class="fu">I</span>(smokeyrs <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb72-6"><a href="ip-weighting-and-marginal-structural-models.html#cb72-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.factor</span>(exercise) <span class="sc">+</span> <span class="fu">as.factor</span>(active) <span class="sc">+</span> wt71 <span class="sc">+</span> <span class="fu">I</span>(wt71 <span class="sc">^</span> <span class="dv">2</span>),</span>
+<span id="cb72-7"><a href="ip-weighting-and-marginal-structural-models.html#cb72-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">binomial</span>(),</span>
+<span id="cb72-8"><a href="ip-weighting-and-marginal-structural-models.html#cb72-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> nhefs.nmv</span>
+<span id="cb72-9"><a href="ip-weighting-and-marginal-structural-models.html#cb72-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb72-10"><a href="ip-weighting-and-marginal-structural-models.html#cb72-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = qsmk ~ sex + race + age + I(age^2) + as.factor(education) + 
@@ -446,27 +447,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 1714.9
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="ip-weighting-and-marginal-structural-models.html#cb74-1"></a>p.qsmk.obs &lt;-</span>
-<span id="cb74-2"><a href="ip-weighting-and-marginal-structural-models.html#cb74-2"></a><span class="st">  </span><span class="kw">ifelse</span>(nhefs.nmv<span class="op">$</span>qsmk <span class="op">==</span><span class="st"> </span><span class="dv">0</span>,</span>
-<span id="cb74-3"><a href="ip-weighting-and-marginal-structural-models.html#cb74-3"></a>         <span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">predict</span>(fit, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>),</span>
-<span id="cb74-4"><a href="ip-weighting-and-marginal-structural-models.html#cb74-4"></a>         <span class="kw">predict</span>(fit, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>))</span>
-<span id="cb74-5"><a href="ip-weighting-and-marginal-structural-models.html#cb74-5"></a></span>
-<span id="cb74-6"><a href="ip-weighting-and-marginal-structural-models.html#cb74-6"></a>nhefs.nmv<span class="op">$</span>w &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">/</span><span class="st"> </span>p.qsmk.obs</span>
-<span id="cb74-7"><a href="ip-weighting-and-marginal-structural-models.html#cb74-7"></a><span class="kw">summary</span>(nhefs.nmv<span class="op">$</span>w)</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="ip-weighting-and-marginal-structural-models.html#cb74-1" aria-hidden="true" tabindex="-1"></a>p.qsmk.obs <span class="ot">&lt;-</span></span>
+<span id="cb74-2"><a href="ip-weighting-and-marginal-structural-models.html#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(nhefs.nmv<span class="sc">$</span>qsmk <span class="sc">==</span> <span class="dv">0</span>,</span>
+<span id="cb74-3"><a href="ip-weighting-and-marginal-structural-models.html#cb74-3" aria-hidden="true" tabindex="-1"></a>         <span class="dv">1</span> <span class="sc">-</span> <span class="fu">predict</span>(fit, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>),</span>
+<span id="cb74-4"><a href="ip-weighting-and-marginal-structural-models.html#cb74-4" aria-hidden="true" tabindex="-1"></a>         <span class="fu">predict</span>(fit, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>))</span>
+<span id="cb74-5"><a href="ip-weighting-and-marginal-structural-models.html#cb74-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-6"><a href="ip-weighting-and-marginal-structural-models.html#cb74-6" aria-hidden="true" tabindex="-1"></a>nhefs.nmv<span class="sc">$</span>w <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> p.qsmk.obs</span>
+<span id="cb74-7"><a href="ip-weighting-and-marginal-structural-models.html#cb74-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhefs.nmv<span class="sc">$</span>w)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   1.054   1.230   1.373   1.996   1.990  16.700</code></pre>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="ip-weighting-and-marginal-structural-models.html#cb76-1"></a><span class="kw">sd</span>(nhefs.nmv<span class="op">$</span>w)</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="ip-weighting-and-marginal-structural-models.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(nhefs.nmv<span class="sc">$</span>w)</span></code></pre></div>
 <pre><code>## [1] 1.474787</code></pre>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="ip-weighting-and-marginal-structural-models.html#cb78-1"></a><span class="co"># install.packages(&quot;geepack&quot;) # install package if required</span></span>
-<span id="cb78-2"><a href="ip-weighting-and-marginal-structural-models.html#cb78-2"></a><span class="kw">library</span>(<span class="st">&quot;geepack&quot;</span>)</span>
-<span id="cb78-3"><a href="ip-weighting-and-marginal-structural-models.html#cb78-3"></a>msm.w &lt;-<span class="st"> </span><span class="kw">geeglm</span>(</span>
-<span id="cb78-4"><a href="ip-weighting-and-marginal-structural-models.html#cb78-4"></a>  wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>qsmk,</span>
-<span id="cb78-5"><a href="ip-weighting-and-marginal-structural-models.html#cb78-5"></a>  <span class="dt">data =</span> nhefs.nmv,</span>
-<span id="cb78-6"><a href="ip-weighting-and-marginal-structural-models.html#cb78-6"></a>  <span class="dt">weights =</span> w,</span>
-<span id="cb78-7"><a href="ip-weighting-and-marginal-structural-models.html#cb78-7"></a>  <span class="dt">id =</span> seqn,</span>
-<span id="cb78-8"><a href="ip-weighting-and-marginal-structural-models.html#cb78-8"></a>  <span class="dt">corstr =</span> <span class="st">&quot;independence&quot;</span></span>
-<span id="cb78-9"><a href="ip-weighting-and-marginal-structural-models.html#cb78-9"></a>)</span>
-<span id="cb78-10"><a href="ip-weighting-and-marginal-structural-models.html#cb78-10"></a><span class="kw">summary</span>(msm.w)</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="ip-weighting-and-marginal-structural-models.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;geepack&quot;) # install package if required</span></span>
+<span id="cb78-2"><a href="ip-weighting-and-marginal-structural-models.html#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;geepack&quot;</span>)</span>
+<span id="cb78-3"><a href="ip-weighting-and-marginal-structural-models.html#cb78-3" aria-hidden="true" tabindex="-1"></a>msm.w <span class="ot">&lt;-</span> <span class="fu">geeglm</span>(</span>
+<span id="cb78-4"><a href="ip-weighting-and-marginal-structural-models.html#cb78-4" aria-hidden="true" tabindex="-1"></a>  wt82_71 <span class="sc">~</span> qsmk,</span>
+<span id="cb78-5"><a href="ip-weighting-and-marginal-structural-models.html#cb78-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> nhefs.nmv,</span>
+<span id="cb78-6"><a href="ip-weighting-and-marginal-structural-models.html#cb78-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">weights =</span> w,</span>
+<span id="cb78-7"><a href="ip-weighting-and-marginal-structural-models.html#cb78-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> seqn,</span>
+<span id="cb78-8"><a href="ip-weighting-and-marginal-structural-models.html#cb78-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">corstr =</span> <span class="st">&quot;independence&quot;</span></span>
+<span id="cb78-9"><a href="ip-weighting-and-marginal-structural-models.html#cb78-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb78-10"><a href="ip-weighting-and-marginal-structural-models.html#cb78-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(msm.w)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## geeglm(formula = wt82_71 ~ qsmk, data = nhefs.nmv, weights = w, 
@@ -485,23 +486,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##             Estimate Std.err
 ## (Intercept)    65.06   4.221
 ## Number of clusters:   1566  Maximum cluster size: 1</code></pre>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="ip-weighting-and-marginal-structural-models.html#cb80-1"></a>beta &lt;-<span class="st"> </span><span class="kw">coef</span>(msm.w)</span>
-<span id="cb80-2"><a href="ip-weighting-and-marginal-structural-models.html#cb80-2"></a>SE &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(msm.w))[, <span class="dv">2</span>]</span>
-<span id="cb80-3"><a href="ip-weighting-and-marginal-structural-models.html#cb80-3"></a>lcl &lt;-<span class="st"> </span>beta <span class="op">-</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>) <span class="op">*</span><span class="st"> </span>SE</span>
-<span id="cb80-4"><a href="ip-weighting-and-marginal-structural-models.html#cb80-4"></a>ucl &lt;-<span class="st"> </span>beta <span class="op">+</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>) <span class="op">*</span><span class="st"> </span>SE</span>
-<span id="cb80-5"><a href="ip-weighting-and-marginal-structural-models.html#cb80-5"></a><span class="kw">cbind</span>(beta, lcl, ucl)</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="ip-weighting-and-marginal-structural-models.html#cb80-1" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">coef</span>(msm.w)</span>
+<span id="cb80-2"><a href="ip-weighting-and-marginal-structural-models.html#cb80-2" aria-hidden="true" tabindex="-1"></a>SE <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(msm.w))[, <span class="dv">2</span>]</span>
+<span id="cb80-3"><a href="ip-weighting-and-marginal-structural-models.html#cb80-3" aria-hidden="true" tabindex="-1"></a>lcl <span class="ot">&lt;-</span> beta <span class="sc">-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> SE</span>
+<span id="cb80-4"><a href="ip-weighting-and-marginal-structural-models.html#cb80-4" aria-hidden="true" tabindex="-1"></a>ucl <span class="ot">&lt;-</span> beta <span class="sc">+</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> SE</span>
+<span id="cb80-5"><a href="ip-weighting-and-marginal-structural-models.html#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(beta, lcl, ucl)</span></code></pre></div>
 <pre><code>##              beta   lcl  ucl
 ## (Intercept) 1.780 1.340 2.22
 ## qsmk        3.441 2.411 4.47</code></pre>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="ip-weighting-and-marginal-structural-models.html#cb82-1"></a><span class="co"># no association between sex and qsmk in pseudo-population</span></span>
-<span id="cb82-2"><a href="ip-weighting-and-marginal-structural-models.html#cb82-2"></a><span class="kw">xtabs</span>(nhefs.nmv<span class="op">$</span>w <span class="op">~</span><span class="st"> </span>nhefs.nmv<span class="op">$</span>sex <span class="op">+</span><span class="st"> </span>nhefs.nmv<span class="op">$</span>qsmk)</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="ip-weighting-and-marginal-structural-models.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co"># no association between sex and qsmk in pseudo-population</span></span>
+<span id="cb82-2"><a href="ip-weighting-and-marginal-structural-models.html#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="fu">xtabs</span>(nhefs.nmv<span class="sc">$</span>w <span class="sc">~</span> nhefs.nmv<span class="sc">$</span>sex <span class="sc">+</span> nhefs.nmv<span class="sc">$</span>qsmk)</span></code></pre></div>
 <pre><code>##              nhefs.nmv$qsmk
 ## nhefs.nmv$sex     0     1
 ##             0 763.6 763.6
 ##             1 801.7 797.2</code></pre>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="ip-weighting-and-marginal-structural-models.html#cb84-1"></a><span class="co"># &quot;check&quot; for positivity (White women)</span></span>
-<span id="cb84-2"><a href="ip-weighting-and-marginal-structural-models.html#cb84-2"></a><span class="kw">table</span>(nhefs.nmv<span class="op">$</span>age[nhefs.nmv<span class="op">$</span>race <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>nhefs.nmv<span class="op">$</span>sex <span class="op">==</span><span class="st"> </span><span class="dv">1</span>],</span>
-<span id="cb84-3"><a href="ip-weighting-and-marginal-structural-models.html#cb84-3"></a>      nhefs.nmv<span class="op">$</span>qsmk[nhefs.nmv<span class="op">$</span>race <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>nhefs.nmv<span class="op">$</span>sex <span class="op">==</span><span class="st"> </span><span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="ip-weighting-and-marginal-structural-models.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;check&quot; for positivity (White women)</span></span>
+<span id="cb84-2"><a href="ip-weighting-and-marginal-structural-models.html#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(nhefs.nmv<span class="sc">$</span>age[nhefs.nmv<span class="sc">$</span>race <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> nhefs.nmv<span class="sc">$</span>sex <span class="sc">==</span> <span class="dv">1</span>],</span>
+<span id="cb84-3"><a href="ip-weighting-and-marginal-structural-models.html#cb84-3" aria-hidden="true" tabindex="-1"></a>      nhefs.nmv<span class="sc">$</span>qsmk[nhefs.nmv<span class="sc">$</span>race <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> nhefs.nmv<span class="sc">$</span>sex <span class="sc">==</span> <span class="dv">1</span>])</span></code></pre></div>
 <pre><code>##     
 ##       0  1
 ##   25 24  3
@@ -559,17 +560,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Estimating stabilized IP weights</li>
 <li>Data from NHEFS</li>
 </ul>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="ip-weighting-and-marginal-structural-models.html#cb86-1"></a><span class="co"># estimation of denominator of ip weights</span></span>
-<span id="cb86-2"><a href="ip-weighting-and-marginal-structural-models.html#cb86-2"></a>denom.fit &lt;-</span>
-<span id="cb86-3"><a href="ip-weighting-and-marginal-structural-models.html#cb86-3"></a><span class="st">  </span><span class="kw">glm</span>(</span>
-<span id="cb86-4"><a href="ip-weighting-and-marginal-structural-models.html#cb86-4"></a>    qsmk <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(sex) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(race) <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(age <span class="op">^</span><span class="st"> </span><span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb86-5"><a href="ip-weighting-and-marginal-structural-models.html#cb86-5"></a><span class="st">      </span><span class="kw">as.factor</span>(education) <span class="op">+</span><span class="st"> </span>smokeintensity <span class="op">+</span></span>
-<span id="cb86-6"><a href="ip-weighting-and-marginal-structural-models.html#cb86-6"></a><span class="st">      </span><span class="kw">I</span>(smokeintensity <span class="op">^</span><span class="st"> </span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>smokeyrs <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(smokeyrs <span class="op">^</span><span class="st"> </span><span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb86-7"><a href="ip-weighting-and-marginal-structural-models.html#cb86-7"></a><span class="st">      </span><span class="kw">as.factor</span>(exercise) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(active) <span class="op">+</span><span class="st"> </span>wt71 <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(wt71 <span class="op">^</span><span class="st"> </span><span class="dv">2</span>),</span>
-<span id="cb86-8"><a href="ip-weighting-and-marginal-structural-models.html#cb86-8"></a>    <span class="dt">family =</span> <span class="kw">binomial</span>(),</span>
-<span id="cb86-9"><a href="ip-weighting-and-marginal-structural-models.html#cb86-9"></a>    <span class="dt">data =</span> nhefs.nmv</span>
-<span id="cb86-10"><a href="ip-weighting-and-marginal-structural-models.html#cb86-10"></a>  )</span>
-<span id="cb86-11"><a href="ip-weighting-and-marginal-structural-models.html#cb86-11"></a><span class="kw">summary</span>(denom.fit)</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="ip-weighting-and-marginal-structural-models.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># estimation of denominator of ip weights</span></span>
+<span id="cb86-2"><a href="ip-weighting-and-marginal-structural-models.html#cb86-2" aria-hidden="true" tabindex="-1"></a>denom.fit <span class="ot">&lt;-</span></span>
+<span id="cb86-3"><a href="ip-weighting-and-marginal-structural-models.html#cb86-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glm</span>(</span>
+<span id="cb86-4"><a href="ip-weighting-and-marginal-structural-models.html#cb86-4" aria-hidden="true" tabindex="-1"></a>    qsmk <span class="sc">~</span> <span class="fu">as.factor</span>(sex) <span class="sc">+</span> <span class="fu">as.factor</span>(race) <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(age <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb86-5"><a href="ip-weighting-and-marginal-structural-models.html#cb86-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.factor</span>(education) <span class="sc">+</span> smokeintensity <span class="sc">+</span></span>
+<span id="cb86-6"><a href="ip-weighting-and-marginal-structural-models.html#cb86-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">I</span>(smokeintensity <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span> smokeyrs <span class="sc">+</span> <span class="fu">I</span>(smokeyrs <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb86-7"><a href="ip-weighting-and-marginal-structural-models.html#cb86-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.factor</span>(exercise) <span class="sc">+</span> <span class="fu">as.factor</span>(active) <span class="sc">+</span> wt71 <span class="sc">+</span> <span class="fu">I</span>(wt71 <span class="sc">^</span> <span class="dv">2</span>),</span>
+<span id="cb86-8"><a href="ip-weighting-and-marginal-structural-models.html#cb86-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> <span class="fu">binomial</span>(),</span>
+<span id="cb86-9"><a href="ip-weighting-and-marginal-structural-models.html#cb86-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> nhefs.nmv</span>
+<span id="cb86-10"><a href="ip-weighting-and-marginal-structural-models.html#cb86-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb86-11"><a href="ip-weighting-and-marginal-structural-models.html#cb86-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(denom.fit)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = qsmk ~ as.factor(sex) + as.factor(race) + age + 
@@ -612,11 +613,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 1715
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="ip-weighting-and-marginal-structural-models.html#cb88-1"></a>pd.qsmk &lt;-<span class="st"> </span><span class="kw">predict</span>(denom.fit, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb88-2"><a href="ip-weighting-and-marginal-structural-models.html#cb88-2"></a></span>
-<span id="cb88-3"><a href="ip-weighting-and-marginal-structural-models.html#cb88-3"></a><span class="co"># estimation of numerator of ip weights</span></span>
-<span id="cb88-4"><a href="ip-weighting-and-marginal-structural-models.html#cb88-4"></a>numer.fit &lt;-<span class="st"> </span><span class="kw">glm</span>(qsmk <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">family =</span> <span class="kw">binomial</span>(), <span class="dt">data =</span> nhefs.nmv)</span>
-<span id="cb88-5"><a href="ip-weighting-and-marginal-structural-models.html#cb88-5"></a><span class="kw">summary</span>(numer.fit)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="ip-weighting-and-marginal-structural-models.html#cb88-1" aria-hidden="true" tabindex="-1"></a>pd.qsmk <span class="ot">&lt;-</span> <span class="fu">predict</span>(denom.fit, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb88-2"><a href="ip-weighting-and-marginal-structural-models.html#cb88-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-3"><a href="ip-weighting-and-marginal-structural-models.html#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="co"># estimation of numerator of ip weights</span></span>
+<span id="cb88-4"><a href="ip-weighting-and-marginal-structural-models.html#cb88-4" aria-hidden="true" tabindex="-1"></a>numer.fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(qsmk <span class="sc">~</span> <span class="dv">1</span>, <span class="at">family =</span> <span class="fu">binomial</span>(), <span class="at">data =</span> nhefs.nmv)</span>
+<span id="cb88-5"><a href="ip-weighting-and-marginal-structural-models.html#cb88-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(numer.fit)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = qsmk ~ 1, family = binomial(), data = nhefs.nmv)
@@ -638,23 +639,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 1788
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="ip-weighting-and-marginal-structural-models.html#cb90-1"></a>pn.qsmk &lt;-<span class="st"> </span><span class="kw">predict</span>(numer.fit, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb90-2"><a href="ip-weighting-and-marginal-structural-models.html#cb90-2"></a></span>
-<span id="cb90-3"><a href="ip-weighting-and-marginal-structural-models.html#cb90-3"></a>nhefs.nmv<span class="op">$</span>sw &lt;-</span>
-<span id="cb90-4"><a href="ip-weighting-and-marginal-structural-models.html#cb90-4"></a><span class="st">  </span><span class="kw">ifelse</span>(nhefs.nmv<span class="op">$</span>qsmk <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ((<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>pn.qsmk) <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>pd.qsmk)),</span>
-<span id="cb90-5"><a href="ip-weighting-and-marginal-structural-models.html#cb90-5"></a>         (pn.qsmk <span class="op">/</span><span class="st"> </span>pd.qsmk))</span>
-<span id="cb90-6"><a href="ip-weighting-and-marginal-structural-models.html#cb90-6"></a></span>
-<span id="cb90-7"><a href="ip-weighting-and-marginal-structural-models.html#cb90-7"></a><span class="kw">summary</span>(nhefs.nmv<span class="op">$</span>sw)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="ip-weighting-and-marginal-structural-models.html#cb90-1" aria-hidden="true" tabindex="-1"></a>pn.qsmk <span class="ot">&lt;-</span> <span class="fu">predict</span>(numer.fit, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb90-2"><a href="ip-weighting-and-marginal-structural-models.html#cb90-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-3"><a href="ip-weighting-and-marginal-structural-models.html#cb90-3" aria-hidden="true" tabindex="-1"></a>nhefs.nmv<span class="sc">$</span>sw <span class="ot">&lt;-</span></span>
+<span id="cb90-4"><a href="ip-weighting-and-marginal-structural-models.html#cb90-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(nhefs.nmv<span class="sc">$</span>qsmk <span class="sc">==</span> <span class="dv">0</span>, ((<span class="dv">1</span> <span class="sc">-</span> pn.qsmk) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> pd.qsmk)),</span>
+<span id="cb90-5"><a href="ip-weighting-and-marginal-structural-models.html#cb90-5" aria-hidden="true" tabindex="-1"></a>         (pn.qsmk <span class="sc">/</span> pd.qsmk))</span>
+<span id="cb90-6"><a href="ip-weighting-and-marginal-structural-models.html#cb90-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-7"><a href="ip-weighting-and-marginal-structural-models.html#cb90-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhefs.nmv<span class="sc">$</span>sw)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   0.331   0.867   0.950   0.999   1.079   4.298</code></pre>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="ip-weighting-and-marginal-structural-models.html#cb92-1"></a>msm.sw &lt;-<span class="st"> </span><span class="kw">geeglm</span>(</span>
-<span id="cb92-2"><a href="ip-weighting-and-marginal-structural-models.html#cb92-2"></a>  wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>qsmk,</span>
-<span id="cb92-3"><a href="ip-weighting-and-marginal-structural-models.html#cb92-3"></a>  <span class="dt">data =</span> nhefs.nmv,</span>
-<span id="cb92-4"><a href="ip-weighting-and-marginal-structural-models.html#cb92-4"></a>  <span class="dt">weights =</span> sw,</span>
-<span id="cb92-5"><a href="ip-weighting-and-marginal-structural-models.html#cb92-5"></a>  <span class="dt">id =</span> seqn,</span>
-<span id="cb92-6"><a href="ip-weighting-and-marginal-structural-models.html#cb92-6"></a>  <span class="dt">corstr =</span> <span class="st">&quot;independence&quot;</span></span>
-<span id="cb92-7"><a href="ip-weighting-and-marginal-structural-models.html#cb92-7"></a>)</span>
-<span id="cb92-8"><a href="ip-weighting-and-marginal-structural-models.html#cb92-8"></a><span class="kw">summary</span>(msm.sw)</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="ip-weighting-and-marginal-structural-models.html#cb92-1" aria-hidden="true" tabindex="-1"></a>msm.sw <span class="ot">&lt;-</span> <span class="fu">geeglm</span>(</span>
+<span id="cb92-2"><a href="ip-weighting-and-marginal-structural-models.html#cb92-2" aria-hidden="true" tabindex="-1"></a>  wt82_71 <span class="sc">~</span> qsmk,</span>
+<span id="cb92-3"><a href="ip-weighting-and-marginal-structural-models.html#cb92-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> nhefs.nmv,</span>
+<span id="cb92-4"><a href="ip-weighting-and-marginal-structural-models.html#cb92-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">weights =</span> sw,</span>
+<span id="cb92-5"><a href="ip-weighting-and-marginal-structural-models.html#cb92-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> seqn,</span>
+<span id="cb92-6"><a href="ip-weighting-and-marginal-structural-models.html#cb92-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">corstr =</span> <span class="st">&quot;independence&quot;</span></span>
+<span id="cb92-7"><a href="ip-weighting-and-marginal-structural-models.html#cb92-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb92-8"><a href="ip-weighting-and-marginal-structural-models.html#cb92-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(msm.sw)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## geeglm(formula = wt82_71 ~ qsmk, data = nhefs.nmv, weights = sw, 
@@ -673,16 +674,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##             Estimate Std.err
 ## (Intercept)     60.7    3.71
 ## Number of clusters:   1566  Maximum cluster size: 1</code></pre>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="ip-weighting-and-marginal-structural-models.html#cb94-1"></a>beta &lt;-<span class="st"> </span><span class="kw">coef</span>(msm.sw)</span>
-<span id="cb94-2"><a href="ip-weighting-and-marginal-structural-models.html#cb94-2"></a>SE &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(msm.sw))[, <span class="dv">2</span>]</span>
-<span id="cb94-3"><a href="ip-weighting-and-marginal-structural-models.html#cb94-3"></a>lcl &lt;-<span class="st"> </span>beta <span class="op">-</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>) <span class="op">*</span><span class="st"> </span>SE</span>
-<span id="cb94-4"><a href="ip-weighting-and-marginal-structural-models.html#cb94-4"></a>ucl &lt;-<span class="st"> </span>beta <span class="op">+</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>) <span class="op">*</span><span class="st"> </span>SE</span>
-<span id="cb94-5"><a href="ip-weighting-and-marginal-structural-models.html#cb94-5"></a><span class="kw">cbind</span>(beta, lcl, ucl)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="ip-weighting-and-marginal-structural-models.html#cb94-1" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">coef</span>(msm.sw)</span>
+<span id="cb94-2"><a href="ip-weighting-and-marginal-structural-models.html#cb94-2" aria-hidden="true" tabindex="-1"></a>SE <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(msm.sw))[, <span class="dv">2</span>]</span>
+<span id="cb94-3"><a href="ip-weighting-and-marginal-structural-models.html#cb94-3" aria-hidden="true" tabindex="-1"></a>lcl <span class="ot">&lt;-</span> beta <span class="sc">-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> SE</span>
+<span id="cb94-4"><a href="ip-weighting-and-marginal-structural-models.html#cb94-4" aria-hidden="true" tabindex="-1"></a>ucl <span class="ot">&lt;-</span> beta <span class="sc">+</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> SE</span>
+<span id="cb94-5"><a href="ip-weighting-and-marginal-structural-models.html#cb94-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(beta, lcl, ucl)</span></code></pre></div>
 <pre><code>##             beta  lcl  ucl
 ## (Intercept) 1.78 1.34 2.22
 ## qsmk        3.44 2.41 4.47</code></pre>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="ip-weighting-and-marginal-structural-models.html#cb96-1"></a><span class="co"># no association between sex and qsmk in pseudo-population</span></span>
-<span id="cb96-2"><a href="ip-weighting-and-marginal-structural-models.html#cb96-2"></a><span class="kw">xtabs</span>(nhefs.nmv<span class="op">$</span>sw <span class="op">~</span><span class="st"> </span>nhefs.nmv<span class="op">$</span>sex <span class="op">+</span><span class="st"> </span>nhefs.nmv<span class="op">$</span>qsmk)</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="ip-weighting-and-marginal-structural-models.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># no association between sex and qsmk in pseudo-population</span></span>
+<span id="cb96-2"><a href="ip-weighting-and-marginal-structural-models.html#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">xtabs</span>(nhefs.nmv<span class="sc">$</span>sw <span class="sc">~</span> nhefs.nmv<span class="sc">$</span>sex <span class="sc">+</span> nhefs.nmv<span class="sc">$</span>qsmk)</span></code></pre></div>
 <pre><code>##              nhefs.nmv$qsmk
 ## nhefs.nmv$sex   0   1
 ##             0 567 197
@@ -693,45 +694,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Estimating the parameters of a marginal structural mean model with a continuous treatment Data from NHEFS</li>
 </ul>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="ip-weighting-and-marginal-structural-models.html#cb98-1"></a><span class="co"># Analysis restricted to subjects reporting &lt;=25 cig/day at baseline</span></span>
-<span id="cb98-2"><a href="ip-weighting-and-marginal-structural-models.html#cb98-2"></a>nhefs.nmv.s &lt;-<span class="st"> </span><span class="kw">subset</span>(nhefs.nmv, smokeintensity <span class="op">&lt;=</span><span class="st"> </span><span class="dv">25</span>)</span>
-<span id="cb98-3"><a href="ip-weighting-and-marginal-structural-models.html#cb98-3"></a></span>
-<span id="cb98-4"><a href="ip-weighting-and-marginal-structural-models.html#cb98-4"></a><span class="co"># estimation of denominator of ip weights</span></span>
-<span id="cb98-5"><a href="ip-weighting-and-marginal-structural-models.html#cb98-5"></a>den.fit.obj &lt;-<span class="st"> </span><span class="kw">lm</span>(</span>
-<span id="cb98-6"><a href="ip-weighting-and-marginal-structural-models.html#cb98-6"></a>  smkintensity82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(sex) <span class="op">+</span></span>
-<span id="cb98-7"><a href="ip-weighting-and-marginal-structural-models.html#cb98-7"></a><span class="st">    </span><span class="kw">as.factor</span>(race) <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(age <span class="op">^</span><span class="st"> </span><span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb98-8"><a href="ip-weighting-and-marginal-structural-models.html#cb98-8"></a><span class="st">    </span><span class="kw">as.factor</span>(education) <span class="op">+</span><span class="st"> </span>smokeintensity <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(smokeintensity <span class="op">^</span><span class="st"> </span><span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb98-9"><a href="ip-weighting-and-marginal-structural-models.html#cb98-9"></a><span class="st">    </span>smokeyrs <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(smokeyrs <span class="op">^</span><span class="st"> </span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(exercise) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(active) <span class="op">+</span><span class="st"> </span>wt71 <span class="op">+</span></span>
-<span id="cb98-10"><a href="ip-weighting-and-marginal-structural-models.html#cb98-10"></a><span class="st">    </span><span class="kw">I</span>(wt71 <span class="op">^</span><span class="st"> </span><span class="dv">2</span>),</span>
-<span id="cb98-11"><a href="ip-weighting-and-marginal-structural-models.html#cb98-11"></a>  <span class="dt">data =</span> nhefs.nmv.s</span>
-<span id="cb98-12"><a href="ip-weighting-and-marginal-structural-models.html#cb98-12"></a>)</span>
-<span id="cb98-13"><a href="ip-weighting-and-marginal-structural-models.html#cb98-13"></a>p.den &lt;-<span class="st"> </span><span class="kw">predict</span>(den.fit.obj, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb98-14"><a href="ip-weighting-and-marginal-structural-models.html#cb98-14"></a>dens.den &lt;-</span>
-<span id="cb98-15"><a href="ip-weighting-and-marginal-structural-models.html#cb98-15"></a><span class="st">  </span><span class="kw">dnorm</span>(nhefs.nmv.s<span class="op">$</span>smkintensity82_<span class="dv">71</span>,</span>
-<span id="cb98-16"><a href="ip-weighting-and-marginal-structural-models.html#cb98-16"></a>        p.den,</span>
-<span id="cb98-17"><a href="ip-weighting-and-marginal-structural-models.html#cb98-17"></a>        <span class="kw">summary</span>(den.fit.obj)<span class="op">$</span>sigma)</span>
-<span id="cb98-18"><a href="ip-weighting-and-marginal-structural-models.html#cb98-18"></a></span>
-<span id="cb98-19"><a href="ip-weighting-and-marginal-structural-models.html#cb98-19"></a><span class="co"># estimation of numerator of ip weights</span></span>
-<span id="cb98-20"><a href="ip-weighting-and-marginal-structural-models.html#cb98-20"></a>num.fit.obj &lt;-<span class="st"> </span><span class="kw">lm</span>(smkintensity82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> nhefs.nmv.s)</span>
-<span id="cb98-21"><a href="ip-weighting-and-marginal-structural-models.html#cb98-21"></a>p.num &lt;-<span class="st"> </span><span class="kw">predict</span>(num.fit.obj, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb98-22"><a href="ip-weighting-and-marginal-structural-models.html#cb98-22"></a>dens.num &lt;-</span>
-<span id="cb98-23"><a href="ip-weighting-and-marginal-structural-models.html#cb98-23"></a><span class="st">  </span><span class="kw">dnorm</span>(nhefs.nmv.s<span class="op">$</span>smkintensity82_<span class="dv">71</span>,</span>
-<span id="cb98-24"><a href="ip-weighting-and-marginal-structural-models.html#cb98-24"></a>        p.num,</span>
-<span id="cb98-25"><a href="ip-weighting-and-marginal-structural-models.html#cb98-25"></a>        <span class="kw">summary</span>(num.fit.obj)<span class="op">$</span>sigma)</span>
-<span id="cb98-26"><a href="ip-weighting-and-marginal-structural-models.html#cb98-26"></a></span>
-<span id="cb98-27"><a href="ip-weighting-and-marginal-structural-models.html#cb98-27"></a>nhefs.nmv.s<span class="op">$</span>sw.a &lt;-<span class="st"> </span>dens.num <span class="op">/</span><span class="st"> </span>dens.den</span>
-<span id="cb98-28"><a href="ip-weighting-and-marginal-structural-models.html#cb98-28"></a><span class="kw">summary</span>(nhefs.nmv.s<span class="op">$</span>sw.a)</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="ip-weighting-and-marginal-structural-models.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysis restricted to subjects reporting &lt;=25 cig/day at baseline</span></span>
+<span id="cb98-2"><a href="ip-weighting-and-marginal-structural-models.html#cb98-2" aria-hidden="true" tabindex="-1"></a>nhefs.nmv.s <span class="ot">&lt;-</span> <span class="fu">subset</span>(nhefs.nmv, smokeintensity <span class="sc">&lt;=</span> <span class="dv">25</span>)</span>
+<span id="cb98-3"><a href="ip-weighting-and-marginal-structural-models.html#cb98-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-4"><a href="ip-weighting-and-marginal-structural-models.html#cb98-4" aria-hidden="true" tabindex="-1"></a><span class="co"># estimation of denominator of ip weights</span></span>
+<span id="cb98-5"><a href="ip-weighting-and-marginal-structural-models.html#cb98-5" aria-hidden="true" tabindex="-1"></a>den.fit.obj <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
+<span id="cb98-6"><a href="ip-weighting-and-marginal-structural-models.html#cb98-6" aria-hidden="true" tabindex="-1"></a>  smkintensity82_71 <span class="sc">~</span> <span class="fu">as.factor</span>(sex) <span class="sc">+</span></span>
+<span id="cb98-7"><a href="ip-weighting-and-marginal-structural-models.html#cb98-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.factor</span>(race) <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(age <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb98-8"><a href="ip-weighting-and-marginal-structural-models.html#cb98-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.factor</span>(education) <span class="sc">+</span> smokeintensity <span class="sc">+</span> <span class="fu">I</span>(smokeintensity <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb98-9"><a href="ip-weighting-and-marginal-structural-models.html#cb98-9" aria-hidden="true" tabindex="-1"></a>    smokeyrs <span class="sc">+</span> <span class="fu">I</span>(smokeyrs <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">as.factor</span>(exercise) <span class="sc">+</span> <span class="fu">as.factor</span>(active) <span class="sc">+</span> wt71 <span class="sc">+</span></span>
+<span id="cb98-10"><a href="ip-weighting-and-marginal-structural-models.html#cb98-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">I</span>(wt71 <span class="sc">^</span> <span class="dv">2</span>),</span>
+<span id="cb98-11"><a href="ip-weighting-and-marginal-structural-models.html#cb98-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> nhefs.nmv.s</span>
+<span id="cb98-12"><a href="ip-weighting-and-marginal-structural-models.html#cb98-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb98-13"><a href="ip-weighting-and-marginal-structural-models.html#cb98-13" aria-hidden="true" tabindex="-1"></a>p.den <span class="ot">&lt;-</span> <span class="fu">predict</span>(den.fit.obj, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb98-14"><a href="ip-weighting-and-marginal-structural-models.html#cb98-14" aria-hidden="true" tabindex="-1"></a>dens.den <span class="ot">&lt;-</span></span>
+<span id="cb98-15"><a href="ip-weighting-and-marginal-structural-models.html#cb98-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dnorm</span>(nhefs.nmv.s<span class="sc">$</span>smkintensity82_71,</span>
+<span id="cb98-16"><a href="ip-weighting-and-marginal-structural-models.html#cb98-16" aria-hidden="true" tabindex="-1"></a>        p.den,</span>
+<span id="cb98-17"><a href="ip-weighting-and-marginal-structural-models.html#cb98-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">summary</span>(den.fit.obj)<span class="sc">$</span>sigma)</span>
+<span id="cb98-18"><a href="ip-weighting-and-marginal-structural-models.html#cb98-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-19"><a href="ip-weighting-and-marginal-structural-models.html#cb98-19" aria-hidden="true" tabindex="-1"></a><span class="co"># estimation of numerator of ip weights</span></span>
+<span id="cb98-20"><a href="ip-weighting-and-marginal-structural-models.html#cb98-20" aria-hidden="true" tabindex="-1"></a>num.fit.obj <span class="ot">&lt;-</span> <span class="fu">lm</span>(smkintensity82_71 <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> nhefs.nmv.s)</span>
+<span id="cb98-21"><a href="ip-weighting-and-marginal-structural-models.html#cb98-21" aria-hidden="true" tabindex="-1"></a>p.num <span class="ot">&lt;-</span> <span class="fu">predict</span>(num.fit.obj, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb98-22"><a href="ip-weighting-and-marginal-structural-models.html#cb98-22" aria-hidden="true" tabindex="-1"></a>dens.num <span class="ot">&lt;-</span></span>
+<span id="cb98-23"><a href="ip-weighting-and-marginal-structural-models.html#cb98-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dnorm</span>(nhefs.nmv.s<span class="sc">$</span>smkintensity82_71,</span>
+<span id="cb98-24"><a href="ip-weighting-and-marginal-structural-models.html#cb98-24" aria-hidden="true" tabindex="-1"></a>        p.num,</span>
+<span id="cb98-25"><a href="ip-weighting-and-marginal-structural-models.html#cb98-25" aria-hidden="true" tabindex="-1"></a>        <span class="fu">summary</span>(num.fit.obj)<span class="sc">$</span>sigma)</span>
+<span id="cb98-26"><a href="ip-weighting-and-marginal-structural-models.html#cb98-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-27"><a href="ip-weighting-and-marginal-structural-models.html#cb98-27" aria-hidden="true" tabindex="-1"></a>nhefs.nmv.s<span class="sc">$</span>sw.a <span class="ot">&lt;-</span> dens.num <span class="sc">/</span> dens.den</span>
+<span id="cb98-28"><a href="ip-weighting-and-marginal-structural-models.html#cb98-28" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhefs.nmv.s<span class="sc">$</span>sw.a)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    0.19    0.89    0.97    1.00    1.05    5.10</code></pre>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="ip-weighting-and-marginal-structural-models.html#cb100-1"></a>msm.sw.cont &lt;-</span>
-<span id="cb100-2"><a href="ip-weighting-and-marginal-structural-models.html#cb100-2"></a><span class="st">  </span><span class="kw">geeglm</span>(</span>
-<span id="cb100-3"><a href="ip-weighting-and-marginal-structural-models.html#cb100-3"></a>    wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>smkintensity82_<span class="dv">71</span> <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(smkintensity82_<span class="dv">71</span> <span class="op">*</span><span class="st"> </span>smkintensity82_<span class="dv">71</span>),</span>
-<span id="cb100-4"><a href="ip-weighting-and-marginal-structural-models.html#cb100-4"></a>    <span class="dt">data =</span> nhefs.nmv.s,</span>
-<span id="cb100-5"><a href="ip-weighting-and-marginal-structural-models.html#cb100-5"></a>    <span class="dt">weights =</span> sw.a,</span>
-<span id="cb100-6"><a href="ip-weighting-and-marginal-structural-models.html#cb100-6"></a>    <span class="dt">id =</span> seqn,</span>
-<span id="cb100-7"><a href="ip-weighting-and-marginal-structural-models.html#cb100-7"></a>    <span class="dt">corstr =</span> <span class="st">&quot;independence&quot;</span></span>
-<span id="cb100-8"><a href="ip-weighting-and-marginal-structural-models.html#cb100-8"></a>  )</span>
-<span id="cb100-9"><a href="ip-weighting-and-marginal-structural-models.html#cb100-9"></a><span class="kw">summary</span>(msm.sw.cont)</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="ip-weighting-and-marginal-structural-models.html#cb100-1" aria-hidden="true" tabindex="-1"></a>msm.sw.cont <span class="ot">&lt;-</span></span>
+<span id="cb100-2"><a href="ip-weighting-and-marginal-structural-models.html#cb100-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geeglm</span>(</span>
+<span id="cb100-3"><a href="ip-weighting-and-marginal-structural-models.html#cb100-3" aria-hidden="true" tabindex="-1"></a>    wt82_71 <span class="sc">~</span> smkintensity82_71 <span class="sc">+</span> <span class="fu">I</span>(smkintensity82_71 <span class="sc">*</span> smkintensity82_71),</span>
+<span id="cb100-4"><a href="ip-weighting-and-marginal-structural-models.html#cb100-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> nhefs.nmv.s,</span>
+<span id="cb100-5"><a href="ip-weighting-and-marginal-structural-models.html#cb100-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">weights =</span> sw.a,</span>
+<span id="cb100-6"><a href="ip-weighting-and-marginal-structural-models.html#cb100-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">id =</span> seqn,</span>
+<span id="cb100-7"><a href="ip-weighting-and-marginal-structural-models.html#cb100-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">corstr =</span> <span class="st">&quot;independence&quot;</span></span>
+<span id="cb100-8"><a href="ip-weighting-and-marginal-structural-models.html#cb100-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb100-9"><a href="ip-weighting-and-marginal-structural-models.html#cb100-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(msm.sw.cont)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## geeglm(formula = wt82_71 ~ smkintensity82_71 + I(smkintensity82_71 * 
@@ -752,11 +753,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##             Estimate Std.err
 ## (Intercept)     60.5     4.5
 ## Number of clusters:   1162  Maximum cluster size: 1</code></pre>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="ip-weighting-and-marginal-structural-models.html#cb102-1"></a>beta &lt;-<span class="st"> </span><span class="kw">coef</span>(msm.sw.cont)</span>
-<span id="cb102-2"><a href="ip-weighting-and-marginal-structural-models.html#cb102-2"></a>SE &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(msm.sw.cont))[, <span class="dv">2</span>]</span>
-<span id="cb102-3"><a href="ip-weighting-and-marginal-structural-models.html#cb102-3"></a>lcl &lt;-<span class="st"> </span>beta <span class="op">-</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>) <span class="op">*</span><span class="st"> </span>SE</span>
-<span id="cb102-4"><a href="ip-weighting-and-marginal-structural-models.html#cb102-4"></a>ucl &lt;-<span class="st"> </span>beta <span class="op">+</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>) <span class="op">*</span><span class="st"> </span>SE</span>
-<span id="cb102-5"><a href="ip-weighting-and-marginal-structural-models.html#cb102-5"></a><span class="kw">cbind</span>(beta, lcl, ucl)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="ip-weighting-and-marginal-structural-models.html#cb102-1" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">coef</span>(msm.sw.cont)</span>
+<span id="cb102-2"><a href="ip-weighting-and-marginal-structural-models.html#cb102-2" aria-hidden="true" tabindex="-1"></a>SE <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(msm.sw.cont))[, <span class="dv">2</span>]</span>
+<span id="cb102-3"><a href="ip-weighting-and-marginal-structural-models.html#cb102-3" aria-hidden="true" tabindex="-1"></a>lcl <span class="ot">&lt;-</span> beta <span class="sc">-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> SE</span>
+<span id="cb102-4"><a href="ip-weighting-and-marginal-structural-models.html#cb102-4" aria-hidden="true" tabindex="-1"></a>ucl <span class="ot">&lt;-</span> beta <span class="sc">+</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> SE</span>
+<span id="cb102-5"><a href="ip-weighting-and-marginal-structural-models.html#cb102-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(beta, lcl, ucl)</span></code></pre></div>
 <pre><code>##                                              beta      lcl      ucl
 ## (Intercept)                               2.00452  1.42610  2.58295
 ## smkintensity82_71                        -0.10899 -0.17080 -0.04718
@@ -768,23 +769,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Estimating the parameters of a marginal structural logistic model</li>
 <li>Data from NHEFS</li>
 </ul>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="ip-weighting-and-marginal-structural-models.html#cb104-1"></a><span class="kw">table</span>(nhefs.nmv<span class="op">$</span>qsmk, nhefs.nmv<span class="op">$</span>death)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="ip-weighting-and-marginal-structural-models.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(nhefs.nmv<span class="sc">$</span>qsmk, nhefs.nmv<span class="sc">$</span>death)</span></code></pre></div>
 <pre><code>##    
 ##       0   1
 ##   0 963 200
 ##   1 312  91</code></pre>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="ip-weighting-and-marginal-structural-models.html#cb106-1"></a><span class="co"># First, estimation of stabilized weights sw (same as in Program 12.3)</span></span>
-<span id="cb106-2"><a href="ip-weighting-and-marginal-structural-models.html#cb106-2"></a><span class="co"># Second, fit logistic model below</span></span>
-<span id="cb106-3"><a href="ip-weighting-and-marginal-structural-models.html#cb106-3"></a>msm.logistic &lt;-<span class="st"> </span><span class="kw">geeglm</span>(</span>
-<span id="cb106-4"><a href="ip-weighting-and-marginal-structural-models.html#cb106-4"></a>  death <span class="op">~</span><span class="st"> </span>qsmk,</span>
-<span id="cb106-5"><a href="ip-weighting-and-marginal-structural-models.html#cb106-5"></a>  <span class="dt">data =</span> nhefs.nmv,</span>
-<span id="cb106-6"><a href="ip-weighting-and-marginal-structural-models.html#cb106-6"></a>  <span class="dt">weights =</span> sw,</span>
-<span id="cb106-7"><a href="ip-weighting-and-marginal-structural-models.html#cb106-7"></a>  <span class="dt">id =</span> seqn,</span>
-<span id="cb106-8"><a href="ip-weighting-and-marginal-structural-models.html#cb106-8"></a>  <span class="dt">family =</span> <span class="kw">binomial</span>(),</span>
-<span id="cb106-9"><a href="ip-weighting-and-marginal-structural-models.html#cb106-9"></a>  <span class="dt">corstr =</span> <span class="st">&quot;independence&quot;</span></span>
-<span id="cb106-10"><a href="ip-weighting-and-marginal-structural-models.html#cb106-10"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="ip-weighting-and-marginal-structural-models.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, estimation of stabilized weights sw (same as in Program 12.3)</span></span>
+<span id="cb106-2"><a href="ip-weighting-and-marginal-structural-models.html#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Second, fit logistic model below</span></span>
+<span id="cb106-3"><a href="ip-weighting-and-marginal-structural-models.html#cb106-3" aria-hidden="true" tabindex="-1"></a>msm.logistic <span class="ot">&lt;-</span> <span class="fu">geeglm</span>(</span>
+<span id="cb106-4"><a href="ip-weighting-and-marginal-structural-models.html#cb106-4" aria-hidden="true" tabindex="-1"></a>  death <span class="sc">~</span> qsmk,</span>
+<span id="cb106-5"><a href="ip-weighting-and-marginal-structural-models.html#cb106-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> nhefs.nmv,</span>
+<span id="cb106-6"><a href="ip-weighting-and-marginal-structural-models.html#cb106-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">weights =</span> sw,</span>
+<span id="cb106-7"><a href="ip-weighting-and-marginal-structural-models.html#cb106-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> seqn,</span>
+<span id="cb106-8"><a href="ip-weighting-and-marginal-structural-models.html#cb106-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">binomial</span>(),</span>
+<span id="cb106-9"><a href="ip-weighting-and-marginal-structural-models.html#cb106-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">corstr =</span> <span class="st">&quot;independence&quot;</span></span>
+<span id="cb106-10"><a href="ip-weighting-and-marginal-structural-models.html#cb106-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Warning in eval(family$initialize): non-integer #successes in a binomial glm!</code></pre>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="ip-weighting-and-marginal-structural-models.html#cb108-1"></a><span class="kw">summary</span>(msm.logistic)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="ip-weighting-and-marginal-structural-models.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(msm.logistic)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## geeglm(formula = death ~ qsmk, family = binomial(), data = nhefs.nmv, 
@@ -803,11 +804,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##             Estimate Std.err
 ## (Intercept)        1  0.0678
 ## Number of clusters:   1566  Maximum cluster size: 1</code></pre>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="ip-weighting-and-marginal-structural-models.html#cb110-1"></a>beta &lt;-<span class="st"> </span><span class="kw">coef</span>(msm.logistic)</span>
-<span id="cb110-2"><a href="ip-weighting-and-marginal-structural-models.html#cb110-2"></a>SE &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(msm.logistic))[, <span class="dv">2</span>]</span>
-<span id="cb110-3"><a href="ip-weighting-and-marginal-structural-models.html#cb110-3"></a>lcl &lt;-<span class="st"> </span>beta <span class="op">-</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>) <span class="op">*</span><span class="st"> </span>SE</span>
-<span id="cb110-4"><a href="ip-weighting-and-marginal-structural-models.html#cb110-4"></a>ucl &lt;-<span class="st"> </span>beta <span class="op">+</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>) <span class="op">*</span><span class="st"> </span>SE</span>
-<span id="cb110-5"><a href="ip-weighting-and-marginal-structural-models.html#cb110-5"></a><span class="kw">cbind</span>(beta, lcl, ucl)</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="ip-weighting-and-marginal-structural-models.html#cb110-1" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">coef</span>(msm.logistic)</span>
+<span id="cb110-2"><a href="ip-weighting-and-marginal-structural-models.html#cb110-2" aria-hidden="true" tabindex="-1"></a>SE <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(msm.logistic))[, <span class="dv">2</span>]</span>
+<span id="cb110-3"><a href="ip-weighting-and-marginal-structural-models.html#cb110-3" aria-hidden="true" tabindex="-1"></a>lcl <span class="ot">&lt;-</span> beta <span class="sc">-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> SE</span>
+<span id="cb110-4"><a href="ip-weighting-and-marginal-structural-models.html#cb110-4" aria-hidden="true" tabindex="-1"></a>ucl <span class="ot">&lt;-</span> beta <span class="sc">+</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> SE</span>
+<span id="cb110-5"><a href="ip-weighting-and-marginal-structural-models.html#cb110-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(beta, lcl, ucl)</span></code></pre></div>
 <pre><code>##                beta    lcl    ucl
 ## (Intercept) -1.4905 -1.645 -1.336
 ## qsmk         0.0301 -0.278  0.338</code></pre>
@@ -818,21 +819,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Assessing effect modification by sex using a marginal structural mean model</li>
 <li>Data from NHEFS</li>
 </ul>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="ip-weighting-and-marginal-structural-models.html#cb112-1"></a><span class="kw">table</span>(nhefs.nmv<span class="op">$</span>sex)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="ip-weighting-and-marginal-structural-models.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(nhefs.nmv<span class="sc">$</span>sex)</span></code></pre></div>
 <pre><code>## 
 ##   0   1 
 ## 762 804</code></pre>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="ip-weighting-and-marginal-structural-models.html#cb114-1"></a><span class="co"># estimation of denominator of ip weights</span></span>
-<span id="cb114-2"><a href="ip-weighting-and-marginal-structural-models.html#cb114-2"></a>denom.fit &lt;-</span>
-<span id="cb114-3"><a href="ip-weighting-and-marginal-structural-models.html#cb114-3"></a><span class="st">  </span><span class="kw">glm</span>(</span>
-<span id="cb114-4"><a href="ip-weighting-and-marginal-structural-models.html#cb114-4"></a>    qsmk <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(sex) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(race) <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(age <span class="op">^</span><span class="st"> </span><span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb114-5"><a href="ip-weighting-and-marginal-structural-models.html#cb114-5"></a><span class="st">      </span><span class="kw">as.factor</span>(education) <span class="op">+</span><span class="st"> </span>smokeintensity <span class="op">+</span></span>
-<span id="cb114-6"><a href="ip-weighting-and-marginal-structural-models.html#cb114-6"></a><span class="st">      </span><span class="kw">I</span>(smokeintensity <span class="op">^</span><span class="st"> </span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>smokeyrs <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(smokeyrs <span class="op">^</span><span class="st"> </span><span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb114-7"><a href="ip-weighting-and-marginal-structural-models.html#cb114-7"></a><span class="st">      </span><span class="kw">as.factor</span>(exercise) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(active) <span class="op">+</span><span class="st"> </span>wt71 <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(wt71 <span class="op">^</span><span class="st"> </span><span class="dv">2</span>),</span>
-<span id="cb114-8"><a href="ip-weighting-and-marginal-structural-models.html#cb114-8"></a>    <span class="dt">family =</span> <span class="kw">binomial</span>(),</span>
-<span id="cb114-9"><a href="ip-weighting-and-marginal-structural-models.html#cb114-9"></a>    <span class="dt">data =</span> nhefs.nmv</span>
-<span id="cb114-10"><a href="ip-weighting-and-marginal-structural-models.html#cb114-10"></a>  )</span>
-<span id="cb114-11"><a href="ip-weighting-and-marginal-structural-models.html#cb114-11"></a><span class="kw">summary</span>(denom.fit)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="ip-weighting-and-marginal-structural-models.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co"># estimation of denominator of ip weights</span></span>
+<span id="cb114-2"><a href="ip-weighting-and-marginal-structural-models.html#cb114-2" aria-hidden="true" tabindex="-1"></a>denom.fit <span class="ot">&lt;-</span></span>
+<span id="cb114-3"><a href="ip-weighting-and-marginal-structural-models.html#cb114-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glm</span>(</span>
+<span id="cb114-4"><a href="ip-weighting-and-marginal-structural-models.html#cb114-4" aria-hidden="true" tabindex="-1"></a>    qsmk <span class="sc">~</span> <span class="fu">as.factor</span>(sex) <span class="sc">+</span> <span class="fu">as.factor</span>(race) <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(age <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb114-5"><a href="ip-weighting-and-marginal-structural-models.html#cb114-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.factor</span>(education) <span class="sc">+</span> smokeintensity <span class="sc">+</span></span>
+<span id="cb114-6"><a href="ip-weighting-and-marginal-structural-models.html#cb114-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">I</span>(smokeintensity <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span> smokeyrs <span class="sc">+</span> <span class="fu">I</span>(smokeyrs <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb114-7"><a href="ip-weighting-and-marginal-structural-models.html#cb114-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.factor</span>(exercise) <span class="sc">+</span> <span class="fu">as.factor</span>(active) <span class="sc">+</span> wt71 <span class="sc">+</span> <span class="fu">I</span>(wt71 <span class="sc">^</span> <span class="dv">2</span>),</span>
+<span id="cb114-8"><a href="ip-weighting-and-marginal-structural-models.html#cb114-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> <span class="fu">binomial</span>(),</span>
+<span id="cb114-9"><a href="ip-weighting-and-marginal-structural-models.html#cb114-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> nhefs.nmv</span>
+<span id="cb114-10"><a href="ip-weighting-and-marginal-structural-models.html#cb114-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb114-11"><a href="ip-weighting-and-marginal-structural-models.html#cb114-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(denom.fit)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = qsmk ~ as.factor(sex) + as.factor(race) + age + 
@@ -875,12 +876,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 1715
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="ip-weighting-and-marginal-structural-models.html#cb116-1"></a>pd.qsmk &lt;-<span class="st"> </span><span class="kw">predict</span>(denom.fit, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb116-2"><a href="ip-weighting-and-marginal-structural-models.html#cb116-2"></a></span>
-<span id="cb116-3"><a href="ip-weighting-and-marginal-structural-models.html#cb116-3"></a><span class="co"># estimation of numerator of ip weights</span></span>
-<span id="cb116-4"><a href="ip-weighting-and-marginal-structural-models.html#cb116-4"></a>numer.fit &lt;-</span>
-<span id="cb116-5"><a href="ip-weighting-and-marginal-structural-models.html#cb116-5"></a><span class="st">  </span><span class="kw">glm</span>(qsmk <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(sex), <span class="dt">family =</span> <span class="kw">binomial</span>(), <span class="dt">data =</span> nhefs.nmv)</span>
-<span id="cb116-6"><a href="ip-weighting-and-marginal-structural-models.html#cb116-6"></a><span class="kw">summary</span>(numer.fit)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="ip-weighting-and-marginal-structural-models.html#cb116-1" aria-hidden="true" tabindex="-1"></a>pd.qsmk <span class="ot">&lt;-</span> <span class="fu">predict</span>(denom.fit, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb116-2"><a href="ip-weighting-and-marginal-structural-models.html#cb116-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-3"><a href="ip-weighting-and-marginal-structural-models.html#cb116-3" aria-hidden="true" tabindex="-1"></a><span class="co"># estimation of numerator of ip weights</span></span>
+<span id="cb116-4"><a href="ip-weighting-and-marginal-structural-models.html#cb116-4" aria-hidden="true" tabindex="-1"></a>numer.fit <span class="ot">&lt;-</span></span>
+<span id="cb116-5"><a href="ip-weighting-and-marginal-structural-models.html#cb116-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glm</span>(qsmk <span class="sc">~</span> <span class="fu">as.factor</span>(sex), <span class="at">family =</span> <span class="fu">binomial</span>(), <span class="at">data =</span> nhefs.nmv)</span>
+<span id="cb116-6"><a href="ip-weighting-and-marginal-structural-models.html#cb116-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(numer.fit)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = qsmk ~ as.factor(sex), family = binomial(), data = nhefs.nmv)
@@ -903,27 +904,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 1782
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="ip-weighting-and-marginal-structural-models.html#cb118-1"></a>pn.qsmk &lt;-<span class="st"> </span><span class="kw">predict</span>(numer.fit, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb118-2"><a href="ip-weighting-and-marginal-structural-models.html#cb118-2"></a></span>
-<span id="cb118-3"><a href="ip-weighting-and-marginal-structural-models.html#cb118-3"></a>nhefs.nmv<span class="op">$</span>sw.a &lt;-</span>
-<span id="cb118-4"><a href="ip-weighting-and-marginal-structural-models.html#cb118-4"></a><span class="st">  </span><span class="kw">ifelse</span>(nhefs.nmv<span class="op">$</span>qsmk <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ((<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>pn.qsmk) <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>pd.qsmk)),</span>
-<span id="cb118-5"><a href="ip-weighting-and-marginal-structural-models.html#cb118-5"></a>         (pn.qsmk <span class="op">/</span><span class="st"> </span>pd.qsmk))</span>
-<span id="cb118-6"><a href="ip-weighting-and-marginal-structural-models.html#cb118-6"></a></span>
-<span id="cb118-7"><a href="ip-weighting-and-marginal-structural-models.html#cb118-7"></a><span class="kw">summary</span>(nhefs.nmv<span class="op">$</span>sw.a)</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="ip-weighting-and-marginal-structural-models.html#cb118-1" aria-hidden="true" tabindex="-1"></a>pn.qsmk <span class="ot">&lt;-</span> <span class="fu">predict</span>(numer.fit, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb118-2"><a href="ip-weighting-and-marginal-structural-models.html#cb118-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-3"><a href="ip-weighting-and-marginal-structural-models.html#cb118-3" aria-hidden="true" tabindex="-1"></a>nhefs.nmv<span class="sc">$</span>sw.a <span class="ot">&lt;-</span></span>
+<span id="cb118-4"><a href="ip-weighting-and-marginal-structural-models.html#cb118-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(nhefs.nmv<span class="sc">$</span>qsmk <span class="sc">==</span> <span class="dv">0</span>, ((<span class="dv">1</span> <span class="sc">-</span> pn.qsmk) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> pd.qsmk)),</span>
+<span id="cb118-5"><a href="ip-weighting-and-marginal-structural-models.html#cb118-5" aria-hidden="true" tabindex="-1"></a>         (pn.qsmk <span class="sc">/</span> pd.qsmk))</span>
+<span id="cb118-6"><a href="ip-weighting-and-marginal-structural-models.html#cb118-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-7"><a href="ip-weighting-and-marginal-structural-models.html#cb118-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhefs.nmv<span class="sc">$</span>sw.a)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    0.29    0.88    0.96    1.00    1.08    3.80</code></pre>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="ip-weighting-and-marginal-structural-models.html#cb120-1"></a><span class="kw">sd</span>(nhefs.nmv<span class="op">$</span>sw.a)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="ip-weighting-and-marginal-structural-models.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(nhefs.nmv<span class="sc">$</span>sw.a)</span></code></pre></div>
 <pre><code>## [1] 0.271</code></pre>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="ip-weighting-and-marginal-structural-models.html#cb122-1"></a><span class="co"># Estimating parameters of a marginal structural mean model</span></span>
-<span id="cb122-2"><a href="ip-weighting-and-marginal-structural-models.html#cb122-2"></a>msm.emm &lt;-<span class="st"> </span><span class="kw">geeglm</span>(</span>
-<span id="cb122-3"><a href="ip-weighting-and-marginal-structural-models.html#cb122-3"></a>  wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(qsmk) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(sex)</span>
-<span id="cb122-4"><a href="ip-weighting-and-marginal-structural-models.html#cb122-4"></a>  <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(qsmk)<span class="op">:</span><span class="kw">as.factor</span>(sex),</span>
-<span id="cb122-5"><a href="ip-weighting-and-marginal-structural-models.html#cb122-5"></a>  <span class="dt">data =</span> nhefs.nmv,</span>
-<span id="cb122-6"><a href="ip-weighting-and-marginal-structural-models.html#cb122-6"></a>  <span class="dt">weights =</span> sw.a,</span>
-<span id="cb122-7"><a href="ip-weighting-and-marginal-structural-models.html#cb122-7"></a>  <span class="dt">id =</span> seqn,</span>
-<span id="cb122-8"><a href="ip-weighting-and-marginal-structural-models.html#cb122-8"></a>  <span class="dt">corstr =</span> <span class="st">&quot;independence&quot;</span></span>
-<span id="cb122-9"><a href="ip-weighting-and-marginal-structural-models.html#cb122-9"></a>)</span>
-<span id="cb122-10"><a href="ip-weighting-and-marginal-structural-models.html#cb122-10"></a><span class="kw">summary</span>(msm.emm)</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="ip-weighting-and-marginal-structural-models.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimating parameters of a marginal structural mean model</span></span>
+<span id="cb122-2"><a href="ip-weighting-and-marginal-structural-models.html#cb122-2" aria-hidden="true" tabindex="-1"></a>msm.emm <span class="ot">&lt;-</span> <span class="fu">geeglm</span>(</span>
+<span id="cb122-3"><a href="ip-weighting-and-marginal-structural-models.html#cb122-3" aria-hidden="true" tabindex="-1"></a>  wt82_71 <span class="sc">~</span> <span class="fu">as.factor</span>(qsmk) <span class="sc">+</span> <span class="fu">as.factor</span>(sex)</span>
+<span id="cb122-4"><a href="ip-weighting-and-marginal-structural-models.html#cb122-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">as.factor</span>(qsmk)<span class="sc">:</span><span class="fu">as.factor</span>(sex),</span>
+<span id="cb122-5"><a href="ip-weighting-and-marginal-structural-models.html#cb122-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> nhefs.nmv,</span>
+<span id="cb122-6"><a href="ip-weighting-and-marginal-structural-models.html#cb122-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">weights =</span> sw.a,</span>
+<span id="cb122-7"><a href="ip-weighting-and-marginal-structural-models.html#cb122-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> seqn,</span>
+<span id="cb122-8"><a href="ip-weighting-and-marginal-structural-models.html#cb122-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">corstr =</span> <span class="st">&quot;independence&quot;</span></span>
+<span id="cb122-9"><a href="ip-weighting-and-marginal-structural-models.html#cb122-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb122-10"><a href="ip-weighting-and-marginal-structural-models.html#cb122-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(msm.emm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## geeglm(formula = wt82_71 ~ as.factor(qsmk) + as.factor(sex) + 
@@ -945,11 +946,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##             Estimate Std.err
 ## (Intercept)     60.8    3.71
 ## Number of clusters:   1566  Maximum cluster size: 1</code></pre>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="ip-weighting-and-marginal-structural-models.html#cb124-1"></a>beta &lt;-<span class="st"> </span><span class="kw">coef</span>(msm.emm)</span>
-<span id="cb124-2"><a href="ip-weighting-and-marginal-structural-models.html#cb124-2"></a>SE &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(msm.emm))[, <span class="dv">2</span>]</span>
-<span id="cb124-3"><a href="ip-weighting-and-marginal-structural-models.html#cb124-3"></a>lcl &lt;-<span class="st"> </span>beta <span class="op">-</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>) <span class="op">*</span><span class="st"> </span>SE</span>
-<span id="cb124-4"><a href="ip-weighting-and-marginal-structural-models.html#cb124-4"></a>ucl &lt;-<span class="st"> </span>beta <span class="op">+</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>) <span class="op">*</span><span class="st"> </span>SE</span>
-<span id="cb124-5"><a href="ip-weighting-and-marginal-structural-models.html#cb124-5"></a><span class="kw">cbind</span>(beta, lcl, ucl)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="ip-weighting-and-marginal-structural-models.html#cb124-1" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">coef</span>(msm.emm)</span>
+<span id="cb124-2"><a href="ip-weighting-and-marginal-structural-models.html#cb124-2" aria-hidden="true" tabindex="-1"></a>SE <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(msm.emm))[, <span class="dv">2</span>]</span>
+<span id="cb124-3"><a href="ip-weighting-and-marginal-structural-models.html#cb124-3" aria-hidden="true" tabindex="-1"></a>lcl <span class="ot">&lt;-</span> beta <span class="sc">-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> SE</span>
+<span id="cb124-4"><a href="ip-weighting-and-marginal-structural-models.html#cb124-4" aria-hidden="true" tabindex="-1"></a>ucl <span class="ot">&lt;-</span> beta <span class="sc">+</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> SE</span>
+<span id="cb124-5"><a href="ip-weighting-and-marginal-structural-models.html#cb124-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(beta, lcl, ucl)</span></code></pre></div>
 <pre><code>##                                      beta    lcl   ucl
 ## (Intercept)                       1.78445  1.177 2.392
 ## as.factor(qsmk)1                  3.52198  2.234 4.810
@@ -962,28 +963,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Estimating IP weights to adjust for selection bias due to censoring</li>
 <li>Data from NHEFS</li>
 </ul>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="ip-weighting-and-marginal-structural-models.html#cb126-1"></a><span class="kw">table</span>(nhefs<span class="op">$</span>qsmk, nhefs<span class="op">$</span>cens)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="ip-weighting-and-marginal-structural-models.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(nhefs<span class="sc">$</span>qsmk, nhefs<span class="sc">$</span>cens)</span></code></pre></div>
 <pre><code>##    
 ##        0    1
 ##   0 1163   38
 ##   1  403   25</code></pre>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="ip-weighting-and-marginal-structural-models.html#cb128-1"></a><span class="kw">summary</span>(nhefs[<span class="kw">which</span>(nhefs<span class="op">$</span>cens <span class="op">==</span><span class="st"> </span><span class="dv">0</span>),]<span class="op">$</span>wt71)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="ip-weighting-and-marginal-structural-models.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhefs[<span class="fu">which</span>(nhefs<span class="sc">$</span>cens <span class="sc">==</span> <span class="dv">0</span>),]<span class="sc">$</span>wt71)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    39.6    59.5    69.2    70.8    79.8   151.7</code></pre>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="ip-weighting-and-marginal-structural-models.html#cb130-1"></a><span class="kw">summary</span>(nhefs[<span class="kw">which</span>(nhefs<span class="op">$</span>cens <span class="op">==</span><span class="st"> </span><span class="dv">1</span>),]<span class="op">$</span>wt71)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="ip-weighting-and-marginal-structural-models.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhefs[<span class="fu">which</span>(nhefs<span class="sc">$</span>cens <span class="sc">==</span> <span class="dv">1</span>),]<span class="sc">$</span>wt71)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    36.2    63.1    72.1    76.6    87.9   169.2</code></pre>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="ip-weighting-and-marginal-structural-models.html#cb132-1"></a><span class="co"># estimation of denominator of ip weights for A</span></span>
-<span id="cb132-2"><a href="ip-weighting-and-marginal-structural-models.html#cb132-2"></a>denom.fit &lt;-</span>
-<span id="cb132-3"><a href="ip-weighting-and-marginal-structural-models.html#cb132-3"></a><span class="st">  </span><span class="kw">glm</span>(</span>
-<span id="cb132-4"><a href="ip-weighting-and-marginal-structural-models.html#cb132-4"></a>    qsmk <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(sex) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(race) <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(age <span class="op">^</span><span class="st"> </span><span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb132-5"><a href="ip-weighting-and-marginal-structural-models.html#cb132-5"></a><span class="st">      </span><span class="kw">as.factor</span>(education) <span class="op">+</span><span class="st"> </span>smokeintensity <span class="op">+</span></span>
-<span id="cb132-6"><a href="ip-weighting-and-marginal-structural-models.html#cb132-6"></a><span class="st">      </span><span class="kw">I</span>(smokeintensity <span class="op">^</span><span class="st"> </span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>smokeyrs <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(smokeyrs <span class="op">^</span><span class="st"> </span><span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb132-7"><a href="ip-weighting-and-marginal-structural-models.html#cb132-7"></a><span class="st">      </span><span class="kw">as.factor</span>(exercise) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(active) <span class="op">+</span><span class="st"> </span>wt71 <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(wt71 <span class="op">^</span><span class="st"> </span><span class="dv">2</span>),</span>
-<span id="cb132-8"><a href="ip-weighting-and-marginal-structural-models.html#cb132-8"></a>    <span class="dt">family =</span> <span class="kw">binomial</span>(),</span>
-<span id="cb132-9"><a href="ip-weighting-and-marginal-structural-models.html#cb132-9"></a>    <span class="dt">data =</span> nhefs</span>
-<span id="cb132-10"><a href="ip-weighting-and-marginal-structural-models.html#cb132-10"></a>  )</span>
-<span id="cb132-11"><a href="ip-weighting-and-marginal-structural-models.html#cb132-11"></a><span class="kw">summary</span>(denom.fit)</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="ip-weighting-and-marginal-structural-models.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="co"># estimation of denominator of ip weights for A</span></span>
+<span id="cb132-2"><a href="ip-weighting-and-marginal-structural-models.html#cb132-2" aria-hidden="true" tabindex="-1"></a>denom.fit <span class="ot">&lt;-</span></span>
+<span id="cb132-3"><a href="ip-weighting-and-marginal-structural-models.html#cb132-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glm</span>(</span>
+<span id="cb132-4"><a href="ip-weighting-and-marginal-structural-models.html#cb132-4" aria-hidden="true" tabindex="-1"></a>    qsmk <span class="sc">~</span> <span class="fu">as.factor</span>(sex) <span class="sc">+</span> <span class="fu">as.factor</span>(race) <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(age <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb132-5"><a href="ip-weighting-and-marginal-structural-models.html#cb132-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.factor</span>(education) <span class="sc">+</span> smokeintensity <span class="sc">+</span></span>
+<span id="cb132-6"><a href="ip-weighting-and-marginal-structural-models.html#cb132-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">I</span>(smokeintensity <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span> smokeyrs <span class="sc">+</span> <span class="fu">I</span>(smokeyrs <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb132-7"><a href="ip-weighting-and-marginal-structural-models.html#cb132-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.factor</span>(exercise) <span class="sc">+</span> <span class="fu">as.factor</span>(active) <span class="sc">+</span> wt71 <span class="sc">+</span> <span class="fu">I</span>(wt71 <span class="sc">^</span> <span class="dv">2</span>),</span>
+<span id="cb132-8"><a href="ip-weighting-and-marginal-structural-models.html#cb132-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> <span class="fu">binomial</span>(),</span>
+<span id="cb132-9"><a href="ip-weighting-and-marginal-structural-models.html#cb132-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> nhefs</span>
+<span id="cb132-10"><a href="ip-weighting-and-marginal-structural-models.html#cb132-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb132-11"><a href="ip-weighting-and-marginal-structural-models.html#cb132-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(denom.fit)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = qsmk ~ as.factor(sex) + as.factor(race) + age + 
@@ -1026,11 +1027,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 1805
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="ip-weighting-and-marginal-structural-models.html#cb134-1"></a>pd.qsmk &lt;-<span class="st"> </span><span class="kw">predict</span>(denom.fit, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb134-2"><a href="ip-weighting-and-marginal-structural-models.html#cb134-2"></a></span>
-<span id="cb134-3"><a href="ip-weighting-and-marginal-structural-models.html#cb134-3"></a><span class="co"># estimation of numerator of ip weights for A</span></span>
-<span id="cb134-4"><a href="ip-weighting-and-marginal-structural-models.html#cb134-4"></a>numer.fit &lt;-<span class="st"> </span><span class="kw">glm</span>(qsmk <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">family =</span> <span class="kw">binomial</span>(), <span class="dt">data =</span> nhefs)</span>
-<span id="cb134-5"><a href="ip-weighting-and-marginal-structural-models.html#cb134-5"></a><span class="kw">summary</span>(numer.fit)</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="ip-weighting-and-marginal-structural-models.html#cb134-1" aria-hidden="true" tabindex="-1"></a>pd.qsmk <span class="ot">&lt;-</span> <span class="fu">predict</span>(denom.fit, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb134-2"><a href="ip-weighting-and-marginal-structural-models.html#cb134-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-3"><a href="ip-weighting-and-marginal-structural-models.html#cb134-3" aria-hidden="true" tabindex="-1"></a><span class="co"># estimation of numerator of ip weights for A</span></span>
+<span id="cb134-4"><a href="ip-weighting-and-marginal-structural-models.html#cb134-4" aria-hidden="true" tabindex="-1"></a>numer.fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(qsmk <span class="sc">~</span> <span class="dv">1</span>, <span class="at">family =</span> <span class="fu">binomial</span>(), <span class="at">data =</span> nhefs)</span>
+<span id="cb134-5"><a href="ip-weighting-and-marginal-structural-models.html#cb134-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(numer.fit)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = qsmk ~ 1, family = binomial(), data = nhefs)
@@ -1052,19 +1053,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 1878
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="ip-weighting-and-marginal-structural-models.html#cb136-1"></a>pn.qsmk &lt;-<span class="st"> </span><span class="kw">predict</span>(numer.fit, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb136-2"><a href="ip-weighting-and-marginal-structural-models.html#cb136-2"></a></span>
-<span id="cb136-3"><a href="ip-weighting-and-marginal-structural-models.html#cb136-3"></a><span class="co"># estimation of denominator of ip weights for C</span></span>
-<span id="cb136-4"><a href="ip-weighting-and-marginal-structural-models.html#cb136-4"></a>denom.cens &lt;-<span class="st"> </span><span class="kw">glm</span>(</span>
-<span id="cb136-5"><a href="ip-weighting-and-marginal-structural-models.html#cb136-5"></a>  cens <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(qsmk) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(sex) <span class="op">+</span></span>
-<span id="cb136-6"><a href="ip-weighting-and-marginal-structural-models.html#cb136-6"></a><span class="st">    </span><span class="kw">as.factor</span>(race) <span class="op">+</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(age <span class="op">^</span><span class="st"> </span><span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb136-7"><a href="ip-weighting-and-marginal-structural-models.html#cb136-7"></a><span class="st">    </span><span class="kw">as.factor</span>(education) <span class="op">+</span><span class="st"> </span>smokeintensity <span class="op">+</span></span>
-<span id="cb136-8"><a href="ip-weighting-and-marginal-structural-models.html#cb136-8"></a><span class="st">    </span><span class="kw">I</span>(smokeintensity <span class="op">^</span><span class="st"> </span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>smokeyrs <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(smokeyrs <span class="op">^</span><span class="st"> </span><span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb136-9"><a href="ip-weighting-and-marginal-structural-models.html#cb136-9"></a><span class="st">    </span><span class="kw">as.factor</span>(exercise) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(active) <span class="op">+</span><span class="st"> </span>wt71 <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(wt71 <span class="op">^</span><span class="st"> </span><span class="dv">2</span>),</span>
-<span id="cb136-10"><a href="ip-weighting-and-marginal-structural-models.html#cb136-10"></a>  <span class="dt">family =</span> <span class="kw">binomial</span>(),</span>
-<span id="cb136-11"><a href="ip-weighting-and-marginal-structural-models.html#cb136-11"></a>  <span class="dt">data =</span> nhefs</span>
-<span id="cb136-12"><a href="ip-weighting-and-marginal-structural-models.html#cb136-12"></a>)</span>
-<span id="cb136-13"><a href="ip-weighting-and-marginal-structural-models.html#cb136-13"></a><span class="kw">summary</span>(denom.cens)</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="ip-weighting-and-marginal-structural-models.html#cb136-1" aria-hidden="true" tabindex="-1"></a>pn.qsmk <span class="ot">&lt;-</span> <span class="fu">predict</span>(numer.fit, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb136-2"><a href="ip-weighting-and-marginal-structural-models.html#cb136-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb136-3"><a href="ip-weighting-and-marginal-structural-models.html#cb136-3" aria-hidden="true" tabindex="-1"></a><span class="co"># estimation of denominator of ip weights for C</span></span>
+<span id="cb136-4"><a href="ip-weighting-and-marginal-structural-models.html#cb136-4" aria-hidden="true" tabindex="-1"></a>denom.cens <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb136-5"><a href="ip-weighting-and-marginal-structural-models.html#cb136-5" aria-hidden="true" tabindex="-1"></a>  cens <span class="sc">~</span> <span class="fu">as.factor</span>(qsmk) <span class="sc">+</span> <span class="fu">as.factor</span>(sex) <span class="sc">+</span></span>
+<span id="cb136-6"><a href="ip-weighting-and-marginal-structural-models.html#cb136-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.factor</span>(race) <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(age <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb136-7"><a href="ip-weighting-and-marginal-structural-models.html#cb136-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.factor</span>(education) <span class="sc">+</span> smokeintensity <span class="sc">+</span></span>
+<span id="cb136-8"><a href="ip-weighting-and-marginal-structural-models.html#cb136-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">I</span>(smokeintensity <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span> smokeyrs <span class="sc">+</span> <span class="fu">I</span>(smokeyrs <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb136-9"><a href="ip-weighting-and-marginal-structural-models.html#cb136-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.factor</span>(exercise) <span class="sc">+</span> <span class="fu">as.factor</span>(active) <span class="sc">+</span> wt71 <span class="sc">+</span> <span class="fu">I</span>(wt71 <span class="sc">^</span> <span class="dv">2</span>),</span>
+<span id="cb136-10"><a href="ip-weighting-and-marginal-structural-models.html#cb136-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">binomial</span>(),</span>
+<span id="cb136-11"><a href="ip-weighting-and-marginal-structural-models.html#cb136-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> nhefs</span>
+<span id="cb136-12"><a href="ip-weighting-and-marginal-structural-models.html#cb136-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb136-13"><a href="ip-weighting-and-marginal-structural-models.html#cb136-13" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(denom.cens)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = cens ~ as.factor(qsmk) + as.factor(sex) + as.factor(race) + 
@@ -1109,12 +1110,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 505.4
 ## 
 ## Number of Fisher Scoring iterations: 7</code></pre>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="ip-weighting-and-marginal-structural-models.html#cb138-1"></a>pd.cens &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">predict</span>(denom.cens, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb138-2"><a href="ip-weighting-and-marginal-structural-models.html#cb138-2"></a></span>
-<span id="cb138-3"><a href="ip-weighting-and-marginal-structural-models.html#cb138-3"></a><span class="co"># estimation of numerator of ip weights for C</span></span>
-<span id="cb138-4"><a href="ip-weighting-and-marginal-structural-models.html#cb138-4"></a>numer.cens &lt;-</span>
-<span id="cb138-5"><a href="ip-weighting-and-marginal-structural-models.html#cb138-5"></a><span class="st">  </span><span class="kw">glm</span>(cens <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(qsmk), <span class="dt">family =</span> <span class="kw">binomial</span>(), <span class="dt">data =</span> nhefs)</span>
-<span id="cb138-6"><a href="ip-weighting-and-marginal-structural-models.html#cb138-6"></a><span class="kw">summary</span>(numer.cens)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="ip-weighting-and-marginal-structural-models.html#cb138-1" aria-hidden="true" tabindex="-1"></a>pd.cens <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">predict</span>(denom.cens, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb138-2"><a href="ip-weighting-and-marginal-structural-models.html#cb138-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb138-3"><a href="ip-weighting-and-marginal-structural-models.html#cb138-3" aria-hidden="true" tabindex="-1"></a><span class="co"># estimation of numerator of ip weights for C</span></span>
+<span id="cb138-4"><a href="ip-weighting-and-marginal-structural-models.html#cb138-4" aria-hidden="true" tabindex="-1"></a>numer.cens <span class="ot">&lt;-</span></span>
+<span id="cb138-5"><a href="ip-weighting-and-marginal-structural-models.html#cb138-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glm</span>(cens <span class="sc">~</span> <span class="fu">as.factor</span>(qsmk), <span class="at">family =</span> <span class="fu">binomial</span>(), <span class="at">data =</span> nhefs)</span>
+<span id="cb138-6"><a href="ip-weighting-and-marginal-structural-models.html#cb138-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(numer.cens)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = cens ~ as.factor(qsmk), family = binomial(), data = nhefs)
@@ -1137,37 +1138,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 531.8
 ## 
 ## Number of Fisher Scoring iterations: 6</code></pre>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="ip-weighting-and-marginal-structural-models.html#cb140-1"></a>pn.cens &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">predict</span>(numer.cens, <span class="dt">type =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb140-2"><a href="ip-weighting-and-marginal-structural-models.html#cb140-2"></a></span>
-<span id="cb140-3"><a href="ip-weighting-and-marginal-structural-models.html#cb140-3"></a>nhefs<span class="op">$</span>sw.a &lt;-</span>
-<span id="cb140-4"><a href="ip-weighting-and-marginal-structural-models.html#cb140-4"></a><span class="st">  </span><span class="kw">ifelse</span>(nhefs<span class="op">$</span>qsmk <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, ((<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>pn.qsmk) <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>pd.qsmk)),</span>
-<span id="cb140-5"><a href="ip-weighting-and-marginal-structural-models.html#cb140-5"></a>         (pn.qsmk <span class="op">/</span><span class="st"> </span>pd.qsmk))</span>
-<span id="cb140-6"><a href="ip-weighting-and-marginal-structural-models.html#cb140-6"></a>nhefs<span class="op">$</span>sw.c &lt;-<span class="st"> </span>pn.cens <span class="op">/</span><span class="st"> </span>pd.cens</span>
-<span id="cb140-7"><a href="ip-weighting-and-marginal-structural-models.html#cb140-7"></a>nhefs<span class="op">$</span>sw &lt;-<span class="st"> </span>nhefs<span class="op">$</span>sw.c <span class="op">*</span><span class="st"> </span>nhefs<span class="op">$</span>sw.a</span>
-<span id="cb140-8"><a href="ip-weighting-and-marginal-structural-models.html#cb140-8"></a></span>
-<span id="cb140-9"><a href="ip-weighting-and-marginal-structural-models.html#cb140-9"></a><span class="kw">summary</span>(nhefs<span class="op">$</span>sw.a)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="ip-weighting-and-marginal-structural-models.html#cb140-1" aria-hidden="true" tabindex="-1"></a>pn.cens <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">predict</span>(numer.cens, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb140-2"><a href="ip-weighting-and-marginal-structural-models.html#cb140-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-3"><a href="ip-weighting-and-marginal-structural-models.html#cb140-3" aria-hidden="true" tabindex="-1"></a>nhefs<span class="sc">$</span>sw.a <span class="ot">&lt;-</span></span>
+<span id="cb140-4"><a href="ip-weighting-and-marginal-structural-models.html#cb140-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(nhefs<span class="sc">$</span>qsmk <span class="sc">==</span> <span class="dv">0</span>, ((<span class="dv">1</span> <span class="sc">-</span> pn.qsmk) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> pd.qsmk)),</span>
+<span id="cb140-5"><a href="ip-weighting-and-marginal-structural-models.html#cb140-5" aria-hidden="true" tabindex="-1"></a>         (pn.qsmk <span class="sc">/</span> pd.qsmk))</span>
+<span id="cb140-6"><a href="ip-weighting-and-marginal-structural-models.html#cb140-6" aria-hidden="true" tabindex="-1"></a>nhefs<span class="sc">$</span>sw.c <span class="ot">&lt;-</span> pn.cens <span class="sc">/</span> pd.cens</span>
+<span id="cb140-7"><a href="ip-weighting-and-marginal-structural-models.html#cb140-7" aria-hidden="true" tabindex="-1"></a>nhefs<span class="sc">$</span>sw <span class="ot">&lt;-</span> nhefs<span class="sc">$</span>sw.c <span class="sc">*</span> nhefs<span class="sc">$</span>sw.a</span>
+<span id="cb140-8"><a href="ip-weighting-and-marginal-structural-models.html#cb140-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-9"><a href="ip-weighting-and-marginal-structural-models.html#cb140-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhefs<span class="sc">$</span>sw.a)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    0.33    0.86    0.95    1.00    1.08    4.21</code></pre>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="ip-weighting-and-marginal-structural-models.html#cb142-1"></a><span class="kw">sd</span>(nhefs<span class="op">$</span>sw.a)</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="ip-weighting-and-marginal-structural-models.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(nhefs<span class="sc">$</span>sw.a)</span></code></pre></div>
 <pre><code>## [1] 0.284</code></pre>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="ip-weighting-and-marginal-structural-models.html#cb144-1"></a><span class="kw">summary</span>(nhefs<span class="op">$</span>sw.c)</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="ip-weighting-and-marginal-structural-models.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhefs<span class="sc">$</span>sw.c)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    0.94    0.98    0.99    1.01    1.01    7.58</code></pre>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="ip-weighting-and-marginal-structural-models.html#cb146-1"></a><span class="kw">sd</span>(nhefs<span class="op">$</span>sw.c)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="ip-weighting-and-marginal-structural-models.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(nhefs<span class="sc">$</span>sw.c)</span></code></pre></div>
 <pre><code>## [1] 0.178</code></pre>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="ip-weighting-and-marginal-structural-models.html#cb148-1"></a><span class="kw">summary</span>(nhefs<span class="op">$</span>sw)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="ip-weighting-and-marginal-structural-models.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhefs<span class="sc">$</span>sw)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    0.35    0.86    0.94    1.01    1.08   12.86</code></pre>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="ip-weighting-and-marginal-structural-models.html#cb150-1"></a><span class="kw">sd</span>(nhefs<span class="op">$</span>sw)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="ip-weighting-and-marginal-structural-models.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(nhefs<span class="sc">$</span>sw)</span></code></pre></div>
 <pre><code>## [1] 0.411</code></pre>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="ip-weighting-and-marginal-structural-models.html#cb152-1"></a>msm.sw &lt;-<span class="st"> </span><span class="kw">geeglm</span>(</span>
-<span id="cb152-2"><a href="ip-weighting-and-marginal-structural-models.html#cb152-2"></a>  wt82_<span class="dv">71</span> <span class="op">~</span><span class="st"> </span>qsmk,</span>
-<span id="cb152-3"><a href="ip-weighting-and-marginal-structural-models.html#cb152-3"></a>  <span class="dt">data =</span> nhefs,</span>
-<span id="cb152-4"><a href="ip-weighting-and-marginal-structural-models.html#cb152-4"></a>  <span class="dt">weights =</span> sw,</span>
-<span id="cb152-5"><a href="ip-weighting-and-marginal-structural-models.html#cb152-5"></a>  <span class="dt">id =</span> seqn,</span>
-<span id="cb152-6"><a href="ip-weighting-and-marginal-structural-models.html#cb152-6"></a>  <span class="dt">corstr =</span> <span class="st">&quot;independence&quot;</span></span>
-<span id="cb152-7"><a href="ip-weighting-and-marginal-structural-models.html#cb152-7"></a>)</span>
-<span id="cb152-8"><a href="ip-weighting-and-marginal-structural-models.html#cb152-8"></a><span class="kw">summary</span>(msm.sw)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="ip-weighting-and-marginal-structural-models.html#cb152-1" aria-hidden="true" tabindex="-1"></a>msm.sw <span class="ot">&lt;-</span> <span class="fu">geeglm</span>(</span>
+<span id="cb152-2"><a href="ip-weighting-and-marginal-structural-models.html#cb152-2" aria-hidden="true" tabindex="-1"></a>  wt82_71 <span class="sc">~</span> qsmk,</span>
+<span id="cb152-3"><a href="ip-weighting-and-marginal-structural-models.html#cb152-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> nhefs,</span>
+<span id="cb152-4"><a href="ip-weighting-and-marginal-structural-models.html#cb152-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">weights =</span> sw,</span>
+<span id="cb152-5"><a href="ip-weighting-and-marginal-structural-models.html#cb152-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> seqn,</span>
+<span id="cb152-6"><a href="ip-weighting-and-marginal-structural-models.html#cb152-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">corstr =</span> <span class="st">&quot;independence&quot;</span></span>
+<span id="cb152-7"><a href="ip-weighting-and-marginal-structural-models.html#cb152-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb152-8"><a href="ip-weighting-and-marginal-structural-models.html#cb152-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(msm.sw)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## geeglm(formula = wt82_71 ~ qsmk, data = nhefs, weights = sw, 
@@ -1186,11 +1187,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##             Estimate Std.err
 ## (Intercept)     61.8    3.83
 ## Number of clusters:   1566  Maximum cluster size: 1</code></pre>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="ip-weighting-and-marginal-structural-models.html#cb154-1"></a>beta &lt;-<span class="st"> </span><span class="kw">coef</span>(msm.sw)</span>
-<span id="cb154-2"><a href="ip-weighting-and-marginal-structural-models.html#cb154-2"></a>SE &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">summary</span>(msm.sw))[, <span class="dv">2</span>]</span>
-<span id="cb154-3"><a href="ip-weighting-and-marginal-structural-models.html#cb154-3"></a>lcl &lt;-<span class="st"> </span>beta <span class="op">-</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>) <span class="op">*</span><span class="st"> </span>SE</span>
-<span id="cb154-4"><a href="ip-weighting-and-marginal-structural-models.html#cb154-4"></a>ucl &lt;-<span class="st"> </span>beta <span class="op">+</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.975</span>) <span class="op">*</span><span class="st"> </span>SE</span>
-<span id="cb154-5"><a href="ip-weighting-and-marginal-structural-models.html#cb154-5"></a><span class="kw">cbind</span>(beta, lcl, ucl)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="ip-weighting-and-marginal-structural-models.html#cb154-1" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">coef</span>(msm.sw)</span>
+<span id="cb154-2"><a href="ip-weighting-and-marginal-structural-models.html#cb154-2" aria-hidden="true" tabindex="-1"></a>SE <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(msm.sw))[, <span class="dv">2</span>]</span>
+<span id="cb154-3"><a href="ip-weighting-and-marginal-structural-models.html#cb154-3" aria-hidden="true" tabindex="-1"></a>lcl <span class="ot">&lt;-</span> beta <span class="sc">-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> SE</span>
+<span id="cb154-4"><a href="ip-weighting-and-marginal-structural-models.html#cb154-4" aria-hidden="true" tabindex="-1"></a>ucl <span class="ot">&lt;-</span> beta <span class="sc">+</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> SE</span>
+<span id="cb154-5"><a href="ip-weighting-and-marginal-structural-models.html#cb154-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(beta, lcl, ucl)</span></code></pre></div>
 <pre><code>##             beta  lcl  ucl
 ## (Intercept) 1.66 1.21 2.12
 ## qsmk        3.50 2.47 4.53</code></pre>

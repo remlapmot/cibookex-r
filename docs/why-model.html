@@ -27,7 +27,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2020-10-14" />
+<meta name="date" content="2020-12-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -36,7 +36,7 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="ip-weighting-and-marginal-structural-models.html"/>
-<script src="libs/header-attrs-2.4/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -54,7 +54,8 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -286,34 +287,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Sample averages by treatment level</li>
 <li>Data from Figures 11.1 and 11.2</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="why-model.html#cb4-1"></a>A &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb4-2"><a href="why-model.html#cb4-2"></a>Y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">150</span>, <span class="dv">220</span>, <span class="dv">110</span>, <span class="dv">50</span>, <span class="dv">180</span>, <span class="dv">90</span>, <span class="dv">170</span>, <span class="dv">170</span>, <span class="dv">30</span>,</span>
-<span id="cb4-3"><a href="why-model.html#cb4-3"></a>       <span class="dv">70</span>, <span class="dv">110</span>, <span class="dv">80</span>, <span class="dv">50</span>, <span class="dv">10</span>, <span class="dv">20</span>)</span>
-<span id="cb4-4"><a href="why-model.html#cb4-4"></a></span>
-<span id="cb4-5"><a href="why-model.html#cb4-5"></a><span class="kw">plot</span>(A, Y)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="why-model.html#cb4-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb4-2"><a href="why-model.html#cb4-2" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">200</span>, <span class="dv">150</span>, <span class="dv">220</span>, <span class="dv">110</span>, <span class="dv">50</span>, <span class="dv">180</span>, <span class="dv">90</span>, <span class="dv">170</span>, <span class="dv">170</span>, <span class="dv">30</span>,</span>
+<span id="cb4-3"><a href="why-model.html#cb4-3" aria-hidden="true" tabindex="-1"></a>       <span class="dv">70</span>, <span class="dv">110</span>, <span class="dv">80</span>, <span class="dv">50</span>, <span class="dv">10</span>, <span class="dv">20</span>)</span>
+<span id="cb4-4"><a href="why-model.html#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="why-model.html#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(A, Y)</span></code></pre></div>
 <p><img src="11-why-model-r_files/figure-html/unnamed-chunk-1-1.png" width="85%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="why-model.html#cb5-1"></a><span class="kw">summary</span>(Y[A <span class="op">==</span><span class="st"> </span><span class="dv">0</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="why-model.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Y[A <span class="sc">==</span> <span class="dv">0</span>])</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    10.0    27.5    60.0    67.5    87.5   170.0</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="why-model.html#cb7-1"></a><span class="kw">summary</span>(Y[A <span class="op">==</span><span class="st"> </span><span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="why-model.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Y[A <span class="sc">==</span> <span class="dv">1</span>])</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    50.0   105.0   160.0   146.2   185.0   220.0</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="why-model.html#cb9-1"></a>A2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>)</span>
-<span id="cb9-2"><a href="why-model.html#cb9-2"></a>Y2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">110</span>, <span class="dv">80</span>, <span class="dv">50</span>, <span class="dv">40</span>, <span class="dv">170</span>, <span class="dv">30</span>, <span class="dv">70</span>, <span class="dv">50</span>, <span class="dv">110</span>, <span class="dv">50</span>, <span class="dv">180</span>,</span>
-<span id="cb9-3"><a href="why-model.html#cb9-3"></a>        <span class="dv">130</span>, <span class="dv">200</span>, <span class="dv">150</span>, <span class="dv">220</span>, <span class="dv">210</span>)</span>
-<span id="cb9-4"><a href="why-model.html#cb9-4"></a></span>
-<span id="cb9-5"><a href="why-model.html#cb9-5"></a><span class="kw">plot</span>(A2, Y2)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="why-model.html#cb9-1" aria-hidden="true" tabindex="-1"></a>A2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>)</span>
+<span id="cb9-2"><a href="why-model.html#cb9-2" aria-hidden="true" tabindex="-1"></a>Y2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">110</span>, <span class="dv">80</span>, <span class="dv">50</span>, <span class="dv">40</span>, <span class="dv">170</span>, <span class="dv">30</span>, <span class="dv">70</span>, <span class="dv">50</span>, <span class="dv">110</span>, <span class="dv">50</span>, <span class="dv">180</span>,</span>
+<span id="cb9-3"><a href="why-model.html#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="dv">130</span>, <span class="dv">200</span>, <span class="dv">150</span>, <span class="dv">220</span>, <span class="dv">210</span>)</span>
+<span id="cb9-4"><a href="why-model.html#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="why-model.html#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(A2, Y2)</span></code></pre></div>
 <p><img src="11-why-model-r_files/figure-html/unnamed-chunk-1-2.png" width="85%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="why-model.html#cb10-1"></a><span class="kw">summary</span>(Y2[A2 <span class="op">==</span><span class="st"> </span><span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="why-model.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Y2[A2 <span class="sc">==</span> <span class="dv">1</span>])</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    40.0    47.5    65.0    70.0    87.5   110.0</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="why-model.html#cb12-1"></a><span class="kw">summary</span>(Y2[A2 <span class="op">==</span><span class="st"> </span><span class="dv">2</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="why-model.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Y2[A2 <span class="sc">==</span> <span class="dv">2</span>])</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##      30      45      60      80      95     170</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="why-model.html#cb14-1"></a><span class="kw">summary</span>(Y2[A2 <span class="op">==</span><span class="st"> </span><span class="dv">3</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="why-model.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Y2[A2 <span class="sc">==</span> <span class="dv">3</span>])</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    50.0    95.0   120.0   117.5   142.5   180.0</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="why-model.html#cb16-1"></a><span class="kw">summary</span>(Y2[A2 <span class="op">==</span><span class="st"> </span><span class="dv">4</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="why-model.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Y2[A2 <span class="sc">==</span> <span class="dv">4</span>])</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   150.0   187.5   205.0   195.0   212.5   220.0</code></pre>
 </div>
@@ -323,15 +324,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>2-parameter linear model</li>
 <li>Data from Figures 11.3 and 11.1</li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="why-model.html#cb18-1"></a>A3 &lt;-</span>
-<span id="cb18-2"><a href="why-model.html#cb18-2"></a><span class="st">  </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">11</span>, <span class="dv">17</span>, <span class="dv">23</span>, <span class="dv">29</span>, <span class="dv">37</span>, <span class="dv">41</span>, <span class="dv">53</span>, <span class="dv">67</span>, <span class="dv">79</span>, <span class="dv">83</span>, <span class="dv">97</span>, <span class="dv">60</span>, <span class="dv">71</span>, <span class="dv">15</span>, <span class="dv">45</span>)</span>
-<span id="cb18-3"><a href="why-model.html#cb18-3"></a>Y3 &lt;-</span>
-<span id="cb18-4"><a href="why-model.html#cb18-4"></a><span class="st">  </span><span class="kw">c</span>(<span class="dv">21</span>, <span class="dv">54</span>, <span class="dv">33</span>, <span class="dv">101</span>, <span class="dv">85</span>, <span class="dv">65</span>, <span class="dv">157</span>, <span class="dv">120</span>, <span class="dv">111</span>, <span class="dv">200</span>, <span class="dv">140</span>, <span class="dv">220</span>, <span class="dv">230</span>, <span class="dv">217</span>,</span>
-<span id="cb18-5"><a href="why-model.html#cb18-5"></a>    <span class="dv">11</span>, <span class="dv">190</span>)</span>
-<span id="cb18-6"><a href="why-model.html#cb18-6"></a></span>
-<span id="cb18-7"><a href="why-model.html#cb18-7"></a><span class="kw">plot</span>(Y3 <span class="op">~</span><span class="st"> </span>A3)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="why-model.html#cb18-1" aria-hidden="true" tabindex="-1"></a>A3 <span class="ot">&lt;-</span></span>
+<span id="cb18-2"><a href="why-model.html#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">11</span>, <span class="dv">17</span>, <span class="dv">23</span>, <span class="dv">29</span>, <span class="dv">37</span>, <span class="dv">41</span>, <span class="dv">53</span>, <span class="dv">67</span>, <span class="dv">79</span>, <span class="dv">83</span>, <span class="dv">97</span>, <span class="dv">60</span>, <span class="dv">71</span>, <span class="dv">15</span>, <span class="dv">45</span>)</span>
+<span id="cb18-3"><a href="why-model.html#cb18-3" aria-hidden="true" tabindex="-1"></a>Y3 <span class="ot">&lt;-</span></span>
+<span id="cb18-4"><a href="why-model.html#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">21</span>, <span class="dv">54</span>, <span class="dv">33</span>, <span class="dv">101</span>, <span class="dv">85</span>, <span class="dv">65</span>, <span class="dv">157</span>, <span class="dv">120</span>, <span class="dv">111</span>, <span class="dv">200</span>, <span class="dv">140</span>, <span class="dv">220</span>, <span class="dv">230</span>, <span class="dv">217</span>,</span>
+<span id="cb18-5"><a href="why-model.html#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="dv">11</span>, <span class="dv">190</span>)</span>
+<span id="cb18-6"><a href="why-model.html#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="why-model.html#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Y3 <span class="sc">~</span> A3)</span></code></pre></div>
 <p><img src="11-why-model-r_files/figure-html/unnamed-chunk-2-1.png" width="85%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="why-model.html#cb19-1"></a><span class="kw">summary</span>(<span class="kw">glm</span>(Y3 <span class="op">~</span><span class="st"> </span>A3))</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="why-model.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">glm</span>(Y3 <span class="sc">~</span> A3))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = Y3 ~ A3)
@@ -354,10 +355,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 170.43
 ## 
 ## Number of Fisher Scoring iterations: 2</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="why-model.html#cb21-1"></a><span class="kw">predict</span>(<span class="kw">glm</span>(Y3 <span class="op">~</span><span class="st"> </span>A3), <span class="kw">data.frame</span>(<span class="dt">A3 =</span> <span class="dv">90</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="why-model.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(<span class="fu">glm</span>(Y3 <span class="sc">~</span> A3), <span class="fu">data.frame</span>(<span class="at">A3 =</span> <span class="dv">90</span>))</span></code></pre></div>
 <pre><code>##      1 
 ## 216.89</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="why-model.html#cb23-1"></a><span class="kw">summary</span>(<span class="kw">glm</span>(Y <span class="op">~</span><span class="st"> </span>A))</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="why-model.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">glm</span>(Y <span class="sc">~</span> A))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = Y ~ A)
@@ -387,10 +388,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>3-parameter linear model</li>
 <li>Data from Figure 11.3</li>
 </ul>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="why-model.html#cb25-1"></a>Asq &lt;-<span class="st"> </span>A3 <span class="op">*</span><span class="st"> </span>A3</span>
-<span id="cb25-2"><a href="why-model.html#cb25-2"></a></span>
-<span id="cb25-3"><a href="why-model.html#cb25-3"></a>mod3 &lt;-<span class="st"> </span><span class="kw">glm</span>(Y3 <span class="op">~</span><span class="st"> </span>A3 <span class="op">+</span><span class="st"> </span>Asq)</span>
-<span id="cb25-4"><a href="why-model.html#cb25-4"></a><span class="kw">summary</span>(mod3)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="why-model.html#cb25-1" aria-hidden="true" tabindex="-1"></a>Asq <span class="ot">&lt;-</span> A3 <span class="sc">*</span> A3</span>
+<span id="cb25-2"><a href="why-model.html#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="why-model.html#cb25-3" aria-hidden="true" tabindex="-1"></a>mod3 <span class="ot">&lt;-</span> <span class="fu">glm</span>(Y3 <span class="sc">~</span> A3 <span class="sc">+</span> Asq)</span>
+<span id="cb25-4"><a href="why-model.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mod3)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = Y3 ~ A3 + Asq)
@@ -414,7 +415,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 170.39
 ## 
 ## Number of Fisher Scoring iterations: 2</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="why-model.html#cb27-1"></a><span class="kw">predict</span>(mod3, <span class="kw">data.frame</span>(<span class="kw">cbind</span>(<span class="dt">A3 =</span> <span class="dv">90</span>, <span class="dt">Asq =</span> <span class="dv">8100</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="why-model.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(mod3, <span class="fu">data.frame</span>(<span class="fu">cbind</span>(<span class="at">A3 =</span> <span class="dv">90</span>, <span class="at">Asq =</span> <span class="dv">8100</span>)))</span></code></pre></div>
 <pre><code>##        1 
 ## 197.1269</code></pre>
 
