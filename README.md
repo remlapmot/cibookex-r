@@ -12,7 +12,7 @@
     devtools::install_dev_deps()
     ```
 - You can install the Stata dependencies, in Stata, with
-    ```
+    ``` stata
     do depdendency
     ```
 
