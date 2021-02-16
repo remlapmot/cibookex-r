@@ -5,15 +5,14 @@
 \documentclass[
   10pt,
 ]{book}
+\usepackage{amsmath,amssymb}
 \usepackage{lmodern}
 \usepackage{setspace}
-\usepackage{amsmath}
 \usepackage{ifxetex,ifluatex}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
-  \usepackage{amssymb}
 \else % if luatex or xetex
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
@@ -85,7 +84,7 @@
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\usepackage{longtable,booktabs}
+\usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -129,7 +128,7 @@
 
 \title{Causal Inference: What If. R and Stata code for Exercises}
 \author{Book by M. A. Hernán and J. M. Robins \and R code by Joy Shi and Sean McGrath \and Stata code by Eleanor Murray and Roger Logan \and R Markdown code by Tom Palmer}
-\date{01 December 2020}
+\date{16 February 2021}
 
 \begin{document}
 \maketitle
@@ -2407,16 +2406,16 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Shaded}
 
 \begin{verbatim}
-##                         V1             mean                 se               ll
-## 1                 Observed 2.56188497106103 0.0189486752596472 2.52474624999738
-## 2             No Treatment 1.65212306626746  0.188867544658352 1.28194948088858
-## 3                Treatment 5.11474489549347  0.383003577301058 4.36407167803339
-## 4 Treatment - No Treatment 3.46262182922601  0.568081551205372 2.34920244858183
+##                         V1             mean                se               ll
+## 1                 Observed 2.56188497106103 0.172384093149165 2.22401835698107
+## 2             No Treatment 1.65212306626746 0.278760672337951  1.1057621881789
+## 3                Treatment 5.11474489549347 0.502048576036412 4.13074776797248
+## 4 Treatment - No Treatment 3.46262182922601 0.691918219017044  2.1064870397055
 ##                 ul
-## 1 2.59902369212469
-## 2 2.02229665164634
-## 3 5.86541811295354
-## 4 4.57604120987018
+## 1 2.89975158514099
+## 2 2.19848394435601
+## 3 6.09874202301445
+## 4 4.81875661874651
 \end{verbatim}
 
 \hypertarget{g-estimation-of-structural-nested-models}{%
@@ -3855,15 +3854,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ##                         V1             mean                se               ll
-## 1                 Observed 2.63384609228479 0.196461608749857 2.24878841479027
-## 2             No Treatment 1.71983636149843 0.120623413744144 1.48341881486763
-## 3                Treatment 5.35072300362993 0.564470262435637 4.24438161891221
-## 4 Treatment - No Treatment 3.63088664213151 0.663053626467039 2.33132541443744
+## 1                 Observed 2.63384609228479 0.187609984583434 2.26613727936115
+## 2             No Treatment 1.71983636149843 0.130321811829106 1.46441030391337
+## 3                Treatment 5.35072300362993 0.403256238434124 4.56035529975795
+## 4 Treatment - No Treatment 3.63088664213151 0.286066964696871 3.07020569415895
 ##                 ul
-## 1 3.01890376977931
-## 2 1.95625390812922
-## 3 6.45706438834765
-## 4 4.93044786982558
+## 1 3.00155490520844
+## 2 1.97526241908348
+## 3 6.14109070750191
+## 4 4.19156759010406
 \end{verbatim}
 
 \begin{Shaded}
@@ -3994,7 +3993,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ## 95% CI for the causal mean difference
-## 2.660403 , 4.472592
+## 2.481427 , 4.534335
 \end{verbatim}
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.
@@ -5003,7 +5002,7 @@ For reproducibility.
 \begin{verbatim}
 ## - Session info ---------------------------------------------------------------
 ##  setting  value                       
-##  version  R version 4.0.3 (2020-10-10)
+##  version  R version 4.0.4 (2021-02-15)
 ##  os       Windows 10 x64              
 ##  system   x86_64, mingw32             
 ##  ui       RTerm                       
@@ -5011,35 +5010,30 @@ For reproducibility.
 ##  collate  English_United Kingdom.1252 
 ##  ctype    English_United Kingdom.1252 
 ##  tz       Europe/London               
-##  date     2020-12-01                  
+##  date     2021-02-16                  
 ## 
 ## - Packages -------------------------------------------------------------------
-##  package     * version date       lib source                             
-##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 4.0.2)                     
-##  bookdown      0.21    2020-10-13 [1] CRAN (R 4.0.3)                     
-##  cli           2.2.0   2020-11-20 [1] CRAN (R 4.0.3)                     
-##  clisymbols    1.2.0   2017-05-21 [1] CRAN (R 4.0.3)                     
-##  crayon        1.3.4   2017-09-16 [1] CRAN (R 4.0.2)                     
-##  digest        0.6.27  2020-10-24 [1] CRAN (R 4.0.3)                     
-##  evaluate      0.14    2019-05-28 [1] CRAN (R 4.0.2)                     
-##  fansi         0.4.1   2020-01-08 [1] CRAN (R 4.0.2)                     
-##  glue          1.4.2   2020-08-27 [1] CRAN (R 4.0.2)                     
-##  htmltools     0.5.0   2020-06-16 [1] CRAN (R 4.0.2)                     
-##  knitr         1.30    2020-09-22 [1] CRAN (R 4.0.2)                     
-##  magrittr      2.0.1   2020-11-17 [1] CRAN (R 4.0.3)                     
-##  prompt        1.0.0   2020-10-26 [1] Github (gaborcsardi/prompt@b332c42)
-##  rlang         0.4.9   2020-11-26 [1] CRAN (R 4.0.3)                     
-##  rmarkdown     2.5     2020-10-21 [1] CRAN (R 4.0.3)                     
-##  rstudioapi    0.13    2020-11-12 [1] CRAN (R 4.0.3)                     
-##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 4.0.2)                     
-##  stringi       1.5.3   2020-09-09 [1] CRAN (R 4.0.2)                     
-##  stringr       1.4.0   2019-02-10 [1] CRAN (R 4.0.2)                     
-##  withr         2.3.0   2020-09-22 [1] CRAN (R 4.0.2)                     
-##  xfun          0.19    2020-10-30 [1] CRAN (R 4.0.3)                     
-##  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.0.0)                     
+##  package     * version date       lib source        
+##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 4.0.2)
+##  bookdown      0.21    2020-10-13 [1] CRAN (R 4.0.3)
+##  cli           2.3.0   2021-01-31 [1] CRAN (R 4.0.3)
+##  digest        0.6.27  2020-10-24 [1] CRAN (R 4.0.3)
+##  evaluate      0.14    2019-05-28 [1] CRAN (R 4.0.2)
+##  glue          1.4.2   2020-08-27 [1] CRAN (R 4.0.2)
+##  htmltools     0.5.1.1 2021-01-22 [1] CRAN (R 4.0.3)
+##  knitr         1.31    2021-01-27 [1] CRAN (R 4.0.3)
+##  magrittr      2.0.1   2020-11-17 [1] CRAN (R 4.0.3)
+##  rlang         0.4.10  2020-12-30 [1] CRAN (R 4.0.3)
+##  rmarkdown     2.6     2020-12-14 [1] CRAN (R 4.0.3)
+##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 4.0.2)
+##  stringi       1.5.3   2020-09-09 [1] CRAN (R 4.0.2)
+##  stringr       1.4.0   2019-02-10 [1] CRAN (R 4.0.2)
+##  withr         2.4.1   2021-01-26 [1] CRAN (R 4.0.3)
+##  xfun          0.21    2021-02-10 [1] CRAN (R 4.0.3)
+##  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.0.0)
 ## 
 ## [1] C:/Users/tom/Documents/R/win-library/4.0
-## [2] C:/Program Files/R/R-4.0.3/library
+## [2] C:/Program Files/R/R-4.0.4/library
 \end{verbatim}
 
 \hypertarget{part-stata-code}{%
@@ -9657,83 +9651,12 @@ obs. time interval:  (0, survtime]
       Total |    171,076      100.00
 
 
+file ./data/nhefs_surv.dta cannot be modified or erased; likely cause is
+    read-only directory or file
+r(608);
 
-
-
-Logistic regression                             Number of obs     =    171,076
-                                                LR chi2(5)        =      24.26
-                                                Prob > chi2       =     0.0002
-Log likelihood = -2134.1973                     Pseudo R2         =     0.0057
-
-------------------------------------------------------------------------------
-       event | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
--------------+----------------------------------------------------------------
-        qsmk |   1.402527   .6000025     0.79   0.429     .6064099    3.243815
-             |
- qsmk#c.time |
-Smoking c..  |   1.012318   .0162153     0.76   0.445     .9810299    1.044603
-             |
- qsmk#c.time#|
-      c.time |
-Smoking c..  |   .9998342   .0001321    -1.25   0.210     .9995753    1.000093
-             |
-        time |   1.022048   .0090651     2.46   0.014     1.004434    1.039971
-             |
-      c.time#|
-      c.time |   .9998637   .0000699    -1.95   0.051     .9997266    1.000001
-             |
-       _cons |   .0007992   .0001972   -28.90   0.000     .0004927    .0012963
-------------------------------------------------------------------------------
-Note: _cons estimates baseline odds.
-
-(169,510 observations deleted)
-
-(186,354 observations created)
-
-(186354 real changes made)
-
-(187,920 observations created)
-
-(187,920 real changes made)
-
-
-
-
-
-
-(372,708 missing values generated)
-
-(372708 real changes made)
-
-
--------------------------------------------------------------------------------
--> interv = 0
-
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
--------------+---------------------------------------------------------
-       psurv |      1,566    .8279829           0   .8279829   .8279829
-
--------------------------------------------------------------------------------
--> interv = 1
-
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
--------------+---------------------------------------------------------
-       psurv |      1,566     .774282           0    .774282    .774282
-
-
-(3,132 observations created)
-
-(3,132 real changes made)
-
-(375,840 missing values generated)
-
-(375,840 real changes made)
-
-              storage   display    value
-variable name   type    format     label      variable label
--------------------------------------------------------------------------------
-psurv0          float   %9.0g                 psurv, interv == 0
-psurv1          float   %9.0g                 psurv, interv == 1
+end of do-file
+r(608);
 \end{verbatim}
 
 \begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-2} \end{center}
@@ -10083,7 +10006,7 @@ psurv1          float   %9.0g                 psurv, interv == 1
 
 
 
-r; t=0.00 16:05:57
+r; t=0.00 11:25:54
 
       command:  bootipw_surv
        PrY_a0:  r(boot_0)
@@ -10093,7 +10016,7 @@ r; t=0.00 16:05:57
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=18.45 16:06:15
+r; t=19.50 11:26:13
 
 
 
@@ -10335,7 +10258,7 @@ meanS_t1        float   %9.0g                 meanS_t, interv == 1
 
 
 
-r; t=0.00 16:06:22
+r; t=0.00 11:26:21
 
       command:  bootstdz_surv
        PrY_a0:  r(boot_0)
@@ -10345,7 +10268,7 @@ r; t=0.00 16:06:22
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=22.40 16:06:45
+r; t=22.55 11:26:43
 
 
 
@@ -10389,7 +10312,7 @@ Revision 03 Feb 2020
 Copyright 1985-2017 StataCorp LLC
 
 Total physical memory:    33480192 KB
-Available physical memory: 20254396 KB
+Available physical memory: 18127684 KB
 
 94-user 2-core Stata network perpetual license:
        Serial number:  501506248171
@@ -10407,7 +10330,7 @@ Available physical memory: 20254396 KB
 \begin{verbatim}
 - Session info ---------------------------------------------------------------
  setting  value                       
- version  R version 4.0.3 (2020-10-10)
+ version  R version 4.0.4 (2021-02-15)
  os       Windows 10 x64              
  system   x86_64, mingw32             
  ui       RTerm                       
@@ -10415,36 +10338,31 @@ Available physical memory: 20254396 KB
  collate  English_United Kingdom.1252 
  ctype    English_United Kingdom.1252 
  tz       Europe/London               
- date     2020-12-01                  
+ date     2021-02-16                  
 
 - Packages -------------------------------------------------------------------
  package       * version date       lib source                               
  assertthat      0.2.1   2019-03-21 [1] CRAN (R 4.0.2)                       
  bookdown        0.21    2020-10-13 [1] CRAN (R 4.0.3)                       
- cli             2.2.0   2020-11-20 [1] CRAN (R 4.0.3)                       
- clisymbols      1.2.0   2017-05-21 [1] CRAN (R 4.0.3)                       
- crayon          1.3.4   2017-09-16 [1] CRAN (R 4.0.2)                       
+ cli             2.3.0   2021-01-31 [1] CRAN (R 4.0.3)                       
  digest          0.6.27  2020-10-24 [1] CRAN (R 4.0.3)                       
  evaluate        0.14    2019-05-28 [1] CRAN (R 4.0.2)                       
- fansi           0.4.1   2020-01-08 [1] CRAN (R 4.0.2)                       
  glue            1.4.2   2020-08-27 [1] CRAN (R 4.0.2)                       
- htmltools       0.5.0   2020-06-16 [1] CRAN (R 4.0.2)                       
- knitr           1.30    2020-09-22 [1] CRAN (R 4.0.2)                       
+ htmltools       0.5.1.1 2021-01-22 [1] CRAN (R 4.0.3)                       
+ knitr           1.31    2021-01-27 [1] CRAN (R 4.0.3)                       
  magrittr        2.0.1   2020-11-17 [1] CRAN (R 4.0.3)                       
- prompt          1.0.0   2020-10-26 [1] Github (gaborcsardi/prompt@b332c42)  
- rlang           0.4.9   2020-11-26 [1] CRAN (R 4.0.3)                       
- rmarkdown       2.5     2020-10-21 [1] CRAN (R 4.0.3)                       
- rstudioapi      0.13    2020-11-12 [1] CRAN (R 4.0.3)                       
+ rlang           0.4.10  2020-12-30 [1] CRAN (R 4.0.3)                       
+ rmarkdown       2.6     2020-12-14 [1] CRAN (R 4.0.3)                       
  sessioninfo     1.1.1   2018-11-05 [1] CRAN (R 4.0.2)                       
  Statamarkdown * 0.5.5   2020-12-01 [1] Github (hemken/statamarkdown@32f5686)
  stringi         1.5.3   2020-09-09 [1] CRAN (R 4.0.2)                       
  stringr         1.4.0   2019-02-10 [1] CRAN (R 4.0.2)                       
- withr           2.3.0   2020-09-22 [1] CRAN (R 4.0.2)                       
- xfun            0.19    2020-10-30 [1] CRAN (R 4.0.3)                       
+ withr           2.4.1   2021-01-26 [1] CRAN (R 4.0.3)                       
+ xfun            0.21    2021-02-10 [1] CRAN (R 4.0.3)                       
  yaml            2.2.1   2020-02-01 [1] CRAN (R 4.0.0)                       
 
 [1] C:/Users/tom/Documents/R/win-library/4.0
-[2] C:/Program Files/R/R-4.0.3/library
+[2] C:/Program Files/R/R-4.0.4/library
 \end{verbatim}
 
   \bibliography{bibliography.bib}
