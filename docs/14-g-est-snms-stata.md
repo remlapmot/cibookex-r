@@ -75,7 +75,7 @@ Iteration 2:   log likelihood = -232.68635
 Iteration 3:   log likelihood =    -232.68  
 Iteration 4:   log likelihood = -232.67999  
 
-Generalized linear models                         No. of obs      =      1,629
+Generalized linear models                         Number of obs   =      1,629
 Optimization     : ML                             Residual df     =      1,609
                                                   Scale parameter =          1
 Deviance         =  465.3599898                   (1/df) Deviance =   .2892231

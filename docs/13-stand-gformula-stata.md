@@ -45,7 +45,7 @@ note: smokeintensity omitted because of collinearity
 
 Iteration 0:   log likelihood = -5328.5765  
 
-Generalized linear models                         No. of obs      =      1,566
+Generalized linear models                         Number of obs   =      1,566
 Optimization     : ML                             Residual df     =      1,545
                                                   Scale parameter =    53.5683
 Deviance         =  82763.02862                   (1/df) Deviance =    53.5683
