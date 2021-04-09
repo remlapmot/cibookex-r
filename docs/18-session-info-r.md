@@ -10,7 +10,7 @@ sessioninfo::session_info()
 ```
 ## - Session info ---------------------------------------------------------------
 ##  setting  value                       
-##  version  R version 4.0.4 (2021-02-15)
+##  version  R version 4.0.5 (2021-03-31)
 ##  os       Windows 10 x64              
 ##  system   x86_64, mingw32             
 ##  ui       RTerm                       
@@ -18,13 +18,12 @@ sessioninfo::session_info()
 ##  collate  English_United Kingdom.1252 
 ##  ctype    English_United Kingdom.1252 
 ##  tz       Europe/London               
-##  date     2021-03-19                  
+##  date     2021-04-09                  
 ## 
 ## - Packages -------------------------------------------------------------------
 ##  package     * version date       lib source        
-##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 4.0.2)
 ##  bookdown      0.21    2020-10-13 [1] CRAN (R 4.0.3)
-##  cli           2.3.1   2021-02-23 [1] CRAN (R 4.0.4)
+##  cli           2.4.0   2021-04-05 [1] CRAN (R 4.0.5)
 ##  digest        0.6.27  2020-10-24 [1] CRAN (R 4.0.3)
 ##  evaluate      0.14    2019-05-28 [1] CRAN (R 4.0.2)
 ##  glue          1.4.2   2020-08-27 [1] CRAN (R 4.0.2)
@@ -41,5 +40,5 @@ sessioninfo::session_info()
 ##  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.0.0)
 ## 
 ## [1] C:/Users/tom/Documents/R/win-library/4.0
-## [2] C:/Program Files/R/R-4.0.4/library
+## [2] C:/Program Files/R/R-4.0.5/library
 ```
