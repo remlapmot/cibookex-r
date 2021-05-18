@@ -197,84 +197,12 @@ qui gr export ./figs/stata-fig-17-2.png, replace
       Total |    171,076      100.00
 
 
+file ./data/nhefs_surv.dta cannot be modified or erased; likely cause is
+    read-only directory or file
+r(608);
 
-
-
-Logistic regression                             Number of obs     =    171,076
-                                                LR chi2(5)        =      24.26
-                                                Prob > chi2       =     0.0002
-Log likelihood = -2134.1973                     Pseudo R2         =     0.0057
-
-------------------------------------------------------------------------------
-       event | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
--------------+----------------------------------------------------------------
-        qsmk |   1.402527   .6000025     0.79   0.429     .6064099    3.243815
-             |
- qsmk#c.time |
-Smoking c..  |   1.012318   .0162153     0.76   0.445     .9810299    1.044603
-             |
- qsmk#c.time#|
-      c.time |
-Smoking c..  |   .9998342   .0001321    -1.25   0.210     .9995753    1.000093
-             |
-        time |   1.022048   .0090651     2.46   0.014     1.004434    1.039971
-             |
-      c.time#|
-      c.time |   .9998637   .0000699    -1.95   0.051     .9997266    1.000001
-             |
-       _cons |   .0007992   .0001972   -28.90   0.000     .0004927    .0012963
-------------------------------------------------------------------------------
-Note: _cons estimates baseline odds.
-
-(169,510 observations deleted)
-
-(186,354 observations created)
-
-(186354 real changes made)
-
-(187,920 observations created)
-
-(187,920 real changes made)
-
-
-
-
-
-
-(372,708 missing values generated)
-
-(372708 real changes made)
-
-
--------------------------------------------------------------------------------
--> interv = 0
-
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
--------------+---------------------------------------------------------
-       psurv |      1,566    .8279829           0   .8279829   .8279829
-
--------------------------------------------------------------------------------
--> interv = 1
-
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
--------------+---------------------------------------------------------
-       psurv |      1,566     .774282           0    .774282    .774282
-
-
-(3,132 observations created)
-
-(3,132 real changes made)
-
-(375,840 missing values generated)
-
-(375,840 real changes made)
-
-              storage   display    value
-variable name   type    format     label      variable label
--------------------------------------------------------------------------------
-psurv0          float   %9.0g                 psurv, interv == 0
-psurv1          float   %9.0g                 psurv, interv == 1
-
+end of do-file
+r(608);
 ```
 
 <img src="./figs/stata-fig-17-2.png" width="85%" style="display: block; margin: auto;" />
@@ -614,8 +542,16 @@ psurv1          float   %9.0g                 psurv, interv == 1
 
 
 
+  5. predict p_qsmk, pr
+  6. 
+ 11.         
+ 23. drop if time != 119
+ 24. bysort interv_b: egen meanS_b = mean(psurv)
+ 25. keep newseqn qsmk  meanS_b 
+ 26. drop if newseqn != 1  /* only need one pair */
+ 27.         
 
-r; t=0.00 9:05:07
+r; t=0.00 20:28:36
 
       command:  bootipw_surv
        PrY_a0:  r(boot_0)
@@ -625,7 +561,7 @@ r; t=0.00 9:05:07
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=27.31 9:05:34
+r; t=31.04 20:29:07
 
 
 
@@ -857,8 +793,10 @@ meanS_t1        float   %9.0g                 meanS_t, interv == 1
 
 
 
+  5. drop if time != 0       
+  6. /*only predict on new version of data */
 
-r; t=0.00 9:05:48
+r; t=0.00 20:29:23
 
       command:  bootstdz_surv
        PrY_a0:  r(boot_0)
@@ -868,7 +806,7 @@ r; t=0.00 9:05:48
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=30.30 9:06:18
+r; t=32.93 20:29:56
 
 
 

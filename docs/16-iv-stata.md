@@ -422,4 +422,5 @@ smokeinten~y |   .0057669    .144911     0.04   0.968    -.2782534    .2897872
 ------------------------------------------------------------------------------
 Instrumented:  qsmk
 Instruments:   sex race age smokeintensity smokeyrs 1.exercise 2.exercise
+               1.active 2.active wt71 highprice
 ```

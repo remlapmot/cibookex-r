@@ -128,7 +128,7 @@
 
 \title{Causal Inference: What If. R and Stata code for Exercises}
 \author{Book by M. A. Hernán and J. M. Robins \and R code by Joy Shi and Sean McGrath \and Stata code by Eleanor Murray and Roger Logan \and R Markdown code by Tom Palmer}
-\date{09 April 2021}
+\date{18 May 2021}
 
 \begin{document}
 \maketitle
@@ -2407,15 +2407,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ##                         V1             mean                se               ll
-## 1                 Observed 2.56188497106103 0.265848745945872 2.04083100367198
-## 2             No Treatment 1.65212306626746 0.217990304215772 1.22486992102562
-## 3                Treatment 5.11474489549347  0.52463984972658 4.08646968517486
-## 4 Treatment - No Treatment 3.46262182922601 0.455342707939509 2.57016652104163
+## 1                 Observed 2.56188497106103 0.214183696824165 2.14209263921002
+## 2             No Treatment 1.65212306626746 0.108842399926049  1.4387958824215
+## 3                Treatment 5.11474489549347 0.500972985622886 4.13285588644511
+## 4 Treatment - No Treatment 3.46262182922601  0.43410081402817 2.61179986807127
 ##                 ul
-## 1 3.08293893845008
-## 2  2.0793762115093
-## 3 6.14302010581207
-## 4 4.35507713741038
+## 1 2.98167730291204
+## 2 1.86545025011342
+## 3 6.09663390454183
+## 4 4.31344379038074
 \end{verbatim}
 
 \hypertarget{g-estimation-of-structural-nested-models}{%
@@ -3584,7 +3584,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 ## 
 ## data:  wt82_71 by qsmk
 ## t = 0.0060506, df = 11.571, p-value = 0.9953
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -5.283903  5.313210
 ## sample estimates:
@@ -3596,7 +3596,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 ## 
 ## data:  wt82_71 by qsmk
 ## t = -3.1117, df = 37.365, p-value = 0.003556
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -6.849335 -1.448161
 ## sample estimates:
@@ -3608,7 +3608,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 ## 
 ## data:  wt82_71 by qsmk
 ## t = -4.5301, df = 35.79, p-value = 6.317e-05
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -9.474961 -3.613990
 ## sample estimates:
@@ -3620,7 +3620,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 ## 
 ## data:  wt82_71 by qsmk
 ## t = -1.4117, df = 45.444, p-value = 0.1648
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -5.6831731  0.9985715
 ## sample estimates:
@@ -3632,7 +3632,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 ## 
 ## data:  wt82_71 by qsmk
 ## t = -3.1371, df = 74.249, p-value = 0.002446
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -6.753621 -1.507087
 ## sample estimates:
@@ -3644,7 +3644,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 ## 
 ## data:  wt82_71 by qsmk
 ## t = -2.1677, df = 50.665, p-value = 0.0349
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -8.7516605 -0.3350127
 ## sample estimates:
@@ -3656,7 +3656,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 ## 
 ## data:  wt82_71 by qsmk
 ## t = -3.3155, df = 84.724, p-value = 0.001348
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -6.904207 -1.727590
 ## sample estimates:
@@ -3668,7 +3668,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 ## 
 ## data:  wt82_71 by qsmk
 ## t = -2.664, df = 75.306, p-value = 0.009441
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -6.2396014 -0.9005605
 ## sample estimates:
@@ -3680,7 +3680,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 ## 
 ## data:  wt82_71 by qsmk
 ## t = -1.9122, df = 129.12, p-value = 0.05806
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -4.68143608  0.07973698
 ## sample estimates:
@@ -3692,7 +3692,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 ## 
 ## data:  wt82_71 by qsmk
 ## t = -1.5925, df = 142.72, p-value = 0.1135
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -5.0209284  0.5404697
 ## sample estimates:
@@ -3853,16 +3853,16 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Shaded}
 
 \begin{verbatim}
-##                         V1             mean                se               ll
-## 1                 Observed 2.63384609228479 0.235772468853433 2.17174054478597
-## 2             No Treatment 1.71983636149843 0.249661366372748 1.23050907507678
-## 3                Treatment 5.35072300362993 0.376037461417483  4.6137031224138
-## 4 Treatment - No Treatment 3.63088664213151 0.308497877065623 3.02624191377582
+##                         V1             mean                 se               ll
+## 1                 Observed 2.63384609228479 0.0728572829907944 2.49104844161139
+## 2             No Treatment 1.71983636149843  0.119922425771239 1.48479272604812
+## 3                Treatment 5.35072300362993  0.300431851374347 4.76188739512752
+## 4 Treatment - No Treatment 3.63088664213151  0.380151866263118 2.88580267560011
 ##                 ul
-## 1 3.09595163978361
-## 2 2.20916364792007
-## 3 6.08774288484607
-## 4 4.23553137048719
+## 1 2.77664374295819
+## 2 1.95487999694873
+## 3 5.93955861213234
+## 4  4.3759706086629
 \end{verbatim}
 
 \begin{Shaded}
@@ -3993,7 +3993,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ## 95% CI for the causal mean difference
-## 2.52865 , 4.620906
+## 2.574446 , 4.464938
 \end{verbatim}
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.
@@ -4065,7 +4065,7 @@ A more flexible and elegant way to do this is to write a function to perform the
 ## 
 ## data:  wt82_71 by highprice
 ## t = -0.10179, df = 41.644, p-value = 0.9194
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -3.130588  2.830010
 ## sample estimates:
@@ -4997,7 +4997,7 @@ For reproducibility.
 \begin{verbatim}
 ## - Session info ---------------------------------------------------------------
 ##  setting  value                       
-##  version  R version 4.0.5 (2021-03-31)
+##  version  R version 4.1.0 (2021-05-18)
 ##  os       Windows 10 x64              
 ##  system   x86_64, mingw32             
 ##  ui       RTerm                       
@@ -5005,29 +5005,28 @@ For reproducibility.
 ##  collate  English_United Kingdom.1252 
 ##  ctype    English_United Kingdom.1252 
 ##  tz       Europe/London               
-##  date     2021-04-09                  
+##  date     2021-05-18                  
 ## 
 ## - Packages -------------------------------------------------------------------
 ##  package     * version date       lib source        
-##  bookdown      0.21    2020-10-13 [1] CRAN (R 4.0.3)
-##  cli           2.4.0   2021-04-05 [1] CRAN (R 4.0.5)
-##  digest        0.6.27  2020-10-24 [1] CRAN (R 4.0.3)
-##  evaluate      0.14    2019-05-28 [1] CRAN (R 4.0.2)
-##  glue          1.4.2   2020-08-27 [1] CRAN (R 4.0.2)
-##  htmltools     0.5.1.1 2021-01-22 [1] CRAN (R 4.0.3)
-##  knitr         1.31    2021-01-27 [1] CRAN (R 4.0.3)
-##  magrittr      2.0.1   2020-11-17 [1] CRAN (R 4.0.3)
-##  rlang         0.4.10  2020-12-30 [1] CRAN (R 4.0.3)
-##  rmarkdown     2.7     2021-02-19 [1] CRAN (R 4.0.4)
-##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 4.0.2)
-##  stringi       1.5.3   2020-09-09 [1] CRAN (R 4.0.2)
-##  stringr       1.4.0   2019-02-10 [1] CRAN (R 4.0.2)
-##  withr         2.4.1   2021-01-26 [1] CRAN (R 4.0.3)
-##  xfun          0.22    2021-03-11 [1] CRAN (R 4.0.4)
-##  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.0.0)
+##  bookdown      0.22    2021-04-22 [1] CRAN (R 4.1.0)
+##  cli           2.5.0   2021-04-26 [1] CRAN (R 4.1.0)
+##  digest        0.6.27  2020-10-24 [1] CRAN (R 4.1.0)
+##  evaluate      0.14    2019-05-28 [1] CRAN (R 4.1.0)
+##  htmltools     0.5.1.1 2021-01-22 [1] CRAN (R 4.1.0)
+##  knitr         1.33    2021-04-24 [1] CRAN (R 4.1.0)
+##  magrittr      2.0.1   2020-11-17 [1] CRAN (R 4.1.0)
+##  rlang         0.4.11  2021-04-30 [1] CRAN (R 4.1.0)
+##  rmarkdown     2.8     2021-05-07 [1] CRAN (R 4.1.0)
+##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 4.1.0)
+##  stringi       1.6.2   2021-05-17 [1] CRAN (R 4.1.0)
+##  stringr       1.4.0   2019-02-10 [1] CRAN (R 4.1.0)
+##  withr         2.4.2   2021-04-18 [1] CRAN (R 4.1.0)
+##  xfun          0.23    2021-05-15 [1] CRAN (R 4.1.0)
+##  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.1.0)
 ## 
-## [1] C:/Users/tom/Documents/R/win-library/4.0
-## [2] C:/Program Files/R/R-4.0.5/library
+## [1] C:/Users/tom/Documents/R/win-library/4.1
+## [2] C:/Program Files/R/R-4.1.0/library
 \end{verbatim}
 
 \hypertarget{part-stata-code}{%
@@ -5119,6 +5118,23 @@ For errors contact: ejmurray@bu.edu
 
 \begin{verbatim}
              A          Y
+  1. 1 200
+  2. 1 150
+  3. 1 220
+  4. 1 110
+  5. 1 50
+  6. 1 180
+  7. 1 90
+  8. 1 170
+  9. 0 170
+ 10. 0 30
+ 11. 0 70
+ 12. 0 110
+ 13. 0 80
+ 14. 0 50
+ 15. 0 10
+ 16. 0 20
+ 17. end
 
 
 
@@ -5177,6 +5193,23 @@ For errors contact: ejmurray@bu.edu
 
 \begin{verbatim}
              A          Y
+  1. 1 110
+  2. 1 80
+  3. 1 50
+  4. 1 40
+  5. 2 170
+  6. 2 30
+  7. 2 70
+  8. 2 50
+  9. 3 110
+ 10. 3 50
+ 11. 3 180
+ 12. 3 130
+ 13. 4 200
+ 14. 4 150
+ 15. 4 220
+ 16. 4 210
+ 17. end
 
 
 
@@ -5246,6 +5279,23 @@ For errors contact: ejmurray@bu.edu
 
 \begin{verbatim}
              A          Y
+  1. 3   21  
+  2. 11      54
+  3. 17      33
+  4. 23      101
+  5. 29      85
+  6. 37      65
+  7. 41      157
+  8. 53      120
+  9. 67      111
+ 10. 79      200
+ 11. 83      140
+ 12. 97      220
+ 13. 60      230
+ 14. 71      217
+ 15. 15      11
+ 16. 45  190
+ 17. end
 \end{verbatim}
 
 \begin{center}\includegraphics[width=0.85\linewidth]{figs/stata-fig-11-3} \end{center}
@@ -5453,6 +5503,10 @@ For errors contact: ejmurray@bu.edu
 \end{Shaded}
 
 \begin{verbatim}
+  2.   tabdisp qsmk, cell(`var') format(%3.1f)
+  3. }
+
+---------------------------------
 quit smoking between |
 baseline and 1982    | Age, years
 ---------------------+-----------
@@ -6333,6 +6387,8 @@ Linear regression                               Number of obs     =      1,566
              |               Robust
      wt82_71 |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
+      1.qsmk |    3.60623   .6576053     5.48   0.000      2.31635     4.89611
+       1.sex |  -.0040025   .4496206    -0.01   0.993    -.8859246    .8779197
              |
     qsmk#sex |
         1 1  |   -.161224   1.036143    -0.16   0.876      -2.1936    1.871152
@@ -6756,6 +6812,7 @@ Smoking c..  |   .0466628   .0351448     1.33   0.184    -.0222197    .1155453
       +----------+
       |    meanY |
       |----------|
+ 361. | .3421569 |
       +----------+
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
@@ -6877,6 +6934,27 @@ Smoking c..  |   .0466628   .0351448     1.33   0.184    -.0222197    .1155453
 
 \begin{verbatim}
              ID          L          A          Y
+  1. "Rheia"         0 0 0 
+  2. "Kronos"        0 0 1 
+  3. "Demeter"       0 0 0 
+  4. "Hades"         0 0 0 
+  5. "Hestia"        0 1 0 
+  6. "Poseidon"      0 1 0 
+  7. "Hera"          0 1 0 
+  8. "Zeus"          0 1 1 
+  9. "Artemis"       1 0 1
+ 10. "Apollo"        1 0 1
+ 11. "Leto"          1 0 0
+ 12. "Ares"          1 1 1
+ 13. "Athena"        1 1 1
+ 14. "Hephaestus" 1 1 1
+ 15. "Aphrodite" 1 1 1
+ 16. "Cyclope"       1 1 1
+ 17. "Persephone" 1 1 1
+ 18. "Hermes"        1 1 0
+ 19. "Hebe"          1 1 0
+ 20. "Dionysus"      1 1     0 
+ 21. end
 
 (20 observations created)
 
@@ -6930,6 +7008,8 @@ Smoking c..  |   .0466628   .0351448     1.33   0.184    -.0222197    .1155453
 ------------------------------------------------------------------------------
            Y |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
+         1.A |   1.05e-16   .3608439     0.00   1.000    -.7649549    .7649549
+         1.L |   .4166667    .389756     1.07   0.301    -.4095791    1.242912
              |
          A#L |
         1 1  |  -5.83e-17   .4959325    -0.00   1.000     -1.05133     1.05133
@@ -7324,6 +7404,8 @@ file ./data/observe.mmat saved
 \end{Shaded}
 
 \begin{verbatim}
+ 12. 
+
       command:  bootstdz
         EY_a0:  r(boot_0)
         EY_a1:  r(boot_1)
@@ -7668,6 +7750,16 @@ smokeinten~y |   .0010722   .0002651     4.04   0.000     .0005526    .0015917
 
 
 
+  6.         matrix p_mat = r(table)
+  7.         matrix p_mat = p_mat["pvalue","qsmk:Hpsi"]
+  8.         local p = p_mat[1,1]
+  9.         local b = _b[Hpsi]
+ 10.         di "coeff", %6.3f `b', "is generated from psi", %4.1f `i'
+ 11.         matrix results[`j',1]= `i'
+ 12.         matrix results[`j',2]= `b'
+ 13.         matrix results[`j',3]= abs(`b')
+ 14.         matrix results[`j',4]= `p'
+ 15. }
 coeff  0.027 is generated from psi  2.0
 coeff  0.025 is generated from psi  2.1
 coeff  0.023 is generated from psi  2.2
@@ -7742,6 +7834,7 @@ r31           5  -.02998926   .02998926   .00213639
 : for(i=1; i<= rows(res); i++) { 
 >   if (res[i,3] == colmin(res[,3])) res[i,1]
 > }
+  3.4
 
 : end
 -------------------------------------------------------------------------------
@@ -8903,6 +8996,11 @@ difference          .  3.5117778
 
 (1,566 missing values generated)
 
+
+
+ 11. predict ps_b, pr
+ 12. 
+
       command:  bootstdz /
         EY_a0:  r(boot_0)
         EY_a1:  r(boot_1)
@@ -9424,6 +9522,7 @@ smokeinten~y |   .0057669    .144911     0.04   0.968    -.2782534    .2897872
 ------------------------------------------------------------------------------
 Instrumented:  qsmk
 Instruments:   sex race age smokeintensity smokeyrs 1.exercise 2.exercise
+               1.active 2.active wt71 highprice
 \end{verbatim}
 
 \hypertarget{causal-survival-analysis-stata}{%
@@ -9999,8 +10098,16 @@ psurv1          float   %9.0g                 psurv, interv == 1
 
 
 
+  5. predict p_qsmk, pr
+  6. 
+ 11.         
+ 23. drop if time != 119
+ 24. bysort interv_b: egen meanS_b = mean(psurv)
+ 25. keep newseqn qsmk  meanS_b 
+ 26. drop if newseqn != 1  /* only need one pair */
+ 27.         
 
-r; t=0.00 9:00:57
+r; t=0.00 20:23:59
 
       command:  bootipw_surv
        PrY_a0:  r(boot_0)
@@ -10010,7 +10117,7 @@ r; t=0.00 9:00:57
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=29.77 9:01:26
+r; t=32.54 20:24:31
 
 
 
@@ -10251,8 +10358,10 @@ meanS_t1        float   %9.0g                 meanS_t, interv == 1
 
 
 
+  5. drop if time != 0       
+  6. /*only predict on new version of data */
 
-r; t=0.00 9:01:40
+r; t=0.00 20:24:48
 
       command:  bootstdz_surv
        PrY_a0:  r(boot_0)
@@ -10262,7 +10371,7 @@ r; t=0.00 9:01:40
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=30.58 9:02:10
+r; t=33.05 20:25:21
 
 
 
@@ -10306,7 +10415,7 @@ Revision 06 Apr 2021
 Copyright 1985-2019 StataCorp LLC
 
 Total physical memory:       32.00 GB
-Available physical memory:   22.92 GB
+Available physical memory:   21.33 GB
 
 Stata license: Unlimited-user 2-core network, expiring 21 Jan 2022
 Serial number: 501609352178
@@ -10324,7 +10433,7 @@ Serial number: 501609352178
 \begin{verbatim}
 - Session info ---------------------------------------------------------------
  setting  value                       
- version  R version 4.0.5 (2021-03-31)
+ version  R version 4.1.0 (2021-05-18)
  os       Windows 10 x64              
  system   x86_64, mingw32             
  ui       RTerm                       
@@ -10332,30 +10441,29 @@ Serial number: 501609352178
  collate  English_United Kingdom.1252 
  ctype    English_United Kingdom.1252 
  tz       Europe/London               
- date     2021-04-09                  
+ date     2021-05-18                  
 
 - Packages -------------------------------------------------------------------
  package       * version date       lib source                               
- bookdown        0.21    2020-10-13 [1] CRAN (R 4.0.3)                       
- cli             2.4.0   2021-04-05 [1] CRAN (R 4.0.5)                       
- digest          0.6.27  2020-10-24 [1] CRAN (R 4.0.3)                       
- evaluate        0.14    2019-05-28 [1] CRAN (R 4.0.2)                       
- glue            1.4.2   2020-08-27 [1] CRAN (R 4.0.2)                       
- htmltools       0.5.1.1 2021-01-22 [1] CRAN (R 4.0.3)                       
- knitr           1.31    2021-01-27 [1] CRAN (R 4.0.3)                       
- magrittr        2.0.1   2020-11-17 [1] CRAN (R 4.0.3)                       
- rlang           0.4.10  2020-12-30 [1] CRAN (R 4.0.3)                       
- rmarkdown       2.7     2021-02-19 [1] CRAN (R 4.0.4)                       
- sessioninfo     1.1.1   2018-11-05 [1] CRAN (R 4.0.2)                       
- Statamarkdown * 0.6.0   2021-03-15 [1] Github (hemken/statamarkdown@c38d4e0)
- stringi         1.5.3   2020-09-09 [1] CRAN (R 4.0.2)                       
- stringr         1.4.0   2019-02-10 [1] CRAN (R 4.0.2)                       
- withr           2.4.1   2021-01-26 [1] CRAN (R 4.0.3)                       
- xfun            0.22    2021-03-11 [1] CRAN (R 4.0.4)                       
- yaml            2.2.1   2020-02-01 [1] CRAN (R 4.0.0)                       
+ bookdown        0.22    2021-04-22 [1] CRAN (R 4.1.0)                       
+ cli             2.5.0   2021-04-26 [1] CRAN (R 4.1.0)                       
+ digest          0.6.27  2020-10-24 [1] CRAN (R 4.1.0)                       
+ evaluate        0.14    2019-05-28 [1] CRAN (R 4.1.0)                       
+ htmltools       0.5.1.1 2021-01-22 [1] CRAN (R 4.1.0)                       
+ knitr           1.33    2021-04-24 [1] CRAN (R 4.1.0)                       
+ magrittr        2.0.1   2020-11-17 [1] CRAN (R 4.1.0)                       
+ rlang           0.4.11  2021-04-30 [1] CRAN (R 4.1.0)                       
+ rmarkdown       2.8     2021-05-07 [1] CRAN (R 4.1.0)                       
+ sessioninfo     1.1.1   2018-11-05 [1] CRAN (R 4.1.0)                       
+ Statamarkdown * 0.6.1   2021-05-18 [1] Github (Hemken/Statamarkdown@965bfe1)
+ stringi         1.6.2   2021-05-17 [1] CRAN (R 4.1.0)                       
+ stringr         1.4.0   2019-02-10 [1] CRAN (R 4.1.0)                       
+ withr           2.4.2   2021-04-18 [1] CRAN (R 4.1.0)                       
+ xfun            0.23    2021-05-15 [1] CRAN (R 4.1.0)                       
+ yaml            2.2.1   2020-02-01 [1] CRAN (R 4.1.0)                       
 
-[1] C:/Users/tom/Documents/R/win-library/4.0
-[2] C:/Program Files/R/R-4.0.5/library
+[1] C:/Users/tom/Documents/R/win-library/4.1
+[2] C:/Program Files/R/R-4.1.0/library
 \end{verbatim}
 
   \bibliography{bibliography.bib}
