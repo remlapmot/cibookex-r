@@ -18,7 +18,7 @@ Revision 06 Apr 2021
 Copyright 1985-2019 StataCorp LLC
 
 Total physical memory:       32.00 GB
-Available physical memory:   22.19 GB
+Available physical memory:   21.35 GB
 
 Stata license: Unlimited-user 2-core network, expiring 21 Jan 2022
 Serial number: 501609352178
@@ -35,7 +35,7 @@ sessioninfo::session_info()
 ```
 - Session info ---------------------------------------------------------------
  setting  value                       
- version  R version 4.0.5 (2021-03-31)
+ version  R version 4.1.0 (2021-05-18)
  os       Windows 10 x64              
  system   x86_64, mingw32             
  ui       RTerm                       
@@ -43,28 +43,27 @@ sessioninfo::session_info()
  collate  English_United Kingdom.1252 
  ctype    English_United Kingdom.1252 
  tz       Europe/London               
- date     2021-04-09                  
+ date     2021-05-18                  
 
 - Packages -------------------------------------------------------------------
  package       * version date       lib source                               
- bookdown        0.21    2020-10-13 [1] CRAN (R 4.0.3)                       
- cli             2.4.0   2021-04-05 [1] CRAN (R 4.0.5)                       
- digest          0.6.27  2020-10-24 [1] CRAN (R 4.0.3)                       
- evaluate        0.14    2019-05-28 [1] CRAN (R 4.0.2)                       
- glue            1.4.2   2020-08-27 [1] CRAN (R 4.0.2)                       
- htmltools       0.5.1.1 2021-01-22 [1] CRAN (R 4.0.3)                       
- knitr           1.31    2021-01-27 [1] CRAN (R 4.0.3)                       
- magrittr        2.0.1   2020-11-17 [1] CRAN (R 4.0.3)                       
- rlang           0.4.10  2020-12-30 [1] CRAN (R 4.0.3)                       
- rmarkdown       2.7     2021-02-19 [1] CRAN (R 4.0.4)                       
- sessioninfo     1.1.1   2018-11-05 [1] CRAN (R 4.0.2)                       
- Statamarkdown * 0.6.0   2021-03-15 [1] Github (hemken/statamarkdown@c38d4e0)
- stringi         1.5.3   2020-09-09 [1] CRAN (R 4.0.2)                       
- stringr         1.4.0   2019-02-10 [1] CRAN (R 4.0.2)                       
- withr           2.4.1   2021-01-26 [1] CRAN (R 4.0.3)                       
- xfun            0.22    2021-03-11 [1] CRAN (R 4.0.4)                       
- yaml            2.2.1   2020-02-01 [1] CRAN (R 4.0.0)                       
+ bookdown        0.22    2021-04-22 [1] CRAN (R 4.1.0)                       
+ cli             2.5.0   2021-04-26 [1] CRAN (R 4.1.0)                       
+ digest          0.6.27  2020-10-24 [1] CRAN (R 4.1.0)                       
+ evaluate        0.14    2019-05-28 [1] CRAN (R 4.1.0)                       
+ htmltools       0.5.1.1 2021-01-22 [1] CRAN (R 4.1.0)                       
+ knitr           1.33    2021-04-24 [1] CRAN (R 4.1.0)                       
+ magrittr        2.0.1   2020-11-17 [1] CRAN (R 4.1.0)                       
+ rlang           0.4.11  2021-04-30 [1] CRAN (R 4.1.0)                       
+ rmarkdown       2.8     2021-05-07 [1] CRAN (R 4.1.0)                       
+ sessioninfo     1.1.1   2018-11-05 [1] CRAN (R 4.1.0)                       
+ Statamarkdown * 0.6.1   2021-05-18 [1] Github (Hemken/Statamarkdown@965bfe1)
+ stringi         1.6.2   2021-05-17 [1] CRAN (R 4.1.0)                       
+ stringr         1.4.0   2019-02-10 [1] CRAN (R 4.1.0)                       
+ withr           2.4.2   2021-04-18 [1] CRAN (R 4.1.0)                       
+ xfun            0.23    2021-05-15 [1] CRAN (R 4.1.0)                       
+ yaml            2.2.1   2020-02-01 [1] CRAN (R 4.1.0)                       
 
-[1] C:/Users/tom/Documents/R/win-library/4.0
-[2] C:/Program Files/R/R-4.0.5/library
+[1] C:/Users/tom/Documents/R/win-library/4.1
+[2] C:/Program Files/R/R-4.1.0/library
 ```

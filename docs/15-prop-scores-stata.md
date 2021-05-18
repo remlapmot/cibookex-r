@@ -948,6 +948,11 @@ difference          .  3.5117778
 
 (1,566 missing values generated)
 
+
+
+ 11. predict ps_b, pr
+ 12. 
+
       command:  bootstdz /
         EY_a0:  r(boot_0)
         EY_a1:  r(boot_1)

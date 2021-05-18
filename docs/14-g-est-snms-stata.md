@@ -290,6 +290,16 @@ smokeinten~y |   .0010722   .0002651     4.04   0.000     .0005526    .0015917
 
 
 
+  6.         matrix p_mat = r(table)
+  7.         matrix p_mat = p_mat["pvalue","qsmk:Hpsi"]
+  8.         local p = p_mat[1,1]
+  9.         local b = _b[Hpsi]
+ 10.         di "coeff", %6.3f `b', "is generated from psi", %4.1f `i'
+ 11.         matrix results[`j',1]= `i'
+ 12.         matrix results[`j',2]= `b'
+ 13.         matrix results[`j',3]= abs(`b')
+ 14.         matrix results[`j',4]= `p'
+ 15. }
 coeff  0.027 is generated from psi  2.0
 coeff  0.025 is generated from psi  2.1
 coeff  0.023 is generated from psi  2.2
@@ -364,6 +374,7 @@ r31           5  -.02998926   .02998926   .00213639
 : for(i=1; i<= rows(res); i++) { 
 >   if (res[i,3] == colmin(res[,3])) res[i,1]
 > }
+  3.4
 
 : end
 -------------------------------------------------------------------------------

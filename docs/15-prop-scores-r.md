@@ -598,7 +598,7 @@ for (deciles in c(1:10)) {
 ## 
 ## data:  wt82_71 by qsmk
 ## t = 0.0060506, df = 11.571, p-value = 0.9953
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -5.283903  5.313210
 ## sample estimates:
@@ -610,7 +610,7 @@ for (deciles in c(1:10)) {
 ## 
 ## data:  wt82_71 by qsmk
 ## t = -3.1117, df = 37.365, p-value = 0.003556
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -6.849335 -1.448161
 ## sample estimates:
@@ -622,7 +622,7 @@ for (deciles in c(1:10)) {
 ## 
 ## data:  wt82_71 by qsmk
 ## t = -4.5301, df = 35.79, p-value = 6.317e-05
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -9.474961 -3.613990
 ## sample estimates:
@@ -634,7 +634,7 @@ for (deciles in c(1:10)) {
 ## 
 ## data:  wt82_71 by qsmk
 ## t = -1.4117, df = 45.444, p-value = 0.1648
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -5.6831731  0.9985715
 ## sample estimates:
@@ -646,7 +646,7 @@ for (deciles in c(1:10)) {
 ## 
 ## data:  wt82_71 by qsmk
 ## t = -3.1371, df = 74.249, p-value = 0.002446
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -6.753621 -1.507087
 ## sample estimates:
@@ -658,7 +658,7 @@ for (deciles in c(1:10)) {
 ## 
 ## data:  wt82_71 by qsmk
 ## t = -2.1677, df = 50.665, p-value = 0.0349
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -8.7516605 -0.3350127
 ## sample estimates:
@@ -670,7 +670,7 @@ for (deciles in c(1:10)) {
 ## 
 ## data:  wt82_71 by qsmk
 ## t = -3.3155, df = 84.724, p-value = 0.001348
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -6.904207 -1.727590
 ## sample estimates:
@@ -682,7 +682,7 @@ for (deciles in c(1:10)) {
 ## 
 ## data:  wt82_71 by qsmk
 ## t = -2.664, df = 75.306, p-value = 0.009441
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -6.2396014 -0.9005605
 ## sample estimates:
@@ -694,7 +694,7 @@ for (deciles in c(1:10)) {
 ## 
 ## data:  wt82_71 by qsmk
 ## t = -1.9122, df = 129.12, p-value = 0.05806
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -4.68143608  0.07973698
 ## sample estimates:
@@ -706,7 +706,7 @@ for (deciles in c(1:10)) {
 ## 
 ## data:  wt82_71 by qsmk
 ## t = -1.5925, df = 142.72, p-value = 0.1135
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -5.0209284  0.5404697
 ## sample estimates:
@@ -854,15 +854,15 @@ bootstrap
 
 ```
 ##                         V1             mean                se               ll
-## 1                 Observed 2.63384609228479 0.196138538497666 2.24942162084905
-## 2             No Treatment 1.71983636149843 0.202519243813714 1.32290593744726
-## 3                Treatment 5.35072300362993 0.538956758646541 4.29438716745827
-## 4 Treatment - No Treatment 3.63088664213151 0.459460459539167 2.73036068911452
+## 1                 Observed 2.63384609228479 0.113379788839429 2.41162578958476
+## 2             No Treatment 1.71983636149843 0.166268782071868 1.39395553688422
+## 3                Treatment 5.35072300362993 0.224177745493919 4.91134269632646
+## 4 Treatment - No Treatment 3.63088664213151 0.283012184111108 3.07619295408772
 ##                 ul
-## 1 3.01827056372054
-## 2 2.11676678554959
-## 3  6.4070588398016
-## 4  4.5314125951485
+## 1 2.85606639498483
+## 2 2.04571718611263
+## 3  5.7901033109334
+## 4  4.1855803301753
 ```
 
 
@@ -984,7 +984,7 @@ for(i in 1:nboot) {
 
 ```
 ## 95% CI for the causal mean difference
-## 2.600942 , 4.487268
+## 2.651282 , 4.412798
 ```
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.

@@ -67,6 +67,10 @@ foreach var of varlist years male  white university kg cigs meansmkyrs noexer in
 ```
 
 ```
+  2.   tabdisp qsmk, cell(`var') format(%3.1f)
+  3. }
+
+---------------------------------
 quit smoking between |
 baseline and 1982    | Age, years
 ---------------------+-----------
@@ -910,6 +914,8 @@ Linear regression                               Number of obs     =      1,566
              |               Robust
      wt82_71 |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
+      1.qsmk |    3.60623   .6576053     5.48   0.000      2.31635     4.89611
+       1.sex |  -.0040025   .4496206    -0.01   0.993    -.8859246    .8779197
              |
     qsmk#sex |
         1 1  |   -.161224   1.036143    -0.16   0.876      -2.1936    1.871152

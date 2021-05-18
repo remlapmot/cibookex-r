@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>13. Standardization and the parametric G-formula | Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="13. Standardization and the parametric G-formula | Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
@@ -27,7 +27,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2021-04-09" />
+<meta name="date" content="2021-05-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -36,7 +36,7 @@
   
 <link rel="prev" href="ip-weighting-and-marginal-structural-models.html"/>
 <link rel="next" href="g-estimation-of-structural-nested-models.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -54,6 +54,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -119,6 +121,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -620,16 +645,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb181-70"><a href="standardization-and-the-parametric-g-formula.html#cb181-70" aria-hidden="true" tabindex="-1"></a>    ul</span>
 <span id="cb181-71"><a href="standardization-and-the-parametric-g-formula.html#cb181-71" aria-hidden="true" tabindex="-1"></a>  ))</span>
 <span id="cb181-72"><a href="standardization-and-the-parametric-g-formula.html#cb181-72" aria-hidden="true" tabindex="-1"></a>bootstrap</span></code></pre></div>
-<pre><code>##                         V1             mean                se               ll
-## 1                 Observed 2.56188497106103  0.21975304316312 2.13117692096824
-## 2             No Treatment 1.65212306626746 0.271282416205658 1.12041930086536
-## 3                Treatment 5.11474489549347 0.426725239640979 4.27837879450292
-## 4 Treatment - No Treatment 3.46262182922601 0.466336254703994 2.54861956532088
+<pre><code>##                         V1             mean                se                ll
+## 1                 Observed 2.56188497106103 0.184284661893349  2.20069367084693
+## 2             No Treatment 1.65212306626746 0.341598518537269 0.982602272762174
+## 3                Treatment 5.11474489549347 0.317957762822138  4.49155913175715
+## 4 Treatment - No Treatment 3.46262182922601 0.634405295825551  2.21921029780645
 ##                 ul
-## 1 2.99259302115382
-## 2 2.18382683166955
-## 3 5.95111099648401
-## 4 4.37662409313113</code></pre>
+## 1 2.92307627127514
+## 2 2.32164385977274
+## 3 5.73793065922978
+## 4 4.70603336064556</code></pre>
 
 </div>
 </div>

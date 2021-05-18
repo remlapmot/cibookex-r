@@ -51,7 +51,7 @@ t.test(wt82_71 ~ highprice, data=nhefs.iv)
 ## 
 ## data:  wt82_71 by highprice
 ## t = -0.10179, df = 41.644, p-value = 0.9194
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -3.130588  2.830010
 ## sample estimates:

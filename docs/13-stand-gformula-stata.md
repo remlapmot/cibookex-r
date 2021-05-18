@@ -120,6 +120,7 @@ Smoking c..  |   .0466628   .0351448     1.33   0.184    -.0222197    .1155453
       +----------+
       |    meanY |
       |----------|
+ 361. | .3421569 |
       +----------+
 
     Variable |        Obs        Mean    Std. Dev.       Min        Max
@@ -233,6 +234,27 @@ matrix list observe
 
 ```
              ID          L          A          Y
+  1. "Rheia"         0 0 0 
+  2. "Kronos"        0 0 1 
+  3. "Demeter"       0 0 0 
+  4. "Hades"         0 0 0 
+  5. "Hestia"        0 1 0 
+  6. "Poseidon"      0 1 0 
+  7. "Hera"          0 1 0 
+  8. "Zeus"          0 1 1 
+  9. "Artemis"       1 0 1
+ 10. "Apollo"        1 0 1
+ 11. "Leto"          1 0 0
+ 12. "Ares"          1 1 1
+ 13. "Athena"        1 1 1
+ 14. "Hephaestus" 1 1 1
+ 15. "Aphrodite" 1 1 1
+ 16. "Cyclope"       1 1 1
+ 17. "Persephone" 1 1 1
+ 18. "Hermes"        1 1 0
+ 19. "Hebe"          1 1 0
+ 20. "Dionysus"      1 1     0 
+ 21. end
 
 (20 observations created)
 
@@ -286,6 +308,8 @@ matrix list observe
 ------------------------------------------------------------------------------
            Y |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
 -------------+----------------------------------------------------------------
+         1.A |   1.05e-16   .3608439     0.00   1.000    -.7649549    .7649549
+         1.L |   .4166667    .389756     1.07   0.301    -.4095791    1.242912
              |
          A#L |
         1 1  |  -5.83e-17   .4959325    -0.00   1.000     -1.05133     1.05133
@@ -665,6 +689,8 @@ bstat, stat(pe) n(1629)
 ```
 
 ```
+ 12. 
+
       command:  bootstdz
         EY_a0:  r(boot_0)
         EY_a1:  r(boot_1)
