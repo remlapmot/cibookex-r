@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>17. Causal survival analysis | Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
   <meta property="og:title" content="17. Causal survival analysis | Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
@@ -27,7 +27,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2021-05-18" />
+<meta name="date" content="2021-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -36,8 +36,9 @@
   
 <link rel="prev" href="instrumental-variables-estimation.html"/>
 <link rel="next" href="session-information-r.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -45,7 +46,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -334,7 +334,12 @@ div.csl-indent {
 <span id="cb305-5"><a href="causal-survival-analysis.html#cb305-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
 <span id="cb305-6"><a href="causal-survival-analysis.html#cb305-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;survminer&quot;</span>)</span></code></pre></div>
 <pre><code>## Loading required package: ggpubr</code></pre>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="causal-survival-analysis.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="fu">survdiff</span>(<span class="fu">Surv</span>(survtime, death) <span class="sc">~</span> qsmk, <span class="at">data=</span>nhefs)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;survminer&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:survival&#39;:
+## 
+##     myeloma</code></pre>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="causal-survival-analysis.html#cb309-1" aria-hidden="true" tabindex="-1"></a><span class="fu">survdiff</span>(<span class="fu">Surv</span>(survtime, death) <span class="sc">~</span> qsmk, <span class="at">data=</span>nhefs)</span></code></pre></div>
 <pre><code>## Call:
 ## survdiff(formula = Surv(survtime, death) ~ qsmk, data = nhefs)
 ## 
@@ -343,10 +348,10 @@ div.csl-indent {
 ## qsmk=1  428      102     80.5      5.76      7.73
 ## 
 ##  Chisq= 7.7  on 1 degrees of freedom, p= 0.005</code></pre>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="causal-survival-analysis.html#cb309-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">survfit</span>(<span class="fu">Surv</span>(survtime, death) <span class="sc">~</span> qsmk, <span class="at">data=</span>nhefs)</span>
-<span id="cb309-2"><a href="causal-survival-analysis.html#cb309-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsurvplot</span>(fit, <span class="at">data =</span> nhefs, <span class="at">xlab=</span><span class="st">&quot;Months of follow-up&quot;</span>,</span>
-<span id="cb309-3"><a href="causal-survival-analysis.html#cb309-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylab=</span><span class="st">&quot;Survival probability&quot;</span>,</span>
-<span id="cb309-4"><a href="causal-survival-analysis.html#cb309-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">main=</span><span class="st">&quot;Product-Limit Survival Estimates&quot;</span>, <span class="at">risk.table =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="causal-survival-analysis.html#cb311-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">survfit</span>(<span class="fu">Surv</span>(survtime, death) <span class="sc">~</span> qsmk, <span class="at">data=</span>nhefs)</span>
+<span id="cb311-2"><a href="causal-survival-analysis.html#cb311-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsurvplot</span>(fit, <span class="at">data =</span> nhefs, <span class="at">xlab=</span><span class="st">&quot;Months of follow-up&quot;</span>,</span>
+<span id="cb311-3"><a href="causal-survival-analysis.html#cb311-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylab=</span><span class="st">&quot;Survival probability&quot;</span>,</span>
+<span id="cb311-4"><a href="causal-survival-analysis.html#cb311-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">main=</span><span class="st">&quot;Product-Limit Survival Estimates&quot;</span>, <span class="at">risk.table =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="17-causal-surv-r_files/figure-html/unnamed-chunk-2-1.png" width="85%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="program-17.2" class="section level2">
@@ -355,19 +360,19 @@ div.csl-indent {
 <li>Parametric estimation of survival curves via hazards model</li>
 <li>Data from NHEFS</li>
 </ul>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="causal-survival-analysis.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creation of person-month data</span></span>
-<span id="cb310-2"><a href="causal-survival-analysis.html#cb310-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;splitstackshape&quot;)</span></span>
-<span id="cb310-3"><a href="causal-survival-analysis.html#cb310-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;splitstackshape&quot;</span>)</span>
-<span id="cb310-4"><a href="causal-survival-analysis.html#cb310-4" aria-hidden="true" tabindex="-1"></a>nhefs.surv <span class="ot">&lt;-</span> <span class="fu">expandRows</span>(nhefs, <span class="st">&quot;survtime&quot;</span>, <span class="at">drop=</span>F) </span>
-<span id="cb310-5"><a href="causal-survival-analysis.html#cb310-5" aria-hidden="true" tabindex="-1"></a>nhefs.surv<span class="sc">$</span>time <span class="ot">&lt;-</span> <span class="fu">sequence</span>(<span class="fu">rle</span>(nhefs.surv<span class="sc">$</span>seqn)<span class="sc">$</span>lengths)<span class="sc">-</span><span class="dv">1</span></span>
-<span id="cb310-6"><a href="causal-survival-analysis.html#cb310-6" aria-hidden="true" tabindex="-1"></a>nhefs.surv<span class="sc">$</span>event <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(nhefs.surv<span class="sc">$</span>time<span class="sc">==</span>nhefs.surv<span class="sc">$</span>survtime<span class="dv">-1</span> <span class="sc">&amp;</span> </span>
-<span id="cb310-7"><a href="causal-survival-analysis.html#cb310-7" aria-hidden="true" tabindex="-1"></a>                             nhefs.surv<span class="sc">$</span>death<span class="sc">==</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb310-8"><a href="causal-survival-analysis.html#cb310-8" aria-hidden="true" tabindex="-1"></a>nhefs.surv<span class="sc">$</span>timesq <span class="ot">&lt;-</span> nhefs.surv<span class="sc">$</span>time<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb310-9"><a href="causal-survival-analysis.html#cb310-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb310-10"><a href="causal-survival-analysis.html#cb310-10" aria-hidden="true" tabindex="-1"></a><span class="co"># fit of parametric hazards model</span></span>
-<span id="cb310-11"><a href="causal-survival-analysis.html#cb310-11" aria-hidden="true" tabindex="-1"></a>hazards.model <span class="ot">&lt;-</span> <span class="fu">glm</span>(event<span class="sc">==</span><span class="dv">0</span> <span class="sc">~</span> qsmk <span class="sc">+</span> <span class="fu">I</span>(qsmk<span class="sc">*</span>time) <span class="sc">+</span> <span class="fu">I</span>(qsmk<span class="sc">*</span>timesq) <span class="sc">+</span> </span>
-<span id="cb310-12"><a href="causal-survival-analysis.html#cb310-12" aria-hidden="true" tabindex="-1"></a>                       time <span class="sc">+</span> timesq, <span class="at">family=</span><span class="fu">binomial</span>(), <span class="at">data=</span>nhefs.surv)</span>
-<span id="cb310-13"><a href="causal-survival-analysis.html#cb310-13" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(hazards.model)</span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="causal-survival-analysis.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creation of person-month data</span></span>
+<span id="cb312-2"><a href="causal-survival-analysis.html#cb312-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;splitstackshape&quot;)</span></span>
+<span id="cb312-3"><a href="causal-survival-analysis.html#cb312-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;splitstackshape&quot;</span>)</span>
+<span id="cb312-4"><a href="causal-survival-analysis.html#cb312-4" aria-hidden="true" tabindex="-1"></a>nhefs.surv <span class="ot">&lt;-</span> <span class="fu">expandRows</span>(nhefs, <span class="st">&quot;survtime&quot;</span>, <span class="at">drop=</span>F) </span>
+<span id="cb312-5"><a href="causal-survival-analysis.html#cb312-5" aria-hidden="true" tabindex="-1"></a>nhefs.surv<span class="sc">$</span>time <span class="ot">&lt;-</span> <span class="fu">sequence</span>(<span class="fu">rle</span>(nhefs.surv<span class="sc">$</span>seqn)<span class="sc">$</span>lengths)<span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb312-6"><a href="causal-survival-analysis.html#cb312-6" aria-hidden="true" tabindex="-1"></a>nhefs.surv<span class="sc">$</span>event <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(nhefs.surv<span class="sc">$</span>time<span class="sc">==</span>nhefs.surv<span class="sc">$</span>survtime<span class="dv">-1</span> <span class="sc">&amp;</span> </span>
+<span id="cb312-7"><a href="causal-survival-analysis.html#cb312-7" aria-hidden="true" tabindex="-1"></a>                             nhefs.surv<span class="sc">$</span>death<span class="sc">==</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb312-8"><a href="causal-survival-analysis.html#cb312-8" aria-hidden="true" tabindex="-1"></a>nhefs.surv<span class="sc">$</span>timesq <span class="ot">&lt;-</span> nhefs.surv<span class="sc">$</span>time<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb312-9"><a href="causal-survival-analysis.html#cb312-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb312-10"><a href="causal-survival-analysis.html#cb312-10" aria-hidden="true" tabindex="-1"></a><span class="co"># fit of parametric hazards model</span></span>
+<span id="cb312-11"><a href="causal-survival-analysis.html#cb312-11" aria-hidden="true" tabindex="-1"></a>hazards.model <span class="ot">&lt;-</span> <span class="fu">glm</span>(event<span class="sc">==</span><span class="dv">0</span> <span class="sc">~</span> qsmk <span class="sc">+</span> <span class="fu">I</span>(qsmk<span class="sc">*</span>time) <span class="sc">+</span> <span class="fu">I</span>(qsmk<span class="sc">*</span>timesq) <span class="sc">+</span> </span>
+<span id="cb312-12"><a href="causal-survival-analysis.html#cb312-12" aria-hidden="true" tabindex="-1"></a>                       time <span class="sc">+</span> timesq, <span class="at">family=</span><span class="fu">binomial</span>(), <span class="at">data=</span>nhefs.surv)</span>
+<span id="cb312-13"><a href="causal-survival-analysis.html#cb312-13" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(hazards.model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = event == 0 ~ qsmk + I(qsmk * time) + I(qsmk * timesq) + 
@@ -395,37 +400,37 @@ div.csl-indent {
 ## AIC: 4643.3
 ## 
 ## Number of Fisher Scoring iterations: 9</code></pre>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="causal-survival-analysis.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creation of dataset with all time points under each treatment level</span></span>
-<span id="cb312-2"><a href="causal-survival-analysis.html#cb312-2" aria-hidden="true" tabindex="-1"></a>qsmk0 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">119</span>),<span class="dv">0</span>,(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">119</span>))<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb312-3"><a href="causal-survival-analysis.html#cb312-3" aria-hidden="true" tabindex="-1"></a>qsmk1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">119</span>),<span class="dv">1</span>,(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">119</span>))<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb312-4"><a href="causal-survival-analysis.html#cb312-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb312-5"><a href="causal-survival-analysis.html#cb312-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(qsmk0) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;qsmk&quot;</span>, <span class="st">&quot;timesq&quot;</span>)</span>
-<span id="cb312-6"><a href="causal-survival-analysis.html#cb312-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(qsmk1) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;qsmk&quot;</span>, <span class="st">&quot;timesq&quot;</span>)</span>
-<span id="cb312-7"><a href="causal-survival-analysis.html#cb312-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb312-8"><a href="causal-survival-analysis.html#cb312-8" aria-hidden="true" tabindex="-1"></a><span class="co"># assignment of estimated (1-hazard) to each person-month */</span></span>
-<span id="cb312-9"><a href="causal-survival-analysis.html#cb312-9" aria-hidden="true" tabindex="-1"></a>qsmk0<span class="sc">$</span>p.noevent0 <span class="ot">&lt;-</span> <span class="fu">predict</span>(hazards.model, qsmk0, <span class="at">type=</span><span class="st">&quot;response&quot;</span>)</span>
-<span id="cb312-10"><a href="causal-survival-analysis.html#cb312-10" aria-hidden="true" tabindex="-1"></a>qsmk1<span class="sc">$</span>p.noevent1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(hazards.model, qsmk1, <span class="at">type=</span><span class="st">&quot;response&quot;</span>)</span>
-<span id="cb312-11"><a href="causal-survival-analysis.html#cb312-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb312-12"><a href="causal-survival-analysis.html#cb312-12" aria-hidden="true" tabindex="-1"></a><span class="co"># computation of survival for each person-month</span></span>
-<span id="cb312-13"><a href="causal-survival-analysis.html#cb312-13" aria-hidden="true" tabindex="-1"></a>qsmk0<span class="sc">$</span>surv0 <span class="ot">&lt;-</span> <span class="fu">cumprod</span>(qsmk0<span class="sc">$</span>p.noevent0)</span>
-<span id="cb312-14"><a href="causal-survival-analysis.html#cb312-14" aria-hidden="true" tabindex="-1"></a>qsmk1<span class="sc">$</span>surv1 <span class="ot">&lt;-</span> <span class="fu">cumprod</span>(qsmk1<span class="sc">$</span>p.noevent1)</span>
-<span id="cb312-15"><a href="causal-survival-analysis.html#cb312-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb312-16"><a href="causal-survival-analysis.html#cb312-16" aria-hidden="true" tabindex="-1"></a><span class="co"># some data management to plot estimated survival curves</span></span>
-<span id="cb312-17"><a href="causal-survival-analysis.html#cb312-17" aria-hidden="true" tabindex="-1"></a>hazards.graph <span class="ot">&lt;-</span> <span class="fu">merge</span>(qsmk0, qsmk1, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;timesq&quot;</span>))</span>
-<span id="cb312-18"><a href="causal-survival-analysis.html#cb312-18" aria-hidden="true" tabindex="-1"></a>hazards.graph<span class="sc">$</span>survdiff <span class="ot">&lt;-</span> hazards.graph<span class="sc">$</span>surv1<span class="sc">-</span>hazards.graph<span class="sc">$</span>surv0</span>
-<span id="cb312-19"><a href="causal-survival-analysis.html#cb312-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb312-20"><a href="causal-survival-analysis.html#cb312-20" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
-<span id="cb312-21"><a href="causal-survival-analysis.html#cb312-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hazards.graph, <span class="fu">aes</span>(<span class="at">x=</span>time, <span class="at">y=</span>surv)) <span class="sc">+</span> </span>
-<span id="cb312-22"><a href="causal-survival-analysis.html#cb312-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> surv0, <span class="at">colour =</span> <span class="st">&quot;0&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb312-23"><a href="causal-survival-analysis.html#cb312-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> surv1, <span class="at">colour =</span> <span class="st">&quot;1&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb312-24"><a href="causal-survival-analysis.html#cb312-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Months&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb312-25"><a href="causal-survival-analysis.html#cb312-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">120</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">120</span>,<span class="dv">12</span>)) <span class="sc">+</span></span>
-<span id="cb312-26"><a href="causal-survival-analysis.html#cb312-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">0.6</span>, <span class="dv">1</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">0.6</span>, <span class="dv">1</span>, <span class="fl">0.2</span>)) <span class="sc">+</span></span>
-<span id="cb312-27"><a href="causal-survival-analysis.html#cb312-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Survival&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb312-28"><a href="causal-survival-analysis.html#cb312-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Survival from hazards model&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb312-29"><a href="causal-survival-analysis.html#cb312-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">colour=</span><span class="st">&quot;A:&quot;</span>) <span class="sc">+</span></span>
-<span id="cb312-30"><a href="causal-survival-analysis.html#cb312-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb312-31"><a href="causal-survival-analysis.html#cb312-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="causal-survival-analysis.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creation of dataset with all time points under each treatment level</span></span>
+<span id="cb314-2"><a href="causal-survival-analysis.html#cb314-2" aria-hidden="true" tabindex="-1"></a>qsmk0 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">119</span>),<span class="dv">0</span>,(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">119</span>))<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb314-3"><a href="causal-survival-analysis.html#cb314-3" aria-hidden="true" tabindex="-1"></a>qsmk1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">119</span>),<span class="dv">1</span>,(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">119</span>))<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb314-4"><a href="causal-survival-analysis.html#cb314-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb314-5"><a href="causal-survival-analysis.html#cb314-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(qsmk0) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;qsmk&quot;</span>, <span class="st">&quot;timesq&quot;</span>)</span>
+<span id="cb314-6"><a href="causal-survival-analysis.html#cb314-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(qsmk1) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;qsmk&quot;</span>, <span class="st">&quot;timesq&quot;</span>)</span>
+<span id="cb314-7"><a href="causal-survival-analysis.html#cb314-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb314-8"><a href="causal-survival-analysis.html#cb314-8" aria-hidden="true" tabindex="-1"></a><span class="co"># assignment of estimated (1-hazard) to each person-month */</span></span>
+<span id="cb314-9"><a href="causal-survival-analysis.html#cb314-9" aria-hidden="true" tabindex="-1"></a>qsmk0<span class="sc">$</span>p.noevent0 <span class="ot">&lt;-</span> <span class="fu">predict</span>(hazards.model, qsmk0, <span class="at">type=</span><span class="st">&quot;response&quot;</span>)</span>
+<span id="cb314-10"><a href="causal-survival-analysis.html#cb314-10" aria-hidden="true" tabindex="-1"></a>qsmk1<span class="sc">$</span>p.noevent1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(hazards.model, qsmk1, <span class="at">type=</span><span class="st">&quot;response&quot;</span>)</span>
+<span id="cb314-11"><a href="causal-survival-analysis.html#cb314-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb314-12"><a href="causal-survival-analysis.html#cb314-12" aria-hidden="true" tabindex="-1"></a><span class="co"># computation of survival for each person-month</span></span>
+<span id="cb314-13"><a href="causal-survival-analysis.html#cb314-13" aria-hidden="true" tabindex="-1"></a>qsmk0<span class="sc">$</span>surv0 <span class="ot">&lt;-</span> <span class="fu">cumprod</span>(qsmk0<span class="sc">$</span>p.noevent0)</span>
+<span id="cb314-14"><a href="causal-survival-analysis.html#cb314-14" aria-hidden="true" tabindex="-1"></a>qsmk1<span class="sc">$</span>surv1 <span class="ot">&lt;-</span> <span class="fu">cumprod</span>(qsmk1<span class="sc">$</span>p.noevent1)</span>
+<span id="cb314-15"><a href="causal-survival-analysis.html#cb314-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb314-16"><a href="causal-survival-analysis.html#cb314-16" aria-hidden="true" tabindex="-1"></a><span class="co"># some data management to plot estimated survival curves</span></span>
+<span id="cb314-17"><a href="causal-survival-analysis.html#cb314-17" aria-hidden="true" tabindex="-1"></a>hazards.graph <span class="ot">&lt;-</span> <span class="fu">merge</span>(qsmk0, qsmk1, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;timesq&quot;</span>))</span>
+<span id="cb314-18"><a href="causal-survival-analysis.html#cb314-18" aria-hidden="true" tabindex="-1"></a>hazards.graph<span class="sc">$</span>survdiff <span class="ot">&lt;-</span> hazards.graph<span class="sc">$</span>surv1<span class="sc">-</span>hazards.graph<span class="sc">$</span>surv0</span>
+<span id="cb314-19"><a href="causal-survival-analysis.html#cb314-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb314-20"><a href="causal-survival-analysis.html#cb314-20" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb314-21"><a href="causal-survival-analysis.html#cb314-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hazards.graph, <span class="fu">aes</span>(<span class="at">x=</span>time, <span class="at">y=</span>surv)) <span class="sc">+</span> </span>
+<span id="cb314-22"><a href="causal-survival-analysis.html#cb314-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> surv0, <span class="at">colour =</span> <span class="st">&quot;0&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb314-23"><a href="causal-survival-analysis.html#cb314-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> surv1, <span class="at">colour =</span> <span class="st">&quot;1&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb314-24"><a href="causal-survival-analysis.html#cb314-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Months&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb314-25"><a href="causal-survival-analysis.html#cb314-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">120</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">120</span>,<span class="dv">12</span>)) <span class="sc">+</span></span>
+<span id="cb314-26"><a href="causal-survival-analysis.html#cb314-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">0.6</span>, <span class="dv">1</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">0.6</span>, <span class="dv">1</span>, <span class="fl">0.2</span>)) <span class="sc">+</span></span>
+<span id="cb314-27"><a href="causal-survival-analysis.html#cb314-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Survival&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb314-28"><a href="causal-survival-analysis.html#cb314-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Survival from hazards model&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb314-29"><a href="causal-survival-analysis.html#cb314-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">colour=</span><span class="st">&quot;A:&quot;</span>) <span class="sc">+</span></span>
+<span id="cb314-30"><a href="causal-survival-analysis.html#cb314-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb314-31"><a href="causal-survival-analysis.html#cb314-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
 <p><img src="17-causal-surv-r_files/figure-html/unnamed-chunk-3-1.png" width="85%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="program-17.3" class="section level2">
@@ -434,37 +439,37 @@ div.csl-indent {
 <li>Estimation of survival curves via IP weighted hazards model</li>
 <li>Data from NHEFS</li>
 </ul>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="causal-survival-analysis.html#cb313-1" aria-hidden="true" tabindex="-1"></a><span class="co"># estimation of denominator of ip weights</span></span>
-<span id="cb313-2"><a href="causal-survival-analysis.html#cb313-2" aria-hidden="true" tabindex="-1"></a>p.denom <span class="ot">&lt;-</span> <span class="fu">glm</span>(qsmk <span class="sc">~</span> sex <span class="sc">+</span> race <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(age<span class="sc">*</span>age) <span class="sc">+</span> <span class="fu">as.factor</span>(education)</span>
-<span id="cb313-3"><a href="causal-survival-analysis.html#cb313-3" aria-hidden="true" tabindex="-1"></a>               <span class="sc">+</span> smokeintensity <span class="sc">+</span> <span class="fu">I</span>(smokeintensity<span class="sc">*</span>smokeintensity)</span>
-<span id="cb313-4"><a href="causal-survival-analysis.html#cb313-4" aria-hidden="true" tabindex="-1"></a>               <span class="sc">+</span> smokeyrs <span class="sc">+</span> <span class="fu">I</span>(smokeyrs<span class="sc">*</span>smokeyrs) <span class="sc">+</span> <span class="fu">as.factor</span>(exercise)</span>
-<span id="cb313-5"><a href="causal-survival-analysis.html#cb313-5" aria-hidden="true" tabindex="-1"></a>               <span class="sc">+</span> <span class="fu">as.factor</span>(active) <span class="sc">+</span> wt71 <span class="sc">+</span> <span class="fu">I</span>(wt71<span class="sc">*</span>wt71), </span>
-<span id="cb313-6"><a href="causal-survival-analysis.html#cb313-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">data=</span>nhefs, <span class="at">family=</span><span class="fu">binomial</span>())</span>
-<span id="cb313-7"><a href="causal-survival-analysis.html#cb313-7" aria-hidden="true" tabindex="-1"></a>nhefs<span class="sc">$</span>pd.qsmk <span class="ot">&lt;-</span> <span class="fu">predict</span>(p.denom, nhefs, <span class="at">type=</span><span class="st">&quot;response&quot;</span>)</span>
-<span id="cb313-8"><a href="causal-survival-analysis.html#cb313-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb313-9"><a href="causal-survival-analysis.html#cb313-9" aria-hidden="true" tabindex="-1"></a><span class="co"># estimation of numerator of ip weights</span></span>
-<span id="cb313-10"><a href="causal-survival-analysis.html#cb313-10" aria-hidden="true" tabindex="-1"></a>p.num <span class="ot">&lt;-</span> <span class="fu">glm</span>(qsmk <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data=</span>nhefs, <span class="at">family=</span><span class="fu">binomial</span>())</span>
-<span id="cb313-11"><a href="causal-survival-analysis.html#cb313-11" aria-hidden="true" tabindex="-1"></a>nhefs<span class="sc">$</span>pn.qsmk <span class="ot">&lt;-</span> <span class="fu">predict</span>(p.num, nhefs, <span class="at">type=</span><span class="st">&quot;response&quot;</span>)</span>
-<span id="cb313-12"><a href="causal-survival-analysis.html#cb313-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb313-13"><a href="causal-survival-analysis.html#cb313-13" aria-hidden="true" tabindex="-1"></a><span class="co"># computation of estimated weights</span></span>
-<span id="cb313-14"><a href="causal-survival-analysis.html#cb313-14" aria-hidden="true" tabindex="-1"></a>nhefs<span class="sc">$</span>sw.a <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(nhefs<span class="sc">$</span>qsmk<span class="sc">==</span><span class="dv">1</span>, nhefs<span class="sc">$</span>pn.qsmk<span class="sc">/</span>nhefs<span class="sc">$</span>pd.qsmk,</span>
-<span id="cb313-15"><a href="causal-survival-analysis.html#cb313-15" aria-hidden="true" tabindex="-1"></a>                     (<span class="dv">1</span><span class="sc">-</span>nhefs<span class="sc">$</span>pn.qsmk)<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>nhefs<span class="sc">$</span>pd.qsmk))</span>
-<span id="cb313-16"><a href="causal-survival-analysis.html#cb313-16" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhefs<span class="sc">$</span>sw.a)</span></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="causal-survival-analysis.html#cb315-1" aria-hidden="true" tabindex="-1"></a><span class="co"># estimation of denominator of ip weights</span></span>
+<span id="cb315-2"><a href="causal-survival-analysis.html#cb315-2" aria-hidden="true" tabindex="-1"></a>p.denom <span class="ot">&lt;-</span> <span class="fu">glm</span>(qsmk <span class="sc">~</span> sex <span class="sc">+</span> race <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(age<span class="sc">*</span>age) <span class="sc">+</span> <span class="fu">as.factor</span>(education)</span>
+<span id="cb315-3"><a href="causal-survival-analysis.html#cb315-3" aria-hidden="true" tabindex="-1"></a>               <span class="sc">+</span> smokeintensity <span class="sc">+</span> <span class="fu">I</span>(smokeintensity<span class="sc">*</span>smokeintensity)</span>
+<span id="cb315-4"><a href="causal-survival-analysis.html#cb315-4" aria-hidden="true" tabindex="-1"></a>               <span class="sc">+</span> smokeyrs <span class="sc">+</span> <span class="fu">I</span>(smokeyrs<span class="sc">*</span>smokeyrs) <span class="sc">+</span> <span class="fu">as.factor</span>(exercise)</span>
+<span id="cb315-5"><a href="causal-survival-analysis.html#cb315-5" aria-hidden="true" tabindex="-1"></a>               <span class="sc">+</span> <span class="fu">as.factor</span>(active) <span class="sc">+</span> wt71 <span class="sc">+</span> <span class="fu">I</span>(wt71<span class="sc">*</span>wt71), </span>
+<span id="cb315-6"><a href="causal-survival-analysis.html#cb315-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">data=</span>nhefs, <span class="at">family=</span><span class="fu">binomial</span>())</span>
+<span id="cb315-7"><a href="causal-survival-analysis.html#cb315-7" aria-hidden="true" tabindex="-1"></a>nhefs<span class="sc">$</span>pd.qsmk <span class="ot">&lt;-</span> <span class="fu">predict</span>(p.denom, nhefs, <span class="at">type=</span><span class="st">&quot;response&quot;</span>)</span>
+<span id="cb315-8"><a href="causal-survival-analysis.html#cb315-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb315-9"><a href="causal-survival-analysis.html#cb315-9" aria-hidden="true" tabindex="-1"></a><span class="co"># estimation of numerator of ip weights</span></span>
+<span id="cb315-10"><a href="causal-survival-analysis.html#cb315-10" aria-hidden="true" tabindex="-1"></a>p.num <span class="ot">&lt;-</span> <span class="fu">glm</span>(qsmk <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data=</span>nhefs, <span class="at">family=</span><span class="fu">binomial</span>())</span>
+<span id="cb315-11"><a href="causal-survival-analysis.html#cb315-11" aria-hidden="true" tabindex="-1"></a>nhefs<span class="sc">$</span>pn.qsmk <span class="ot">&lt;-</span> <span class="fu">predict</span>(p.num, nhefs, <span class="at">type=</span><span class="st">&quot;response&quot;</span>)</span>
+<span id="cb315-12"><a href="causal-survival-analysis.html#cb315-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb315-13"><a href="causal-survival-analysis.html#cb315-13" aria-hidden="true" tabindex="-1"></a><span class="co"># computation of estimated weights</span></span>
+<span id="cb315-14"><a href="causal-survival-analysis.html#cb315-14" aria-hidden="true" tabindex="-1"></a>nhefs<span class="sc">$</span>sw.a <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(nhefs<span class="sc">$</span>qsmk<span class="sc">==</span><span class="dv">1</span>, nhefs<span class="sc">$</span>pn.qsmk<span class="sc">/</span>nhefs<span class="sc">$</span>pd.qsmk,</span>
+<span id="cb315-15"><a href="causal-survival-analysis.html#cb315-15" aria-hidden="true" tabindex="-1"></a>                     (<span class="dv">1</span><span class="sc">-</span>nhefs<span class="sc">$</span>pn.qsmk)<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>nhefs<span class="sc">$</span>pd.qsmk))</span>
+<span id="cb315-16"><a href="causal-survival-analysis.html#cb315-16" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhefs<span class="sc">$</span>sw.a)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##  0.3312  0.8640  0.9504  0.9991  1.0755  4.2054</code></pre>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="causal-survival-analysis.html#cb315-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creation of person-month data</span></span>
-<span id="cb315-2"><a href="causal-survival-analysis.html#cb315-2" aria-hidden="true" tabindex="-1"></a>nhefs.ipw <span class="ot">&lt;-</span> <span class="fu">expandRows</span>(nhefs, <span class="st">&quot;survtime&quot;</span>, <span class="at">drop=</span>F) </span>
-<span id="cb315-3"><a href="causal-survival-analysis.html#cb315-3" aria-hidden="true" tabindex="-1"></a>nhefs.ipw<span class="sc">$</span>time <span class="ot">&lt;-</span> <span class="fu">sequence</span>(<span class="fu">rle</span>(nhefs.ipw<span class="sc">$</span>seqn)<span class="sc">$</span>lengths)<span class="sc">-</span><span class="dv">1</span></span>
-<span id="cb315-4"><a href="causal-survival-analysis.html#cb315-4" aria-hidden="true" tabindex="-1"></a>nhefs.ipw<span class="sc">$</span>event <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(nhefs.ipw<span class="sc">$</span>time<span class="sc">==</span>nhefs.ipw<span class="sc">$</span>survtime<span class="dv">-1</span> <span class="sc">&amp;</span> </span>
-<span id="cb315-5"><a href="causal-survival-analysis.html#cb315-5" aria-hidden="true" tabindex="-1"></a>                            nhefs.ipw<span class="sc">$</span>death<span class="sc">==</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb315-6"><a href="causal-survival-analysis.html#cb315-6" aria-hidden="true" tabindex="-1"></a>nhefs.ipw<span class="sc">$</span>timesq <span class="ot">&lt;-</span> nhefs.ipw<span class="sc">$</span>time<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb315-7"><a href="causal-survival-analysis.html#cb315-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb315-8"><a href="causal-survival-analysis.html#cb315-8" aria-hidden="true" tabindex="-1"></a><span class="co"># fit of weighted hazards model</span></span>
-<span id="cb315-9"><a href="causal-survival-analysis.html#cb315-9" aria-hidden="true" tabindex="-1"></a>ipw.model <span class="ot">&lt;-</span> <span class="fu">glm</span>(event<span class="sc">==</span><span class="dv">0</span> <span class="sc">~</span> qsmk <span class="sc">+</span> <span class="fu">I</span>(qsmk<span class="sc">*</span>time) <span class="sc">+</span> <span class="fu">I</span>(qsmk<span class="sc">*</span>timesq) <span class="sc">+</span> </span>
-<span id="cb315-10"><a href="causal-survival-analysis.html#cb315-10" aria-hidden="true" tabindex="-1"></a>                   time <span class="sc">+</span> timesq, <span class="at">family=</span><span class="fu">binomial</span>(), <span class="at">weight=</span>sw.a,</span>
-<span id="cb315-11"><a href="causal-survival-analysis.html#cb315-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data=</span>nhefs.ipw)</span></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="causal-survival-analysis.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creation of person-month data</span></span>
+<span id="cb317-2"><a href="causal-survival-analysis.html#cb317-2" aria-hidden="true" tabindex="-1"></a>nhefs.ipw <span class="ot">&lt;-</span> <span class="fu">expandRows</span>(nhefs, <span class="st">&quot;survtime&quot;</span>, <span class="at">drop=</span>F) </span>
+<span id="cb317-3"><a href="causal-survival-analysis.html#cb317-3" aria-hidden="true" tabindex="-1"></a>nhefs.ipw<span class="sc">$</span>time <span class="ot">&lt;-</span> <span class="fu">sequence</span>(<span class="fu">rle</span>(nhefs.ipw<span class="sc">$</span>seqn)<span class="sc">$</span>lengths)<span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb317-4"><a href="causal-survival-analysis.html#cb317-4" aria-hidden="true" tabindex="-1"></a>nhefs.ipw<span class="sc">$</span>event <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(nhefs.ipw<span class="sc">$</span>time<span class="sc">==</span>nhefs.ipw<span class="sc">$</span>survtime<span class="dv">-1</span> <span class="sc">&amp;</span> </span>
+<span id="cb317-5"><a href="causal-survival-analysis.html#cb317-5" aria-hidden="true" tabindex="-1"></a>                            nhefs.ipw<span class="sc">$</span>death<span class="sc">==</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb317-6"><a href="causal-survival-analysis.html#cb317-6" aria-hidden="true" tabindex="-1"></a>nhefs.ipw<span class="sc">$</span>timesq <span class="ot">&lt;-</span> nhefs.ipw<span class="sc">$</span>time<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb317-7"><a href="causal-survival-analysis.html#cb317-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb317-8"><a href="causal-survival-analysis.html#cb317-8" aria-hidden="true" tabindex="-1"></a><span class="co"># fit of weighted hazards model</span></span>
+<span id="cb317-9"><a href="causal-survival-analysis.html#cb317-9" aria-hidden="true" tabindex="-1"></a>ipw.model <span class="ot">&lt;-</span> <span class="fu">glm</span>(event<span class="sc">==</span><span class="dv">0</span> <span class="sc">~</span> qsmk <span class="sc">+</span> <span class="fu">I</span>(qsmk<span class="sc">*</span>time) <span class="sc">+</span> <span class="fu">I</span>(qsmk<span class="sc">*</span>timesq) <span class="sc">+</span> </span>
+<span id="cb317-10"><a href="causal-survival-analysis.html#cb317-10" aria-hidden="true" tabindex="-1"></a>                   time <span class="sc">+</span> timesq, <span class="at">family=</span><span class="fu">binomial</span>(), <span class="at">weight=</span>sw.a,</span>
+<span id="cb317-11"><a href="causal-survival-analysis.html#cb317-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data=</span>nhefs.ipw)</span></code></pre></div>
 <pre><code>## Warning in eval(family$initialize): non-integer #successes in a binomial glm!</code></pre>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="causal-survival-analysis.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ipw.model)</span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="causal-survival-analysis.html#cb319-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ipw.model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = event == 0 ~ qsmk + I(qsmk * time) + I(qsmk * timesq) + 
@@ -492,37 +497,37 @@ div.csl-indent {
 ## AIC: 4633.5
 ## 
 ## Number of Fisher Scoring iterations: 9</code></pre>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="causal-survival-analysis.html#cb319-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creation of survival curves</span></span>
-<span id="cb319-2"><a href="causal-survival-analysis.html#cb319-2" aria-hidden="true" tabindex="-1"></a>ipw.qsmk0 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">119</span>),<span class="dv">0</span>,(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">119</span>))<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb319-3"><a href="causal-survival-analysis.html#cb319-3" aria-hidden="true" tabindex="-1"></a>ipw.qsmk1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">119</span>),<span class="dv">1</span>,(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">119</span>))<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb319-4"><a href="causal-survival-analysis.html#cb319-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb319-5"><a href="causal-survival-analysis.html#cb319-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ipw.qsmk0) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;qsmk&quot;</span>, <span class="st">&quot;timesq&quot;</span>)</span>
-<span id="cb319-6"><a href="causal-survival-analysis.html#cb319-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ipw.qsmk1) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;qsmk&quot;</span>, <span class="st">&quot;timesq&quot;</span>)</span>
-<span id="cb319-7"><a href="causal-survival-analysis.html#cb319-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb319-8"><a href="causal-survival-analysis.html#cb319-8" aria-hidden="true" tabindex="-1"></a><span class="co"># assignment of estimated (1-hazard) to each person-month */</span></span>
-<span id="cb319-9"><a href="causal-survival-analysis.html#cb319-9" aria-hidden="true" tabindex="-1"></a>ipw.qsmk0<span class="sc">$</span>p.noevent0 <span class="ot">&lt;-</span> <span class="fu">predict</span>(ipw.model, ipw.qsmk0, <span class="at">type=</span><span class="st">&quot;response&quot;</span>)</span>
-<span id="cb319-10"><a href="causal-survival-analysis.html#cb319-10" aria-hidden="true" tabindex="-1"></a>ipw.qsmk1<span class="sc">$</span>p.noevent1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(ipw.model, ipw.qsmk1, <span class="at">type=</span><span class="st">&quot;response&quot;</span>)</span>
-<span id="cb319-11"><a href="causal-survival-analysis.html#cb319-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb319-12"><a href="causal-survival-analysis.html#cb319-12" aria-hidden="true" tabindex="-1"></a><span class="co"># computation of survival for each person-month</span></span>
-<span id="cb319-13"><a href="causal-survival-analysis.html#cb319-13" aria-hidden="true" tabindex="-1"></a>ipw.qsmk0<span class="sc">$</span>surv0 <span class="ot">&lt;-</span> <span class="fu">cumprod</span>(ipw.qsmk0<span class="sc">$</span>p.noevent0)</span>
-<span id="cb319-14"><a href="causal-survival-analysis.html#cb319-14" aria-hidden="true" tabindex="-1"></a>ipw.qsmk1<span class="sc">$</span>surv1 <span class="ot">&lt;-</span> <span class="fu">cumprod</span>(ipw.qsmk1<span class="sc">$</span>p.noevent1)</span>
-<span id="cb319-15"><a href="causal-survival-analysis.html#cb319-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb319-16"><a href="causal-survival-analysis.html#cb319-16" aria-hidden="true" tabindex="-1"></a><span class="co"># some data management to plot estimated survival curves</span></span>
-<span id="cb319-17"><a href="causal-survival-analysis.html#cb319-17" aria-hidden="true" tabindex="-1"></a>ipw.graph <span class="ot">&lt;-</span> <span class="fu">merge</span>(ipw.qsmk0, ipw.qsmk1, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;timesq&quot;</span>))</span>
-<span id="cb319-18"><a href="causal-survival-analysis.html#cb319-18" aria-hidden="true" tabindex="-1"></a>ipw.graph<span class="sc">$</span>survdiff <span class="ot">&lt;-</span> ipw.graph<span class="sc">$</span>surv1<span class="sc">-</span>ipw.graph<span class="sc">$</span>surv0</span>
-<span id="cb319-19"><a href="causal-survival-analysis.html#cb319-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb319-20"><a href="causal-survival-analysis.html#cb319-20" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
-<span id="cb319-21"><a href="causal-survival-analysis.html#cb319-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ipw.graph, <span class="fu">aes</span>(<span class="at">x=</span>time, <span class="at">y=</span>surv)) <span class="sc">+</span> </span>
-<span id="cb319-22"><a href="causal-survival-analysis.html#cb319-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> surv0, <span class="at">colour =</span> <span class="st">&quot;0&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb319-23"><a href="causal-survival-analysis.html#cb319-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> surv1, <span class="at">colour =</span> <span class="st">&quot;1&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb319-24"><a href="causal-survival-analysis.html#cb319-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Months&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb319-25"><a href="causal-survival-analysis.html#cb319-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">120</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">120</span>,<span class="dv">12</span>)) <span class="sc">+</span></span>
-<span id="cb319-26"><a href="causal-survival-analysis.html#cb319-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">0.6</span>, <span class="dv">1</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">0.6</span>, <span class="dv">1</span>, <span class="fl">0.2</span>)) <span class="sc">+</span></span>
-<span id="cb319-27"><a href="causal-survival-analysis.html#cb319-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Survival&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb319-28"><a href="causal-survival-analysis.html#cb319-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Survival from IP weighted hazards model&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb319-29"><a href="causal-survival-analysis.html#cb319-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">colour=</span><span class="st">&quot;A:&quot;</span>) <span class="sc">+</span></span>
-<span id="cb319-30"><a href="causal-survival-analysis.html#cb319-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb319-31"><a href="causal-survival-analysis.html#cb319-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="causal-survival-analysis.html#cb321-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creation of survival curves</span></span>
+<span id="cb321-2"><a href="causal-survival-analysis.html#cb321-2" aria-hidden="true" tabindex="-1"></a>ipw.qsmk0 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">119</span>),<span class="dv">0</span>,(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">119</span>))<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb321-3"><a href="causal-survival-analysis.html#cb321-3" aria-hidden="true" tabindex="-1"></a>ipw.qsmk1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">119</span>),<span class="dv">1</span>,(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">119</span>))<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb321-4"><a href="causal-survival-analysis.html#cb321-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb321-5"><a href="causal-survival-analysis.html#cb321-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ipw.qsmk0) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;qsmk&quot;</span>, <span class="st">&quot;timesq&quot;</span>)</span>
+<span id="cb321-6"><a href="causal-survival-analysis.html#cb321-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ipw.qsmk1) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;qsmk&quot;</span>, <span class="st">&quot;timesq&quot;</span>)</span>
+<span id="cb321-7"><a href="causal-survival-analysis.html#cb321-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb321-8"><a href="causal-survival-analysis.html#cb321-8" aria-hidden="true" tabindex="-1"></a><span class="co"># assignment of estimated (1-hazard) to each person-month */</span></span>
+<span id="cb321-9"><a href="causal-survival-analysis.html#cb321-9" aria-hidden="true" tabindex="-1"></a>ipw.qsmk0<span class="sc">$</span>p.noevent0 <span class="ot">&lt;-</span> <span class="fu">predict</span>(ipw.model, ipw.qsmk0, <span class="at">type=</span><span class="st">&quot;response&quot;</span>)</span>
+<span id="cb321-10"><a href="causal-survival-analysis.html#cb321-10" aria-hidden="true" tabindex="-1"></a>ipw.qsmk1<span class="sc">$</span>p.noevent1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(ipw.model, ipw.qsmk1, <span class="at">type=</span><span class="st">&quot;response&quot;</span>)</span>
+<span id="cb321-11"><a href="causal-survival-analysis.html#cb321-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb321-12"><a href="causal-survival-analysis.html#cb321-12" aria-hidden="true" tabindex="-1"></a><span class="co"># computation of survival for each person-month</span></span>
+<span id="cb321-13"><a href="causal-survival-analysis.html#cb321-13" aria-hidden="true" tabindex="-1"></a>ipw.qsmk0<span class="sc">$</span>surv0 <span class="ot">&lt;-</span> <span class="fu">cumprod</span>(ipw.qsmk0<span class="sc">$</span>p.noevent0)</span>
+<span id="cb321-14"><a href="causal-survival-analysis.html#cb321-14" aria-hidden="true" tabindex="-1"></a>ipw.qsmk1<span class="sc">$</span>surv1 <span class="ot">&lt;-</span> <span class="fu">cumprod</span>(ipw.qsmk1<span class="sc">$</span>p.noevent1)</span>
+<span id="cb321-15"><a href="causal-survival-analysis.html#cb321-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb321-16"><a href="causal-survival-analysis.html#cb321-16" aria-hidden="true" tabindex="-1"></a><span class="co"># some data management to plot estimated survival curves</span></span>
+<span id="cb321-17"><a href="causal-survival-analysis.html#cb321-17" aria-hidden="true" tabindex="-1"></a>ipw.graph <span class="ot">&lt;-</span> <span class="fu">merge</span>(ipw.qsmk0, ipw.qsmk1, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;time&quot;</span>, <span class="st">&quot;timesq&quot;</span>))</span>
+<span id="cb321-18"><a href="causal-survival-analysis.html#cb321-18" aria-hidden="true" tabindex="-1"></a>ipw.graph<span class="sc">$</span>survdiff <span class="ot">&lt;-</span> ipw.graph<span class="sc">$</span>surv1<span class="sc">-</span>ipw.graph<span class="sc">$</span>surv0</span>
+<span id="cb321-19"><a href="causal-survival-analysis.html#cb321-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb321-20"><a href="causal-survival-analysis.html#cb321-20" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb321-21"><a href="causal-survival-analysis.html#cb321-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ipw.graph, <span class="fu">aes</span>(<span class="at">x=</span>time, <span class="at">y=</span>surv)) <span class="sc">+</span> </span>
+<span id="cb321-22"><a href="causal-survival-analysis.html#cb321-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> surv0, <span class="at">colour =</span> <span class="st">&quot;0&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb321-23"><a href="causal-survival-analysis.html#cb321-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> surv1, <span class="at">colour =</span> <span class="st">&quot;1&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb321-24"><a href="causal-survival-analysis.html#cb321-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Months&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb321-25"><a href="causal-survival-analysis.html#cb321-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">120</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">120</span>,<span class="dv">12</span>)) <span class="sc">+</span></span>
+<span id="cb321-26"><a href="causal-survival-analysis.html#cb321-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">0.6</span>, <span class="dv">1</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">0.6</span>, <span class="dv">1</span>, <span class="fl">0.2</span>)) <span class="sc">+</span></span>
+<span id="cb321-27"><a href="causal-survival-analysis.html#cb321-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Survival&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb321-28"><a href="causal-survival-analysis.html#cb321-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Survival from IP weighted hazards model&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb321-29"><a href="causal-survival-analysis.html#cb321-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">colour=</span><span class="st">&quot;A:&quot;</span>) <span class="sc">+</span></span>
+<span id="cb321-30"><a href="causal-survival-analysis.html#cb321-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb321-31"><a href="causal-survival-analysis.html#cb321-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
 <p><img src="17-causal-surv-r_files/figure-html/unnamed-chunk-4-1.png" width="85%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="program-17.4" class="section level2">
@@ -531,15 +536,15 @@ div.csl-indent {
 <li>Estimating of survival curves via g-formula</li>
 <li>Data from NHEFS</li>
 </ul>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="causal-survival-analysis.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit of hazards model with covariates</span></span>
-<span id="cb320-2"><a href="causal-survival-analysis.html#cb320-2" aria-hidden="true" tabindex="-1"></a>gf.model <span class="ot">&lt;-</span> <span class="fu">glm</span>(event<span class="sc">==</span><span class="dv">0</span> <span class="sc">~</span> qsmk <span class="sc">+</span> <span class="fu">I</span>(qsmk<span class="sc">*</span>time) <span class="sc">+</span> <span class="fu">I</span>(qsmk<span class="sc">*</span>timesq)</span>
-<span id="cb320-3"><a href="causal-survival-analysis.html#cb320-3" aria-hidden="true" tabindex="-1"></a>                <span class="sc">+</span> time <span class="sc">+</span> timesq <span class="sc">+</span> sex <span class="sc">+</span> race <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(age<span class="sc">*</span>age)</span>
-<span id="cb320-4"><a href="causal-survival-analysis.html#cb320-4" aria-hidden="true" tabindex="-1"></a>                <span class="sc">+</span> <span class="fu">as.factor</span>(education) <span class="sc">+</span> smokeintensity </span>
-<span id="cb320-5"><a href="causal-survival-analysis.html#cb320-5" aria-hidden="true" tabindex="-1"></a>                <span class="sc">+</span> <span class="fu">I</span>(smokeintensity<span class="sc">*</span>smokeintensity) <span class="sc">+</span> smkintensity82_71 </span>
-<span id="cb320-6"><a href="causal-survival-analysis.html#cb320-6" aria-hidden="true" tabindex="-1"></a>                <span class="sc">+</span> smokeyrs <span class="sc">+</span> <span class="fu">I</span>(smokeyrs<span class="sc">*</span>smokeyrs) <span class="sc">+</span> <span class="fu">as.factor</span>(exercise) </span>
-<span id="cb320-7"><a href="causal-survival-analysis.html#cb320-7" aria-hidden="true" tabindex="-1"></a>                <span class="sc">+</span> <span class="fu">as.factor</span>(active) <span class="sc">+</span> wt71 <span class="sc">+</span> <span class="fu">I</span>(wt71<span class="sc">*</span>wt71), </span>
-<span id="cb320-8"><a href="causal-survival-analysis.html#cb320-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">data=</span>nhefs.surv, <span class="at">family=</span><span class="fu">binomial</span>())</span>
-<span id="cb320-9"><a href="causal-survival-analysis.html#cb320-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gf.model)</span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="causal-survival-analysis.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit of hazards model with covariates</span></span>
+<span id="cb322-2"><a href="causal-survival-analysis.html#cb322-2" aria-hidden="true" tabindex="-1"></a>gf.model <span class="ot">&lt;-</span> <span class="fu">glm</span>(event<span class="sc">==</span><span class="dv">0</span> <span class="sc">~</span> qsmk <span class="sc">+</span> <span class="fu">I</span>(qsmk<span class="sc">*</span>time) <span class="sc">+</span> <span class="fu">I</span>(qsmk<span class="sc">*</span>timesq)</span>
+<span id="cb322-3"><a href="causal-survival-analysis.html#cb322-3" aria-hidden="true" tabindex="-1"></a>                <span class="sc">+</span> time <span class="sc">+</span> timesq <span class="sc">+</span> sex <span class="sc">+</span> race <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(age<span class="sc">*</span>age)</span>
+<span id="cb322-4"><a href="causal-survival-analysis.html#cb322-4" aria-hidden="true" tabindex="-1"></a>                <span class="sc">+</span> <span class="fu">as.factor</span>(education) <span class="sc">+</span> smokeintensity </span>
+<span id="cb322-5"><a href="causal-survival-analysis.html#cb322-5" aria-hidden="true" tabindex="-1"></a>                <span class="sc">+</span> <span class="fu">I</span>(smokeintensity<span class="sc">*</span>smokeintensity) <span class="sc">+</span> smkintensity82_71 </span>
+<span id="cb322-6"><a href="causal-survival-analysis.html#cb322-6" aria-hidden="true" tabindex="-1"></a>                <span class="sc">+</span> smokeyrs <span class="sc">+</span> <span class="fu">I</span>(smokeyrs<span class="sc">*</span>smokeyrs) <span class="sc">+</span> <span class="fu">as.factor</span>(exercise) </span>
+<span id="cb322-7"><a href="causal-survival-analysis.html#cb322-7" aria-hidden="true" tabindex="-1"></a>                <span class="sc">+</span> <span class="fu">as.factor</span>(active) <span class="sc">+</span> wt71 <span class="sc">+</span> <span class="fu">I</span>(wt71<span class="sc">*</span>wt71), </span>
+<span id="cb322-8"><a href="causal-survival-analysis.html#cb322-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">data=</span>nhefs.surv, <span class="at">family=</span><span class="fu">binomial</span>())</span>
+<span id="cb322-9"><a href="causal-survival-analysis.html#cb322-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(gf.model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = event == 0 ~ qsmk + I(qsmk * time) + I(qsmk * timesq) + 
@@ -590,21 +595,21 @@ div.csl-indent {
 ## AIC: 4235.7
 ## 
 ## Number of Fisher Scoring iterations: 10</code></pre>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="causal-survival-analysis.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creation of dataset with all time points for </span></span>
-<span id="cb322-2"><a href="causal-survival-analysis.html#cb322-2" aria-hidden="true" tabindex="-1"></a><span class="co"># each individual under each treatment level</span></span>
-<span id="cb322-3"><a href="causal-survival-analysis.html#cb322-3" aria-hidden="true" tabindex="-1"></a>gf.qsmk0 <span class="ot">&lt;-</span> <span class="fu">expandRows</span>(nhefs, <span class="at">count=</span><span class="dv">120</span>, <span class="at">count.is.col=</span>F) </span>
-<span id="cb322-4"><a href="causal-survival-analysis.html#cb322-4" aria-hidden="true" tabindex="-1"></a>gf.qsmk0<span class="sc">$</span>time <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">119</span>), <span class="fu">nrow</span>(nhefs))</span>
-<span id="cb322-5"><a href="causal-survival-analysis.html#cb322-5" aria-hidden="true" tabindex="-1"></a>gf.qsmk0<span class="sc">$</span>timesq <span class="ot">&lt;-</span> gf.qsmk0<span class="sc">$</span>time<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb322-6"><a href="causal-survival-analysis.html#cb322-6" aria-hidden="true" tabindex="-1"></a>gf.qsmk0<span class="sc">$</span>qsmk <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb322-7"><a href="causal-survival-analysis.html#cb322-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb322-8"><a href="causal-survival-analysis.html#cb322-8" aria-hidden="true" tabindex="-1"></a>gf.qsmk1 <span class="ot">&lt;-</span> gf.qsmk0</span>
-<span id="cb322-9"><a href="causal-survival-analysis.html#cb322-9" aria-hidden="true" tabindex="-1"></a>gf.qsmk1<span class="sc">$</span>qsmk <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb322-10"><a href="causal-survival-analysis.html#cb322-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb322-11"><a href="causal-survival-analysis.html#cb322-11" aria-hidden="true" tabindex="-1"></a>gf.qsmk0<span class="sc">$</span>p.noevent0 <span class="ot">&lt;-</span> <span class="fu">predict</span>(gf.model, gf.qsmk0, <span class="at">type=</span><span class="st">&quot;response&quot;</span>)</span>
-<span id="cb322-12"><a href="causal-survival-analysis.html#cb322-12" aria-hidden="true" tabindex="-1"></a>gf.qsmk1<span class="sc">$</span>p.noevent1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(gf.model, gf.qsmk1, <span class="at">type=</span><span class="st">&quot;response&quot;</span>)</span>
-<span id="cb322-13"><a href="causal-survival-analysis.html#cb322-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb322-14"><a href="causal-survival-analysis.html#cb322-14" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;dplyr&quot;)</span></span>
-<span id="cb322-15"><a href="causal-survival-analysis.html#cb322-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="causal-survival-analysis.html#cb324-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creation of dataset with all time points for </span></span>
+<span id="cb324-2"><a href="causal-survival-analysis.html#cb324-2" aria-hidden="true" tabindex="-1"></a><span class="co"># each individual under each treatment level</span></span>
+<span id="cb324-3"><a href="causal-survival-analysis.html#cb324-3" aria-hidden="true" tabindex="-1"></a>gf.qsmk0 <span class="ot">&lt;-</span> <span class="fu">expandRows</span>(nhefs, <span class="at">count=</span><span class="dv">120</span>, <span class="at">count.is.col=</span>F) </span>
+<span id="cb324-4"><a href="causal-survival-analysis.html#cb324-4" aria-hidden="true" tabindex="-1"></a>gf.qsmk0<span class="sc">$</span>time <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">119</span>), <span class="fu">nrow</span>(nhefs))</span>
+<span id="cb324-5"><a href="causal-survival-analysis.html#cb324-5" aria-hidden="true" tabindex="-1"></a>gf.qsmk0<span class="sc">$</span>timesq <span class="ot">&lt;-</span> gf.qsmk0<span class="sc">$</span>time<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb324-6"><a href="causal-survival-analysis.html#cb324-6" aria-hidden="true" tabindex="-1"></a>gf.qsmk0<span class="sc">$</span>qsmk <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb324-7"><a href="causal-survival-analysis.html#cb324-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb324-8"><a href="causal-survival-analysis.html#cb324-8" aria-hidden="true" tabindex="-1"></a>gf.qsmk1 <span class="ot">&lt;-</span> gf.qsmk0</span>
+<span id="cb324-9"><a href="causal-survival-analysis.html#cb324-9" aria-hidden="true" tabindex="-1"></a>gf.qsmk1<span class="sc">$</span>qsmk <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb324-10"><a href="causal-survival-analysis.html#cb324-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb324-11"><a href="causal-survival-analysis.html#cb324-11" aria-hidden="true" tabindex="-1"></a>gf.qsmk0<span class="sc">$</span>p.noevent0 <span class="ot">&lt;-</span> <span class="fu">predict</span>(gf.model, gf.qsmk0, <span class="at">type=</span><span class="st">&quot;response&quot;</span>)</span>
+<span id="cb324-12"><a href="causal-survival-analysis.html#cb324-12" aria-hidden="true" tabindex="-1"></a>gf.qsmk1<span class="sc">$</span>p.noevent1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(gf.model, gf.qsmk1, <span class="at">type=</span><span class="st">&quot;response&quot;</span>)</span>
+<span id="cb324-13"><a href="causal-survival-analysis.html#cb324-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb324-14"><a href="causal-survival-analysis.html#cb324-14" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;dplyr&quot;)</span></span>
+<span id="cb324-15"><a href="causal-survival-analysis.html#cb324-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;dplyr&#39;</code></pre>
 <pre><code>## The following objects are masked from &#39;package:stats&#39;:
@@ -613,27 +618,27 @@ div.csl-indent {
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="causal-survival-analysis.html#cb326-1" aria-hidden="true" tabindex="-1"></a>gf.qsmk0.surv <span class="ot">&lt;-</span> gf.qsmk0 <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(seqn) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">surv0 =</span> <span class="fu">cumprod</span>(p.noevent0))</span>
-<span id="cb326-2"><a href="causal-survival-analysis.html#cb326-2" aria-hidden="true" tabindex="-1"></a>gf.qsmk1.surv <span class="ot">&lt;-</span> gf.qsmk1 <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(seqn) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">surv1 =</span> <span class="fu">cumprod</span>(p.noevent1))</span>
-<span id="cb326-3"><a href="causal-survival-analysis.html#cb326-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb326-4"><a href="causal-survival-analysis.html#cb326-4" aria-hidden="true" tabindex="-1"></a>gf.surv0 <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(gf.qsmk0.surv, <span class="at">by=</span><span class="fu">list</span>(gf.qsmk0.surv<span class="sc">$</span>time), <span class="at">FUN=</span>mean)[<span class="fu">c</span>(<span class="st">&quot;qsmk&quot;</span>, <span class="st">&quot;time&quot;</span>, <span class="st">&quot;surv0&quot;</span>)]</span>
-<span id="cb326-5"><a href="causal-survival-analysis.html#cb326-5" aria-hidden="true" tabindex="-1"></a>gf.surv1 <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(gf.qsmk1.surv, <span class="at">by=</span><span class="fu">list</span>(gf.qsmk1.surv<span class="sc">$</span>time), <span class="at">FUN=</span>mean)[<span class="fu">c</span>(<span class="st">&quot;qsmk&quot;</span>, <span class="st">&quot;time&quot;</span>, <span class="st">&quot;surv1&quot;</span>)]</span>
-<span id="cb326-6"><a href="causal-survival-analysis.html#cb326-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb326-7"><a href="causal-survival-analysis.html#cb326-7" aria-hidden="true" tabindex="-1"></a>gf.graph <span class="ot">&lt;-</span> <span class="fu">merge</span>(gf.surv0, gf.surv1, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;time&quot;</span>))</span>
-<span id="cb326-8"><a href="causal-survival-analysis.html#cb326-8" aria-hidden="true" tabindex="-1"></a>gf.graph<span class="sc">$</span>survdiff <span class="ot">&lt;-</span> gf.graph<span class="sc">$</span>surv1<span class="sc">-</span>gf.graph<span class="sc">$</span>surv0</span>
-<span id="cb326-9"><a href="causal-survival-analysis.html#cb326-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb326-10"><a href="causal-survival-analysis.html#cb326-10" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
-<span id="cb326-11"><a href="causal-survival-analysis.html#cb326-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gf.graph, <span class="fu">aes</span>(<span class="at">x=</span>time, <span class="at">y=</span>surv)) <span class="sc">+</span> </span>
-<span id="cb326-12"><a href="causal-survival-analysis.html#cb326-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> surv0, <span class="at">colour =</span> <span class="st">&quot;0&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb326-13"><a href="causal-survival-analysis.html#cb326-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> surv1, <span class="at">colour =</span> <span class="st">&quot;1&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb326-14"><a href="causal-survival-analysis.html#cb326-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Months&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb326-15"><a href="causal-survival-analysis.html#cb326-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">120</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">120</span>,<span class="dv">12</span>)) <span class="sc">+</span></span>
-<span id="cb326-16"><a href="causal-survival-analysis.html#cb326-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">0.6</span>, <span class="dv">1</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">0.6</span>, <span class="dv">1</span>, <span class="fl">0.2</span>)) <span class="sc">+</span></span>
-<span id="cb326-17"><a href="causal-survival-analysis.html#cb326-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Survival&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb326-18"><a href="causal-survival-analysis.html#cb326-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Survival from g-formula&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb326-19"><a href="causal-survival-analysis.html#cb326-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">colour=</span><span class="st">&quot;A:&quot;</span>) <span class="sc">+</span></span>
-<span id="cb326-20"><a href="causal-survival-analysis.html#cb326-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb326-21"><a href="causal-survival-analysis.html#cb326-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="causal-survival-analysis.html#cb328-1" aria-hidden="true" tabindex="-1"></a>gf.qsmk0.surv <span class="ot">&lt;-</span> gf.qsmk0 <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(seqn) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">surv0 =</span> <span class="fu">cumprod</span>(p.noevent0))</span>
+<span id="cb328-2"><a href="causal-survival-analysis.html#cb328-2" aria-hidden="true" tabindex="-1"></a>gf.qsmk1.surv <span class="ot">&lt;-</span> gf.qsmk1 <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(seqn) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">surv1 =</span> <span class="fu">cumprod</span>(p.noevent1))</span>
+<span id="cb328-3"><a href="causal-survival-analysis.html#cb328-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb328-4"><a href="causal-survival-analysis.html#cb328-4" aria-hidden="true" tabindex="-1"></a>gf.surv0 <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(gf.qsmk0.surv, <span class="at">by=</span><span class="fu">list</span>(gf.qsmk0.surv<span class="sc">$</span>time), <span class="at">FUN=</span>mean)[<span class="fu">c</span>(<span class="st">&quot;qsmk&quot;</span>, <span class="st">&quot;time&quot;</span>, <span class="st">&quot;surv0&quot;</span>)]</span>
+<span id="cb328-5"><a href="causal-survival-analysis.html#cb328-5" aria-hidden="true" tabindex="-1"></a>gf.surv1 <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(gf.qsmk1.surv, <span class="at">by=</span><span class="fu">list</span>(gf.qsmk1.surv<span class="sc">$</span>time), <span class="at">FUN=</span>mean)[<span class="fu">c</span>(<span class="st">&quot;qsmk&quot;</span>, <span class="st">&quot;time&quot;</span>, <span class="st">&quot;surv1&quot;</span>)]</span>
+<span id="cb328-6"><a href="causal-survival-analysis.html#cb328-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb328-7"><a href="causal-survival-analysis.html#cb328-7" aria-hidden="true" tabindex="-1"></a>gf.graph <span class="ot">&lt;-</span> <span class="fu">merge</span>(gf.surv0, gf.surv1, <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;time&quot;</span>))</span>
+<span id="cb328-8"><a href="causal-survival-analysis.html#cb328-8" aria-hidden="true" tabindex="-1"></a>gf.graph<span class="sc">$</span>survdiff <span class="ot">&lt;-</span> gf.graph<span class="sc">$</span>surv1<span class="sc">-</span>gf.graph<span class="sc">$</span>surv0</span>
+<span id="cb328-9"><a href="causal-survival-analysis.html#cb328-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb328-10"><a href="causal-survival-analysis.html#cb328-10" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb328-11"><a href="causal-survival-analysis.html#cb328-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gf.graph, <span class="fu">aes</span>(<span class="at">x=</span>time, <span class="at">y=</span>surv)) <span class="sc">+</span> </span>
+<span id="cb328-12"><a href="causal-survival-analysis.html#cb328-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> surv0, <span class="at">colour =</span> <span class="st">&quot;0&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb328-13"><a href="causal-survival-analysis.html#cb328-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> surv1, <span class="at">colour =</span> <span class="st">&quot;1&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb328-14"><a href="causal-survival-analysis.html#cb328-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Months&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb328-15"><a href="causal-survival-analysis.html#cb328-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">120</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">120</span>,<span class="dv">12</span>)) <span class="sc">+</span></span>
+<span id="cb328-16"><a href="causal-survival-analysis.html#cb328-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="fl">0.6</span>, <span class="dv">1</span>), <span class="at">breaks=</span><span class="fu">seq</span>(<span class="fl">0.6</span>, <span class="dv">1</span>, <span class="fl">0.2</span>)) <span class="sc">+</span></span>
+<span id="cb328-17"><a href="causal-survival-analysis.html#cb328-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Survival&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb328-18"><a href="causal-survival-analysis.html#cb328-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Survival from g-formula&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb328-19"><a href="causal-survival-analysis.html#cb328-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">colour=</span><span class="st">&quot;A:&quot;</span>) <span class="sc">+</span></span>
+<span id="cb328-20"><a href="causal-survival-analysis.html#cb328-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb328-21"><a href="causal-survival-analysis.html#cb328-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
 <p><img src="17-causal-surv-r_files/figure-html/unnamed-chunk-5-1.png" width="85%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="program-17.5" class="section level2">
@@ -642,144 +647,144 @@ div.csl-indent {
 <li>Estimating of median survival time ratio via a structural nested AFT model</li>
 <li>Data from NHEFS</li>
 </ul>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="causal-survival-analysis.html#cb327-1" aria-hidden="true" tabindex="-1"></a><span class="co"># some preprocessing of the data</span></span>
-<span id="cb327-2"><a href="causal-survival-analysis.html#cb327-2" aria-hidden="true" tabindex="-1"></a>nhefs <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;NHEFS.xls&quot;</span>))</span>
-<span id="cb327-3"><a href="causal-survival-analysis.html#cb327-3" aria-hidden="true" tabindex="-1"></a>nhefs<span class="sc">$</span>survtime <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(nhefs<span class="sc">$</span>death<span class="sc">==</span><span class="dv">0</span>, <span class="cn">NA</span>, (nhefs<span class="sc">$</span>yrdth<span class="dv">-83</span>)<span class="sc">*</span><span class="dv">12</span><span class="sc">+</span>nhefs<span class="sc">$</span>modth) <span class="co"># * yrdth ranges from 83 to 92</span></span>
-<span id="cb327-4"><a href="causal-survival-analysis.html#cb327-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb327-5"><a href="causal-survival-analysis.html#cb327-5" aria-hidden="true" tabindex="-1"></a><span class="co"># model to estimate E[A|L]</span></span>
-<span id="cb327-6"><a href="causal-survival-analysis.html#cb327-6" aria-hidden="true" tabindex="-1"></a>modelA <span class="ot">&lt;-</span> <span class="fu">glm</span>(qsmk <span class="sc">~</span> sex <span class="sc">+</span> race <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(age<span class="sc">*</span>age)</span>
-<span id="cb327-7"><a href="causal-survival-analysis.html#cb327-7" aria-hidden="true" tabindex="-1"></a>              <span class="sc">+</span> <span class="fu">as.factor</span>(education) <span class="sc">+</span> smokeintensity</span>
-<span id="cb327-8"><a href="causal-survival-analysis.html#cb327-8" aria-hidden="true" tabindex="-1"></a>              <span class="sc">+</span> <span class="fu">I</span>(smokeintensity<span class="sc">*</span>smokeintensity) <span class="sc">+</span> smokeyrs</span>
-<span id="cb327-9"><a href="causal-survival-analysis.html#cb327-9" aria-hidden="true" tabindex="-1"></a>              <span class="sc">+</span> <span class="fu">I</span>(smokeyrs<span class="sc">*</span>smokeyrs) <span class="sc">+</span> <span class="fu">as.factor</span>(exercise)</span>
-<span id="cb327-10"><a href="causal-survival-analysis.html#cb327-10" aria-hidden="true" tabindex="-1"></a>              <span class="sc">+</span> <span class="fu">as.factor</span>(active) <span class="sc">+</span> wt71 <span class="sc">+</span> <span class="fu">I</span>(wt71<span class="sc">*</span>wt71),</span>
-<span id="cb327-11"><a href="causal-survival-analysis.html#cb327-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">data=</span>nhefs, <span class="at">family=</span><span class="fu">binomial</span>())</span>
-<span id="cb327-12"><a href="causal-survival-analysis.html#cb327-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb327-13"><a href="causal-survival-analysis.html#cb327-13" aria-hidden="true" tabindex="-1"></a>nhefs<span class="sc">$</span>p.qsmk <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelA, nhefs, <span class="at">type=</span><span class="st">&quot;response&quot;</span>) </span>
-<span id="cb327-14"><a href="causal-survival-analysis.html#cb327-14" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> nhefs[<span class="sc">!</span><span class="fu">is.na</span>(nhefs<span class="sc">$</span>survtime),] <span class="co"># select only those with observed death time</span></span>
-<span id="cb327-15"><a href="causal-survival-analysis.html#cb327-15" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(d)</span>
-<span id="cb327-16"><a href="causal-survival-analysis.html#cb327-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb327-17"><a href="causal-survival-analysis.html#cb327-17" aria-hidden="true" tabindex="-1"></a><span class="co"># define the estimating function that needs to be minimized</span></span>
-<span id="cb327-18"><a href="causal-survival-analysis.html#cb327-18" aria-hidden="true" tabindex="-1"></a>sumeef <span class="ot">&lt;-</span> <span class="cf">function</span>(psi){</span>
-<span id="cb327-19"><a href="causal-survival-analysis.html#cb327-19" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb327-20"><a href="causal-survival-analysis.html#cb327-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># creation of delta indicator</span></span>
-<span id="cb327-21"><a href="causal-survival-analysis.html#cb327-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (psi<span class="sc">&gt;=</span><span class="dv">0</span>){</span>
-<span id="cb327-22"><a href="causal-survival-analysis.html#cb327-22" aria-hidden="true" tabindex="-1"></a>    delta <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(d<span class="sc">$</span>qsmk<span class="sc">==</span><span class="dv">0</span> <span class="sc">|</span> </span>
-<span id="cb327-23"><a href="causal-survival-analysis.html#cb327-23" aria-hidden="true" tabindex="-1"></a>                      (d<span class="sc">$</span>qsmk<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> psi <span class="sc">&lt;=</span> <span class="fu">log</span>(<span class="dv">120</span><span class="sc">/</span>d<span class="sc">$</span>survtime)), </span>
-<span id="cb327-24"><a href="causal-survival-analysis.html#cb327-24" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb327-25"><a href="causal-survival-analysis.html#cb327-25" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (psi <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
-<span id="cb327-26"><a href="causal-survival-analysis.html#cb327-26" aria-hidden="true" tabindex="-1"></a>    delta <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(d<span class="sc">$</span>qsmk<span class="sc">==</span><span class="dv">1</span> <span class="sc">|</span> </span>
-<span id="cb327-27"><a href="causal-survival-analysis.html#cb327-27" aria-hidden="true" tabindex="-1"></a>                      (d<span class="sc">$</span>qsmk<span class="sc">==</span><span class="dv">0</span> <span class="sc">&amp;</span> psi <span class="sc">&gt;</span> <span class="fu">log</span>(d<span class="sc">$</span>survtime<span class="sc">/</span><span class="dv">120</span>)), <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb327-28"><a href="causal-survival-analysis.html#cb327-28" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb327-29"><a href="causal-survival-analysis.html#cb327-29" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb327-30"><a href="causal-survival-analysis.html#cb327-30" aria-hidden="true" tabindex="-1"></a>  smat <span class="ot">&lt;-</span> delta<span class="sc">*</span>(d<span class="sc">$</span>qsmk<span class="sc">-</span>d<span class="sc">$</span>p.qsmk)</span>
-<span id="cb327-31"><a href="causal-survival-analysis.html#cb327-31" aria-hidden="true" tabindex="-1"></a>  sval <span class="ot">&lt;-</span> <span class="fu">sum</span>(smat, <span class="at">na.rm=</span>T)</span>
-<span id="cb327-32"><a href="causal-survival-analysis.html#cb327-32" aria-hidden="true" tabindex="-1"></a>  save <span class="ot">&lt;-</span> sval<span class="sc">/</span>n</span>
-<span id="cb327-33"><a href="causal-survival-analysis.html#cb327-33" aria-hidden="true" tabindex="-1"></a>  smat <span class="ot">&lt;-</span> smat <span class="sc">-</span> <span class="fu">rep</span>(save, n)</span>
-<span id="cb327-34"><a href="causal-survival-analysis.html#cb327-34" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb327-35"><a href="causal-survival-analysis.html#cb327-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># covariance</span></span>
-<span id="cb327-36"><a href="causal-survival-analysis.html#cb327-36" aria-hidden="true" tabindex="-1"></a>  sigma <span class="ot">&lt;-</span> <span class="fu">t</span>(smat) <span class="sc">%*%</span> smat</span>
-<span id="cb327-37"><a href="causal-survival-analysis.html#cb327-37" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (sigma <span class="sc">==</span> <span class="dv">0</span>){</span>
-<span id="cb327-38"><a href="causal-survival-analysis.html#cb327-38" aria-hidden="true" tabindex="-1"></a>    sigma <span class="ot">&lt;-</span> <span class="fl">1e-16</span></span>
-<span id="cb327-39"><a href="causal-survival-analysis.html#cb327-39" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb327-40"><a href="causal-survival-analysis.html#cb327-40" aria-hidden="true" tabindex="-1"></a>  estimeq <span class="ot">&lt;-</span> sval<span class="sc">*</span><span class="fu">solve</span>(sigma)<span class="sc">*</span><span class="fu">t</span>(sval)</span>
-<span id="cb327-41"><a href="causal-survival-analysis.html#cb327-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(estimeq)</span>
-<span id="cb327-42"><a href="causal-survival-analysis.html#cb327-42" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb327-43"><a href="causal-survival-analysis.html#cb327-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb327-44"><a href="causal-survival-analysis.html#cb327-44" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">optimize</span>(sumeef, <span class="at">interval =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.2</span>,<span class="fl">0.2</span>))</span>
-<span id="cb327-45"><a href="causal-survival-analysis.html#cb327-45" aria-hidden="true" tabindex="-1"></a>psi1 <span class="ot">&lt;-</span> res<span class="sc">$</span>minimum</span>
-<span id="cb327-46"><a href="causal-survival-analysis.html#cb327-46" aria-hidden="true" tabindex="-1"></a>objfunc <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(res<span class="sc">$</span>objective)</span>
-<span id="cb327-47"><a href="causal-survival-analysis.html#cb327-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb327-48"><a href="causal-survival-analysis.html#cb327-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb327-49"><a href="causal-survival-analysis.html#cb327-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Use simple bisection method to find estimates of lower and upper 95% confidence bounds</span></span>
-<span id="cb327-50"><a href="causal-survival-analysis.html#cb327-50" aria-hidden="true" tabindex="-1"></a>increm <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
-<span id="cb327-51"><a href="causal-survival-analysis.html#cb327-51" aria-hidden="true" tabindex="-1"></a>for_conf <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb327-52"><a href="causal-survival-analysis.html#cb327-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sumeef</span>(x) <span class="sc">-</span> <span class="fl">3.84</span>)</span>
-<span id="cb327-53"><a href="causal-survival-analysis.html#cb327-53" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb327-54"><a href="causal-survival-analysis.html#cb327-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb327-55"><a href="causal-survival-analysis.html#cb327-55" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (objfunc <span class="sc">&lt;</span> <span class="fl">3.84</span>){</span>
-<span id="cb327-56"><a href="causal-survival-analysis.html#cb327-56" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Find estimate of where sumeef(x) &gt; 3.84</span></span>
-<span id="cb327-57"><a href="causal-survival-analysis.html#cb327-57" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb327-58"><a href="causal-survival-analysis.html#cb327-58" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Lower bound of 95% CI</span></span>
-<span id="cb327-59"><a href="causal-survival-analysis.html#cb327-59" aria-hidden="true" tabindex="-1"></a>  psilow <span class="ot">&lt;-</span> psi1</span>
-<span id="cb327-60"><a href="causal-survival-analysis.html#cb327-60" aria-hidden="true" tabindex="-1"></a>  testlow <span class="ot">&lt;-</span> objfunc</span>
-<span id="cb327-61"><a href="causal-survival-analysis.html#cb327-61" aria-hidden="true" tabindex="-1"></a>  countlow <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb327-62"><a href="causal-survival-analysis.html#cb327-62" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> (testlow <span class="sc">&lt;</span> <span class="fl">3.84</span> <span class="sc">&amp;</span> countlow <span class="sc">&lt;</span> <span class="dv">100</span>){</span>
-<span id="cb327-63"><a href="causal-survival-analysis.html#cb327-63" aria-hidden="true" tabindex="-1"></a>    psilow <span class="ot">&lt;-</span> psilow <span class="sc">-</span> increm</span>
-<span id="cb327-64"><a href="causal-survival-analysis.html#cb327-64" aria-hidden="true" tabindex="-1"></a>    testlow <span class="ot">&lt;-</span> <span class="fu">sumeef</span>(psilow)</span>
-<span id="cb327-65"><a href="causal-survival-analysis.html#cb327-65" aria-hidden="true" tabindex="-1"></a>    countlow <span class="ot">&lt;-</span> countlow <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb327-66"><a href="causal-survival-analysis.html#cb327-66" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb327-67"><a href="causal-survival-analysis.html#cb327-67" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb327-68"><a href="causal-survival-analysis.html#cb327-68" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Upper bound of 95% CI</span></span>
-<span id="cb327-69"><a href="causal-survival-analysis.html#cb327-69" aria-hidden="true" tabindex="-1"></a>  psihigh <span class="ot">&lt;-</span> psi1</span>
-<span id="cb327-70"><a href="causal-survival-analysis.html#cb327-70" aria-hidden="true" tabindex="-1"></a>  testhigh <span class="ot">&lt;-</span> objfunc</span>
-<span id="cb327-71"><a href="causal-survival-analysis.html#cb327-71" aria-hidden="true" tabindex="-1"></a>  counthigh <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb327-72"><a href="causal-survival-analysis.html#cb327-72" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> (testhigh <span class="sc">&lt;</span> <span class="fl">3.84</span> <span class="sc">&amp;</span> counthigh <span class="sc">&lt;</span> <span class="dv">100</span>){</span>
-<span id="cb327-73"><a href="causal-survival-analysis.html#cb327-73" aria-hidden="true" tabindex="-1"></a>    psihigh <span class="ot">&lt;-</span> psihigh <span class="sc">+</span> increm</span>
-<span id="cb327-74"><a href="causal-survival-analysis.html#cb327-74" aria-hidden="true" tabindex="-1"></a>    testhigh <span class="ot">&lt;-</span> <span class="fu">sumeef</span>(psihigh)</span>
-<span id="cb327-75"><a href="causal-survival-analysis.html#cb327-75" aria-hidden="true" tabindex="-1"></a>    counthigh <span class="ot">&lt;-</span> counthigh <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb327-76"><a href="causal-survival-analysis.html#cb327-76" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb327-77"><a href="causal-survival-analysis.html#cb327-77" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb327-78"><a href="causal-survival-analysis.html#cb327-78" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Better estimate using bisection method</span></span>
-<span id="cb327-79"><a href="causal-survival-analysis.html#cb327-79" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> ((testhigh <span class="sc">&gt;</span> <span class="fl">3.84</span>) <span class="sc">&amp;</span> (testlow <span class="sc">&gt;</span> <span class="fl">3.84</span>)){</span>
-<span id="cb327-80"><a href="causal-survival-analysis.html#cb327-80" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb327-81"><a href="causal-survival-analysis.html#cb327-81" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bisection method</span></span>
-<span id="cb327-82"><a href="causal-survival-analysis.html#cb327-82" aria-hidden="true" tabindex="-1"></a>    left <span class="ot">&lt;-</span> psi1</span>
-<span id="cb327-83"><a href="causal-survival-analysis.html#cb327-83" aria-hidden="true" tabindex="-1"></a>    fleft <span class="ot">&lt;-</span> objfunc <span class="sc">-</span> <span class="fl">3.84</span></span>
-<span id="cb327-84"><a href="causal-survival-analysis.html#cb327-84" aria-hidden="true" tabindex="-1"></a>    right <span class="ot">&lt;-</span> psihigh</span>
-<span id="cb327-85"><a href="causal-survival-analysis.html#cb327-85" aria-hidden="true" tabindex="-1"></a>    fright <span class="ot">&lt;-</span> testhigh <span class="sc">-</span> <span class="fl">3.84</span></span>
-<span id="cb327-86"><a href="causal-survival-analysis.html#cb327-86" aria-hidden="true" tabindex="-1"></a>    middle <span class="ot">&lt;-</span> (left  <span class="sc">+</span> right) <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb327-87"><a href="causal-survival-analysis.html#cb327-87" aria-hidden="true" tabindex="-1"></a>    fmiddle <span class="ot">&lt;-</span> <span class="fu">for_conf</span>(middle)</span>
-<span id="cb327-88"><a href="causal-survival-analysis.html#cb327-88" aria-hidden="true" tabindex="-1"></a>    count <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb327-89"><a href="causal-survival-analysis.html#cb327-89" aria-hidden="true" tabindex="-1"></a>    diff <span class="ot">&lt;-</span> right <span class="sc">-</span> left</span>
-<span id="cb327-90"><a href="causal-survival-analysis.html#cb327-90" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb327-91"><a href="causal-survival-analysis.html#cb327-91" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (<span class="sc">!</span>(<span class="fu">abs</span>(fmiddle) <span class="sc">&lt;</span> <span class="fl">0.0001</span> <span class="sc">|</span> diff <span class="sc">&lt;</span> <span class="fl">0.0001</span> <span class="sc">|</span> count <span class="sc">&gt;</span> <span class="dv">100</span>)){</span>
-<span id="cb327-92"><a href="causal-survival-analysis.html#cb327-92" aria-hidden="true" tabindex="-1"></a>      test <span class="ot">&lt;-</span> fmiddle <span class="sc">*</span> fleft</span>
-<span id="cb327-93"><a href="causal-survival-analysis.html#cb327-93" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (test <span class="sc">&lt;</span> <span class="dv">0</span>){</span>
-<span id="cb327-94"><a href="causal-survival-analysis.html#cb327-94" aria-hidden="true" tabindex="-1"></a>        right <span class="ot">&lt;-</span> middle</span>
-<span id="cb327-95"><a href="causal-survival-analysis.html#cb327-95" aria-hidden="true" tabindex="-1"></a>        fright <span class="ot">&lt;-</span> fmiddle</span>
-<span id="cb327-96"><a href="causal-survival-analysis.html#cb327-96" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> {</span>
-<span id="cb327-97"><a href="causal-survival-analysis.html#cb327-97" aria-hidden="true" tabindex="-1"></a>        left <span class="ot">&lt;-</span> middle</span>
-<span id="cb327-98"><a href="causal-survival-analysis.html#cb327-98" aria-hidden="true" tabindex="-1"></a>        fleft <span class="ot">&lt;-</span> fmiddle</span>
-<span id="cb327-99"><a href="causal-survival-analysis.html#cb327-99" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb327-100"><a href="causal-survival-analysis.html#cb327-100" aria-hidden="true" tabindex="-1"></a>      middle <span class="ot">&lt;-</span> (left <span class="sc">+</span> right) <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb327-101"><a href="causal-survival-analysis.html#cb327-101" aria-hidden="true" tabindex="-1"></a>      fmiddle <span class="ot">&lt;-</span> <span class="fu">for_conf</span>(middle)</span>
-<span id="cb327-102"><a href="causal-survival-analysis.html#cb327-102" aria-hidden="true" tabindex="-1"></a>      count <span class="ot">&lt;-</span> count <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb327-103"><a href="causal-survival-analysis.html#cb327-103" aria-hidden="true" tabindex="-1"></a>      diff <span class="ot">&lt;-</span> right <span class="sc">-</span> left</span>
-<span id="cb327-104"><a href="causal-survival-analysis.html#cb327-104" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb327-105"><a href="causal-survival-analysis.html#cb327-105" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb327-106"><a href="causal-survival-analysis.html#cb327-106" aria-hidden="true" tabindex="-1"></a>    psi_high <span class="ot">&lt;-</span> middle</span>
-<span id="cb327-107"><a href="causal-survival-analysis.html#cb327-107" aria-hidden="true" tabindex="-1"></a>    objfunc_high <span class="ot">&lt;-</span> fmiddle <span class="sc">+</span> <span class="fl">3.84</span></span>
-<span id="cb327-108"><a href="causal-survival-analysis.html#cb327-108" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb327-109"><a href="causal-survival-analysis.html#cb327-109" aria-hidden="true" tabindex="-1"></a>    <span class="co"># lower bound of 95% CI</span></span>
-<span id="cb327-110"><a href="causal-survival-analysis.html#cb327-110" aria-hidden="true" tabindex="-1"></a>    left <span class="ot">&lt;-</span> psilow</span>
-<span id="cb327-111"><a href="causal-survival-analysis.html#cb327-111" aria-hidden="true" tabindex="-1"></a>    fleft <span class="ot">&lt;-</span> testlow <span class="sc">-</span> <span class="fl">3.84</span></span>
-<span id="cb327-112"><a href="causal-survival-analysis.html#cb327-112" aria-hidden="true" tabindex="-1"></a>    right <span class="ot">&lt;-</span> psi1</span>
-<span id="cb327-113"><a href="causal-survival-analysis.html#cb327-113" aria-hidden="true" tabindex="-1"></a>    fright <span class="ot">&lt;-</span> objfunc <span class="sc">-</span> <span class="fl">3.84</span></span>
-<span id="cb327-114"><a href="causal-survival-analysis.html#cb327-114" aria-hidden="true" tabindex="-1"></a>    middle <span class="ot">&lt;-</span> (left <span class="sc">+</span> right) <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb327-115"><a href="causal-survival-analysis.html#cb327-115" aria-hidden="true" tabindex="-1"></a>    fmiddle <span class="ot">&lt;-</span> <span class="fu">for_conf</span>(middle)</span>
-<span id="cb327-116"><a href="causal-survival-analysis.html#cb327-116" aria-hidden="true" tabindex="-1"></a>    count <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb327-117"><a href="causal-survival-analysis.html#cb327-117" aria-hidden="true" tabindex="-1"></a>    diff <span class="ot">&lt;-</span> right <span class="sc">-</span> left</span>
-<span id="cb327-118"><a href="causal-survival-analysis.html#cb327-118" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb327-119"><a href="causal-survival-analysis.html#cb327-119" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span>(<span class="sc">!</span>(<span class="fu">abs</span>(fmiddle) <span class="sc">&lt;</span> <span class="fl">0.0001</span> <span class="sc">|</span> diff <span class="sc">&lt;</span> <span class="fl">0.0001</span> <span class="sc">|</span> count <span class="sc">&gt;</span> <span class="dv">100</span>)){</span>
-<span id="cb327-120"><a href="causal-survival-analysis.html#cb327-120" aria-hidden="true" tabindex="-1"></a>      test <span class="ot">&lt;-</span> fmiddle <span class="sc">*</span> fleft</span>
-<span id="cb327-121"><a href="causal-survival-analysis.html#cb327-121" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (test <span class="sc">&lt;</span> <span class="dv">0</span>){</span>
-<span id="cb327-122"><a href="causal-survival-analysis.html#cb327-122" aria-hidden="true" tabindex="-1"></a>        right <span class="ot">&lt;-</span> middle</span>
-<span id="cb327-123"><a href="causal-survival-analysis.html#cb327-123" aria-hidden="true" tabindex="-1"></a>        fright <span class="ot">&lt;-</span> fmiddle</span>
-<span id="cb327-124"><a href="causal-survival-analysis.html#cb327-124" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> {</span>
-<span id="cb327-125"><a href="causal-survival-analysis.html#cb327-125" aria-hidden="true" tabindex="-1"></a>        left <span class="ot">&lt;-</span> middle</span>
-<span id="cb327-126"><a href="causal-survival-analysis.html#cb327-126" aria-hidden="true" tabindex="-1"></a>        fleft <span class="ot">&lt;-</span> fmiddle</span>
-<span id="cb327-127"><a href="causal-survival-analysis.html#cb327-127" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb327-128"><a href="causal-survival-analysis.html#cb327-128" aria-hidden="true" tabindex="-1"></a>      middle <span class="ot">&lt;-</span> (left <span class="sc">+</span> right) <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb327-129"><a href="causal-survival-analysis.html#cb327-129" aria-hidden="true" tabindex="-1"></a>      fmiddle <span class="ot">&lt;-</span> <span class="fu">for_conf</span>(middle)</span>
-<span id="cb327-130"><a href="causal-survival-analysis.html#cb327-130" aria-hidden="true" tabindex="-1"></a>      diff <span class="ot">&lt;-</span> right <span class="sc">-</span> left</span>
-<span id="cb327-131"><a href="causal-survival-analysis.html#cb327-131" aria-hidden="true" tabindex="-1"></a>      count <span class="ot">&lt;-</span> count <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb327-132"><a href="causal-survival-analysis.html#cb327-132" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb327-133"><a href="causal-survival-analysis.html#cb327-133" aria-hidden="true" tabindex="-1"></a>    psi_low <span class="ot">&lt;-</span> middle</span>
-<span id="cb327-134"><a href="causal-survival-analysis.html#cb327-134" aria-hidden="true" tabindex="-1"></a>    objfunc_low <span class="ot">&lt;-</span> fmiddle <span class="sc">+</span> <span class="fl">3.84</span></span>
-<span id="cb327-135"><a href="causal-survival-analysis.html#cb327-135" aria-hidden="true" tabindex="-1"></a>    psi <span class="ot">&lt;-</span> psi1</span>
-<span id="cb327-136"><a href="causal-survival-analysis.html#cb327-136" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb327-137"><a href="causal-survival-analysis.html#cb327-137" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb327-138"><a href="causal-survival-analysis.html#cb327-138" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(psi, psi_low, psi_high)</span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="causal-survival-analysis.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="co"># some preprocessing of the data</span></span>
+<span id="cb329-2"><a href="causal-survival-analysis.html#cb329-2" aria-hidden="true" tabindex="-1"></a>nhefs <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;NHEFS.xls&quot;</span>))</span>
+<span id="cb329-3"><a href="causal-survival-analysis.html#cb329-3" aria-hidden="true" tabindex="-1"></a>nhefs<span class="sc">$</span>survtime <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(nhefs<span class="sc">$</span>death<span class="sc">==</span><span class="dv">0</span>, <span class="cn">NA</span>, (nhefs<span class="sc">$</span>yrdth<span class="dv">-83</span>)<span class="sc">*</span><span class="dv">12</span><span class="sc">+</span>nhefs<span class="sc">$</span>modth) <span class="co"># * yrdth ranges from 83 to 92</span></span>
+<span id="cb329-4"><a href="causal-survival-analysis.html#cb329-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb329-5"><a href="causal-survival-analysis.html#cb329-5" aria-hidden="true" tabindex="-1"></a><span class="co"># model to estimate E[A|L]</span></span>
+<span id="cb329-6"><a href="causal-survival-analysis.html#cb329-6" aria-hidden="true" tabindex="-1"></a>modelA <span class="ot">&lt;-</span> <span class="fu">glm</span>(qsmk <span class="sc">~</span> sex <span class="sc">+</span> race <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(age<span class="sc">*</span>age)</span>
+<span id="cb329-7"><a href="causal-survival-analysis.html#cb329-7" aria-hidden="true" tabindex="-1"></a>              <span class="sc">+</span> <span class="fu">as.factor</span>(education) <span class="sc">+</span> smokeintensity</span>
+<span id="cb329-8"><a href="causal-survival-analysis.html#cb329-8" aria-hidden="true" tabindex="-1"></a>              <span class="sc">+</span> <span class="fu">I</span>(smokeintensity<span class="sc">*</span>smokeintensity) <span class="sc">+</span> smokeyrs</span>
+<span id="cb329-9"><a href="causal-survival-analysis.html#cb329-9" aria-hidden="true" tabindex="-1"></a>              <span class="sc">+</span> <span class="fu">I</span>(smokeyrs<span class="sc">*</span>smokeyrs) <span class="sc">+</span> <span class="fu">as.factor</span>(exercise)</span>
+<span id="cb329-10"><a href="causal-survival-analysis.html#cb329-10" aria-hidden="true" tabindex="-1"></a>              <span class="sc">+</span> <span class="fu">as.factor</span>(active) <span class="sc">+</span> wt71 <span class="sc">+</span> <span class="fu">I</span>(wt71<span class="sc">*</span>wt71),</span>
+<span id="cb329-11"><a href="causal-survival-analysis.html#cb329-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">data=</span>nhefs, <span class="at">family=</span><span class="fu">binomial</span>())</span>
+<span id="cb329-12"><a href="causal-survival-analysis.html#cb329-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb329-13"><a href="causal-survival-analysis.html#cb329-13" aria-hidden="true" tabindex="-1"></a>nhefs<span class="sc">$</span>p.qsmk <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelA, nhefs, <span class="at">type=</span><span class="st">&quot;response&quot;</span>) </span>
+<span id="cb329-14"><a href="causal-survival-analysis.html#cb329-14" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> nhefs[<span class="sc">!</span><span class="fu">is.na</span>(nhefs<span class="sc">$</span>survtime),] <span class="co"># select only those with observed death time</span></span>
+<span id="cb329-15"><a href="causal-survival-analysis.html#cb329-15" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(d)</span>
+<span id="cb329-16"><a href="causal-survival-analysis.html#cb329-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb329-17"><a href="causal-survival-analysis.html#cb329-17" aria-hidden="true" tabindex="-1"></a><span class="co"># define the estimating function that needs to be minimized</span></span>
+<span id="cb329-18"><a href="causal-survival-analysis.html#cb329-18" aria-hidden="true" tabindex="-1"></a>sumeef <span class="ot">&lt;-</span> <span class="cf">function</span>(psi){</span>
+<span id="cb329-19"><a href="causal-survival-analysis.html#cb329-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb329-20"><a href="causal-survival-analysis.html#cb329-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># creation of delta indicator</span></span>
+<span id="cb329-21"><a href="causal-survival-analysis.html#cb329-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (psi<span class="sc">&gt;=</span><span class="dv">0</span>){</span>
+<span id="cb329-22"><a href="causal-survival-analysis.html#cb329-22" aria-hidden="true" tabindex="-1"></a>    delta <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(d<span class="sc">$</span>qsmk<span class="sc">==</span><span class="dv">0</span> <span class="sc">|</span> </span>
+<span id="cb329-23"><a href="causal-survival-analysis.html#cb329-23" aria-hidden="true" tabindex="-1"></a>                      (d<span class="sc">$</span>qsmk<span class="sc">==</span><span class="dv">1</span> <span class="sc">&amp;</span> psi <span class="sc">&lt;=</span> <span class="fu">log</span>(<span class="dv">120</span><span class="sc">/</span>d<span class="sc">$</span>survtime)), </span>
+<span id="cb329-24"><a href="causal-survival-analysis.html#cb329-24" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb329-25"><a href="causal-survival-analysis.html#cb329-25" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (psi <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb329-26"><a href="causal-survival-analysis.html#cb329-26" aria-hidden="true" tabindex="-1"></a>    delta <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(d<span class="sc">$</span>qsmk<span class="sc">==</span><span class="dv">1</span> <span class="sc">|</span> </span>
+<span id="cb329-27"><a href="causal-survival-analysis.html#cb329-27" aria-hidden="true" tabindex="-1"></a>                      (d<span class="sc">$</span>qsmk<span class="sc">==</span><span class="dv">0</span> <span class="sc">&amp;</span> psi <span class="sc">&gt;</span> <span class="fu">log</span>(d<span class="sc">$</span>survtime<span class="sc">/</span><span class="dv">120</span>)), <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb329-28"><a href="causal-survival-analysis.html#cb329-28" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb329-29"><a href="causal-survival-analysis.html#cb329-29" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb329-30"><a href="causal-survival-analysis.html#cb329-30" aria-hidden="true" tabindex="-1"></a>  smat <span class="ot">&lt;-</span> delta<span class="sc">*</span>(d<span class="sc">$</span>qsmk<span class="sc">-</span>d<span class="sc">$</span>p.qsmk)</span>
+<span id="cb329-31"><a href="causal-survival-analysis.html#cb329-31" aria-hidden="true" tabindex="-1"></a>  sval <span class="ot">&lt;-</span> <span class="fu">sum</span>(smat, <span class="at">na.rm=</span>T)</span>
+<span id="cb329-32"><a href="causal-survival-analysis.html#cb329-32" aria-hidden="true" tabindex="-1"></a>  save <span class="ot">&lt;-</span> sval<span class="sc">/</span>n</span>
+<span id="cb329-33"><a href="causal-survival-analysis.html#cb329-33" aria-hidden="true" tabindex="-1"></a>  smat <span class="ot">&lt;-</span> smat <span class="sc">-</span> <span class="fu">rep</span>(save, n)</span>
+<span id="cb329-34"><a href="causal-survival-analysis.html#cb329-34" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb329-35"><a href="causal-survival-analysis.html#cb329-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># covariance</span></span>
+<span id="cb329-36"><a href="causal-survival-analysis.html#cb329-36" aria-hidden="true" tabindex="-1"></a>  sigma <span class="ot">&lt;-</span> <span class="fu">t</span>(smat) <span class="sc">%*%</span> smat</span>
+<span id="cb329-37"><a href="causal-survival-analysis.html#cb329-37" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (sigma <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb329-38"><a href="causal-survival-analysis.html#cb329-38" aria-hidden="true" tabindex="-1"></a>    sigma <span class="ot">&lt;-</span> <span class="fl">1e-16</span></span>
+<span id="cb329-39"><a href="causal-survival-analysis.html#cb329-39" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb329-40"><a href="causal-survival-analysis.html#cb329-40" aria-hidden="true" tabindex="-1"></a>  estimeq <span class="ot">&lt;-</span> sval<span class="sc">*</span><span class="fu">solve</span>(sigma)<span class="sc">*</span><span class="fu">t</span>(sval)</span>
+<span id="cb329-41"><a href="causal-survival-analysis.html#cb329-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(estimeq)</span>
+<span id="cb329-42"><a href="causal-survival-analysis.html#cb329-42" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb329-43"><a href="causal-survival-analysis.html#cb329-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb329-44"><a href="causal-survival-analysis.html#cb329-44" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">optimize</span>(sumeef, <span class="at">interval =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.2</span>,<span class="fl">0.2</span>))</span>
+<span id="cb329-45"><a href="causal-survival-analysis.html#cb329-45" aria-hidden="true" tabindex="-1"></a>psi1 <span class="ot">&lt;-</span> res<span class="sc">$</span>minimum</span>
+<span id="cb329-46"><a href="causal-survival-analysis.html#cb329-46" aria-hidden="true" tabindex="-1"></a>objfunc <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(res<span class="sc">$</span>objective)</span>
+<span id="cb329-47"><a href="causal-survival-analysis.html#cb329-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb329-48"><a href="causal-survival-analysis.html#cb329-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb329-49"><a href="causal-survival-analysis.html#cb329-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Use simple bisection method to find estimates of lower and upper 95% confidence bounds</span></span>
+<span id="cb329-50"><a href="causal-survival-analysis.html#cb329-50" aria-hidden="true" tabindex="-1"></a>increm <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
+<span id="cb329-51"><a href="causal-survival-analysis.html#cb329-51" aria-hidden="true" tabindex="-1"></a>for_conf <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb329-52"><a href="causal-survival-analysis.html#cb329-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sumeef</span>(x) <span class="sc">-</span> <span class="fl">3.84</span>)</span>
+<span id="cb329-53"><a href="causal-survival-analysis.html#cb329-53" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb329-54"><a href="causal-survival-analysis.html#cb329-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb329-55"><a href="causal-survival-analysis.html#cb329-55" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (objfunc <span class="sc">&lt;</span> <span class="fl">3.84</span>){</span>
+<span id="cb329-56"><a href="causal-survival-analysis.html#cb329-56" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Find estimate of where sumeef(x) &gt; 3.84</span></span>
+<span id="cb329-57"><a href="causal-survival-analysis.html#cb329-57" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb329-58"><a href="causal-survival-analysis.html#cb329-58" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Lower bound of 95% CI</span></span>
+<span id="cb329-59"><a href="causal-survival-analysis.html#cb329-59" aria-hidden="true" tabindex="-1"></a>  psilow <span class="ot">&lt;-</span> psi1</span>
+<span id="cb329-60"><a href="causal-survival-analysis.html#cb329-60" aria-hidden="true" tabindex="-1"></a>  testlow <span class="ot">&lt;-</span> objfunc</span>
+<span id="cb329-61"><a href="causal-survival-analysis.html#cb329-61" aria-hidden="true" tabindex="-1"></a>  countlow <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb329-62"><a href="causal-survival-analysis.html#cb329-62" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> (testlow <span class="sc">&lt;</span> <span class="fl">3.84</span> <span class="sc">&amp;</span> countlow <span class="sc">&lt;</span> <span class="dv">100</span>){</span>
+<span id="cb329-63"><a href="causal-survival-analysis.html#cb329-63" aria-hidden="true" tabindex="-1"></a>    psilow <span class="ot">&lt;-</span> psilow <span class="sc">-</span> increm</span>
+<span id="cb329-64"><a href="causal-survival-analysis.html#cb329-64" aria-hidden="true" tabindex="-1"></a>    testlow <span class="ot">&lt;-</span> <span class="fu">sumeef</span>(psilow)</span>
+<span id="cb329-65"><a href="causal-survival-analysis.html#cb329-65" aria-hidden="true" tabindex="-1"></a>    countlow <span class="ot">&lt;-</span> countlow <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb329-66"><a href="causal-survival-analysis.html#cb329-66" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb329-67"><a href="causal-survival-analysis.html#cb329-67" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb329-68"><a href="causal-survival-analysis.html#cb329-68" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Upper bound of 95% CI</span></span>
+<span id="cb329-69"><a href="causal-survival-analysis.html#cb329-69" aria-hidden="true" tabindex="-1"></a>  psihigh <span class="ot">&lt;-</span> psi1</span>
+<span id="cb329-70"><a href="causal-survival-analysis.html#cb329-70" aria-hidden="true" tabindex="-1"></a>  testhigh <span class="ot">&lt;-</span> objfunc</span>
+<span id="cb329-71"><a href="causal-survival-analysis.html#cb329-71" aria-hidden="true" tabindex="-1"></a>  counthigh <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb329-72"><a href="causal-survival-analysis.html#cb329-72" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> (testhigh <span class="sc">&lt;</span> <span class="fl">3.84</span> <span class="sc">&amp;</span> counthigh <span class="sc">&lt;</span> <span class="dv">100</span>){</span>
+<span id="cb329-73"><a href="causal-survival-analysis.html#cb329-73" aria-hidden="true" tabindex="-1"></a>    psihigh <span class="ot">&lt;-</span> psihigh <span class="sc">+</span> increm</span>
+<span id="cb329-74"><a href="causal-survival-analysis.html#cb329-74" aria-hidden="true" tabindex="-1"></a>    testhigh <span class="ot">&lt;-</span> <span class="fu">sumeef</span>(psihigh)</span>
+<span id="cb329-75"><a href="causal-survival-analysis.html#cb329-75" aria-hidden="true" tabindex="-1"></a>    counthigh <span class="ot">&lt;-</span> counthigh <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb329-76"><a href="causal-survival-analysis.html#cb329-76" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb329-77"><a href="causal-survival-analysis.html#cb329-77" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb329-78"><a href="causal-survival-analysis.html#cb329-78" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Better estimate using bisection method</span></span>
+<span id="cb329-79"><a href="causal-survival-analysis.html#cb329-79" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> ((testhigh <span class="sc">&gt;</span> <span class="fl">3.84</span>) <span class="sc">&amp;</span> (testlow <span class="sc">&gt;</span> <span class="fl">3.84</span>)){</span>
+<span id="cb329-80"><a href="causal-survival-analysis.html#cb329-80" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb329-81"><a href="causal-survival-analysis.html#cb329-81" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bisection method</span></span>
+<span id="cb329-82"><a href="causal-survival-analysis.html#cb329-82" aria-hidden="true" tabindex="-1"></a>    left <span class="ot">&lt;-</span> psi1</span>
+<span id="cb329-83"><a href="causal-survival-analysis.html#cb329-83" aria-hidden="true" tabindex="-1"></a>    fleft <span class="ot">&lt;-</span> objfunc <span class="sc">-</span> <span class="fl">3.84</span></span>
+<span id="cb329-84"><a href="causal-survival-analysis.html#cb329-84" aria-hidden="true" tabindex="-1"></a>    right <span class="ot">&lt;-</span> psihigh</span>
+<span id="cb329-85"><a href="causal-survival-analysis.html#cb329-85" aria-hidden="true" tabindex="-1"></a>    fright <span class="ot">&lt;-</span> testhigh <span class="sc">-</span> <span class="fl">3.84</span></span>
+<span id="cb329-86"><a href="causal-survival-analysis.html#cb329-86" aria-hidden="true" tabindex="-1"></a>    middle <span class="ot">&lt;-</span> (left  <span class="sc">+</span> right) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb329-87"><a href="causal-survival-analysis.html#cb329-87" aria-hidden="true" tabindex="-1"></a>    fmiddle <span class="ot">&lt;-</span> <span class="fu">for_conf</span>(middle)</span>
+<span id="cb329-88"><a href="causal-survival-analysis.html#cb329-88" aria-hidden="true" tabindex="-1"></a>    count <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb329-89"><a href="causal-survival-analysis.html#cb329-89" aria-hidden="true" tabindex="-1"></a>    diff <span class="ot">&lt;-</span> right <span class="sc">-</span> left</span>
+<span id="cb329-90"><a href="causal-survival-analysis.html#cb329-90" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb329-91"><a href="causal-survival-analysis.html#cb329-91" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (<span class="sc">!</span>(<span class="fu">abs</span>(fmiddle) <span class="sc">&lt;</span> <span class="fl">0.0001</span> <span class="sc">|</span> diff <span class="sc">&lt;</span> <span class="fl">0.0001</span> <span class="sc">|</span> count <span class="sc">&gt;</span> <span class="dv">100</span>)){</span>
+<span id="cb329-92"><a href="causal-survival-analysis.html#cb329-92" aria-hidden="true" tabindex="-1"></a>      test <span class="ot">&lt;-</span> fmiddle <span class="sc">*</span> fleft</span>
+<span id="cb329-93"><a href="causal-survival-analysis.html#cb329-93" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (test <span class="sc">&lt;</span> <span class="dv">0</span>){</span>
+<span id="cb329-94"><a href="causal-survival-analysis.html#cb329-94" aria-hidden="true" tabindex="-1"></a>        right <span class="ot">&lt;-</span> middle</span>
+<span id="cb329-95"><a href="causal-survival-analysis.html#cb329-95" aria-hidden="true" tabindex="-1"></a>        fright <span class="ot">&lt;-</span> fmiddle</span>
+<span id="cb329-96"><a href="causal-survival-analysis.html#cb329-96" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> {</span>
+<span id="cb329-97"><a href="causal-survival-analysis.html#cb329-97" aria-hidden="true" tabindex="-1"></a>        left <span class="ot">&lt;-</span> middle</span>
+<span id="cb329-98"><a href="causal-survival-analysis.html#cb329-98" aria-hidden="true" tabindex="-1"></a>        fleft <span class="ot">&lt;-</span> fmiddle</span>
+<span id="cb329-99"><a href="causal-survival-analysis.html#cb329-99" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb329-100"><a href="causal-survival-analysis.html#cb329-100" aria-hidden="true" tabindex="-1"></a>      middle <span class="ot">&lt;-</span> (left <span class="sc">+</span> right) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb329-101"><a href="causal-survival-analysis.html#cb329-101" aria-hidden="true" tabindex="-1"></a>      fmiddle <span class="ot">&lt;-</span> <span class="fu">for_conf</span>(middle)</span>
+<span id="cb329-102"><a href="causal-survival-analysis.html#cb329-102" aria-hidden="true" tabindex="-1"></a>      count <span class="ot">&lt;-</span> count <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb329-103"><a href="causal-survival-analysis.html#cb329-103" aria-hidden="true" tabindex="-1"></a>      diff <span class="ot">&lt;-</span> right <span class="sc">-</span> left</span>
+<span id="cb329-104"><a href="causal-survival-analysis.html#cb329-104" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb329-105"><a href="causal-survival-analysis.html#cb329-105" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb329-106"><a href="causal-survival-analysis.html#cb329-106" aria-hidden="true" tabindex="-1"></a>    psi_high <span class="ot">&lt;-</span> middle</span>
+<span id="cb329-107"><a href="causal-survival-analysis.html#cb329-107" aria-hidden="true" tabindex="-1"></a>    objfunc_high <span class="ot">&lt;-</span> fmiddle <span class="sc">+</span> <span class="fl">3.84</span></span>
+<span id="cb329-108"><a href="causal-survival-analysis.html#cb329-108" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb329-109"><a href="causal-survival-analysis.html#cb329-109" aria-hidden="true" tabindex="-1"></a>    <span class="co"># lower bound of 95% CI</span></span>
+<span id="cb329-110"><a href="causal-survival-analysis.html#cb329-110" aria-hidden="true" tabindex="-1"></a>    left <span class="ot">&lt;-</span> psilow</span>
+<span id="cb329-111"><a href="causal-survival-analysis.html#cb329-111" aria-hidden="true" tabindex="-1"></a>    fleft <span class="ot">&lt;-</span> testlow <span class="sc">-</span> <span class="fl">3.84</span></span>
+<span id="cb329-112"><a href="causal-survival-analysis.html#cb329-112" aria-hidden="true" tabindex="-1"></a>    right <span class="ot">&lt;-</span> psi1</span>
+<span id="cb329-113"><a href="causal-survival-analysis.html#cb329-113" aria-hidden="true" tabindex="-1"></a>    fright <span class="ot">&lt;-</span> objfunc <span class="sc">-</span> <span class="fl">3.84</span></span>
+<span id="cb329-114"><a href="causal-survival-analysis.html#cb329-114" aria-hidden="true" tabindex="-1"></a>    middle <span class="ot">&lt;-</span> (left <span class="sc">+</span> right) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb329-115"><a href="causal-survival-analysis.html#cb329-115" aria-hidden="true" tabindex="-1"></a>    fmiddle <span class="ot">&lt;-</span> <span class="fu">for_conf</span>(middle)</span>
+<span id="cb329-116"><a href="causal-survival-analysis.html#cb329-116" aria-hidden="true" tabindex="-1"></a>    count <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb329-117"><a href="causal-survival-analysis.html#cb329-117" aria-hidden="true" tabindex="-1"></a>    diff <span class="ot">&lt;-</span> right <span class="sc">-</span> left</span>
+<span id="cb329-118"><a href="causal-survival-analysis.html#cb329-118" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb329-119"><a href="causal-survival-analysis.html#cb329-119" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span>(<span class="sc">!</span>(<span class="fu">abs</span>(fmiddle) <span class="sc">&lt;</span> <span class="fl">0.0001</span> <span class="sc">|</span> diff <span class="sc">&lt;</span> <span class="fl">0.0001</span> <span class="sc">|</span> count <span class="sc">&gt;</span> <span class="dv">100</span>)){</span>
+<span id="cb329-120"><a href="causal-survival-analysis.html#cb329-120" aria-hidden="true" tabindex="-1"></a>      test <span class="ot">&lt;-</span> fmiddle <span class="sc">*</span> fleft</span>
+<span id="cb329-121"><a href="causal-survival-analysis.html#cb329-121" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (test <span class="sc">&lt;</span> <span class="dv">0</span>){</span>
+<span id="cb329-122"><a href="causal-survival-analysis.html#cb329-122" aria-hidden="true" tabindex="-1"></a>        right <span class="ot">&lt;-</span> middle</span>
+<span id="cb329-123"><a href="causal-survival-analysis.html#cb329-123" aria-hidden="true" tabindex="-1"></a>        fright <span class="ot">&lt;-</span> fmiddle</span>
+<span id="cb329-124"><a href="causal-survival-analysis.html#cb329-124" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> {</span>
+<span id="cb329-125"><a href="causal-survival-analysis.html#cb329-125" aria-hidden="true" tabindex="-1"></a>        left <span class="ot">&lt;-</span> middle</span>
+<span id="cb329-126"><a href="causal-survival-analysis.html#cb329-126" aria-hidden="true" tabindex="-1"></a>        fleft <span class="ot">&lt;-</span> fmiddle</span>
+<span id="cb329-127"><a href="causal-survival-analysis.html#cb329-127" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb329-128"><a href="causal-survival-analysis.html#cb329-128" aria-hidden="true" tabindex="-1"></a>      middle <span class="ot">&lt;-</span> (left <span class="sc">+</span> right) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb329-129"><a href="causal-survival-analysis.html#cb329-129" aria-hidden="true" tabindex="-1"></a>      fmiddle <span class="ot">&lt;-</span> <span class="fu">for_conf</span>(middle)</span>
+<span id="cb329-130"><a href="causal-survival-analysis.html#cb329-130" aria-hidden="true" tabindex="-1"></a>      diff <span class="ot">&lt;-</span> right <span class="sc">-</span> left</span>
+<span id="cb329-131"><a href="causal-survival-analysis.html#cb329-131" aria-hidden="true" tabindex="-1"></a>      count <span class="ot">&lt;-</span> count <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb329-132"><a href="causal-survival-analysis.html#cb329-132" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb329-133"><a href="causal-survival-analysis.html#cb329-133" aria-hidden="true" tabindex="-1"></a>    psi_low <span class="ot">&lt;-</span> middle</span>
+<span id="cb329-134"><a href="causal-survival-analysis.html#cb329-134" aria-hidden="true" tabindex="-1"></a>    objfunc_low <span class="ot">&lt;-</span> fmiddle <span class="sc">+</span> <span class="fl">3.84</span></span>
+<span id="cb329-135"><a href="causal-survival-analysis.html#cb329-135" aria-hidden="true" tabindex="-1"></a>    psi <span class="ot">&lt;-</span> psi1</span>
+<span id="cb329-136"><a href="causal-survival-analysis.html#cb329-136" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb329-137"><a href="causal-survival-analysis.html#cb329-137" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb329-138"><a href="causal-survival-analysis.html#cb329-138" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(psi, psi_low, psi_high)</span></code></pre></div>
 <pre><code>## [1] -0.05041591 -0.22312099  0.33312901</code></pre>
 
 </div>
@@ -794,7 +799,6 @@ div.csl-indent {
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -824,6 +828,10 @@ gitbook.start({
 "text": null
 },
 "download": ["cibookex-r.pdf", "cibookex-r.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

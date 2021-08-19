@@ -50,6 +50,17 @@ library("survminer")
 ## Loading required package: ggpubr
 ```
 
+```
+## 
+## Attaching package: 'survminer'
+```
+
+```
+## The following object is masked from 'package:survival':
+## 
+##     myeloma
+```
+
 ```r
 survdiff(Surv(survtime, death) ~ qsmk, data=nhefs)
 ```
