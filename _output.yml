@@ -13,6 +13,8 @@ bookdown::gitbook:
       text: "Edit"
     view:
       link: https://github.com/remlapmot/cibookex-r/blob/master/%s
+    search:
+      engine: fuse # lunr is the default
   number_sections: false
 bookdown::pdf_book:
   includes:
