@@ -3,3 +3,4 @@
 
 # settings for Languages stats
 *.rmd linguist-detectable
+*.Rmd linguist-detectable
