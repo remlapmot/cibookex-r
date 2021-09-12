@@ -4,3 +4,6 @@
 # settings for Languages stats
 *.rmd linguist-detectable
 *.Rmd linguist-detectable
+*.do linguist-detectable linguist-language=Stata
+*.dta linguist-vendored
+*.mmat linguist-vendored
