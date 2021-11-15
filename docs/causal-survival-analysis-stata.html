@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>17. Causal survival analysis: Stata | Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="17. Causal survival analysis: Stata | Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
@@ -27,7 +27,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2021-08-19" />
+<meta name="date" content="2021-11-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -36,7 +36,7 @@
   
 <link rel="prev" href="instrumental-variables-estimation-stata.html"/>
 <link rel="next" href="session-information-stata.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -905,7 +905,7 @@ psurv1          float   %9.0g                 psurv, interv == 1
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 9:22:55
+r; t=0.00 14:55:38
 
       command:  bootipw_surv
        PrY_a0:  r(boot_0)
@@ -915,7 +915,7 @@ r; t=0.00 9:22:55
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=31.42 9:23:26
+r; t=29.37 14:56:07
 
 
 
@@ -1144,7 +1144,7 @@ meanS_t1        float   %9.0g                 meanS_t, interv == 1
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 9:23:41
+r; t=0.00 14:56:24
 
       command:  bootstdz_surv
        PrY_a0:  r(boot_0)
@@ -1154,7 +1154,7 @@ r; t=0.00 9:23:41
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=32.10 9:24:13
+r; t=32.20 14:56:56
 
 
 

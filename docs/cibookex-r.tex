@@ -5,11 +5,15 @@
 \documentclass[
   10pt,
 ]{book}
+\title{Causal Inference: What If. R and Stata code for Exercises}
+\author{Book by M. A. Hernán and J. M. Robins \and R code by Joy Shi and Sean McGrath \and Stata code by Eleanor Murray and Roger Logan \and R Markdown code by Tom Palmer}
+\date{15 November 2021}
+
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
 \usepackage{setspace}
-\usepackage{ifxetex,ifluatex}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage{iftex}
+\ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -120,15 +124,11 @@
 \floatpagestyle{empty}
 \usepackage[sort, round]{natbib}
 \frontmatter
-\ifluatex
+\ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
-
-\title{Causal Inference: What If. R and Stata code for Exercises}
-\author{Book by M. A. Hernán and J. M. Robins \and R code by Joy Shi and Sean McGrath \and Stata code by Eleanor Murray and Roger Logan \and R Markdown code by Tom Palmer}
-\date{19 August 2021}
 
 \begin{document}
 \maketitle
@@ -2406,16 +2406,16 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Shaded}
 
 \begin{verbatim}
-##                         V1             mean                se               ll
-## 1                 Observed 2.56188497106103 0.270025830670691 2.03264406805097
-## 2             No Treatment 1.65212306626746 0.264457529204929 1.13379583358535
-## 3                Treatment 5.11474489549347 0.407452006750757 4.31615363683341
-## 4 Treatment - No Treatment 3.46262182922601 0.288417406801384 2.89733409938086
+##                         V1             mean                 se               ll
+## 1                 Observed 2.56188497106103 0.0605677008235627 2.44317445882045
+## 2             No Treatment 1.65212306626746  0.120587987578032 1.41577495364635
+## 3                Treatment 5.11474489549347  0.309192157458332  4.5087394025729
+## 4 Treatment - No Treatment 3.46262182922601   0.41560324202585 2.64805444299726
 ##                 ul
-## 1  3.0911258740711
-## 2 2.17045029894957
-## 3 5.91333615415352
-## 4 4.02790955907116
+## 1 2.68059548330161
+## 2 1.88847117888857
+## 3 5.72075038841403
+## 4 4.27718921545476
 \end{verbatim}
 
 \hypertarget{g-estimation-of-structural-nested-models}{%
@@ -3854,15 +3854,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ##                         V1             mean                se               ll
-## 1                 Observed 2.63384609228479 0.204270957136778 2.23348237320918
-## 2             No Treatment 1.71983636149843 0.224300549956654 1.28021536187086
-## 3                Treatment 5.35072300362993 0.326651034649443 4.71049874020428
-## 4 Treatment - No Treatment 3.63088664213151 0.270963844519279 3.09980726576121
+## 1                 Observed 2.63384609228479 0.137737061238674  2.3638864129206
+## 2             No Treatment 1.71983636149843 0.228724169755727 1.27154522638337
+## 3                Treatment 5.35072300362993 0.470503303564862 4.42855347403569
+## 4 Treatment - No Treatment 3.63088664213151 0.647143107199304 2.36250945917753
 ##                 ul
-## 1  3.0342098113604
-## 2 2.15945736112599
-## 3 5.99094726705559
-## 4  4.1619660185018
+## 1 2.90380577164898
+## 2 2.16812749661348
+## 3 6.27289253322418
+## 4 4.89926382508548
 \end{verbatim}
 
 \begin{Shaded}
@@ -3993,7 +3993,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ## 95% CI for the causal mean difference
-## 2.707812 , 4.43469
+## 2.52723 , 4.346283
 \end{verbatim}
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.
@@ -5006,39 +5006,44 @@ For reproducibility.
 \end{Shaded}
 
 \begin{verbatim}
-## - Session info ---------------------------------------------------------------
-##  setting  value                       
-##  version  R version 4.1.1 (2021-08-10)
-##  os       Windows 10 x64              
-##  system   x86_64, mingw32             
-##  ui       RTerm                       
-##  language (EN)                        
-##  collate  English_United Kingdom.1252 
-##  ctype    English_United Kingdom.1252 
-##  tz       Europe/London               
-##  date     2021-08-19                  
+## - Session info  --------------------------------------------------------------
+##  hash: person with veil: medium-dark skin tone, paw prints, person getting massage
+## 
+##  setting  value
+##  version  R version 4.1.2 (2021-11-01)
+##  os       Windows 10 x64 (build 22000)
+##  system   x86_64, mingw32
+##  ui       RTerm
+##  language (EN)
+##  collate  English_United Kingdom.1252
+##  ctype    English_United Kingdom.1252
+##  tz       Europe/London
+##  date     2021-11-15
+##  pandoc   2.14.0.3 @ C:/Program Files/RStudio/bin/pandoc/ (via rmarkdown)
 ## 
 ## - Packages -------------------------------------------------------------------
-##  package     * version date       lib source        
-##  bookdown      0.23    2021-08-13 [1] CRAN (R 4.1.1)
-##  cli           3.0.1   2021-07-17 [1] CRAN (R 4.1.0)
-##  digest        0.6.27  2020-10-24 [1] CRAN (R 4.1.0)
+##  package     * version date (UTC) lib source
+##  bookdown      0.24    2021-09-02 [1] CRAN (R 4.1.1)
+##  cli           3.1.0   2021-10-27 [1] CRAN (R 4.1.1)
+##  digest        0.6.28  2021-09-23 [1] CRAN (R 4.1.1)
 ##  evaluate      0.14    2019-05-28 [1] CRAN (R 4.1.0)
-##  htmltools     0.5.1.1 2021-01-22 [1] CRAN (R 4.1.0)
-##  knitr         1.33    2021-04-24 [1] CRAN (R 4.1.0)
+##  fastmap       1.1.0   2021-01-25 [1] CRAN (R 4.1.0)
+##  htmltools     0.5.2   2021-08-25 [1] CRAN (R 4.1.1)
+##  knitr         1.36    2021-09-29 [1] CRAN (R 4.1.1)
 ##  magrittr      2.0.1   2020-11-17 [1] CRAN (R 4.1.0)
-##  rlang         0.4.11  2021-04-30 [1] CRAN (R 4.1.0)
-##  rmarkdown     2.10    2021-08-06 [1] CRAN (R 4.1.0)
+##  rlang         0.4.12  2021-10-18 [1] CRAN (R 4.1.1)
+##  rmarkdown     2.11    2021-09-14 [1] CRAN (R 4.1.1)
 ##  rstudioapi    0.13    2020-11-12 [1] CRAN (R 4.1.0)
-##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 4.1.0)
-##  stringi       1.7.3   2021-07-16 [1] CRAN (R 4.1.0)
+##  sessioninfo   1.2.1   2021-11-02 [1] CRAN (R 4.1.2)
+##  stringi       1.7.5   2021-10-04 [1] CRAN (R 4.1.1)
 ##  stringr       1.4.0   2019-02-10 [1] CRAN (R 4.1.0)
-##  withr         2.4.2   2021-04-18 [1] CRAN (R 4.1.0)
-##  xfun          0.25    2021-08-06 [1] CRAN (R 4.1.0)
+##  xfun          0.28    2021-11-04 [1] CRAN (R 4.1.2)
 ##  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.1.0)
 ## 
-## [1] C:/Users/tom/Documents/R/win-library/4.1
-## [2] C:/Program Files/R/R-4.1.1/library
+##  [1] C:/Users/tom/Documents/R/win-library/4.1
+##  [2] C:/Program Files/R/R-4.1.2/library
+## 
+## ------------------------------------------------------------------------------
 \end{verbatim}
 
 \hypertarget{part-stata-code}{%
@@ -9756,12 +9761,83 @@ obs. time interval:  (0, survtime]
       Total |    171,076      100.00
 
 
-file ./data/nhefs_surv.dta cannot be modified or erased; likely cause is
-    read-only directory or file
-r(608);
 
-end of do-file
-r(608);
+
+
+Logistic regression                             Number of obs     =    171,076
+                                                LR chi2(5)        =      24.26
+                                                Prob > chi2       =     0.0002
+Log likelihood = -2134.1973                     Pseudo R2         =     0.0057
+
+------------------------------------------------------------------------------
+       event | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+        qsmk |   1.402527   .6000025     0.79   0.429     .6064099    3.243815
+             |
+ qsmk#c.time |
+Smoking c..  |   1.012318   .0162153     0.76   0.445     .9810299    1.044603
+             |
+ qsmk#c.time#|
+      c.time |
+Smoking c..  |   .9998342   .0001321    -1.25   0.210     .9995753    1.000093
+             |
+        time |   1.022048   .0090651     2.46   0.014     1.004434    1.039971
+             |
+      c.time#|
+      c.time |   .9998637   .0000699    -1.95   0.051     .9997266    1.000001
+             |
+       _cons |   .0007992   .0001972   -28.90   0.000     .0004927    .0012963
+------------------------------------------------------------------------------
+Note: _cons estimates baseline odds.
+
+(169,510 observations deleted)
+
+(186,354 observations created)
+
+(186354 real changes made)
+
+(187,920 observations created)
+
+(187,920 real changes made)
+
+
+
+
+
+
+(372,708 missing values generated)
+
+(372708 real changes made)
+
+
+-------------------------------------------------------------------------------
+-> interv = 0
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+       psurv |      1,566    .8279829           0   .8279829   .8279829
+
+-------------------------------------------------------------------------------
+-> interv = 1
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+       psurv |      1,566     .774282           0    .774282    .774282
+
+
+(3,132 observations created)
+
+(3,132 real changes made)
+
+(375,840 missing values generated)
+
+(375,840 real changes made)
+
+              storage   display    value
+variable name   type    format     label      variable label
+-------------------------------------------------------------------------------
+psurv0          float   %9.0g                 psurv, interv == 0
+psurv1          float   %9.0g                 psurv, interv == 1
 \end{verbatim}
 
 \begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-2} \end{center}
@@ -10119,7 +10195,7 @@ psurv1          float   %9.0g                 psurv, interv == 1
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 9:27:33
+r; t=0.00 15:00:18
 
       command:  bootipw_surv
        PrY_a0:  r(boot_0)
@@ -10129,7 +10205,7 @@ r; t=0.00 9:27:33
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=31.24 9:28:04
+r; t=30.35 15:00:48
 
 
 
@@ -10373,7 +10449,7 @@ meanS_t1        float   %9.0g                 meanS_t, interv == 1
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 9:28:20
+r; t=0.00 15:01:06
 
       command:  bootstdz_surv
        PrY_a0:  r(boot_0)
@@ -10383,7 +10459,7 @@ r; t=0.00 9:28:20
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=32.06 9:28:52
+r; t=32.52 15:01:39
 
 
 
@@ -10423,11 +10499,11 @@ For reproducibility.
 
 \begin{verbatim}
 Stata/MP 16.1 for Windows (64-bit x86-64)
-Revision 08 Jul 2021
+Revision 02 Nov 2021
 Copyright 1985-2019 StataCorp LLC
 
 Total physical memory:       32.00 GB
-Available physical memory:   19.66 GB
+Available physical memory:   21.79 GB
 
 Stata license: Unlimited-user 2-core network, expiring 21 Jan 2022
 Serial number: 501609352178
@@ -10443,40 +10519,45 @@ Serial number: 501609352178
 \end{Shaded}
 
 \begin{verbatim}
-- Session info ---------------------------------------------------------------
- setting  value                       
- version  R version 4.1.1 (2021-08-10)
- os       Windows 10 x64              
- system   x86_64, mingw32             
- ui       RTerm                       
- language (EN)                        
- collate  English_United Kingdom.1252 
- ctype    English_United Kingdom.1252 
- tz       Europe/London               
- date     2021-08-19                  
+- Session info  --------------------------------------------------------------
+ hash: flag: Somalia, person shrugging: light skin tone, trumpet
+
+ setting  value
+ version  R version 4.1.2 (2021-11-01)
+ os       Windows 10 x64 (build 22000)
+ system   x86_64, mingw32
+ ui       RTerm
+ language (EN)
+ collate  English_United Kingdom.1252
+ ctype    English_United Kingdom.1252
+ tz       Europe/London
+ date     2021-11-15
+ pandoc   2.14.0.3 @ C:/Program Files/RStudio/bin/pandoc/ (via rmarkdown)
 
 - Packages -------------------------------------------------------------------
- package       * version date       lib source                               
- bookdown        0.23    2021-08-13 [1] CRAN (R 4.1.1)                       
- cli             3.0.1   2021-07-17 [1] CRAN (R 4.1.0)                       
- digest          0.6.27  2020-10-24 [1] CRAN (R 4.1.0)                       
- evaluate        0.14    2019-05-28 [1] CRAN (R 4.1.0)                       
- htmltools       0.5.1.1 2021-01-22 [1] CRAN (R 4.1.0)                       
- knitr           1.33    2021-04-24 [1] CRAN (R 4.1.0)                       
- magrittr        2.0.1   2020-11-17 [1] CRAN (R 4.1.0)                       
- rlang           0.4.11  2021-04-30 [1] CRAN (R 4.1.0)                       
- rmarkdown       2.10    2021-08-06 [1] CRAN (R 4.1.0)                       
- rstudioapi      0.13    2020-11-12 [1] CRAN (R 4.1.0)                       
- sessioninfo     1.1.1   2018-11-05 [1] CRAN (R 4.1.0)                       
+ package       * version date (UTC) lib source
+ bookdown        0.24    2021-09-02 [1] CRAN (R 4.1.1)
+ cli             3.1.0   2021-10-27 [1] CRAN (R 4.1.1)
+ digest          0.6.28  2021-09-23 [1] CRAN (R 4.1.1)
+ evaluate        0.14    2019-05-28 [1] CRAN (R 4.1.0)
+ fastmap         1.1.0   2021-01-25 [1] CRAN (R 4.1.0)
+ htmltools       0.5.2   2021-08-25 [1] CRAN (R 4.1.1)
+ knitr           1.36    2021-09-29 [1] CRAN (R 4.1.1)
+ magrittr        2.0.1   2020-11-17 [1] CRAN (R 4.1.0)
+ rlang           0.4.12  2021-10-18 [1] CRAN (R 4.1.1)
+ rmarkdown       2.11    2021-09-14 [1] CRAN (R 4.1.1)
+ rstudioapi      0.13    2020-11-12 [1] CRAN (R 4.1.0)
+ sessioninfo     1.2.1   2021-11-02 [1] CRAN (R 4.1.2)
  Statamarkdown * 0.7.0   2021-08-02 [1] Github (Hemken/Statamarkdown@a68a8b9)
- stringi         1.7.3   2021-07-16 [1] CRAN (R 4.1.0)                       
- stringr         1.4.0   2019-02-10 [1] CRAN (R 4.1.0)                       
- withr           2.4.2   2021-04-18 [1] CRAN (R 4.1.0)                       
- xfun            0.25    2021-08-06 [1] CRAN (R 4.1.0)                       
- yaml            2.2.1   2020-02-01 [1] CRAN (R 4.1.0)                       
+ stringi         1.7.5   2021-10-04 [1] CRAN (R 4.1.1)
+ stringr         1.4.0   2019-02-10 [1] CRAN (R 4.1.0)
+ xfun            0.28    2021-11-04 [1] CRAN (R 4.1.2)
+ yaml            2.2.1   2020-02-01 [1] CRAN (R 4.1.0)
 
-[1] C:/Users/tom/Documents/R/win-library/4.1
-[2] C:/Program Files/R/R-4.1.1/library
+ [1] C:/Users/tom/Documents/R/win-library/4.1
+ [2] C:/Program Files/R/R-4.1.2/library
+
+------------------------------------------------------------------------------
 \end{verbatim}
 
   \bibliography{bibliography.bib}

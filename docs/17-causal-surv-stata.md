@@ -623,7 +623,7 @@ psurv1          float   %9.0g                 psurv, interv == 1
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 9:32:15
+r; t=0.00 15:05:05
 
       command:  bootipw_surv
        PrY_a0:  r(boot_0)
@@ -633,7 +633,7 @@ r; t=0.00 9:32:15
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=31.47 9:32:46
+r; t=30.58 15:05:35
 
 
 
@@ -868,7 +868,7 @@ meanS_t1        float   %9.0g                 meanS_t, interv == 1
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 9:33:01
+r; t=0.00 15:05:53
 
       command:  bootstdz_surv
        PrY_a0:  r(boot_0)
@@ -878,7 +878,7 @@ r; t=0.00 9:33:01
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=31.85 9:33:33
+r; t=32.77 15:06:26
 
 
 
