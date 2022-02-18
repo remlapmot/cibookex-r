@@ -86,7 +86,7 @@ di scalar(iv_est)
 ```
 
 ```
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
+    Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
      price82 |      1,476    1.805989    .1301703   1.451904   2.103027
 
@@ -120,17 +120,17 @@ file ./data/nhefs-highprice.dta saved
 
 Two-sample t test with equal variances
 ------------------------------------------------------------------------------
-   Group |     Obs        Mean    Std. Err.   Std. Dev.   [95% Conf. Interval]
+   Group |     Obs        Mean    Std. err.   Std. dev.   [95% conf. interval]
 ---------+--------------------------------------------------------------------
        0 |      41    2.535729    1.461629    9.358993   -.4183336    5.489792
        1 |   1,435    2.686018    .2084888    7.897848    2.277042    3.094994
 ---------+--------------------------------------------------------------------
-combined |   1,476    2.681843    .2066282    7.938395    2.276527    3.087159
+Combined |   1,476    2.681843    .2066282    7.938395    2.276527    3.087159
 ---------+--------------------------------------------------------------------
     diff |           -.1502887    1.257776               -2.617509    2.316932
 ------------------------------------------------------------------------------
     diff = mean(0) - mean(1)                                      t =  -0.1195
-Ho: diff = 0                                     degrees of freedom =     1474
+H0: diff = 0                                     Degrees of freedom =     1474
 
     Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
  Pr(T < t) = 0.4525         Pr(|T| > |t|) = 0.9049          Pr(T > t) = 0.5475
@@ -159,7 +159,7 @@ ey[1,2]
            c1         c2
 r1   2.535729  2.6860178
 
-------------------------------------------------- mata (type end to exit) -----
+------------------------------------------------- mata (type end to exit) ------
 : pa = st_matrix("pa")
 
 : ey = st_matrix("ey")
@@ -179,7 +179,7 @@ r1   2.535729  2.6860178
 : st_numscalar("iv_est", iv_est)
 
 : end
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 2.3962701
 ```
@@ -201,20 +201,20 @@ ivregress 2sls wt82_71 (qsmk = highprice)
 ```
 
 ```
-Instrumental variables (2SLS) regression          Number of obs   =      1,476
+Instrumental variables 2SLS regression            Number of obs   =      1,476
                                                   Wald chi2(1)    =       0.01
                                                   Prob > chi2     =     0.9038
                                                   R-squared       =     0.0213
                                                   Root MSE        =     7.8508
 
 ------------------------------------------------------------------------------
-     wt82_71 |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+     wt82_71 | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
 -------------+----------------------------------------------------------------
         qsmk |    2.39627   19.82659     0.12   0.904    -36.46313    41.25567
        _cons |   2.068164   5.081652     0.41   0.684     -7.89169    12.02802
 ------------------------------------------------------------------------------
-Instrumented:  qsmk
-Instruments:   highprice
+Instrumented: qsmk
+ Instruments: highprice
 ```
 
 ## Program 16.3
@@ -239,13 +239,13 @@ logit highprice hspi
 Iteration 0:   log likelihood = -187.34948  
 Iteration 1:   log likelihood = -187.34948  
 
-Logistic regression                             Number of obs     =      1,476
-                                                LR chi2(1)        =       0.00
-                                                Prob > chi2       =     1.0000
-Log likelihood = -187.34948                     Pseudo R2         =     0.0000
+Logistic regression                                     Number of obs =  1,476
+                                                        LR chi2(1)    =   0.00
+                                                        Prob > chi2   = 1.0000
+Log likelihood = -187.34948                             Pseudo R2     = 0.0000
 
 ------------------------------------------------------------------------------
-   highprice |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+   highprice | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
 -------------+----------------------------------------------------------------
         hspi |   2.75e-07   .0201749     0.00   1.000    -.0395419    .0395424
        _cons |   3.555347   .1637931    21.71   0.000     3.234319    3.876376
@@ -293,80 +293,80 @@ ivregress 2sls wt82_71 (qsmk = highprice)
 (1,476 real changes made)
 
 
-Instrumental variables (2SLS) regression          Number of obs   =      1,476
+Instrumental variables 2SLS regression            Number of obs   =      1,476
                                                   Wald chi2(1)    =       0.06
                                                   Prob > chi2     =     0.8023
                                                   R-squared       =          .
                                                   Root MSE        =     18.593
 
 ------------------------------------------------------------------------------
-     wt82_71 |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+     wt82_71 | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
 -------------+----------------------------------------------------------------
         qsmk |   41.28124   164.8417     0.25   0.802    -281.8026     364.365
        _cons |  -7.890182   42.21833    -0.19   0.852    -90.63659    74.85623
 ------------------------------------------------------------------------------
-Instrumented:  qsmk
-Instruments:   highprice
+Instrumented: qsmk
+ Instruments: highprice
 
 (1,476 real changes made, 1,476 to missing)
 
 (1,476 real changes made)
 
 
-Instrumental variables (2SLS) regression          Number of obs   =      1,476
+Instrumental variables 2SLS regression            Number of obs   =      1,476
                                                   Wald chi2(1)    =       0.05
                                                   Prob > chi2     =     0.8274
                                                   R-squared       =          .
                                                   Root MSE        =     20.577
 
 ------------------------------------------------------------------------------
-     wt82_71 |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+     wt82_71 | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
 -------------+----------------------------------------------------------------
         qsmk |  -40.91185   187.6162    -0.22   0.827    -408.6328    326.8091
        _cons |   13.15927   48.05103     0.27   0.784    -81.01901    107.3375
 ------------------------------------------------------------------------------
-Instrumented:  qsmk
-Instruments:   highprice
+Instrumented: qsmk
+ Instruments: highprice
 
 (1,476 real changes made, 1,476 to missing)
 
 (1,476 real changes made)
 
 
-Instrumental variables (2SLS) regression          Number of obs   =      1,476
+Instrumental variables 2SLS regression            Number of obs   =      1,476
                                                   Wald chi2(1)    =       0.55
                                                   Prob > chi2     =     0.4576
                                                   R-squared       =          .
                                                   Root MSE        =      13.01
 
 ------------------------------------------------------------------------------
-     wt82_71 |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+     wt82_71 | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
 -------------+----------------------------------------------------------------
         qsmk |  -21.10342   28.40885    -0.74   0.458    -76.78374    34.57691
        _cons |   8.086377   7.283314     1.11   0.267    -6.188657    22.36141
 ------------------------------------------------------------------------------
-Instrumented:  qsmk
-Instruments:   highprice
+Instrumented: qsmk
+ Instruments: highprice
 
 (1,476 real changes made, 1,476 to missing)
 
 (1,476 real changes made)
 
 
-Instrumental variables (2SLS) regression          Number of obs   =      1,476
+Instrumental variables 2SLS regression            Number of obs   =      1,476
                                                   Wald chi2(1)    =       0.29
                                                   Prob > chi2     =     0.5880
                                                   R-squared       =          .
                                                   Root MSE        =     10.357
 
 ------------------------------------------------------------------------------
-     wt82_71 |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+     wt82_71 | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
 -------------+----------------------------------------------------------------
         qsmk |  -12.81141   23.65099    -0.54   0.588    -59.16649    33.54368
        _cons |   5.962813   6.062956     0.98   0.325    -5.920362    17.84599
 ------------------------------------------------------------------------------
-Instrumented:  qsmk
-Instruments:   highprice
+Instrumented: qsmk
+ Instruments: highprice
 ```
 
 ## Program 16.5
@@ -393,34 +393,34 @@ ivregress 2sls wt82_71 sex race c.age c.smokeintensity ///
 (1,476 real changes made)
 
 
-Instrumental variables (2SLS) regression          Number of obs   =      1,476
+Instrumental variables 2SLS regression            Number of obs   =      1,476
                                                   Wald chi2(11)   =     135.18
                                                   Prob > chi2     =     0.0000
                                                   R-squared       =     0.0622
                                                   Root MSE        =     7.6848
 
-------------------------------------------------------------------------------
-     wt82_71 |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
--------------+----------------------------------------------------------------
-        qsmk |  -1.042295   29.86522    -0.03   0.972    -59.57705    57.49246
-         sex |  -1.644393   2.620115    -0.63   0.530    -6.779724    3.490938
-        race |  -.1832546   4.631443    -0.04   0.968    -9.260716    8.894207
-         age |    -.16364   .2395678    -0.68   0.495    -.6331844    .3059043
-smokeinten~y |   .0057669    .144911     0.04   0.968    -.2782534    .2897872
-    smokeyrs |   .0258357   .1607639     0.16   0.872    -.2892558    .3409271
-             |
-    exercise |
-          1  |   .4987479   2.162395     0.23   0.818    -3.739469    4.736964
-          2  |   .5818337   2.174255     0.27   0.789    -3.679628    4.843296
-             |
-      active |
-          1  |  -1.170145   .6049921    -1.93   0.053    -2.355908    .0156176
-          2  |  -.5122842   1.303121    -0.39   0.694    -3.066355    2.041787
-             |
-        wt71 |  -.0979493    .036123    -2.71   0.007     -.168749   -.0271496
-       _cons |   17.28033    2.32589     7.43   0.000     12.72167    21.83899
-------------------------------------------------------------------------------
-Instrumented:  qsmk
-Instruments:   sex race age smokeintensity smokeyrs 1.exercise 2.exercise
-               1.active 2.active wt71 highprice
+-------------------------------------------------------------------------------
+      wt82_71 | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+--------------+----------------------------------------------------------------
+         qsmk |  -1.042295   29.86522    -0.03   0.972    -59.57705    57.49246
+          sex |  -1.644393   2.620115    -0.63   0.530    -6.779724    3.490938
+         race |  -.1832546   4.631443    -0.04   0.968    -9.260716    8.894207
+          age |    -.16364   .2395678    -0.68   0.495    -.6331844    .3059043
+smokeintens~y |   .0057669    .144911     0.04   0.968    -.2782534    .2897872
+     smokeyrs |   .0258357   .1607639     0.16   0.872    -.2892558    .3409271
+              |
+     exercise |
+           1  |   .4987479   2.162395     0.23   0.818    -3.739469    4.736964
+           2  |   .5818337   2.174255     0.27   0.789    -3.679628    4.843296
+              |
+       active |
+           1  |  -1.170145   .6049921    -1.93   0.053    -2.355908    .0156176
+           2  |  -.5122842   1.303121    -0.39   0.694    -3.066355    2.041787
+              |
+         wt71 |  -.0979493    .036123    -2.71   0.007     -.168749   -.0271496
+        _cons |   17.28033    2.32589     7.43   0.000     12.72167    21.83899
+-------------------------------------------------------------------------------
+Instrumented: qsmk
+ Instruments: sex race age smokeintensity smokeyrs 1.exercise 2.exercise
+              1.active 2.active wt71 highprice
 ```

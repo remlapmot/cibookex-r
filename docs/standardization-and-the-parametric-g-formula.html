@@ -27,7 +27,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2021-11-15" />
+<meta name="date" content="2022-02-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -389,11 +389,11 @@ div.csl-indent {
 <span id="cb159-13"><a href="standardization-and-the-parametric-g-formula.html#cb159-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;active&quot;</span>,</span>
 <span id="cb159-14"><a href="standardization-and-the-parametric-g-formula.html#cb159-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;wt71&quot;</span></span>
 <span id="cb159-15"><a href="standardization-and-the-parametric-g-formula.html#cb159-15" aria-hidden="true" tabindex="-1"></a>)]</span></code></pre></div>
-<pre><code>## # A tibble: 1 x 11
+<pre><code>## # A tibble: 1 × 11
 ##   predicted.meanY  qsmk   sex  race   age education smokeintensity smokeyrs
 ##             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;          &lt;dbl&gt;    &lt;dbl&gt;
 ## 1           0.342     0     0     0    26         4             15       12
-## # ... with 3 more variables: exercise &lt;dbl&gt;, active &lt;dbl&gt;, wt71 &lt;dbl&gt;</code></pre>
+## # … with 3 more variables: exercise &lt;dbl&gt;, active &lt;dbl&gt;, wt71 &lt;dbl&gt;</code></pre>
 <div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="standardization-and-the-parametric-g-formula.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhefs<span class="sc">$</span>predicted.meanY[nhefs<span class="sc">$</span>cens <span class="sc">==</span> <span class="dv">0</span>])</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ## -10.876   1.116   3.042   2.638   4.511   9.876</code></pre>
@@ -646,15 +646,15 @@ div.csl-indent {
 <span id="cb181-71"><a href="standardization-and-the-parametric-g-formula.html#cb181-71" aria-hidden="true" tabindex="-1"></a>  ))</span>
 <span id="cb181-72"><a href="standardization-and-the-parametric-g-formula.html#cb181-72" aria-hidden="true" tabindex="-1"></a>bootstrap</span></code></pre></div>
 <pre><code>##                         V1             mean                se               ll
-## 1                 Observed 2.56188497106103  0.16349626582976 2.24143817842792
-## 2             No Treatment 1.65212306626746 0.218074147788459 1.22470559064281
-## 3                Treatment 5.11474489549347 0.390256599824547 4.34985601510829
-## 4 Treatment - No Treatment 3.46262182922601  0.53462372551505 2.41477858193588
+## 1                 Observed 2.56188497106103 0.219695529903738 2.13128964488526
+## 2             No Treatment 1.65212306626746 0.169961870789918 1.31900392077417
+## 3                Treatment 5.11474489549347 0.410472584058594 4.31023341409753
+## 4 Treatment - No Treatment 3.46262182922601 0.271328776045589 2.93082720020732
 ##                 ul
-## 1 2.88233176369415
-## 2 2.07954054189211
-## 3 5.87963377587864
-## 4 4.51046507651613</code></pre>
+## 1  2.9924802972368
+## 2 1.98524221176075
+## 3  5.9192563768894
+## 4  3.9944164582447</code></pre>
 
 </div>
 </div>

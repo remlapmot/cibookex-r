@@ -1,6 +1,3 @@
-downloading-the-code
-installing-dependency-packages
-downloading-the-datasets
 program-11.1
 program-11.2
 program-11.3
@@ -17,11 +14,7 @@ program-13.3
 program-13.4
 program-14.1
 program-14.2
-g-estimation-checking-one-possible-value-of-psi
-g-estimation-checking-multiple-possible-values-of-psi
 program-14.3
-g-estimation-closed-form-estimator-linear-mean-models
-g-estimation-closed-form-estimator-for-2-parameter-model
 program-15.1
 program-15.2
 program-15.3

@@ -27,7 +27,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2021-11-15" />
+<meta name="date" content="2022-02-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -381,17 +381,17 @@ For errors contact: ejmurray@bu.edu
 
 
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -&gt; A = 0
 
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
+    Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
            Y |          8        67.5    53.11712         10        170
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -&gt; A = 1
 
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
+    Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
            Y |          8      146.25     58.2942         50        220</code></pre>
 <p><img src="figs/stata-fig-11-1.png" width="85%" style="display: block; margin: auto;" /></p>
@@ -447,31 +447,31 @@ For errors contact: ejmurray@bu.edu
 
 
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -&gt; A = 1
 
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
+    Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
            Y |          4          70    31.62278         40        110
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -&gt; A = 2
 
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
+    Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
            Y |          4          80    62.18253         30        170
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -&gt; A = 3
 
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
+    Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
            Y |          4       117.5    53.77422         50        180
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -&gt; A = 4
 
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
+    Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
            Y |          4         195    31.09126        150        220</code></pre>
 <p><img src="figs/stata-fig-11-2.png" width="85%" style="display: block; margin: auto;" /></p>
@@ -544,7 +544,7 @@ For errors contact: ejmurray@bu.edu
 <span id="cb343-14"><a href="why-model-stata.html#cb343-14" aria-hidden="true" tabindex="-1"></a>*Plot the <span class="kw">data</span> with the regression <span class="kw">line</span>: Fig 11.4*</span>
 <span id="cb343-15"><a href="why-model-stata.html#cb343-15" aria-hidden="true" tabindex="-1"></a><span class="kw">scatter</span> Y A, ylab(0(50)250) xlab(0(10)100) <span class="bn">xscale</span>(<span class="kw">range</span>(0 100)) || <span class="kw">lfit</span> Y A</span>
 <span id="cb343-16"><a href="why-model-stata.html#cb343-16" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">gr</span> <span class="kw">export</span> figs/stata-fig-11-4.png, <span class="kw">replace</span></span></code></pre></div>
-<pre><code>           Y |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+<pre><code>           Y | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
 -------------+----------------------------------------------------------------
            A |       2.14       0.40     5.35   0.000         1.28        2.99
        _cons |      24.55      21.33     1.15   0.269       -21.20       70.29
@@ -554,7 +554,7 @@ For errors contact: ejmurray@bu.edu
  ( 1)  90*A + _cons = 0
 
 ------------------------------------------------------------------------------
-           Y |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+           Y | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
 -------------+----------------------------------------------------------------
          (1) |     216.89    20.8614    10.40   0.000     172.1468    261.6333
 ------------------------------------------------------------------------------
@@ -569,7 +569,7 @@ For errors contact: ejmurray@bu.edu
 <span id="cb345-7"><a href="why-model-stata.html#cb345-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb345-8"><a href="why-model-stata.html#cb345-8" aria-hidden="true" tabindex="-1"></a>*E[Y|A=1]*</span>
 <span id="cb345-9"><a href="why-model-stata.html#cb345-9" aria-hidden="true" tabindex="-1"></a><span class="kw">di</span> 67.50 + 78.75</span></code></pre></div>
-<pre><code>           Y |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+<pre><code>           Y | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
 -------------+----------------------------------------------------------------
            A |      78.75      27.88     2.82   0.014        18.95      138.55
        _cons |      67.50      19.72     3.42   0.004        25.21      109.79
@@ -598,7 +598,7 @@ For errors contact: ejmurray@bu.edu
 <span id="cb347-13"><a href="why-model-stata.html#cb347-13" aria-hidden="true" tabindex="-1"></a>*Plot the <span class="kw">data</span> with the regression <span class="kw">line</span>: Fig 11.5*</span>
 <span id="cb347-14"><a href="why-model-stata.html#cb347-14" aria-hidden="true" tabindex="-1"></a><span class="kw">scatter</span> Y A, ylab(0(50)250) xlab(0(10)100) <span class="bn">xscale</span>(<span class="kw">range</span>(0 100)) || qfit Y A</span>
 <span id="cb347-15"><a href="why-model-stata.html#cb347-15" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">gr</span> <span class="kw">export</span> figs/stata-fig-11-5.png, <span class="kw">replace</span></span></code></pre></div>
-<pre><code>           Y |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+<pre><code>           Y | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
 -------------+----------------------------------------------------------------
            A |       4.11       1.53     2.68   0.019         0.80        7.41
          Asq |      -0.02       0.02    -1.33   0.206        -0.05        0.01
@@ -609,7 +609,7 @@ For errors contact: ejmurray@bu.edu
  ( 1)  90*A + 8100*Asq + _cons = 0
 
 ------------------------------------------------------------------------------
-           Y |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+           Y | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
 -------------+----------------------------------------------------------------
          (1) |   197.1269   25.16157     7.83   0.000     142.7687    251.4852
 ------------------------------------------------------------------------------

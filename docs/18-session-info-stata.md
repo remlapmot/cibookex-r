@@ -13,15 +13,14 @@ about
 ```
 
 ```
-Stata/MP 16.1 for Windows (64-bit x86-64)
-Revision 02 Nov 2021
-Copyright 1985-2019 StataCorp LLC
+Stata/MP 17.0 for Mac (Intel 64-bit)
+Revision 15 Feb 2022
+Copyright 1985-2021 StataCorp LLC
 
-Total physical memory:       32.00 GB
-Available physical memory:   21.76 GB
+Total physical memory: 8.01 GB
 
-Stata license: Unlimited-user 2-core network, expiring 21 Jan 2022
-Serial number: 501609352178
+Stata license: Unlimited-user 2-core network, expiring 21 Jan 2023
+Serial number: 501709302483
   Licensed to: Tom Palmer
                University of Bristol
 ```
@@ -33,43 +32,40 @@ sessioninfo::session_info()
 ```
 
 ```
-- Session info  --------------------------------------------------------------
- hash: flag: Somalia, person shrugging: light skin tone, trumpet
-
+─ Session info ───────────────────────────────────────────────────────────────
  setting  value
  version  R version 4.1.2 (2021-11-01)
- os       Windows 10 x64 (build 22000)
- system   x86_64, mingw32
- ui       RTerm
+ os       macOS Big Sur 10.16
+ system   x86_64, darwin17.0
+ ui       X11
  language (EN)
- collate  English_United Kingdom.1252
- ctype    English_United Kingdom.1252
+ collate  en_GB.UTF-8
+ ctype    en_GB.UTF-8
  tz       Europe/London
- date     2021-11-15
- pandoc   2.14.0.3 @ C:/Program Files/RStudio/bin/pandoc/ (via rmarkdown)
+ date     2022-02-18
+ pandoc   2.17.1.1 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/ (via rmarkdown)
 
-- Packages -------------------------------------------------------------------
+─ Packages ───────────────────────────────────────────────────────────────────
  package       * version date (UTC) lib source
- bookdown        0.24    2021-09-02 [1] CRAN (R 4.1.1)
- cli             3.1.0   2021-10-27 [1] CRAN (R 4.1.1)
- digest          0.6.28  2021-09-23 [1] CRAN (R 4.1.1)
- evaluate        0.14    2019-05-28 [1] CRAN (R 4.1.0)
+ bookdown        0.24    2021-09-02 [1] CRAN (R 4.1.0)
+ cli             3.2.0   2022-02-14 [1] CRAN (R 4.1.2)
+ digest          0.6.29  2021-12-01 [1] CRAN (R 4.1.0)
+ evaluate        0.15    2022-02-18 [1] CRAN (R 4.1.2)
  fastmap         1.1.0   2021-01-25 [1] CRAN (R 4.1.0)
- htmltools       0.5.2   2021-08-25 [1] CRAN (R 4.1.1)
- knitr           1.36    2021-09-29 [1] CRAN (R 4.1.1)
- magrittr        2.0.1   2020-11-17 [1] CRAN (R 4.1.0)
- rlang           0.4.12  2021-10-18 [1] CRAN (R 4.1.1)
- rmarkdown       2.11    2021-09-14 [1] CRAN (R 4.1.1)
+ htmltools       0.5.2   2021-08-25 [1] CRAN (R 4.1.0)
+ knitr           1.37    2021-12-16 [1] CRAN (R 4.1.0)
+ magrittr        2.0.2   2022-01-26 [1] CRAN (R 4.1.2)
+ rlang           1.0.1   2022-02-03 [1] CRAN (R 4.1.2)
+ rmarkdown       2.11    2021-09-14 [1] CRAN (R 4.1.0)
  rstudioapi      0.13    2020-11-12 [1] CRAN (R 4.1.0)
- sessioninfo     1.2.1   2021-11-02 [1] CRAN (R 4.1.2)
- Statamarkdown * 0.7.0   2021-08-02 [1] Github (Hemken/Statamarkdown@a68a8b9)
- stringi         1.7.5   2021-10-04 [1] CRAN (R 4.1.1)
+ sessioninfo     1.2.2   2021-12-06 [1] CRAN (R 4.1.0)
+ Statamarkdown * 0.7.0   2022-02-04 [1] Github (Hemken/Statamarkdown@a68a8b9)
+ stringi         1.7.6   2021-11-29 [1] CRAN (R 4.1.0)
  stringr         1.4.0   2019-02-10 [1] CRAN (R 4.1.0)
- xfun            0.28    2021-11-04 [1] CRAN (R 4.1.2)
- yaml            2.2.1   2020-02-01 [1] CRAN (R 4.1.0)
+ xfun            0.29    2021-12-14 [1] CRAN (R 4.1.0)
+ yaml            2.3.4   2022-02-17 [1] CRAN (R 4.1.2)
 
- [1] C:/Users/tom/Documents/R/win-library/4.1
- [2] C:/Program Files/R/R-4.1.2/library
+ [1] /Library/Frameworks/R.framework/Versions/4.1/Resources/library
 
-------------------------------------------------------------------------------
+──────────────────────────────────────────────────────────────────────────────
 ```

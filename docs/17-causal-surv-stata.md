@@ -56,23 +56,26 @@ qui gr export ./figs/stata-fig-17-1.png, replace
 -----------+----------------------+----------
      Total |     1,163        403 |     1,566 
 
-     failure event:  death == 1
-obs. time interval:  (0, survtime]
- exit on or before:  failure
 
-------------------------------------------------------------------------------
+Survival-time data settings
+
+         Failure event: death==1
+Observed time interval: (0, survtime]
+     Exit on or before: failure
+
+--------------------------------------------------------------------------
       1,566  total observations
           0  exclusions
-------------------------------------------------------------------------------
+--------------------------------------------------------------------------
       1,566  observations remaining, representing
         291  failures in single-record/single-failure data
     171,076  total analysis time at risk and under observation
-                                                at risk from t =         0
-                                     earliest observed entry t =         0
-                                          last observed exit t =       120
+                                                At risk from t =         0
+                                     Earliest observed entry t =         0
+                                          Last observed exit t =       120
 
-         failure _d:  death == 1
-   analysis time _t:  survtime
+        Failure _d: death==1
+  Analysis time _t: survtime
 ```
 
 <img src="./figs/stata-fig-17-1.png" width="85%" style="display: block; margin: auto;" />
@@ -200,30 +203,29 @@ qui gr export ./figs/stata-fig-17-2.png, replace
 
 
 
-Logistic regression                             Number of obs     =    171,076
-                                                LR chi2(5)        =      24.26
-                                                Prob > chi2       =     0.0002
-Log likelihood = -2134.1973                     Pseudo R2         =     0.0057
+Logistic regression                                    Number of obs = 171,076
+                                                       LR chi2(5)    =   24.26
+                                                       Prob > chi2   =  0.0002
+Log likelihood = -2134.1973                            Pseudo R2     =  0.0057
 
-------------------------------------------------------------------------------
-       event | Odds Ratio   Std. Err.      z    P>|z|     [95% Conf. Interval]
--------------+----------------------------------------------------------------
-        qsmk |   1.402527   .6000025     0.79   0.429     .6064099    3.243815
-             |
- qsmk#c.time |
-Smoking c..  |   1.012318   .0162153     0.76   0.445     .9810299    1.044603
-             |
- qsmk#c.time#|
-      c.time |
-Smoking c..  |   .9998342   .0001321    -1.25   0.210     .9995753    1.000093
-             |
-        time |   1.022048   .0090651     2.46   0.014     1.004434    1.039971
-             |
-      c.time#|
-      c.time |   .9998637   .0000699    -1.95   0.051     .9997266    1.000001
-             |
-       _cons |   .0007992   .0001972   -28.90   0.000     .0004927    .0012963
-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+        event | Odds ratio   Std. err.      z    P>|z|     [95% conf. interval]
+--------------+----------------------------------------------------------------
+         qsmk |   1.402527   .6000025     0.79   0.429     .6064099    3.243815
+              |
+  qsmk#c.time |
+Smoking ce..  |   1.012318   .0162153     0.76   0.445     .9810299    1.044603
+              |
+  qsmk#c.time#|
+       c.time |
+Smoking ce..  |   .9998342   .0001321    -1.25   0.210     .9995753    1.000093
+              |
+         time |   1.022048   .0090651     2.46   0.014     1.004434    1.039971
+              |
+c.time#c.time |   .9998637   .0000699    -1.95   0.051     .9997266    1.000001
+              |
+        _cons |   .0007992   .0001972   -28.90   0.000     .0004927    .0012963
+-------------------------------------------------------------------------------
 Note: _cons estimates baseline odds.
 
 (169,510 observations deleted)
@@ -246,17 +248,17 @@ Note: _cons estimates baseline odds.
 (372708 real changes made)
 
 
--------------------------------------------------------------------------------
--> interv = 0
+--------------------------------------------------------------------------------
+-> interv = Original
 
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
+    Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
        psurv |      1,566    .8279829           0   .8279829   .8279829
 
--------------------------------------------------------------------------------
--> interv = 1
+--------------------------------------------------------------------------------
+-> interv = Duplicat
 
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
+    Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
        psurv |      1,566     .774282           0    .774282    .774282
 
@@ -269,11 +271,14 @@ Note: _cons estimates baseline odds.
 
 (375,840 real changes made)
 
-              storage   display    value
-variable name   type    format     label      variable label
--------------------------------------------------------------------------------
-psurv0          float   %9.0g                 psurv, interv == 0
-psurv1          float   %9.0g                 psurv, interv == 1
+
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+--------------------------------------------------------------------------------
+psurv0          float   %9.0g                 psurv, interv == Original
+                                                observation
+psurv1          float   %9.0g                 psurv, interv == Duplicated
+                                                observation
 
 ```
 
@@ -439,66 +444,65 @@ Iteration 2:   log likelihood = -838.45045
 Iteration 3:   log likelihood = -838.44842  
 Iteration 4:   log likelihood = -838.44842  
 
-Logistic regression                             Number of obs     =      1,566
-                                                LR chi2(18)       =     109.16
-                                                Prob > chi2       =     0.0000
-Log likelihood = -838.44842                     Pseudo R2         =     0.0611
+Logistic regression                                     Number of obs =  1,566
+                                                        LR chi2(18)   = 109.16
+                                                        Prob > chi2   = 0.0000
+Log likelihood = -838.44842                             Pseudo R2     = 0.0611
 
-------------------------------------------------------------------------------
-        qsmk |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
--------------+----------------------------------------------------------------
-         sex |  -.5274782   .1540497    -3.42   0.001      -.82941   -.2255463
-        race |  -.8392636   .2100668    -4.00   0.000    -1.250987   -.4275404
-         age |   .1212052   .0512663     2.36   0.018     .0207251    .2216853
-             |
- c.age#c.age |  -.0008246   .0005361    -1.54   0.124    -.0018753    .0002262
-             |
-   education |
-          1  |  -.4759606   .2262238    -2.10   0.035    -.9193511   -.0325701
-          2  |  -.5047361    .217597    -2.32   0.020    -.9312184   -.0782538
-          3  |  -.3895288   .1914353    -2.03   0.042    -.7647351   -.0143226
-          4  |  -.4123596   .2772868    -1.49   0.137    -.9558318    .1311126
-             |
-smokeinten~y |  -.0772704   .0152499    -5.07   0.000    -.1071596   -.0473812
-             |
-          c. |
-smokeinten~y#|
-          c. |
-smokeinten~y |   .0010451   .0002866     3.65   0.000     .0004835    .0016068
-             |
-    smokeyrs |  -.0735966   .0277775    -2.65   0.008    -.1280395   -.0191538
-             |
-  c.smokeyrs#|
-  c.smokeyrs |   .0008441   .0004632     1.82   0.068    -.0000637    .0017519
-             |
-    exercise |
-          0  |   -.395704   .1872401    -2.11   0.035    -.7626878   -.0287201
-          1  |  -.0408635   .1382674    -0.30   0.768    -.3118627    .2301357
-             |
-      active |
-          0  |   -.176784   .2149721    -0.82   0.411    -.5981215    .2445535
-          1  |  -.1448395   .2111472    -0.69   0.493    -.5586806    .2690015
-             |
-        wt71 |  -.0152357   .0263161    -0.58   0.563    -.0668144     .036343
-             |
-      c.wt71#|
-      c.wt71 |   .0001352   .0001632     0.83   0.407    -.0001846     .000455
-             |
-       _cons |   -1.19407   1.398493    -0.85   0.393    -3.935066    1.546925
-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+         qsmk | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+--------------+----------------------------------------------------------------
+          sex |  -.5274782   .1540497    -3.42   0.001      -.82941   -.2255463
+         race |  -.8392636   .2100668    -4.00   0.000    -1.250987   -.4275404
+          age |   .1212052   .0512663     2.36   0.018     .0207251    .2216853
+              |
+  c.age#c.age |  -.0008246   .0005361    -1.54   0.124    -.0018753    .0002262
+              |
+    education |
+           1  |  -.4759606   .2262238    -2.10   0.035    -.9193511   -.0325701
+           2  |  -.5047361    .217597    -2.32   0.020    -.9312184   -.0782538
+           3  |  -.3895288   .1914353    -2.03   0.042    -.7647351   -.0143226
+           4  |  -.4123596   .2772868    -1.49   0.137    -.9558318    .1311126
+              |
+smokeintens~y |  -.0772704   .0152499    -5.07   0.000    -.1071596   -.0473812
+              |
+           c. |
+smokeintens~y#|
+           c. |
+smokeintens~y |   .0010451   .0002866     3.65   0.000     .0004835    .0016068
+              |
+     smokeyrs |  -.0735966   .0277775    -2.65   0.008    -.1280395   -.0191538
+              |
+   c.smokeyrs#|
+   c.smokeyrs |   .0008441   .0004632     1.82   0.068    -.0000637    .0017519
+              |
+     exercise |
+           0  |   -.395704   .1872401    -2.11   0.035    -.7626878   -.0287201
+           1  |  -.0408635   .1382674    -0.30   0.768    -.3118627    .2301357
+              |
+       active |
+           0  |   -.176784   .2149721    -0.82   0.411    -.5981215    .2445535
+           1  |  -.1448395   .2111472    -0.69   0.493    -.5586806    .2690015
+              |
+         wt71 |  -.0152357   .0263161    -0.58   0.563    -.0668144     .036343
+              |
+c.wt71#c.wt71 |   .0001352   .0001632     0.83   0.407    -.0001846     .000455
+              |
+        _cons |   -1.19407   1.398493    -0.85   0.393    -3.935066    1.546925
+-------------------------------------------------------------------------------
 
 
 
 Iteration 0:   log likelihood = -893.02712  
 Iteration 1:   log likelihood = -893.02712  
 
-Logistic regression                             Number of obs     =      1,566
-                                                LR chi2(0)        =      -0.00
-                                                Prob > chi2       =          .
-Log likelihood = -893.02712                     Pseudo R2         =    -0.0000
+Logistic regression                                    Number of obs =   1,566
+                                                       LR chi2(0)    =   -0.00
+                                                       Prob > chi2   =       .
+Log likelihood = -893.02712                            Pseudo R2     = -0.0000
 
 ------------------------------------------------------------------------------
-        qsmk |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+        qsmk | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
 -------------+----------------------------------------------------------------
        _cons |  -1.059822   .0578034   -18.33   0.000    -1.173114    -.946529
 ------------------------------------------------------------------------------
@@ -508,7 +512,7 @@ Log likelihood = -893.02712                     Pseudo R2         =    -0.0000
 
 (128,481 real changes made)
 
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
+    Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
           sw |    171,076    1.000509    .2851505   .3312489   4.297662
 
@@ -518,32 +522,31 @@ Iteration 1:   log pseudolikelihood = -2127.0974
 Iteration 2:   log pseudolikelihood = -2126.8556  
 Iteration 3:   log pseudolikelihood = -2126.8554  
 
-Logistic regression                             Number of obs     =    171,076
-                                                Wald chi2(5)      =      22.74
-                                                Prob > chi2       =     0.0004
-Log pseudolikelihood = -2126.8554               Pseudo R2         =     0.0045
+Logistic regression                                    Number of obs = 171,076
+                                                       Wald chi2(5)  =   22.74
+                                                       Prob > chi2   =  0.0004
+Log pseudolikelihood = -2126.8554                      Pseudo R2     =  0.0045
 
-                               (Std. Err. adjusted for 1,566 clusters in seqn)
-------------------------------------------------------------------------------
-             |               Robust
-       event |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
--------------+----------------------------------------------------------------
-        qsmk |  -.1301273   .4186673    -0.31   0.756    -.9507002    .6904456
-             |
- qsmk#c.time |
-Smoking c..  |     .01916   .0151318     1.27   0.205    -.0104978    .0488178
-             |
- qsmk#c.time#|
-      c.time |
-Smoking c..  |  -.0002152   .0001213    -1.77   0.076    -.0004528    .0000225
-             |
-        time |   .0208179   .0077769     2.68   0.007     .0055754    .0360604
-             |
-      c.time#|
-      c.time |  -.0001278   .0000643    -1.99   0.047    -.0002537   -1.84e-06
-             |
-       _cons |  -7.038847   .2142855   -32.85   0.000    -7.458839   -6.618855
-------------------------------------------------------------------------------
+                                (Std. err. adjusted for 1,566 clusters in seqn)
+-------------------------------------------------------------------------------
+              |               Robust
+        event | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
+--------------+----------------------------------------------------------------
+         qsmk |  -.1301273   .4186673    -0.31   0.756    -.9507002    .6904456
+              |
+  qsmk#c.time |
+Smoking ce..  |     .01916   .0151318     1.27   0.205    -.0104978    .0488178
+              |
+  qsmk#c.time#|
+       c.time |
+Smoking ce..  |  -.0002152   .0001213    -1.77   0.076    -.0004528    .0000225
+              |
+         time |   .0208179   .0077769     2.68   0.007     .0055754    .0360604
+              |
+c.time#c.time |  -.0001278   .0000643    -1.99   0.047    -.0002537   -1.84e-06
+              |
+        _cons |  -7.038847   .2142855   -32.85   0.000    -7.458839   -6.618855
+-------------------------------------------------------------------------------
 
 (169,510 observations deleted)
 
@@ -565,17 +568,17 @@ Smoking c..  |  -.0002152   .0001213    -1.77   0.076    -.0004528    .0000225
 (372708 real changes made)
 
 
--------------------------------------------------------------------------------
--> interv = 0
+--------------------------------------------------------------------------------
+-> interv = Original
 
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
+    Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
        psurv |      1,566    .8161003           0   .8161003   .8161003
 
--------------------------------------------------------------------------------
--> interv = 1
+--------------------------------------------------------------------------------
+-> interv = Duplicat
 
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
+    Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
        psurv |      1,566    .8116784           0   .8116784   .8116784
 
@@ -600,11 +603,14 @@ r3           3  -.00442189
 
 (375,840 real changes made)
 
-              storage   display    value
-variable name   type    format     label      variable label
--------------------------------------------------------------------------------
-psurv0          float   %9.0g                 psurv, interv == 0
-psurv1          float   %9.0g                 psurv, interv == 1
+
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+--------------------------------------------------------------------------------
+psurv0          float   %9.0g                 psurv, interv == Original
+                                                observation
+psurv1          float   %9.0g                 psurv, interv == Duplicated
+                                                observation
 
 
 
@@ -623,27 +629,27 @@ psurv1          float   %9.0g                 psurv, interv == 1
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 15:05:05
+r; t=0.00 19:57:15
 
-      command:  bootipw_surv
-       PrY_a0:  r(boot_0)
-       PrY_a1:  r(boot_1)
-   difference:  r(boot_diff)
+      Command: bootipw_surv
+       PrY_a0: r(boot_0)
+       PrY_a1: r(boot_1)
+   difference: r(boot_diff)
 
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=30.58 15:05:35
+r; t=29.56 19:57:45
 
 
 
 
-Bootstrap results                               Number of obs     =      1,629
-                                                Replications      =         10
+Bootstrap results                                        Number of obs = 1,629
+                                                         Replications  =    10
 
 ------------------------------------------------------------------------------
              |   Observed   Bootstrap                         Normal-based
-             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+             | coefficient  std. err.      z    P>|z|     [95% conf. interval]
 -------------+----------------------------------------------------------------
       PrY_a0 |   .8161003   .0093124    87.64   0.000     .7978484    .8343522
       PrY_a1 |   .8116784   .0237581    34.16   0.000     .7651133    .8582435
@@ -801,17 +807,17 @@ bstat, stat(pe) n(1629)
 (372708 real changes made)
 
 
--------------------------------------------------------------------------------
--> interv = 0
+--------------------------------------------------------------------------------
+-> interv = Original
 
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
+    Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
        psurv |      1,566    .8160697    .2014345    .014127   .9903372
 
--------------------------------------------------------------------------------
--> interv = 1
+--------------------------------------------------------------------------------
+-> interv = Duplicat
 
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
+    Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
        psurv |      1,566     .811763    .2044758   .0123403   .9900259
 
@@ -820,17 +826,17 @@ bstat, stat(pe) n(1629)
 (372,708 missing values generated)
 
 
--------------------------------------------------------------------------------
--> interv = 0
+--------------------------------------------------------------------------------
+-> interv = Original
 
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
+    Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
        meanS |      1,566    .8160697           0   .8160697   .8160697
 
--------------------------------------------------------------------------------
--> interv = 1
+--------------------------------------------------------------------------------
+-> interv = Duplicat
 
-    Variable |        Obs        Mean    Std. Dev.       Min        Max
+    Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
        meanS |      1,566    .8117629           0   .8117629   .8117629
 
@@ -851,14 +857,18 @@ bstat, stat(pe) n(1629)
 
 (375,840 real changes made)
 
-              storage   display    value
-variable name   type    format     label      variable label
--------------------------------------------------------------------------------
-meanS_t0        float   %9.0g                 meanS_t, interv == 0
-meanS_t1        float   %9.0g                 meanS_t, interv == 1
+
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+--------------------------------------------------------------------------------
+meanS_t0        float   %9.0g                 meanS_t, interv == Original
+                                                observation
+meanS_t1        float   %9.0g                 meanS_t, interv == Duplicated
+                                                observation
 
 
-(file ./figs/stata-fig-17-4.png written in PNG format)
+file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as
+    PNG format
 
 (3,132 observations deleted)
 
@@ -868,27 +878,27 @@ meanS_t1        float   %9.0g                 meanS_t, interv == 1
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 15:05:53
+r; t=0.00 19:58:01
 
-      command:  bootstdz_surv
-       PrY_a0:  r(boot_0)
-       PrY_a1:  r(boot_1)
-   difference:  r(boot_diff)
+      Command: bootstdz_surv
+       PrY_a0: r(boot_0)
+       PrY_a1: r(boot_1)
+   difference: r(boot_diff)
 
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=32.77 15:06:26
+r; t=31.68 19:58:33
 
 
 
 
-Bootstrap results                               Number of obs     =      1,629
-                                                Replications      =         10
+Bootstrap results                                        Number of obs = 1,629
+                                                         Replications  =    10
 
 ------------------------------------------------------------------------------
              |   Observed   Bootstrap                         Normal-based
-             |      Coef.   Std. Err.      z    P>|z|     [95% Conf. Interval]
+             | coefficient  std. err.      z    P>|z|     [95% conf. interval]
 -------------+----------------------------------------------------------------
       PrY_a0 |   .8160697   .0087193    93.59   0.000     .7989802    .8331593
       PrY_a1 |   .8117629   .0292177    27.78   0.000     .7544973    .8690286
