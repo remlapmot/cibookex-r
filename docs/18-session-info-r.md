@@ -18,7 +18,7 @@ sessioninfo::session_info()
 ##  collate  en_GB.UTF-8
 ##  ctype    en_GB.UTF-8
 ##  tz       Europe/London
-##  date     2022-02-18
+##  date     2022-02-20
 ##  pandoc   2.17.1.1 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/ (via rmarkdown)
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────

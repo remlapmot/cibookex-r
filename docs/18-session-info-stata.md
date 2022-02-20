@@ -13,7 +13,6 @@ about
 ```
 
 ```
-Stata/MP 17.0 for Mac (Intel 64-bit)
 Revision 15 Feb 2022
 Copyright 1985-2021 StataCorp LLC
 
@@ -42,7 +41,7 @@ sessioninfo::session_info()
  collate  en_GB.UTF-8
  ctype    en_GB.UTF-8
  tz       Europe/London
- date     2022-02-18
+ date     2022-02-20
  pandoc   2.17.1.1 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────

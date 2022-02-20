@@ -128,7 +128,7 @@
 
 \title{Causal Inference: What If. R and Stata code for Exercises}
 \author{Book by M. A. Hernán and J. M. Robins \and R code by Joy Shi and Sean McGrath \and Stata code by Eleanor Murray and Roger Logan \and R Markdown code by Tom Palmer}
-\date{18 February 2022}
+\date{20 February 2022}
 
 \begin{document}
 \maketitle
@@ -2406,16 +2406,16 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Shaded}
 
 \begin{verbatim}
-##                         V1             mean                 se               ll
-## 1                 Observed 2.56188497106103 0.0999963351230781  2.3658957556338
-## 2             No Treatment 1.65212306626746  0.128218162664691 1.40082008528077
-## 3                Treatment 5.11474489549347  0.394903974383488  4.3407473283501
-## 4 Treatment - No Treatment 3.46262182922601  0.466769156521963 2.54777109334882
+##                         V1             mean                se               ll
+## 1                 Observed 2.56188497106103 0.135480376599472 2.29634831231414
+## 2             No Treatment 1.65212306626746 0.212139244033974 1.23633778825332
+## 3                Treatment 5.11474489549347 0.255203548388601 4.61455513192498
+## 4 Treatment - No Treatment 3.46262182922601 0.368125982443839 2.74110816186266
 ##                 ul
-## 1 2.75787418648826
-## 2 1.90342604725415
-## 3 5.88874246263683
-## 4 4.37747256510319
+## 1 2.82742162980792
+## 2  2.0679083442816
+## 3 5.61493465906195
+## 4 4.18413549658935
 \end{verbatim}
 
 \hypertarget{g-estimation-of-structural-nested-models}{%
@@ -3854,15 +3854,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ##                         V1             mean                se               ll
-## 1                 Observed 2.63384609228479 0.351232079445713 1.94544386635609
-## 2             No Treatment 1.71983636149843 0.325734047626762 1.08140935961152
-## 3                Treatment 5.35072300362993 0.508992532828603 4.35311597088605
-## 4 Treatment - No Treatment  3.6308866421315 0.402230597230387 2.84252915807991
+## 1                 Observed 2.63384609228479 0.312266616839415 2.02181476970537
+## 2             No Treatment 1.71983636149843 0.230246012511331 1.26856246939226
+## 3                Treatment 5.35072300362993 0.806949126721575  3.7691317778996
+## 4 Treatment - No Treatment  3.6308866421315 0.683375663777217 2.29149495321701
 ##                 ul
-## 1  3.3222483182135
-## 2 2.35826336338533
-## 3 6.34833003637381
-## 4  4.4192441261831
+## 1 3.24587741486422
+## 2 2.17111025360459
+## 3 6.93231422936027
+## 4   4.970278331046
 \end{verbatim}
 
 \begin{Shaded}
@@ -3993,7 +3993,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ## 95% CI for the causal mean difference
-## 2.657237 , 4.538792
+## 2.673886 , 4.438444
 \end{verbatim}
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.
@@ -5016,7 +5016,7 @@ For reproducibility.
 ##  collate  en_GB.UTF-8
 ##  ctype    en_GB.UTF-8
 ##  tz       Europe/London
-##  date     2022-02-18
+##  date     2022-02-20
 ##  pandoc   2.17.1.1 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/ (via rmarkdown)
 ## 
 ## - Packages -------------------------------------------------------------------
@@ -10191,7 +10191,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 19:53:44
+r; t=0.00 18:03:30
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -10201,7 +10201,7 @@ r; t=0.00 19:53:44
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=28.69 19:54:13
+r; t=28.44 18:03:58
 
 
 
@@ -10449,7 +10449,7 @@ file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 19:54:28
+r; t=0.00 18:04:13
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -10459,7 +10459,7 @@ r; t=0.00 19:54:28
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=32.16 19:55:00
+r; t=31.74 18:04:45
 
 
 
@@ -10498,7 +10498,6 @@ For reproducibility.
 \end{Shaded}
 
 \begin{verbatim}
-Stata/MP 17.0 for Mac (Intel 64-bit)
 Revision 15 Feb 2022
 Copyright 1985-2021 StataCorp LLC
 
@@ -10528,7 +10527,7 @@ Serial number: 501709302483
  collate  en_GB.UTF-8
  ctype    en_GB.UTF-8
  tz       Europe/London
- date     2022-02-18
+ date     2022-02-20
  pandoc   2.17.1.1 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/ (via rmarkdown)
 
 - Packages -------------------------------------------------------------------

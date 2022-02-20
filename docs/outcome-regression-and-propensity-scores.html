@@ -27,7 +27,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2022-02-18" />
+<meta name="date" content="2022-02-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1015,15 +1015,15 @@ div.csl-indent {
 <span id="cb263-47"><a href="outcome-regression-and-propensity-scores.html#cb263-47" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Treatment - No Treatment&quot;</span>), mean, se, ll, ul))</span>
 <span id="cb263-48"><a href="outcome-regression-and-propensity-scores.html#cb263-48" aria-hidden="true" tabindex="-1"></a>bootstrap</span></code></pre></div>
 <pre><code>##                         V1             mean                se               ll
-## 1                 Observed 2.63384609228479 0.192433256513697 2.25668384009019
-## 2             No Treatment 1.71983636149843 0.316564956312732 1.09938044835798
-## 3                Treatment 5.35072300362993 0.291931182495581  4.7785483999744
-## 4 Treatment - No Treatment  3.6308866421315 0.550600258097353 2.55172996638223
+## 1                 Observed 2.63384609228479 0.328823649285877 1.98936358241945
+## 2             No Treatment 1.71983636149843 0.215720604596885 1.29703174576533
+## 3                Treatment 5.35072300362993  0.63687114625531 4.10247849417678
+## 4 Treatment - No Treatment  3.6308866421315 0.550184971913654 2.55254391234556
 ##                 ul
-## 1  3.0110083444794
-## 2 2.34029227463888
-## 3 5.92289760728546
-## 4 4.71004331788077</code></pre>
+## 1 3.27832860215014
+## 2 2.14264097723153
+## 3 6.59896751308308
+## 4 4.70922937191745</code></pre>
 <div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="outcome-regression-and-propensity-scores.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="co"># regression on the propensity score (linear term)</span></span>
 <span id="cb265-2"><a href="outcome-regression-and-propensity-scores.html#cb265-2" aria-hidden="true" tabindex="-1"></a>model6 <span class="ot">&lt;-</span> <span class="fu">glm</span>(wt82_71 <span class="sc">~</span> qsmk <span class="sc">+</span> ps, <span class="at">data =</span> nhefs) <span class="co"># p.qsmk</span></span>
 <span id="cb265-3"><a href="outcome-regression-and-propensity-scores.html#cb265-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model6)</span></code></pre></div>
@@ -1114,7 +1114,7 @@ div.csl-indent {
 <span id="cb273-40"><a href="outcome-regression-and-propensity-scores.html#cb273-40" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb273-41"><a href="outcome-regression-and-propensity-scores.html#cb273-41" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## 95% CI for the causal mean difference
-## 2.479088 , 4.529428</code></pre>
+## 2.403415 , 4.684448</code></pre>
 <p>A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.</p>
 
 </div>
