@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>12. IP Weighting and Marginal Structural Models | Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="12. IP Weighting and Marginal Structural Models | Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
   
@@ -27,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2022-02-20" />
+<meta name="date" content="2022-05-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -36,7 +35,6 @@
   
 <link rel="prev" href="why-model.html"/>
 <link rel="next" href="standardization-and-the-parametric-g-formula.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -54,8 +52,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -303,10 +302,10 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ip-weighting-and-marginal-structural-models" class="section level1 unnumbered">
-<h1>12. IP Weighting and Marginal Structural Models</h1>
-<div id="program-12.1" class="section level2">
-<h2>Program 12.1</h2>
+<div id="ip-weighting-and-marginal-structural-models" class="section level1 unnumbered hasAnchor">
+<h1>12. IP Weighting and Marginal Structural Models<a href="ip-weighting-and-marginal-structural-models.html#ip-weighting-and-marginal-structural-models" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="program-12.1" class="section level2 hasAnchor">
+<h2>Program 12.1<a href="ip-weighting-and-marginal-structural-models.html#program-12.1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Descriptive statistics from NHEFS data (Table 12.1)</li>
 </ul>
@@ -413,8 +412,8 @@ div.csl-indent {
 ##   0 0.4574377 0.4531384 0.0894239
 ##   1 0.4218362 0.4665012 0.1116625</code></pre>
 </div>
-<div id="program-12.2" class="section level2">
-<h2>Program 12.2</h2>
+<div id="program-12.2" class="section level2 hasAnchor">
+<h2>Program 12.2<a href="ip-weighting-and-marginal-structural-models.html#program-12.2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Estimating IP weights</li>
 <li>Data from NHEFS</li>
@@ -578,8 +577,8 @@ div.csl-indent {
 ##   72  2  2
 ##   74  0  1</code></pre>
 </div>
-<div id="program-12.3" class="section level2">
-<h2>Program 12.3</h2>
+<div id="program-12.3" class="section level2 hasAnchor">
+<h2>Program 12.3<a href="ip-weighting-and-marginal-structural-models.html#program-12.3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Estimating stabilized IP weights</li>
 <li>Data from NHEFS</li>
@@ -713,8 +712,8 @@ div.csl-indent {
 ##             0 567 197
 ##             1 595 205</code></pre>
 </div>
-<div id="program-12.4" class="section level2">
-<h2>Program 12.4</h2>
+<div id="program-12.4" class="section level2 hasAnchor">
+<h2>Program 12.4<a href="ip-weighting-and-marginal-structural-models.html#program-12.4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Estimating the parameters of a marginal structural mean model with a continuous treatment Data from NHEFS</li>
 </ul>
@@ -787,8 +786,8 @@ div.csl-indent {
 ## smkintensity82_71                        -0.10899 -0.17080 -0.04718
 ## I(smkintensity82_71 * smkintensity82_71)  0.00269 -0.00204  0.00743</code></pre>
 </div>
-<div id="program-12.5" class="section level2">
-<h2>Program 12.5</h2>
+<div id="program-12.5" class="section level2 hasAnchor">
+<h2>Program 12.5<a href="ip-weighting-and-marginal-structural-models.html#program-12.5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Estimating the parameters of a marginal structural logistic model</li>
 <li>Data from NHEFS</li>
@@ -837,8 +836,8 @@ div.csl-indent {
 ## (Intercept) -1.4905 -1.645 -1.336
 ## qsmk         0.0301 -0.278  0.338</code></pre>
 </div>
-<div id="program-12.6" class="section level2">
-<h2>Program 12.6</h2>
+<div id="program-12.6" class="section level2 hasAnchor">
+<h2>Program 12.6<a href="ip-weighting-and-marginal-structural-models.html#program-12.6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Assessing effect modification by sex using a marginal structural mean model</li>
 <li>Data from NHEFS</li>
@@ -981,8 +980,8 @@ div.csl-indent {
 ## as.factor(sex)1                  -0.00872 -0.888 0.871
 ## as.factor(qsmk)1:as.factor(sex)1 -0.15948 -2.210 1.891</code></pre>
 </div>
-<div id="program-12.7" class="section level2">
-<h2>Program 12.7</h2>
+<div id="program-12.7" class="section level2 hasAnchor">
+<h2>Program 12.7<a href="ip-weighting-and-marginal-structural-models.html#program-12.7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Estimating IP weights to adjust for selection bias due to censoring</li>
 <li>Data from NHEFS</li>

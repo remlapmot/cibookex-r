@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Session information: R | Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Session information: R | Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
   
@@ -27,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2022-02-20" />
+<meta name="date" content="2022-05-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -36,7 +35,6 @@
   
 <link rel="prev" href="causal-survival-analysis.html"/>
 <link rel="next" href="why-model-stata.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -54,8 +52,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -303,45 +302,51 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="session-information-r" class="section level1 unnumbered">
-<h1>Session information: R</h1>
+<div id="session-information-r" class="section level1 unnumbered hasAnchor">
+<h1>Session information: R<a href="session-information-r.html#session-information-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>For reproducibility.</p>
 <div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="session-information-r.html#cb331-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;sessioninfo&quot;)</span></span>
 <span id="cb331-2"><a href="session-information-r.html#cb331-2" aria-hidden="true" tabindex="-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
 <pre><code>## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value
-##  version  R version 4.1.2 (2021-11-01)
-##  os       macOS Big Sur 10.16
-##  system   x86_64, darwin17.0
+##  version  R version 4.2.0 (2022-04-22)
+##  os       macOS Monterey 12.3.1
+##  system   aarch64, darwin20
 ##  ui       X11
 ##  language (EN)
-##  collate  en_GB.UTF-8
-##  ctype    en_GB.UTF-8
+##  collate  en_US.UTF-8
+##  ctype    en_US.UTF-8
 ##  tz       Europe/London
-##  date     2022-02-20
-##  pandoc   2.17.1.1 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/ (via rmarkdown)
+##  date     2022-05-13
+##  pandoc   2.18 @ /opt/homebrew/bin/ (via rmarkdown)
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version date (UTC) lib source
-##  bookdown      0.24    2021-09-02 [1] CRAN (R 4.1.0)
-##  cli           3.2.0   2022-02-14 [1] CRAN (R 4.1.2)
-##  digest        0.6.29  2021-12-01 [1] CRAN (R 4.1.0)
-##  evaluate      0.15    2022-02-18 [1] CRAN (R 4.1.2)
-##  fastmap       1.1.0   2021-01-25 [1] CRAN (R 4.1.0)
-##  htmltools     0.5.2   2021-08-25 [1] CRAN (R 4.1.0)
-##  jquerylib     0.1.4   2021-04-26 [1] CRAN (R 4.1.0)
-##  knitr         1.37    2021-12-16 [1] CRAN (R 4.1.0)
-##  magrittr      2.0.2   2022-01-26 [1] CRAN (R 4.1.2)
-##  rlang         1.0.1   2022-02-03 [1] CRAN (R 4.1.2)
-##  rmarkdown     2.11    2021-09-14 [1] CRAN (R 4.1.0)
-##  rstudioapi    0.13    2020-11-12 [1] CRAN (R 4.1.0)
-##  sessioninfo   1.2.2   2021-12-06 [1] CRAN (R 4.1.0)
-##  stringi       1.7.6   2021-11-29 [1] CRAN (R 4.1.0)
-##  stringr       1.4.0   2019-02-10 [1] CRAN (R 4.1.0)
-##  xfun          0.29    2021-12-14 [1] CRAN (R 4.1.0)
-##  yaml          2.3.4   2022-02-17 [1] CRAN (R 4.1.2)
+##  bookdown      0.26    2022-04-15 [3] CRAN (R 4.2.0)
+##  bslib         0.3.1   2021-10-06 [3] CRAN (R 4.2.0)
+##  cli           3.3.0   2022-04-25 [3] CRAN (R 4.2.0)
+##  digest        0.6.29  2021-12-01 [3] CRAN (R 4.2.0)
+##  evaluate      0.15    2022-02-18 [3] CRAN (R 4.2.0)
+##  fastmap       1.1.0   2021-01-25 [3] CRAN (R 4.2.0)
+##  htmltools     0.5.2   2021-08-25 [3] CRAN (R 4.2.0)
+##  jquerylib     0.1.4   2021-04-26 [3] CRAN (R 4.2.0)
+##  jsonlite      1.8.0   2022-02-22 [3] CRAN (R 4.2.0)
+##  knitr         1.39    2022-04-26 [3] CRAN (R 4.2.0)
+##  magrittr      2.0.3   2022-03-30 [3] CRAN (R 4.2.0)
+##  R6            2.5.1   2021-08-19 [3] CRAN (R 4.2.0)
+##  rlang         1.0.2   2022-03-04 [3] CRAN (R 4.2.0)
+##  rmarkdown     2.14    2022-04-25 [3] CRAN (R 4.2.0)
+##  rstudioapi    0.13    2020-11-12 [3] CRAN (R 4.2.0)
+##  sass          0.4.1   2022-03-23 [3] CRAN (R 4.2.0)
+##  sessioninfo   1.2.2   2021-12-06 [3] CRAN (R 4.2.0)
+##  stringi       1.7.6   2021-11-29 [3] CRAN (R 4.2.0)
+##  stringr       1.4.0   2019-02-10 [3] CRAN (R 4.2.0)
+##  xfun          0.31    2022-05-10 [3] CRAN (R 4.2.0)
+##  yaml          2.3.5   2022-02-21 [3] CRAN (R 4.2.0)
 ## 
-##  [1] /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+##  [1] /Users/tom/Library/R/arm64/4.2/library
+##  [2] /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/site-library
+##  [3] /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library
 ## 
 ## ──────────────────────────────────────────────────────────────────────────────</code></pre>
 

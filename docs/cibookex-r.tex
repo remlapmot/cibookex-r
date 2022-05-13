@@ -35,14 +35,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Causal Inference: What If. R and Stata code for Exercises},
-  pdfauthor={Book by M. A. Hernán and J. M. Robins; R code by Joy Shi and Sean McGrath; Stata code by Eleanor Murray and Roger Logan; R Markdown code by Tom Palmer},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
 \usepackage{color}
 \usepackage{fancyvrb}
@@ -125,10 +117,18 @@
 \fi
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Causal Inference: What If. R and Stata code for Exercises},
+  pdfauthor={Book by M. A. Hernán and J. M. Robins; R code by Joy Shi and Sean McGrath; Stata code by Eleanor Murray and Roger Logan; R Markdown code by Tom Palmer},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
 
 \title{Causal Inference: What If. R and Stata code for Exercises}
 \author{Book by M. A. Hernán and J. M. Robins \and R code by Joy Shi and Sean McGrath \and Stata code by Eleanor Murray and Roger Logan \and R Markdown code by Tom Palmer}
-\date{20 February 2022}
+\date{13 May 2022}
 
 \begin{document}
 \maketitle
@@ -2142,9 +2142,9 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(>|t|)
 ## (Intercept)  2.500e-01  2.552e-01   0.980    0.342
-## A           -4.164e-16  3.608e-01   0.000    1.000
+## A           -1.079e-16  3.608e-01   0.000    1.000
 ## L            4.167e-01  3.898e-01   1.069    0.301
-## A:L          3.237e-16  4.959e-01   0.000    1.000
+## A:L         -6.935e-17  4.959e-01   0.000    1.000
 ## 
 ## (Dispersion parameter for gaussian family taken to be 0.2604167)
 ## 
@@ -2406,16 +2406,16 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Shaded}
 
 \begin{verbatim}
-##                         V1             mean                se               ll
-## 1                 Observed 2.56188497106103 0.135480376599472 2.29634831231414
-## 2             No Treatment 1.65212306626746 0.212139244033974 1.23633778825332
-## 3                Treatment 5.11474489549347 0.255203548388601 4.61455513192498
-## 4 Treatment - No Treatment 3.46262182922601 0.368125982443839 2.74110816186266
+##                         V1             mean                se                ll
+## 1                 Observed 2.56188497106099  0.22216176414144  2.12645591460188
+## 2             No Treatment 1.65212306626741 0.354627144459807 0.957066635185906
+## 3                Treatment 5.11474489549342 0.501651558748441   4.1315259075581
+## 4 Treatment - No Treatment 3.46262182922601 0.723551631064855  2.04448669138368
 ##                 ul
-## 1 2.82742162980792
-## 2  2.0679083442816
-## 3 5.61493465906195
-## 4 4.18413549658935
+## 1 2.99731402752009
+## 2 2.34717949734892
+## 3 6.09796388342875
+## 4 4.88075696706834
 \end{verbatim}
 
 \hypertarget{g-estimation-of-structural-nested-models}{%
@@ -3854,15 +3854,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ##                         V1             mean                se               ll
-## 1                 Observed 2.63384609228479 0.312266616839415 2.02181476970537
-## 2             No Treatment 1.71983636149843 0.230246012511331 1.26856246939226
-## 3                Treatment 5.35072300362993 0.806949126721575  3.7691317778996
-## 4 Treatment - No Treatment  3.6308866421315 0.683375663777217 2.29149495321701
+## 1                 Observed 2.63384609228479 0.160378031397984 2.31951092683331
+## 2             No Treatment 1.71983636149843 0.169449967517811 1.38772052798203
+## 3                Treatment 5.35072300362993 0.443700311551373 4.48108637306003
+## 4 Treatment - No Treatment  3.6308866421315 0.375963228562732 2.89401225463715
 ##                 ul
-## 1 3.24587741486422
-## 2 2.17111025360459
-## 3 6.93231422936027
-## 4   4.970278331046
+## 1 2.94818125773628
+## 2 2.05195219501482
+## 3 6.22035963419982
+## 4 4.36776102962586
 \end{verbatim}
 
 \begin{Shaded}
@@ -3993,7 +3993,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ## 95% CI for the causal mean difference
-## 2.673886 , 4.438444
+## 2.688548 , 4.421277
 \end{verbatim}
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.
@@ -5008,37 +5008,39 @@ For reproducibility.
 \begin{verbatim}
 ## - Session info ---------------------------------------------------------------
 ##  setting  value
-##  version  R version 4.1.2 (2021-11-01)
-##  os       macOS Big Sur 10.16
-##  system   x86_64, darwin17.0
+##  version  R version 4.2.0 (2022-04-22)
+##  os       macOS Monterey 12.3.1
+##  system   aarch64, darwin20
 ##  ui       X11
 ##  language (EN)
-##  collate  en_GB.UTF-8
-##  ctype    en_GB.UTF-8
+##  collate  en_US.UTF-8
+##  ctype    en_US.UTF-8
 ##  tz       Europe/London
-##  date     2022-02-20
-##  pandoc   2.17.1.1 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/ (via rmarkdown)
+##  date     2022-05-13
+##  pandoc   2.18 @ /opt/homebrew/bin/ (via rmarkdown)
 ## 
 ## - Packages -------------------------------------------------------------------
 ##  package     * version date (UTC) lib source
-##  bookdown      0.24    2021-09-02 [1] CRAN (R 4.1.0)
-##  cli           3.2.0   2022-02-14 [1] CRAN (R 4.1.2)
-##  digest        0.6.29  2021-12-01 [1] CRAN (R 4.1.0)
-##  evaluate      0.15    2022-02-18 [1] CRAN (R 4.1.2)
-##  fastmap       1.1.0   2021-01-25 [1] CRAN (R 4.1.0)
-##  htmltools     0.5.2   2021-08-25 [1] CRAN (R 4.1.0)
-##  knitr         1.37    2021-12-16 [1] CRAN (R 4.1.0)
-##  magrittr      2.0.2   2022-01-26 [1] CRAN (R 4.1.2)
-##  rlang         1.0.1   2022-02-03 [1] CRAN (R 4.1.2)
-##  rmarkdown     2.11    2021-09-14 [1] CRAN (R 4.1.0)
-##  rstudioapi    0.13    2020-11-12 [1] CRAN (R 4.1.0)
-##  sessioninfo   1.2.2   2021-12-06 [1] CRAN (R 4.1.0)
-##  stringi       1.7.6   2021-11-29 [1] CRAN (R 4.1.0)
-##  stringr       1.4.0   2019-02-10 [1] CRAN (R 4.1.0)
-##  xfun          0.29    2021-12-14 [1] CRAN (R 4.1.0)
-##  yaml          2.3.4   2022-02-17 [1] CRAN (R 4.1.2)
+##  bookdown      0.26    2022-04-15 [3] CRAN (R 4.2.0)
+##  cli           3.3.0   2022-04-25 [3] CRAN (R 4.2.0)
+##  digest        0.6.29  2021-12-01 [3] CRAN (R 4.2.0)
+##  evaluate      0.15    2022-02-18 [3] CRAN (R 4.2.0)
+##  fastmap       1.1.0   2021-01-25 [3] CRAN (R 4.2.0)
+##  htmltools     0.5.2   2021-08-25 [3] CRAN (R 4.2.0)
+##  knitr         1.39    2022-04-26 [3] CRAN (R 4.2.0)
+##  magrittr      2.0.3   2022-03-30 [3] CRAN (R 4.2.0)
+##  rlang         1.0.2   2022-03-04 [3] CRAN (R 4.2.0)
+##  rmarkdown     2.14    2022-04-25 [3] CRAN (R 4.2.0)
+##  rstudioapi    0.13    2020-11-12 [3] CRAN (R 4.2.0)
+##  sessioninfo   1.2.2   2021-12-06 [3] CRAN (R 4.2.0)
+##  stringi       1.7.6   2021-11-29 [3] CRAN (R 4.2.0)
+##  stringr       1.4.0   2019-02-10 [3] CRAN (R 4.2.0)
+##  xfun          0.31    2022-05-10 [3] CRAN (R 4.2.0)
+##  yaml          2.3.5   2022-02-21 [3] CRAN (R 4.2.0)
 ## 
-##  [1] /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+##  [1] /Users/tom/Library/R/arm64/4.2/library
+##  [2] /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/site-library
+##  [3] /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library
 ## 
 ## ------------------------------------------------------------------------------
 \end{verbatim}
@@ -10191,7 +10193,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 18:03:30
+r; t=0.00 10:30:29
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -10201,7 +10203,7 @@ r; t=0.00 18:03:30
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=28.44 18:03:58
+r; t=22.28 10:30:51
 
 
 
@@ -10449,7 +10451,7 @@ file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 18:04:13
+r; t=0.00 10:31:02
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -10459,7 +10461,7 @@ r; t=0.00 18:04:13
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=31.74 18:04:45
+r; t=22.60 10:31:25
 
 
 
@@ -10498,13 +10500,14 @@ For reproducibility.
 \end{Shaded}
 
 \begin{verbatim}
-Revision 15 Feb 2022
+Stata/MP 17.0 for Mac (Apple Silicon)
+Revision 10 May 2022
 Copyright 1985-2021 StataCorp LLC
 
 Total physical memory: 8.01 GB
 
-Stata license: Unlimited-user 2-core network, expiring 21 Jan 2023
-Serial number: 501709302483
+Stata license: Unlimited-user 2-core network, expiring 23 Jan 2023
+Serial number: 501709378202
   Licensed to: Tom Palmer
                University of Bristol
 \end{verbatim}
@@ -10519,38 +10522,40 @@ Serial number: 501709302483
 \begin{verbatim}
 - Session info ---------------------------------------------------------------
  setting  value
- version  R version 4.1.2 (2021-11-01)
- os       macOS Big Sur 10.16
- system   x86_64, darwin17.0
+ version  R version 4.2.0 (2022-04-22)
+ os       macOS Monterey 12.3.1
+ system   aarch64, darwin20
  ui       X11
  language (EN)
- collate  en_GB.UTF-8
- ctype    en_GB.UTF-8
+ collate  en_US.UTF-8
+ ctype    en_US.UTF-8
  tz       Europe/London
- date     2022-02-20
- pandoc   2.17.1.1 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/ (via rmarkdown)
+ date     2022-05-13
+ pandoc   2.18 @ /opt/homebrew/bin/ (via rmarkdown)
 
 - Packages -------------------------------------------------------------------
  package       * version date (UTC) lib source
- bookdown        0.24    2021-09-02 [1] CRAN (R 4.1.0)
- cli             3.2.0   2022-02-14 [1] CRAN (R 4.1.2)
- digest          0.6.29  2021-12-01 [1] CRAN (R 4.1.0)
- evaluate        0.15    2022-02-18 [1] CRAN (R 4.1.2)
- fastmap         1.1.0   2021-01-25 [1] CRAN (R 4.1.0)
- htmltools       0.5.2   2021-08-25 [1] CRAN (R 4.1.0)
- knitr           1.37    2021-12-16 [1] CRAN (R 4.1.0)
- magrittr        2.0.2   2022-01-26 [1] CRAN (R 4.1.2)
- rlang           1.0.1   2022-02-03 [1] CRAN (R 4.1.2)
- rmarkdown       2.11    2021-09-14 [1] CRAN (R 4.1.0)
- rstudioapi      0.13    2020-11-12 [1] CRAN (R 4.1.0)
- sessioninfo     1.2.2   2021-12-06 [1] CRAN (R 4.1.0)
- Statamarkdown * 0.7.0   2022-02-04 [1] Github (Hemken/Statamarkdown@a68a8b9)
- stringi         1.7.6   2021-11-29 [1] CRAN (R 4.1.0)
- stringr         1.4.0   2019-02-10 [1] CRAN (R 4.1.0)
- xfun            0.29    2021-12-14 [1] CRAN (R 4.1.0)
- yaml            2.3.4   2022-02-17 [1] CRAN (R 4.1.2)
+ bookdown        0.26    2022-04-15 [3] CRAN (R 4.2.0)
+ cli             3.3.0   2022-04-25 [3] CRAN (R 4.2.0)
+ digest          0.6.29  2021-12-01 [3] CRAN (R 4.2.0)
+ evaluate        0.15    2022-02-18 [3] CRAN (R 4.2.0)
+ fastmap         1.1.0   2021-01-25 [3] CRAN (R 4.2.0)
+ htmltools       0.5.2   2021-08-25 [3] CRAN (R 4.2.0)
+ knitr           1.39    2022-04-26 [3] CRAN (R 4.2.0)
+ magrittr        2.0.3   2022-03-30 [3] CRAN (R 4.2.0)
+ rlang           1.0.2   2022-03-04 [3] CRAN (R 4.2.0)
+ rmarkdown       2.14    2022-04-25 [3] CRAN (R 4.2.0)
+ rstudioapi      0.13    2020-11-12 [3] CRAN (R 4.2.0)
+ sessioninfo     1.2.2   2021-12-06 [3] CRAN (R 4.2.0)
+ Statamarkdown * 0.7.1   2022-05-13 [1] Github (Hemken/Statamarkdown@d9cbb1a)
+ stringi         1.7.6   2021-11-29 [3] CRAN (R 4.2.0)
+ stringr         1.4.0   2019-02-10 [3] CRAN (R 4.2.0)
+ xfun            0.31    2022-05-10 [3] CRAN (R 4.2.0)
+ yaml            2.3.5   2022-02-21 [3] CRAN (R 4.2.0)
 
- [1] /Library/Frameworks/R.framework/Versions/4.1/Resources/library
+ [1] /Users/tom/Library/R/arm64/4.2/library
+ [2] /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/site-library
+ [3] /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/library
 
 ------------------------------------------------------------------------------
 \end{verbatim}

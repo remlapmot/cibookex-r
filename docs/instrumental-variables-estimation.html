@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>16. Instrumental variables estimation | Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="16. Instrumental variables estimation | Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
   
@@ -27,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2022-02-20" />
+<meta name="date" content="2022-05-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -36,7 +35,6 @@
   
 <link rel="prev" href="outcome-regression-and-propensity-scores.html"/>
 <link rel="next" href="causal-survival-analysis.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -54,8 +52,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -303,10 +302,10 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="instrumental-variables-estimation" class="section level1 unnumbered">
-<h1>16. Instrumental variables estimation</h1>
-<div id="program-16.1" class="section level2">
-<h2>Program 16.1</h2>
+<div id="instrumental-variables-estimation" class="section level1 unnumbered hasAnchor">
+<h1>16. Instrumental variables estimation<a href="instrumental-variables-estimation.html#instrumental-variables-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="program-16.1" class="section level2 hasAnchor">
+<h2>Program 16.1<a href="instrumental-variables-estimation.html#program-16.1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Estimating the average causal using the standard IV estimator via the calculation of sample averages</li>
 <li>Data from NHEFS</li>
@@ -343,8 +342,8 @@ div.csl-indent {
 ## mean in group 0 mean in group 1 
 ##        2.535729        2.686018</code></pre>
 </div>
-<div id="program-16.2" class="section level2">
-<h2>Program 16.2</h2>
+<div id="program-16.2" class="section level2 hasAnchor">
+<h2>Program 16.2<a href="instrumental-variables-estimation.html#program-16.2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Estimating the average causal effect using the standard IV estimator via two-stage-least-squares regression</li>
 <li>Data from NHEFS</li>
@@ -375,8 +374,8 @@ div.csl-indent {
 ## (Intercept)  -7.898445 12.03477
 ## qsmk        -36.489487 41.28203</code></pre>
 </div>
-<div id="program-16.3" class="section level2">
-<h2>Program 16.3</h2>
+<div id="program-16.3" class="section level2 hasAnchor">
+<h2>Program 16.3<a href="instrumental-variables-estimation.html#program-16.3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Estimating the average causal using the standard IV estimator via additive marginal structural models</li>
 <li>Data from NHEFS</li>
@@ -418,8 +417,8 @@ div.csl-indent {
 ## (Intercept) 3.555e+00  3.23152 3.87917
 ## Hpsi        2.748e-07 -0.04456 0.04456</code></pre>
 </div>
-<div id="program-16.4" class="section level2">
-<h2>Program 16.4</h2>
+<div id="program-16.4" class="section level2 hasAnchor">
+<h2>Program 16.4<a href="instrumental-variables-estimation.html#program-16.4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Estimating the average causal using the standard IV estimator with altnerative proposed instruments</li>
 <li>Data from NHEFS</li>
@@ -493,8 +492,8 @@ div.csl-indent {
 ## 
 ## Residual standard error: 10.3637 on 1474 degrees of freedom</code></pre>
 </div>
-<div id="program-16.5" class="section level2">
-<h2>Program 16.5</h2>
+<div id="program-16.5" class="section level2 hasAnchor">
+<h2>Program 16.5<a href="instrumental-variables-estimation.html#program-16.5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Estimating the average causal using the standard IV estimator</li>
 <li>Conditional on baseline covariates</li>

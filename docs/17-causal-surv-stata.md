@@ -629,7 +629,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 18:07:05
+r; t=0.00 10:32:50
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -639,7 +639,7 @@ r; t=0.00 18:07:05
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=28.19 18:07:34
+r; t=21.03 10:33:11
 
 
 
@@ -878,7 +878,7 @@ file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 18:07:49
+r; t=0.00 10:33:22
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -888,7 +888,7 @@ r; t=0.00 18:07:49
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=31.38 18:08:20
+r; t=22.61 10:33:44
 
 
 

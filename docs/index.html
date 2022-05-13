@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
   
@@ -27,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2022-02-20" />
+<meta name="date" content="2022-05-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -36,7 +35,6 @@
   
 
 <link rel="next" href="why-model.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -54,8 +52,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -309,18 +308,18 @@ div.csl-indent {
 <p class="author"><em>R code by Joy Shi and Sean McGrath</em></p>
 <p class="author"><em>Stata code by Eleanor Murray and Roger Logan</em></p>
 <p class="author"><em>R Markdown code by Tom Palmer</em></p>
-<p class="date"><em>20 February 2022</em></p>
+<p class="date"><em>13 May 2022</em></p>
 </div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
+<div id="preface" class="section level1 unnumbered hasAnchor">
+<h1>Preface<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This book presents code examples from <span class="citation">Hernán and Robins (<a href="#ref-ci-book" role="doc-biblioref">2020</a>)</span>, which is available in draft form from the following webpage.</p>
 <p><a href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" class="uri">https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/</a></p>
 <p>The R code is based on the code by Joy Shi and Sean McGrath given <a href="https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/1268/20/Rcode_CIpart2.zip">here</a>.</p>
 <p>The Stata code is based on the code by Eleanor Murray and Roger Logan given <a href="https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/2019/11/stata_part2.zip">here</a>.</p>
 <p>This repo is rendered at <a href="https://remlapmot.github.io/cibookex-r/" class="uri">https://remlapmot.github.io/cibookex-r/</a>. Click the download button above for the pdf and eBook versions.</p>
 <p><img src="figs/download.png" width="65%" style="display: block; margin: auto;" /></p>
-<div id="downloading-the-code" class="section level2">
-<h2>Downloading the code</h2>
+<div id="downloading-the-code" class="section level2 hasAnchor">
+<h2>Downloading the code<a href="index.html#downloading-the-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The repo is available on GitHub <a href="https://github.com/remlapmot/cibookex-r">here</a>. There are a number of ways to download the code.</p>
 <p>Either,</p>
 <ul>
@@ -331,15 +330,15 @@ div.csl-indent {
 <img src="figs/fork.png" width="65%" style="display: block; margin: auto;" /></p></li>
 </ul>
 </div>
-<div id="installing-dependency-packages" class="section level2">
-<h2>Installing dependency packages</h2>
+<div id="installing-dependency-packages" class="section level2 hasAnchor">
+<h2>Installing dependency packages<a href="index.html#installing-dependency-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>It is easiest to open the repo in RStudio, as an RStudio project, by doubling click the <code>.Rproj</code> file. This makes sure that R’s working directory is at the top level of the repo. If you don’t want to open the repo as a project set the working directory to the top level of the repo directories using <code>setwd()</code>. Then run:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&#39;devtools&#39;) # uncomment if devtools not</span></span>
 <span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># installed</span></span>
 <span id="cb1-3"><a href="index.html#cb1-3" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_dev_deps</span>()</span></code></pre></div>
 </div>
-<div id="downloading-the-datasets" class="section level2">
-<h2>Downloading the datasets</h2>
+<div id="downloading-the-datasets" class="section level2 hasAnchor">
+<h2>Downloading the datasets<a href="index.html#downloading-the-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We assume that you have downloaded the data from the Causal Inference Book website and saved it to a <code>data</code> subdirectory. You can do this manually or with the following code (nb. we use the <a href="https://here.r-lib.org/"><code>here</code></a> package to reference the data subdirectory).</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" aria-hidden="true" tabindex="-1"></a>dataurls <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>

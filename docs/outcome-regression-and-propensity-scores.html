@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>15. Outcome regression and propensity scores | Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="15. Outcome regression and propensity scores | Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
   
@@ -27,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2022-02-20" />
+<meta name="date" content="2022-05-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -36,7 +35,6 @@
   
 <link rel="prev" href="g-estimation-of-structural-nested-models.html"/>
 <link rel="next" href="instrumental-variables-estimation.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -54,8 +52,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -303,10 +302,10 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="outcome-regression-and-propensity-scores" class="section level1 unnumbered">
-<h1>15. Outcome regression and propensity scores</h1>
-<div id="program-15.1" class="section level2">
-<h2>Program 15.1</h2>
+<div id="outcome-regression-and-propensity-scores" class="section level1 unnumbered hasAnchor">
+<h1>15. Outcome regression and propensity scores<a href="outcome-regression-and-propensity-scores.html#outcome-regression-and-propensity-scores" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="program-15.1" class="section level2 hasAnchor">
+<h2>Program 15.1<a href="outcome-regression-and-propensity-scores.html#program-15.1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Estimating the average causal effect within levels of confounders under the assumption of effect-measure modification by smoking intensity ONLY</li>
 <li>Data from NHEFS</li>
@@ -537,8 +536,8 @@ div.csl-indent {
 ## 
 ## Number of Fisher Scoring iterations: 2</code></pre>
 </div>
-<div id="program-15.2" class="section level2">
-<h2>Program 15.2</h2>
+<div id="program-15.2" class="section level2 hasAnchor">
+<h2>Program 15.2<a href="outcome-regression-and-propensity-scores.html#program-15.2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Estimating and plotting the propensity score</li>
 <li>Data from NHEFS</li>
@@ -652,8 +651,8 @@ div.csl-indent {
 <span id="cb247-17"><a href="outcome-regression-and-propensity-scores.html#cb247-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb247-18"><a href="outcome-regression-and-propensity-scores.html#cb247-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
 </div>
-<div id="program-15.3" class="section level2">
-<h2>Program 15.3</h2>
+<div id="program-15.3" class="section level2 hasAnchor">
+<h2>Program 15.3<a href="outcome-regression-and-propensity-scores.html#program-15.3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Stratification on the propensity score</li>
 <li>Data from NHEFS</li>
@@ -950,8 +949,8 @@ div.csl-indent {
 ## as.factor(ps.dec)9  -6.889923 -3.41883853
 ## as.factor(ps.dec)10 -6.571789 -3.10873731</code></pre>
 </div>
-<div id="program-15.4" class="section level2">
-<h2>Program 15.4</h2>
+<div id="program-15.4" class="section level2 hasAnchor">
+<h2>Program 15.4<a href="outcome-regression-and-propensity-scores.html#program-15.4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Standardization using the propensity score</li>
 <li>Data from NHEFS</li>
@@ -1015,15 +1014,15 @@ div.csl-indent {
 <span id="cb263-47"><a href="outcome-regression-and-propensity-scores.html#cb263-47" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Treatment - No Treatment&quot;</span>), mean, se, ll, ul))</span>
 <span id="cb263-48"><a href="outcome-regression-and-propensity-scores.html#cb263-48" aria-hidden="true" tabindex="-1"></a>bootstrap</span></code></pre></div>
 <pre><code>##                         V1             mean                se               ll
-## 1                 Observed 2.63384609228479 0.328823649285877 1.98936358241945
-## 2             No Treatment 1.71983636149843 0.215720604596885 1.29703174576533
-## 3                Treatment 5.35072300362993  0.63687114625531 4.10247849417678
-## 4 Treatment - No Treatment  3.6308866421315 0.550184971913654 2.55254391234556
+## 1                 Observed 2.63384609228479 0.162554587001448 2.31524495624017
+## 2             No Treatment 1.71983636149843 0.079523024660449 1.56397409722225
+## 3                Treatment 5.35072300362993 0.496377810853115 4.37784037163299
+## 4 Treatment - No Treatment  3.6308866421315 0.468790242577604  2.7120746503756
 ##                 ul
-## 1 3.27832860215014
-## 2 2.14264097723153
-## 3 6.59896751308308
-## 4 4.70922937191745</code></pre>
+## 1 2.95244722832941
+## 2  1.8756986257746
+## 3 6.32360563562687
+## 4  4.5496986338874</code></pre>
 <div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="outcome-regression-and-propensity-scores.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="co"># regression on the propensity score (linear term)</span></span>
 <span id="cb265-2"><a href="outcome-regression-and-propensity-scores.html#cb265-2" aria-hidden="true" tabindex="-1"></a>model6 <span class="ot">&lt;-</span> <span class="fu">glm</span>(wt82_71 <span class="sc">~</span> qsmk <span class="sc">+</span> ps, <span class="at">data =</span> nhefs) <span class="co"># p.qsmk</span></span>
 <span id="cb265-3"><a href="outcome-regression-and-propensity-scores.html#cb265-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model6)</span></code></pre></div>
@@ -1114,7 +1113,7 @@ div.csl-indent {
 <span id="cb273-40"><a href="outcome-regression-and-propensity-scores.html#cb273-40" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb273-41"><a href="outcome-regression-and-propensity-scores.html#cb273-41" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## 95% CI for the causal mean difference
-## 2.403415 , 4.684448</code></pre>
+## 2.384224 , 4.558658</code></pre>
 <p>A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.</p>
 
 </div>
