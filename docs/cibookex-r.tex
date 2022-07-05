@@ -128,7 +128,7 @@
 
 \title{Causal Inference: What If. R and Stata code for Exercises}
 \author{Book by M. A. Hernán and J. M. Robins \and R code by Joy Shi and Sean McGrath \and Stata code by Eleanor Murray and Roger Logan \and R Markdown code by Tom Palmer}
-\date{13 May 2022}
+\date{05 July 2022}
 
 \begin{document}
 \maketitle
@@ -2406,16 +2406,16 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Shaded}
 
 \begin{verbatim}
-##                         V1             mean                se                ll
-## 1                 Observed 2.56188497106099  0.22216176414144  2.12645591460188
-## 2             No Treatment 1.65212306626741 0.354627144459807 0.957066635185906
-## 3                Treatment 5.11474489549342 0.501651558748441   4.1315259075581
-## 4 Treatment - No Treatment 3.46262182922601 0.723551631064855  2.04448669138368
+##                         V1             mean                se               ll
+## 1                 Observed 2.56188497106099 0.198435683812696 2.17295817754052
+## 2             No Treatment 1.65212306626741 0.181584587992302 1.29622381365496
+## 3                Treatment 5.11474489549342 0.452373568450711 4.22810899377216
+## 4 Treatment - No Treatment 3.46262182922601 0.493032810482306 2.49629527748413
 ##                 ul
-## 1 2.99731402752009
-## 2 2.34717949734892
-## 3 6.09796388342875
-## 4 4.88075696706834
+## 1 2.95081176458145
+## 2 2.00802231887987
+## 3 6.00138079721468
+## 4 4.42894838096789
 \end{verbatim}
 
 \hypertarget{g-estimation-of-structural-nested-models}{%
@@ -3854,15 +3854,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ##                         V1             mean                se               ll
-## 1                 Observed 2.63384609228479 0.160378031397984 2.31951092683331
-## 2             No Treatment 1.71983636149843 0.169449967517811 1.38772052798203
-## 3                Treatment 5.35072300362993 0.443700311551373 4.48108637306003
-## 4 Treatment - No Treatment  3.6308866421315 0.375963228562732 2.89401225463715
+## 1                 Observed 2.63384609228479 0.133091272063885 2.37299199238296
+## 2             No Treatment 1.71983636149843 0.154133540347683 1.41774017360731
+## 3                Treatment 5.35072300362993  0.49183904096712 4.38673619714365
+## 4 Treatment - No Treatment  3.6308866421315 0.521358399748788 2.60904295558644
 ##                 ul
-## 1 2.94818125773628
-## 2 2.05195219501482
-## 3 6.22035963419982
-## 4 4.36776102962586
+## 1 2.89470019218663
+## 2 2.02193254938954
+## 3  6.3147098101162
+## 4 4.65273032867656
 \end{verbatim}
 
 \begin{Shaded}
@@ -3993,7 +3993,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ## 95% CI for the causal mean difference
-## 2.688548 , 4.421277
+## 2.615918 , 4.583446
 \end{verbatim}
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.
@@ -5008,20 +5008,20 @@ For reproducibility.
 \begin{verbatim}
 ## - Session info ---------------------------------------------------------------
 ##  setting  value
-##  version  R version 4.2.0 (2022-04-22)
-##  os       macOS Monterey 12.3.1
+##  version  R version 4.2.1 (2022-06-23)
+##  os       macOS Monterey 12.4
 ##  system   aarch64, darwin20
 ##  ui       X11
 ##  language (EN)
-##  collate  en_US.UTF-8
-##  ctype    en_US.UTF-8
+##  collate  en_GB.UTF-8
+##  ctype    en_GB.UTF-8
 ##  tz       Europe/London
-##  date     2022-05-13
-##  pandoc   2.18 @ /opt/homebrew/bin/ (via rmarkdown)
+##  date     2022-07-05
+##  pandoc   2.18 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/tools/ (via rmarkdown)
 ## 
 ## - Packages -------------------------------------------------------------------
 ##  package     * version date (UTC) lib source
-##  bookdown      0.26    2022-04-15 [3] CRAN (R 4.2.0)
+##  bookdown      0.27    2022-06-14 [3] CRAN (R 4.2.0)
 ##  cli           3.3.0   2022-04-25 [3] CRAN (R 4.2.0)
 ##  digest        0.6.29  2021-12-01 [3] CRAN (R 4.2.0)
 ##  evaluate      0.15    2022-02-18 [3] CRAN (R 4.2.0)
@@ -5029,7 +5029,7 @@ For reproducibility.
 ##  htmltools     0.5.2   2021-08-25 [3] CRAN (R 4.2.0)
 ##  knitr         1.39    2022-04-26 [3] CRAN (R 4.2.0)
 ##  magrittr      2.0.3   2022-03-30 [3] CRAN (R 4.2.0)
-##  rlang         1.0.2   2022-03-04 [3] CRAN (R 4.2.0)
+##  rlang         1.0.3   2022-06-27 [3] CRAN (R 4.2.1)
 ##  rmarkdown     2.14    2022-04-25 [3] CRAN (R 4.2.0)
 ##  rstudioapi    0.13    2020-11-12 [3] CRAN (R 4.2.0)
 ##  sessioninfo   1.2.2   2021-12-06 [3] CRAN (R 4.2.0)
@@ -10193,7 +10193,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 10:30:29
+r; t=0.00 14:45:27
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -10203,7 +10203,7 @@ r; t=0.00 10:30:29
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=22.28 10:30:51
+r; t=21.91 14:45:49
 
 
 
@@ -10451,7 +10451,7 @@ file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 10:31:02
+r; t=0.00 14:45:59
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -10461,7 +10461,7 @@ r; t=0.00 10:31:02
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=22.60 10:31:25
+r; t=22.61 14:46:22
 
 
 
@@ -10501,7 +10501,7 @@ For reproducibility.
 
 \begin{verbatim}
 Stata/MP 17.0 for Mac (Apple Silicon)
-Revision 10 May 2022
+Revision 01 Jun 2022
 Copyright 1985-2021 StataCorp LLC
 
 Total physical memory: 8.01 GB
@@ -10522,20 +10522,20 @@ Serial number: 501709378202
 \begin{verbatim}
 - Session info ---------------------------------------------------------------
  setting  value
- version  R version 4.2.0 (2022-04-22)
- os       macOS Monterey 12.3.1
+ version  R version 4.2.1 (2022-06-23)
+ os       macOS Monterey 12.4
  system   aarch64, darwin20
  ui       X11
  language (EN)
- collate  en_US.UTF-8
- ctype    en_US.UTF-8
+ collate  en_GB.UTF-8
+ ctype    en_GB.UTF-8
  tz       Europe/London
- date     2022-05-13
- pandoc   2.18 @ /opt/homebrew/bin/ (via rmarkdown)
+ date     2022-07-05
+ pandoc   2.18 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/tools/ (via rmarkdown)
 
 - Packages -------------------------------------------------------------------
  package       * version date (UTC) lib source
- bookdown        0.26    2022-04-15 [3] CRAN (R 4.2.0)
+ bookdown        0.27    2022-06-14 [3] CRAN (R 4.2.0)
  cli             3.3.0   2022-04-25 [3] CRAN (R 4.2.0)
  digest          0.6.29  2021-12-01 [3] CRAN (R 4.2.0)
  evaluate        0.15    2022-02-18 [3] CRAN (R 4.2.0)
@@ -10543,7 +10543,7 @@ Serial number: 501709378202
  htmltools       0.5.2   2021-08-25 [3] CRAN (R 4.2.0)
  knitr           1.39    2022-04-26 [3] CRAN (R 4.2.0)
  magrittr        2.0.3   2022-03-30 [3] CRAN (R 4.2.0)
- rlang           1.0.2   2022-03-04 [3] CRAN (R 4.2.0)
+ rlang           1.0.3   2022-06-27 [3] CRAN (R 4.2.1)
  rmarkdown       2.14    2022-04-25 [3] CRAN (R 4.2.0)
  rstudioapi      0.13    2020-11-12 [3] CRAN (R 4.2.0)
  sessioninfo     1.2.2   2021-12-06 [3] CRAN (R 4.2.0)

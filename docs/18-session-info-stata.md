@@ -14,7 +14,7 @@ about
 
 ```
 Stata/MP 17.0 for Mac (Apple Silicon)
-Revision 10 May 2022
+Revision 01 Jun 2022
 Copyright 1985-2021 StataCorp LLC
 
 Total physical memory: 8.01 GB
@@ -34,20 +34,20 @@ sessioninfo::session_info()
 ```
 ─ Session info ───────────────────────────────────────────────────────────────
  setting  value
- version  R version 4.2.0 (2022-04-22)
- os       macOS Monterey 12.3.1
+ version  R version 4.2.1 (2022-06-23)
+ os       macOS Monterey 12.4
  system   aarch64, darwin20
  ui       X11
  language (EN)
- collate  en_US.UTF-8
- ctype    en_US.UTF-8
+ collate  en_GB.UTF-8
+ ctype    en_GB.UTF-8
  tz       Europe/London
- date     2022-05-13
- pandoc   2.18 @ /opt/homebrew/bin/ (via rmarkdown)
+ date     2022-07-05
+ pandoc   2.18 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/tools/ (via rmarkdown)
 
 ─ Packages ───────────────────────────────────────────────────────────────────
  package       * version date (UTC) lib source
- bookdown        0.26    2022-04-15 [3] CRAN (R 4.2.0)
+ bookdown        0.27    2022-06-14 [3] CRAN (R 4.2.0)
  cli             3.3.0   2022-04-25 [3] CRAN (R 4.2.0)
  digest          0.6.29  2021-12-01 [3] CRAN (R 4.2.0)
  evaluate        0.15    2022-02-18 [3] CRAN (R 4.2.0)
@@ -55,7 +55,7 @@ sessioninfo::session_info()
  htmltools       0.5.2   2021-08-25 [3] CRAN (R 4.2.0)
  knitr           1.39    2022-04-26 [3] CRAN (R 4.2.0)
  magrittr        2.0.3   2022-03-30 [3] CRAN (R 4.2.0)
- rlang           1.0.2   2022-03-04 [3] CRAN (R 4.2.0)
+ rlang           1.0.3   2022-06-27 [3] CRAN (R 4.2.1)
  rmarkdown       2.14    2022-04-25 [3] CRAN (R 4.2.0)
  rstudioapi      0.13    2020-11-12 [3] CRAN (R 4.2.0)
  sessioninfo     1.2.2   2021-12-06 [3] CRAN (R 4.2.0)
