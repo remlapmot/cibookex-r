@@ -5,4 +5,7 @@ options(repos = "https://cloud.r-project.org")
 if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")
 devtools::install_dev_deps()
 
+if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
+remotes::install_github("Hemken/Statamarkdown")
+
 if (!tinytex::is_tinytex()) tinytex::install_tinytex()
