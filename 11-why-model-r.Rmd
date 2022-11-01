@@ -1,5 +1,9 @@
 # (PART\*) R code{-}
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE) 
+```
+
 # 11. Why model?{-}
 
 ## Program 11.1

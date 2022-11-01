@@ -1,5 +1,9 @@
 # 14. G-estimation of Structural Nested Models{-}
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE) 
+```
+
 ## Program 14.1
 
 - Preprocessing, ranks of extreme observations, IP weights for censoring

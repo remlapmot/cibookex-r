@@ -1,5 +1,9 @@
 # 15. Outcome regression and propensity scores{-}
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE) 
+```
+
 ## Program 15.1                                                                  
 
 - Estimating the average causal effect within levels of confounders under the assumption of effect-measure modification by smoking intensity ONLY 

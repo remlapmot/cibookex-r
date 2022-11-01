@@ -1,5 +1,9 @@
 # 17. Causal survival analysis{-}
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE) 
+```
+
 ## Program 17.1
 
 - Nonparametric estimation of survival curves

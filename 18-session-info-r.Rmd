@@ -1,5 +1,9 @@
 # Session information: R {-}
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE) 
+```
+
 For reproducibility.
 ```{r}
 # install.packages("sessioninfo")

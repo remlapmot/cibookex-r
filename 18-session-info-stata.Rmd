@@ -10,7 +10,7 @@ For reproducibility.
 about
 ```
 
-```{r}
+```{r collapse=TRUE}
 # install.packages("sessioninfo")
 sessioninfo::session_info()
 ```

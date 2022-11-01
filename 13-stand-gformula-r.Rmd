@@ -1,5 +1,9 @@
 # 13. Standardization and the parametric G-formula{-}
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE) 
+```
+
 ## Program 13.1
 
 - Estimating the mean outcome within levels of treatment and confounders

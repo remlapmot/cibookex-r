@@ -1,5 +1,9 @@
 # 12. IP Weighting and Marginal Structural Models{-}
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE) 
+```
+
 ## Program 12.1
 
 - Descriptive statistics from NHEFS data (Table 12.1)
