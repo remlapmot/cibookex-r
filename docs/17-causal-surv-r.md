@@ -399,8 +399,14 @@ library("dplyr")
 gf.qsmk0.surv <- gf.qsmk0 %>% group_by(seqn) %>% mutate(surv0 = cumprod(p.noevent0))
 gf.qsmk1.surv <- gf.qsmk1 %>% group_by(seqn) %>% mutate(surv1 = cumprod(p.noevent1))
 
-gf.surv0 <- aggregate(gf.qsmk0.surv, by=list(gf.qsmk0.surv$time), FUN=mean)[c("qsmk", "time", "surv0")]
-gf.surv1 <- aggregate(gf.qsmk1.surv, by=list(gf.qsmk1.surv$time), FUN=mean)[c("qsmk", "time", "surv1")]
+gf.surv0 <-
+  aggregate(gf.qsmk0.surv,
+            by = list(gf.qsmk0.surv$time),
+            FUN = mean)[c("qsmk", "time", "surv0")]
+gf.surv1 <-
+  aggregate(gf.qsmk1.surv,
+            by = list(gf.qsmk1.surv$time),
+            FUN = mean)[c("qsmk", "time", "surv1")]
 
 gf.graph <- merge(gf.surv0, gf.surv1, by=c("time"))
 gf.graph$survdiff <- gf.graph$surv1-gf.graph$surv0
@@ -429,7 +435,9 @@ ggplot(gf.graph, aes(x=time, y=surv)) +
 ```r
 # some preprocessing of the data
 nhefs <- read_excel(here("data", "NHEFS.xls"))
-nhefs$survtime <- ifelse(nhefs$death==0, NA, (nhefs$yrdth-83)*12+nhefs$modth) # * yrdth ranges from 83 to 92
+nhefs$survtime <-
+  ifelse(nhefs$death == 0, NA, (nhefs$yrdth - 83) * 12 + nhefs$modth)
+  # * yrdth ranges from 83 to 92
 
 # model to estimate E[A|L]
 modelA <- glm(qsmk ~ sex + race + age + I(age*age)

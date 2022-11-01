@@ -5,7 +5,7 @@ author:
  - R code by Joy Shi and Sean McGrath
  - Stata code by Eleanor Murray and Roger Logan
  - R Markdown code by Tom Palmer
-date: "05 July 2022"
+date: "01 November 2022"
 site: bookdown::bookdown_site
 documentclass: book
 #biblio-style: apalike
@@ -67,10 +67,11 @@ library(here)
 
 ```r
 dataurls <- list()
-dataurls[[1]] <- "https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/2012/10/nhefs_sas.zip"
-dataurls[[2]] <- "https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/2012/10/nhefs_stata.zip"
-dataurls[[3]] <- "https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/2017/01/nhefs_excel.zip"
-dataurls[[4]] <- "https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/1268/20/nhefs.csv"
+stub <- "https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/"
+dataurls[[1]] <- paste0(stub, "2012/10/nhefs_sas.zip")
+dataurls[[2]] <- paste0(stub, "2012/10/nhefs_stata.zip")
+dataurls[[3]] <- paste0(stub, "2017/01/nhefs_excel.zip")
+dataurls[[4]] <- paste0(stub, "1268/20/nhefs.csv")
 
 temp <- tempfile()
 for (i in 1:3) {

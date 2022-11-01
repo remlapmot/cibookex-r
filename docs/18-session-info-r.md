@@ -10,35 +10,35 @@ sessioninfo::session_info()
 ```
 ## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value
-##  version  R version 4.2.1 (2022-06-23)
-##  os       macOS Monterey 12.4
+##  version  R version 4.2.2 (2022-10-31)
+##  os       macOS Ventura 13.0
 ##  system   aarch64, darwin20
 ##  ui       X11
 ##  language (EN)
 ##  collate  en_GB.UTF-8
 ##  ctype    en_GB.UTF-8
 ##  tz       Europe/London
-##  date     2022-07-05
-##  pandoc   2.18 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/tools/ (via rmarkdown)
+##  date     2022-11-01
+##  pandoc   2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version date (UTC) lib source
-##  bookdown      0.27    2022-06-14 [3] CRAN (R 4.2.0)
-##  cli           3.3.0   2022-04-25 [3] CRAN (R 4.2.0)
-##  digest        0.6.29  2021-12-01 [3] CRAN (R 4.2.0)
-##  evaluate      0.15    2022-02-18 [3] CRAN (R 4.2.0)
+##  bookdown      0.29    2022-09-12 [3] CRAN (R 4.2.1)
+##  cli           3.4.1   2022-09-23 [1] CRAN (R 4.2.1)
+##  digest        0.6.30  2022-10-18 [3] CRAN (R 4.2.1)
+##  evaluate      0.17    2022-10-07 [3] CRAN (R 4.2.0)
 ##  fastmap       1.1.0   2021-01-25 [3] CRAN (R 4.2.0)
-##  htmltools     0.5.2   2021-08-25 [3] CRAN (R 4.2.0)
-##  knitr         1.39    2022-04-26 [3] CRAN (R 4.2.0)
+##  htmltools     0.5.3   2022-07-18 [3] CRAN (R 4.2.1)
+##  knitr         1.40    2022-08-24 [3] CRAN (R 4.2.1)
 ##  magrittr      2.0.3   2022-03-30 [3] CRAN (R 4.2.0)
-##  rlang         1.0.3   2022-06-27 [3] CRAN (R 4.2.1)
-##  rmarkdown     2.14    2022-04-25 [3] CRAN (R 4.2.0)
-##  rstudioapi    0.13    2020-11-12 [3] CRAN (R 4.2.0)
+##  rlang         1.0.6   2022-09-24 [3] CRAN (R 4.2.0)
+##  rmarkdown     2.17    2022-10-07 [3] CRAN (R 4.2.0)
+##  rstudioapi    0.14    2022-08-22 [3] CRAN (R 4.2.1)
 ##  sessioninfo   1.2.2   2021-12-06 [3] CRAN (R 4.2.0)
-##  stringi       1.7.6   2021-11-29 [3] CRAN (R 4.2.0)
-##  stringr       1.4.0   2019-02-10 [3] CRAN (R 4.2.0)
-##  xfun          0.31    2022-05-10 [3] CRAN (R 4.2.0)
-##  yaml          2.3.5   2022-02-21 [3] CRAN (R 4.2.0)
+##  stringi       1.7.8   2022-07-11 [3] CRAN (R 4.2.1)
+##  stringr       1.4.1   2022-08-20 [3] CRAN (R 4.2.0)
+##  xfun          0.34    2022-10-18 [3] CRAN (R 4.2.1)
+##  yaml          2.3.6   2022-10-18 [3] CRAN (R 4.2.1)
 ## 
 ##  [1] /Users/tom/Library/R/arm64/4.2/library
 ##  [2] /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/site-library

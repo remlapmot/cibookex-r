@@ -116,8 +116,15 @@ makeContrastMatrix <- function(model, nrow, names) {
   rownames(m) <- names
   return(m)
 }
-K1 <- makeContrastMatrix(fit, 2, c('Effect of Quitting Smoking at Smokeintensity of 5',
-                                      'Effect of Quitting Smoking at Smokeintensity of 40'))
+K1 <-
+  makeContrastMatrix(
+    fit,
+    2,
+    c(
+      'Effect of Quitting Smoking at Smokeintensity of 5',
+      'Effect of Quitting Smoking at Smokeintensity of 40'
+    )
+  )
 # (step 2) fill in the relevant non-zero elements 
 K1[1:2, 'qsmk'] <- 1
 K1[1:2, 'I(qsmk * smokeintensity)'] <- c(5, 40)
@@ -854,15 +861,15 @@ bootstrap
 
 ```
 ##                         V1             mean                 se               ll
-## 1                 Observed 2.63384609228479 0.0456848257542581 2.54430547916646
-## 2             No Treatment 1.71983636149843 0.0850078592372799 1.55322401899051
-## 3                Treatment 5.35072300362993  0.194193355711705 4.97011102039801
-## 4 Treatment - No Treatment  3.6308866421315  0.232653043845366 3.17489505530097
+## 1                 Observed 2.63384609228479 0.0776167310641236 2.48172009480138
+## 2             No Treatment 1.71983636149843  0.131124335705462 1.46283738601898
+## 3                Treatment 5.35072300362993  0.223062901841418 4.91352774973375
+## 4 Treatment - No Treatment  3.6308866421315  0.327204269497541 2.98957805832858
 ##                 ul
-## 1 2.72338670540313
-## 2 1.88644870400634
-## 3 5.73133498686184
-## 4 4.08687822896204
+## 1 2.78597208976821
+## 2 1.97683533697787
+## 3  5.7879182575261
+## 4 4.27219522593442
 ```
 
 
@@ -984,7 +991,7 @@ for(i in 1:nboot) {
 
 ```
 ## 95% CI for the causal mean difference
-## 2.702234 , 4.552991
+## 2.448837 , 4.541889
 ```
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.

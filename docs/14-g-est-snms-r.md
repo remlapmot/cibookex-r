@@ -428,7 +428,8 @@ summary(nhefs$pqsmk)
 ```r
 # solve sum(w_c * H(psi) * (qsmk - E[qsmk | L]))  = 0
 # for a single psi and H(psi) = wt82_71 - psi * qsmk
-# this can be solved as psi = sum( w_c * wt82_71 * (qsmk - pqsmk)) / sum(w_c * qsmk * (qsmk - pqsmk))
+# this can be solved as 
+# psi = sum( w_c * wt82_71 * (qsmk - pqsmk)) / sum(w_c * qsmk * (qsmk - pqsmk))
 
 nhefs.c <- nhefs[which(!is.na(nhefs$wt82)),]
 with(nhefs.c, sum(wc*wt82_71*(qsmk-pqsmk)) / sum(wc*qsmk*(qsmk - pqsmk)))

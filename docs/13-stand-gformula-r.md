@@ -99,10 +99,11 @@ nhefs[which(nhefs$seqn == 24770), c(
 
 ```
 ## # A tibble: 1 × 11
-##   predicted.meanY  qsmk   sex  race   age education smokeintensity smokeyrs
-##             <dbl> <dbl> <dbl> <dbl> <dbl>     <dbl>          <dbl>    <dbl>
-## 1           0.342     0     0     0    26         4             15       12
-## # … with 3 more variables: exercise <dbl>, active <dbl>, wt71 <dbl>
+##   predict…¹  qsmk   sex  race   age educa…² smoke…³ smoke…⁴ exerc…⁵ active  wt71
+##       <dbl> <dbl> <dbl> <dbl> <dbl>   <dbl>   <dbl>   <dbl>   <dbl>  <dbl> <dbl>
+## 1     0.342     0     0     0    26       4      15      12       1      0  112.
+## # … with abbreviated variable names ¹​predicted.meanY, ²​education,
+## #   ³​smokeintensity, ⁴​smokeyrs, ⁵​exercise
 ```
 
 ```r
@@ -420,13 +421,13 @@ bootstrap
 
 ```
 ##                         V1             mean                se               ll
-## 1                 Observed 2.56188497106099 0.315474855416105 1.94356561641744
-## 2             No Treatment 1.65212306626741 0.323179607517556 1.01870267499521
-## 3                Treatment 5.11474489549342 0.532992112319868 4.07009955130255
-## 4 Treatment - No Treatment 3.46262182922601 0.503473298677379 2.47583229664077
+## 1                 Observed 2.56188497106099 0.317518332776674  1.9395604743875
+## 2             No Treatment 1.65212306626741 0.259683834235994 1.14315210379759
+## 3                Treatment 5.11474489549342 0.466874529590452 4.19968763219706
+## 4 Treatment - No Treatment 3.46262182922601 0.281775781326494 2.91035144611045
 ##                 ul
-## 1 3.18020432570453
-## 2 2.28554345753961
-## 3 6.15939023968429
-## 4 4.44941136181125
+## 1 3.18420946773447
+## 2 2.16109402873723
+## 3 6.02980215878979
+## 4 4.01489221234157
 ```

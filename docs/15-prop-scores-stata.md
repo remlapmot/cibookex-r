@@ -370,7 +370,8 @@ xtile ps_dec = ps, nq(10)
 by ps_dec, sort: summarize ps
 
 /*Stratification on PS deciles, allowing for effect modification*/
-/*Note: stata compares qsmk 0 vs qsmk 1, so the coefficients are reversed relative to the book*/
+/*Note: Stata compares qsmk 0 vs qsmk 1, so the coefficients are reversed 
+relative to the book*/
 by ps_dec: ttest wt82_71, by(qsmk)
 
 /*Regression on PS deciles, with no product terms*/

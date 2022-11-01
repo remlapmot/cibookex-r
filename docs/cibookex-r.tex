@@ -128,7 +128,7 @@
 
 \title{Causal Inference: What If. R and Stata code for Exercises}
 \author{Book by M. A. Hernán and J. M. Robins \and R code by Joy Shi and Sean McGrath \and Stata code by Eleanor Murray and Roger Logan \and R Markdown code by Tom Palmer}
-\date{05 July 2022}
+\date{01 November 2022}
 
 \begin{document}
 \maketitle
@@ -203,10 +203,11 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{dataurls }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{()}
-\NormalTok{dataurls[[}\DecValTok{1}\NormalTok{]] }\OtherTok{\textless{}{-}} \StringTok{"https://cdn1.sph.harvard.edu/wp{-}content/uploads/sites/1268/2012/10/nhefs\_sas.zip"}
-\NormalTok{dataurls[[}\DecValTok{2}\NormalTok{]] }\OtherTok{\textless{}{-}} \StringTok{"https://cdn1.sph.harvard.edu/wp{-}content/uploads/sites/1268/2012/10/nhefs\_stata.zip"}
-\NormalTok{dataurls[[}\DecValTok{3}\NormalTok{]] }\OtherTok{\textless{}{-}} \StringTok{"https://cdn1.sph.harvard.edu/wp{-}content/uploads/sites/1268/2017/01/nhefs\_excel.zip"}
-\NormalTok{dataurls[[}\DecValTok{4}\NormalTok{]] }\OtherTok{\textless{}{-}} \StringTok{"https://cdn1.sph.harvard.edu/wp{-}content/uploads/sites/1268/1268/20/nhefs.csv"}
+\NormalTok{stub }\OtherTok{\textless{}{-}} \StringTok{"https://cdn1.sph.harvard.edu/wp{-}content/uploads/sites/1268/"}
+\NormalTok{dataurls[[}\DecValTok{1}\NormalTok{]] }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(stub, }\StringTok{"2012/10/nhefs\_sas.zip"}\NormalTok{)}
+\NormalTok{dataurls[[}\DecValTok{2}\NormalTok{]] }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(stub, }\StringTok{"2012/10/nhefs\_stata.zip"}\NormalTok{)}
+\NormalTok{dataurls[[}\DecValTok{3}\NormalTok{]] }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(stub, }\StringTok{"2017/01/nhefs\_excel.zip"}\NormalTok{)}
+\NormalTok{dataurls[[}\DecValTok{4}\NormalTok{]] }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(stub, }\StringTok{"1268/20/nhefs.csv"}\NormalTok{)}
 
 \NormalTok{temp }\OtherTok{\textless{}{-}} \FunctionTok{tempfile}\NormalTok{()}
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{) \{}
@@ -2051,10 +2052,11 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ## # A tibble: 1 x 11
-##   predicted.meanY  qsmk   sex  race   age education smokeintensity smokeyrs
-##             <dbl> <dbl> <dbl> <dbl> <dbl>     <dbl>          <dbl>    <dbl>
-## 1           0.342     0     0     0    26         4             15       12
-## # ... with 3 more variables: exercise <dbl>, active <dbl>, wt71 <dbl>
+##   predict~1  qsmk   sex  race   age educa~2 smoke~3 smoke~4 exerc~5 active  wt71
+##       <dbl> <dbl> <dbl> <dbl> <dbl>   <dbl>   <dbl>   <dbl>   <dbl>  <dbl> <dbl>
+## 1     0.342     0     0     0    26       4      15      12       1      0  112.
+## # ... with abbreviated variable names 1: predicted.meanY, 2: education,
+## #   3: smokeintensity, 4: smokeyrs, 5: exercise
 \end{verbatim}
 
 \begin{Shaded}
@@ -2406,16 +2408,16 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Shaded}
 
 \begin{verbatim}
-##                         V1             mean                se               ll
-## 1                 Observed 2.56188497106099 0.198435683812696 2.17295817754052
-## 2             No Treatment 1.65212306626741 0.181584587992302 1.29622381365496
-## 3                Treatment 5.11474489549342 0.452373568450711 4.22810899377216
-## 4 Treatment - No Treatment 3.46262182922601 0.493032810482306 2.49629527748413
+##                         V1             mean                 se               ll
+## 1                 Observed 2.56188497106099 0.0989161368742727 2.36801290529758
+## 2             No Treatment 1.65212306626741  0.134995106991562 1.38753751847482
+## 3                Treatment 5.11474489549342  0.467787991975878 4.19789727882039
+## 4 Treatment - No Treatment 3.46262182922601  0.561645663127342  2.3618165574233
 ##                 ul
-## 1 2.95081176458145
-## 2 2.00802231887987
-## 3 6.00138079721468
-## 4 4.42894838096789
+## 1 2.75575703682439
+## 2    1.91670861406
+## 3 6.03159251216645
+## 4 4.56342710102872
 \end{verbatim}
 
 \hypertarget{g-estimation-of-structural-nested-models}{%
@@ -2895,7 +2897,8 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \begin{Highlighting}[]
 \CommentTok{\# solve sum(w\_c * H(psi) * (qsmk {-} E[qsmk | L]))  = 0}
 \CommentTok{\# for a single psi and H(psi) = wt82\_71 {-} psi * qsmk}
-\CommentTok{\# this can be solved as psi = sum( w\_c * wt82\_71 * (qsmk {-} pqsmk)) / sum(w\_c * qsmk * (qsmk {-} pqsmk))}
+\CommentTok{\# this can be solved as }
+\CommentTok{\# psi = sum( w\_c * wt82\_71 * (qsmk {-} pqsmk)) / sum(w\_c * qsmk * (qsmk {-} pqsmk))}
 
 \NormalTok{nhefs.c }\OtherTok{\textless{}{-}}\NormalTok{ nhefs[}\FunctionTok{which}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{wt82)),]}
 \FunctionTok{with}\NormalTok{(nhefs.c, }\FunctionTok{sum}\NormalTok{(wc}\SpecialCharTok{*}\NormalTok{wt82\_71}\SpecialCharTok{*}\NormalTok{(qsmk}\SpecialCharTok{{-}}\NormalTok{pqsmk)) }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(wc}\SpecialCharTok{*}\NormalTok{qsmk}\SpecialCharTok{*}\NormalTok{(qsmk }\SpecialCharTok{{-}}\NormalTok{ pqsmk)))}
@@ -3065,8 +3068,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
   \FunctionTok{rownames}\NormalTok{(m) }\OtherTok{\textless{}{-}}\NormalTok{ names}
   \FunctionTok{return}\NormalTok{(m)}
 \NormalTok{\}}
-\NormalTok{K1 }\OtherTok{\textless{}{-}} \FunctionTok{makeContrastMatrix}\NormalTok{(fit, }\DecValTok{2}\NormalTok{, }\FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Effect of Quitting Smoking at Smokeintensity of 5\textquotesingle{}}\NormalTok{,}
-                                      \StringTok{\textquotesingle{}Effect of Quitting Smoking at Smokeintensity of 40\textquotesingle{}}\NormalTok{))}
+\NormalTok{K1 }\OtherTok{\textless{}{-}}
+  \FunctionTok{makeContrastMatrix}\NormalTok{(}
+\NormalTok{    fit,}
+    \DecValTok{2}\NormalTok{,}
+    \FunctionTok{c}\NormalTok{(}
+      \StringTok{\textquotesingle{}Effect of Quitting Smoking at Smokeintensity of 5\textquotesingle{}}\NormalTok{,}
+      \StringTok{\textquotesingle{}Effect of Quitting Smoking at Smokeintensity of 40\textquotesingle{}}
+\NormalTok{    )}
+\NormalTok{  )}
 \CommentTok{\# (step 2) fill in the relevant non{-}zero elements }
 \NormalTok{K1[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{, }\StringTok{\textquotesingle{}qsmk\textquotesingle{}}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{1}
 \NormalTok{K1[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{, }\StringTok{\textquotesingle{}I(qsmk * smokeintensity)\textquotesingle{}}\NormalTok{] }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{40}\NormalTok{)}
@@ -3854,15 +3864,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ##                         V1             mean                se               ll
-## 1                 Observed 2.63384609228479 0.133091272063885 2.37299199238296
-## 2             No Treatment 1.71983636149843 0.154133540347683 1.41774017360731
-## 3                Treatment 5.35072300362993  0.49183904096712 4.38673619714365
-## 4 Treatment - No Treatment  3.6308866421315 0.521358399748788 2.60904295558644
+## 1                 Observed 2.63384609228479 0.235720377188787 2.17184264257257
+## 2             No Treatment 1.71983636149843 0.343463441623252 1.04666038591068
+## 3                Treatment 5.35072300362993 0.157512239534685  5.0420046870177
+## 4 Treatment - No Treatment  3.6308866421315 0.446688389856508 2.75539348570056
 ##                 ul
-## 1 2.89470019218663
-## 2 2.02193254938954
-## 3  6.3147098101162
-## 4 4.65273032867656
+## 1 3.09584954199701
+## 2 2.39301233708617
+## 3 5.65944132024216
+## 4 4.50637979856244
 \end{verbatim}
 
 \begin{Shaded}
@@ -3993,7 +4003,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \begin{verbatim}
 ## 95% CI for the causal mean difference
-## 2.615918 , 4.583446
+## 2.734514 , 4.553031
 \end{verbatim}
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.
@@ -4811,8 +4821,14 @@ A more flexible and elegant way to do this is to write a function to perform the
 \NormalTok{gf.qsmk0.surv }\OtherTok{\textless{}{-}}\NormalTok{ gf.qsmk0 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(seqn) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{surv0 =} \FunctionTok{cumprod}\NormalTok{(p.noevent0))}
 \NormalTok{gf.qsmk1.surv }\OtherTok{\textless{}{-}}\NormalTok{ gf.qsmk1 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(seqn) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{surv1 =} \FunctionTok{cumprod}\NormalTok{(p.noevent1))}
 
-\NormalTok{gf.surv0 }\OtherTok{\textless{}{-}} \FunctionTok{aggregate}\NormalTok{(gf.qsmk0.surv, }\AttributeTok{by=}\FunctionTok{list}\NormalTok{(gf.qsmk0.surv}\SpecialCharTok{$}\NormalTok{time), }\AttributeTok{FUN=}\NormalTok{mean)[}\FunctionTok{c}\NormalTok{(}\StringTok{"qsmk"}\NormalTok{, }\StringTok{"time"}\NormalTok{, }\StringTok{"surv0"}\NormalTok{)]}
-\NormalTok{gf.surv1 }\OtherTok{\textless{}{-}} \FunctionTok{aggregate}\NormalTok{(gf.qsmk1.surv, }\AttributeTok{by=}\FunctionTok{list}\NormalTok{(gf.qsmk1.surv}\SpecialCharTok{$}\NormalTok{time), }\AttributeTok{FUN=}\NormalTok{mean)[}\FunctionTok{c}\NormalTok{(}\StringTok{"qsmk"}\NormalTok{, }\StringTok{"time"}\NormalTok{, }\StringTok{"surv1"}\NormalTok{)]}
+\NormalTok{gf.surv0 }\OtherTok{\textless{}{-}}
+  \FunctionTok{aggregate}\NormalTok{(gf.qsmk0.surv,}
+            \AttributeTok{by =} \FunctionTok{list}\NormalTok{(gf.qsmk0.surv}\SpecialCharTok{$}\NormalTok{time),}
+            \AttributeTok{FUN =}\NormalTok{ mean)[}\FunctionTok{c}\NormalTok{(}\StringTok{"qsmk"}\NormalTok{, }\StringTok{"time"}\NormalTok{, }\StringTok{"surv0"}\NormalTok{)]}
+\NormalTok{gf.surv1 }\OtherTok{\textless{}{-}}
+  \FunctionTok{aggregate}\NormalTok{(gf.qsmk1.surv,}
+            \AttributeTok{by =} \FunctionTok{list}\NormalTok{(gf.qsmk1.surv}\SpecialCharTok{$}\NormalTok{time),}
+            \AttributeTok{FUN =}\NormalTok{ mean)[}\FunctionTok{c}\NormalTok{(}\StringTok{"qsmk"}\NormalTok{, }\StringTok{"time"}\NormalTok{, }\StringTok{"surv1"}\NormalTok{)]}
 
 \NormalTok{gf.graph }\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(gf.surv0, gf.surv1, }\AttributeTok{by=}\FunctionTok{c}\NormalTok{(}\StringTok{"time"}\NormalTok{))}
 \NormalTok{gf.graph}\SpecialCharTok{$}\NormalTok{survdiff }\OtherTok{\textless{}{-}}\NormalTok{ gf.graph}\SpecialCharTok{$}\NormalTok{surv1}\SpecialCharTok{{-}}\NormalTok{gf.graph}\SpecialCharTok{$}\NormalTok{surv0}
@@ -4849,7 +4865,9 @@ A more flexible and elegant way to do this is to write a function to perform the
 \begin{Highlighting}[]
 \CommentTok{\# some preprocessing of the data}
 \NormalTok{nhefs }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\FunctionTok{here}\NormalTok{(}\StringTok{"data"}\NormalTok{, }\StringTok{"NHEFS.xls"}\NormalTok{))}
-\NormalTok{nhefs}\SpecialCharTok{$}\NormalTok{survtime }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{death}\SpecialCharTok{==}\DecValTok{0}\NormalTok{, }\ConstantTok{NA}\NormalTok{, (nhefs}\SpecialCharTok{$}\NormalTok{yrdth}\DecValTok{{-}83}\NormalTok{)}\SpecialCharTok{*}\DecValTok{12}\SpecialCharTok{+}\NormalTok{nhefs}\SpecialCharTok{$}\NormalTok{modth) }\CommentTok{\# * yrdth ranges from 83 to 92}
+\NormalTok{nhefs}\SpecialCharTok{$}\NormalTok{survtime }\OtherTok{\textless{}{-}}
+  \FunctionTok{ifelse}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{death }\SpecialCharTok{==} \DecValTok{0}\NormalTok{, }\ConstantTok{NA}\NormalTok{, (nhefs}\SpecialCharTok{$}\NormalTok{yrdth }\SpecialCharTok{{-}} \DecValTok{83}\NormalTok{) }\SpecialCharTok{*} \DecValTok{12} \SpecialCharTok{+}\NormalTok{ nhefs}\SpecialCharTok{$}\NormalTok{modth)}
+  \CommentTok{\# * yrdth ranges from 83 to 92}
 
 \CommentTok{\# model to estimate E[A|L]}
 \NormalTok{modelA }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(qsmk }\SpecialCharTok{\textasciitilde{}}\NormalTok{ sex }\SpecialCharTok{+}\NormalTok{ race }\SpecialCharTok{+}\NormalTok{ age }\SpecialCharTok{+} \FunctionTok{I}\NormalTok{(age}\SpecialCharTok{*}\NormalTok{age)}
@@ -5008,35 +5026,35 @@ For reproducibility.
 \begin{verbatim}
 ## - Session info ---------------------------------------------------------------
 ##  setting  value
-##  version  R version 4.2.1 (2022-06-23)
-##  os       macOS Monterey 12.4
+##  version  R version 4.2.2 (2022-10-31)
+##  os       macOS Ventura 13.0
 ##  system   aarch64, darwin20
 ##  ui       X11
 ##  language (EN)
 ##  collate  en_GB.UTF-8
 ##  ctype    en_GB.UTF-8
 ##  tz       Europe/London
-##  date     2022-07-05
-##  pandoc   2.18 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/tools/ (via rmarkdown)
+##  date     2022-11-01
+##  pandoc   2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
 ## 
 ## - Packages -------------------------------------------------------------------
 ##  package     * version date (UTC) lib source
-##  bookdown      0.27    2022-06-14 [3] CRAN (R 4.2.0)
-##  cli           3.3.0   2022-04-25 [3] CRAN (R 4.2.0)
-##  digest        0.6.29  2021-12-01 [3] CRAN (R 4.2.0)
-##  evaluate      0.15    2022-02-18 [3] CRAN (R 4.2.0)
+##  bookdown      0.29    2022-09-12 [3] CRAN (R 4.2.1)
+##  cli           3.4.1   2022-09-23 [1] CRAN (R 4.2.1)
+##  digest        0.6.30  2022-10-18 [3] CRAN (R 4.2.1)
+##  evaluate      0.17    2022-10-07 [3] CRAN (R 4.2.0)
 ##  fastmap       1.1.0   2021-01-25 [3] CRAN (R 4.2.0)
-##  htmltools     0.5.2   2021-08-25 [3] CRAN (R 4.2.0)
-##  knitr         1.39    2022-04-26 [3] CRAN (R 4.2.0)
+##  htmltools     0.5.3   2022-07-18 [3] CRAN (R 4.2.1)
+##  knitr         1.40    2022-08-24 [3] CRAN (R 4.2.1)
 ##  magrittr      2.0.3   2022-03-30 [3] CRAN (R 4.2.0)
-##  rlang         1.0.3   2022-06-27 [3] CRAN (R 4.2.1)
-##  rmarkdown     2.14    2022-04-25 [3] CRAN (R 4.2.0)
-##  rstudioapi    0.13    2020-11-12 [3] CRAN (R 4.2.0)
+##  rlang         1.0.6   2022-09-24 [3] CRAN (R 4.2.0)
+##  rmarkdown     2.17    2022-10-07 [3] CRAN (R 4.2.0)
+##  rstudioapi    0.14    2022-08-22 [3] CRAN (R 4.2.1)
 ##  sessioninfo   1.2.2   2021-12-06 [3] CRAN (R 4.2.0)
-##  stringi       1.7.6   2021-11-29 [3] CRAN (R 4.2.0)
-##  stringr       1.4.0   2019-02-10 [3] CRAN (R 4.2.0)
-##  xfun          0.31    2022-05-10 [3] CRAN (R 4.2.0)
-##  yaml          2.3.5   2022-02-21 [3] CRAN (R 4.2.0)
+##  stringi       1.7.8   2022-07-11 [3] CRAN (R 4.2.1)
+##  stringr       1.4.1   2022-08-20 [3] CRAN (R 4.2.0)
+##  xfun          0.34    2022-10-18 [3] CRAN (R 4.2.1)
+##  yaml          2.3.6   2022-10-18 [3] CRAN (R 4.2.1)
 ## 
 ##  [1] /Users/tom/Library/R/arm64/4.2/library
 ##  [2] /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/site-library
@@ -5617,7 +5635,8 @@ No smoking cessation |                 8.9
 \CommentTok{/*Output predicted conditional probability of quitting smoking for each individual*/}
 \KeywordTok{predict}\NormalTok{ p\_qsmk, pr}
 
-\CommentTok{/*Generate nonstabilized weights as P(A=1|covariates) if A = 1 and 1{-}P(A=1|covariates) if A = 0*/}
+\CommentTok{/*Generate nonstabilized weights as P(A=1|covariates) if A = 1 and */}
+\CommentTok{/* 1{-}P(A=1|covariates) if A = 0*/}
 \KeywordTok{gen} \FunctionTok{w}\NormalTok{=.}
 \KeywordTok{replace} \FunctionTok{w}\NormalTok{=1/p\_qsmk }\KeywordTok{if}\NormalTok{ qsmk==1}
 \KeywordTok{replace} \FunctionTok{w}\NormalTok{=1/(1{-}p\_qsmk) }\KeywordTok{if}\NormalTok{ qsmk==0}
@@ -5729,7 +5748,8 @@ Linear regression                               Number of obs     =      1,566
 \begin{Highlighting}[]
 \KeywordTok{use}\NormalTok{ ./}\KeywordTok{data}\NormalTok{/nhefs{-}formatted, }\KeywordTok{clear}
 
-\CommentTok{/*Fit a logistic model for the denominator of the IP weights and predict the conditional probability of smoking*/} 
+\CommentTok{/*Fit a logistic model for the denominator of the IP weights and predict the */}
+\CommentTok{/* conditional probability of smoking */}
 \KeywordTok{logit}\NormalTok{ qsmk sex race c.age\#\#c.age ib(}\FunctionTok{last}\NormalTok{).education c.smokeintensity\#\#c.smokeintensity }\CommentTok{///}
 \NormalTok{c.smokeyrs\#\#c.smokeyrs ib(}\FunctionTok{last}\NormalTok{).exercise ib(}\FunctionTok{last}\NormalTok{).active c.wt71\#\#c.wt71  }
 \KeywordTok{predict}\NormalTok{ pd\_qsmk, pr}
@@ -5978,32 +5998,41 @@ Linear regression                               Number of obs     =      1,566
 \CommentTok{/*Analysis restricted to subjects reporting \textless{}=25 cig/day at baseline: N = 1162*/}
 \KeywordTok{keep} \KeywordTok{if}\NormalTok{ smokeintensity \textless{}=25}
 
-\CommentTok{/*Fit a linear model for the denominator of the IP weights and calculate the mean expected smoking intensity*/} 
-\KeywordTok{regress}\NormalTok{ smkintensity82\_71 sex race c.age\#\#c.age ib(}\FunctionTok{last}\NormalTok{).education c.smokeintensity\#\#c.smokeintensity }\CommentTok{///}
-\NormalTok{c.smokeyrs\#\#c.smokeyrs ib(}\FunctionTok{last}\NormalTok{).exercise ib(}\FunctionTok{last}\NormalTok{).active c.wt71\#\#c.wt71}
+\CommentTok{/*Fit a linear model for the denominator of the IP weights and calculate the */}
+\CommentTok{/* mean expected smoking intensity*/} 
+\KeywordTok{regress}\NormalTok{ smkintensity82\_71 sex race c.age\#\#c.age ib(}\FunctionTok{last}\NormalTok{).education }\CommentTok{///}
+\NormalTok{c.smokeintensity\#\#c.smokeintensity c.smokeyrs\#\#c.smokeyrs }\CommentTok{///}
+\NormalTok{ib(}\FunctionTok{last}\NormalTok{).exercise ib(}\FunctionTok{last}\NormalTok{).active c.wt71\#\#c.wt71}
 \KeywordTok{quietly} \KeywordTok{predict}\NormalTok{ p\_den}
 
-\CommentTok{/*Generate the denisty of the denomiator expectation using the mean expected smoking intensity and the residuals, assuming a normal distribution*/}
-\CommentTok{/*Note: The regress command in STATA saves the root mean squared error for the immediate regression as e(rmse), thus there is no need to calculate it again. */}
+\CommentTok{/*Generate the denisty of the denomiator expectation using the mean expected */}
+\CommentTok{/* smoking intensity and the residuals, assuming a normal distribution*/}
+\CommentTok{/*Note: The regress command in Stata saves the root mean squared error for the */}
+\CommentTok{/* immediate regression as e(rmse), thus there is no need to calculate it again. */}
 \KeywordTok{gen}\NormalTok{ dens\_den = }\FunctionTok{normalden}\NormalTok{(smkintensity82\_71, p\_den, }\FunctionTok{e}\NormalTok{(rmse))}
 
-\CommentTok{/*Fit a linear model for the numerator of ip weights, calculate the mean expected value, and generate the density*/}
+\CommentTok{/*Fit a linear model for the numerator of ip weights, calculate the mean */}
+\CommentTok{/* expected value, and generate the density*/}
 \KeywordTok{quietly} \KeywordTok{regress}\NormalTok{ smkintensity82\_71}
 \KeywordTok{quietly} \KeywordTok{predict}\NormalTok{ p\_num}
 \KeywordTok{gen}\NormalTok{ dens\_num = }\FunctionTok{normalden}\NormalTok{( smkintensity82\_71, p\_num, }\FunctionTok{e}\NormalTok{(rmse))}
 
-\CommentTok{/*Generate the final stabilized weights from the estimated numerator and denominator, and check the weights distribution*/}
+\CommentTok{/*Generate the final stabilized weights from the estimated numerator and */}
+\CommentTok{/* denominator, and check the weights distribution*/}
 \KeywordTok{gen}\NormalTok{ sw\_a=dens\_num/dens\_den}
 \KeywordTok{summarize}\NormalTok{ sw\_a}
 
 \CommentTok{/*Fit a marginal structural model in the pseudopopulation*/}
 \KeywordTok{regress}\NormalTok{ wt82\_71  c.smkintensity82\_71\#\#c.smkintensity82\_71 [}\KeywordTok{pweight}\NormalTok{=sw\_a], }\KeywordTok{cluster}\NormalTok{(seqn)}
 
-\CommentTok{/*Output the estimated mean Y value when smoke intensity is unchanged from baseline to 1982 */}
+\CommentTok{/*Output the estimated mean Y value when smoke intensity is unchanged from */}
+\CommentTok{/* baseline to 1982 */}
 \KeywordTok{lincom}\NormalTok{ \_b[}\DataTypeTok{\_cons}\NormalTok{]}
 
-\CommentTok{/*Output the estimated mean Y value when smoke intensity increases by 20 from baseline to 1982*/}
-\KeywordTok{lincom}\NormalTok{ \_b[}\DataTypeTok{\_cons}\NormalTok{] + 20*\_b[smkintensity82\_71 ] +400*\_b[c.smkintensity82\_71\#c.smkintensity82\_71]}
+\CommentTok{/*Output the estimated mean Y value when smoke intensity increases by 20 from */}
+\CommentTok{/* baseline to 1982*/}
+\KeywordTok{lincom}\NormalTok{ \_b[}\DataTypeTok{\_cons}\NormalTok{] + 20*\_b[smkintensity82\_71 ] + }\CommentTok{///}
+\NormalTok{  400*\_b[c.smkintensity82\_71\#c.smkintensity82\_71]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6128,7 +6157,8 @@ smkintensi~71 |   .0026949   .0024203     1.11   0.266    -.0020537    .0074436
 \KeywordTok{drop} \KeywordTok{if}\NormalTok{ wt82==.}
 
 \CommentTok{/*Estimate the stabilized weights for quitting smoking as in PROGRAM 12.3*/}
-\CommentTok{/*Fit a logistic model for the denominator of the IP weights and predict the conditional probability of smoking*/} 
+\CommentTok{/*Fit a logistic model for the denominator of the IP weights and predict the */}
+\CommentTok{/* conditional probability of smoking*/} 
 \KeywordTok{logit}\NormalTok{ qsmk sex race c.age\#\#c.age ib(}\FunctionTok{last}\NormalTok{).education c.smokeintensity\#\#c.smokeintensity }\CommentTok{///}
 \NormalTok{c.smokeyrs\#\#c.smokeyrs ib(}\FunctionTok{last}\NormalTok{).exercise ib(}\FunctionTok{last}\NormalTok{).active c.wt71\#\#c.wt71  }
 \KeywordTok{predict}\NormalTok{ pd\_qsmk, pr}
@@ -6144,7 +6174,8 @@ smkintensi~71 |   .0026949   .0024203     1.11   0.266    -.0020537    .0074436
 \CommentTok{/*Fit marginal structural model in the pseudopopulation*/}
 \CommentTok{/*}\AlertTok{NOTE}\CommentTok{: Stata has two commands for logistic regression, logit and logistic*/}
 \CommentTok{/*Using logistic allows us to output the odds ratios directly*/}
-\CommentTok{/*We can also output odds ratios from the logit command using the or option (default logit output is regression coefficients*/}
+\CommentTok{/*We can also output odds ratios from the logit command using the or option */}
+\CommentTok{/* (default logit output is regression coefficients*/}
 \KeywordTok{logistic}\NormalTok{ death qsmk [}\KeywordTok{pweight}\NormalTok{=sw\_a], }\KeywordTok{cluster}\NormalTok{(seqn) }
 \end{Highlighting}
 \end{Shaded}
@@ -6288,7 +6319,8 @@ Note: _cons estimates baseline odds.
 
 \KeywordTok{summarize}\NormalTok{ sw\_a}
 
-\CommentTok{/*Fit marginal structural model in the pseudopopulation, including interaction term between quitting smoking and sex*/}
+\CommentTok{/*Fit marginal structural model in the pseudopopulation, including interaction */}
+\CommentTok{/* term between quitting smoking and sex*/}
 \KeywordTok{regress}\NormalTok{ wt82\_71 qsmk\#\#sex [pw=sw\_a], }\KeywordTok{cluster}\NormalTok{(seqn)}
 \end{Highlighting}
 \end{Shaded}
@@ -6438,16 +6470,19 @@ Linear regression                               Number of obs     =      1,566
 \NormalTok{c.smokeyrs\#\#c.smokeyrs ib(}\FunctionTok{last}\NormalTok{).exercise ib(}\FunctionTok{last}\NormalTok{).active c.wt71\#\#c.wt71 }
 \KeywordTok{predict}\NormalTok{ pd\_qsmk, pr}
 
-\CommentTok{/*Fit logistic regression model for the  numerator of IP weights for A*/}
+\CommentTok{/*Fit logistic regression model for the numerator of IP weights for A*/}
 \KeywordTok{logit}\NormalTok{ qsmk}
 \KeywordTok{predict}\NormalTok{ pn\_qsmk, pr}
 
-\CommentTok{/*Fit logistic regression model for the  denominator of IP weights for C, including quitting smoking*/}
-\KeywordTok{logit}\NormalTok{ cens qsmk sex race c.age\#\#c.age ib(}\FunctionTok{last}\NormalTok{).education c.smokeintensity\#\#c.smokeintensity }\CommentTok{///}
-\NormalTok{c.smokeyrs\#\#c.smokeyrs ib(}\FunctionTok{last}\NormalTok{).exercise ib(}\FunctionTok{last}\NormalTok{).active c.wt71\#\#c.wt71 }
+\CommentTok{/*Fit logistic regression model for the denominator of IP weights for C, */}
+\CommentTok{/* including quitting smoking*/}
+\KeywordTok{logit}\NormalTok{ cens qsmk sex race c.age\#\#c.age ib(}\FunctionTok{last}\NormalTok{).education }\CommentTok{///}
+\NormalTok{c.smokeintensity\#\#c.smokeintensity c.smokeyrs\#\#c.smokeyrs ib(}\FunctionTok{last}\NormalTok{).exercise }\CommentTok{///}
+\NormalTok{ib(}\FunctionTok{last}\NormalTok{).active c.wt71\#\#c.wt71 }
 \KeywordTok{predict}\NormalTok{ pd\_cens, pr}
 
-\CommentTok{/*Fit logistic regression model for the  numerator of IP weights for C, including quitting smoking */}
+\CommentTok{/*Fit logistic regression model for the  numerator of IP weights for C, */}
+\CommentTok{/* including quitting smoking */}
 \KeywordTok{logit}\NormalTok{ cens qsmk}
 \KeywordTok{predict}\NormalTok{ pn\_cens, pr}
 
@@ -6457,7 +6492,8 @@ Linear regression                               Number of obs     =      1,566
 \KeywordTok{replace}\NormalTok{ sw\_a=(1{-}pn\_qsmk)/(1{-}pd\_qsmk) }\KeywordTok{if}\NormalTok{ qsmk==0}
 
 \CommentTok{/*Generate the stabilized weights for C (sw\_c)*/}
-\CommentTok{/*}\AlertTok{NOTE}\CommentTok{: the conditional probability estimates generated by our logistic models for C represent the conditional probability of being censored (C=1)*/}
+\CommentTok{/*}\AlertTok{NOTE}\CommentTok{: the conditional probability estimates generated by our logistic models */}
+\CommentTok{/* for C represent the conditional probability of being censored (C=1)*/}
 \CommentTok{/*We want weights for the conditional probability of bing uncensored, Pr(C=0|A,L)*/}
 \KeywordTok{gen}\NormalTok{ sw\_c=.}
 \KeywordTok{replace}\NormalTok{ sw\_c=(1{-}pn\_cens)/(1{-}pd\_cens) }\KeywordTok{if}\NormalTok{ cens==0}
@@ -6902,22 +6938,28 @@ Smoking ce..  |   .0466628   .0351448     1.33   0.184    -.0222197    .1155453
 \NormalTok{*ii.Estimation }\KeywordTok{in}\NormalTok{ original }\KeywordTok{sample}\NormalTok{*}
 \NormalTok{*Now, we }\KeywordTok{do}\NormalTok{ a parametric regression with the covariates we want to }\KeywordTok{adjust} \KeywordTok{for}\NormalTok{*}
 \NormalTok{*You may need to edit }\KeywordTok{this}\NormalTok{ part }\KeywordTok{of}\NormalTok{ the code }\KeywordTok{for}\NormalTok{ the variables you want.*}
-\NormalTok{*Because the copies have }\FunctionTok{missing}\NormalTok{ Y, }\KeywordTok{this}\NormalTok{ will only }\KeywordTok{run}\NormalTok{ the regression }\KeywordTok{in}\NormalTok{ the original copy*}
-\NormalTok{*The }\KeywordTok{double}\NormalTok{ hash between A \& L creates a regression }\KeywordTok{model}\NormalTok{ with A and L and a product term between A and L*}
+\NormalTok{*Because the copies have }\FunctionTok{missing}\NormalTok{ Y, }\KeywordTok{this}\NormalTok{ will only }\KeywordTok{run}\NormalTok{ the regression }\KeywordTok{in}\NormalTok{ the}
+\NormalTok{*original copy.*}
+\NormalTok{*The }\KeywordTok{double}\NormalTok{ hash between A \& L creates a regression }\KeywordTok{model}\NormalTok{ with A and L and a }
+\NormalTok{* product term between A and L*}
 \KeywordTok{regress}\NormalTok{ Y A\#\#L}
 
-\NormalTok{*Ask Stata }\KeywordTok{for}\NormalTok{ expected }\KeywordTok{values}\NormalTok{ {-} Stata will give you expected }\KeywordTok{values} \KeywordTok{for} \OtherTok{all}\NormalTok{ copies, }\KeywordTok{not}\NormalTok{ just the original ones*}
+\NormalTok{*Ask Stata }\KeywordTok{for}\NormalTok{ expected }\KeywordTok{values}\NormalTok{ {-} Stata will give you expected }\KeywordTok{values} \KeywordTok{for} \OtherTok{all} 
+\NormalTok{* copies, }\KeywordTok{not}\NormalTok{ just the original ones*}
 \KeywordTok{predict}\NormalTok{ predY, }\KeywordTok{xb}
 
 \NormalTok{*Now ask }\KeywordTok{for}\NormalTok{ a summary }\KeywordTok{of}\NormalTok{ these }\KeywordTok{values} \KeywordTok{by}\NormalTok{ intervention*}
-\NormalTok{*These are the standardized outcome }\KeywordTok{estimates}\NormalTok{: you can subtract them to }\FunctionTok{get}\NormalTok{ the standardized difference*}
+\NormalTok{*These are the standardized outcome }\KeywordTok{estimates}\NormalTok{: you can subtract them to }\FunctionTok{get}\NormalTok{ the}
+\NormalTok{* standardized difference*}
 \KeywordTok{by}\NormalTok{ interv, }\KeywordTok{sort}\NormalTok{: }\KeywordTok{summarize}\NormalTok{ predY}
 
 \NormalTok{*iii.OPTIONAL: Output standardized point }\KeywordTok{estimates}\NormalTok{ and difference*}
 \NormalTok{*The summary from the }\FunctionTok{last}\NormalTok{ command gives you the standardized }\KeywordTok{estimates}\NormalTok{*}
-\NormalTok{*We can stop there, }\KeywordTok{or}\NormalTok{ we can ask Stata to calculate the standardized difference and }\KeywordTok{display} \OtherTok{all}\NormalTok{ the results }\KeywordTok{in}\NormalTok{ a simple }\KeywordTok{table}\NormalTok{*}
+\NormalTok{*We can stop there, }\KeywordTok{or}\NormalTok{ we can ask Stata to calculate the standardized difference}
+\NormalTok{* and }\KeywordTok{display} \OtherTok{all}\NormalTok{ the results }\KeywordTok{in}\NormalTok{ a simple }\KeywordTok{table}\NormalTok{*}
 \NormalTok{*The code below can }\KeywordTok{be}\NormalTok{ used }\KeywordTok{as}\NormalTok{{-}is without changing any }\KeywordTok{variable}\NormalTok{ names*}
-\NormalTok{*The option }\StringTok{"quietly"}\NormalTok{ asks Stata }\KeywordTok{not}\NormalTok{ to }\KeywordTok{display}\NormalTok{ the output }\KeywordTok{of}\NormalTok{ some intermediate calculations*}
+\NormalTok{*The option }\StringTok{"quietly"}\NormalTok{ asks Stata }\KeywordTok{not}\NormalTok{ to }\KeywordTok{display}\NormalTok{ the output }\KeywordTok{of}\NormalTok{ some intermediate}
+\NormalTok{* calculations*}
 \NormalTok{*You can }\KeywordTok{delete} \KeywordTok{this}\NormalTok{ option }\KeywordTok{if}\NormalTok{ you want to see what is happening step{-}}\KeywordTok{by}\NormalTok{{-}step*}
 \KeywordTok{quietly} \KeywordTok{summarize}\NormalTok{ predY }\KeywordTok{if}\NormalTok{(interv == {-}1)}
 \FunctionTok{matrix}\NormalTok{ input observe = ({-}1,}\OtherTok{\textasciigrave{}r(mean)\textquotesingle{}}\NormalTok{)}
@@ -6936,7 +6978,8 @@ Smoking ce..  |   .0466628   .0351448     1.33   0.184    -.0222197    .1155453
 \NormalTok{*}\OtherTok{row}\NormalTok{ 1, column 2, is the observed }\KeywordTok{mean}\NormalTok{ outcome }\OtherTok{value} \KeywordTok{in}\NormalTok{ our original }\KeywordTok{sample}\NormalTok{*}
 \NormalTok{*}\OtherTok{row}\NormalTok{ 2, column 2, is the }\KeywordTok{mean}\NormalTok{ outcome }\OtherTok{value} \KeywordTok{if}\NormalTok{ everyone had }\KeywordTok{not}\NormalTok{ quit smoking*}
 \NormalTok{*}\OtherTok{row}\NormalTok{ 3, column 2, is the }\KeywordTok{mean}\NormalTok{ outcome }\OtherTok{value} \KeywordTok{if}\NormalTok{ everyone had quit smoking*}
-\NormalTok{*}\OtherTok{row}\NormalTok{ 4, column 2, is the }\KeywordTok{mean}\NormalTok{ difference outcome }\OtherTok{value} \KeywordTok{if}\NormalTok{ everyone had quit smoking compared to }\KeywordTok{if}\NormalTok{ everyone had }\KeywordTok{not}\NormalTok{ quit smoking*}
+\NormalTok{*}\OtherTok{row}\NormalTok{ 4, column 2, is the }\KeywordTok{mean}\NormalTok{ difference outcome }\OtherTok{value} \KeywordTok{if}\NormalTok{ everyone had quit }
+\NormalTok{* smoking compared to }\KeywordTok{if}\NormalTok{ everyone had }\KeywordTok{not}\NormalTok{ quit smoking*}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7088,40 +7131,51 @@ difference          .          0
 \KeywordTok{use}\NormalTok{ ./}\KeywordTok{data}\NormalTok{/nhefs{-}formatted, }\KeywordTok{clear}
 
 \NormalTok{*i.Data }\KeywordTok{set}\NormalTok{ up }\KeywordTok{for}\NormalTok{ standardization: create 3 copies }\KeywordTok{of}\NormalTok{ each subject*}
-\NormalTok{*first, duplicate the dataset and create a }\KeywordTok{variable}\NormalTok{ \textquotesingle{}interv\textquotesingle{} which indicates which copy is the duplicate (interv =1)}
+\NormalTok{*first, duplicate the dataset and create a }\KeywordTok{variable}\NormalTok{ \textquotesingle{}interv\textquotesingle{} which indicates}
+\NormalTok{* which copy is the duplicate (interv =1)}
 \NormalTok{expand 2, }\KeywordTok{generate}\NormalTok{(interv)}
 
-\NormalTok{*next, duplicate the original copy (interv = 0) again, and create another }\KeywordTok{variable}\NormalTok{ \textquotesingle{}interv2\textquotesingle{} to indicate the copy}
+\NormalTok{*next, duplicate the original copy (interv = 0) again, and create another}
+\NormalTok{* }\KeywordTok{variable}\NormalTok{ \textquotesingle{}interv2\textquotesingle{} to indicate the copy}
 \NormalTok{expand 2 }\KeywordTok{if}\NormalTok{ interv == 0, }\KeywordTok{generate}\NormalTok{(interv2)}
 
-\NormalTok{*now, change the }\OtherTok{value} \KeywordTok{of}\NormalTok{ \textquotesingle{}interv\textquotesingle{} to {-}1 }\KeywordTok{in}\NormalTok{ one }\KeywordTok{of}\NormalTok{ the copies so that there are }\KeywordTok{unique} \KeywordTok{values} \KeywordTok{of}\NormalTok{ interv }\KeywordTok{for}\NormalTok{ each copy*}
+\NormalTok{*now, change the }\OtherTok{value} \KeywordTok{of}\NormalTok{ \textquotesingle{}interv\textquotesingle{} to {-}1 }\KeywordTok{in}\NormalTok{ one }\KeywordTok{of}\NormalTok{ the copies so that there are}
+\NormalTok{* }\KeywordTok{unique} \KeywordTok{values} \KeywordTok{of}\NormalTok{ interv }\KeywordTok{for}\NormalTok{ each copy*}
 \KeywordTok{replace}\NormalTok{ interv = {-}1  }\KeywordTok{if}\NormalTok{ interv2 ==1}
 \KeywordTok{drop}\NormalTok{ interv2 }
 
-\NormalTok{*check that the }\KeywordTok{data}\NormalTok{ has the structure you want: there should }\KeywordTok{be}\NormalTok{ 1566 people }\KeywordTok{in}\NormalTok{ each }\KeywordTok{of}\NormalTok{ the 3 }\KeywordTok{levels} \KeywordTok{of}\NormalTok{ interv*}
+\NormalTok{*check that the }\KeywordTok{data}\NormalTok{ has the structure you want: there should }\KeywordTok{be}\NormalTok{ 1566 people }\KeywordTok{in}
+\NormalTok{* each }\KeywordTok{of}\NormalTok{ the 3 }\KeywordTok{levels} \KeywordTok{of}\NormalTok{ interv*}
 \KeywordTok{tab}\NormalTok{ interv}
 
 \NormalTok{*}\KeywordTok{two} \KeywordTok{of}\NormalTok{ the copies will }\KeywordTok{be} \KeywordTok{for}\NormalTok{ computing the standardized result*}
-\NormalTok{*}\KeywordTok{for}\NormalTok{ these }\KeywordTok{two}\NormalTok{ copies (interv = 0 and interv = 1), }\KeywordTok{set}\NormalTok{ the outcome to }\FunctionTok{missing}\NormalTok{ and }\KeywordTok{force}\NormalTok{ qsmk to either 0 }\KeywordTok{or}\NormalTok{ 1, respectively*}
+\NormalTok{*}\KeywordTok{for}\NormalTok{ these }\KeywordTok{two}\NormalTok{ copies (interv = 0 and interv = 1), }\KeywordTok{set}\NormalTok{ the outcome to }\FunctionTok{missing}
+\NormalTok{* and }\KeywordTok{force}\NormalTok{ qsmk to either 0 }\KeywordTok{or}\NormalTok{ 1, respectively*}
 \NormalTok{*you may need to edit }\KeywordTok{this}\NormalTok{ part }\KeywordTok{of}\NormalTok{ the code }\KeywordTok{for}\NormalTok{ your outcome and exposure variables*}
 \KeywordTok{replace}\NormalTok{ wt82\_71 = . }\KeywordTok{if}\NormalTok{ interv != {-}1}
 \KeywordTok{replace}\NormalTok{ qsmk = 0 }\KeywordTok{if}\NormalTok{ interv == 0}
 \KeywordTok{replace}\NormalTok{ qsmk = 1 }\KeywordTok{if}\NormalTok{ interv == 1}
 
-\NormalTok{*check that the }\KeywordTok{data}\NormalTok{ has the structure you want: }\KeywordTok{for}\NormalTok{ interv = {-}1, some people quit and some }\KeywordTok{do} \KeywordTok{not}\NormalTok{; }\KeywordTok{for}\NormalTok{ interv = 0 }\KeywordTok{or}\NormalTok{ 1, noone quits }\KeywordTok{or}\NormalTok{ everyone quits, respectively*}
+\NormalTok{*check that the }\KeywordTok{data}\NormalTok{ has the structure you want: }\KeywordTok{for}\NormalTok{ interv = {-}1, some people}
+\NormalTok{* quit and some }\KeywordTok{do} \KeywordTok{not}\NormalTok{; }\KeywordTok{for}\NormalTok{ interv = 0 }\KeywordTok{or}\NormalTok{ 1, noone quits }\KeywordTok{or}\NormalTok{ everyone quits, respectively*}
 \KeywordTok{by}\NormalTok{ interv, }\KeywordTok{sort}\NormalTok{: }\KeywordTok{summarize}\NormalTok{ qsmk}
 
 \NormalTok{*ii.Estimation }\KeywordTok{in}\NormalTok{ original }\KeywordTok{sample}\NormalTok{*}
 \NormalTok{*Now, we }\KeywordTok{do}\NormalTok{ a parametric regression with the covariates we want to }\KeywordTok{adjust} \KeywordTok{for}\NormalTok{*}
 \NormalTok{*You may need to edit }\KeywordTok{this}\NormalTok{ part }\KeywordTok{of}\NormalTok{ the code }\KeywordTok{for}\NormalTok{ the variables you want.*}
-\NormalTok{*Because the copies have }\FunctionTok{missing}\NormalTok{ wt82\_71, }\KeywordTok{this}\NormalTok{ will only }\KeywordTok{run}\NormalTok{ the regression }\KeywordTok{in}\NormalTok{ the original copy*}
-\KeywordTok{regress}\NormalTok{ wt82\_71 qsmk sex race c.age\#\#c.age ib(}\FunctionTok{last}\NormalTok{).education c.smokeintensity\#\#c.smokeintensity c.smokeyrs\#\#c.smokeyrs ib(}\FunctionTok{last}\NormalTok{).exercise ib(}\FunctionTok{last}\NormalTok{).active c.wt71\#\#c.wt71 qsmk\#c.smokeintensity}
+\NormalTok{*Because the copies have }\FunctionTok{missing}\NormalTok{ wt82\_71, }\KeywordTok{this}\NormalTok{ will only }\KeywordTok{run}\NormalTok{ the regression }\KeywordTok{in} 
+\NormalTok{* the original copy*}
+\KeywordTok{regress}\NormalTok{ wt82\_71 qsmk sex race c.age\#\#c.age ib(}\FunctionTok{last}\NormalTok{).education }\CommentTok{///}
+\NormalTok{c.smokeintensity\#\#c.smokeintensity c.smokeyrs\#\#c.smokeyrs }\CommentTok{///}
+\NormalTok{ib(}\FunctionTok{last}\NormalTok{).exercise ib(}\FunctionTok{last}\NormalTok{).active c.wt71\#\#c.wt71 qsmk\#c.smokeintensity}
 
-\NormalTok{*Ask Stata }\KeywordTok{for}\NormalTok{ expected }\KeywordTok{values}\NormalTok{ {-} Stata will give you expected }\KeywordTok{values} \KeywordTok{for} \OtherTok{all}\NormalTok{ copies, }\KeywordTok{not}\NormalTok{ just the original ones*}
+\NormalTok{*Ask Stata }\KeywordTok{for}\NormalTok{ expected }\KeywordTok{values}\NormalTok{ {-} Stata will give you expected }\KeywordTok{values} \KeywordTok{for} \OtherTok{all} 
+\NormalTok{* copies, }\KeywordTok{not}\NormalTok{ just the original ones*}
 \KeywordTok{predict}\NormalTok{ predY, }\KeywordTok{xb}
 
 \NormalTok{*Now ask }\KeywordTok{for}\NormalTok{ a summary }\KeywordTok{of}\NormalTok{ these }\KeywordTok{values} \KeywordTok{by}\NormalTok{ intervention*}
-\NormalTok{*These are the standardized outcome }\KeywordTok{estimates}\NormalTok{: you can subtract them to }\FunctionTok{get}\NormalTok{ the standardized difference*}
+\NormalTok{*These are the standardized outcome }\KeywordTok{estimates}\NormalTok{: you can subtract them to }\FunctionTok{get}\NormalTok{ the}
+\NormalTok{* standardized difference*}
 \KeywordTok{by}\NormalTok{ interv, }\KeywordTok{sort}\NormalTok{: }\KeywordTok{summarize}\NormalTok{ predY}
 
 \CommentTok{/* iii.OPTIONAL: Output standardized point estimates and difference}
@@ -7503,7 +7557,8 @@ For errors contact: ejmurray@bu.edu
 \NormalTok{  , }\KeywordTok{family}\NormalTok{(binomial)}
 \KeywordTok{predict}\NormalTok{ pr\_cens}
 \KeywordTok{gen}\NormalTok{ w\_cens = 1/(1{-}pr\_cens)}
-\KeywordTok{replace}\NormalTok{ w\_cens = . }\KeywordTok{if}\NormalTok{ cens == 1 }\CommentTok{/*observations with cens = 1 contribute to censoring models but not outcome model*/}
+\KeywordTok{replace}\NormalTok{ w\_cens = . }\KeywordTok{if}\NormalTok{ cens == 1 }
+\CommentTok{/*observations with cens = 1 contribute to censoring models but not outcome model*/}
 \KeywordTok{summarize}\NormalTok{ w\_cens}
 
 \CommentTok{/*Analyses restricted to N=1566*/}
@@ -7635,10 +7690,12 @@ file ./data/nhefs-wcens.dta saved
 \CommentTok{/*Generate test value of Psi = 3.446*/}
 \KeywordTok{gen}\NormalTok{ psi = 3.446}
 
-\CommentTok{/*Generate H(Psi) for each individual using test value of Psi and their own values of weight change and smoking status*/}
+\CommentTok{/*Generate H(Psi) for each individual using test value of Psi and}
+\CommentTok{their own values of weight change and smoking status*/}
 \KeywordTok{gen}\NormalTok{ Hpsi = wt82\_71 {-} psi * qsmk }
 
-\CommentTok{/*Fit a model for smoking status, given confounders and H(Psi) value, with censoring weights and display H(Psi) coefficient*/}
+\CommentTok{/*Fit a model for smoking status, given confounders and H(Psi) value, }
+\CommentTok{with censoring weights and display H(Psi) coefficient*/}
 \KeywordTok{logit}\NormalTok{ qsmk sex race c.age\#\#c.age ib(}\FunctionTok{last}\NormalTok{).education }\CommentTok{///}
 \NormalTok{  c.smokeintensity\#\#c.smokeintensity c.smokeyrs\#\#c.smokeyrs }\CommentTok{///}
 \NormalTok{  ib(}\FunctionTok{last}\NormalTok{).exercise ib(}\FunctionTok{last}\NormalTok{).active c.wt71\#\#c.wt71 Hpsi }\CommentTok{///}
@@ -8419,7 +8476,8 @@ file ./data/nhefs-ps.dta saved
 \KeywordTok{by}\NormalTok{ ps\_dec, }\KeywordTok{sort}\NormalTok{: }\KeywordTok{summarize}\NormalTok{ ps}
 
 \CommentTok{/*Stratification on PS deciles, allowing for effect modification*/}
-\CommentTok{/*Note: stata compares qsmk 0 vs qsmk 1, so the coefficients are reversed relative to the book*/}
+\CommentTok{/*Note: Stata compares qsmk 0 vs qsmk 1, so the coefficients are reversed }
+\CommentTok{relative to the book*/}
 \KeywordTok{by}\NormalTok{ ps\_dec: }\KeywordTok{ttest}\NormalTok{ wt82\_71, }\KeywordTok{by}\NormalTok{(qsmk)}
 
 \CommentTok{/*Regression on PS deciles, with no product terms*/}
@@ -9119,7 +9177,8 @@ For errors contact: ejmurray@bu.edu
 \CommentTok{/*Final IV estimate, OPTION 1: Hand calculations*/}
 \CommentTok{/*Numerator: num = E[Y|Z=1] {-} E[Y|Z=0] = 2.686 {-} 2.536 = 0.150*/}
 \CommentTok{/*Denominator: denom = P[A=1|Z=1] {-} P[A=1|Z=0] = 0.258 {-} 0.195 = 0.063 */} 
-\CommentTok{/*IV estimator: E[Ya=1] {-} E[Ya=0] = (E[Y|Z=1]{-}E[Y|Z=0])/(P[A=1|Z=1]{-}P[A=1|Z=0]) = 0.150/0.063 = 2.397*/}
+\CommentTok{/*IV estimator: E[Ya=1] {-} E[Ya=0] = }
+\CommentTok{(E[Y|Z=1]{-}E[Y|Z=0])/(P[A=1|Z=1]{-}P[A=1|Z=0]) = 0.150/0.063 = 2.397*/}
 \KeywordTok{display} \StringTok{"Numerator, E[Y|Z=1] {-} E[Y|Z=0] ="}\NormalTok{, 2.686 {-} 2.536}
 \KeywordTok{display} \StringTok{"Denominator: denom = P[A=1|Z=1] {-} P[A=1|Z=0] ="}\NormalTok{, 0.258 {-} 0.195}
 \KeywordTok{display} \StringTok{"IV estimator ="}\NormalTok{, 0.150/0.063}
@@ -10193,7 +10252,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 14:45:27
+r; t=0.00 9:44:39
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -10203,7 +10262,7 @@ r; t=0.00 14:45:27
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=21.91 14:45:49
+r; t=21.70 9:45:01
 
 
 
@@ -10451,7 +10510,7 @@ file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 14:45:59
+r; t=0.00 9:45:12
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -10461,7 +10520,7 @@ r; t=0.00 14:45:59
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=22.61 14:46:22
+r; t=22.72 9:45:35
 
 
 
@@ -10501,7 +10560,7 @@ For reproducibility.
 
 \begin{verbatim}
 Stata/MP 17.0 for Mac (Apple Silicon)
-Revision 01 Jun 2022
+Revision 13 Oct 2022
 Copyright 1985-2021 StataCorp LLC
 
 Total physical memory: 8.01 GB
@@ -10522,36 +10581,36 @@ Serial number: 501709378202
 \begin{verbatim}
 - Session info ---------------------------------------------------------------
  setting  value
- version  R version 4.2.1 (2022-06-23)
- os       macOS Monterey 12.4
+ version  R version 4.2.2 (2022-10-31)
+ os       macOS Ventura 13.0
  system   aarch64, darwin20
  ui       X11
  language (EN)
  collate  en_GB.UTF-8
  ctype    en_GB.UTF-8
  tz       Europe/London
- date     2022-07-05
- pandoc   2.18 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/tools/ (via rmarkdown)
+ date     2022-11-01
+ pandoc   2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
 
 - Packages -------------------------------------------------------------------
  package       * version date (UTC) lib source
- bookdown        0.27    2022-06-14 [3] CRAN (R 4.2.0)
- cli             3.3.0   2022-04-25 [3] CRAN (R 4.2.0)
- digest          0.6.29  2021-12-01 [3] CRAN (R 4.2.0)
- evaluate        0.15    2022-02-18 [3] CRAN (R 4.2.0)
+ bookdown        0.29    2022-09-12 [3] CRAN (R 4.2.1)
+ cli             3.4.1   2022-09-23 [1] CRAN (R 4.2.1)
+ digest          0.6.30  2022-10-18 [3] CRAN (R 4.2.1)
+ evaluate        0.17    2022-10-07 [3] CRAN (R 4.2.0)
  fastmap         1.1.0   2021-01-25 [3] CRAN (R 4.2.0)
- htmltools       0.5.2   2021-08-25 [3] CRAN (R 4.2.0)
- knitr           1.39    2022-04-26 [3] CRAN (R 4.2.0)
+ htmltools       0.5.3   2022-07-18 [3] CRAN (R 4.2.1)
+ knitr           1.40    2022-08-24 [3] CRAN (R 4.2.1)
  magrittr        2.0.3   2022-03-30 [3] CRAN (R 4.2.0)
- rlang           1.0.3   2022-06-27 [3] CRAN (R 4.2.1)
- rmarkdown       2.14    2022-04-25 [3] CRAN (R 4.2.0)
- rstudioapi      0.13    2020-11-12 [3] CRAN (R 4.2.0)
+ rlang           1.0.6   2022-09-24 [3] CRAN (R 4.2.0)
+ rmarkdown       2.17    2022-10-07 [3] CRAN (R 4.2.0)
+ rstudioapi      0.14    2022-08-22 [3] CRAN (R 4.2.1)
  sessioninfo     1.2.2   2021-12-06 [3] CRAN (R 4.2.0)
  Statamarkdown * 0.7.1   2022-05-13 [1] Github (Hemken/Statamarkdown@d9cbb1a)
- stringi         1.7.6   2021-11-29 [3] CRAN (R 4.2.0)
- stringr         1.4.0   2019-02-10 [3] CRAN (R 4.2.0)
- xfun            0.31    2022-05-10 [3] CRAN (R 4.2.0)
- yaml            2.3.5   2022-02-21 [3] CRAN (R 4.2.0)
+ stringi         1.7.8   2022-07-11 [3] CRAN (R 4.2.1)
+ stringr         1.4.1   2022-08-20 [3] CRAN (R 4.2.0)
+ xfun            0.34    2022-10-18 [3] CRAN (R 4.2.1)
+ yaml            2.3.6   2022-10-18 [3] CRAN (R 4.2.1)
 
  [1] /Users/tom/Library/R/arm64/4.2/library
  [2] /Library/Frameworks/R.framework/Versions/4.2-arm64/Resources/site-library
