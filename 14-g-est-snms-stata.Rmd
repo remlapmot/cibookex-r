@@ -38,7 +38,8 @@ glm cens qsmk sex race c.age##c.age ib(last).education ///
   , family(binomial)
 predict pr_cens
 gen w_cens = 1/(1-pr_cens)
-replace w_cens = . if cens == 1 /*observations with cens = 1 contribute to censoring models but not outcome model*/
+replace w_cens = . if cens == 1 
+/*observations with cens = 1 contribute to censoring models but not outcome model*/
 summarize w_cens
 
 /*Analyses restricted to N=1566*/
@@ -61,10 +62,12 @@ use ./data/nhefs-wcens, clear
 /*Generate test value of Psi = 3.446*/
 gen psi = 3.446
 
-/*Generate H(Psi) for each individual using test value of Psi and their own values of weight change and smoking status*/
+/*Generate H(Psi) for each individual using test value of Psi and
+their own values of weight change and smoking status*/
 gen Hpsi = wt82_71 - psi * qsmk 
 
-/*Fit a model for smoking status, given confounders and H(Psi) value, with censoring weights and display H(Psi) coefficient*/
+/*Fit a model for smoking status, given confounders and H(Psi) value, 
+with censoring weights and display H(Psi) coefficient*/
 logit qsmk sex race c.age##c.age ib(last).education ///
   c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs ///
   ib(last).exercise ib(last).active c.wt71##c.wt71 Hpsi ///

@@ -43,7 +43,8 @@ ttest wt82_71, by(highprice)
 /*Final IV estimate, OPTION 1: Hand calculations*/
 /*Numerator: num = E[Y|Z=1] - E[Y|Z=0] = 2.686 - 2.536 = 0.150*/
 /*Denominator: denom = P[A=1|Z=1] - P[A=1|Z=0] = 0.258 - 0.195 = 0.063 */ 
-/*IV estimator: E[Ya=1] - E[Ya=0] = (E[Y|Z=1]-E[Y|Z=0])/(P[A=1|Z=1]-P[A=1|Z=0]) = 0.150/0.063 = 2.397*/
+/*IV estimator: E[Ya=1] - E[Ya=0] = 
+(E[Y|Z=1]-E[Y|Z=0])/(P[A=1|Z=1]-P[A=1|Z=0]) = 0.150/0.063 = 2.397*/
 display "Numerator, E[Y|Z=1] - E[Y|Z=0] =", 2.686 - 2.536
 display "Denominator: denom = P[A=1|Z=1] - P[A=1|Z=0] =", 0.258 - 0.195
 display "IV estimator =", 0.150/0.063

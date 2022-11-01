@@ -33,8 +33,15 @@ makeContrastMatrix <- function(model, nrow, names) {
   rownames(m) <- names
   return(m)
 }
-K1 <- makeContrastMatrix(fit, 2, c('Effect of Quitting Smoking at Smokeintensity of 5',
-                                      'Effect of Quitting Smoking at Smokeintensity of 40'))
+K1 <-
+  makeContrastMatrix(
+    fit,
+    2,
+    c(
+      'Effect of Quitting Smoking at Smokeintensity of 5',
+      'Effect of Quitting Smoking at Smokeintensity of 40'
+    )
+  )
 # (step 2) fill in the relevant non-zero elements 
 K1[1:2, 'qsmk'] <- 1
 K1[1:2, 'I(qsmk * smokeintensity)'] <- c(5, 40)

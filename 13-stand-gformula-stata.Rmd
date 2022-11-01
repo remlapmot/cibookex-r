@@ -103,22 +103,28 @@ by interv, sort: summarize A
 *ii.Estimation in original sample*
 *Now, we do a parametric regression with the covariates we want to adjust for*
 *You may need to edit this part of the code for the variables you want.*
-*Because the copies have missing Y, this will only run the regression in the original copy*
-*The double hash between A & L creates a regression model with A and L and a product term between A and L*
+*Because the copies have missing Y, this will only run the regression in the
+*original copy.*
+*The double hash between A & L creates a regression model with A and L and a 
+* product term between A and L*
 regress Y A##L
 
-*Ask Stata for expected values - Stata will give you expected values for all copies, not just the original ones*
+*Ask Stata for expected values - Stata will give you expected values for all 
+* copies, not just the original ones*
 predict predY, xb
 
 *Now ask for a summary of these values by intervention*
-*These are the standardized outcome estimates: you can subtract them to get the standardized difference*
+*These are the standardized outcome estimates: you can subtract them to get the
+* standardized difference*
 by interv, sort: summarize predY
 
 *iii.OPTIONAL: Output standardized point estimates and difference*
 *The summary from the last command gives you the standardized estimates*
-*We can stop there, or we can ask Stata to calculate the standardized difference and display all the results in a simple table*
+*We can stop there, or we can ask Stata to calculate the standardized difference
+* and display all the results in a simple table*
 *The code below can be used as-is without changing any variable names*
-*The option "quietly" asks Stata not to display the output of some intermediate calculations*
+*The option "quietly" asks Stata not to display the output of some intermediate
+* calculations*
 *You can delete this option if you want to see what is happening step-by-step*
 quietly summarize predY if(interv == -1)
 matrix input observe = (-1,`r(mean)')
@@ -137,7 +143,8 @@ matrix list observe
 *row 1, column 2, is the observed mean outcome value in our original sample*
 *row 2, column 2, is the mean outcome value if everyone had not quit smoking*
 *row 3, column 2, is the mean outcome value if everyone had quit smoking*
-*row 4, column 2, is the mean difference outcome value if everyone had quit smoking compared to if everyone had not quit smoking*
+*row 4, column 2, is the mean difference outcome value if everyone had quit 
+* smoking compared to if everyone had not quit smoking*
 ```
 
 ## Program 13.3
@@ -150,40 +157,51 @@ matrix list observe
 use ./data/nhefs-formatted, clear
 
 *i.Data set up for standardization: create 3 copies of each subject*
-*first, duplicate the dataset and create a variable 'interv' which indicates which copy is the duplicate (interv =1)
+*first, duplicate the dataset and create a variable 'interv' which indicates
+* which copy is the duplicate (interv =1)
 expand 2, generate(interv)
 
-*next, duplicate the original copy (interv = 0) again, and create another variable 'interv2' to indicate the copy
+*next, duplicate the original copy (interv = 0) again, and create another
+* variable 'interv2' to indicate the copy
 expand 2 if interv == 0, generate(interv2)
 
-*now, change the value of 'interv' to -1 in one of the copies so that there are unique values of interv for each copy*
+*now, change the value of 'interv' to -1 in one of the copies so that there are
+* unique values of interv for each copy*
 replace interv = -1  if interv2 ==1
 drop interv2 
 
-*check that the data has the structure you want: there should be 1566 people in each of the 3 levels of interv*
+*check that the data has the structure you want: there should be 1566 people in
+* each of the 3 levels of interv*
 tab interv
 
 *two of the copies will be for computing the standardized result*
-*for these two copies (interv = 0 and interv = 1), set the outcome to missing and force qsmk to either 0 or 1, respectively*
+*for these two copies (interv = 0 and interv = 1), set the outcome to missing
+* and force qsmk to either 0 or 1, respectively*
 *you may need to edit this part of the code for your outcome and exposure variables*
 replace wt82_71 = . if interv != -1
 replace qsmk = 0 if interv == 0
 replace qsmk = 1 if interv == 1
 
-*check that the data has the structure you want: for interv = -1, some people quit and some do not; for interv = 0 or 1, noone quits or everyone quits, respectively*
+*check that the data has the structure you want: for interv = -1, some people
+* quit and some do not; for interv = 0 or 1, noone quits or everyone quits, respectively*
 by interv, sort: summarize qsmk
 
 *ii.Estimation in original sample*
 *Now, we do a parametric regression with the covariates we want to adjust for*
 *You may need to edit this part of the code for the variables you want.*
-*Because the copies have missing wt82_71, this will only run the regression in the original copy*
-regress wt82_71 qsmk sex race c.age##c.age ib(last).education c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs ib(last).exercise ib(last).active c.wt71##c.wt71 qsmk#c.smokeintensity
+*Because the copies have missing wt82_71, this will only run the regression in 
+* the original copy*
+regress wt82_71 qsmk sex race c.age##c.age ib(last).education ///
+c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs ///
+ib(last).exercise ib(last).active c.wt71##c.wt71 qsmk#c.smokeintensity
 
-*Ask Stata for expected values - Stata will give you expected values for all copies, not just the original ones*
+*Ask Stata for expected values - Stata will give you expected values for all 
+* copies, not just the original ones*
 predict predY, xb
 
 *Now ask for a summary of these values by intervention*
-*These are the standardized outcome estimates: you can subtract them to get the standardized difference*
+*These are the standardized outcome estimates: you can subtract them to get the
+* standardized difference*
 by interv, sort: summarize predY
 
 /* iii.OPTIONAL: Output standardized point estimates and difference
