@@ -1,5 +1,7 @@
 # 14. G-estimation of Structural Nested Models{-}
 
+
+
 ## Program 14.1
 
 - Preprocessing, ranks of extreme observations, IP weights for censoring
@@ -22,40 +24,16 @@ nhefs$cens <- ifelse(is.na(nhefs$wt82), 1, 0)
 # ranking of extreme observations
 #install.packages("Hmisc")
 library(Hmisc)
-```
-
-```
 ## Loading required package: lattice
-```
-
-```
 ## Loading required package: survival
-```
-
-```
 ## Loading required package: Formula
-```
-
-```
 ## Loading required package: ggplot2
-```
-
-```
 ## 
 ## Attaching package: 'Hmisc'
-```
-
-```
 ## The following objects are masked from 'package:base':
 ## 
 ##     format.pval, units
-```
-
-```r
 describe(nhefs$wt82_71)
-```
-
-```
 ## nhefs$wt82_71 
 ##        n  missing distinct     Info     Mean      Gmd      .05      .10 
 ##     1566       63     1510        1    2.638    8.337   -9.752   -6.292 
@@ -64,9 +42,7 @@ describe(nhefs$wt82_71)
 ## 
 ## lowest : -41.28047 -30.50192 -30.05007 -29.02579 -25.97056
 ## highest:  34.01780  36.96925  37.65051  47.51130  48.53839
-```
 
-```r
 # estimation of denominator of ip weights for C
 cw.denom <- glm(cens==0 ~ qsmk + sex + race + age + I(age^2) 
                      + as.factor(education) + smokeintensity + I(smokeintensity^2) 
@@ -74,9 +50,6 @@ cw.denom <- glm(cens==0 ~ qsmk + sex + race + age + I(age^2)
                      + as.factor(active) + wt71 + I(wt71^2), 
                      data = nhefs, family = binomial("logit"))
 summary(cw.denom)
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = cens == 0 ~ qsmk + sex + race + age + I(age^2) + 
@@ -120,9 +93,6 @@ summary(cw.denom)
 ## AIC: 505.36
 ## 
 ## Number of Fisher Scoring iterations: 7
-```
-
-```r
 nhefs$pd.c <- predict(cw.denom, nhefs, type="response")
 nhefs$wc <- ifelse(nhefs$cens==0, 1/nhefs$pd.c, NA) 
 # observations with cens=1 only contribute to censoring models
@@ -150,17 +120,8 @@ fit <- geeglm(qsmk ~ sex + race + age + I(age*age) + as.factor(education)
            + I(smokeyrs*smokeyrs) + as.factor(exercise) + as.factor(active)
            + wt71 + I(wt71*wt71) + Hpsi, family=binomial, data=nhefs,
            weights=wc, id=seqn, corstr="independence")
-```
-
-```
 ## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-```
-
-```r
 summary(fit)
-```
-
-```
 ## 
 ## Call:
 ## geeglm(formula = qsmk ~ sex + race + age + I(age * age) + as.factor(education) + 
@@ -225,9 +186,6 @@ for (i in grid){
   Hpsi.coefs[j,1] <- summary(gest.fit)$coefficients["Hpsi", "Estimate"]
   Hpsi.coefs[j,2] <- summary(gest.fit)$coefficients["Hpsi", "Pr(>|W|)"]
 }
-```
-
-```
 ## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
 ## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
@@ -289,13 +247,7 @@ for (i in grid){
 ## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 
 ## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-```
-
-```r
 Hpsi.coefs
-```
-
-```
 ##         Estimate  p-value
 ##  [1,]  0.0267219 0.001772
 ##  [2,]  0.0248946 0.003580
@@ -344,17 +296,8 @@ logit.est <- glm(qsmk ~ sex + race + age + I(age^2) + as.factor(education)
                  + I(smokeyrs^2) + as.factor(exercise) + as.factor(active) 
                  + wt71 + I(wt71^2), data = nhefs, weight = wc, 
                  family = binomial())
-```
-
-```
 ## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-```
-
-```r
 summary(logit.est)
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = qsmk ~ sex + race + age + I(age^2) + as.factor(education) + 
@@ -398,14 +341,8 @@ summary(logit.est)
 ## AIC: 1719
 ## 
 ## Number of Fisher Scoring iterations: 4
-```
-
-```r
 nhefs$pqsmk <- predict(logit.est, nhefs, type = "response")
 describe(nhefs$pqsmk)
-```
-
-```
 ## nhefs$pqsmk 
 ##        n  missing distinct     Info     Mean      Gmd      .05      .10 
 ##     1629        0     1629        1   0.2622   0.1302   0.1015   0.1261 
@@ -414,18 +351,10 @@ describe(nhefs$pqsmk)
 ## 
 ## lowest : 0.05145 0.05157 0.05438 0.05583 0.05931
 ## highest: 0.67208 0.68643 0.71391 0.73330 0.78914
-```
-
-```r
 summary(nhefs$pqsmk)
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##  0.0514  0.1780  0.2426  0.2622  0.3251  0.7891
-```
 
-```r
 # solve sum(w_c * H(psi) * (qsmk - E[qsmk | L]))  = 0
 # for a single psi and H(psi) = wt82_71 - psi * qsmk
 # this can be solved as 
@@ -433,9 +362,6 @@ summary(nhefs$pqsmk)
 
 nhefs.c <- nhefs[which(!is.na(nhefs$wt82)),]
 with(nhefs.c, sum(wc*wt82_71*(qsmk-pqsmk)) / sum(wc*qsmk*(qsmk - pqsmk)))
-```
-
-```
 ## [1] 3.446
 ```
 
@@ -458,9 +384,6 @@ rhs[2] = with(nhefs.c, sum(wt82_71 * smokeintensity * diff2))
 
 psi = t(solve(lhs,rhs))
 psi
-```
-
-```
 ##       [,1]    [,2]
 ## [1,] 2.859 0.03004
 ```

@@ -1,5 +1,7 @@
 # 13. Standardization and the parametric G-formula{-}
 
+
+
 ## Program 13.1
 
 - Estimating the mean outcome within levels of treatment and confounders
@@ -28,9 +30,6 @@ fit <-
     data = nhefs
   )
 summary(fit)
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = wt82_71 ~ qsmk + sex + race + age + I(age * age) + 
@@ -77,9 +76,6 @@ summary(fit)
 ## AIC: 10701
 ## 
 ## Number of Fisher Scoring iterations: 2
-```
-
-```r
 nhefs$predicted.meanY <- predict(fit, nhefs)
 
 nhefs[which(nhefs$seqn == 24770), c(
@@ -95,31 +91,17 @@ nhefs[which(nhefs$seqn == 24770), c(
   "active",
   "wt71"
 )]
-```
-
-```
 ## # A tibble: 1 × 11
 ##   predict…¹  qsmk   sex  race   age educa…² smoke…³ smoke…⁴ exerc…⁵ active  wt71
 ##       <dbl> <dbl> <dbl> <dbl> <dbl>   <dbl>   <dbl>   <dbl>   <dbl>  <dbl> <dbl>
 ## 1     0.342     0     0     0    26       4      15      12       1      0  112.
 ## # … with abbreviated variable names ¹​predicted.meanY, ²​education,
 ## #   ³​smokeintensity, ⁴​smokeyrs, ⁵​exercise
-```
 
-```r
 summary(nhefs$predicted.meanY[nhefs$cens == 0])
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ## -10.876   1.116   3.042   2.638   4.511   9.876
-```
-
-```r
 summary(nhefs$wt82_71[nhefs$cens == 0])
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ## -41.280  -1.478   2.604   2.638   6.690  48.538
 ```
@@ -166,9 +148,6 @@ table22$id <- rep(id, 3)
 
 glm.obj <- glm(Y ~ A * L, data = table22)
 summary(glm.obj)
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = Y ~ A * L, data = table22)
@@ -192,31 +171,13 @@ summary(glm.obj)
 ## AIC: 35.385
 ## 
 ## Number of Fisher Scoring iterations: 2
-```
-
-```r
 table22$predicted.meanY <- predict(glm.obj, table22)
 
 mean(table22$predicted.meanY[table22$interv == -1])
-```
-
-```
 ## [1] 0.5
-```
-
-```r
 mean(table22$predicted.meanY[table22$interv == 0])
-```
-
-```
 ## [1] 0.5
-```
-
-```r
 mean(table22$predicted.meanY[table22$interv == 1])
-```
-
-```
 ## [1] 0.5
 ```
 
@@ -257,9 +218,6 @@ std <- glm(
   data = onesample
 )
 summary(std)
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = wt82_71 ~ qsmk + sex + race + age + I(age * age) + 
@@ -306,34 +264,16 @@ summary(std)
 ## AIC: 10701
 ## 
 ## Number of Fisher Scoring iterations: 2
-```
-
-```r
 onesample$predicted_meanY <- predict(std, onesample)
 
 # estimate mean outcome in each of the groups interv=0, and interv=1
 # this mean outcome is a weighted average of the mean outcomes in each combination
 # of values of treatment and confounders, that is, the standardized outcome
 mean(onesample[which(onesample$interv == -1), ]$predicted_meanY)
-```
-
-```
 ## [1] 2.56319
-```
-
-```r
 mean(onesample[which(onesample$interv == 0), ]$predicted_meanY)
-```
-
-```
 ## [1] 1.660267
-```
-
-```r
 mean(onesample[which(onesample$interv == 1), ]$predicted_meanY)
-```
-
-```
 ## [1] 5.178841
 ```
 
@@ -417,17 +357,14 @@ bootstrap <-
     ul
   ))
 bootstrap
-```
-
-```
 ##                         V1             mean                se               ll
-## 1                 Observed 2.56188497106099 0.317518332776674  1.9395604743875
-## 2             No Treatment 1.65212306626741 0.259683834235994 1.14315210379759
-## 3                Treatment 5.11474489549342 0.466874529590452 4.19968763219706
-## 4 Treatment - No Treatment 3.46262182922601 0.281775781326494 2.91035144611045
+## 1                 Observed 2.56188497106099 0.287366537445793 1.99865690730525
+## 2             No Treatment 1.65212306626741 0.310595714773128  1.0433666515596
+## 3                Treatment 5.11474489549342  0.59094691299898  3.9565102292403
+## 4 Treatment - No Treatment 3.46262182922601  0.66640737070485 2.15648738361247
 ##                 ul
-## 1 3.18420946773447
-## 2 2.16109402873723
-## 3 6.02980215878979
-## 4 4.01489221234157
+## 1 3.12511303481672
+## 2 2.26087948097522
+## 3 6.27297956174655
+## 4 4.76875627483955
 ```

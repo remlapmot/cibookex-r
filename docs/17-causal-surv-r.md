@@ -1,5 +1,7 @@
 # 17. Causal survival analysis{-}
 
+
+
 ## Program 17.1
 
 - Nonparametric estimation of survival curves
@@ -19,53 +21,27 @@ nhefs$survtime <- ifelse(nhefs$death==0, 120,
                          (nhefs$yrdth-83)*12+nhefs$modth) # yrdth ranges from 83 to 92
 
 table(nhefs$death, nhefs$qsmk)
-```
-
-```
 ##    
 ##       0   1
 ##   0 985 326
 ##   1 216 102
-```
-
-```r
 summary(nhefs[which(nhefs$death==1),]$survtime)
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    1.00   35.00   61.00   61.14   86.75  120.00
-```
 
-```r
 #install.packages("survival")
 #install.packages("ggplot2") # for plots
 #install.packages("survminer") # for plots
 library("survival")
 library("ggplot2")
 library("survminer")
-```
-
-```
 ## Loading required package: ggpubr
-```
-
-```
 ## 
 ## Attaching package: 'survminer'
-```
-
-```
 ## The following object is masked from 'package:survival':
 ## 
 ##     myeloma
-```
-
-```r
 survdiff(Surv(survtime, death) ~ qsmk, data=nhefs)
-```
-
-```
 ## Call:
 ## survdiff(formula = Surv(survtime, death) ~ qsmk, data = nhefs)
 ## 
@@ -74,9 +50,7 @@ survdiff(Surv(survtime, death) ~ qsmk, data=nhefs)
 ## qsmk=1  428      102     80.5      5.76      7.73
 ## 
 ##  Chisq= 7.7  on 1 degrees of freedom, p= 0.005
-```
 
-```r
 fit <- survfit(Surv(survtime, death) ~ qsmk, data=nhefs)
 ggsurvplot(fit, data = nhefs, xlab="Months of follow-up",
            ylab="Survival probability",
@@ -105,9 +79,6 @@ nhefs.surv$timesq <- nhefs.surv$time^2
 hazards.model <- glm(event==0 ~ qsmk + I(qsmk*time) + I(qsmk*timesq) + 
                        time + timesq, family=binomial(), data=nhefs.surv)
 summary(hazards.model)
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = event == 0 ~ qsmk + I(qsmk * time) + I(qsmk * timesq) + 
@@ -135,9 +106,7 @@ summary(hazards.model)
 ## AIC: 4643.3
 ## 
 ## Number of Fisher Scoring iterations: 9
-```
 
-```r
 # creation of dataset with all time points under each treatment level
 qsmk0 <- data.frame(cbind(seq(0, 119),0,(seq(0, 119))^2))
 qsmk1 <- data.frame(cbind(seq(0, 119),1,(seq(0, 119))^2))
@@ -195,14 +164,9 @@ nhefs$pn.qsmk <- predict(p.num, nhefs, type="response")
 nhefs$sw.a <- ifelse(nhefs$qsmk==1, nhefs$pn.qsmk/nhefs$pd.qsmk,
                      (1-nhefs$pn.qsmk)/(1-nhefs$pd.qsmk))
 summary(nhefs$sw.a)
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##  0.3312  0.8640  0.9504  0.9991  1.0755  4.2054
-```
 
-```r
 # creation of person-month data
 nhefs.ipw <- expandRows(nhefs, "survtime", drop=F) 
 nhefs.ipw$time <- sequence(rle(nhefs.ipw$seqn)$lengths)-1
@@ -214,17 +178,8 @@ nhefs.ipw$timesq <- nhefs.ipw$time^2
 ipw.model <- glm(event==0 ~ qsmk + I(qsmk*time) + I(qsmk*timesq) + 
                    time + timesq, family=binomial(), weight=sw.a,
                  data=nhefs.ipw)
-```
-
-```
 ## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-```
-
-```r
 summary(ipw.model)
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = event == 0 ~ qsmk + I(qsmk * time) + I(qsmk * timesq) + 
@@ -252,9 +207,7 @@ summary(ipw.model)
 ## AIC: 4633.5
 ## 
 ## Number of Fisher Scoring iterations: 9
-```
 
-```r
 # creation of survival curves
 ipw.qsmk0 <- data.frame(cbind(seq(0, 119),0,(seq(0, 119))^2))
 ipw.qsmk1 <- data.frame(cbind(seq(0, 119),1,(seq(0, 119))^2))
@@ -305,9 +258,6 @@ gf.model <- glm(event==0 ~ qsmk + I(qsmk*time) + I(qsmk*timesq)
                 + as.factor(active) + wt71 + I(wt71*wt71), 
                 data=nhefs.surv, family=binomial())
 summary(gf.model)
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = event == 0 ~ qsmk + I(qsmk * time) + I(qsmk * timesq) + 
@@ -358,9 +308,7 @@ summary(gf.model)
 ## AIC: 4235.7
 ## 
 ## Number of Fisher Scoring iterations: 10
-```
 
-```r
 # creation of dataset with all time points for 
 # each individual under each treatment level
 gf.qsmk0 <- expandRows(nhefs, count=120, count.is.col=F) 
@@ -376,26 +324,14 @@ gf.qsmk1$p.noevent1 <- predict(gf.model, gf.qsmk1, type="response")
 
 #install.packages("dplyr")
 library("dplyr")
-```
-
-```
 ## 
 ## Attaching package: 'dplyr'
-```
-
-```
 ## The following objects are masked from 'package:stats':
 ## 
 ##     filter, lag
-```
-
-```
 ## The following objects are masked from 'package:base':
 ## 
 ##     intersect, setdiff, setequal, union
-```
-
-```r
 gf.qsmk0.surv <- gf.qsmk0 %>% group_by(seqn) %>% mutate(surv0 = cumprod(p.noevent0))
 gf.qsmk1.surv <- gf.qsmk1 %>% group_by(seqn) %>% mutate(surv1 = cumprod(p.noevent1))
 
@@ -573,8 +509,5 @@ if (objfunc < 3.84){
   }
 }
 c(psi, psi_low, psi_high)
-```
-
-```
 ## [1] -0.05041591 -0.22312099  0.33312901
 ```

@@ -1,13 +1,12 @@
 # Session information: R {-}
 
+
+
 For reproducibility.
 
 ```r
 # install.packages("sessioninfo")
 sessioninfo::session_info()
-```
-
-```
 ## ─ Session info ───────────────────────────────────────────────────────────────
 ##  setting  value
 ##  version  R version 4.2.2 (2022-10-31)
@@ -18,7 +17,7 @@ sessioninfo::session_info()
 ##  collate  en_GB.UTF-8
 ##  ctype    en_GB.UTF-8
 ##  tz       Europe/London
-##  date     2022-11-01
+##  date     2022-11-02
 ##  pandoc   2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────

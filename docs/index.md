@@ -5,7 +5,7 @@ author:
  - R code by Joy Shi and Sean McGrath
  - Stata code by Eleanor Murray and Roger Logan
  - R Markdown code by Tom Palmer
-date: "01 November 2022"
+date: "02 November 2022"
 site: bookdown::bookdown_site
 documentclass: book
 #biblio-style: apalike
@@ -51,8 +51,7 @@ Either,
 It is easiest to open the repo in RStudio, as an RStudio project, by doubling click the `.Rproj` file. This makes sure that R's working directory is at the top level of the repo. If you don't want to open the repo as a project set the working directory to the top level of the repo directories using `setwd()`. Then run:
 
 ```r
-# install.packages('devtools') # uncomment if devtools not
-# installed
+# install.packages("devtools") # uncomment if devtools not installed
 devtools::install_dev_deps()
 ```
 
@@ -75,8 +74,8 @@ dataurls[[4]] <- paste0(stub, "1268/20/nhefs.csv")
 
 temp <- tempfile()
 for (i in 1:3) {
-    download.file(dataurls[[i]], temp)
-    unzip(temp, exdir = "data")
+  download.file(dataurls[[i]], temp)
+  unzip(temp, exdir = "data")
 }
 
 download.file(dataurls[[4]], here("data", "nhefs.csv"))

@@ -1,5 +1,7 @@
 # 16. Instrumental variables estimation{-}
 
+
+
 ## Program 16.1
 
 - Estimating the average causal using the standard IV estimator via the calculation of sample averages
@@ -19,33 +21,20 @@ nhefs <- read_excel(here("data", "NHEFS.xls"))
 # some preprocessing of the data
 nhefs$cens <- ifelse(is.na(nhefs$wt82), 1, 0)
 summary(nhefs$price82)
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
 ##   1.452   1.740   1.815   1.806   1.868   2.103      92
-```
 
-```r
 # for simplicity, ignore subjects with missing outcome or missing instrument
 nhefs.iv <- nhefs[which(!is.na(nhefs$wt82) & !is.na(nhefs$price82)),]
 nhefs.iv$highprice <- ifelse(nhefs.iv$price82>=1.5, 1, 0)
 
 table(nhefs.iv$highprice, nhefs.iv$qsmk)
-```
-
-```
 ##    
 ##        0    1
 ##   0   33    8
 ##   1 1065  370
-```
 
-```r
 t.test(wt82_71 ~ highprice, data=nhefs.iv)
-```
-
-```
 ## 
 ## 	Welch Two Sample t-test
 ## 
@@ -70,9 +59,6 @@ library(sem)
 
 model1 <- tsls(wt82_71 ~ qsmk, ~ highprice, data = nhefs.iv)
 summary(model1)
-```
-
-```
 ## 
 ##  2SLS Estimates
 ## 
@@ -89,13 +75,7 @@ summary(model1)
 ## qsmk         2.396270  19.840037 0.12078  0.90388
 ## 
 ## Residual standard error: 7.8561141 on 1474 degrees of freedom
-```
-
-```r
 confint(model1)  # note the wide confidence intervals
-```
-
-```
 ##                  2.5 %   97.5 %
 ## (Intercept)  -7.898445 12.03477
 ## qsmk        -36.489487 41.28203
@@ -118,9 +98,6 @@ library("geepack")
 g.est <- geeglm(highprice ~ Hpsi, data=nhefs.iv, id=seqn, family=binomial(),
                 corstr="independence")
 summary(g.est)
-```
-
-```
 ## 
 ## Call:
 ## geeglm(formula = highprice ~ Hpsi, family = binomial(), data = nhefs.iv, 
@@ -139,17 +116,12 @@ summary(g.est)
 ##             Estimate Std.err
 ## (Intercept)        1  0.7607
 ## Number of clusters:   1476  Maximum cluster size: 1
-```
 
-```r
 beta <- coef(g.est)
 SE <- coef(summary(g.est))[,2]
 lcl <- beta-qnorm(0.975)*SE 
 ucl <- beta+qnorm(0.975)*SE
 cbind(beta, lcl, ucl)
-```
-
-```
 ##                  beta      lcl     ucl
 ## (Intercept) 3.555e+00  3.23152 3.87917
 ## Hpsi        2.748e-07 -0.04456 0.04456
@@ -162,9 +134,6 @@ cbind(beta, lcl, ucl)
 
 ```r
 summary(tsls(wt82_71 ~ qsmk, ~ ifelse(price82 >= 1.6, 1, 0), data = nhefs.iv))
-```
-
-```
 ## 
 ##  2SLS Estimates
 ## 
@@ -181,13 +150,7 @@ summary(tsls(wt82_71 ~ qsmk, ~ ifelse(price82 >= 1.6, 1, 0), data = nhefs.iv))
 ## qsmk           41.28     164.95   0.250    0.802
 ## 
 ## Residual standard error: 18.6055 on 1474 degrees of freedom
-```
-
-```r
 summary(tsls(wt82_71 ~ qsmk, ~ ifelse(price82 >= 1.7, 1, 0), data = nhefs.iv))
-```
-
-```
 ## 
 ##  2SLS Estimates
 ## 
@@ -204,13 +167,7 @@ summary(tsls(wt82_71 ~ qsmk, ~ ifelse(price82 >= 1.7, 1, 0), data = nhefs.iv))
 ## qsmk          -40.91     187.74  -0.218    0.828
 ## 
 ## Residual standard error: 20.591 on 1474 degrees of freedom
-```
-
-```r
 summary(tsls(wt82_71 ~ qsmk, ~ ifelse(price82 >= 1.8, 1, 0), data = nhefs.iv))
-```
-
-```
 ## 
 ##  2SLS Estimates
 ## 
@@ -227,13 +184,7 @@ summary(tsls(wt82_71 ~ qsmk, ~ ifelse(price82 >= 1.8, 1, 0), data = nhefs.iv))
 ## qsmk         -21.103     28.428  -0.742    0.458
 ## 
 ## Residual standard error: 13.0188 on 1474 degrees of freedom
-```
-
-```r
 summary(tsls(wt82_71 ~ qsmk, ~ ifelse(price82 >= 1.9, 1, 0), data = nhefs.iv))
-```
-
-```
 ## 
 ##  2SLS Estimates
 ## 
@@ -264,9 +215,6 @@ model2 <- tsls(wt82_71 ~ qsmk + sex + race + age + smokeintensity + smokeyrs +
              ~ highprice + sex + race + age + smokeintensity + smokeyrs + as.factor(exercise) +
                as.factor(active) + wt71, data = nhefs.iv)
 summary(model2)
-```
-
-```
 ## 
 ##  2SLS Estimates
 ## 

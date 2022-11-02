@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2022-11-01" />
+<meta name="date" content="2022-11-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -310,37 +310,39 @@ div.csl-indent {
 <li>Estimating the average causal using the standard IV estimator via the calculation of sample averages</li>
 <li>Data from NHEFS</li>
 </ul>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="instrumental-variables-estimation.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="instrumental-variables-estimation.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;readxl&quot;) # install package if required</span></span>
-<span id="cb276-2"><a href="instrumental-variables-estimation.html#cb276-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;readxl&quot;</span>)</span>
-<span id="cb276-3"><a href="instrumental-variables-estimation.html#cb276-3" aria-hidden="true" tabindex="-1"></a>nhefs <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;NHEFS.xls&quot;</span>))</span>
-<span id="cb276-4"><a href="instrumental-variables-estimation.html#cb276-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb276-5"><a href="instrumental-variables-estimation.html#cb276-5" aria-hidden="true" tabindex="-1"></a><span class="co"># some preprocessing of the data</span></span>
-<span id="cb276-6"><a href="instrumental-variables-estimation.html#cb276-6" aria-hidden="true" tabindex="-1"></a>nhefs<span class="sc">$</span>cens <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(nhefs<span class="sc">$</span>wt82), <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb276-7"><a href="instrumental-variables-estimation.html#cb276-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhefs<span class="sc">$</span>price82)</span></code></pre></div>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
-##   1.452   1.740   1.815   1.806   1.868   2.103      92</code></pre>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="instrumental-variables-estimation.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for simplicity, ignore subjects with missing outcome or missing instrument</span></span>
-<span id="cb278-2"><a href="instrumental-variables-estimation.html#cb278-2" aria-hidden="true" tabindex="-1"></a>nhefs.iv <span class="ot">&lt;-</span> nhefs[<span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(nhefs<span class="sc">$</span>wt82) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(nhefs<span class="sc">$</span>price82)),]</span>
-<span id="cb278-3"><a href="instrumental-variables-estimation.html#cb278-3" aria-hidden="true" tabindex="-1"></a>nhefs.iv<span class="sc">$</span>highprice <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(nhefs.iv<span class="sc">$</span>price82<span class="sc">&gt;=</span><span class="fl">1.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb278-4"><a href="instrumental-variables-estimation.html#cb278-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb278-5"><a href="instrumental-variables-estimation.html#cb278-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(nhefs.iv<span class="sc">$</span>highprice, nhefs.iv<span class="sc">$</span>qsmk)</span></code></pre></div>
-<pre><code>##    
-##        0    1
-##   0   33    8
-##   1 1065  370</code></pre>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="instrumental-variables-estimation.html#cb280-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(wt82_71 <span class="sc">~</span> highprice, <span class="at">data=</span>nhefs.iv)</span></code></pre></div>
-<pre><code>## 
-##  Welch Two Sample t-test
-## 
-## data:  wt82_71 by highprice
-## t = -0.10179, df = 41.644, p-value = 0.9194
-## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0
-## 95 percent confidence interval:
-##  -3.130588  2.830010
-## sample estimates:
-## mean in group 0 mean in group 1 
-##        2.535729        2.686018</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="instrumental-variables-estimation.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="instrumental-variables-estimation.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;readxl&quot;) # install package if required</span></span>
+<span id="cb38-2"><a href="instrumental-variables-estimation.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;readxl&quot;</span>)</span>
+<span id="cb38-3"><a href="instrumental-variables-estimation.html#cb38-3" aria-hidden="true" tabindex="-1"></a>nhefs <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;NHEFS.xls&quot;</span>))</span>
+<span id="cb38-4"><a href="instrumental-variables-estimation.html#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="instrumental-variables-estimation.html#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="co"># some preprocessing of the data</span></span>
+<span id="cb38-6"><a href="instrumental-variables-estimation.html#cb38-6" aria-hidden="true" tabindex="-1"></a>nhefs<span class="sc">$</span>cens <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(nhefs<span class="sc">$</span>wt82), <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb38-7"><a href="instrumental-variables-estimation.html#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nhefs<span class="sc">$</span>price82)</span>
+<span id="cb38-8"><a href="instrumental-variables-estimation.html#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="do">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s </span></span>
+<span id="cb38-9"><a href="instrumental-variables-estimation.html#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="do">##   1.452   1.740   1.815   1.806   1.868   2.103      92</span></span>
+<span id="cb38-10"><a href="instrumental-variables-estimation.html#cb38-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-11"><a href="instrumental-variables-estimation.html#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="co"># for simplicity, ignore subjects with missing outcome or missing instrument</span></span>
+<span id="cb38-12"><a href="instrumental-variables-estimation.html#cb38-12" aria-hidden="true" tabindex="-1"></a>nhefs.iv <span class="ot">&lt;-</span> nhefs[<span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(nhefs<span class="sc">$</span>wt82) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(nhefs<span class="sc">$</span>price82)),]</span>
+<span id="cb38-13"><a href="instrumental-variables-estimation.html#cb38-13" aria-hidden="true" tabindex="-1"></a>nhefs.iv<span class="sc">$</span>highprice <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(nhefs.iv<span class="sc">$</span>price82<span class="sc">&gt;=</span><span class="fl">1.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb38-14"><a href="instrumental-variables-estimation.html#cb38-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-15"><a href="instrumental-variables-estimation.html#cb38-15" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(nhefs.iv<span class="sc">$</span>highprice, nhefs.iv<span class="sc">$</span>qsmk)</span>
+<span id="cb38-16"><a href="instrumental-variables-estimation.html#cb38-16" aria-hidden="true" tabindex="-1"></a><span class="do">##    </span></span>
+<span id="cb38-17"><a href="instrumental-variables-estimation.html#cb38-17" aria-hidden="true" tabindex="-1"></a><span class="do">##        0    1</span></span>
+<span id="cb38-18"><a href="instrumental-variables-estimation.html#cb38-18" aria-hidden="true" tabindex="-1"></a><span class="do">##   0   33    8</span></span>
+<span id="cb38-19"><a href="instrumental-variables-estimation.html#cb38-19" aria-hidden="true" tabindex="-1"></a><span class="do">##   1 1065  370</span></span>
+<span id="cb38-20"><a href="instrumental-variables-estimation.html#cb38-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-21"><a href="instrumental-variables-estimation.html#cb38-21" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(wt82_71 <span class="sc">~</span> highprice, <span class="at">data=</span>nhefs.iv)</span>
+<span id="cb38-22"><a href="instrumental-variables-estimation.html#cb38-22" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb38-23"><a href="instrumental-variables-estimation.html#cb38-23" aria-hidden="true" tabindex="-1"></a><span class="do">##  Welch Two Sample t-test</span></span>
+<span id="cb38-24"><a href="instrumental-variables-estimation.html#cb38-24" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb38-25"><a href="instrumental-variables-estimation.html#cb38-25" aria-hidden="true" tabindex="-1"></a><span class="do">## data:  wt82_71 by highprice</span></span>
+<span id="cb38-26"><a href="instrumental-variables-estimation.html#cb38-26" aria-hidden="true" tabindex="-1"></a><span class="do">## t = -0.10179, df = 41.644, p-value = 0.9194</span></span>
+<span id="cb38-27"><a href="instrumental-variables-estimation.html#cb38-27" aria-hidden="true" tabindex="-1"></a><span class="do">## alternative hypothesis: true difference in means between group 0 and group 1 is not equal to 0</span></span>
+<span id="cb38-28"><a href="instrumental-variables-estimation.html#cb38-28" aria-hidden="true" tabindex="-1"></a><span class="do">## 95 percent confidence interval:</span></span>
+<span id="cb38-29"><a href="instrumental-variables-estimation.html#cb38-29" aria-hidden="true" tabindex="-1"></a><span class="do">##  -3.130588  2.830010</span></span>
+<span id="cb38-30"><a href="instrumental-variables-estimation.html#cb38-30" aria-hidden="true" tabindex="-1"></a><span class="do">## sample estimates:</span></span>
+<span id="cb38-31"><a href="instrumental-variables-estimation.html#cb38-31" aria-hidden="true" tabindex="-1"></a><span class="do">## mean in group 0 mean in group 1 </span></span>
+<span id="cb38-32"><a href="instrumental-variables-estimation.html#cb38-32" aria-hidden="true" tabindex="-1"></a><span class="do">##        2.535729        2.686018</span></span></code></pre></div>
 </div>
 <div id="program-16.2" class="section level2 hasAnchor">
 <h2>Program 16.2<a href="instrumental-variables-estimation.html#program-16.2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -348,31 +350,31 @@ div.csl-indent {
 <li>Estimating the average causal effect using the standard IV estimator via two-stage-least-squares regression</li>
 <li>Data from NHEFS</li>
 </ul>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="instrumental-variables-estimation.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages (&quot;sem&quot;) # install package if required</span></span>
-<span id="cb282-2"><a href="instrumental-variables-estimation.html#cb282-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sem) </span>
-<span id="cb282-3"><a href="instrumental-variables-estimation.html#cb282-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb282-4"><a href="instrumental-variables-estimation.html#cb282-4" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">tsls</span>(wt82_71 <span class="sc">~</span> qsmk, <span class="sc">~</span> highprice, <span class="at">data =</span> nhefs.iv)</span>
-<span id="cb282-5"><a href="instrumental-variables-estimation.html#cb282-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code></pre></div>
-<pre><code>## 
-##  2SLS Estimates
-## 
-## Model Formula: wt82_71 ~ qsmk
-## 
-## Instruments: ~highprice
-## 
-## Residuals:
-##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-## -43.34863  -4.00206  -0.02712   0.00000   4.17040  46.47022 
-## 
-##              Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)  2.068164   5.085098 0.40671  0.68428
-## qsmk         2.396270  19.840037 0.12078  0.90388
-## 
-## Residual standard error: 7.8561141 on 1474 degrees of freedom</code></pre>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="instrumental-variables-estimation.html#cb284-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(model1)  <span class="co"># note the wide confidence intervals</span></span></code></pre></div>
-<pre><code>##                  2.5 %   97.5 %
-## (Intercept)  -7.898445 12.03477
-## qsmk        -36.489487 41.28203</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="instrumental-variables-estimation.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages (&quot;sem&quot;) # install package if required</span></span>
+<span id="cb39-2"><a href="instrumental-variables-estimation.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sem) </span>
+<span id="cb39-3"><a href="instrumental-variables-estimation.html#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="instrumental-variables-estimation.html#cb39-4" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">tsls</span>(wt82_71 <span class="sc">~</span> qsmk, <span class="sc">~</span> highprice, <span class="at">data =</span> nhefs.iv)</span>
+<span id="cb39-5"><a href="instrumental-variables-estimation.html#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span>
+<span id="cb39-6"><a href="instrumental-variables-estimation.html#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb39-7"><a href="instrumental-variables-estimation.html#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  2SLS Estimates</span></span>
+<span id="cb39-8"><a href="instrumental-variables-estimation.html#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb39-9"><a href="instrumental-variables-estimation.html#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Model Formula: wt82_71 ~ qsmk</span></span>
+<span id="cb39-10"><a href="instrumental-variables-estimation.html#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb39-11"><a href="instrumental-variables-estimation.html#cb39-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Instruments: ~highprice</span></span>
+<span id="cb39-12"><a href="instrumental-variables-estimation.html#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb39-13"><a href="instrumental-variables-estimation.html#cb39-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Residuals:</span></span>
+<span id="cb39-14"><a href="instrumental-variables-estimation.html#cb39-14" aria-hidden="true" tabindex="-1"></a><span class="do">##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. </span></span>
+<span id="cb39-15"><a href="instrumental-variables-estimation.html#cb39-15" aria-hidden="true" tabindex="-1"></a><span class="do">## -43.34863  -4.00206  -0.02712   0.00000   4.17040  46.47022 </span></span>
+<span id="cb39-16"><a href="instrumental-variables-estimation.html#cb39-16" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb39-17"><a href="instrumental-variables-estimation.html#cb39-17" aria-hidden="true" tabindex="-1"></a><span class="do">##              Estimate Std. Error t value Pr(&gt;|t|)</span></span>
+<span id="cb39-18"><a href="instrumental-variables-estimation.html#cb39-18" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)  2.068164   5.085098 0.40671  0.68428</span></span>
+<span id="cb39-19"><a href="instrumental-variables-estimation.html#cb39-19" aria-hidden="true" tabindex="-1"></a><span class="do">## qsmk         2.396270  19.840037 0.12078  0.90388</span></span>
+<span id="cb39-20"><a href="instrumental-variables-estimation.html#cb39-20" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb39-21"><a href="instrumental-variables-estimation.html#cb39-21" aria-hidden="true" tabindex="-1"></a><span class="do">## Residual standard error: 7.8561141 on 1474 degrees of freedom</span></span>
+<span id="cb39-22"><a href="instrumental-variables-estimation.html#cb39-22" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(model1)  <span class="co"># note the wide confidence intervals</span></span>
+<span id="cb39-23"><a href="instrumental-variables-estimation.html#cb39-23" aria-hidden="true" tabindex="-1"></a><span class="do">##                  2.5 %   97.5 %</span></span>
+<span id="cb39-24"><a href="instrumental-variables-estimation.html#cb39-24" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)  -7.898445 12.03477</span></span>
+<span id="cb39-25"><a href="instrumental-variables-estimation.html#cb39-25" aria-hidden="true" tabindex="-1"></a><span class="do">## qsmk        -36.489487 41.28203</span></span></code></pre></div>
 </div>
 <div id="program-16.3" class="section level2 hasAnchor">
 <h2>Program 16.3<a href="instrumental-variables-estimation.html#program-16.3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -382,40 +384,41 @@ div.csl-indent {
 <li>G-estimation: Checking one possible value of psi</li>
 <li>See Chapter 14 for program that checks several values and computes 95% confidence intervals</li>
 </ul>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="instrumental-variables-estimation.html#cb286-1" aria-hidden="true" tabindex="-1"></a>nhefs.iv<span class="sc">$</span>psi <span class="ot">&lt;-</span> <span class="fl">2.396</span></span>
-<span id="cb286-2"><a href="instrumental-variables-estimation.html#cb286-2" aria-hidden="true" tabindex="-1"></a>nhefs.iv<span class="sc">$</span>Hpsi <span class="ot">&lt;-</span> nhefs.iv<span class="sc">$</span>wt82_71<span class="sc">-</span>nhefs.iv<span class="sc">$</span>psi<span class="sc">*</span>nhefs.iv<span class="sc">$</span>qsmk</span>
-<span id="cb286-3"><a href="instrumental-variables-estimation.html#cb286-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb286-4"><a href="instrumental-variables-estimation.html#cb286-4" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;geepack&quot;) # install package if required</span></span>
-<span id="cb286-5"><a href="instrumental-variables-estimation.html#cb286-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;geepack&quot;</span>)</span>
-<span id="cb286-6"><a href="instrumental-variables-estimation.html#cb286-6" aria-hidden="true" tabindex="-1"></a>g.est <span class="ot">&lt;-</span> <span class="fu">geeglm</span>(highprice <span class="sc">~</span> Hpsi, <span class="at">data=</span>nhefs.iv, <span class="at">id=</span>seqn, <span class="at">family=</span><span class="fu">binomial</span>(),</span>
-<span id="cb286-7"><a href="instrumental-variables-estimation.html#cb286-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">corstr=</span><span class="st">&quot;independence&quot;</span>)</span>
-<span id="cb286-8"><a href="instrumental-variables-estimation.html#cb286-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(g.est)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## geeglm(formula = highprice ~ Hpsi, family = binomial(), data = nhefs.iv, 
-##     id = seqn, corstr = &quot;independence&quot;)
-## 
-##  Coefficients:
-##              Estimate   Std.err  Wald Pr(&gt;|W|)    
-## (Intercept) 3.555e+00 1.652e-01 463.1   &lt;2e-16 ***
-## Hpsi        2.748e-07 2.273e-02   0.0        1    
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Correlation structure = independence 
-## Estimated Scale Parameters:
-## 
-##             Estimate Std.err
-## (Intercept)        1  0.7607
-## Number of clusters:   1476  Maximum cluster size: 1</code></pre>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="instrumental-variables-estimation.html#cb288-1" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">coef</span>(g.est)</span>
-<span id="cb288-2"><a href="instrumental-variables-estimation.html#cb288-2" aria-hidden="true" tabindex="-1"></a>SE <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(g.est))[,<span class="dv">2</span>]</span>
-<span id="cb288-3"><a href="instrumental-variables-estimation.html#cb288-3" aria-hidden="true" tabindex="-1"></a>lcl <span class="ot">&lt;-</span> beta<span class="sc">-</span><span class="fu">qnorm</span>(<span class="fl">0.975</span>)<span class="sc">*</span>SE </span>
-<span id="cb288-4"><a href="instrumental-variables-estimation.html#cb288-4" aria-hidden="true" tabindex="-1"></a>ucl <span class="ot">&lt;-</span> beta<span class="sc">+</span><span class="fu">qnorm</span>(<span class="fl">0.975</span>)<span class="sc">*</span>SE</span>
-<span id="cb288-5"><a href="instrumental-variables-estimation.html#cb288-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(beta, lcl, ucl)</span></code></pre></div>
-<pre><code>##                  beta      lcl     ucl
-## (Intercept) 3.555e+00  3.23152 3.87917
-## Hpsi        2.748e-07 -0.04456 0.04456</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="instrumental-variables-estimation.html#cb40-1" aria-hidden="true" tabindex="-1"></a>nhefs.iv<span class="sc">$</span>psi <span class="ot">&lt;-</span> <span class="fl">2.396</span></span>
+<span id="cb40-2"><a href="instrumental-variables-estimation.html#cb40-2" aria-hidden="true" tabindex="-1"></a>nhefs.iv<span class="sc">$</span>Hpsi <span class="ot">&lt;-</span> nhefs.iv<span class="sc">$</span>wt82_71<span class="sc">-</span>nhefs.iv<span class="sc">$</span>psi<span class="sc">*</span>nhefs.iv<span class="sc">$</span>qsmk</span>
+<span id="cb40-3"><a href="instrumental-variables-estimation.html#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="instrumental-variables-estimation.html#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;geepack&quot;) # install package if required</span></span>
+<span id="cb40-5"><a href="instrumental-variables-estimation.html#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;geepack&quot;</span>)</span>
+<span id="cb40-6"><a href="instrumental-variables-estimation.html#cb40-6" aria-hidden="true" tabindex="-1"></a>g.est <span class="ot">&lt;-</span> <span class="fu">geeglm</span>(highprice <span class="sc">~</span> Hpsi, <span class="at">data=</span>nhefs.iv, <span class="at">id=</span>seqn, <span class="at">family=</span><span class="fu">binomial</span>(),</span>
+<span id="cb40-7"><a href="instrumental-variables-estimation.html#cb40-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">corstr=</span><span class="st">&quot;independence&quot;</span>)</span>
+<span id="cb40-8"><a href="instrumental-variables-estimation.html#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(g.est)</span>
+<span id="cb40-9"><a href="instrumental-variables-estimation.html#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb40-10"><a href="instrumental-variables-estimation.html#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Call:</span></span>
+<span id="cb40-11"><a href="instrumental-variables-estimation.html#cb40-11" aria-hidden="true" tabindex="-1"></a><span class="do">## geeglm(formula = highprice ~ Hpsi, family = binomial(), data = nhefs.iv, </span></span>
+<span id="cb40-12"><a href="instrumental-variables-estimation.html#cb40-12" aria-hidden="true" tabindex="-1"></a><span class="do">##     id = seqn, corstr = &quot;independence&quot;)</span></span>
+<span id="cb40-13"><a href="instrumental-variables-estimation.html#cb40-13" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb40-14"><a href="instrumental-variables-estimation.html#cb40-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  Coefficients:</span></span>
+<span id="cb40-15"><a href="instrumental-variables-estimation.html#cb40-15" aria-hidden="true" tabindex="-1"></a><span class="do">##              Estimate   Std.err  Wald Pr(&gt;|W|)    </span></span>
+<span id="cb40-16"><a href="instrumental-variables-estimation.html#cb40-16" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept) 3.555e+00 1.652e-01 463.1   &lt;2e-16 ***</span></span>
+<span id="cb40-17"><a href="instrumental-variables-estimation.html#cb40-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Hpsi        2.748e-07 2.273e-02   0.0        1    </span></span>
+<span id="cb40-18"><a href="instrumental-variables-estimation.html#cb40-18" aria-hidden="true" tabindex="-1"></a><span class="do">## ---</span></span>
+<span id="cb40-19"><a href="instrumental-variables-estimation.html#cb40-19" aria-hidden="true" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb40-20"><a href="instrumental-variables-estimation.html#cb40-20" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb40-21"><a href="instrumental-variables-estimation.html#cb40-21" aria-hidden="true" tabindex="-1"></a><span class="do">## Correlation structure = independence </span></span>
+<span id="cb40-22"><a href="instrumental-variables-estimation.html#cb40-22" aria-hidden="true" tabindex="-1"></a><span class="do">## Estimated Scale Parameters:</span></span>
+<span id="cb40-23"><a href="instrumental-variables-estimation.html#cb40-23" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb40-24"><a href="instrumental-variables-estimation.html#cb40-24" aria-hidden="true" tabindex="-1"></a><span class="do">##             Estimate Std.err</span></span>
+<span id="cb40-25"><a href="instrumental-variables-estimation.html#cb40-25" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)        1  0.7607</span></span>
+<span id="cb40-26"><a href="instrumental-variables-estimation.html#cb40-26" aria-hidden="true" tabindex="-1"></a><span class="do">## Number of clusters:   1476  Maximum cluster size: 1</span></span>
+<span id="cb40-27"><a href="instrumental-variables-estimation.html#cb40-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-28"><a href="instrumental-variables-estimation.html#cb40-28" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">coef</span>(g.est)</span>
+<span id="cb40-29"><a href="instrumental-variables-estimation.html#cb40-29" aria-hidden="true" tabindex="-1"></a>SE <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(g.est))[,<span class="dv">2</span>]</span>
+<span id="cb40-30"><a href="instrumental-variables-estimation.html#cb40-30" aria-hidden="true" tabindex="-1"></a>lcl <span class="ot">&lt;-</span> beta<span class="sc">-</span><span class="fu">qnorm</span>(<span class="fl">0.975</span>)<span class="sc">*</span>SE </span>
+<span id="cb40-31"><a href="instrumental-variables-estimation.html#cb40-31" aria-hidden="true" tabindex="-1"></a>ucl <span class="ot">&lt;-</span> beta<span class="sc">+</span><span class="fu">qnorm</span>(<span class="fl">0.975</span>)<span class="sc">*</span>SE</span>
+<span id="cb40-32"><a href="instrumental-variables-estimation.html#cb40-32" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(beta, lcl, ucl)</span>
+<span id="cb40-33"><a href="instrumental-variables-estimation.html#cb40-33" aria-hidden="true" tabindex="-1"></a><span class="do">##                  beta      lcl     ucl</span></span>
+<span id="cb40-34"><a href="instrumental-variables-estimation.html#cb40-34" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept) 3.555e+00  3.23152 3.87917</span></span>
+<span id="cb40-35"><a href="instrumental-variables-estimation.html#cb40-35" aria-hidden="true" tabindex="-1"></a><span class="do">## Hpsi        2.748e-07 -0.04456 0.04456</span></span></code></pre></div>
 </div>
 <div id="program-16.4" class="section level2 hasAnchor">
 <h2>Program 16.4<a href="instrumental-variables-estimation.html#program-16.4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -423,74 +426,74 @@ div.csl-indent {
 <li>Estimating the average causal using the standard IV estimator with altnerative proposed instruments</li>
 <li>Data from NHEFS</li>
 </ul>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="instrumental-variables-estimation.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">tsls</span>(wt82_71 <span class="sc">~</span> qsmk, <span class="sc">~</span> <span class="fu">ifelse</span>(price82 <span class="sc">&gt;=</span> <span class="fl">1.6</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">data =</span> nhefs.iv))</span></code></pre></div>
-<pre><code>## 
-##  2SLS Estimates
-## 
-## Model Formula: wt82_71 ~ qsmk
-## 
-## Instruments: ~ifelse(price82 &gt;= 1.6, 1, 0)
-## 
-## Residuals:
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   -55.6   -13.5     7.6     0.0    12.5    56.4 
-## 
-##             Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)    -7.89      42.25  -0.187    0.852
-## qsmk           41.28     164.95   0.250    0.802
-## 
-## Residual standard error: 18.6055 on 1474 degrees of freedom</code></pre>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="instrumental-variables-estimation.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">tsls</span>(wt82_71 <span class="sc">~</span> qsmk, <span class="sc">~</span> <span class="fu">ifelse</span>(price82 <span class="sc">&gt;=</span> <span class="fl">1.7</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">data =</span> nhefs.iv))</span></code></pre></div>
-<pre><code>## 
-##  2SLS Estimates
-## 
-## Model Formula: wt82_71 ~ qsmk
-## 
-## Instruments: ~ifelse(price82 &gt;= 1.7, 1, 0)
-## 
-## Residuals:
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   -54.4   -13.4    -8.4     0.0    18.1    75.3 
-## 
-##             Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)    13.16      48.08   0.274    0.784
-## qsmk          -40.91     187.74  -0.218    0.828
-## 
-## Residual standard error: 20.591 on 1474 degrees of freedom</code></pre>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="instrumental-variables-estimation.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">tsls</span>(wt82_71 <span class="sc">~</span> qsmk, <span class="sc">~</span> <span class="fu">ifelse</span>(price82 <span class="sc">&gt;=</span> <span class="fl">1.8</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">data =</span> nhefs.iv))</span></code></pre></div>
-<pre><code>## 
-##  2SLS Estimates
-## 
-## Model Formula: wt82_71 ~ qsmk
-## 
-## Instruments: ~ifelse(price82 &gt;= 1.8, 1, 0)
-## 
-## Residuals:
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  -49.37   -8.31   -3.44    0.00    7.27   60.53 
-## 
-##             Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)    8.086      7.288   1.110    0.267
-## qsmk         -21.103     28.428  -0.742    0.458
-## 
-## Residual standard error: 13.0188 on 1474 degrees of freedom</code></pre>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="instrumental-variables-estimation.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">tsls</span>(wt82_71 <span class="sc">~</span> qsmk, <span class="sc">~</span> <span class="fu">ifelse</span>(price82 <span class="sc">&gt;=</span> <span class="fl">1.9</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">data =</span> nhefs.iv))</span></code></pre></div>
-<pre><code>## 
-##  2SLS Estimates
-## 
-## Model Formula: wt82_71 ~ qsmk
-## 
-## Instruments: ~ifelse(price82 &gt;= 1.9, 1, 0)
-## 
-## Residuals:
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  -47.24   -6.33   -1.43    0.00    5.52   54.36 
-## 
-##             Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)    5.963      6.067   0.983    0.326
-## qsmk         -12.811     23.667  -0.541    0.588
-## 
-## Residual standard error: 10.3637 on 1474 degrees of freedom</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="instrumental-variables-estimation.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">tsls</span>(wt82_71 <span class="sc">~</span> qsmk, <span class="sc">~</span> <span class="fu">ifelse</span>(price82 <span class="sc">&gt;=</span> <span class="fl">1.6</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">data =</span> nhefs.iv))</span>
+<span id="cb41-2"><a href="instrumental-variables-estimation.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-3"><a href="instrumental-variables-estimation.html#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  2SLS Estimates</span></span>
+<span id="cb41-4"><a href="instrumental-variables-estimation.html#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-5"><a href="instrumental-variables-estimation.html#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Model Formula: wt82_71 ~ qsmk</span></span>
+<span id="cb41-6"><a href="instrumental-variables-estimation.html#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-7"><a href="instrumental-variables-estimation.html#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Instruments: ~ifelse(price82 &gt;= 1.6, 1, 0)</span></span>
+<span id="cb41-8"><a href="instrumental-variables-estimation.html#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-9"><a href="instrumental-variables-estimation.html#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Residuals:</span></span>
+<span id="cb41-10"><a href="instrumental-variables-estimation.html#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="do">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb41-11"><a href="instrumental-variables-estimation.html#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="do">##   -55.6   -13.5     7.6     0.0    12.5    56.4 </span></span>
+<span id="cb41-12"><a href="instrumental-variables-estimation.html#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-13"><a href="instrumental-variables-estimation.html#cb41-13" aria-hidden="true" tabindex="-1"></a><span class="do">##             Estimate Std. Error t value Pr(&gt;|t|)</span></span>
+<span id="cb41-14"><a href="instrumental-variables-estimation.html#cb41-14" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)    -7.89      42.25  -0.187    0.852</span></span>
+<span id="cb41-15"><a href="instrumental-variables-estimation.html#cb41-15" aria-hidden="true" tabindex="-1"></a><span class="do">## qsmk           41.28     164.95   0.250    0.802</span></span>
+<span id="cb41-16"><a href="instrumental-variables-estimation.html#cb41-16" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-17"><a href="instrumental-variables-estimation.html#cb41-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Residual standard error: 18.6055 on 1474 degrees of freedom</span></span>
+<span id="cb41-18"><a href="instrumental-variables-estimation.html#cb41-18" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">tsls</span>(wt82_71 <span class="sc">~</span> qsmk, <span class="sc">~</span> <span class="fu">ifelse</span>(price82 <span class="sc">&gt;=</span> <span class="fl">1.7</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">data =</span> nhefs.iv))</span>
+<span id="cb41-19"><a href="instrumental-variables-estimation.html#cb41-19" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-20"><a href="instrumental-variables-estimation.html#cb41-20" aria-hidden="true" tabindex="-1"></a><span class="do">##  2SLS Estimates</span></span>
+<span id="cb41-21"><a href="instrumental-variables-estimation.html#cb41-21" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-22"><a href="instrumental-variables-estimation.html#cb41-22" aria-hidden="true" tabindex="-1"></a><span class="do">## Model Formula: wt82_71 ~ qsmk</span></span>
+<span id="cb41-23"><a href="instrumental-variables-estimation.html#cb41-23" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-24"><a href="instrumental-variables-estimation.html#cb41-24" aria-hidden="true" tabindex="-1"></a><span class="do">## Instruments: ~ifelse(price82 &gt;= 1.7, 1, 0)</span></span>
+<span id="cb41-25"><a href="instrumental-variables-estimation.html#cb41-25" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-26"><a href="instrumental-variables-estimation.html#cb41-26" aria-hidden="true" tabindex="-1"></a><span class="do">## Residuals:</span></span>
+<span id="cb41-27"><a href="instrumental-variables-estimation.html#cb41-27" aria-hidden="true" tabindex="-1"></a><span class="do">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb41-28"><a href="instrumental-variables-estimation.html#cb41-28" aria-hidden="true" tabindex="-1"></a><span class="do">##   -54.4   -13.4    -8.4     0.0    18.1    75.3 </span></span>
+<span id="cb41-29"><a href="instrumental-variables-estimation.html#cb41-29" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-30"><a href="instrumental-variables-estimation.html#cb41-30" aria-hidden="true" tabindex="-1"></a><span class="do">##             Estimate Std. Error t value Pr(&gt;|t|)</span></span>
+<span id="cb41-31"><a href="instrumental-variables-estimation.html#cb41-31" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)    13.16      48.08   0.274    0.784</span></span>
+<span id="cb41-32"><a href="instrumental-variables-estimation.html#cb41-32" aria-hidden="true" tabindex="-1"></a><span class="do">## qsmk          -40.91     187.74  -0.218    0.828</span></span>
+<span id="cb41-33"><a href="instrumental-variables-estimation.html#cb41-33" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-34"><a href="instrumental-variables-estimation.html#cb41-34" aria-hidden="true" tabindex="-1"></a><span class="do">## Residual standard error: 20.591 on 1474 degrees of freedom</span></span>
+<span id="cb41-35"><a href="instrumental-variables-estimation.html#cb41-35" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">tsls</span>(wt82_71 <span class="sc">~</span> qsmk, <span class="sc">~</span> <span class="fu">ifelse</span>(price82 <span class="sc">&gt;=</span> <span class="fl">1.8</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">data =</span> nhefs.iv))</span>
+<span id="cb41-36"><a href="instrumental-variables-estimation.html#cb41-36" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-37"><a href="instrumental-variables-estimation.html#cb41-37" aria-hidden="true" tabindex="-1"></a><span class="do">##  2SLS Estimates</span></span>
+<span id="cb41-38"><a href="instrumental-variables-estimation.html#cb41-38" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-39"><a href="instrumental-variables-estimation.html#cb41-39" aria-hidden="true" tabindex="-1"></a><span class="do">## Model Formula: wt82_71 ~ qsmk</span></span>
+<span id="cb41-40"><a href="instrumental-variables-estimation.html#cb41-40" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-41"><a href="instrumental-variables-estimation.html#cb41-41" aria-hidden="true" tabindex="-1"></a><span class="do">## Instruments: ~ifelse(price82 &gt;= 1.8, 1, 0)</span></span>
+<span id="cb41-42"><a href="instrumental-variables-estimation.html#cb41-42" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-43"><a href="instrumental-variables-estimation.html#cb41-43" aria-hidden="true" tabindex="-1"></a><span class="do">## Residuals:</span></span>
+<span id="cb41-44"><a href="instrumental-variables-estimation.html#cb41-44" aria-hidden="true" tabindex="-1"></a><span class="do">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb41-45"><a href="instrumental-variables-estimation.html#cb41-45" aria-hidden="true" tabindex="-1"></a><span class="do">##  -49.37   -8.31   -3.44    0.00    7.27   60.53 </span></span>
+<span id="cb41-46"><a href="instrumental-variables-estimation.html#cb41-46" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-47"><a href="instrumental-variables-estimation.html#cb41-47" aria-hidden="true" tabindex="-1"></a><span class="do">##             Estimate Std. Error t value Pr(&gt;|t|)</span></span>
+<span id="cb41-48"><a href="instrumental-variables-estimation.html#cb41-48" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)    8.086      7.288   1.110    0.267</span></span>
+<span id="cb41-49"><a href="instrumental-variables-estimation.html#cb41-49" aria-hidden="true" tabindex="-1"></a><span class="do">## qsmk         -21.103     28.428  -0.742    0.458</span></span>
+<span id="cb41-50"><a href="instrumental-variables-estimation.html#cb41-50" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-51"><a href="instrumental-variables-estimation.html#cb41-51" aria-hidden="true" tabindex="-1"></a><span class="do">## Residual standard error: 13.0188 on 1474 degrees of freedom</span></span>
+<span id="cb41-52"><a href="instrumental-variables-estimation.html#cb41-52" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">tsls</span>(wt82_71 <span class="sc">~</span> qsmk, <span class="sc">~</span> <span class="fu">ifelse</span>(price82 <span class="sc">&gt;=</span> <span class="fl">1.9</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">data =</span> nhefs.iv))</span>
+<span id="cb41-53"><a href="instrumental-variables-estimation.html#cb41-53" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-54"><a href="instrumental-variables-estimation.html#cb41-54" aria-hidden="true" tabindex="-1"></a><span class="do">##  2SLS Estimates</span></span>
+<span id="cb41-55"><a href="instrumental-variables-estimation.html#cb41-55" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-56"><a href="instrumental-variables-estimation.html#cb41-56" aria-hidden="true" tabindex="-1"></a><span class="do">## Model Formula: wt82_71 ~ qsmk</span></span>
+<span id="cb41-57"><a href="instrumental-variables-estimation.html#cb41-57" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-58"><a href="instrumental-variables-estimation.html#cb41-58" aria-hidden="true" tabindex="-1"></a><span class="do">## Instruments: ~ifelse(price82 &gt;= 1.9, 1, 0)</span></span>
+<span id="cb41-59"><a href="instrumental-variables-estimation.html#cb41-59" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-60"><a href="instrumental-variables-estimation.html#cb41-60" aria-hidden="true" tabindex="-1"></a><span class="do">## Residuals:</span></span>
+<span id="cb41-61"><a href="instrumental-variables-estimation.html#cb41-61" aria-hidden="true" tabindex="-1"></a><span class="do">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb41-62"><a href="instrumental-variables-estimation.html#cb41-62" aria-hidden="true" tabindex="-1"></a><span class="do">##  -47.24   -6.33   -1.43    0.00    5.52   54.36 </span></span>
+<span id="cb41-63"><a href="instrumental-variables-estimation.html#cb41-63" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-64"><a href="instrumental-variables-estimation.html#cb41-64" aria-hidden="true" tabindex="-1"></a><span class="do">##             Estimate Std. Error t value Pr(&gt;|t|)</span></span>
+<span id="cb41-65"><a href="instrumental-variables-estimation.html#cb41-65" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)    5.963      6.067   0.983    0.326</span></span>
+<span id="cb41-66"><a href="instrumental-variables-estimation.html#cb41-66" aria-hidden="true" tabindex="-1"></a><span class="do">## qsmk         -12.811     23.667  -0.541    0.588</span></span>
+<span id="cb41-67"><a href="instrumental-variables-estimation.html#cb41-67" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb41-68"><a href="instrumental-variables-estimation.html#cb41-68" aria-hidden="true" tabindex="-1"></a><span class="do">## Residual standard error: 10.3637 on 1474 degrees of freedom</span></span></code></pre></div>
 </div>
 <div id="program-16.5" class="section level2 hasAnchor">
 <h2>Program 16.5<a href="instrumental-variables-estimation.html#program-16.5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -499,41 +502,41 @@ div.csl-indent {
 <li>Conditional on baseline covariates</li>
 <li>Data from NHEFS</li>
 </ul>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="instrumental-variables-estimation.html#cb298-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">tsls</span>(wt82_71 <span class="sc">~</span> qsmk <span class="sc">+</span> sex <span class="sc">+</span> race <span class="sc">+</span> age <span class="sc">+</span> smokeintensity <span class="sc">+</span> smokeyrs <span class="sc">+</span> </span>
-<span id="cb298-2"><a href="instrumental-variables-estimation.html#cb298-2" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">as.factor</span>(exercise) <span class="sc">+</span> <span class="fu">as.factor</span>(active) <span class="sc">+</span> wt71,</span>
-<span id="cb298-3"><a href="instrumental-variables-estimation.html#cb298-3" aria-hidden="true" tabindex="-1"></a>             <span class="sc">~</span> highprice <span class="sc">+</span> sex <span class="sc">+</span> race <span class="sc">+</span> age <span class="sc">+</span> smokeintensity <span class="sc">+</span> smokeyrs <span class="sc">+</span> <span class="fu">as.factor</span>(exercise) <span class="sc">+</span></span>
-<span id="cb298-4"><a href="instrumental-variables-estimation.html#cb298-4" aria-hidden="true" tabindex="-1"></a>               <span class="fu">as.factor</span>(active) <span class="sc">+</span> wt71, <span class="at">data =</span> nhefs.iv)</span>
-<span id="cb298-5"><a href="instrumental-variables-estimation.html#cb298-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code></pre></div>
-<pre><code>## 
-##  2SLS Estimates
-## 
-## Model Formula: wt82_71 ~ qsmk + sex + race + age + smokeintensity + smokeyrs + 
-##     as.factor(exercise) + as.factor(active) + wt71
-## 
-## Instruments: ~highprice + sex + race + age + smokeintensity + smokeyrs + as.factor(exercise) + 
-##     as.factor(active) + wt71
-## 
-## Residuals:
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  -42.23   -4.29   -0.62    0.00    3.87   46.74 
-## 
-##                       Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)          17.280330   2.335402   7.399  2.3e-13 ***
-## qsmk                 -1.042295  29.987369  -0.035   0.9723    
-## sex                  -1.644393   2.630831  -0.625   0.5320    
-## race                 -0.183255   4.650386  -0.039   0.9686    
-## age                  -0.163640   0.240548  -0.680   0.4964    
-## smokeintensity        0.005767   0.145504   0.040   0.9684    
-## smokeyrs              0.025836   0.161421   0.160   0.8729    
-## as.factor(exercise)1  0.498748   2.171239   0.230   0.8184    
-## as.factor(exercise)2  0.581834   2.183148   0.267   0.7899    
-## as.factor(active)1   -1.170145   0.607466  -1.926   0.0543 .  
-## as.factor(active)2   -0.512284   1.308451  -0.392   0.6955    
-## wt71                 -0.097949   0.036271  -2.701   0.0070 ** 
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 7.7162 on 1464 degrees of freedom</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="instrumental-variables-estimation.html#cb42-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">tsls</span>(wt82_71 <span class="sc">~</span> qsmk <span class="sc">+</span> sex <span class="sc">+</span> race <span class="sc">+</span> age <span class="sc">+</span> smokeintensity <span class="sc">+</span> smokeyrs <span class="sc">+</span> </span>
+<span id="cb42-2"><a href="instrumental-variables-estimation.html#cb42-2" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">as.factor</span>(exercise) <span class="sc">+</span> <span class="fu">as.factor</span>(active) <span class="sc">+</span> wt71,</span>
+<span id="cb42-3"><a href="instrumental-variables-estimation.html#cb42-3" aria-hidden="true" tabindex="-1"></a>             <span class="sc">~</span> highprice <span class="sc">+</span> sex <span class="sc">+</span> race <span class="sc">+</span> age <span class="sc">+</span> smokeintensity <span class="sc">+</span> smokeyrs <span class="sc">+</span> <span class="fu">as.factor</span>(exercise) <span class="sc">+</span></span>
+<span id="cb42-4"><a href="instrumental-variables-estimation.html#cb42-4" aria-hidden="true" tabindex="-1"></a>               <span class="fu">as.factor</span>(active) <span class="sc">+</span> wt71, <span class="at">data =</span> nhefs.iv)</span>
+<span id="cb42-5"><a href="instrumental-variables-estimation.html#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2)</span>
+<span id="cb42-6"><a href="instrumental-variables-estimation.html#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb42-7"><a href="instrumental-variables-estimation.html#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  2SLS Estimates</span></span>
+<span id="cb42-8"><a href="instrumental-variables-estimation.html#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb42-9"><a href="instrumental-variables-estimation.html#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Model Formula: wt82_71 ~ qsmk + sex + race + age + smokeintensity + smokeyrs + </span></span>
+<span id="cb42-10"><a href="instrumental-variables-estimation.html#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="do">##     as.factor(exercise) + as.factor(active) + wt71</span></span>
+<span id="cb42-11"><a href="instrumental-variables-estimation.html#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb42-12"><a href="instrumental-variables-estimation.html#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Instruments: ~highprice + sex + race + age + smokeintensity + smokeyrs + as.factor(exercise) + </span></span>
+<span id="cb42-13"><a href="instrumental-variables-estimation.html#cb42-13" aria-hidden="true" tabindex="-1"></a><span class="do">##     as.factor(active) + wt71</span></span>
+<span id="cb42-14"><a href="instrumental-variables-estimation.html#cb42-14" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb42-15"><a href="instrumental-variables-estimation.html#cb42-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Residuals:</span></span>
+<span id="cb42-16"><a href="instrumental-variables-estimation.html#cb42-16" aria-hidden="true" tabindex="-1"></a><span class="do">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb42-17"><a href="instrumental-variables-estimation.html#cb42-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  -42.23   -4.29   -0.62    0.00    3.87   46.74 </span></span>
+<span id="cb42-18"><a href="instrumental-variables-estimation.html#cb42-18" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb42-19"><a href="instrumental-variables-estimation.html#cb42-19" aria-hidden="true" tabindex="-1"></a><span class="do">##                       Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb42-20"><a href="instrumental-variables-estimation.html#cb42-20" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)          17.280330   2.335402   7.399  2.3e-13 ***</span></span>
+<span id="cb42-21"><a href="instrumental-variables-estimation.html#cb42-21" aria-hidden="true" tabindex="-1"></a><span class="do">## qsmk                 -1.042295  29.987369  -0.035   0.9723    </span></span>
+<span id="cb42-22"><a href="instrumental-variables-estimation.html#cb42-22" aria-hidden="true" tabindex="-1"></a><span class="do">## sex                  -1.644393   2.630831  -0.625   0.5320    </span></span>
+<span id="cb42-23"><a href="instrumental-variables-estimation.html#cb42-23" aria-hidden="true" tabindex="-1"></a><span class="do">## race                 -0.183255   4.650386  -0.039   0.9686    </span></span>
+<span id="cb42-24"><a href="instrumental-variables-estimation.html#cb42-24" aria-hidden="true" tabindex="-1"></a><span class="do">## age                  -0.163640   0.240548  -0.680   0.4964    </span></span>
+<span id="cb42-25"><a href="instrumental-variables-estimation.html#cb42-25" aria-hidden="true" tabindex="-1"></a><span class="do">## smokeintensity        0.005767   0.145504   0.040   0.9684    </span></span>
+<span id="cb42-26"><a href="instrumental-variables-estimation.html#cb42-26" aria-hidden="true" tabindex="-1"></a><span class="do">## smokeyrs              0.025836   0.161421   0.160   0.8729    </span></span>
+<span id="cb42-27"><a href="instrumental-variables-estimation.html#cb42-27" aria-hidden="true" tabindex="-1"></a><span class="do">## as.factor(exercise)1  0.498748   2.171239   0.230   0.8184    </span></span>
+<span id="cb42-28"><a href="instrumental-variables-estimation.html#cb42-28" aria-hidden="true" tabindex="-1"></a><span class="do">## as.factor(exercise)2  0.581834   2.183148   0.267   0.7899    </span></span>
+<span id="cb42-29"><a href="instrumental-variables-estimation.html#cb42-29" aria-hidden="true" tabindex="-1"></a><span class="do">## as.factor(active)1   -1.170145   0.607466  -1.926   0.0543 .  </span></span>
+<span id="cb42-30"><a href="instrumental-variables-estimation.html#cb42-30" aria-hidden="true" tabindex="-1"></a><span class="do">## as.factor(active)2   -0.512284   1.308451  -0.392   0.6955    </span></span>
+<span id="cb42-31"><a href="instrumental-variables-estimation.html#cb42-31" aria-hidden="true" tabindex="-1"></a><span class="do">## wt71                 -0.097949   0.036271  -2.701   0.0070 ** </span></span>
+<span id="cb42-32"><a href="instrumental-variables-estimation.html#cb42-32" aria-hidden="true" tabindex="-1"></a><span class="do">## ---</span></span>
+<span id="cb42-33"><a href="instrumental-variables-estimation.html#cb42-33" aria-hidden="true" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb42-34"><a href="instrumental-variables-estimation.html#cb42-34" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb42-35"><a href="instrumental-variables-estimation.html#cb42-35" aria-hidden="true" tabindex="-1"></a><span class="do">## Residual standard error: 7.7162 on 1464 degrees of freedom</span></span></code></pre></div>
 
 </div>
 </div>

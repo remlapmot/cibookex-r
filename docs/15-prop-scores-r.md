@@ -1,5 +1,7 @@
 # 15. Outcome regression and propensity scores{-}
 
+
+
 ## Program 15.1                                                                  
 
 - Estimating the average causal effect within levels of confounders under the assumption of effect-measure modification by smoking intensity ONLY 
@@ -24,9 +26,6 @@ fit <- glm(wt82_71 ~ qsmk + sex + race + age + I(age*age) + as.factor(education)
            + I(smokeyrs*smokeyrs) + as.factor(exercise) + as.factor(active)
            + wt71 + I(wt71*wt71) + I(qsmk*smokeintensity), data=nhefs)
 summary(fit)
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = wt82_71 ~ qsmk + sex + race + age + I(age * age) + 
@@ -73,43 +72,20 @@ summary(fit)
 ## AIC: 10701
 ## 
 ## Number of Fisher Scoring iterations: 2
-```
 
-```r
 # (step 1) build the contrast matrix with all zeros
 # this function builds the blank matrix 
 # install.packages("multcomp") # install packages if necessary
 library("multcomp")
-```
-
-```
 ## Loading required package: mvtnorm
-```
-
-```
 ## Loading required package: survival
-```
-
-```
 ## Loading required package: TH.data
-```
-
-```
 ## Loading required package: MASS
-```
-
-```
 ## 
 ## Attaching package: 'TH.data'
-```
-
-```
 ## The following object is masked from 'package:MASS':
 ## 
 ##     geyser
-```
-
-```r
 makeContrastMatrix <- function(model, nrow, names) {
   m <- matrix(0, nrow = nrow, ncol = length(coef(model)))
   colnames(m) <- names(coef(model))
@@ -131,9 +107,6 @@ K1[1:2, 'I(qsmk * smokeintensity)'] <- c(5, 40)
 
 # (step 3) check the contrast matrix
 K1 
-```
-
-```
 ##                                                    (Intercept) qsmk sex race
 ## Effect of Quitting Smoking at Smokeintensity of 5            0    1   0    0
 ## Effect of Quitting Smoking at Smokeintensity of 40           0    1   0    0
@@ -182,15 +155,10 @@ K1
 ##                                                    I(qsmk * smokeintensity)
 ## Effect of Quitting Smoking at Smokeintensity of 5                         5
 ## Effect of Quitting Smoking at Smokeintensity of 40                       40
-```
 
-```r
 # (step 4) estimate the contrasts, get tests and confidence intervals for them
 estimates1 <- glht(fit, K1)
   summary(estimates1)
-```
-
-```
 ## 
 ## 	 Simultaneous Tests for General Linear Hypotheses
 ## 
@@ -210,13 +178,7 @@ estimates1 <- glht(fit, K1)
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## (Adjusted p values reported -- single-step method)
-```
-
-```r
   confint(estimates1)
-```
-
-```
 ## 
 ## 	 Simultaneous Confidence Intervals
 ## 
@@ -234,9 +196,7 @@ estimates1 <- glht(fit, K1)
 ##                                                         Estimate lwr    upr   
 ## Effect of Quitting Smoking at Smokeintensity of 5 == 0  2.7929   1.3039 4.2819
 ## Effect of Quitting Smoking at Smokeintensity of 40 == 0 4.4261   2.5372 6.3151
-```
 
-```r
 # regression on covariates, not allowing for effect modification
 fit2 <- glm(wt82_71 ~ qsmk + sex + race + age + I(age*age) + as.factor(education)
            + smokeintensity + I(smokeintensity*smokeintensity) + smokeyrs
@@ -244,9 +204,6 @@ fit2 <- glm(wt82_71 ~ qsmk + sex + race + age + I(age*age) + as.factor(education
            + wt71 + I(wt71*wt71), data=nhefs)
   
 summary(fit2)
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = wt82_71 ~ qsmk + sex + race + age + I(age * age) + 
@@ -305,9 +262,6 @@ fit3 <- glm(qsmk ~ sex + race + age + I(age*age) + as.factor(education)
             + I(smokeyrs*smokeyrs) + as.factor(exercise) + as.factor(active)
             + wt71 + I(wt71*wt71), data=nhefs, family=binomial())
 summary(fit3)
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = qsmk ~ sex + race + age + I(age * age) + as.factor(education) + 
@@ -350,60 +304,31 @@ summary(fit3)
 ## AIC: 1804.7
 ## 
 ## Number of Fisher Scoring iterations: 4
-```
-
-```r
 nhefs$ps <- predict(fit3, nhefs, type="response")
 
 summary(nhefs$ps[nhefs$qsmk==0])
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ## 0.05298 0.16949 0.22747 0.24504 0.30441 0.65788
-```
-
-```r
 summary(nhefs$ps[nhefs$qsmk==1])
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ## 0.06248 0.22046 0.28897 0.31240 0.38122 0.79320
-```
 
-```r
 # # plotting the estimated propensity score
 # install.packages("ggplot2") # install packages if necessary
 # install.packages("dplyr")
 library("ggplot2")
 library("dplyr")
-```
-
-```
 ## 
 ## Attaching package: 'dplyr'
-```
-
-```
 ## The following object is masked from 'package:MASS':
 ## 
 ##     select
-```
-
-```
 ## The following objects are masked from 'package:stats':
 ## 
 ##     filter, lag
-```
-
-```
 ## The following objects are masked from 'package:base':
 ## 
 ##     intersect, setdiff, setequal, union
-```
-
-```r
 ggplot(nhefs, aes(x = ps, fill = qsmk)) + geom_density(alpha = 0.2) +
   xlab('Probability of Quitting Smoking During Follow-up') +
   ggtitle('Propensity Score Distribution by Treatment Group') +
@@ -414,6 +339,7 @@ ggplot(nhefs, aes(x = ps, fill = qsmk)) + geom_density(alpha = 0.2) +
 <img src="15-prop-scores-r_files/figure-epub3/unnamed-chunk-3-1.png" width="85%" style="display: block; margin: auto;" />
 
 ```r
+
 # alternative plot with histograms
 nhefs <- nhefs %>% mutate(qsmklabel = ifelse(qsmk == 1,
                        yes = 'Quit Smoking 1971-1982',
@@ -466,24 +392,12 @@ nhefs$ps.dec <- cut(nhefs$ps,
 
 #install.packages("psych") # install package if required
 library("psych")
-```
-
-```
 ## 
 ## Attaching package: 'psych'
-```
-
-```
 ## The following objects are masked from 'package:ggplot2':
 ## 
 ##     %+%, alpha
-```
-
-```r
 describeBy(nhefs$ps, list(nhefs$ps.dec, nhefs$qsmk))
-```
-
-```
 ## 
 ##  Descriptive statistics by group 
 ## : 1
@@ -585,9 +499,7 @@ describeBy(nhefs$ps, list(nhefs$ps.dec, nhefs$qsmk))
 ## : 1
 ##    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
 ## X1    1 77 0.52 0.08   0.51    0.51 0.08 0.42 0.79  0.38 0.88     0.81 0.01
-```
 
-```r
 # function to create deciles easily
 decile <- function(x) {
   return(factor(quantcut(x, seq(0, 1, 0.1), labels = FALSE)))
@@ -597,9 +509,6 @@ decile <- function(x) {
 for (deciles in c(1:10)) {
   print(t.test(wt82_71~qsmk, data=nhefs[which(nhefs$ps.dec==deciles),]))
 }
-```
-
-```
 ## 
 ## 	Welch Two Sample t-test
 ## 
@@ -719,15 +628,10 @@ for (deciles in c(1:10)) {
 ## sample estimates:
 ## mean in group 0 mean in group 1 
 ##      -0.5043766       1.7358528
-```
 
-```r
 # regression on PS deciles, not allowing for effect modification
 fit.psdec <- glm(wt82_71 ~ qsmk + as.factor(ps.dec), data = nhefs)
 summary(fit.psdec)
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = wt82_71 ~ qsmk + as.factor(ps.dec), data = nhefs)
@@ -760,13 +664,7 @@ summary(fit.psdec)
 ## AIC: 10827
 ## 
 ## Number of Fisher Scoring iterations: 2
-```
-
-```r
 confint.lm(fit.psdec)
-```
-
-```
 ##                         2.5 %      97.5 %
 ## (Intercept)          2.556098  4.94486263
 ## qsmk                 2.603953  4.39700504
@@ -789,26 +687,15 @@ confint.lm(fit.psdec)
 ```r
 #install.packages("boot") # install package if required
 library("boot")
-```
-
-```
 ## 
 ## Attaching package: 'boot'
-```
-
-```
 ## The following object is masked from 'package:psych':
 ## 
 ##     logit
-```
-
-```
 ## The following object is masked from 'package:survival':
 ## 
 ##     aml
-```
 
-```r
 # standardization by propensity score, agnostic regarding effect modification 
 std.ps <- function(data, indices) {
   d <- data[indices,] # 1st copy: equal to original one`
@@ -857,19 +744,16 @@ ul <- mean + qnorm(0.975)*se
 bootstrap <- data.frame(cbind(c("Observed", "No Treatment", "Treatment", 
                                 "Treatment - No Treatment"), mean, se, ll, ul))
 bootstrap
-```
-
-```
-##                         V1             mean                 se               ll
-## 1                 Observed 2.63384609228479 0.0776167310641236 2.48172009480138
-## 2             No Treatment 1.71983636149843  0.131124335705462 1.46283738601898
-## 3                Treatment 5.35072300362993  0.223062901841418 4.91352774973375
-## 4 Treatment - No Treatment  3.6308866421315  0.327204269497541 2.98957805832858
+##                         V1             mean                se               ll
+## 1                 Observed 2.63384609228479  0.13343809761936 2.37231222678531
+## 2             No Treatment 1.71983636149843 0.214854181716315 1.29872990340662
+## 3                Treatment 5.35072300362993 0.526892745155346 4.31803219941001
+## 4 Treatment - No Treatment  3.6308866421315 0.479856508079738 2.69038516854806
 ##                 ul
-## 1 2.78597208976821
-## 2 1.97683533697787
-## 3  5.7879182575261
-## 4 4.27219522593442
+## 1 2.89537995778428
+## 2 2.14094281959023
+## 3 6.38341380784985
+## 4 4.57138811571494
 ```
 
 
@@ -877,9 +761,6 @@ bootstrap
 # regression on the propensity score (linear term)
 model6 <- glm(wt82_71 ~ qsmk + ps, data = nhefs) # p.qsmk
 summary(model6)
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = wt82_71 ~ qsmk + ps, data = nhefs)
@@ -904,9 +785,7 @@ summary(model6)
 ## AIC: 10815
 ## 
 ## Number of Fisher Scoring iterations: 2
-```
 
-```r
 # standarization on the propensity score
 # (step 1) create two new datasets, one with all treated and one with all untreated
 treated <- nhefs
@@ -923,29 +802,12 @@ untreated$pred.y <- predict(model6, untreated)
 mean1 <- mean(treated$pred.y, na.rm = TRUE)
 mean0 <- mean(untreated$pred.y, na.rm = TRUE)
 mean1
-```
-
-```
 ## [1] 5.250824
-```
-
-```r
 mean0
-```
-
-```
 ## [1] 1.700228
-```
-
-```r
 mean1 - mean0
-```
-
-```
 ## [1] 3.550596
-```
 
-```r
 # (step 4) bootstrap a confidence interval
 # number of bootstraps
 nboot <- 100
@@ -987,11 +849,8 @@ for(i in 1:nboot) {
         mean(boots$difference) + 1.96*sd(boots$difference))
   }
 }
-```
-
-```
 ## 95% CI for the causal mean difference
-## 2.448837 , 4.541889
+## 2.581808 , 4.469208
 ```
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.

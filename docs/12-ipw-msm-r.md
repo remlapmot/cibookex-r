@@ -1,5 +1,7 @@
 # 12. IP Weighting and Marginal Structural Models{-}
 
+
+
 ## Program 12.1
 
 - Descriptive statistics from NHEFS data (Table 12.1)
@@ -22,9 +24,6 @@ nhefs.nmv <-
   nhefs[which(!is.na(nhefs$wt82)),] 
 
 lm(wt82_71 ~ qsmk, data = nhefs.nmv)
-```
-
-```
 ## 
 ## Call:
 ## lm(formula = wt82_71 ~ qsmk, data = nhefs.nmv)
@@ -32,205 +31,92 @@ lm(wt82_71 ~ qsmk, data = nhefs.nmv)
 ## Coefficients:
 ## (Intercept)         qsmk  
 ##       1.984        2.541
-```
-
-```r
 # Smoking cessation
 predict(lm(wt82_71 ~ qsmk, data = nhefs.nmv), data.frame(qsmk = 1))
-```
-
-```
 ##        1 
 ## 4.525079
-```
-
-```r
 # No smoking cessation
 predict(lm(wt82_71 ~ qsmk, data = nhefs.nmv), data.frame(qsmk = 0)) 
-```
-
-```
 ##        1 
 ## 1.984498
-```
 
-```r
 # Table
 summary(nhefs.nmv[which(nhefs.nmv$qsmk == 0),]$age)
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   25.00   33.00   42.00   42.79   51.00   72.00
-```
-
-```r
 summary(nhefs.nmv[which(nhefs.nmv$qsmk == 0),]$wt71)
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   40.82   59.19   68.49   70.30   79.38  151.73
-```
-
-```r
 summary(nhefs.nmv[which(nhefs.nmv$qsmk == 0),]$smokeintensity)
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    1.00   15.00   20.00   21.19   30.00   60.00
-```
-
-```r
 summary(nhefs.nmv[which(nhefs.nmv$qsmk == 0),]$smokeyrs)
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    1.00   15.00   23.00   24.09   32.00   64.00
-```
 
-```r
 summary(nhefs.nmv[which(nhefs.nmv$qsmk == 1),]$age)
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   25.00   35.00   46.00   46.17   56.00   74.00
-```
-
-```r
 summary(nhefs.nmv[which(nhefs.nmv$qsmk == 1),]$wt71)
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   39.58   60.67   71.21   72.35   81.08  136.98
-```
-
-```r
 summary(nhefs.nmv[which(nhefs.nmv$qsmk == 1),]$smokeintensity)
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##     1.0    10.0    20.0    18.6    25.0    80.0
-```
-
-```r
 summary(nhefs.nmv[which(nhefs.nmv$qsmk == 1),]$smokeyrs)
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    1.00   15.00   26.00   26.03   35.00   60.00
-```
 
-```r
 table(nhefs.nmv$qsmk, nhefs.nmv$sex)
-```
-
-```
 ##    
 ##       0   1
 ##   0 542 621
 ##   1 220 183
-```
-
-```r
 prop.table(table(nhefs.nmv$qsmk, nhefs.nmv$sex), 1)
-```
-
-```
 ##    
 ##             0         1
 ##   0 0.4660361 0.5339639
 ##   1 0.5459057 0.4540943
-```
 
-```r
 table(nhefs.nmv$qsmk, nhefs.nmv$race)
-```
-
-```
 ##    
 ##       0   1
 ##   0 993 170
 ##   1 367  36
-```
-
-```r
 prop.table(table(nhefs.nmv$qsmk, nhefs.nmv$race), 1)
-```
-
-```
 ##    
 ##              0          1
 ##   0 0.85382631 0.14617369
 ##   1 0.91066998 0.08933002
-```
 
-```r
 table(nhefs.nmv$qsmk, nhefs.nmv$education)
-```
-
-```
 ##    
 ##       1   2   3   4   5
 ##   0 210 266 480  92 115
 ##   1  81  74 157  29  62
-```
-
-```r
 prop.table(table(nhefs.nmv$qsmk, nhefs.nmv$education), 1)
-```
-
-```
 ##    
 ##              1          2          3          4          5
 ##   0 0.18056750 0.22871883 0.41272571 0.07910576 0.09888220
 ##   1 0.20099256 0.18362283 0.38957816 0.07196030 0.15384615
-```
 
-```r
 table(nhefs.nmv$qsmk, nhefs.nmv$exercise)
-```
-
-```
 ##    
 ##       0   1   2
 ##   0 237 485 441
 ##   1  63 176 164
-```
-
-```r
 prop.table(table(nhefs.nmv$qsmk, nhefs.nmv$exercise), 1)
-```
-
-```
 ##    
 ##             0         1         2
 ##   0 0.2037833 0.4170249 0.3791917
 ##   1 0.1563275 0.4367246 0.4069479
-```
 
-```r
 table(nhefs.nmv$qsmk, nhefs.nmv$active)
-```
-
-```
 ##    
 ##       0   1   2
 ##   0 532 527 104
 ##   1 170 188  45
-```
-
-```r
 prop.table(table(nhefs.nmv$qsmk, nhefs.nmv$active), 1)
-```
-
-```
 ##    
 ##             0         1         2
 ##   0 0.4574377 0.4531384 0.0894239
@@ -255,9 +141,6 @@ fit <- glm(
   data = nhefs.nmv
 )
 summary(fit)
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = qsmk ~ sex + race + age + I(age^2) + as.factor(education) + 
@@ -300,9 +183,7 @@ summary(fit)
 ## AIC: 1714.9
 ## 
 ## Number of Fisher Scoring iterations: 4
-```
 
-```r
 p.qsmk.obs <-
   ifelse(nhefs.nmv$qsmk == 0,
          1 - predict(fit, type = "response"),
@@ -310,22 +191,11 @@ p.qsmk.obs <-
 
 nhefs.nmv$w <- 1 / p.qsmk.obs
 summary(nhefs.nmv$w)
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   1.054   1.230   1.373   1.996   1.990  16.700
-```
-
-```r
 sd(nhefs.nmv$w)
-```
-
-```
 ## [1] 1.474787
-```
 
-```r
 # install.packages("geepack") # install package if required
 library("geepack")
 msm.w <- geeglm(
@@ -336,9 +206,6 @@ msm.w <- geeglm(
   corstr = "independence"
 )
 summary(msm.w)
-```
-
-```
 ## 
 ## Call:
 ## geeglm(formula = wt82_71 ~ qsmk, data = nhefs.nmv, weights = w, 
@@ -357,41 +224,26 @@ summary(msm.w)
 ##             Estimate Std.err
 ## (Intercept)    65.06   4.221
 ## Number of clusters:   1566  Maximum cluster size: 1
-```
 
-```r
 beta <- coef(msm.w)
 SE <- coef(summary(msm.w))[, 2]
 lcl <- beta - qnorm(0.975) * SE
 ucl <- beta + qnorm(0.975) * SE
 cbind(beta, lcl, ucl)
-```
-
-```
 ##              beta   lcl  ucl
 ## (Intercept) 1.780 1.340 2.22
 ## qsmk        3.441 2.411 4.47
-```
 
-```r
 # no association between sex and qsmk in pseudo-population
 xtabs(nhefs.nmv$w ~ nhefs.nmv$sex + nhefs.nmv$qsmk)
-```
-
-```
 ##              nhefs.nmv$qsmk
 ## nhefs.nmv$sex     0     1
 ##             0 763.6 763.6
 ##             1 801.7 797.2
-```
 
-```r
 # "check" for positivity (White women)
 table(nhefs.nmv$age[nhefs.nmv$race == 0 & nhefs.nmv$sex == 1],
       nhefs.nmv$qsmk[nhefs.nmv$race == 0 & nhefs.nmv$sex == 1])
-```
-
-```
 ##     
 ##       0  1
 ##   25 24  3
@@ -462,9 +314,6 @@ denom.fit <-
     data = nhefs.nmv
   )
 summary(denom.fit)
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = qsmk ~ as.factor(sex) + as.factor(race) + age + 
@@ -507,17 +356,12 @@ summary(denom.fit)
 ## AIC: 1715
 ## 
 ## Number of Fisher Scoring iterations: 4
-```
 
-```r
 pd.qsmk <- predict(denom.fit, type = "response")
 
 # estimation of numerator of ip weights
 numer.fit <- glm(qsmk ~ 1, family = binomial(), data = nhefs.nmv)
 summary(numer.fit)
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = qsmk ~ 1, family = binomial(), data = nhefs.nmv)
@@ -539,9 +383,7 @@ summary(numer.fit)
 ## AIC: 1788
 ## 
 ## Number of Fisher Scoring iterations: 4
-```
 
-```r
 pn.qsmk <- predict(numer.fit, type = "response")
 
 nhefs.nmv$sw <-
@@ -549,14 +391,10 @@ nhefs.nmv$sw <-
          (pn.qsmk / pd.qsmk))
 
 summary(nhefs.nmv$sw)
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   0.331   0.867   0.950   0.999   1.079   4.298
-```
 
-```r
+
 msm.sw <- geeglm(
   wt82_71 ~ qsmk,
   data = nhefs.nmv,
@@ -565,9 +403,6 @@ msm.sw <- geeglm(
   corstr = "independence"
 )
 summary(msm.sw)
-```
-
-```
 ## 
 ## Call:
 ## geeglm(formula = wt82_71 ~ qsmk, data = nhefs.nmv, weights = sw, 
@@ -586,28 +421,18 @@ summary(msm.sw)
 ##             Estimate Std.err
 ## (Intercept)     60.7    3.71
 ## Number of clusters:   1566  Maximum cluster size: 1
-```
 
-```r
 beta <- coef(msm.sw)
 SE <- coef(summary(msm.sw))[, 2]
 lcl <- beta - qnorm(0.975) * SE
 ucl <- beta + qnorm(0.975) * SE
 cbind(beta, lcl, ucl)
-```
-
-```
 ##             beta  lcl  ucl
 ## (Intercept) 1.78 1.34 2.22
 ## qsmk        3.44 2.41 4.47
-```
 
-```r
 # no association between sex and qsmk in pseudo-population
 xtabs(nhefs.nmv$sw ~ nhefs.nmv$sex + nhefs.nmv$qsmk)
-```
-
-```
 ##              nhefs.nmv$qsmk
 ## nhefs.nmv$sex   0   1
 ##             0 567 197
@@ -648,14 +473,9 @@ dens.num <-
 
 nhefs.nmv.s$sw.a <- dens.num / dens.den
 summary(nhefs.nmv.s$sw.a)
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    0.19    0.89    0.97    1.00    1.05    5.10
-```
 
-```r
 msm.sw.cont <-
   geeglm(
     wt82_71 ~ smkintensity82_71 + I(smkintensity82_71 * smkintensity82_71),
@@ -665,9 +485,6 @@ msm.sw.cont <-
     corstr = "independence"
   )
 summary(msm.sw.cont)
-```
-
-```
 ## 
 ## Call:
 ## geeglm(formula = wt82_71 ~ smkintensity82_71 + I(smkintensity82_71 * 
@@ -688,17 +505,12 @@ summary(msm.sw.cont)
 ##             Estimate Std.err
 ## (Intercept)     60.5     4.5
 ## Number of clusters:   1162  Maximum cluster size: 1
-```
 
-```r
 beta <- coef(msm.sw.cont)
 SE <- coef(summary(msm.sw.cont))[, 2]
 lcl <- beta - qnorm(0.975) * SE
 ucl <- beta + qnorm(0.975) * SE
 cbind(beta, lcl, ucl)
-```
-
-```
 ##                                              beta      lcl      ucl
 ## (Intercept)                               2.00452  1.42610  2.58295
 ## smkintensity82_71                        -0.10899 -0.17080 -0.04718
@@ -713,16 +525,11 @@ cbind(beta, lcl, ucl)
 
 ```r
 table(nhefs.nmv$qsmk, nhefs.nmv$death)
-```
-
-```
 ##    
 ##       0   1
 ##   0 963 200
 ##   1 312  91
-```
 
-```r
 # First, estimation of stabilized weights sw (same as in Program 12.3)
 # Second, fit logistic model below
 msm.logistic <- geeglm(
@@ -733,17 +540,8 @@ msm.logistic <- geeglm(
   family = binomial(),
   corstr = "independence"
 )
-```
-
-```
 ## Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-```
-
-```r
 summary(msm.logistic)
-```
-
-```
 ## 
 ## Call:
 ## geeglm(formula = death ~ qsmk, family = binomial(), data = nhefs.nmv, 
@@ -762,17 +560,12 @@ summary(msm.logistic)
 ##             Estimate Std.err
 ## (Intercept)        1  0.0678
 ## Number of clusters:   1566  Maximum cluster size: 1
-```
 
-```r
 beta <- coef(msm.logistic)
 SE <- coef(summary(msm.logistic))[, 2]
 lcl <- beta - qnorm(0.975) * SE
 ucl <- beta + qnorm(0.975) * SE
 cbind(beta, lcl, ucl)
-```
-
-```
 ##                beta    lcl    ucl
 ## (Intercept) -1.4905 -1.645 -1.336
 ## qsmk         0.0301 -0.278  0.338
@@ -786,15 +579,10 @@ cbind(beta, lcl, ucl)
 
 ```r
 table(nhefs.nmv$sex)
-```
-
-```
 ## 
 ##   0   1 
 ## 762 804
-```
 
-```r
 # estimation of denominator of ip weights
 denom.fit <-
   glm(
@@ -806,9 +594,6 @@ denom.fit <-
     data = nhefs.nmv
   )
 summary(denom.fit)
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = qsmk ~ as.factor(sex) + as.factor(race) + age + 
@@ -851,18 +636,13 @@ summary(denom.fit)
 ## AIC: 1715
 ## 
 ## Number of Fisher Scoring iterations: 4
-```
 
-```r
 pd.qsmk <- predict(denom.fit, type = "response")
 
 # estimation of numerator of ip weights
 numer.fit <-
   glm(qsmk ~ as.factor(sex), family = binomial(), data = nhefs.nmv)
 summary(numer.fit)
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = qsmk ~ as.factor(sex), family = binomial(), data = nhefs.nmv)
@@ -885,9 +665,6 @@ summary(numer.fit)
 ## AIC: 1782
 ## 
 ## Number of Fisher Scoring iterations: 4
-```
-
-```r
 pn.qsmk <- predict(numer.fit, type = "response")
 
 nhefs.nmv$sw.a <-
@@ -895,22 +672,11 @@ nhefs.nmv$sw.a <-
          (pn.qsmk / pd.qsmk))
 
 summary(nhefs.nmv$sw.a)
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    0.29    0.88    0.96    1.00    1.08    3.80
-```
-
-```r
 sd(nhefs.nmv$sw.a)
-```
-
-```
 ## [1] 0.271
-```
 
-```r
 # Estimating parameters of a marginal structural mean model
 msm.emm <- geeglm(
   wt82_71 ~ as.factor(qsmk) + as.factor(sex)
@@ -921,9 +687,6 @@ msm.emm <- geeglm(
   corstr = "independence"
 )
 summary(msm.emm)
-```
-
-```
 ## 
 ## Call:
 ## geeglm(formula = wt82_71 ~ as.factor(qsmk) + as.factor(sex) + 
@@ -945,17 +708,12 @@ summary(msm.emm)
 ##             Estimate Std.err
 ## (Intercept)     60.8    3.71
 ## Number of clusters:   1566  Maximum cluster size: 1
-```
 
-```r
 beta <- coef(msm.emm)
 SE <- coef(summary(msm.emm))[, 2]
 lcl <- beta - qnorm(0.975) * SE
 ucl <- beta + qnorm(0.975) * SE
 cbind(beta, lcl, ucl)
-```
-
-```
 ##                                      beta    lcl   ucl
 ## (Intercept)                       1.78445  1.177 2.392
 ## as.factor(qsmk)1                  3.52198  2.234 4.810
@@ -971,34 +729,18 @@ cbind(beta, lcl, ucl)
 
 ```r
 table(nhefs$qsmk, nhefs$cens)
-```
-
-```
 ##    
 ##        0    1
 ##   0 1163   38
 ##   1  403   25
-```
 
-```r
 summary(nhefs[which(nhefs$cens == 0),]$wt71)
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    39.6    59.5    69.2    70.8    79.8   151.7
-```
-
-```r
 summary(nhefs[which(nhefs$cens == 1),]$wt71)
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    36.2    63.1    72.1    76.6    87.9   169.2
-```
 
-```r
 # estimation of denominator of ip weights for A
 denom.fit <-
   glm(
@@ -1010,9 +752,6 @@ denom.fit <-
     data = nhefs
   )
 summary(denom.fit)
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = qsmk ~ as.factor(sex) + as.factor(race) + age + 
@@ -1055,17 +794,12 @@ summary(denom.fit)
 ## AIC: 1805
 ## 
 ## Number of Fisher Scoring iterations: 4
-```
 
-```r
 pd.qsmk <- predict(denom.fit, type = "response")
 
 # estimation of numerator of ip weights for A
 numer.fit <- glm(qsmk ~ 1, family = binomial(), data = nhefs)
 summary(numer.fit)
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = qsmk ~ 1, family = binomial(), data = nhefs)
@@ -1087,9 +821,6 @@ summary(numer.fit)
 ## AIC: 1878
 ## 
 ## Number of Fisher Scoring iterations: 4
-```
-
-```r
 pn.qsmk <- predict(numer.fit, type = "response")
 
 # estimation of denominator of ip weights for C
@@ -1103,9 +834,6 @@ denom.cens <- glm(
   data = nhefs
 )
 summary(denom.cens)
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = cens ~ as.factor(qsmk) + as.factor(sex) + as.factor(race) + 
@@ -1150,18 +878,13 @@ summary(denom.cens)
 ## AIC: 505.4
 ## 
 ## Number of Fisher Scoring iterations: 7
-```
 
-```r
 pd.cens <- 1 - predict(denom.cens, type = "response")
 
 # estimation of numerator of ip weights for C
 numer.cens <-
   glm(cens ~ as.factor(qsmk), family = binomial(), data = nhefs)
 summary(numer.cens)
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = cens ~ as.factor(qsmk), family = binomial(), data = nhefs)
@@ -1184,9 +907,6 @@ summary(numer.cens)
 ## AIC: 531.8
 ## 
 ## Number of Fisher Scoring iterations: 6
-```
-
-```r
 pn.cens <- 1 - predict(numer.cens, type = "response")
 
 nhefs$sw.a <-
@@ -1196,56 +916,21 @@ nhefs$sw.c <- pn.cens / pd.cens
 nhefs$sw <- nhefs$sw.c * nhefs$sw.a
 
 summary(nhefs$sw.a)
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    0.33    0.86    0.95    1.00    1.08    4.21
-```
-
-```r
 sd(nhefs$sw.a)
-```
-
-```
 ## [1] 0.284
-```
-
-```r
 summary(nhefs$sw.c)
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    0.94    0.98    0.99    1.01    1.01    7.58
-```
-
-```r
 sd(nhefs$sw.c)
-```
-
-```
 ## [1] 0.178
-```
-
-```r
 summary(nhefs$sw)
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    0.35    0.86    0.94    1.01    1.08   12.86
-```
-
-```r
 sd(nhefs$sw)
-```
-
-```
 ## [1] 0.411
-```
 
-```r
 msm.sw <- geeglm(
   wt82_71 ~ qsmk,
   data = nhefs,
@@ -1254,9 +939,6 @@ msm.sw <- geeglm(
   corstr = "independence"
 )
 summary(msm.sw)
-```
-
-```
 ## 
 ## Call:
 ## geeglm(formula = wt82_71 ~ qsmk, data = nhefs, weights = sw, 
@@ -1275,17 +957,12 @@ summary(msm.sw)
 ##             Estimate Std.err
 ## (Intercept)     61.8    3.83
 ## Number of clusters:   1566  Maximum cluster size: 1
-```
 
-```r
 beta <- coef(msm.sw)
 SE <- coef(summary(msm.sw))[, 2]
 lcl <- beta - qnorm(0.975) * SE
 ucl <- beta + qnorm(0.975) * SE
 cbind(beta, lcl, ucl)
-```
-
-```
 ##             beta  lcl  ucl
 ## (Intercept) 1.66 1.21 2.12
 ## qsmk        3.50 2.47 4.53

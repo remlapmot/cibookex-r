@@ -1,5 +1,7 @@
 # (PART\*) R code{-}
 
+
+
 # 11. Why model?{-}
 
 ## Program 11.1
@@ -20,23 +22,12 @@ plot(A, Y)
 
 ```r
 summary(Y[A == 0])
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    10.0    27.5    60.0    67.5    87.5   170.0
-```
-
-```r
 summary(Y[A == 1])
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    50.0   105.0   160.0   146.2   185.0   220.0
-```
 
-```r
 A2 <- c(1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4)
 Y2 <- c(110, 80, 50, 40, 170, 30, 70, 50, 110, 50, 180,
         130, 200, 150, 220, 210)
@@ -48,36 +39,15 @@ plot(A2, Y2)
 
 ```r
 summary(Y2[A2 == 1])
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    40.0    47.5    65.0    70.0    87.5   110.0
-```
-
-```r
 summary(Y2[A2 == 2])
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##      30      45      60      80      95     170
-```
-
-```r
 summary(Y2[A2 == 3])
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    50.0    95.0   120.0   117.5   142.5   180.0
-```
-
-```r
 summary(Y2[A2 == 4])
-```
-
-```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   150.0   187.5   205.0   195.0   212.5   220.0
 ```
@@ -102,10 +72,8 @@ plot(Y3 ~ A3)
 <img src="11-why-model-r_files/figure-epub3/unnamed-chunk-2-1.png" width="85%" style="display: block; margin: auto;" />
 
 ```r
-summary(glm(Y3 ~ A3))
-```
 
-```
+summary(glm(Y3 ~ A3))
 ## 
 ## Call:
 ## glm(formula = Y3 ~ A3)
@@ -128,22 +96,11 @@ summary(glm(Y3 ~ A3))
 ## AIC: 170.43
 ## 
 ## Number of Fisher Scoring iterations: 2
-```
-
-```r
 predict(glm(Y3 ~ A3), data.frame(A3 = 90))
-```
-
-```
 ##      1 
 ## 216.89
-```
 
-```r
 summary(glm(Y ~ A))
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = Y ~ A)
@@ -179,9 +136,6 @@ Asq <- A3 * A3
 
 mod3 <- glm(Y3 ~ A3 + Asq)
 summary(mod3)
-```
-
-```
 ## 
 ## Call:
 ## glm(formula = Y3 ~ A3 + Asq)
@@ -205,13 +159,7 @@ summary(mod3)
 ## AIC: 170.39
 ## 
 ## Number of Fisher Scoring iterations: 2
-```
-
-```r
 predict(mod3, data.frame(cbind(A3 = 90, Asq = 8100)))
-```
-
-```
 ##        1 
 ## 197.1269
 ```

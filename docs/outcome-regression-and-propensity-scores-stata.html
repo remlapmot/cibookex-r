@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2022-11-01" />
+<meta name="date" content="2022-11-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -304,7 +304,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="outcome-regression-and-propensity-scores-stata" class="section level1 unnumbered hasAnchor">
 <h1>15. Outcome regression and propensity scores: Stata<a href="outcome-regression-and-propensity-scores-stata.html#outcome-regression-and-propensity-scores-stata" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="outcome-regression-and-propensity-scores-stata.html#cb385-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Statamarkdown)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="outcome-regression-and-propensity-scores-stata.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Statamarkdown)</span></code></pre></div>
 <pre><code>/***************************************************************
 Stata code for Causal Inference: What If by Miguel Hernan &amp; Jamie Robins
 Date: 10/10/2019
@@ -318,30 +318,30 @@ For errors contact: ejmurray@bu.edu
 <li>Data from NHEFS</li>
 <li>Section 15.1</li>
 </ul>
-<div class="sourceCode" id="cb387"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb387-1"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span>
-<span id="cb387-2"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb387-3"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-3" aria-hidden="true" tabindex="-1"></a><span class="co">/* Generate smoking intensity among smokers product term */</span></span>
-<span id="cb387-4"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-4" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> qsmkintensity = qsmk*smokeintensity</span>
-<span id="cb387-5"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb387-6"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-6" aria-hidden="true" tabindex="-1"></a>* Regression <span class="kw">on</span> covariates, allowing <span class="kw">for</span> some effect modfication</span>
-<span id="cb387-7"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-7" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> wt82_71 qsmk qsmkintensity <span class="co">///</span></span>
-<span id="cb387-8"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-8" aria-hidden="true" tabindex="-1"></a>  c.smokeintensity##c.smokeintensity sex race c.age##c.age <span class="co">///</span></span>
-<span id="cb387-9"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-9" aria-hidden="true" tabindex="-1"></a>  ib(<span class="fu">last</span>).education c.smokeyrs##c.smokeyrs <span class="co">///</span></span>
-<span id="cb387-10"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-10" aria-hidden="true" tabindex="-1"></a>  ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 </span>
-<span id="cb387-11"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb387-12"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-12" aria-hidden="true" tabindex="-1"></a><span class="co">/* Display the estimated mean difference between quitting and </span></span>
-<span id="cb387-13"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-13" aria-hidden="true" tabindex="-1"></a><span class="co">  not quitting value when smoke intensity = 5 cigarettes/ day */</span></span>
-<span id="cb387-14"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-14" aria-hidden="true" tabindex="-1"></a><span class="kw">lincom</span> 1*_b[qsmk] + 5*1*_b[qsmkintensity] </span>
-<span id="cb387-15"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb387-16"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-16" aria-hidden="true" tabindex="-1"></a><span class="co">/* Display the estimated mean difference between quitting and </span></span>
-<span id="cb387-17"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-17" aria-hidden="true" tabindex="-1"></a><span class="co">  not quitting value when smoke intensity = 40 cigarettes/ day */</span></span>
-<span id="cb387-18"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-18" aria-hidden="true" tabindex="-1"></a><span class="kw">lincom</span> 1*_b[qsmk] + 40*1*_b[qsmkintensity]</span>
-<span id="cb387-19"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb387-20"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-20" aria-hidden="true" tabindex="-1"></a><span class="co">/* Regression on covariates, with no product terms */</span></span>
-<span id="cb387-21"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-21" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> wt82_71 qsmk c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
-<span id="cb387-22"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-22" aria-hidden="true" tabindex="-1"></a>  sex race c.age##c.age <span class="co">///</span></span>
-<span id="cb387-23"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-23" aria-hidden="true" tabindex="-1"></a>  ib(<span class="fu">last</span>).education c.smokeyrs##c.smokeyrs <span class="co">///</span></span>
-<span id="cb387-24"><a href="outcome-regression-and-propensity-scores-stata.html#cb387-24" aria-hidden="true" tabindex="-1"></a>  ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 </span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb104-1"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span>
+<span id="cb104-2"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-3"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-3" aria-hidden="true" tabindex="-1"></a><span class="co">/* Generate smoking intensity among smokers product term */</span></span>
+<span id="cb104-4"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-4" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> qsmkintensity = qsmk*smokeintensity</span>
+<span id="cb104-5"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-6"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-6" aria-hidden="true" tabindex="-1"></a>* Regression <span class="kw">on</span> covariates, allowing <span class="kw">for</span> some effect modfication</span>
+<span id="cb104-7"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-7" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> wt82_71 qsmk qsmkintensity <span class="co">///</span></span>
+<span id="cb104-8"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-8" aria-hidden="true" tabindex="-1"></a>  c.smokeintensity##c.smokeintensity sex race c.age##c.age <span class="co">///</span></span>
+<span id="cb104-9"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-9" aria-hidden="true" tabindex="-1"></a>  ib(<span class="fu">last</span>).education c.smokeyrs##c.smokeyrs <span class="co">///</span></span>
+<span id="cb104-10"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-10" aria-hidden="true" tabindex="-1"></a>  ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 </span>
+<span id="cb104-11"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-12"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-12" aria-hidden="true" tabindex="-1"></a><span class="co">/* Display the estimated mean difference between quitting and </span></span>
+<span id="cb104-13"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-13" aria-hidden="true" tabindex="-1"></a><span class="co">  not quitting value when smoke intensity = 5 cigarettes/ day */</span></span>
+<span id="cb104-14"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-14" aria-hidden="true" tabindex="-1"></a><span class="kw">lincom</span> 1*_b[qsmk] + 5*1*_b[qsmkintensity] </span>
+<span id="cb104-15"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-16"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-16" aria-hidden="true" tabindex="-1"></a><span class="co">/* Display the estimated mean difference between quitting and </span></span>
+<span id="cb104-17"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-17" aria-hidden="true" tabindex="-1"></a><span class="co">  not quitting value when smoke intensity = 40 cigarettes/ day */</span></span>
+<span id="cb104-18"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-18" aria-hidden="true" tabindex="-1"></a><span class="kw">lincom</span> 1*_b[qsmk] + 40*1*_b[qsmkintensity]</span>
+<span id="cb104-19"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-20"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-20" aria-hidden="true" tabindex="-1"></a><span class="co">/* Regression on covariates, with no product terms */</span></span>
+<span id="cb104-21"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-21" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> wt82_71 qsmk c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
+<span id="cb104-22"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-22" aria-hidden="true" tabindex="-1"></a>  sex race c.age##c.age <span class="co">///</span></span>
+<span id="cb104-23"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-23" aria-hidden="true" tabindex="-1"></a>  ib(<span class="fu">last</span>).education c.smokeyrs##c.smokeyrs <span class="co">///</span></span>
+<span id="cb104-24"><a href="outcome-regression-and-propensity-scores-stata.html#cb104-24" aria-hidden="true" tabindex="-1"></a>  ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 </span></code></pre></div>
 <pre><code>      Source |       SS           df       MS      Number of obs   =     1,566
 -------------+----------------------------------   F(20, 1545)     =     13.45
        Model |   14412.558        20    720.6279   Prob &gt; F        =    0.0000
@@ -468,42 +468,42 @@ c.wt71#c.wt71 |  -.0009158   .0005235    -1.75   0.080    -.0019427    .0001111
 <li>Data from NHEFS</li>
 <li>Section 15.2</li>
 </ul>
-<div class="sourceCode" id="cb389"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb389-1"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span>
-<span id="cb389-2"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb389-3"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-3" aria-hidden="true" tabindex="-1"></a><span class="co">/*Fit a model for the exposure, quitting smoking*/</span></span>
-<span id="cb389-4"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-4" aria-hidden="true" tabindex="-1"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education <span class="co">///</span></span>
-<span id="cb389-5"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-5" aria-hidden="true" tabindex="-1"></a>  c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
-<span id="cb389-6"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-6" aria-hidden="true" tabindex="-1"></a>  c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active <span class="co">///</span></span>
-<span id="cb389-7"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-7" aria-hidden="true" tabindex="-1"></a>  c.wt71##c.wt71 </span>
-<span id="cb389-8"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb389-9"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-9" aria-hidden="true" tabindex="-1"></a><span class="co">/*Estimate the propensity score, P(Qsmk|Covariates)*/</span></span>
-<span id="cb389-10"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-10" aria-hidden="true" tabindex="-1"></a><span class="kw">predict</span> ps, pr</span>
-<span id="cb389-11"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb389-12"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-12" aria-hidden="true" tabindex="-1"></a><span class="co">/*Check the distribution of the propensity score*/</span></span>
-<span id="cb389-13"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-13" aria-hidden="true" tabindex="-1"></a><span class="kw">bys</span> qsmk: <span class="kw">summarize</span> ps </span>
-<span id="cb389-14"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb389-15"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-15" aria-hidden="true" tabindex="-1"></a><span class="co">/*Return extreme values of propensity score:</span></span>
-<span id="cb389-16"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-16" aria-hidden="true" tabindex="-1"></a><span class="co">  note, for Stata versions 15 and above, start by installing extremes*/</span></span>
-<span id="cb389-17"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-17" aria-hidden="true" tabindex="-1"></a>* <span class="kw">ssc</span> install extremes</span>
-<span id="cb389-18"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-18" aria-hidden="true" tabindex="-1"></a>extremes ps seqn</span>
-<span id="cb389-19"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-19" aria-hidden="true" tabindex="-1"></a><span class="kw">bys</span> qsmk: extremes ps seqn</span>
-<span id="cb389-20"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb389-21"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-21" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> ./<span class="kw">data</span>/nhefs-ps, <span class="kw">replace</span></span>
-<span id="cb389-22"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb389-23"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-23" aria-hidden="true" tabindex="-1"></a><span class="co">/*Plotting the estimated propensity score*/</span></span>
-<span id="cb389-24"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-24" aria-hidden="true" tabindex="-1"></a><span class="kw">histogram</span> ps, <span class="kw">width</span>(0.05) <span class="bn">start</span>(0.025) <span class="co">///</span></span>
-<span id="cb389-25"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-25" aria-hidden="true" tabindex="-1"></a>  <span class="kw">frequency</span> fcolor(<span class="kw">none</span>) lcolor(<span class="bn">black</span>) <span class="co">///</span></span>
-<span id="cb389-26"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-26" aria-hidden="true" tabindex="-1"></a>  lpattern(solid) addlabel <span class="co">///</span></span>
-<span id="cb389-27"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-27" aria-hidden="true" tabindex="-1"></a>  <span class="bn">addlabopts</span>(<span class="bn">mlabcolor</span>(<span class="bn">black</span>) <span class="bn">mlabposition</span>(12) <span class="co">///</span></span>
-<span id="cb389-28"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-28" aria-hidden="true" tabindex="-1"></a>  <span class="bn">mlabangle</span>(<span class="bn">zero</span>)) <span class="co">///</span></span>
-<span id="cb389-29"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-29" aria-hidden="true" tabindex="-1"></a>  <span class="bn">ytitle</span>(No. Subjects) <span class="kw">ylabel</span>(#4) <span class="co">///</span></span>
-<span id="cb389-30"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-30" aria-hidden="true" tabindex="-1"></a>  <span class="bn">xtitle</span>(Estimated Propensity Score) <span class="kw">xlabel</span>(#15) <span class="co">///</span></span>
-<span id="cb389-31"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-31" aria-hidden="true" tabindex="-1"></a>  <span class="kw">by</span>(, <span class="bn">title</span>(Estimated Propensity Score Distribution) <span class="co">///</span></span>
-<span id="cb389-32"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-32" aria-hidden="true" tabindex="-1"></a>  <span class="bn">subtitle</span>(By Quit Smoking Status)) <span class="co">///</span></span>
-<span id="cb389-33"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-33" aria-hidden="true" tabindex="-1"></a>  <span class="kw">by</span>(, <span class="bn">legend</span>(<span class="kw">off</span>)) <span class="co">///</span></span>
-<span id="cb389-34"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-34" aria-hidden="true" tabindex="-1"></a>  <span class="kw">by</span>(qsmk, style(compact) colfirst) <span class="co">///</span></span>
-<span id="cb389-35"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-35" aria-hidden="true" tabindex="-1"></a>  <span class="bn">subtitle</span>(, <span class="kw">size</span>(small) box bexpand)</span>
-<span id="cb389-36"><a href="outcome-regression-and-propensity-scores-stata.html#cb389-36" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">gr</span> <span class="kw">export</span> ./figs/stata-fig-15-2.png, <span class="kw">replace</span></span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb106-1"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span>
+<span id="cb106-2"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-3"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-3" aria-hidden="true" tabindex="-1"></a><span class="co">/*Fit a model for the exposure, quitting smoking*/</span></span>
+<span id="cb106-4"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-4" aria-hidden="true" tabindex="-1"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education <span class="co">///</span></span>
+<span id="cb106-5"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-5" aria-hidden="true" tabindex="-1"></a>  c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
+<span id="cb106-6"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-6" aria-hidden="true" tabindex="-1"></a>  c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active <span class="co">///</span></span>
+<span id="cb106-7"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-7" aria-hidden="true" tabindex="-1"></a>  c.wt71##c.wt71 </span>
+<span id="cb106-8"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-9"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-9" aria-hidden="true" tabindex="-1"></a><span class="co">/*Estimate the propensity score, P(Qsmk|Covariates)*/</span></span>
+<span id="cb106-10"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-10" aria-hidden="true" tabindex="-1"></a><span class="kw">predict</span> ps, pr</span>
+<span id="cb106-11"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-12"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-12" aria-hidden="true" tabindex="-1"></a><span class="co">/*Check the distribution of the propensity score*/</span></span>
+<span id="cb106-13"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-13" aria-hidden="true" tabindex="-1"></a><span class="kw">bys</span> qsmk: <span class="kw">summarize</span> ps </span>
+<span id="cb106-14"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-15"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-15" aria-hidden="true" tabindex="-1"></a><span class="co">/*Return extreme values of propensity score:</span></span>
+<span id="cb106-16"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-16" aria-hidden="true" tabindex="-1"></a><span class="co">  note, for Stata versions 15 and above, start by installing extremes*/</span></span>
+<span id="cb106-17"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-17" aria-hidden="true" tabindex="-1"></a>* <span class="kw">ssc</span> install extremes</span>
+<span id="cb106-18"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-18" aria-hidden="true" tabindex="-1"></a>extremes ps seqn</span>
+<span id="cb106-19"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-19" aria-hidden="true" tabindex="-1"></a><span class="kw">bys</span> qsmk: extremes ps seqn</span>
+<span id="cb106-20"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-21"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-21" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> ./<span class="kw">data</span>/nhefs-ps, <span class="kw">replace</span></span>
+<span id="cb106-22"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-23"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-23" aria-hidden="true" tabindex="-1"></a><span class="co">/*Plotting the estimated propensity score*/</span></span>
+<span id="cb106-24"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-24" aria-hidden="true" tabindex="-1"></a><span class="kw">histogram</span> ps, <span class="kw">width</span>(0.05) <span class="bn">start</span>(0.025) <span class="co">///</span></span>
+<span id="cb106-25"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-25" aria-hidden="true" tabindex="-1"></a>  <span class="kw">frequency</span> fcolor(<span class="kw">none</span>) lcolor(<span class="bn">black</span>) <span class="co">///</span></span>
+<span id="cb106-26"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-26" aria-hidden="true" tabindex="-1"></a>  lpattern(solid) addlabel <span class="co">///</span></span>
+<span id="cb106-27"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-27" aria-hidden="true" tabindex="-1"></a>  <span class="bn">addlabopts</span>(<span class="bn">mlabcolor</span>(<span class="bn">black</span>) <span class="bn">mlabposition</span>(12) <span class="co">///</span></span>
+<span id="cb106-28"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-28" aria-hidden="true" tabindex="-1"></a>  <span class="bn">mlabangle</span>(<span class="bn">zero</span>)) <span class="co">///</span></span>
+<span id="cb106-29"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-29" aria-hidden="true" tabindex="-1"></a>  <span class="bn">ytitle</span>(No. Subjects) <span class="kw">ylabel</span>(#4) <span class="co">///</span></span>
+<span id="cb106-30"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-30" aria-hidden="true" tabindex="-1"></a>  <span class="bn">xtitle</span>(Estimated Propensity Score) <span class="kw">xlabel</span>(#15) <span class="co">///</span></span>
+<span id="cb106-31"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-31" aria-hidden="true" tabindex="-1"></a>  <span class="kw">by</span>(, <span class="bn">title</span>(Estimated Propensity Score Distribution) <span class="co">///</span></span>
+<span id="cb106-32"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-32" aria-hidden="true" tabindex="-1"></a>  <span class="bn">subtitle</span>(By Quit Smoking Status)) <span class="co">///</span></span>
+<span id="cb106-33"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-33" aria-hidden="true" tabindex="-1"></a>  <span class="kw">by</span>(, <span class="bn">legend</span>(<span class="kw">off</span>)) <span class="co">///</span></span>
+<span id="cb106-34"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-34" aria-hidden="true" tabindex="-1"></a>  <span class="kw">by</span>(qsmk, style(compact) colfirst) <span class="co">///</span></span>
+<span id="cb106-35"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-35" aria-hidden="true" tabindex="-1"></a>  <span class="bn">subtitle</span>(, <span class="kw">size</span>(small) box bexpand)</span>
+<span id="cb106-36"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-36" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">gr</span> <span class="kw">export</span> ./figs/stata-fig-15-2.png, <span class="kw">replace</span></span></code></pre></div>
 <pre><code>Iteration 0:   log likelihood = -893.02712  
 Iteration 1:   log likelihood = -839.70016  
 Iteration 2:   log likelihood = -838.45045  
@@ -648,19 +648,19 @@ file ./data/nhefs-ps.dta saved
 <li>Section 15.3</li>
 <li>Note: Stata decides borderline cutpoints differently from SAS, so, despite identically distributed propensity scores, the results of regression using deciles are not an exact match with the book.</li>
 </ul>
-<div class="sourceCode" id="cb391"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb391-1"><a href="outcome-regression-and-propensity-scores-stata.html#cb391-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-ps, <span class="kw">clear</span></span>
-<span id="cb391-2"><a href="outcome-regression-and-propensity-scores-stata.html#cb391-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb391-3"><a href="outcome-regression-and-propensity-scores-stata.html#cb391-3" aria-hidden="true" tabindex="-1"></a><span class="co">/*Calculation of deciles of ps*/</span></span>
-<span id="cb391-4"><a href="outcome-regression-and-propensity-scores-stata.html#cb391-4" aria-hidden="true" tabindex="-1"></a><span class="kw">xtile</span> ps_dec = ps, nq(10)</span>
-<span id="cb391-5"><a href="outcome-regression-and-propensity-scores-stata.html#cb391-5" aria-hidden="true" tabindex="-1"></a><span class="kw">by</span> ps_dec, <span class="kw">sort</span>: <span class="kw">summarize</span> ps</span>
-<span id="cb391-6"><a href="outcome-regression-and-propensity-scores-stata.html#cb391-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb391-7"><a href="outcome-regression-and-propensity-scores-stata.html#cb391-7" aria-hidden="true" tabindex="-1"></a><span class="co">/*Stratification on PS deciles, allowing for effect modification*/</span></span>
-<span id="cb391-8"><a href="outcome-regression-and-propensity-scores-stata.html#cb391-8" aria-hidden="true" tabindex="-1"></a><span class="co">/*Note: Stata compares qsmk 0 vs qsmk 1, so the coefficients are reversed </span></span>
-<span id="cb391-9"><a href="outcome-regression-and-propensity-scores-stata.html#cb391-9" aria-hidden="true" tabindex="-1"></a><span class="co">relative to the book*/</span></span>
-<span id="cb391-10"><a href="outcome-regression-and-propensity-scores-stata.html#cb391-10" aria-hidden="true" tabindex="-1"></a><span class="kw">by</span> ps_dec: <span class="kw">ttest</span> wt82_71, <span class="kw">by</span>(qsmk)</span>
-<span id="cb391-11"><a href="outcome-regression-and-propensity-scores-stata.html#cb391-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb391-12"><a href="outcome-regression-and-propensity-scores-stata.html#cb391-12" aria-hidden="true" tabindex="-1"></a><span class="co">/*Regression on PS deciles, with no product terms*/</span></span>
-<span id="cb391-13"><a href="outcome-regression-and-propensity-scores-stata.html#cb391-13" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> wt82_71 qsmk ib(<span class="fu">last</span>).ps_dec</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb108-1"><a href="outcome-regression-and-propensity-scores-stata.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-ps, <span class="kw">clear</span></span>
+<span id="cb108-2"><a href="outcome-regression-and-propensity-scores-stata.html#cb108-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-3"><a href="outcome-regression-and-propensity-scores-stata.html#cb108-3" aria-hidden="true" tabindex="-1"></a><span class="co">/*Calculation of deciles of ps*/</span></span>
+<span id="cb108-4"><a href="outcome-regression-and-propensity-scores-stata.html#cb108-4" aria-hidden="true" tabindex="-1"></a><span class="kw">xtile</span> ps_dec = ps, nq(10)</span>
+<span id="cb108-5"><a href="outcome-regression-and-propensity-scores-stata.html#cb108-5" aria-hidden="true" tabindex="-1"></a><span class="kw">by</span> ps_dec, <span class="kw">sort</span>: <span class="kw">summarize</span> ps</span>
+<span id="cb108-6"><a href="outcome-regression-and-propensity-scores-stata.html#cb108-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-7"><a href="outcome-regression-and-propensity-scores-stata.html#cb108-7" aria-hidden="true" tabindex="-1"></a><span class="co">/*Stratification on PS deciles, allowing for effect modification*/</span></span>
+<span id="cb108-8"><a href="outcome-regression-and-propensity-scores-stata.html#cb108-8" aria-hidden="true" tabindex="-1"></a><span class="co">/*Note: Stata compares qsmk 0 vs qsmk 1, so the coefficients are reversed </span></span>
+<span id="cb108-9"><a href="outcome-regression-and-propensity-scores-stata.html#cb108-9" aria-hidden="true" tabindex="-1"></a><span class="co">relative to the book*/</span></span>
+<span id="cb108-10"><a href="outcome-regression-and-propensity-scores-stata.html#cb108-10" aria-hidden="true" tabindex="-1"></a><span class="kw">by</span> ps_dec: <span class="kw">ttest</span> wt82_71, <span class="kw">by</span>(qsmk)</span>
+<span id="cb108-11"><a href="outcome-regression-and-propensity-scores-stata.html#cb108-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-12"><a href="outcome-regression-and-propensity-scores-stata.html#cb108-12" aria-hidden="true" tabindex="-1"></a><span class="co">/*Regression on PS deciles, with no product terms*/</span></span>
+<span id="cb108-13"><a href="outcome-regression-and-propensity-scores-stata.html#cb108-13" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> wt82_71 qsmk ib(<span class="fu">last</span>).ps_dec</span></code></pre></div>
 <pre><code>-&gt; ps_dec = 1
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
@@ -965,102 +965,102 @@ H0: diff = 0                                     Degrees of freedom =      154
 <li>Data from NHEFS</li>
 <li>Section 15.3</li>
 </ul>
-<div class="sourceCode" id="cb393"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb393-1"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span>
-<span id="cb393-2"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb393-3"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-3" aria-hidden="true" tabindex="-1"></a><span class="co">/*Estimate the propensity score*/</span></span>
-<span id="cb393-4"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-4" aria-hidden="true" tabindex="-1"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education <span class="co">///</span></span>
-<span id="cb393-5"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-5" aria-hidden="true" tabindex="-1"></a>  c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
-<span id="cb393-6"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-6" aria-hidden="true" tabindex="-1"></a>  c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise <span class="co">///</span></span>
-<span id="cb393-7"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-7" aria-hidden="true" tabindex="-1"></a>  ib(<span class="fu">last</span>).active c.wt71##c.wt71 </span>
-<span id="cb393-8"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-8" aria-hidden="true" tabindex="-1"></a><span class="kw">predict</span> ps, pr</span>
-<span id="cb393-9"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb393-10"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-10" aria-hidden="true" tabindex="-1"></a><span class="co">/*Expand the dataset for standardization*/</span></span>
-<span id="cb393-11"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-11" aria-hidden="true" tabindex="-1"></a>expand 2, <span class="kw">generate</span>(interv)</span>
-<span id="cb393-12"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-12" aria-hidden="true" tabindex="-1"></a>expand 2 <span class="kw">if</span> interv == 0, <span class="kw">generate</span>(interv2)</span>
-<span id="cb393-13"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-13" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> interv = -1 <span class="kw">if</span> interv2 ==1</span>
-<span id="cb393-14"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-14" aria-hidden="true" tabindex="-1"></a><span class="kw">drop</span> interv2 </span>
-<span id="cb393-15"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-15" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> interv</span>
-<span id="cb393-16"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-16" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> wt82_71 = . <span class="kw">if</span> interv != -1</span>
-<span id="cb393-17"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-17" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> qsmk = 0 <span class="kw">if</span> interv == 0</span>
-<span id="cb393-18"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-18" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> qsmk = 1 <span class="kw">if</span> interv == 1</span>
-<span id="cb393-19"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-19" aria-hidden="true" tabindex="-1"></a><span class="kw">by</span> interv, <span class="kw">sort</span>: <span class="kw">summarize</span> qsmk</span>
-<span id="cb393-20"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb393-21"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-21" aria-hidden="true" tabindex="-1"></a><span class="co">/*Regression on the propensity score, allowing for effect modification*/</span></span>
-<span id="cb393-22"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-22" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> wt82_71 qsmk##c.ps</span>
-<span id="cb393-23"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-23" aria-hidden="true" tabindex="-1"></a><span class="kw">predict</span> predY, <span class="kw">xb</span></span>
-<span id="cb393-24"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-24" aria-hidden="true" tabindex="-1"></a><span class="kw">by</span> interv, <span class="kw">sort</span>: <span class="kw">summarize</span> predY</span>
-<span id="cb393-25"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb393-26"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-26" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">summarize</span> predY <span class="kw">if</span>(interv == -1)</span>
-<span id="cb393-27"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-27" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> input observe = (-1,<span class="ot">`r(mean)&#39;</span>)</span>
-<span id="cb393-28"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-28" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">summarize</span> predY <span class="kw">if</span>(interv == 0)</span>
-<span id="cb393-29"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-29" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> observe = (observe \0,<span class="ot">`r(mean)&#39;</span>)</span>
-<span id="cb393-30"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-30" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">summarize</span> predY <span class="kw">if</span>(interv == 1)</span>
-<span id="cb393-31"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-31" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> observe = (observe \1,<span class="ot">`r(mean)&#39;</span>)</span>
-<span id="cb393-32"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-32" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> observe = (observe \., observe[3,2]-observe[2,2]) </span>
-<span id="cb393-33"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-33" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> <span class="ot">rownames</span> observe = observed E(Y(a=0)) E(Y(a=1)) difference</span>
-<span id="cb393-34"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-34" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> <span class="ot">colnames</span> observe = interv <span class="ot">value</span></span>
-<span id="cb393-35"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-35" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> <span class="ot">list</span> observe </span>
-<span id="cb393-36"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb393-37"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-37" aria-hidden="true" tabindex="-1"></a><span class="co">/*bootstrap program*/</span></span>
-<span id="cb393-38"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-38" aria-hidden="true" tabindex="-1"></a><span class="kw">drop</span> <span class="kw">if</span> interv != -1</span>
-<span id="cb393-39"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-39" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> meanY_b =.</span>
-<span id="cb393-40"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-40" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">save</span> ./<span class="kw">data</span>/nhefs_std, <span class="kw">replace</span></span>
-<span id="cb393-41"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb393-42"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-42" aria-hidden="true" tabindex="-1"></a><span class="kw">capture</span> <span class="kw">program</span> <span class="kw">drop</span> bootstdz</span>
-<span id="cb393-43"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb393-44"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-44" aria-hidden="true" tabindex="-1"></a><span class="kw">program</span> <span class="kw">define</span> bootstdz, rclass</span>
-<span id="cb393-45"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-45" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs_std, <span class="kw">clear</span></span>
-<span id="cb393-46"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-46" aria-hidden="true" tabindex="-1"></a><span class="kw">preserve</span></span>
-<span id="cb393-47"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-47" aria-hidden="true" tabindex="-1"></a><span class="kw">bsample</span> </span>
-<span id="cb393-48"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-48" aria-hidden="true" tabindex="-1"></a><span class="co">/*Create 2 new copies of the data. </span></span>
-<span id="cb393-49"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-49" aria-hidden="true" tabindex="-1"></a><span class="co">Set the outcome AND the exposure to missing in the copies*/</span></span>
-<span id="cb393-50"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-50" aria-hidden="true" tabindex="-1"></a>expand 2, <span class="kw">generate</span>(interv_b)</span>
-<span id="cb393-51"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-51" aria-hidden="true" tabindex="-1"></a>expand 2 <span class="kw">if</span> interv_b == 0, <span class="kw">generate</span>(interv2_b)</span>
-<span id="cb393-52"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-52" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">replace</span> interv_b = -1 <span class="kw">if</span> interv2_b ==1</span>
-<span id="cb393-53"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-53" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">drop</span> interv2_b</span>
-<span id="cb393-54"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-54" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">replace</span> wt82_71 = . <span class="kw">if</span> interv_b != -1</span>
-<span id="cb393-55"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-55" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">replace</span> qsmk = . <span class="kw">if</span> interv_b != -1</span>
-<span id="cb393-56"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb393-57"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-57" aria-hidden="true" tabindex="-1"></a><span class="co">/*Fit the propensity score in the original data </span></span>
-<span id="cb393-58"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-58" aria-hidden="true" tabindex="-1"></a><span class="co">(where qsmk is not missing) and generate predictions for everyone*/</span></span>
-<span id="cb393-59"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-59" aria-hidden="true" tabindex="-1"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education <span class="co">///</span></span>
-<span id="cb393-60"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-60" aria-hidden="true" tabindex="-1"></a>  c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
-<span id="cb393-61"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-61" aria-hidden="true" tabindex="-1"></a>    c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active <span class="co">///</span></span>
-<span id="cb393-62"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-62" aria-hidden="true" tabindex="-1"></a>    c.wt71##c.wt71 </span>
-<span id="cb393-63"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-63" aria-hidden="true" tabindex="-1"></a><span class="kw">predict</span> ps_b, pr</span>
-<span id="cb393-64"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb393-65"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-65" aria-hidden="true" tabindex="-1"></a><span class="co">/*Set the exposure to 0 for everyone in copy 0, </span></span>
-<span id="cb393-66"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-66" aria-hidden="true" tabindex="-1"></a><span class="co">and 1 to everyone for copy 1*/</span></span>
-<span id="cb393-67"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-67" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">replace</span> qsmk = 0 <span class="kw">if</span> interv_b == 0</span>
-<span id="cb393-68"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-68" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">replace</span> qsmk = 1 <span class="kw">if</span> interv_b == 1</span>
-<span id="cb393-69"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb393-70"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-70" aria-hidden="true" tabindex="-1"></a><span class="co">/*Fit the outcome regression in the original data </span></span>
-<span id="cb393-71"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-71" aria-hidden="true" tabindex="-1"></a><span class="co">(where wt82_71 is not missing) and </span></span>
-<span id="cb393-72"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-72" aria-hidden="true" tabindex="-1"></a><span class="co">generate predictions for everyone*/</span></span>
-<span id="cb393-73"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-73" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> wt82_71 qsmk##c.ps</span>
-<span id="cb393-74"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-74" aria-hidden="true" tabindex="-1"></a><span class="kw">predict</span> predY_b, <span class="kw">xb</span></span>
-<span id="cb393-75"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb393-76"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-76" aria-hidden="true" tabindex="-1"></a><span class="co">/*Summarize the predictions in each set of copies*/</span></span>
-<span id="cb393-77"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-77" aria-hidden="true" tabindex="-1"></a><span class="kw">summarize</span> predY_b <span class="kw">if</span> interv_b == 0</span>
-<span id="cb393-78"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-78" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span> <span class="fu">scalar</span> boot_0 = <span class="fu">r</span>(<span class="kw">mean</span>)</span>
-<span id="cb393-79"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-79" aria-hidden="true" tabindex="-1"></a><span class="kw">summarize</span> predY_b <span class="kw">if</span> interv_b == 1</span>
-<span id="cb393-80"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-80" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span> <span class="fu">scalar</span> boot_1 = <span class="fu">r</span>(<span class="kw">mean</span>)</span>
-<span id="cb393-81"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-81" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span> <span class="fu">scalar</span> boot_diff = <span class="fu">return</span>(boot_1) - <span class="fu">return</span>(boot_0)</span>
-<span id="cb393-82"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-82" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">drop</span> meanY_b</span>
-<span id="cb393-83"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-83" aria-hidden="true" tabindex="-1"></a><span class="kw">restore</span></span>
-<span id="cb393-84"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-84" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb393-85"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb393-86"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-86" aria-hidden="true" tabindex="-1"></a><span class="co">/*Then we use the `simulate` command to run the bootstraps </span></span>
-<span id="cb393-87"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-87" aria-hidden="true" tabindex="-1"></a><span class="co">as many times as we want.</span></span>
-<span id="cb393-88"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-88" aria-hidden="true" tabindex="-1"></a><span class="co">Start with reps(10) to make sure your code runs, </span></span>
-<span id="cb393-89"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-89" aria-hidden="true" tabindex="-1"></a><span class="co">and then change to reps(1000) to generate your final CIs*/</span></span>
-<span id="cb393-90"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-90" aria-hidden="true" tabindex="-1"></a><span class="kw">simulate</span> EY_a0=<span class="fu">r</span>(boot_0) EY_a1 = <span class="fu">r</span>(boot_1) <span class="co">///</span></span>
-<span id="cb393-91"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-91" aria-hidden="true" tabindex="-1"></a>  difference = <span class="fu">r</span>(boot_diff), reps(500) <span class="dv">seed</span>(1): bootstdz /</span>
-<span id="cb393-92"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb393-93"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-93" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> pe = observe[2..4, 2]&#39;</span>
-<span id="cb393-94"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-94" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> <span class="ot">list</span> pe</span>
-<span id="cb393-95"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-95" aria-hidden="true" tabindex="-1"></a><span class="kw">bstat</span>, stat(pe) n(1629) </span>
-<span id="cb393-96"><a href="outcome-regression-and-propensity-scores-stata.html#cb393-96" aria-hidden="true" tabindex="-1"></a><span class="kw">estat</span> <span class="kw">bootstrap</span>, <span class="kw">p</span></span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb110-1"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span>
+<span id="cb110-2"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-3"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-3" aria-hidden="true" tabindex="-1"></a><span class="co">/*Estimate the propensity score*/</span></span>
+<span id="cb110-4"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-4" aria-hidden="true" tabindex="-1"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education <span class="co">///</span></span>
+<span id="cb110-5"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-5" aria-hidden="true" tabindex="-1"></a>  c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
+<span id="cb110-6"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-6" aria-hidden="true" tabindex="-1"></a>  c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise <span class="co">///</span></span>
+<span id="cb110-7"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-7" aria-hidden="true" tabindex="-1"></a>  ib(<span class="fu">last</span>).active c.wt71##c.wt71 </span>
+<span id="cb110-8"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-8" aria-hidden="true" tabindex="-1"></a><span class="kw">predict</span> ps, pr</span>
+<span id="cb110-9"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-10"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-10" aria-hidden="true" tabindex="-1"></a><span class="co">/*Expand the dataset for standardization*/</span></span>
+<span id="cb110-11"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-11" aria-hidden="true" tabindex="-1"></a>expand 2, <span class="kw">generate</span>(interv)</span>
+<span id="cb110-12"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-12" aria-hidden="true" tabindex="-1"></a>expand 2 <span class="kw">if</span> interv == 0, <span class="kw">generate</span>(interv2)</span>
+<span id="cb110-13"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-13" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> interv = -1 <span class="kw">if</span> interv2 ==1</span>
+<span id="cb110-14"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-14" aria-hidden="true" tabindex="-1"></a><span class="kw">drop</span> interv2 </span>
+<span id="cb110-15"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-15" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> interv</span>
+<span id="cb110-16"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-16" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> wt82_71 = . <span class="kw">if</span> interv != -1</span>
+<span id="cb110-17"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-17" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> qsmk = 0 <span class="kw">if</span> interv == 0</span>
+<span id="cb110-18"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-18" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> qsmk = 1 <span class="kw">if</span> interv == 1</span>
+<span id="cb110-19"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-19" aria-hidden="true" tabindex="-1"></a><span class="kw">by</span> interv, <span class="kw">sort</span>: <span class="kw">summarize</span> qsmk</span>
+<span id="cb110-20"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-21"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-21" aria-hidden="true" tabindex="-1"></a><span class="co">/*Regression on the propensity score, allowing for effect modification*/</span></span>
+<span id="cb110-22"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-22" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> wt82_71 qsmk##c.ps</span>
+<span id="cb110-23"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-23" aria-hidden="true" tabindex="-1"></a><span class="kw">predict</span> predY, <span class="kw">xb</span></span>
+<span id="cb110-24"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-24" aria-hidden="true" tabindex="-1"></a><span class="kw">by</span> interv, <span class="kw">sort</span>: <span class="kw">summarize</span> predY</span>
+<span id="cb110-25"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-26"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-26" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">summarize</span> predY <span class="kw">if</span>(interv == -1)</span>
+<span id="cb110-27"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-27" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> input observe = (-1,<span class="ot">`r(mean)&#39;</span>)</span>
+<span id="cb110-28"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-28" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">summarize</span> predY <span class="kw">if</span>(interv == 0)</span>
+<span id="cb110-29"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-29" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> observe = (observe \0,<span class="ot">`r(mean)&#39;</span>)</span>
+<span id="cb110-30"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-30" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">summarize</span> predY <span class="kw">if</span>(interv == 1)</span>
+<span id="cb110-31"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-31" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> observe = (observe \1,<span class="ot">`r(mean)&#39;</span>)</span>
+<span id="cb110-32"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-32" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> observe = (observe \., observe[3,2]-observe[2,2]) </span>
+<span id="cb110-33"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-33" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> <span class="ot">rownames</span> observe = observed E(Y(a=0)) E(Y(a=1)) difference</span>
+<span id="cb110-34"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-34" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> <span class="ot">colnames</span> observe = interv <span class="ot">value</span></span>
+<span id="cb110-35"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-35" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> <span class="ot">list</span> observe </span>
+<span id="cb110-36"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-37"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-37" aria-hidden="true" tabindex="-1"></a><span class="co">/*bootstrap program*/</span></span>
+<span id="cb110-38"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-38" aria-hidden="true" tabindex="-1"></a><span class="kw">drop</span> <span class="kw">if</span> interv != -1</span>
+<span id="cb110-39"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-39" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> meanY_b =.</span>
+<span id="cb110-40"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-40" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">save</span> ./<span class="kw">data</span>/nhefs_std, <span class="kw">replace</span></span>
+<span id="cb110-41"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-42"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-42" aria-hidden="true" tabindex="-1"></a><span class="kw">capture</span> <span class="kw">program</span> <span class="kw">drop</span> bootstdz</span>
+<span id="cb110-43"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-44"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-44" aria-hidden="true" tabindex="-1"></a><span class="kw">program</span> <span class="kw">define</span> bootstdz, rclass</span>
+<span id="cb110-45"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-45" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs_std, <span class="kw">clear</span></span>
+<span id="cb110-46"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-46" aria-hidden="true" tabindex="-1"></a><span class="kw">preserve</span></span>
+<span id="cb110-47"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-47" aria-hidden="true" tabindex="-1"></a><span class="kw">bsample</span> </span>
+<span id="cb110-48"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-48" aria-hidden="true" tabindex="-1"></a><span class="co">/*Create 2 new copies of the data. </span></span>
+<span id="cb110-49"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-49" aria-hidden="true" tabindex="-1"></a><span class="co">Set the outcome AND the exposure to missing in the copies*/</span></span>
+<span id="cb110-50"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-50" aria-hidden="true" tabindex="-1"></a>expand 2, <span class="kw">generate</span>(interv_b)</span>
+<span id="cb110-51"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-51" aria-hidden="true" tabindex="-1"></a>expand 2 <span class="kw">if</span> interv_b == 0, <span class="kw">generate</span>(interv2_b)</span>
+<span id="cb110-52"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-52" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">replace</span> interv_b = -1 <span class="kw">if</span> interv2_b ==1</span>
+<span id="cb110-53"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-53" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">drop</span> interv2_b</span>
+<span id="cb110-54"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-54" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">replace</span> wt82_71 = . <span class="kw">if</span> interv_b != -1</span>
+<span id="cb110-55"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-55" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">replace</span> qsmk = . <span class="kw">if</span> interv_b != -1</span>
+<span id="cb110-56"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-57"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-57" aria-hidden="true" tabindex="-1"></a><span class="co">/*Fit the propensity score in the original data </span></span>
+<span id="cb110-58"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-58" aria-hidden="true" tabindex="-1"></a><span class="co">(where qsmk is not missing) and generate predictions for everyone*/</span></span>
+<span id="cb110-59"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-59" aria-hidden="true" tabindex="-1"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education <span class="co">///</span></span>
+<span id="cb110-60"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-60" aria-hidden="true" tabindex="-1"></a>  c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
+<span id="cb110-61"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-61" aria-hidden="true" tabindex="-1"></a>    c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active <span class="co">///</span></span>
+<span id="cb110-62"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-62" aria-hidden="true" tabindex="-1"></a>    c.wt71##c.wt71 </span>
+<span id="cb110-63"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-63" aria-hidden="true" tabindex="-1"></a><span class="kw">predict</span> ps_b, pr</span>
+<span id="cb110-64"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-65"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-65" aria-hidden="true" tabindex="-1"></a><span class="co">/*Set the exposure to 0 for everyone in copy 0, </span></span>
+<span id="cb110-66"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-66" aria-hidden="true" tabindex="-1"></a><span class="co">and 1 to everyone for copy 1*/</span></span>
+<span id="cb110-67"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-67" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">replace</span> qsmk = 0 <span class="kw">if</span> interv_b == 0</span>
+<span id="cb110-68"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-68" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">replace</span> qsmk = 1 <span class="kw">if</span> interv_b == 1</span>
+<span id="cb110-69"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-70"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-70" aria-hidden="true" tabindex="-1"></a><span class="co">/*Fit the outcome regression in the original data </span></span>
+<span id="cb110-71"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-71" aria-hidden="true" tabindex="-1"></a><span class="co">(where wt82_71 is not missing) and </span></span>
+<span id="cb110-72"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-72" aria-hidden="true" tabindex="-1"></a><span class="co">generate predictions for everyone*/</span></span>
+<span id="cb110-73"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-73" aria-hidden="true" tabindex="-1"></a><span class="kw">regress</span> wt82_71 qsmk##c.ps</span>
+<span id="cb110-74"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-74" aria-hidden="true" tabindex="-1"></a><span class="kw">predict</span> predY_b, <span class="kw">xb</span></span>
+<span id="cb110-75"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-76"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-76" aria-hidden="true" tabindex="-1"></a><span class="co">/*Summarize the predictions in each set of copies*/</span></span>
+<span id="cb110-77"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-77" aria-hidden="true" tabindex="-1"></a><span class="kw">summarize</span> predY_b <span class="kw">if</span> interv_b == 0</span>
+<span id="cb110-78"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-78" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span> <span class="fu">scalar</span> boot_0 = <span class="fu">r</span>(<span class="kw">mean</span>)</span>
+<span id="cb110-79"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-79" aria-hidden="true" tabindex="-1"></a><span class="kw">summarize</span> predY_b <span class="kw">if</span> interv_b == 1</span>
+<span id="cb110-80"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-80" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span> <span class="fu">scalar</span> boot_1 = <span class="fu">r</span>(<span class="kw">mean</span>)</span>
+<span id="cb110-81"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-81" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span> <span class="fu">scalar</span> boot_diff = <span class="fu">return</span>(boot_1) - <span class="fu">return</span>(boot_0)</span>
+<span id="cb110-82"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-82" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">drop</span> meanY_b</span>
+<span id="cb110-83"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-83" aria-hidden="true" tabindex="-1"></a><span class="kw">restore</span></span>
+<span id="cb110-84"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-84" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb110-85"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-86"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-86" aria-hidden="true" tabindex="-1"></a><span class="co">/*Then we use the `simulate` command to run the bootstraps </span></span>
+<span id="cb110-87"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-87" aria-hidden="true" tabindex="-1"></a><span class="co">as many times as we want.</span></span>
+<span id="cb110-88"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-88" aria-hidden="true" tabindex="-1"></a><span class="co">Start with reps(10) to make sure your code runs, </span></span>
+<span id="cb110-89"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-89" aria-hidden="true" tabindex="-1"></a><span class="co">and then change to reps(1000) to generate your final CIs*/</span></span>
+<span id="cb110-90"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-90" aria-hidden="true" tabindex="-1"></a><span class="kw">simulate</span> EY_a0=<span class="fu">r</span>(boot_0) EY_a1 = <span class="fu">r</span>(boot_1) <span class="co">///</span></span>
+<span id="cb110-91"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-91" aria-hidden="true" tabindex="-1"></a>  difference = <span class="fu">r</span>(boot_diff), reps(500) <span class="dv">seed</span>(1): bootstdz /</span>
+<span id="cb110-92"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-93"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-93" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> pe = observe[2..4, 2]&#39;</span>
+<span id="cb110-94"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-94" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> <span class="ot">list</span> pe</span>
+<span id="cb110-95"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-95" aria-hidden="true" tabindex="-1"></a><span class="kw">bstat</span>, stat(pe) n(1629) </span>
+<span id="cb110-96"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-96" aria-hidden="true" tabindex="-1"></a><span class="kw">estat</span> <span class="kw">bootstrap</span>, <span class="kw">p</span></span></code></pre></div>
 <pre><code>Iteration 0:   log likelihood = -893.02712  
 Iteration 1:   log likelihood = -839.70016  
 Iteration 2:   log likelihood = -838.45045  
