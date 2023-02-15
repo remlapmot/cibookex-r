@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2022-11-02" />
+<meta name="date" content="2023-02-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -308,11 +308,11 @@ div.csl-indent {
 <p class="author"><em>R code by Joy Shi and Sean McGrath</em></p>
 <p class="author"><em>Stata code by Eleanor Murray and Roger Logan</em></p>
 <p class="author"><em>R Markdown code by Tom Palmer</em></p>
-<p class="date"><em>02 November 2022</em></p>
+<p class="date"><em>15 February 2023</em></p>
 </div>
 <div id="preface" class="section level1 unnumbered hasAnchor">
 <h1>Preface<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This book presents code examples from <span class="citation">Hernán and Robins (<a href="#ref-ci-book" role="doc-biblioref">2020</a>)</span>, which is available in draft form from the following webpage.</p>
+<p>This book presents code examples from <span class="citation">Hernán and Robins (<a href="#ref-ci-book">2020</a>)</span>, which is available in draft form from the following webpage.</p>
 <p><a href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" class="uri">https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/</a></p>
 <p>The R code is based on the code by Joy Shi and Sean McGrath given <a href="https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/1268/20/Rcode_CIpart2.zip">here</a>.</p>
 <p>The Stata code is based on the code by Eleanor Murray and Roger Logan given <a href="https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/2019/11/stata_part2.zip">here</a>.</p>
@@ -333,27 +333,27 @@ div.csl-indent {
 <div id="installing-dependency-packages" class="section level2 hasAnchor">
 <h2>Installing dependency packages<a href="index.html#installing-dependency-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>It is easiest to open the repo in RStudio, as an RStudio project, by doubling click the <code>.Rproj</code> file. This makes sure that R’s working directory is at the top level of the repo. If you don’t want to open the repo as a project set the working directory to the top level of the repo directories using <code>setwd()</code>. Then run:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;devtools&quot;) # uncomment if devtools not installed</span></span>
-<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_dev_deps</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a><span class="co"># install.packages(&quot;devtools&quot;) # uncomment if devtools not installed</span></span>
+<span id="cb1-2"><a href="index.html#cb1-2" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_dev_deps</span>()</span></code></pre></div>
 </div>
 <div id="downloading-the-datasets" class="section level2 hasAnchor">
 <h2>Downloading the datasets<a href="index.html#downloading-the-datasets" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We assume that you have downloaded the data from the Causal Inference Book website and saved it to a <code>data</code> subdirectory. You can do this manually or with the following code (nb. we use the <a href="https://here.r-lib.org/"><code>here</code></a> package to reference the data subdirectory).</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" aria-hidden="true" tabindex="-1"></a>dataurls <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb3-2"><a href="index.html#cb3-2" aria-hidden="true" tabindex="-1"></a>stub <span class="ot">&lt;-</span> <span class="st">&quot;https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/&quot;</span></span>
-<span id="cb3-3"><a href="index.html#cb3-3" aria-hidden="true" tabindex="-1"></a>dataurls[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(stub, <span class="st">&quot;2012/10/nhefs_sas.zip&quot;</span>)</span>
-<span id="cb3-4"><a href="index.html#cb3-4" aria-hidden="true" tabindex="-1"></a>dataurls[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(stub, <span class="st">&quot;2012/10/nhefs_stata.zip&quot;</span>)</span>
-<span id="cb3-5"><a href="index.html#cb3-5" aria-hidden="true" tabindex="-1"></a>dataurls[[<span class="dv">3</span>]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(stub, <span class="st">&quot;2017/01/nhefs_excel.zip&quot;</span>)</span>
-<span id="cb3-6"><a href="index.html#cb3-6" aria-hidden="true" tabindex="-1"></a>dataurls[[<span class="dv">4</span>]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(stub, <span class="st">&quot;1268/20/nhefs.csv&quot;</span>)</span>
-<span id="cb3-7"><a href="index.html#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="index.html#cb3-8" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()</span>
-<span id="cb3-9"><a href="index.html#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
-<span id="cb3-10"><a href="index.html#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">download.file</span>(dataurls[[i]], temp)</span>
-<span id="cb3-11"><a href="index.html#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unzip</span>(temp, <span class="at">exdir =</span> <span class="st">&quot;data&quot;</span>)</span>
-<span id="cb3-12"><a href="index.html#cb3-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-13"><a href="index.html#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="index.html#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(dataurls[[<span class="dv">4</span>]], <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;nhefs.csv&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" tabindex="-1"></a>dataurls <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb3-2"><a href="index.html#cb3-2" tabindex="-1"></a>stub <span class="ot">&lt;-</span> <span class="st">&quot;https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/&quot;</span></span>
+<span id="cb3-3"><a href="index.html#cb3-3" tabindex="-1"></a>dataurls[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(stub, <span class="st">&quot;2012/10/nhefs_sas.zip&quot;</span>)</span>
+<span id="cb3-4"><a href="index.html#cb3-4" tabindex="-1"></a>dataurls[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(stub, <span class="st">&quot;2012/10/nhefs_stata.zip&quot;</span>)</span>
+<span id="cb3-5"><a href="index.html#cb3-5" tabindex="-1"></a>dataurls[[<span class="dv">3</span>]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(stub, <span class="st">&quot;2017/01/nhefs_excel.zip&quot;</span>)</span>
+<span id="cb3-6"><a href="index.html#cb3-6" tabindex="-1"></a>dataurls[[<span class="dv">4</span>]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(stub, <span class="st">&quot;1268/20/nhefs.csv&quot;</span>)</span>
+<span id="cb3-7"><a href="index.html#cb3-7" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="index.html#cb3-8" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()</span>
+<span id="cb3-9"><a href="index.html#cb3-9" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb3-10"><a href="index.html#cb3-10" tabindex="-1"></a>  <span class="fu">download.file</span>(dataurls[[i]], temp)</span>
+<span id="cb3-11"><a href="index.html#cb3-11" tabindex="-1"></a>  <span class="fu">unzip</span>(temp, <span class="at">exdir =</span> <span class="st">&quot;data&quot;</span>)</span>
+<span id="cb3-12"><a href="index.html#cb3-12" tabindex="-1"></a>}</span>
+<span id="cb3-13"><a href="index.html#cb3-13" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="index.html#cb3-14" tabindex="-1"></a><span class="fu">download.file</span>(dataurls[[<span class="dv">4</span>]], <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;nhefs.csv&quot;</span>))</span></code></pre></div>
 
 </div>
 </div>

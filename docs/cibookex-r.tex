@@ -6,7 +6,6 @@
   10pt,
 ]{book}
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{setspace}
 \usepackage{iftex}
 \ifPDFTeX
@@ -14,9 +13,13 @@
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -47,13 +50,13 @@
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
 \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\BuiltInTok}[1]{#1}
 \newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
@@ -61,7 +64,7 @@
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
 \newcommand{\ExtensionTok}[1]{#1}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
@@ -70,7 +73,7 @@
 \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
 \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
@@ -119,7 +122,7 @@
 \bibliographystyle{plainnat}
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same} % disable monospaced font for URLs
+\urlstyle{same}
 \hypersetup{
   pdftitle={Causal Inference: What If. R and Stata code for Exercises},
   pdfauthor={Book by M. A. Hernán and J. M. Robins; R code by Joy Shi and Sean McGrath; Stata code by Eleanor Murray and Roger Logan; R Markdown code by Tom Palmer},
@@ -128,7 +131,7 @@
 
 \title{Causal Inference: What If. R and Stata code for Exercises}
 \author{Book by M. A. Hernán and J. M. Robins \and R code by Joy Shi and Sean McGrath \and Stata code by Eleanor Murray and Roger Logan \and R Markdown code by Tom Palmer}
-\date{02 November 2022}
+\date{15 February 2023}
 
 \begin{document}
 \maketitle
@@ -1817,15 +1820,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{  ))}
 \NormalTok{bootstrap}
 \DocumentationTok{\#\#                         V1             mean                se               ll}
-\DocumentationTok{\#\# 1                 Observed 2.56188497106099 0.177244121594006  2.2144928762653}
-\DocumentationTok{\#\# 2             No Treatment 1.65212306626741 0.144724080583739 1.36846908062761}
-\DocumentationTok{\#\# 3                Treatment 5.11474489549342 0.394902377875389 4.34075045744843}
-\DocumentationTok{\#\# 4 Treatment {-} No Treatment 3.46262182922601 0.304733530615214 2.86535508433846}
+\DocumentationTok{\#\# 1                 Observed 2.56188497106099 0.232550903724213 2.10609357518929}
+\DocumentationTok{\#\# 2             No Treatment 1.65212306626741  0.29675878865874 1.07048652840055}
+\DocumentationTok{\#\# 3                Treatment 5.11474489549342 0.490286033020929 4.15380192864939}
+\DocumentationTok{\#\# 4 Treatment {-} No Treatment 3.46262182922601 0.611809599352042 2.26349704910013}
 \DocumentationTok{\#\#                 ul}
-\DocumentationTok{\#\# 1 2.90927706585667}
-\DocumentationTok{\#\# 2 1.93577705190721}
-\DocumentationTok{\#\# 3 5.88873933353841}
-\DocumentationTok{\#\# 4 4.05988857411356}
+\DocumentationTok{\#\# 1 3.01767636693268}
+\DocumentationTok{\#\# 2 2.23375960413428}
+\DocumentationTok{\#\# 3 6.07568786233746}
+\DocumentationTok{\#\# 4 4.66174660935189}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2599,6 +2602,11 @@ We assume that you have downloaded the data from the Causal Inference Book websi
   \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Propensity Score Distribution by Treatment Group\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{scale\_fill\_discrete}\NormalTok{(}\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{\textquotesingle{}bottom\textquotesingle{}}\NormalTok{, }\AttributeTok{legend.direction =} \StringTok{\textquotesingle{}vertical\textquotesingle{}}\NormalTok{)}
+\DocumentationTok{\#\# Warning: The following aesthetics were dropped during statistical transformation: fill}
+\DocumentationTok{\#\# i This can happen when ggplot fails to infer the correct grouping structure in}
+\DocumentationTok{\#\#   the data.}
+\DocumentationTok{\#\# i Did you forget to specify a \textasciigrave{}group\textasciigrave{} aesthetic or to convert a numerical}
+\DocumentationTok{\#\#   variable into a factor?}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3029,15 +3037,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
                                 \StringTok{"Treatment {-} No Treatment"}\NormalTok{), mean, se, ll, ul))}
 \NormalTok{bootstrap}
 \DocumentationTok{\#\#                         V1             mean                se               ll}
-\DocumentationTok{\#\# 1                 Observed 2.63384609228479 0.204109541560683 2.23379874192487}
-\DocumentationTok{\#\# 2             No Treatment 1.71983636149843 0.199709774124416 1.32841239685394}
-\DocumentationTok{\#\# 3                Treatment 5.35072300362993 0.236569049531324 4.88705618669166}
-\DocumentationTok{\#\# 4 Treatment {-} No Treatment  3.6308866421315 0.274311077093653 3.09324681046755}
+\DocumentationTok{\#\# 1                 Observed 2.63384609228479 0.187227245593644 2.26688743399661}
+\DocumentationTok{\#\# 2             No Treatment 1.71983636149843 0.227424551595949 1.27409243117019}
+\DocumentationTok{\#\# 3                Treatment 5.35072300362993    0.293054401725   4.776346930738}
+\DocumentationTok{\#\# 4 Treatment {-} No Treatment  3.6308866421315 0.308067804933338 3.02708483966585}
 \DocumentationTok{\#\#                 ul}
-\DocumentationTok{\#\# 1 3.03389344264471}
-\DocumentationTok{\#\# 2 2.11126032614291}
-\DocumentationTok{\#\# 3 5.81438982056819}
-\DocumentationTok{\#\# 4 4.16852647379545}
+\DocumentationTok{\#\# 1 3.00080475057297}
+\DocumentationTok{\#\# 2 2.16558029182666}
+\DocumentationTok{\#\# 3 5.92509907652186}
+\DocumentationTok{\#\# 4 4.23468844459715}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3135,7 +3143,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{  \}}
 \NormalTok{\}}
 \DocumentationTok{\#\# 95\% CI for the causal mean difference}
-\DocumentationTok{\#\# 2.70279 , 4.362397}
+\DocumentationTok{\#\# 2.586018 , 4.448461}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3999,38 +4007,33 @@ For reproducibility.
 \DocumentationTok{\#\# {-} Session info {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \DocumentationTok{\#\#  setting  value}
 \DocumentationTok{\#\#  version  R version 4.2.2 (2022{-}10{-}31)}
-\DocumentationTok{\#\#  os       macOS Ventura 13.0}
+\DocumentationTok{\#\#  os       macOS Ventura 13.2.1}
 \DocumentationTok{\#\#  system   aarch64, darwin20}
 \DocumentationTok{\#\#  ui       X11}
 \DocumentationTok{\#\#  language (EN)}
-\DocumentationTok{\#\#  collate  en\_GB.UTF{-}8}
-\DocumentationTok{\#\#  ctype    en\_GB.UTF{-}8}
-\DocumentationTok{\#\#  tz       Europe/London}
-\DocumentationTok{\#\#  date     2022{-}11{-}02}
-\DocumentationTok{\#\#  pandoc   2.19.2 @ /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/ (via rmarkdown)}
+\DocumentationTok{\#\#  collate  en\_US.UTF{-}8}
+\DocumentationTok{\#\#  ctype    en\_US.UTF{-}8}
+\DocumentationTok{\#\#  tz       Europe/Berlin}
+\DocumentationTok{\#\#  date     2023{-}02{-}15}
+\DocumentationTok{\#\#  pandoc   3.1 @ /opt/homebrew/bin/ (via rmarkdown)}
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# {-} Packages {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \DocumentationTok{\#\#  package     * version date (UTC) lib source}
-\DocumentationTok{\#\#  bookdown      0.29    2022{-}09{-}12 [3] CRAN (R 4.2.1)}
-\DocumentationTok{\#\#  cli           3.4.1   2022{-}09{-}23 [1] CRAN (R 4.2.1)}
-\DocumentationTok{\#\#  digest        0.6.30  2022{-}10{-}18 [3] CRAN (R 4.2.1)}
-\DocumentationTok{\#\#  evaluate      0.17    2022{-}10{-}07 [3] CRAN (R 4.2.0)}
-\DocumentationTok{\#\#  fastmap       1.1.0   2021{-}01{-}25 [3] CRAN (R 4.2.0)}
-\DocumentationTok{\#\#  htmltools     0.5.3   2022{-}07{-}18 [3] CRAN (R 4.2.1)}
-\DocumentationTok{\#\#  knitr         1.40    2022{-}08{-}24 [3] CRAN (R 4.2.1)}
-\DocumentationTok{\#\#  magrittr      2.0.3   2022{-}03{-}30 [3] CRAN (R 4.2.0)}
-\DocumentationTok{\#\#  rlang         1.0.6   2022{-}09{-}24 [3] CRAN (R 4.2.0)}
-\DocumentationTok{\#\#  rmarkdown     2.17    2022{-}10{-}07 [3] CRAN (R 4.2.0)}
-\DocumentationTok{\#\#  rstudioapi    0.14    2022{-}08{-}22 [3] CRAN (R 4.2.1)}
-\DocumentationTok{\#\#  sessioninfo   1.2.2   2021{-}12{-}06 [3] CRAN (R 4.2.0)}
-\DocumentationTok{\#\#  stringi       1.7.8   2022{-}07{-}11 [3] CRAN (R 4.2.1)}
-\DocumentationTok{\#\#  stringr       1.4.1   2022{-}08{-}20 [3] CRAN (R 4.2.0)}
-\DocumentationTok{\#\#  xfun          0.34    2022{-}10{-}18 [3] CRAN (R 4.2.1)}
-\DocumentationTok{\#\#  yaml          2.3.6   2022{-}10{-}18 [3] CRAN (R 4.2.1)}
+\DocumentationTok{\#\#  bookdown      0.32    2023{-}01{-}17 [1] CRAN (R 4.2.0)}
+\DocumentationTok{\#\#  cli           3.6.0   2023{-}01{-}09 [1] CRAN (R 4.2.2)}
+\DocumentationTok{\#\#  digest        0.6.31  2022{-}12{-}11 [1] CRAN (R 4.2.2)}
+\DocumentationTok{\#\#  evaluate      0.20    2023{-}01{-}17 [1] CRAN (R 4.2.2)}
+\DocumentationTok{\#\#  fastmap       1.1.0   2021{-}01{-}25 [1] CRAN (R 4.2.0)}
+\DocumentationTok{\#\#  htmltools     0.5.4   2022{-}12{-}07 [1] CRAN (R 4.2.2)}
+\DocumentationTok{\#\#  knitr         1.42    2023{-}01{-}25 [1] CRAN (R 4.2.0)}
+\DocumentationTok{\#\#  rlang         1.0.6   2022{-}09{-}24 [1] CRAN (R 4.2.0)}
+\DocumentationTok{\#\#  rmarkdown     2.20    2023{-}01{-}19 [1] CRAN (R 4.2.2)}
+\DocumentationTok{\#\#  rstudioapi    0.14    2022{-}08{-}22 [1] CRAN (R 4.2.1)}
+\DocumentationTok{\#\#  sessioninfo   1.2.2   2021{-}12{-}06 [1] CRAN (R 4.2.0)}
+\DocumentationTok{\#\#  xfun          0.37    2023{-}01{-}31 [1] CRAN (R 4.2.0)}
+\DocumentationTok{\#\#  yaml          2.3.7   2023{-}01{-}23 [1] CRAN (R 4.2.2)}
 \DocumentationTok{\#\# }
-\DocumentationTok{\#\#  [1] /Users/tom/Library/R/arm64/4.2/library}
-\DocumentationTok{\#\#  [2] /Library/Frameworks/R.framework/Versions/4.2{-}arm64/Resources/site{-}library}
-\DocumentationTok{\#\#  [3] /Library/Frameworks/R.framework/Versions/4.2{-}arm64/Resources/library}
+\DocumentationTok{\#\#  [1] /Library/Frameworks/R.framework/Versions/4.2{-}arm64/Resources/library}
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \end{Highlighting}
@@ -4147,14 +4150,14 @@ For errors contact: ejmurray@bu.edu
 
 
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> A = 0
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
            Y |          8        67.5    53.11712         10        170
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> A = 1
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
@@ -4222,28 +4225,28 @@ For errors contact: ejmurray@bu.edu
 
 
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> A = 1
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
            Y |          4          70    31.62278         40        110
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> A = 2
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
            Y |          4          80    62.18253         30        170
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> A = 3
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
            Y |          4       117.5    53.77422         50        180
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> A = 4
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
@@ -4510,10 +4513,6 @@ For errors contact: ejmurray@bu.edu
 \end{Shaded}
 
 \begin{verbatim}
-  2.   tabdisp qsmk, cell(`var') format(%3.1f)
-  3. }
-
----------------------------------
 quit smoking between |
 baseline and 1982    | Age, years
 ---------------------+-----------
@@ -4635,47 +4634,44 @@ Logistic regression                                     Number of obs =  1,566
                                                         Prob > chi2   = 0.0000
 Log likelihood = -838.44842                             Pseudo R2     = 0.0611
 
--------------------------------------------------------------------------------
-         qsmk | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
---------------+----------------------------------------------------------------
-          sex |  -.5274782   .1540497    -3.42   0.001      -.82941   -.2255463
-         race |  -.8392636   .2100668    -4.00   0.000    -1.250987   -.4275404
-          age |   .1212052   .0512663     2.36   0.018     .0207251    .2216853
-              |
-  c.age#c.age |  -.0008246   .0005361    -1.54   0.124    -.0018753    .0002262
-              |
-    education |
-           1  |  -.4759606   .2262238    -2.10   0.035    -.9193511   -.0325701
-           2  |  -.5047361    .217597    -2.32   0.020    -.9312184   -.0782538
-           3  |  -.3895288   .1914353    -2.03   0.042    -.7647351   -.0143226
-           4  |  -.4123596   .2772868    -1.49   0.137    -.9558318    .1311126
-              |
-smokeintens~y |  -.0772704   .0152499    -5.07   0.000    -.1071596   -.0473812
-              |
-           c. |
-smokeintens~y#|
-           c. |
-smokeintens~y |   .0010451   .0002866     3.65   0.000     .0004835    .0016068
-              |
-     smokeyrs |  -.0735966   .0277775    -2.65   0.008    -.1280395   -.0191538
-              |
-   c.smokeyrs#|
-   c.smokeyrs |   .0008441   .0004632     1.82   0.068    -.0000637    .0017519
-              |
-     exercise |
-           0  |   -.395704   .1872401    -2.11   0.035    -.7626878   -.0287201
-           1  |  -.0408635   .1382674    -0.30   0.768    -.3118627    .2301357
-              |
-       active |
-           0  |   -.176784   .2149721    -0.82   0.411    -.5981215    .2445535
-           1  |  -.1448395   .2111472    -0.69   0.493    -.5586806    .2690015
-              |
-         wt71 |  -.0152357   .0263161    -0.58   0.563    -.0668144     .036343
-              |
-c.wt71#c.wt71 |   .0001352   .0001632     0.83   0.407    -.0001846     .000455
-              |
-        _cons |   -1.19407   1.398493    -0.85   0.393    -3.935066    1.546925
--------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+                 qsmk | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+----------------------+----------------------------------------------------------------
+                  sex |  -.5274782   .1540497    -3.42   0.001      -.82941   -.2255463
+                 race |  -.8392636   .2100668    -4.00   0.000    -1.250987   -.4275404
+                  age |   .1212052   .0512663     2.36   0.018     .0207251    .2216853
+                      |
+          c.age#c.age |  -.0008246   .0005361    -1.54   0.124    -.0018753    .0002262
+                      |
+            education |
+                   1  |  -.4759606   .2262238    -2.10   0.035    -.9193511   -.0325701
+                   2  |  -.5047361    .217597    -2.32   0.020    -.9312184   -.0782538
+                   3  |  -.3895288   .1914353    -2.03   0.042    -.7647351   -.0143226
+                   4  |  -.4123596   .2772868    -1.49   0.137    -.9558318    .1311126
+                      |
+       smokeintensity |  -.0772704   .0152499    -5.07   0.000    -.1071596   -.0473812
+                      |
+     c.smokeintensity#|
+     c.smokeintensity |   .0010451   .0002866     3.65   0.000     .0004835    .0016068
+                      |
+             smokeyrs |  -.0735966   .0277775    -2.65   0.008    -.1280395   -.0191538
+                      |
+c.smokeyrs#c.smokeyrs |   .0008441   .0004632     1.82   0.068    -.0000637    .0017519
+                      |
+             exercise |
+                   0  |   -.395704   .1872401    -2.11   0.035    -.7626878   -.0287201
+                   1  |  -.0408635   .1382674    -0.30   0.768    -.3118627    .2301357
+                      |
+               active |
+                   0  |   -.176784   .2149721    -0.82   0.411    -.5981215    .2445535
+                   1  |  -.1448395   .2111472    -0.69   0.493    -.5586806    .2690015
+                      |
+                 wt71 |  -.0152357   .0263161    -0.58   0.563    -.0668144     .036343
+                      |
+        c.wt71#c.wt71 |   .0001352   .0001632     0.83   0.407    -.0001846     .000455
+                      |
+                _cons |   -1.19407   1.398493    -0.85   0.393    -3.935066    1.546925
+---------------------------------------------------------------------------------------
 
 
 (1,566 missing values generated)
@@ -4765,47 +4761,44 @@ Logistic regression                                     Number of obs =  1,566
                                                         Prob > chi2   = 0.0000
 Log likelihood = -838.44842                             Pseudo R2     = 0.0611
 
--------------------------------------------------------------------------------
-         qsmk | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
---------------+----------------------------------------------------------------
-          sex |  -.5274782   .1540497    -3.42   0.001      -.82941   -.2255463
-         race |  -.8392636   .2100668    -4.00   0.000    -1.250987   -.4275404
-          age |   .1212052   .0512663     2.36   0.018     .0207251    .2216853
-              |
-  c.age#c.age |  -.0008246   .0005361    -1.54   0.124    -.0018753    .0002262
-              |
-    education |
-           1  |  -.4759606   .2262238    -2.10   0.035    -.9193511   -.0325701
-           2  |  -.5047361    .217597    -2.32   0.020    -.9312184   -.0782538
-           3  |  -.3895288   .1914353    -2.03   0.042    -.7647351   -.0143226
-           4  |  -.4123596   .2772868    -1.49   0.137    -.9558318    .1311126
-              |
-smokeintens~y |  -.0772704   .0152499    -5.07   0.000    -.1071596   -.0473812
-              |
-           c. |
-smokeintens~y#|
-           c. |
-smokeintens~y |   .0010451   .0002866     3.65   0.000     .0004835    .0016068
-              |
-     smokeyrs |  -.0735966   .0277775    -2.65   0.008    -.1280395   -.0191538
-              |
-   c.smokeyrs#|
-   c.smokeyrs |   .0008441   .0004632     1.82   0.068    -.0000637    .0017519
-              |
-     exercise |
-           0  |   -.395704   .1872401    -2.11   0.035    -.7626878   -.0287201
-           1  |  -.0408635   .1382674    -0.30   0.768    -.3118627    .2301357
-              |
-       active |
-           0  |   -.176784   .2149721    -0.82   0.411    -.5981215    .2445535
-           1  |  -.1448395   .2111472    -0.69   0.493    -.5586806    .2690015
-              |
-         wt71 |  -.0152357   .0263161    -0.58   0.563    -.0668144     .036343
-              |
-c.wt71#c.wt71 |   .0001352   .0001632     0.83   0.407    -.0001846     .000455
-              |
-        _cons |   -1.19407   1.398493    -0.85   0.393    -3.935066    1.546925
--------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+                 qsmk | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+----------------------+----------------------------------------------------------------
+                  sex |  -.5274782   .1540497    -3.42   0.001      -.82941   -.2255463
+                 race |  -.8392636   .2100668    -4.00   0.000    -1.250987   -.4275404
+                  age |   .1212052   .0512663     2.36   0.018     .0207251    .2216853
+                      |
+          c.age#c.age |  -.0008246   .0005361    -1.54   0.124    -.0018753    .0002262
+                      |
+            education |
+                   1  |  -.4759606   .2262238    -2.10   0.035    -.9193511   -.0325701
+                   2  |  -.5047361    .217597    -2.32   0.020    -.9312184   -.0782538
+                   3  |  -.3895288   .1914353    -2.03   0.042    -.7647351   -.0143226
+                   4  |  -.4123596   .2772868    -1.49   0.137    -.9558318    .1311126
+                      |
+       smokeintensity |  -.0772704   .0152499    -5.07   0.000    -.1071596   -.0473812
+                      |
+     c.smokeintensity#|
+     c.smokeintensity |   .0010451   .0002866     3.65   0.000     .0004835    .0016068
+                      |
+             smokeyrs |  -.0735966   .0277775    -2.65   0.008    -.1280395   -.0191538
+                      |
+c.smokeyrs#c.smokeyrs |   .0008441   .0004632     1.82   0.068    -.0000637    .0017519
+                      |
+             exercise |
+                   0  |   -.395704   .1872401    -2.11   0.035    -.7626878   -.0287201
+                   1  |  -.0408635   .1382674    -0.30   0.768    -.3118627    .2301357
+                      |
+               active |
+                   0  |   -.176784   .2149721    -0.82   0.411    -.5981215    .2445535
+                   1  |  -.1448395   .2111472    -0.69   0.493    -.5586806    .2690015
+                      |
+                 wt71 |  -.0152357   .0263161    -0.58   0.563    -.0668144     .036343
+                      |
+        c.wt71#c.wt71 |   .0001352   .0001632     0.83   0.407    -.0001846     .000455
+                      |
+                _cons |   -1.19407   1.398493    -0.85   0.393    -3.935066    1.546925
+---------------------------------------------------------------------------------------
 
 
 
@@ -5019,47 +5012,44 @@ Linear regression                               Number of obs     =      1,566
 -------------+----------------------------------   Adj R-squared   =    0.0638
        Total |  127217.137     1,161  109.575484   Root MSE        =    10.129
 
--------------------------------------------------------------------------------
-smkintensi~71 | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
---------------+----------------------------------------------------------------
-          sex |   1.087021   .7425694     1.46   0.144    -.3699308    2.543973
-         race |   .2319789   .8434739     0.28   0.783    -1.422952     1.88691
-          age |  -.8099902   .2555388    -3.17   0.002    -1.311368   -.3086124
-              |
-  c.age#c.age |   .0066545   .0026849     2.48   0.013     .0013865    .0119224
-              |
-    education |
-           1  |   1.508097   1.184063     1.27   0.203    -.8150843    3.831278
-           2  |    2.02692   1.133772     1.79   0.074    -.1975876    4.251428
-           3  |   2.240314   1.022556     2.19   0.029     .2340167    4.246611
-           4  |   2.528767    1.44702     1.75   0.081    -.3103458     5.36788
-              |
-smokeintens~y |  -.3589684   .2246653    -1.60   0.110     -.799771    .0818342
-              |
-           c. |
-smokeintens~y#|
-           c. |
-smokeintens~y |   .0019582   .0085753     0.23   0.819    -.0148668    .0187832
-              |
-     smokeyrs |   .3857088   .1416765     2.72   0.007     .1077336    .6636841
-              |
-   c.smokeyrs#|
-   c.smokeyrs |  -.0054871   .0023837    -2.30   0.022    -.0101641   -.0008101
-              |
-     exercise |
-           0  |   1.996904   .9080421     2.20   0.028      .215288    3.778521
-           1  |    .988812   .6929239     1.43   0.154    -.3707334    2.348357
-              |
-       active |
-           0  |   .8451341   1.098573     0.77   0.442    -1.310312    3.000581
-           1  |    .800114    1.08438     0.74   0.461    -1.327485    2.927712
-              |
-         wt71 |  -.0656882    .136955    -0.48   0.632    -.3343996    .2030232
-              |
-c.wt71#c.wt71 |   .0005711    .000877     0.65   0.515    -.0011496    .0022918
-              |
-        _cons |   16.86761   7.109189     2.37   0.018      2.91909    30.81614
--------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+    smkintensity82_71 | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+----------------------+----------------------------------------------------------------
+                  sex |   1.087021   .7425694     1.46   0.144    -.3699308    2.543973
+                 race |   .2319789   .8434739     0.28   0.783    -1.422952     1.88691
+                  age |  -.8099902   .2555388    -3.17   0.002    -1.311368   -.3086124
+                      |
+          c.age#c.age |   .0066545   .0026849     2.48   0.013     .0013865    .0119224
+                      |
+            education |
+                   1  |   1.508097   1.184063     1.27   0.203    -.8150843    3.831278
+                   2  |    2.02692   1.133772     1.79   0.074    -.1975876    4.251428
+                   3  |   2.240314   1.022556     2.19   0.029     .2340167    4.246611
+                   4  |   2.528767    1.44702     1.75   0.081    -.3103458     5.36788
+                      |
+       smokeintensity |  -.3589684   .2246653    -1.60   0.110     -.799771    .0818342
+                      |
+     c.smokeintensity#|
+     c.smokeintensity |   .0019582   .0085753     0.23   0.819    -.0148668    .0187832
+                      |
+             smokeyrs |   .3857088   .1416765     2.72   0.007     .1077336    .6636841
+                      |
+c.smokeyrs#c.smokeyrs |  -.0054871   .0023837    -2.30   0.022    -.0101641   -.0008101
+                      |
+             exercise |
+                   0  |   1.996904   .9080421     2.20   0.028      .215288    3.778521
+                   1  |    .988812   .6929239     1.43   0.154    -.3707334    2.348357
+                      |
+               active |
+                   0  |   .8451341   1.098573     0.77   0.442    -1.310312    3.000581
+                   1  |    .800114    1.08438     0.74   0.461    -1.327485    2.927712
+                      |
+                 wt71 |  -.0656882    .136955    -0.48   0.632    -.3343996    .2030232
+                      |
+        c.wt71#c.wt71 |   .0005711    .000877     0.65   0.515    -.0011496    .0022918
+                      |
+                _cons |   16.86761   7.109189     2.37   0.018      2.91909    30.81614
+---------------------------------------------------------------------------------------
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
@@ -5073,20 +5063,18 @@ Linear regression                               Number of obs     =      1,162
                                                 R-squared         =     0.0233
                                                 Root MSE          =     7.7864
 
-                                (Std. err. adjusted for 1,162 clusters in seqn)
--------------------------------------------------------------------------------
-              |               Robust
-      wt82_71 | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
---------------+----------------------------------------------------------------
-smkintensi~71 |  -.1089889   .0315762    -3.45   0.001    -.1709417   -.0470361
-              |
-           c. |
-smkintensi~71#|
-           c. |
-smkintensi~71 |   .0026949   .0024203     1.11   0.266    -.0020537    .0074436
-              |
-        _cons |   2.004525    .295502     6.78   0.000     1.424747    2.584302
--------------------------------------------------------------------------------
+                                       (Std. err. adjusted for 1,162 clusters in seqn)
+--------------------------------------------------------------------------------------
+                     |               Robust
+             wt82_71 | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+---------------------+----------------------------------------------------------------
+   smkintensity82_71 |  -.1089889   .0315762    -3.45   0.001    -.1709417   -.0470361
+                     |
+ c.smkintensity82_71#|
+ c.smkintensity82_71 |   .0026949   .0024203     1.11   0.266    -.0020537    .0074436
+                     |
+               _cons |   2.004525    .295502     6.78   0.000     1.424747    2.584302
+--------------------------------------------------------------------------------------
 
 
  ( 1)  _cons = 0
@@ -5098,8 +5086,7 @@ smkintensi~71 |   .0026949   .0024203     1.11   0.266    -.0020537    .0074436
 ------------------------------------------------------------------------------
 
 
- ( 1)  20*smkintensity82_71 + 400*c.smkintensity82_71#c.smkintensity82_71 +
-       _cons = 0
+ ( 1)  20*smkintensity82_71 + 400*c.smkintensity82_71#c.smkintensity82_71 + _cons = 0
 
 ------------------------------------------------------------------------------
      wt82_71 | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
@@ -5168,47 +5155,44 @@ Logistic regression                                     Number of obs =  1,566
                                                         Prob > chi2   = 0.0000
 Log likelihood = -838.44842                             Pseudo R2     = 0.0611
 
--------------------------------------------------------------------------------
-         qsmk | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
---------------+----------------------------------------------------------------
-          sex |  -.5274782   .1540497    -3.42   0.001      -.82941   -.2255463
-         race |  -.8392636   .2100668    -4.00   0.000    -1.250987   -.4275404
-          age |   .1212052   .0512663     2.36   0.018     .0207251    .2216853
-              |
-  c.age#c.age |  -.0008246   .0005361    -1.54   0.124    -.0018753    .0002262
-              |
-    education |
-           1  |  -.4759606   .2262238    -2.10   0.035    -.9193511   -.0325701
-           2  |  -.5047361    .217597    -2.32   0.020    -.9312184   -.0782538
-           3  |  -.3895288   .1914353    -2.03   0.042    -.7647351   -.0143226
-           4  |  -.4123596   .2772868    -1.49   0.137    -.9558318    .1311126
-              |
-smokeintens~y |  -.0772704   .0152499    -5.07   0.000    -.1071596   -.0473812
-              |
-           c. |
-smokeintens~y#|
-           c. |
-smokeintens~y |   .0010451   .0002866     3.65   0.000     .0004835    .0016068
-              |
-     smokeyrs |  -.0735966   .0277775    -2.65   0.008    -.1280395   -.0191538
-              |
-   c.smokeyrs#|
-   c.smokeyrs |   .0008441   .0004632     1.82   0.068    -.0000637    .0017519
-              |
-     exercise |
-           0  |   -.395704   .1872401    -2.11   0.035    -.7626878   -.0287201
-           1  |  -.0408635   .1382674    -0.30   0.768    -.3118627    .2301357
-              |
-       active |
-           0  |   -.176784   .2149721    -0.82   0.411    -.5981215    .2445535
-           1  |  -.1448395   .2111472    -0.69   0.493    -.5586806    .2690015
-              |
-         wt71 |  -.0152357   .0263161    -0.58   0.563    -.0668144     .036343
-              |
-c.wt71#c.wt71 |   .0001352   .0001632     0.83   0.407    -.0001846     .000455
-              |
-        _cons |   -1.19407   1.398493    -0.85   0.393    -3.935066    1.546925
--------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+                 qsmk | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+----------------------+----------------------------------------------------------------
+                  sex |  -.5274782   .1540497    -3.42   0.001      -.82941   -.2255463
+                 race |  -.8392636   .2100668    -4.00   0.000    -1.250987   -.4275404
+                  age |   .1212052   .0512663     2.36   0.018     .0207251    .2216853
+                      |
+          c.age#c.age |  -.0008246   .0005361    -1.54   0.124    -.0018753    .0002262
+                      |
+            education |
+                   1  |  -.4759606   .2262238    -2.10   0.035    -.9193511   -.0325701
+                   2  |  -.5047361    .217597    -2.32   0.020    -.9312184   -.0782538
+                   3  |  -.3895288   .1914353    -2.03   0.042    -.7647351   -.0143226
+                   4  |  -.4123596   .2772868    -1.49   0.137    -.9558318    .1311126
+                      |
+       smokeintensity |  -.0772704   .0152499    -5.07   0.000    -.1071596   -.0473812
+                      |
+     c.smokeintensity#|
+     c.smokeintensity |   .0010451   .0002866     3.65   0.000     .0004835    .0016068
+                      |
+             smokeyrs |  -.0735966   .0277775    -2.65   0.008    -.1280395   -.0191538
+                      |
+c.smokeyrs#c.smokeyrs |   .0008441   .0004632     1.82   0.068    -.0000637    .0017519
+                      |
+             exercise |
+                   0  |   -.395704   .1872401    -2.11   0.035    -.7626878   -.0287201
+                   1  |  -.0408635   .1382674    -0.30   0.768    -.3118627    .2301357
+                      |
+               active |
+                   0  |   -.176784   .2149721    -0.82   0.411    -.5981215    .2445535
+                   1  |  -.1448395   .2111472    -0.69   0.493    -.5586806    .2690015
+                      |
+                 wt71 |  -.0152357   .0263161    -0.58   0.563    -.0668144     .036343
+                      |
+        c.wt71#c.wt71 |   .0001352   .0001632     0.83   0.407    -.0001846     .000455
+                      |
+                _cons |   -1.19407   1.398493    -0.85   0.393    -3.935066    1.546925
+---------------------------------------------------------------------------------------
 
 
 
@@ -5318,47 +5302,44 @@ Logistic regression                                     Number of obs =  1,629
                                                         Prob > chi2   = 0.0000
 Log likelihood = -883.34876                             Pseudo R2     = 0.0584
 
--------------------------------------------------------------------------------
-         qsmk | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
---------------+----------------------------------------------------------------
-          sex |  -.5075218   .1482316    -3.42   0.001    -.7980505   -.2169932
-         race |  -.8502312   .2058722    -4.13   0.000    -1.253733   -.4467292
-          age |   .1030132   .0488996     2.11   0.035     .0071718    .1988547
-              |
-  c.age#c.age |  -.0006052   .0005074    -1.19   0.233    -.0015998    .0003893
-              |
-    education |
-           1  |  -.3796632   .2203948    -1.72   0.085     -.811629    .0523026
-           2  |  -.4779835   .2141771    -2.23   0.026    -.8977629   -.0582041
-           3  |  -.3639645   .1885776    -1.93   0.054    -.7335698    .0056409
-           4  |  -.4221892   .2717235    -1.55   0.120    -.9547574     .110379
-              |
-smokeintens~y |  -.0651561   .0147589    -4.41   0.000    -.0940831   -.0362292
-              |
-           c. |
-smokeintens~y#|
-           c. |
-smokeintens~y |   .0008461   .0002758     3.07   0.002     .0003054    .0013867
-              |
-     smokeyrs |  -.0733708   .0269958    -2.72   0.007    -.1262816     -.02046
-              |
-   c.smokeyrs#|
-   c.smokeyrs |   .0008384   .0004435     1.89   0.059    -.0000307    .0017076
-              |
-     exercise |
-           0  |  -.3550517   .1799293    -1.97   0.048    -.7077067   -.0023967
-           1  |    -.06364   .1351256    -0.47   0.638    -.3284812    .2012013
-              |
-       active |
-           0  |  -.0683123   .2087269    -0.33   0.743    -.4774095    .3407849
-           1  |   -.057437   .2039967    -0.28   0.778    -.4572632    .3423892
-              |
-         wt71 |  -.0128478   .0222829    -0.58   0.564    -.0565214    .0308258
-              |
-c.wt71#c.wt71 |   .0001209   .0001352     0.89   0.371     -.000144    .0003859
-              |
-        _cons |  -1.185875   1.263142    -0.94   0.348    -3.661588    1.289838
--------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+                 qsmk | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+----------------------+----------------------------------------------------------------
+                  sex |  -.5075218   .1482316    -3.42   0.001    -.7980505   -.2169932
+                 race |  -.8502312   .2058722    -4.13   0.000    -1.253733   -.4467292
+                  age |   .1030132   .0488996     2.11   0.035     .0071718    .1988547
+                      |
+          c.age#c.age |  -.0006052   .0005074    -1.19   0.233    -.0015998    .0003893
+                      |
+            education |
+                   1  |  -.3796632   .2203948    -1.72   0.085     -.811629    .0523026
+                   2  |  -.4779835   .2141771    -2.23   0.026    -.8977629   -.0582041
+                   3  |  -.3639645   .1885776    -1.93   0.054    -.7335698    .0056409
+                   4  |  -.4221892   .2717235    -1.55   0.120    -.9547574     .110379
+                      |
+       smokeintensity |  -.0651561   .0147589    -4.41   0.000    -.0940831   -.0362292
+                      |
+     c.smokeintensity#|
+     c.smokeintensity |   .0008461   .0002758     3.07   0.002     .0003054    .0013867
+                      |
+             smokeyrs |  -.0733708   .0269958    -2.72   0.007    -.1262816     -.02046
+                      |
+c.smokeyrs#c.smokeyrs |   .0008384   .0004435     1.89   0.059    -.0000307    .0017076
+                      |
+             exercise |
+                   0  |  -.3550517   .1799293    -1.97   0.048    -.7077067   -.0023967
+                   1  |    -.06364   .1351256    -0.47   0.638    -.3284812    .2012013
+                      |
+               active |
+                   0  |  -.0683123   .2087269    -0.33   0.743    -.4774095    .3407849
+                   1  |   -.057437   .2039967    -0.28   0.778    -.4572632    .3423892
+                      |
+                 wt71 |  -.0128478   .0222829    -0.58   0.564    -.0565214    .0308258
+                      |
+        c.wt71#c.wt71 |   .0001209   .0001352     0.89   0.371     -.000144    .0003859
+                      |
+                _cons |  -1.185875   1.263142    -0.94   0.348    -3.661588    1.289838
+---------------------------------------------------------------------------------------
 
 
 
@@ -5501,14 +5482,14 @@ Linear regression                               Number of obs     =      1,566
            |    100.00     100.00 |    100.00 
 
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> cens = 0
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
         wt71 |      1,566    70.83092     15.3149      39.58     151.73
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> cens = 1
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
@@ -5528,47 +5509,44 @@ Logistic regression                                     Number of obs =  1,629
                                                         Prob > chi2   = 0.0000
 Log likelihood = -883.34876                             Pseudo R2     = 0.0584
 
--------------------------------------------------------------------------------
-         qsmk | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
---------------+----------------------------------------------------------------
-          sex |  -.5075218   .1482316    -3.42   0.001    -.7980505   -.2169932
-         race |  -.8502312   .2058722    -4.13   0.000    -1.253733   -.4467292
-          age |   .1030132   .0488996     2.11   0.035     .0071718    .1988547
-              |
-  c.age#c.age |  -.0006052   .0005074    -1.19   0.233    -.0015998    .0003893
-              |
-    education |
-           1  |  -.3796632   .2203948    -1.72   0.085     -.811629    .0523026
-           2  |  -.4779835   .2141771    -2.23   0.026    -.8977629   -.0582041
-           3  |  -.3639645   .1885776    -1.93   0.054    -.7335698    .0056409
-           4  |  -.4221892   .2717235    -1.55   0.120    -.9547574     .110379
-              |
-smokeintens~y |  -.0651561   .0147589    -4.41   0.000    -.0940831   -.0362292
-              |
-           c. |
-smokeintens~y#|
-           c. |
-smokeintens~y |   .0008461   .0002758     3.07   0.002     .0003054    .0013867
-              |
-     smokeyrs |  -.0733708   .0269958    -2.72   0.007    -.1262816     -.02046
-              |
-   c.smokeyrs#|
-   c.smokeyrs |   .0008384   .0004435     1.89   0.059    -.0000307    .0017076
-              |
-     exercise |
-           0  |  -.3550517   .1799293    -1.97   0.048    -.7077067   -.0023967
-           1  |    -.06364   .1351256    -0.47   0.638    -.3284812    .2012013
-              |
-       active |
-           0  |  -.0683123   .2087269    -0.33   0.743    -.4774095    .3407849
-           1  |   -.057437   .2039967    -0.28   0.778    -.4572632    .3423892
-              |
-         wt71 |  -.0128478   .0222829    -0.58   0.564    -.0565214    .0308258
-              |
-c.wt71#c.wt71 |   .0001209   .0001352     0.89   0.371     -.000144    .0003859
-              |
-        _cons |  -1.185875   1.263142    -0.94   0.348    -3.661588    1.289838
--------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+                 qsmk | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+----------------------+----------------------------------------------------------------
+                  sex |  -.5075218   .1482316    -3.42   0.001    -.7980505   -.2169932
+                 race |  -.8502312   .2058722    -4.13   0.000    -1.253733   -.4467292
+                  age |   .1030132   .0488996     2.11   0.035     .0071718    .1988547
+                      |
+          c.age#c.age |  -.0006052   .0005074    -1.19   0.233    -.0015998    .0003893
+                      |
+            education |
+                   1  |  -.3796632   .2203948    -1.72   0.085     -.811629    .0523026
+                   2  |  -.4779835   .2141771    -2.23   0.026    -.8977629   -.0582041
+                   3  |  -.3639645   .1885776    -1.93   0.054    -.7335698    .0056409
+                   4  |  -.4221892   .2717235    -1.55   0.120    -.9547574     .110379
+                      |
+       smokeintensity |  -.0651561   .0147589    -4.41   0.000    -.0940831   -.0362292
+                      |
+     c.smokeintensity#|
+     c.smokeintensity |   .0008461   .0002758     3.07   0.002     .0003054    .0013867
+                      |
+             smokeyrs |  -.0733708   .0269958    -2.72   0.007    -.1262816     -.02046
+                      |
+c.smokeyrs#c.smokeyrs |   .0008384   .0004435     1.89   0.059    -.0000307    .0017076
+                      |
+             exercise |
+                   0  |  -.3550517   .1799293    -1.97   0.048    -.7077067   -.0023967
+                   1  |    -.06364   .1351256    -0.47   0.638    -.3284812    .2012013
+                      |
+               active |
+                   0  |  -.0683123   .2087269    -0.33   0.743    -.4774095    .3407849
+                   1  |   -.057437   .2039967    -0.28   0.778    -.4572632    .3423892
+                      |
+                 wt71 |  -.0128478   .0222829    -0.58   0.564    -.0565214    .0308258
+                      |
+        c.wt71#c.wt71 |   .0001209   .0001352     0.89   0.371     -.000144    .0003859
+                      |
+                _cons |  -1.185875   1.263142    -0.94   0.348    -3.661588    1.289838
+---------------------------------------------------------------------------------------
 
 
 
@@ -5600,48 +5578,45 @@ Logistic regression                                     Number of obs =  1,629
                                                         Prob > chi2   = 0.0000
 Log likelihood = -232.67999                             Pseudo R2     = 0.1275
 
--------------------------------------------------------------------------------
-         cens | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
---------------+----------------------------------------------------------------
-         qsmk |   .5168674   .2877162     1.80   0.072    -.0470459    1.080781
-          sex |   .0573131   .3302775     0.17   0.862     -.590019    .7046452
-         race |  -.0122715   .4524888    -0.03   0.978    -.8991332    .8745902
-          age |  -.2697293   .1174647    -2.30   0.022    -.4999559   -.0395027
-              |
-  c.age#c.age |   .0028837   .0011135     2.59   0.010     .0007012    .0050661
-              |
-    education |
-           1  |   .3823818   .5601808     0.68   0.495    -.7155523    1.480316
-           2  |  -.0584066   .5749586    -0.10   0.919    -1.185305    1.068491
-           3  |   .2176937   .5225008     0.42   0.677    -.8063891    1.241776
-           4  |   .5208288   .6678735     0.78   0.435    -.7881792    1.829837
-              |
-smokeintens~y |   .0157119   .0347319     0.45   0.651    -.0523614    .0837851
-              |
-           c. |
-smokeintens~y#|
-           c. |
-smokeintens~y |  -.0001133   .0006058    -0.19   0.852    -.0013007    .0010742
-              |
-     smokeyrs |   .0785973   .0749576     1.05   0.294    -.0683169    .2255116
-              |
-   c.smokeyrs#|
-   c.smokeyrs |  -.0005569   .0010318    -0.54   0.589    -.0025791    .0014653
-              |
-     exercise |
-           0  |    .583989   .3723133     1.57   0.117    -.1457317     1.31371
-           1  |  -.3874824   .3439133    -1.13   0.260     -1.06154    .2865754
-              |
-       active |
-           0  |  -.7065829   .3964577    -1.78   0.075    -1.483626    .0704599
-           1  |  -.9540614   .3893181    -2.45   0.014    -1.717111   -.1910119
-              |
-         wt71 |  -.0878871   .0400115    -2.20   0.028    -.1663082   -.0094659
-              |
-c.wt71#c.wt71 |   .0006351   .0002257     2.81   0.005     .0001927    .0010775
-              |
-        _cons |   3.754678   2.651222     1.42   0.157    -1.441622    8.950978
--------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+                 cens | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+----------------------+----------------------------------------------------------------
+                 qsmk |   .5168674   .2877162     1.80   0.072    -.0470459    1.080781
+                  sex |   .0573131   .3302775     0.17   0.862     -.590019    .7046452
+                 race |  -.0122715   .4524888    -0.03   0.978    -.8991332    .8745902
+                  age |  -.2697293   .1174647    -2.30   0.022    -.4999559   -.0395027
+                      |
+          c.age#c.age |   .0028837   .0011135     2.59   0.010     .0007012    .0050661
+                      |
+            education |
+                   1  |   .3823818   .5601808     0.68   0.495    -.7155523    1.480316
+                   2  |  -.0584066   .5749586    -0.10   0.919    -1.185305    1.068491
+                   3  |   .2176937   .5225008     0.42   0.677    -.8063891    1.241776
+                   4  |   .5208288   .6678735     0.78   0.435    -.7881792    1.829837
+                      |
+       smokeintensity |   .0157119   .0347319     0.45   0.651    -.0523614    .0837851
+                      |
+     c.smokeintensity#|
+     c.smokeintensity |  -.0001133   .0006058    -0.19   0.852    -.0013007    .0010742
+                      |
+             smokeyrs |   .0785973   .0749576     1.05   0.294    -.0683169    .2255116
+                      |
+c.smokeyrs#c.smokeyrs |  -.0005569   .0010318    -0.54   0.589    -.0025791    .0014653
+                      |
+             exercise |
+                   0  |    .583989   .3723133     1.57   0.117    -.1457317     1.31371
+                   1  |  -.3874824   .3439133    -1.13   0.260     -1.06154    .2865754
+                      |
+               active |
+                   0  |  -.7065829   .3964577    -1.78   0.075    -1.483626    .0704599
+                   1  |  -.9540614   .3893181    -2.45   0.014    -1.717111   -.1910119
+                      |
+                 wt71 |  -.0878871   .0400115    -2.20   0.028    -.1663082   -.0094659
+                      |
+        c.wt71#c.wt71 |   .0006351   .0002257     2.81   0.005     .0001927    .0010775
+                      |
+                _cons |   3.754678   2.651222     1.42   0.157    -1.441622    8.950978
+---------------------------------------------------------------------------------------
 
 
 
@@ -5767,58 +5742,53 @@ Link function    : g(u) = u                       [Identity]
                                                   AIC             =   6.832154
 Log likelihood   = -5328.576456                   BIC             =   71397.58
 
--------------------------------------------------------------------------------
-              |                 OIM
-      wt82_71 | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
---------------+----------------------------------------------------------------
-         qsmk |   2.559594   .8091486     3.16   0.002      .973692    4.145496
-          sex |  -1.430272   .4689576    -3.05   0.002    -2.349412   -.5111317
-         race |   .5601096   .5818888     0.96   0.336    -.5803714    1.700591
-          age |   .3596353   .1633188     2.20   0.028     .0395364    .6797342
-              |
-  c.age#c.age |   -.006101   .0017261    -3.53   0.000    -.0094841   -.0027178
-              |
-    education |
-           1  |    .194977   .7413692     0.26   0.793     -1.25808    1.648034
-           2  |   .9854211   .7012116     1.41   0.160    -.3889285    2.359771
-           3  |   .7512894   .6339153     1.19   0.236    -.4911617    1.993741
-           4  |   1.686547   .8716593     1.93   0.053    -.0218744    3.394967
-              |
-smokeintens~y |   .0491365   .0517254     0.95   0.342    -.0522435    .1505165
-              |
-           c. |
-smokeintens~y#|
-           c. |
-smokeintens~y |  -.0009907    .000938    -1.06   0.291    -.0028292    .0008479
-              |
-     smokeyrs |   .1343686   .0917122     1.47   0.143     -.045384    .3141212
-              |
-   c.smokeyrs#|
-   c.smokeyrs |  -.0018664   .0015437    -1.21   0.227    -.0048921    .0011592
-              |
-     exercise |
-           0  |  -.3539128   .5588587    -0.63   0.527    -1.449256    .7414301
-           1  |  -.0579374   .4316468    -0.13   0.893    -.9039497    .7880749
-              |
-       active |
-           0  |   .2613779   .6845577     0.38   0.703     -1.08033    1.603086
-           1  |  -.6861916   .6739131    -1.02   0.309    -2.007037    .6346539
-              |
-         wt71 |   .0455018   .0833709     0.55   0.585    -.1179022    .2089058
-              |
-c.wt71#c.wt71 |  -.0009653   .0005247    -1.84   0.066    -.0019937    .0000631
-              |
-         qsmk |
-Smoking ce..  |          0  (omitted)
-smokeintens~y |          0  (omitted)
-              |
-         qsmk#|
-           c. |
-smokeintens~y |
-Smoking ce..  |   .0466628   .0351448     1.33   0.184    -.0222197    .1155453
-              |
-        _cons |  -1.690608   4.388883    -0.39   0.700    -10.29266    6.911444
--------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+                      |                 OIM
+              wt82_71 | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
+----------------------+----------------------------------------------------------------
+                 qsmk |   2.559594   .8091486     3.16   0.002      .973692    4.145496
+                  sex |  -1.430272   .4689576    -3.05   0.002    -2.349412   -.5111317
+                 race |   .5601096   .5818888     0.96   0.336    -.5803714    1.700591
+                  age |   .3596353   .1633188     2.20   0.028     .0395364    .6797342
+                      |
+          c.age#c.age |   -.006101   .0017261    -3.53   0.000    -.0094841   -.0027178
+                      |
+            education |
+                   1  |    .194977   .7413692     0.26   0.793     -1.25808    1.648034
+                   2  |   .9854211   .7012116     1.41   0.160    -.3889285    2.359771
+                   3  |   .7512894   .6339153     1.19   0.236    -.4911617    1.993741
+                   4  |   1.686547   .8716593     1.93   0.053    -.0218744    3.394967
+                      |
+       smokeintensity |   .0491365   .0517254     0.95   0.342    -.0522435    .1505165
+                      |
+     c.smokeintensity#|
+     c.smokeintensity |  -.0009907    .000938    -1.06   0.291    -.0028292    .0008479
+                      |
+             smokeyrs |   .1343686   .0917122     1.47   0.143     -.045384    .3141212
+                      |
+c.smokeyrs#c.smokeyrs |  -.0018664   .0015437    -1.21   0.227    -.0048921    .0011592
+                      |
+             exercise |
+                   0  |  -.3539128   .5588587    -0.63   0.527    -1.449256    .7414301
+                   1  |  -.0579374   .4316468    -0.13   0.893    -.9039497    .7880749
+                      |
+               active |
+                   0  |   .2613779   .6845577     0.38   0.703     -1.08033    1.603086
+                   1  |  -.6861916   .6739131    -1.02   0.309    -2.007037    .6346539
+                      |
+                 wt71 |   .0455018   .0833709     0.55   0.585    -.1179022    .2089058
+                      |
+        c.wt71#c.wt71 |  -.0009653   .0005247    -1.84   0.066    -.0019937    .0000631
+                      |
+                 qsmk |
+   Smoking cessation  |          0  (omitted)
+       smokeintensity |          0  (omitted)
+                      |
+qsmk#c.smokeintensity |
+   Smoking cessation  |   .0466628   .0351448     1.33   0.184    -.0222197    .1155453
+                      |
+                _cons |  -1.690608   4.388883    -0.39   0.700    -10.29266    6.911444
+---------------------------------------------------------------------------------------
 
 (option mu assumed; predicted mean wt82_71)
 
@@ -6004,21 +5974,21 @@ Duplicated observation |         20       33.33      100.00
 (7 real changes made)
 
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = -1
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
            A |         20         .65    .4893605          0          1
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = Original
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
            A |         20           0           0          0          0
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = Duplicat
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
@@ -6046,21 +6016,21 @@ Duplicated observation |         20       33.33      100.00
 
 
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = -1
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
        predY |         20          .5     .209427        .25   .6666667
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = Original
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
        predY |         20          .5     .209427        .25   .6666667
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = Duplicat
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
@@ -6224,21 +6194,21 @@ Duplicated observation |      1,566       33.33      100.00
 (1,163 real changes made)
 
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = -1
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
         qsmk |      1,566    .2573436    .4373099          0          1
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = Original
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
         qsmk |      1,566           0           0          0          0
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = Duplicat
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
@@ -6252,71 +6222,66 @@ Duplicated observation |      1,566       33.33      100.00
 -------------+----------------------------------   Adj R-squared   =    0.1373
        Total |  97175.5866     1,565  62.0930266   Root MSE        =     7.319
 
--------------------------------------------------------------------------------
-      wt82_71 | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
---------------+----------------------------------------------------------------
-         qsmk |   2.559594   .8091486     3.16   0.002     .9724486     4.14674
-          sex |  -1.430272   .4689576    -3.05   0.002    -2.350132   -.5104111
-         race |   .5601096   .5818888     0.96   0.336    -.5812656    1.701485
-          age |   .3596353   .1633188     2.20   0.028     .0392854    .6799851
-              |
-  c.age#c.age |   -.006101   .0017261    -3.53   0.000    -.0094868   -.0027151
-              |
-    education |
-           1  |    .194977   .7413692     0.26   0.793    -1.259219    1.649173
-           2  |   .9854211   .7012116     1.41   0.160     -.390006    2.360848
-           3  |   .7512894   .6339153     1.19   0.236    -.4921358    1.994715
-           4  |   1.686547   .8716593     1.93   0.053    -.0232138    3.396307
-              |
-smokeintens~y |   .0491365   .0517254     0.95   0.342     -.052323    .1505959
-              |
-           c. |
-smokeintens~y#|
-           c. |
-smokeintens~y |  -.0009907    .000938    -1.06   0.291    -.0028306    .0008493
-              |
-     smokeyrs |   .1343686   .0917122     1.47   0.143     -.045525    .3142621
-              |
-   c.smokeyrs#|
-   c.smokeyrs |  -.0018664   .0015437    -1.21   0.227    -.0048944    .0011616
-              |
-     exercise |
-           0  |  -.3539128   .5588587    -0.63   0.527    -1.450114    .7422889
-           1  |  -.0579374   .4316468    -0.13   0.893     -.904613    .7887381
-              |
-       active |
-           0  |   .2613779   .6845577     0.38   0.703    -1.081382    1.604138
-           1  |  -.6861916   .6739131    -1.02   0.309    -2.008073    .6356894
-              |
-         wt71 |   .0455018   .0833709     0.55   0.585    -.1180303    .2090339
-              |
-c.wt71#c.wt71 |  -.0009653   .0005247    -1.84   0.066    -.0019945    .0000639
-              |
-         qsmk#|
-           c. |
-smokeintens~y |
-Smoking ce..  |   .0466628   .0351448     1.33   0.184    -.0222737    .1155993
-              |
-        _cons |  -1.690608   4.388883    -0.39   0.700     -10.2994    6.918188
--------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+              wt82_71 | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+----------------------+----------------------------------------------------------------
+                 qsmk |   2.559594   .8091486     3.16   0.002     .9724486     4.14674
+                  sex |  -1.430272   .4689576    -3.05   0.002    -2.350132   -.5104111
+                 race |   .5601096   .5818888     0.96   0.336    -.5812656    1.701485
+                  age |   .3596353   .1633188     2.20   0.028     .0392854    .6799851
+                      |
+          c.age#c.age |   -.006101   .0017261    -3.53   0.000    -.0094868   -.0027151
+                      |
+            education |
+                   1  |    .194977   .7413692     0.26   0.793    -1.259219    1.649173
+                   2  |   .9854211   .7012116     1.41   0.160     -.390006    2.360848
+                   3  |   .7512894   .6339153     1.19   0.236    -.4921358    1.994715
+                   4  |   1.686547   .8716593     1.93   0.053    -.0232138    3.396307
+                      |
+       smokeintensity |   .0491365   .0517254     0.95   0.342     -.052323    .1505959
+                      |
+     c.smokeintensity#|
+     c.smokeintensity |  -.0009907    .000938    -1.06   0.291    -.0028306    .0008493
+                      |
+             smokeyrs |   .1343686   .0917122     1.47   0.143     -.045525    .3142621
+                      |
+c.smokeyrs#c.smokeyrs |  -.0018664   .0015437    -1.21   0.227    -.0048944    .0011616
+                      |
+             exercise |
+                   0  |  -.3539128   .5588587    -0.63   0.527    -1.450114    .7422889
+                   1  |  -.0579374   .4316468    -0.13   0.893     -.904613    .7887381
+                      |
+               active |
+                   0  |   .2613779   .6845577     0.38   0.703    -1.081382    1.604138
+                   1  |  -.6861916   .6739131    -1.02   0.309    -2.008073    .6356894
+                      |
+                 wt71 |   .0455018   .0833709     0.55   0.585    -.1180303    .2090339
+                      |
+        c.wt71#c.wt71 |  -.0009653   .0005247    -1.84   0.066    -.0019945    .0000639
+                      |
+qsmk#c.smokeintensity |
+   Smoking cessation  |   .0466628   .0351448     1.33   0.184    -.0222737    .1155993
+                      |
+                _cons |  -1.690608   4.388883    -0.39   0.700     -10.2994    6.918188
+---------------------------------------------------------------------------------------
 
 
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = -1
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
        predY |      1,566      2.6383    3.034683  -10.87582   9.876489
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = Original
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
        predY |      1,566    1.756213    2.826271  -11.83737   6.733498
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = Duplicat
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
@@ -6579,49 +6544,46 @@ Link function    : g(u) = ln(u/(1-u))             [Logit]
                                                   AIC             =   .3102271
 Log likelihood   = -232.6799949                   BIC             =  -11434.36
 
--------------------------------------------------------------------------------
-              |                 OIM
-         cens | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
---------------+----------------------------------------------------------------
-         qsmk |   .5168674   .2877162     1.80   0.072    -.0470459    1.080781
-          sex |   .0573131   .3302775     0.17   0.862     -.590019    .7046452
-         race |  -.0122715   .4524888    -0.03   0.978    -.8991332    .8745902
-          age |  -.2697293   .1174647    -2.30   0.022    -.4999558   -.0395027
-              |
-  c.age#c.age |   .0028837   .0011135     2.59   0.010     .0007012    .0050661
-              |
-    education |
-           1  |   .3823818   .5601808     0.68   0.495    -.7155523    1.480316
-           2  |  -.0584066   .5749586    -0.10   0.919    -1.185305    1.068491
-           3  |   .2176937   .5225008     0.42   0.677    -.8063891    1.241776
-           4  |   .5208288   .6678735     0.78   0.435    -.7881792    1.829837
-              |
-smokeintens~y |   .0157119   .0347319     0.45   0.651    -.0523614    .0837851
-              |
-           c. |
-smokeintens~y#|
-           c. |
-smokeintens~y |  -.0001133   .0006058    -0.19   0.852    -.0013007    .0010742
-              |
-     smokeyrs |   .0785973   .0749576     1.05   0.294     -.068317    .2255116
-              |
-   c.smokeyrs#|
-   c.smokeyrs |  -.0005569   .0010318    -0.54   0.589    -.0025791    .0014653
-              |
-     exercise |
-           0  |    .583989   .3723133     1.57   0.117    -.1457317     1.31371
-           1  |  -.3874824   .3439133    -1.13   0.260     -1.06154    .2865753
-              |
-       active |
-           0  |  -.7065829   .3964577    -1.78   0.075    -1.483626    .0704599
-           1  |  -.9540614   .3893181    -2.45   0.014    -1.717111   -.1910119
-              |
-         wt71 |  -.0878871   .0400115    -2.20   0.028    -.1663082   -.0094659
-              |
-c.wt71#c.wt71 |   .0006351   .0002257     2.81   0.005     .0001927    .0010775
-              |
-        _cons |   3.754678   2.651222     1.42   0.157    -1.441622    8.950978
--------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+                      |                 OIM
+                 cens | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
+----------------------+----------------------------------------------------------------
+                 qsmk |   .5168674   .2877162     1.80   0.072    -.0470459    1.080781
+                  sex |   .0573131   .3302775     0.17   0.862     -.590019    .7046452
+                 race |  -.0122715   .4524888    -0.03   0.978    -.8991332    .8745902
+                  age |  -.2697293   .1174647    -2.30   0.022    -.4999558   -.0395027
+                      |
+          c.age#c.age |   .0028837   .0011135     2.59   0.010     .0007012    .0050661
+                      |
+            education |
+                   1  |   .3823818   .5601808     0.68   0.495    -.7155523    1.480316
+                   2  |  -.0584066   .5749586    -0.10   0.919    -1.185305    1.068491
+                   3  |   .2176937   .5225008     0.42   0.677    -.8063891    1.241776
+                   4  |   .5208288   .6678735     0.78   0.435    -.7881792    1.829837
+                      |
+       smokeintensity |   .0157119   .0347319     0.45   0.651    -.0523614    .0837851
+                      |
+     c.smokeintensity#|
+     c.smokeintensity |  -.0001133   .0006058    -0.19   0.852    -.0013007    .0010742
+                      |
+             smokeyrs |   .0785973   .0749576     1.05   0.294     -.068317    .2255116
+                      |
+c.smokeyrs#c.smokeyrs |  -.0005569   .0010318    -0.54   0.589    -.0025791    .0014653
+                      |
+             exercise |
+                   0  |    .583989   .3723133     1.57   0.117    -.1457317     1.31371
+                   1  |  -.3874824   .3439133    -1.13   0.260     -1.06154    .2865753
+                      |
+               active |
+                   0  |  -.7065829   .3964577    -1.78   0.075    -1.483626    .0704599
+                   1  |  -.9540614   .3893181    -2.45   0.014    -1.717111   -.1910119
+                      |
+                 wt71 |  -.0878871   .0400115    -2.20   0.028    -.1663082   -.0094659
+                      |
+        c.wt71#c.wt71 |   .0006351   .0002257     2.81   0.005     .0001927    .0010775
+                      |
+                _cons |   3.754678   2.651222     1.42   0.157    -1.441622    8.950978
+---------------------------------------------------------------------------------------
 
 (option mu assumed; predicted mean cens)
 
@@ -6735,50 +6697,47 @@ Logistic regression                                     Number of obs =  1,566
                                                         Prob > chi2   = 0.0000
 Log pseudolikelihood = -877.82423                       Pseudo R2     = 0.0623
 
-                                (Std. err. adjusted for 1,566 clusters in seqn)
--------------------------------------------------------------------------------
-              |               Robust
-         qsmk | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
---------------+----------------------------------------------------------------
-          sex |  -.5137324   .1536024    -3.34   0.001    -.8147876   -.2126772
-         race |  -.8608912   .2099415    -4.10   0.000    -1.272369   -.4494133
-          age |   .1151589   .0502116     2.29   0.022      .016746    .2135718
-              |
-  c.age#c.age |  -.0007593   .0005297    -1.43   0.152    -.0017976     .000279
-              |
-    education |
-           1  |  -.4710855   .2247701    -2.10   0.036    -.9116268   -.0305441
-           2  |  -.5000231   .2208583    -2.26   0.024    -.9328974   -.0671487
-           3  |  -.3833788    .195914    -1.96   0.050    -.7673632    .0006056
-           4  |  -.4047116   .2836068    -1.43   0.154    -.9605707    .1511476
-              |
-smokeintens~y |  -.0783425    .014645    -5.35   0.000    -.1070461   -.0496389
-              |
-           c. |
-smokeintens~y#|
-           c. |
-smokeintens~y |   .0010722   .0002651     4.04   0.000     .0005526    .0015917
-              |
-     smokeyrs |  -.0711097    .026398    -2.69   0.007    -.1228488   -.0193705
-              |
-   c.smokeyrs#|
-   c.smokeyrs |   .0008153   .0004491     1.82   0.069     -.000065    .0016955
-              |
-     exercise |
-           0  |  -.3800465   .1889205    -2.01   0.044    -.7503238   -.0097692
-           1  |  -.0437043   .1372725    -0.32   0.750    -.3127534    .2253447
-              |
-       active |
-           0  |  -.2134552   .2122025    -1.01   0.314    -.6293645    .2024541
-           1  |  -.1793327    .207151    -0.87   0.387    -.5853412    .2266758
-              |
-         wt71 |  -.0076607   .0256319    -0.30   0.765    -.0578983    .0425769
-              |
-c.wt71#c.wt71 |   .0000866   .0001582     0.55   0.584    -.0002236    .0003967
-              |
-         Hpsi |  -1.90e-06   .0088414    -0.00   1.000    -.0173307    .0173269
-        _cons |  -1.338367   1.359613    -0.98   0.325     -4.00316    1.326426
--------------------------------------------------------------------------------
+                                        (Std. err. adjusted for 1,566 clusters in seqn)
+---------------------------------------------------------------------------------------
+                      |               Robust
+                 qsmk | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
+----------------------+----------------------------------------------------------------
+                  sex |  -.5137324   .1536024    -3.34   0.001    -.8147876   -.2126772
+                 race |  -.8608912   .2099415    -4.10   0.000    -1.272369   -.4494133
+                  age |   .1151589   .0502116     2.29   0.022      .016746    .2135718
+                      |
+          c.age#c.age |  -.0007593   .0005297    -1.43   0.152    -.0017976     .000279
+                      |
+            education |
+                   1  |  -.4710855   .2247701    -2.10   0.036    -.9116268   -.0305441
+                   2  |  -.5000231   .2208583    -2.26   0.024    -.9328974   -.0671487
+                   3  |  -.3833788    .195914    -1.96   0.050    -.7673632    .0006056
+                   4  |  -.4047116   .2836068    -1.43   0.154    -.9605707    .1511476
+                      |
+       smokeintensity |  -.0783425    .014645    -5.35   0.000    -.1070461   -.0496389
+                      |
+     c.smokeintensity#|
+     c.smokeintensity |   .0010722   .0002651     4.04   0.000     .0005526    .0015917
+                      |
+             smokeyrs |  -.0711097    .026398    -2.69   0.007    -.1228488   -.0193705
+                      |
+c.smokeyrs#c.smokeyrs |   .0008153   .0004491     1.82   0.069     -.000065    .0016955
+                      |
+             exercise |
+                   0  |  -.3800465   .1889205    -2.01   0.044    -.7503238   -.0097692
+                   1  |  -.0437043   .1372725    -0.32   0.750    -.3127534    .2253447
+                      |
+               active |
+                   0  |  -.2134552   .2122025    -1.01   0.314    -.6293645    .2024541
+                   1  |  -.1793327    .207151    -0.87   0.387    -.5853412    .2266758
+                      |
+                 wt71 |  -.0076607   .0256319    -0.30   0.765    -.0578983    .0425769
+                      |
+        c.wt71#c.wt71 |   .0000866   .0001582     0.55   0.584    -.0002236    .0003967
+                      |
+                 Hpsi |  -1.90e-06   .0088414    -0.00   1.000    -.0173307    .0173269
+                _cons |  -1.338367   1.359613    -0.98   0.325     -4.00316    1.326426
+---------------------------------------------------------------------------------------
 
 -1.905e-06
 
@@ -6869,7 +6828,7 @@ r29         4.8  -.02603888   .02603888   .00680955
 r30         4.9  -.02801063   .02801063   .00385828
 r31           5  -.02998926   .02998926   .00213639
 
-------------------------------------------------- mata (type end to exit) ------
+------------------------------------------------- mata (type end to exit) -------------------
 : res = st_matrix("results")
 
 : for(i=1; i<= rows(res); i++) { 
@@ -6878,7 +6837,7 @@ r31           5  -.02998926   .02998926   .00213639
   3.4
 
 : end
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 \end{verbatim}
 
 \hypertarget{program-14.3-1}{%
@@ -6951,49 +6910,46 @@ Logistic regression                                     Number of obs =  1,566
                                                         Prob > chi2   = 0.0000
 Log pseudolikelihood = -877.82423                       Pseudo R2     = 0.0623
 
-                                (Std. err. adjusted for 1,566 clusters in seqn)
--------------------------------------------------------------------------------
-              |               Robust
-         qsmk | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
---------------+----------------------------------------------------------------
-          sex |  -.5137295   .1533507    -3.35   0.001    -.8142913   -.2131677
-         race |  -.8608919   .2099555    -4.10   0.000    -1.272397   -.4493867
-          age |   .1151581   .0503079     2.29   0.022     .0165564    .2137598
-              |
-  c.age#c.age |  -.0007593     .00053    -1.43   0.152    -.0017981    .0002795
-              |
-    education |
-           1  |  -.4710854   .2247796    -2.10   0.036    -.9116454   -.0305255
-           2  |  -.5000247    .220776    -2.26   0.024    -.9327378   -.0673116
-           3  |  -.3833802   .1954991    -1.96   0.050    -.7665515   -.0002089
-           4  |  -.4047148   .2833093    -1.43   0.153    -.9599908    .1505613
-              |
-smokeintens~y |  -.0783426   .0146634    -5.34   0.000    -.1070824   -.0496029
-              |
-           c. |
-smokeintens~y#|
-           c. |
-smokeintens~y |   .0010722   .0002655     4.04   0.000     .0005518    .0015925
-              |
-     smokeyrs |  -.0711099   .0263523    -2.70   0.007    -.1227596   -.0194602
-              |
-   c.smokeyrs#|
-   c.smokeyrs |   .0008153   .0004486     1.82   0.069    -.0000639    .0016945
-              |
-     exercise |
-           0  |  -.3800461   .1890123    -2.01   0.044    -.7505034   -.0095887
-           1  |  -.0437044    .137269    -0.32   0.750    -.3127467     .225338
-              |
-       active |
-           0  |  -.2134564   .2121759    -1.01   0.314    -.6293135    .2024007
-           1  |  -.1793322   .2070848    -0.87   0.386    -.5852109    .2265466
-              |
-         wt71 |  -.0076609   .0255841    -0.30   0.765    -.0578048     .042483
-              |
-c.wt71#c.wt71 |   .0000866   .0001572     0.55   0.582    -.0002216    .0003947
-              |
-        _cons |  -1.338358   1.359289    -0.98   0.325    -4.002516      1.3258
--------------------------------------------------------------------------------
+                                        (Std. err. adjusted for 1,566 clusters in seqn)
+---------------------------------------------------------------------------------------
+                      |               Robust
+                 qsmk | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
+----------------------+----------------------------------------------------------------
+                  sex |  -.5137295   .1533507    -3.35   0.001    -.8142913   -.2131677
+                 race |  -.8608919   .2099555    -4.10   0.000    -1.272397   -.4493867
+                  age |   .1151581   .0503079     2.29   0.022     .0165564    .2137598
+                      |
+          c.age#c.age |  -.0007593     .00053    -1.43   0.152    -.0017981    .0002795
+                      |
+            education |
+                   1  |  -.4710854   .2247796    -2.10   0.036    -.9116454   -.0305255
+                   2  |  -.5000247    .220776    -2.26   0.024    -.9327378   -.0673116
+                   3  |  -.3833802   .1954991    -1.96   0.050    -.7665515   -.0002089
+                   4  |  -.4047148   .2833093    -1.43   0.153    -.9599908    .1505613
+                      |
+       smokeintensity |  -.0783426   .0146634    -5.34   0.000    -.1070824   -.0496029
+                      |
+     c.smokeintensity#|
+     c.smokeintensity |   .0010722   .0002655     4.04   0.000     .0005518    .0015925
+                      |
+             smokeyrs |  -.0711099   .0263523    -2.70   0.007    -.1227596   -.0194602
+                      |
+c.smokeyrs#c.smokeyrs |   .0008153   .0004486     1.82   0.069    -.0000639    .0016945
+                      |
+             exercise |
+                   0  |  -.3800461   .1890123    -2.01   0.044    -.7505034   -.0095887
+                   1  |  -.0437044    .137269    -0.32   0.750    -.3127467     .225338
+                      |
+               active |
+                   0  |  -.2134564   .2121759    -1.01   0.314    -.6293135    .2024007
+                   1  |  -.1793322   .2070848    -0.87   0.386    -.5852109    .2265466
+                      |
+                 wt71 |  -.0076609   .0255841    -0.30   0.765    -.0578048     .042483
+                      |
+        c.wt71#c.wt71 |   .0000866   .0001572     0.55   0.582    -.0002216    .0003947
+                      |
+                _cons |  -1.338358   1.359289    -0.98   0.325    -4.002516      1.3258
+---------------------------------------------------------------------------------------
 
 (option pr assumed; Pr(qsmk))
 
@@ -7007,7 +6963,7 @@ c.wt71#c.wt71 |   .0000866   .0001572     0.55   0.582    -.0002216    .0003947
 
 
 
-------------------------------------------------- mata (type end to exit) ------
+------------------------------------------------- mata (type end to exit) -------------------
 : diff = qsmk - pr_qsmk
 
 : diff2 = w_cens :* diff
@@ -7048,7 +7004,7 @@ c.wt71#c.wt71 |   .0000866   .0001572     0.55   0.582    -.0002216    .0003947
     +-----------------------------+
 
 : end
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 \end{verbatim}
 
 \hypertarget{outcome-regression-and-propensity-scores-stata}{%
@@ -7120,49 +7076,46 @@ For errors contact: ejmurray@bu.edu
 -------------+----------------------------------   Adj R-squared   =    0.1373
        Total |  97175.5866     1,565  62.0930266   Root MSE        =     7.319
 
--------------------------------------------------------------------------------
-      wt82_71 | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
---------------+----------------------------------------------------------------
-         qsmk |   2.559594   .8091486     3.16   0.002     .9724486     4.14674
-qsmkintensity |   .0466628   .0351448     1.33   0.184    -.0222737    .1155993
-smokeintens~y |   .0491365   .0517254     0.95   0.342     -.052323    .1505959
-              |
-           c. |
-smokeintens~y#|
-           c. |
-smokeintens~y |  -.0009907    .000938    -1.06   0.291    -.0028306    .0008493
-              |
-          sex |  -1.430272   .4689576    -3.05   0.002    -2.350132   -.5104111
-         race |   .5601096   .5818888     0.96   0.336    -.5812656    1.701485
-          age |   .3596353   .1633188     2.20   0.028     .0392854    .6799851
-              |
-  c.age#c.age |   -.006101   .0017261    -3.53   0.000    -.0094868   -.0027151
-              |
-    education |
-           1  |    .194977   .7413692     0.26   0.793    -1.259219    1.649173
-           2  |   .9854211   .7012116     1.41   0.160     -.390006    2.360848
-           3  |   .7512894   .6339153     1.19   0.236    -.4921358    1.994715
-           4  |   1.686547   .8716593     1.93   0.053    -.0232138    3.396307
-              |
-     smokeyrs |   .1343686   .0917122     1.47   0.143     -.045525    .3142621
-              |
-   c.smokeyrs#|
-   c.smokeyrs |  -.0018664   .0015437    -1.21   0.227    -.0048944    .0011616
-              |
-     exercise |
-           0  |  -.3539128   .5588587    -0.63   0.527    -1.450114    .7422889
-           1  |  -.0579374   .4316468    -0.13   0.893     -.904613    .7887381
-              |
-       active |
-           0  |   .2613779   .6845577     0.38   0.703    -1.081382    1.604138
-           1  |  -.6861916   .6739131    -1.02   0.309    -2.008073    .6356894
-              |
-         wt71 |   .0455018   .0833709     0.55   0.585    -.1180303    .2090339
-              |
-c.wt71#c.wt71 |  -.0009653   .0005247    -1.84   0.066    -.0019945    .0000639
-              |
-        _cons |  -1.690608   4.388883    -0.39   0.700     -10.2994    6.918188
--------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+              wt82_71 | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+----------------------+----------------------------------------------------------------
+                 qsmk |   2.559594   .8091486     3.16   0.002     .9724486     4.14674
+        qsmkintensity |   .0466628   .0351448     1.33   0.184    -.0222737    .1155993
+       smokeintensity |   .0491365   .0517254     0.95   0.342     -.052323    .1505959
+                      |
+     c.smokeintensity#|
+     c.smokeintensity |  -.0009907    .000938    -1.06   0.291    -.0028306    .0008493
+                      |
+                  sex |  -1.430272   .4689576    -3.05   0.002    -2.350132   -.5104111
+                 race |   .5601096   .5818888     0.96   0.336    -.5812656    1.701485
+                  age |   .3596353   .1633188     2.20   0.028     .0392854    .6799851
+                      |
+          c.age#c.age |   -.006101   .0017261    -3.53   0.000    -.0094868   -.0027151
+                      |
+            education |
+                   1  |    .194977   .7413692     0.26   0.793    -1.259219    1.649173
+                   2  |   .9854211   .7012116     1.41   0.160     -.390006    2.360848
+                   3  |   .7512894   .6339153     1.19   0.236    -.4921358    1.994715
+                   4  |   1.686547   .8716593     1.93   0.053    -.0232138    3.396307
+                      |
+             smokeyrs |   .1343686   .0917122     1.47   0.143     -.045525    .3142621
+                      |
+c.smokeyrs#c.smokeyrs |  -.0018664   .0015437    -1.21   0.227    -.0048944    .0011616
+                      |
+             exercise |
+                   0  |  -.3539128   .5588587    -0.63   0.527    -1.450114    .7422889
+                   1  |  -.0579374   .4316468    -0.13   0.893     -.904613    .7887381
+                      |
+               active |
+                   0  |   .2613779   .6845577     0.38   0.703    -1.081382    1.604138
+                   1  |  -.6861916   .6739131    -1.02   0.309    -2.008073    .6356894
+                      |
+                 wt71 |   .0455018   .0833709     0.55   0.585    -.1180303    .2090339
+                      |
+        c.wt71#c.wt71 |  -.0009653   .0005247    -1.84   0.066    -.0019945    .0000639
+                      |
+                _cons |  -1.690608   4.388883    -0.39   0.700     -10.2994    6.918188
+---------------------------------------------------------------------------------------
 
 
  ( 1)  qsmk + 5*qsmkintensity = 0
@@ -7189,48 +7142,45 @@ c.wt71#c.wt71 |  -.0009653   .0005247    -1.84   0.066    -.0019945    .0000639
 -------------+----------------------------------   Adj R-squared   =    0.1369
        Total |  97175.5866     1,565  62.0930266   Root MSE        =    7.3208
 
--------------------------------------------------------------------------------
-      wt82_71 | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
---------------+----------------------------------------------------------------
-         qsmk |   3.462622   .4384543     7.90   0.000     2.602594     4.32265
-smokeintens~y |   .0651533   .0503115     1.29   0.196    -.0335327    .1638392
-              |
-           c. |
-smokeintens~y#|
-           c. |
-smokeintens~y |  -.0010468   .0009373    -1.12   0.264    -.0028853    .0007918
-              |
-          sex |   -1.46505    .468341    -3.13   0.002      -2.3837   -.5463989
-         race |   .5864117   .5816949     1.01   0.314    -.5545827    1.727406
-          age |   .3626624   .1633431     2.22   0.027     .0422649    .6830599
-              |
-  c.age#c.age |  -.0061377   .0017263    -3.56   0.000    -.0095239   -.0027515
-              |
-    education |
-           1  |   .1708264   .7413289     0.23   0.818     -1.28329    1.624943
-           2  |   .9893527   .7013784     1.41   0.159    -.3864007    2.365106
-           3  |   .7423268   .6340357     1.17   0.242     -.501334    1.985988
-           4  |   1.679344   .8718575     1.93   0.054    -.0308044    3.389492
-              |
-     smokeyrs |   .1333931   .0917319     1.45   0.146    -.0465389    .3133252
-              |
-   c.smokeyrs#|
-   c.smokeyrs |   -.001827   .0015438    -1.18   0.237    -.0048552    .0012012
-              |
-     exercise |
-           0  |  -.3628786   .5589557    -0.65   0.516     -1.45927    .7335129
-           1  |  -.0421962   .4315904    -0.10   0.922    -.8887606    .8043683
-              |
-       active |
-           0  |   .2580374   .6847219     0.38   0.706    -1.085044    1.601119
-           1  |    -.68492   .6740787    -1.02   0.310    -2.007125    .6372851
-              |
-         wt71 |   .0373642   .0831658     0.45   0.653    -.1257655     .200494
-              |
-c.wt71#c.wt71 |  -.0009158   .0005235    -1.75   0.080    -.0019427    .0001111
-              |
-        _cons |  -1.724603   4.389891    -0.39   0.694    -10.33537    6.886166
--------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+              wt82_71 | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+----------------------+----------------------------------------------------------------
+                 qsmk |   3.462622   .4384543     7.90   0.000     2.602594     4.32265
+       smokeintensity |   .0651533   .0503115     1.29   0.196    -.0335327    .1638392
+                      |
+     c.smokeintensity#|
+     c.smokeintensity |  -.0010468   .0009373    -1.12   0.264    -.0028853    .0007918
+                      |
+                  sex |   -1.46505    .468341    -3.13   0.002      -2.3837   -.5463989
+                 race |   .5864117   .5816949     1.01   0.314    -.5545827    1.727406
+                  age |   .3626624   .1633431     2.22   0.027     .0422649    .6830599
+                      |
+          c.age#c.age |  -.0061377   .0017263    -3.56   0.000    -.0095239   -.0027515
+                      |
+            education |
+                   1  |   .1708264   .7413289     0.23   0.818     -1.28329    1.624943
+                   2  |   .9893527   .7013784     1.41   0.159    -.3864007    2.365106
+                   3  |   .7423268   .6340357     1.17   0.242     -.501334    1.985988
+                   4  |   1.679344   .8718575     1.93   0.054    -.0308044    3.389492
+                      |
+             smokeyrs |   .1333931   .0917319     1.45   0.146    -.0465389    .3133252
+                      |
+c.smokeyrs#c.smokeyrs |   -.001827   .0015438    -1.18   0.237    -.0048552    .0012012
+                      |
+             exercise |
+                   0  |  -.3628786   .5589557    -0.65   0.516     -1.45927    .7335129
+                   1  |  -.0421962   .4315904    -0.10   0.922    -.8887606    .8043683
+                      |
+               active |
+                   0  |   .2580374   .6847219     0.38   0.706    -1.085044    1.601119
+                   1  |    -.68492   .6740787    -1.02   0.310    -2.007125    .6372851
+                      |
+                 wt71 |   .0373642   .0831658     0.45   0.653    -.1257655     .200494
+                      |
+        c.wt71#c.wt71 |  -.0009158   .0005235    -1.75   0.080    -.0019427    .0001111
+                      |
+                _cons |  -1.724603   4.389891    -0.39   0.694    -10.33537    6.886166
+---------------------------------------------------------------------------------------
 \end{verbatim}
 
 \hypertarget{prorgam-15.2}{%
@@ -7299,58 +7249,55 @@ Logistic regression                                     Number of obs =  1,566
                                                         Prob > chi2   = 0.0000
 Log likelihood = -838.44842                             Pseudo R2     = 0.0611
 
--------------------------------------------------------------------------------
-         qsmk | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
---------------+----------------------------------------------------------------
-          sex |  -.5274782   .1540497    -3.42   0.001      -.82941   -.2255463
-         race |  -.8392636   .2100668    -4.00   0.000    -1.250987   -.4275404
-          age |   .1212052   .0512663     2.36   0.018     .0207251    .2216853
-              |
-  c.age#c.age |  -.0008246   .0005361    -1.54   0.124    -.0018753    .0002262
-              |
-    education |
-           1  |  -.4759606   .2262238    -2.10   0.035    -.9193511   -.0325701
-           2  |  -.5047361    .217597    -2.32   0.020    -.9312184   -.0782538
-           3  |  -.3895288   .1914353    -2.03   0.042    -.7647351   -.0143226
-           4  |  -.4123596   .2772868    -1.49   0.137    -.9558318    .1311126
-              |
-smokeintens~y |  -.0772704   .0152499    -5.07   0.000    -.1071596   -.0473812
-              |
-           c. |
-smokeintens~y#|
-           c. |
-smokeintens~y |   .0010451   .0002866     3.65   0.000     .0004835    .0016068
-              |
-     smokeyrs |  -.0735966   .0277775    -2.65   0.008    -.1280395   -.0191538
-              |
-   c.smokeyrs#|
-   c.smokeyrs |   .0008441   .0004632     1.82   0.068    -.0000637    .0017519
-              |
-     exercise |
-           0  |   -.395704   .1872401    -2.11   0.035    -.7626878   -.0287201
-           1  |  -.0408635   .1382674    -0.30   0.768    -.3118627    .2301357
-              |
-       active |
-           0  |   -.176784   .2149721    -0.82   0.411    -.5981215    .2445535
-           1  |  -.1448395   .2111472    -0.69   0.493    -.5586806    .2690015
-              |
-         wt71 |  -.0152357   .0263161    -0.58   0.563    -.0668144     .036343
-              |
-c.wt71#c.wt71 |   .0001352   .0001632     0.83   0.407    -.0001846     .000455
-              |
-        _cons |   -1.19407   1.398493    -0.85   0.393    -3.935066    1.546925
--------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+                 qsmk | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+----------------------+----------------------------------------------------------------
+                  sex |  -.5274782   .1540497    -3.42   0.001      -.82941   -.2255463
+                 race |  -.8392636   .2100668    -4.00   0.000    -1.250987   -.4275404
+                  age |   .1212052   .0512663     2.36   0.018     .0207251    .2216853
+                      |
+          c.age#c.age |  -.0008246   .0005361    -1.54   0.124    -.0018753    .0002262
+                      |
+            education |
+                   1  |  -.4759606   .2262238    -2.10   0.035    -.9193511   -.0325701
+                   2  |  -.5047361    .217597    -2.32   0.020    -.9312184   -.0782538
+                   3  |  -.3895288   .1914353    -2.03   0.042    -.7647351   -.0143226
+                   4  |  -.4123596   .2772868    -1.49   0.137    -.9558318    .1311126
+                      |
+       smokeintensity |  -.0772704   .0152499    -5.07   0.000    -.1071596   -.0473812
+                      |
+     c.smokeintensity#|
+     c.smokeintensity |   .0010451   .0002866     3.65   0.000     .0004835    .0016068
+                      |
+             smokeyrs |  -.0735966   .0277775    -2.65   0.008    -.1280395   -.0191538
+                      |
+c.smokeyrs#c.smokeyrs |   .0008441   .0004632     1.82   0.068    -.0000637    .0017519
+                      |
+             exercise |
+                   0  |   -.395704   .1872401    -2.11   0.035    -.7626878   -.0287201
+                   1  |  -.0408635   .1382674    -0.30   0.768    -.3118627    .2301357
+                      |
+               active |
+                   0  |   -.176784   .2149721    -0.82   0.411    -.5981215    .2445535
+                   1  |  -.1448395   .2111472    -0.69   0.493    -.5586806    .2690015
+                      |
+                 wt71 |  -.0152357   .0263161    -0.58   0.563    -.0668144     .036343
+                      |
+        c.wt71#c.wt71 |   .0001352   .0001632     0.83   0.407    -.0001846     .000455
+                      |
+                _cons |   -1.19407   1.398493    -0.85   0.393    -3.935066    1.546925
+---------------------------------------------------------------------------------------
 
 
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> qsmk = No smoking cessation
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
           ps |      1,163    .2392928    .1056545   .0510008   .6814955
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> qsmk = Smoking cessation
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
@@ -7378,7 +7325,7 @@ c.wt71#c.wt71 |   .0001352   .0001632     0.83   0.407    -.0001846     .000455
   +--------------------------+
 
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> qsmk = No smoking cessation
 
   +--------------------------+
@@ -7399,7 +7346,7 @@ c.wt71#c.wt71 |   .0001352   .0001632     0.83   0.407    -.0001846     .000455
   | 1033.   .6814955   22773 |
   +--------------------------+
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> qsmk = Smoking cessation
 
   +--------------------------+
@@ -7465,63 +7412,63 @@ file ./data/nhefs-ps.dta saved
 -------------+---------------------------------------------------------
           ps |        157    .0976251    .0185215   .0510008   .1240482
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> ps_dec = 2
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
           ps |        157    .1430792    .0107751   .1241923   .1603558
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> ps_dec = 3
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
           ps |        156    .1750423     .008773   .1606041   .1893271
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> ps_dec = 4
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
           ps |        157    .2014066    .0062403    .189365   .2121815
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> ps_dec = 5
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
           ps |        156    .2245376    .0073655   .2123068    .237184
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> ps_dec = 6
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
           ps |        157    .2515298    .0078777   .2377578   .2655718
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> ps_dec = 7
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
           ps |        157    .2827476    .0099986   .2655724   .2994968
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> ps_dec = 8
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
           ps |        156    .3204104    .0125102   .2997581   .3438773
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> ps_dec = 9
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
           ps |        157     .375637    .0221347   .3439862   .4174631
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> ps_dec = 10
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
@@ -7530,7 +7477,7 @@ file ./data/nhefs-ps.dta saved
 
 
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> ps_dec = 1
 
 Two-sample t test with equal variances
@@ -7550,7 +7497,7 @@ H0: diff = 0                                     Degrees of freedom =      155
     Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
  Pr(T < t) = 0.4665         Pr(|T| > |t|) = 0.9331          Pr(T > t) = 0.5335
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> ps_dec = 2
 
 Two-sample t test with equal variances
@@ -7570,7 +7517,7 @@ H0: diff = 0                                     Degrees of freedom =      155
     Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
  Pr(T < t) = 0.0007         Pr(|T| > |t|) = 0.0015          Pr(T > t) = 0.9993
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> ps_dec = 3
 
 Two-sample t test with equal variances
@@ -7590,7 +7537,7 @@ H0: diff = 0                                     Degrees of freedom =      154
     Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
  Pr(T < t) = 0.0002         Pr(|T| > |t|) = 0.0005          Pr(T > t) = 0.9998
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> ps_dec = 4
 
 Two-sample t test with equal variances
@@ -7610,7 +7557,7 @@ H0: diff = 0                                     Degrees of freedom =      155
     Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
  Pr(T < t) = 0.0381         Pr(|T| > |t|) = 0.0762          Pr(T > t) = 0.9619
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> ps_dec = 5
 
 Two-sample t test with equal variances
@@ -7630,7 +7577,7 @@ H0: diff = 0                                     Degrees of freedom =      154
     Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
  Pr(T < t) = 0.0104         Pr(|T| > |t|) = 0.0207          Pr(T > t) = 0.9896
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> ps_dec = 6
 
 Two-sample t test with equal variances
@@ -7650,7 +7597,7 @@ H0: diff = 0                                     Degrees of freedom =      155
     Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
  Pr(T < t) = 0.0008         Pr(|T| > |t|) = 0.0016          Pr(T > t) = 0.9992
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> ps_dec = 7
 
 Two-sample t test with equal variances
@@ -7670,7 +7617,7 @@ H0: diff = 0                                     Degrees of freedom =      155
     Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
  Pr(T < t) = 0.0000         Pr(|T| > |t|) = 0.0001          Pr(T > t) = 1.0000
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> ps_dec = 8
 
 Two-sample t test with equal variances
@@ -7690,7 +7637,7 @@ H0: diff = 0                                     Degrees of freedom =      154
     Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
  Pr(T < t) = 0.0375         Pr(|T| > |t|) = 0.0750          Pr(T > t) = 0.9625
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> ps_dec = 9
 
 Two-sample t test with equal variances
@@ -7710,7 +7657,7 @@ H0: diff = 0                                     Degrees of freedom =      155
     Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
  Pr(T < t) = 0.2284         Pr(|T| > |t|) = 0.4568          Pr(T > t) = 0.7716
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> ps_dec = 10
 
 Two-sample t test with equal variances
@@ -7883,47 +7830,44 @@ Logistic regression                                     Number of obs =  1,566
                                                         Prob > chi2   = 0.0000
 Log likelihood = -838.44842                             Pseudo R2     = 0.0611
 
--------------------------------------------------------------------------------
-         qsmk | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
---------------+----------------------------------------------------------------
-          sex |  -.5274782   .1540497    -3.42   0.001      -.82941   -.2255463
-         race |  -.8392636   .2100668    -4.00   0.000    -1.250987   -.4275404
-          age |   .1212052   .0512663     2.36   0.018     .0207251    .2216853
-              |
-  c.age#c.age |  -.0008246   .0005361    -1.54   0.124    -.0018753    .0002262
-              |
-    education |
-           1  |  -.4759606   .2262238    -2.10   0.035    -.9193511   -.0325701
-           2  |  -.5047361    .217597    -2.32   0.020    -.9312184   -.0782538
-           3  |  -.3895288   .1914353    -2.03   0.042    -.7647351   -.0143226
-           4  |  -.4123596   .2772868    -1.49   0.137    -.9558318    .1311126
-              |
-smokeintens~y |  -.0772704   .0152499    -5.07   0.000    -.1071596   -.0473812
-              |
-           c. |
-smokeintens~y#|
-           c. |
-smokeintens~y |   .0010451   .0002866     3.65   0.000     .0004835    .0016068
-              |
-     smokeyrs |  -.0735966   .0277775    -2.65   0.008    -.1280395   -.0191538
-              |
-   c.smokeyrs#|
-   c.smokeyrs |   .0008441   .0004632     1.82   0.068    -.0000637    .0017519
-              |
-     exercise |
-           0  |   -.395704   .1872401    -2.11   0.035    -.7626878   -.0287201
-           1  |  -.0408635   .1382674    -0.30   0.768    -.3118627    .2301357
-              |
-       active |
-           0  |   -.176784   .2149721    -0.82   0.411    -.5981215    .2445535
-           1  |  -.1448395   .2111472    -0.69   0.493    -.5586806    .2690015
-              |
-         wt71 |  -.0152357   .0263161    -0.58   0.563    -.0668144     .036343
-              |
-c.wt71#c.wt71 |   .0001352   .0001632     0.83   0.407    -.0001846     .000455
-              |
-        _cons |   -1.19407   1.398493    -0.85   0.393    -3.935066    1.546925
--------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+                 qsmk | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+----------------------+----------------------------------------------------------------
+                  sex |  -.5274782   .1540497    -3.42   0.001      -.82941   -.2255463
+                 race |  -.8392636   .2100668    -4.00   0.000    -1.250987   -.4275404
+                  age |   .1212052   .0512663     2.36   0.018     .0207251    .2216853
+                      |
+          c.age#c.age |  -.0008246   .0005361    -1.54   0.124    -.0018753    .0002262
+                      |
+            education |
+                   1  |  -.4759606   .2262238    -2.10   0.035    -.9193511   -.0325701
+                   2  |  -.5047361    .217597    -2.32   0.020    -.9312184   -.0782538
+                   3  |  -.3895288   .1914353    -2.03   0.042    -.7647351   -.0143226
+                   4  |  -.4123596   .2772868    -1.49   0.137    -.9558318    .1311126
+                      |
+       smokeintensity |  -.0772704   .0152499    -5.07   0.000    -.1071596   -.0473812
+                      |
+     c.smokeintensity#|
+     c.smokeintensity |   .0010451   .0002866     3.65   0.000     .0004835    .0016068
+                      |
+             smokeyrs |  -.0735966   .0277775    -2.65   0.008    -.1280395   -.0191538
+                      |
+c.smokeyrs#c.smokeyrs |   .0008441   .0004632     1.82   0.068    -.0000637    .0017519
+                      |
+             exercise |
+                   0  |   -.395704   .1872401    -2.11   0.035    -.7626878   -.0287201
+                   1  |  -.0408635   .1382674    -0.30   0.768    -.3118627    .2301357
+                      |
+               active |
+                   0  |   -.176784   .2149721    -0.82   0.411    -.5981215    .2445535
+                   1  |  -.1448395   .2111472    -0.69   0.493    -.5586806    .2690015
+                      |
+                 wt71 |  -.0152357   .0263161    -0.58   0.563    -.0668144     .036343
+                      |
+        c.wt71#c.wt71 |   .0001352   .0001632     0.83   0.407    -.0001846     .000455
+                      |
+                _cons |   -1.19407   1.398493    -0.85   0.393    -3.935066    1.546925
+---------------------------------------------------------------------------------------
 
 
 (1,566 observations created)
@@ -7950,21 +7894,21 @@ Duplicated observation |      1,566       33.33      100.00
 (1,163 real changes made)
 
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = -1
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
         qsmk |      1,566    .2573436    .4373099          0          1
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = Original
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
         qsmk |      1,566           0           0          0          0
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = Duplicat
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
@@ -7978,36 +7922,36 @@ Duplicated observation |      1,566       33.33      100.00
 -------------+----------------------------------   Adj R-squared   =    0.0526
        Total |  97175.5866     1,565  62.0930266   Root MSE        =    7.6699
 
--------------------------------------------------------------------------------
-      wt82_71 | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
---------------+----------------------------------------------------------------
-         qsmk |
-Smoking ce..  |   4.036457    1.13904     3.54   0.000      1.80225    6.270665
-           ps |   -12.3319   2.129602    -5.79   0.000    -16.50908   -8.154716
-              |
-    qsmk#c.ps |
-Smoking ce..  |  -2.038829   3.649684    -0.56   0.576    -9.197625    5.119967
-              |
-        _cons |   4.935432   .5570216     8.86   0.000     3.842843    6.028021
--------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+           wt82_71 | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------------+----------------------------------------------------------------
+              qsmk |
+Smoking cessation  |   4.036457    1.13904     3.54   0.000      1.80225    6.270665
+                ps |   -12.3319   2.129602    -5.79   0.000    -16.50908   -8.154716
+                   |
+         qsmk#c.ps |
+Smoking cessation  |  -2.038829   3.649684    -0.56   0.576    -9.197625    5.119967
+                   |
+             _cons |   4.935432   .5570216     8.86   0.000     3.842843    6.028021
+------------------------------------------------------------------------------------
 
 
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = -1
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
        predY |      1,566      2.6383    1.838063    -3.4687   8.111371
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = Original
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
        predY |      1,566    1.761898    1.433264  -4.645079   4.306496
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = Duplicat
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
@@ -8266,7 +8210,7 @@ ey[1,2]
            c1         c2
 r1   2.535729  2.6860178
 
-------------------------------------------------- mata (type end to exit) ------
+------------------------------------------------- mata (type end to exit) -------------------
 : pa = st_matrix("pa")
 
 : ey = st_matrix("ey")
@@ -8286,7 +8230,7 @@ r1   2.535729  2.6860178
 : st_numscalar("iv_est", iv_est)
 
 : end
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 
 2.3962701
 \end{verbatim}
@@ -8540,27 +8484,27 @@ Instrumental variables 2SLS regression            Number of obs   =      1,476
                                                   R-squared       =     0.0622
                                                   Root MSE        =     7.6848
 
--------------------------------------------------------------------------------
-      wt82_71 | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
---------------+----------------------------------------------------------------
-         qsmk |  -1.042295   29.86522    -0.03   0.972    -59.57705    57.49246
-          sex |  -1.644393   2.620115    -0.63   0.530    -6.779724    3.490938
-         race |  -.1832546   4.631443    -0.04   0.968    -9.260716    8.894207
-          age |    -.16364   .2395678    -0.68   0.495    -.6331844    .3059043
-smokeintens~y |   .0057669    .144911     0.04   0.968    -.2782534    .2897872
-     smokeyrs |   .0258357   .1607639     0.16   0.872    -.2892558    .3409271
-              |
-     exercise |
-           1  |   .4987479   2.162395     0.23   0.818    -3.739469    4.736964
-           2  |   .5818337   2.174255     0.27   0.789    -3.679628    4.843296
-              |
-       active |
-           1  |  -1.170145   .6049921    -1.93   0.053    -2.355908    .0156176
-           2  |  -.5122842   1.303121    -0.39   0.694    -3.066355    2.041787
-              |
-         wt71 |  -.0979493    .036123    -2.71   0.007     -.168749   -.0271496
-        _cons |   17.28033    2.32589     7.43   0.000     12.72167    21.83899
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+       wt82_71 | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+---------------+----------------------------------------------------------------
+          qsmk |  -1.042295   29.86522    -0.03   0.972    -59.57705    57.49246
+           sex |  -1.644393   2.620115    -0.63   0.530    -6.779724    3.490938
+          race |  -.1832546   4.631443    -0.04   0.968    -9.260716    8.894207
+           age |    -.16364   .2395678    -0.68   0.495    -.6331844    .3059043
+smokeintensity |   .0057669    .144911     0.04   0.968    -.2782534    .2897872
+      smokeyrs |   .0258357   .1607639     0.16   0.872    -.2892558    .3409271
+               |
+      exercise |
+            1  |   .4987479   2.162395     0.23   0.818    -3.739469    4.736964
+            2  |   .5818337   2.174255     0.27   0.789    -3.679628    4.843296
+               |
+        active |
+            1  |  -1.170145   .6049921    -1.93   0.053    -2.355908    .0156176
+            2  |  -.5122842   1.303121    -0.39   0.694    -3.066355    2.041787
+               |
+          wt71 |  -.0979493    .036123    -2.71   0.007     -.168749   -.0271496
+         _cons |   17.28033    2.32589     7.43   0.000     12.72167    21.83899
+--------------------------------------------------------------------------------
 Instrumented: qsmk
  Instruments: sex race age smokeintensity smokeyrs 1.exercise 2.exercise
               1.active 2.active wt71 highprice
@@ -8796,24 +8740,23 @@ Logistic regression                                    Number of obs = 171,076
                                                        Prob > chi2   =  0.0002
 Log likelihood = -2134.1973                            Pseudo R2     =  0.0057
 
--------------------------------------------------------------------------------
-        event | Odds ratio   Std. err.      z    P>|z|     [95% conf. interval]
---------------+----------------------------------------------------------------
-         qsmk |   1.402527   .6000025     0.79   0.429     .6064099    3.243815
-              |
-  qsmk#c.time |
-Smoking ce..  |   1.012318   .0162153     0.76   0.445     .9810299    1.044603
-              |
-  qsmk#c.time#|
-       c.time |
-Smoking ce..  |   .9998342   .0001321    -1.25   0.210     .9995753    1.000093
-              |
-         time |   1.022048   .0090651     2.46   0.014     1.004434    1.039971
-              |
-c.time#c.time |   .9998637   .0000699    -1.95   0.051     .9997266    1.000001
-              |
-        _cons |   .0007992   .0001972   -28.90   0.000     .0004927    .0012963
--------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+             event | Odds ratio   Std. err.      z    P>|z|     [95% conf. interval]
+-------------------+----------------------------------------------------------------
+              qsmk |   1.402527   .6000025     0.79   0.429     .6064099    3.243815
+                   |
+       qsmk#c.time |
+Smoking cessation  |   1.012318   .0162153     0.76   0.445     .9810299    1.044603
+                   |
+qsmk#c.time#c.time |
+Smoking cessation  |   .9998342   .0001321    -1.25   0.210     .9995753    1.000093
+                   |
+              time |   1.022048   .0090651     2.46   0.014     1.004434    1.039971
+                   |
+     c.time#c.time |   .9998637   .0000699    -1.95   0.051     .9997266    1.000001
+                   |
+             _cons |   .0007992   .0001972   -28.90   0.000     .0004927    .0012963
+------------------------------------------------------------------------------------
 Note: _cons estimates baseline odds.
 
 (169,510 observations deleted)
@@ -8836,14 +8779,14 @@ Note: _cons estimates baseline odds.
 (372708 real changes made)
 
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = Original
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
        psurv |      1,566    .8279829           0   .8279829   .8279829
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = Duplicat
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
@@ -8862,11 +8805,9 @@ Note: _cons estimates baseline odds.
 
 Variable      Storage   Display    Value
     name         type    format    label      Variable label
---------------------------------------------------------------------------------
-psurv0          float   %9.0g                 psurv, interv == Original
-                                                observation
-psurv1          float   %9.0g                 psurv, interv == Duplicated
-                                                observation
+---------------------------------------------------------------------------------------------
+psurv0          float   %9.0g                 psurv, interv == Original observation
+psurv1          float   %9.0g                 psurv, interv == Duplicated observation
 \end{verbatim}
 
 \begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-2} \end{center}
@@ -9045,47 +8986,44 @@ Logistic regression                                     Number of obs =  1,566
                                                         Prob > chi2   = 0.0000
 Log likelihood = -838.44842                             Pseudo R2     = 0.0611
 
--------------------------------------------------------------------------------
-         qsmk | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
---------------+----------------------------------------------------------------
-          sex |  -.5274782   .1540497    -3.42   0.001      -.82941   -.2255463
-         race |  -.8392636   .2100668    -4.00   0.000    -1.250987   -.4275404
-          age |   .1212052   .0512663     2.36   0.018     .0207251    .2216853
-              |
-  c.age#c.age |  -.0008246   .0005361    -1.54   0.124    -.0018753    .0002262
-              |
-    education |
-           1  |  -.4759606   .2262238    -2.10   0.035    -.9193511   -.0325701
-           2  |  -.5047361    .217597    -2.32   0.020    -.9312184   -.0782538
-           3  |  -.3895288   .1914353    -2.03   0.042    -.7647351   -.0143226
-           4  |  -.4123596   .2772868    -1.49   0.137    -.9558318    .1311126
-              |
-smokeintens~y |  -.0772704   .0152499    -5.07   0.000    -.1071596   -.0473812
-              |
-           c. |
-smokeintens~y#|
-           c. |
-smokeintens~y |   .0010451   .0002866     3.65   0.000     .0004835    .0016068
-              |
-     smokeyrs |  -.0735966   .0277775    -2.65   0.008    -.1280395   -.0191538
-              |
-   c.smokeyrs#|
-   c.smokeyrs |   .0008441   .0004632     1.82   0.068    -.0000637    .0017519
-              |
-     exercise |
-           0  |   -.395704   .1872401    -2.11   0.035    -.7626878   -.0287201
-           1  |  -.0408635   .1382674    -0.30   0.768    -.3118627    .2301357
-              |
-       active |
-           0  |   -.176784   .2149721    -0.82   0.411    -.5981215    .2445535
-           1  |  -.1448395   .2111472    -0.69   0.493    -.5586806    .2690015
-              |
-         wt71 |  -.0152357   .0263161    -0.58   0.563    -.0668144     .036343
-              |
-c.wt71#c.wt71 |   .0001352   .0001632     0.83   0.407    -.0001846     .000455
-              |
-        _cons |   -1.19407   1.398493    -0.85   0.393    -3.935066    1.546925
--------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+                 qsmk | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+----------------------+----------------------------------------------------------------
+                  sex |  -.5274782   .1540497    -3.42   0.001      -.82941   -.2255463
+                 race |  -.8392636   .2100668    -4.00   0.000    -1.250987   -.4275404
+                  age |   .1212052   .0512663     2.36   0.018     .0207251    .2216853
+                      |
+          c.age#c.age |  -.0008246   .0005361    -1.54   0.124    -.0018753    .0002262
+                      |
+            education |
+                   1  |  -.4759606   .2262238    -2.10   0.035    -.9193511   -.0325701
+                   2  |  -.5047361    .217597    -2.32   0.020    -.9312184   -.0782538
+                   3  |  -.3895288   .1914353    -2.03   0.042    -.7647351   -.0143226
+                   4  |  -.4123596   .2772868    -1.49   0.137    -.9558318    .1311126
+                      |
+       smokeintensity |  -.0772704   .0152499    -5.07   0.000    -.1071596   -.0473812
+                      |
+     c.smokeintensity#|
+     c.smokeintensity |   .0010451   .0002866     3.65   0.000     .0004835    .0016068
+                      |
+             smokeyrs |  -.0735966   .0277775    -2.65   0.008    -.1280395   -.0191538
+                      |
+c.smokeyrs#c.smokeyrs |   .0008441   .0004632     1.82   0.068    -.0000637    .0017519
+                      |
+             exercise |
+                   0  |   -.395704   .1872401    -2.11   0.035    -.7626878   -.0287201
+                   1  |  -.0408635   .1382674    -0.30   0.768    -.3118627    .2301357
+                      |
+               active |
+                   0  |   -.176784   .2149721    -0.82   0.411    -.5981215    .2445535
+                   1  |  -.1448395   .2111472    -0.69   0.493    -.5586806    .2690015
+                      |
+                 wt71 |  -.0152357   .0263161    -0.58   0.563    -.0668144     .036343
+                      |
+        c.wt71#c.wt71 |   .0001352   .0001632     0.83   0.407    -.0001846     .000455
+                      |
+                _cons |   -1.19407   1.398493    -0.85   0.393    -3.935066    1.546925
+---------------------------------------------------------------------------------------
 
 
 
@@ -9123,26 +9061,25 @@ Logistic regression                                    Number of obs = 171,076
                                                        Prob > chi2   =  0.0004
 Log pseudolikelihood = -2126.8554                      Pseudo R2     =  0.0045
 
-                                (Std. err. adjusted for 1,566 clusters in seqn)
--------------------------------------------------------------------------------
-              |               Robust
-        event | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
---------------+----------------------------------------------------------------
-         qsmk |  -.1301273   .4186673    -0.31   0.756    -.9507002    .6904456
-              |
-  qsmk#c.time |
-Smoking ce..  |     .01916   .0151318     1.27   0.205    -.0104978    .0488178
-              |
-  qsmk#c.time#|
-       c.time |
-Smoking ce..  |  -.0002152   .0001213    -1.77   0.076    -.0004528    .0000225
-              |
-         time |   .0208179   .0077769     2.68   0.007     .0055754    .0360604
-              |
-c.time#c.time |  -.0001278   .0000643    -1.99   0.047    -.0002537   -1.84e-06
-              |
-        _cons |  -7.038847   .2142855   -32.85   0.000    -7.458839   -6.618855
--------------------------------------------------------------------------------
+                                     (Std. err. adjusted for 1,566 clusters in seqn)
+------------------------------------------------------------------------------------
+                   |               Robust
+             event | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
+-------------------+----------------------------------------------------------------
+              qsmk |  -.1301273   .4186673    -0.31   0.756    -.9507002    .6904456
+                   |
+       qsmk#c.time |
+Smoking cessation  |     .01916   .0151318     1.27   0.205    -.0104978    .0488178
+                   |
+qsmk#c.time#c.time |
+Smoking cessation  |  -.0002152   .0001213    -1.77   0.076    -.0004528    .0000225
+                   |
+              time |   .0208179   .0077769     2.68   0.007     .0055754    .0360604
+                   |
+     c.time#c.time |  -.0001278   .0000643    -1.99   0.047    -.0002537   -1.84e-06
+                   |
+             _cons |  -7.038847   .2142855   -32.85   0.000    -7.458839   -6.618855
+------------------------------------------------------------------------------------
 
 (169,510 observations deleted)
 
@@ -9164,14 +9101,14 @@ c.time#c.time |  -.0001278   .0000643    -1.99   0.047    -.0002537   -1.84e-06
 (372708 real changes made)
 
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = Original
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
        psurv |      1,566    .8161003           0   .8161003   .8161003
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = Duplicat
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
@@ -9202,11 +9139,9 @@ r3           3  -.00442189
 
 Variable      Storage   Display    Value
     name         type    format    label      Variable label
---------------------------------------------------------------------------------
-psurv0          float   %9.0g                 psurv, interv == Original
-                                                observation
-psurv1          float   %9.0g                 psurv, interv == Duplicated
-                                                observation
+---------------------------------------------------------------------------------------------
+psurv0          float   %9.0g                 psurv, interv == Original observation
+psurv1          float   %9.0g                 psurv, interv == Duplicated observation
 
 
 
@@ -9225,7 +9160,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 8:43:40
+r; t=0.00 20:50:57
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -9235,7 +9170,7 @@ r; t=0.00 8:43:40
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=21.20 8:44:01
+r; t=21.91 20:51:19
 
 
 
@@ -9412,14 +9347,14 @@ Bootstrap results                                        Number of obs = 1,629
 (372708 real changes made)
 
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = Original
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
        psurv |      1,566    .8160697    .2014345    .014127   .9903372
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = Duplicat
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
@@ -9431,14 +9366,14 @@ Bootstrap results                                        Number of obs = 1,629
 (372,708 missing values generated)
 
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = Original
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
        meanS |      1,566    .8160697           0   .8160697   .8160697
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 -> interv = Duplicat
 
     Variable |        Obs        Mean    Std. dev.       Min        Max
@@ -9465,15 +9400,12 @@ Bootstrap results                                        Number of obs = 1,629
 
 Variable      Storage   Display    Value
     name         type    format    label      Variable label
---------------------------------------------------------------------------------
-meanS_t0        float   %9.0g                 meanS_t, interv == Original
-                                                observation
-meanS_t1        float   %9.0g                 meanS_t, interv == Duplicated
-                                                observation
+---------------------------------------------------------------------------------------------
+meanS_t0        float   %9.0g                 meanS_t, interv == Original observation
+meanS_t1        float   %9.0g                 meanS_t, interv == Duplicated observation
 
 
-file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as
-    PNG format
+file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG format
 
 (3,132 observations deleted)
 
@@ -9483,7 +9415,7 @@ file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 8:44:11
+r; t=0.00 20:51:30
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -9493,7 +9425,7 @@ r; t=0.00 8:44:11
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=22.55 8:44:34
+r; t=22.76 20:51:53
 
 
 
@@ -9533,12 +9465,12 @@ For reproducibility.
 
 \begin{verbatim}
 Stata/MP 17.0 for Mac (Apple Silicon)
-Revision 13 Oct 2022
+Revision 10 Jan 2023
 Copyright 1985-2021 StataCorp LLC
 
 Total physical memory: 8.01 GB
 
-Stata license: Unlimited-user 2-core network, expiring 23 Jan 2023
+Stata license: Unlimited-user 2-core network, expiring 21 Jan 2024
 Serial number: 501709378202
   Licensed to: Tom Palmer
                University of Bristol
@@ -9551,39 +9483,34 @@ Serial number: 501709378202
 \SpecialCharTok{{-}}\NormalTok{ Session info }\SpecialCharTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \NormalTok{ setting  value}
 \NormalTok{ version  R version }\DecValTok{4}\NormalTok{.}\FloatTok{2.2}\NormalTok{ (}\DecValTok{2022{-}10{-}31}\NormalTok{)}
-\NormalTok{ os       macOS Ventura }\FloatTok{13.0}
+\NormalTok{ os       macOS Ventura }\DecValTok{13}\NormalTok{.}\FloatTok{2.1}
 \NormalTok{ system   aarch64, darwin20}
 \NormalTok{ ui       X11}
  \FunctionTok{language}\NormalTok{ (EN)}
-\NormalTok{ collate  en\_GB.UTF}\DecValTok{{-}8}
-\NormalTok{ ctype    en\_GB.UTF}\DecValTok{{-}8}
-\NormalTok{ tz       Europe}\SpecialCharTok{/}\NormalTok{London}
-\NormalTok{ date     }\DecValTok{2022{-}11{-}02}
-\NormalTok{ pandoc   }\DecValTok{2}\NormalTok{.}\FloatTok{19.2} \SpecialCharTok{@} \ErrorTok{/}\NormalTok{Applications}\SpecialCharTok{/}\NormalTok{RStudio.app}\SpecialCharTok{/}\NormalTok{Contents}\SpecialCharTok{/}\NormalTok{Resources}\SpecialCharTok{/}\NormalTok{app}\SpecialCharTok{/}\NormalTok{quarto}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{tools}\SpecialCharTok{/}\NormalTok{ (via rmarkdown)}
+\NormalTok{ collate  en\_US.UTF}\DecValTok{{-}8}
+\NormalTok{ ctype    en\_US.UTF}\DecValTok{{-}8}
+\NormalTok{ tz       Europe}\SpecialCharTok{/}\NormalTok{Berlin}
+\NormalTok{ date     }\DecValTok{2023{-}02{-}15}
+\NormalTok{ pandoc   }\FloatTok{3.1} \SpecialCharTok{@} \ErrorTok{/}\NormalTok{opt}\SpecialCharTok{/}\NormalTok{homebrew}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{ (via rmarkdown)}
 
 \SpecialCharTok{{-}}\NormalTok{ Packages }\SpecialCharTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \NormalTok{ package       }\SpecialCharTok{*}\NormalTok{ version }\FunctionTok{date}\NormalTok{ (UTC) lib source}
-\NormalTok{ bookdown        }\FloatTok{0.29}    \DecValTok{2022{-}09{-}12}\NormalTok{ [}\DecValTok{3}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.1}\NormalTok{)}
-\NormalTok{ cli             }\DecValTok{3}\NormalTok{.}\FloatTok{4.1}   \DecValTok{2022{-}09{-}23}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.1}\NormalTok{)}
-\NormalTok{ digest          }\DecValTok{0}\NormalTok{.}\FloatTok{6.30}  \DecValTok{2022{-}10{-}18}\NormalTok{ [}\DecValTok{3}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.1}\NormalTok{)}
-\NormalTok{ evaluate        }\FloatTok{0.17}    \DecValTok{2022{-}10{-}07}\NormalTok{ [}\DecValTok{3}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
-\NormalTok{ fastmap         }\DecValTok{1}\NormalTok{.}\FloatTok{1.0}   \DecValTok{2021{-}01{-}25}\NormalTok{ [}\DecValTok{3}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
-\NormalTok{ htmltools       }\DecValTok{0}\NormalTok{.}\FloatTok{5.3}   \DecValTok{2022{-}07{-}18}\NormalTok{ [}\DecValTok{3}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.1}\NormalTok{)}
-\NormalTok{ knitr           }\FloatTok{1.40}    \DecValTok{2022{-}08{-}24}\NormalTok{ [}\DecValTok{3}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.1}\NormalTok{)}
-\NormalTok{ magrittr        }\DecValTok{2}\NormalTok{.}\FloatTok{0.3}   \DecValTok{2022{-}03{-}30}\NormalTok{ [}\DecValTok{3}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
-\NormalTok{ rlang           }\DecValTok{1}\NormalTok{.}\FloatTok{0.6}   \DecValTok{2022{-}09{-}24}\NormalTok{ [}\DecValTok{3}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
-\NormalTok{ rmarkdown       }\FloatTok{2.17}    \DecValTok{2022{-}10{-}07}\NormalTok{ [}\DecValTok{3}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
-\NormalTok{ rstudioapi      }\FloatTok{0.14}    \DecValTok{2022{-}08{-}22}\NormalTok{ [}\DecValTok{3}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.1}\NormalTok{)}
-\NormalTok{ sessioninfo     }\DecValTok{1}\NormalTok{.}\FloatTok{2.2}   \DecValTok{2021{-}12{-}06}\NormalTok{ [}\DecValTok{3}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
-\NormalTok{ Statamarkdown }\SpecialCharTok{*} \DecValTok{0}\NormalTok{.}\FloatTok{7.1}   \DecValTok{2022{-}05{-}13}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{Github}\NormalTok{ (Hemken}\SpecialCharTok{/}\NormalTok{Statamarkdown}\SpecialCharTok{@}\NormalTok{d9cbb1a)}
-\NormalTok{ stringi         }\DecValTok{1}\NormalTok{.}\FloatTok{7.8}   \DecValTok{2022{-}07{-}11}\NormalTok{ [}\DecValTok{3}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.1}\NormalTok{)}
-\NormalTok{ stringr         }\DecValTok{1}\NormalTok{.}\FloatTok{4.1}   \DecValTok{2022{-}08{-}20}\NormalTok{ [}\DecValTok{3}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
-\NormalTok{ xfun            }\FloatTok{0.34}    \DecValTok{2022{-}10{-}18}\NormalTok{ [}\DecValTok{3}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.1}\NormalTok{)}
-\NormalTok{ yaml            }\DecValTok{2}\NormalTok{.}\FloatTok{3.6}   \DecValTok{2022{-}10{-}18}\NormalTok{ [}\DecValTok{3}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.1}\NormalTok{)}
+\NormalTok{ bookdown        }\FloatTok{0.32}    \DecValTok{2023{-}01{-}17}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
+\NormalTok{ cli             }\DecValTok{3}\NormalTok{.}\FloatTok{6.0}   \DecValTok{2023{-}01{-}09}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.2}\NormalTok{)}
+\NormalTok{ digest          }\DecValTok{0}\NormalTok{.}\FloatTok{6.31}  \DecValTok{2022{-}12{-}11}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.2}\NormalTok{)}
+\NormalTok{ evaluate        }\FloatTok{0.20}    \DecValTok{2023{-}01{-}17}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.2}\NormalTok{)}
+\NormalTok{ fastmap         }\DecValTok{1}\NormalTok{.}\FloatTok{1.0}   \DecValTok{2021{-}01{-}25}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
+\NormalTok{ htmltools       }\DecValTok{0}\NormalTok{.}\FloatTok{5.4}   \DecValTok{2022{-}12{-}07}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.2}\NormalTok{)}
+\NormalTok{ knitr           }\FloatTok{1.42}    \DecValTok{2023{-}01{-}25}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
+\NormalTok{ rlang           }\DecValTok{1}\NormalTok{.}\FloatTok{0.6}   \DecValTok{2022{-}09{-}24}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
+\NormalTok{ rmarkdown       }\FloatTok{2.20}    \DecValTok{2023{-}01{-}19}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.2}\NormalTok{)}
+\NormalTok{ rstudioapi      }\FloatTok{0.14}    \DecValTok{2022{-}08{-}22}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.1}\NormalTok{)}
+\NormalTok{ sessioninfo     }\DecValTok{1}\NormalTok{.}\FloatTok{2.2}   \DecValTok{2021{-}12{-}06}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
+\NormalTok{ Statamarkdown }\SpecialCharTok{*} \DecValTok{0}\NormalTok{.}\FloatTok{7.2}   \DecValTok{2023{-}02{-}15}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
+\NormalTok{ xfun            }\FloatTok{0.37}    \DecValTok{2023{-}01{-}31}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
+\NormalTok{ yaml            }\DecValTok{2}\NormalTok{.}\FloatTok{3.7}   \DecValTok{2023{-}01{-}23}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.2}\NormalTok{)}
 
-\NormalTok{ [}\DecValTok{1}\NormalTok{] }\SpecialCharTok{/}\NormalTok{Users}\SpecialCharTok{/}\NormalTok{tom}\SpecialCharTok{/}\NormalTok{Library}\SpecialCharTok{/}\NormalTok{R}\SpecialCharTok{/}\NormalTok{arm64}\SpecialCharTok{/}\FloatTok{4.2}\SpecialCharTok{/}\NormalTok{library}
-\NormalTok{ [}\DecValTok{2}\NormalTok{] }\SpecialCharTok{/}\NormalTok{Library}\SpecialCharTok{/}\NormalTok{Frameworks}\SpecialCharTok{/}\NormalTok{R.framework}\SpecialCharTok{/}\NormalTok{Versions}\SpecialCharTok{/}\FloatTok{4.2}\SpecialCharTok{{-}}\NormalTok{arm64}\SpecialCharTok{/}\NormalTok{Resources}\SpecialCharTok{/}\NormalTok{site}\SpecialCharTok{{-}}\NormalTok{library}
-\NormalTok{ [}\DecValTok{3}\NormalTok{] }\SpecialCharTok{/}\NormalTok{Library}\SpecialCharTok{/}\NormalTok{Frameworks}\SpecialCharTok{/}\NormalTok{R.framework}\SpecialCharTok{/}\NormalTok{Versions}\SpecialCharTok{/}\FloatTok{4.2}\SpecialCharTok{{-}}\NormalTok{arm64}\SpecialCharTok{/}\NormalTok{Resources}\SpecialCharTok{/}\NormalTok{library}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\SpecialCharTok{/}\NormalTok{Library}\SpecialCharTok{/}\NormalTok{Frameworks}\SpecialCharTok{/}\NormalTok{R.framework}\SpecialCharTok{/}\NormalTok{Versions}\SpecialCharTok{/}\FloatTok{4.2}\SpecialCharTok{{-}}\NormalTok{arm64}\SpecialCharTok{/}\NormalTok{Resources}\SpecialCharTok{/}\NormalTok{library}
 
 \SpecialCharTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \end{Highlighting}

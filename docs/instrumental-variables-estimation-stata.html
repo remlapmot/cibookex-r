@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>16. Instrumental variables estimation: Stata | Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
   <meta property="og:title" content="16. Instrumental variables estimation: Stata | Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2022-11-02" />
+<meta name="date" content="2023-02-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -304,7 +304,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="instrumental-variables-estimation-stata" class="section level1 unnumbered hasAnchor">
 <h1>16. Instrumental variables estimation: Stata<a href="instrumental-variables-estimation-stata.html#instrumental-variables-estimation-stata" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="instrumental-variables-estimation-stata.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Statamarkdown)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="instrumental-variables-estimation-stata.html#cb112-1" tabindex="-1"></a><span class="fu">library</span>(Statamarkdown)</span></code></pre></div>
 <pre><code>/***************************************************************
 Stata code for Causal Inference: What If by Miguel Hernan &amp; Jamie Robins
 Date: 10/10/2019
@@ -318,68 +318,68 @@ For errors contact: ejmurray@bu.edu
 <li>Data from NHEFS</li>
 <li>Section 16.2</li>
 </ul>
-<div class="sourceCode" id="cb114"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb114-1"><a href="instrumental-variables-estimation-stata.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span>
-<span id="cb114-2"><a href="instrumental-variables-estimation-stata.html#cb114-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb114-3"><a href="instrumental-variables-estimation-stata.html#cb114-3" aria-hidden="true" tabindex="-1"></a><span class="kw">summarize</span> price82</span>
-<span id="cb114-4"><a href="instrumental-variables-estimation-stata.html#cb114-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb114-5"><a href="instrumental-variables-estimation-stata.html#cb114-5" aria-hidden="true" tabindex="-1"></a><span class="co">/* ignore subjects with missing outcome or missing instrument for simplicity*/</span></span>
-<span id="cb114-6"><a href="instrumental-variables-estimation-stata.html#cb114-6" aria-hidden="true" tabindex="-1"></a><span class="kw">foreach</span> <span class="kw">var</span> <span class="kw">of</span> <span class="kw">varlist</span> wt82 price82 {</span>
-<span id="cb114-7"><a href="instrumental-variables-estimation-stata.html#cb114-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">drop</span> <span class="kw">if</span> <span class="ot">`var&#39;</span>==.</span>
-<span id="cb114-8"><a href="instrumental-variables-estimation-stata.html#cb114-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb114-9"><a href="instrumental-variables-estimation-stata.html#cb114-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb114-10"><a href="instrumental-variables-estimation-stata.html#cb114-10" aria-hidden="true" tabindex="-1"></a><span class="co">/*Create categorical instrument*/</span></span>
-<span id="cb114-11"><a href="instrumental-variables-estimation-stata.html#cb114-11" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> <span class="kw">byte</span> highprice = (price82 &gt; 1.5 &amp; price82 &lt; .)</span>
-<span id="cb114-12"><a href="instrumental-variables-estimation-stata.html#cb114-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb114-13"><a href="instrumental-variables-estimation-stata.html#cb114-13" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> ./<span class="kw">data</span>/nhefs-highprice, <span class="kw">replace</span></span>
-<span id="cb114-14"><a href="instrumental-variables-estimation-stata.html#cb114-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb114-15"><a href="instrumental-variables-estimation-stata.html#cb114-15" aria-hidden="true" tabindex="-1"></a><span class="co">/*Calculate P[Z|A=a]*/</span></span>
-<span id="cb114-16"><a href="instrumental-variables-estimation-stata.html#cb114-16" aria-hidden="true" tabindex="-1"></a><span class="kw">tab</span> highprice qsmk, <span class="ot">row</span></span>
-<span id="cb114-17"><a href="instrumental-variables-estimation-stata.html#cb114-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb114-18"><a href="instrumental-variables-estimation-stata.html#cb114-18" aria-hidden="true" tabindex="-1"></a><span class="co">/*Calculate P[Y|Z=z]*/</span></span>
-<span id="cb114-19"><a href="instrumental-variables-estimation-stata.html#cb114-19" aria-hidden="true" tabindex="-1"></a><span class="kw">ttest</span> wt82_71, <span class="kw">by</span>(highprice)</span>
-<span id="cb114-20"><a href="instrumental-variables-estimation-stata.html#cb114-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb114-21"><a href="instrumental-variables-estimation-stata.html#cb114-21" aria-hidden="true" tabindex="-1"></a><span class="co">/*Final IV estimate, OPTION 1: Hand calculations*/</span></span>
-<span id="cb114-22"><a href="instrumental-variables-estimation-stata.html#cb114-22" aria-hidden="true" tabindex="-1"></a><span class="co">/*Numerator: num = E[Y|Z=1] - E[Y|Z=0] = 2.686 - 2.536 = 0.150*/</span></span>
-<span id="cb114-23"><a href="instrumental-variables-estimation-stata.html#cb114-23" aria-hidden="true" tabindex="-1"></a><span class="co">/*Denominator: denom = P[A=1|Z=1] - P[A=1|Z=0] = 0.258 - 0.195 = 0.063 */</span> </span>
-<span id="cb114-24"><a href="instrumental-variables-estimation-stata.html#cb114-24" aria-hidden="true" tabindex="-1"></a><span class="co">/*IV estimator: E[Ya=1] - E[Ya=0] = </span></span>
-<span id="cb114-25"><a href="instrumental-variables-estimation-stata.html#cb114-25" aria-hidden="true" tabindex="-1"></a><span class="co">(E[Y|Z=1]-E[Y|Z=0])/(P[A=1|Z=1]-P[A=1|Z=0]) = 0.150/0.063 = 2.397*/</span></span>
-<span id="cb114-26"><a href="instrumental-variables-estimation-stata.html#cb114-26" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> <span class="st">&quot;Numerator, E[Y|Z=1] - E[Y|Z=0] =&quot;</span>, 2.686 - 2.536</span>
-<span id="cb114-27"><a href="instrumental-variables-estimation-stata.html#cb114-27" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> <span class="st">&quot;Denominator: denom = P[A=1|Z=1] - P[A=1|Z=0] =&quot;</span>, 0.258 - 0.195</span>
-<span id="cb114-28"><a href="instrumental-variables-estimation-stata.html#cb114-28" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> <span class="st">&quot;IV estimator =&quot;</span>, 0.150/0.063</span>
-<span id="cb114-29"><a href="instrumental-variables-estimation-stata.html#cb114-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb114-30"><a href="instrumental-variables-estimation-stata.html#cb114-30" aria-hidden="true" tabindex="-1"></a><span class="co">/*OPTION 2 2: automated calculation of instrument*/</span></span>
-<span id="cb114-31"><a href="instrumental-variables-estimation-stata.html#cb114-31" aria-hidden="true" tabindex="-1"></a><span class="co">/*Calculate P[A=1|Z=z], for each value of the instrument, </span></span>
-<span id="cb114-32"><a href="instrumental-variables-estimation-stata.html#cb114-32" aria-hidden="true" tabindex="-1"></a><span class="co">and store in a matrix*/</span></span>
-<span id="cb114-33"><a href="instrumental-variables-estimation-stata.html#cb114-33" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">summarize</span> qsmk <span class="kw">if</span> (highprice==0)</span>
-<span id="cb114-34"><a href="instrumental-variables-estimation-stata.html#cb114-34" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> input pa = (<span class="ot">`r(mean)&#39;</span>)</span>
-<span id="cb114-35"><a href="instrumental-variables-estimation-stata.html#cb114-35" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">summarize</span> qsmk <span class="kw">if</span> (highprice==1)</span>
-<span id="cb114-36"><a href="instrumental-variables-estimation-stata.html#cb114-36" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> pa = (pa ,<span class="ot">`r(mean)&#39;</span>)</span>
-<span id="cb114-37"><a href="instrumental-variables-estimation-stata.html#cb114-37" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> <span class="ot">list</span> pa</span>
-<span id="cb114-38"><a href="instrumental-variables-estimation-stata.html#cb114-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb114-39"><a href="instrumental-variables-estimation-stata.html#cb114-39" aria-hidden="true" tabindex="-1"></a><span class="co">/*Calculate P[Y|Z=z], for each value of the instrument, </span></span>
-<span id="cb114-40"><a href="instrumental-variables-estimation-stata.html#cb114-40" aria-hidden="true" tabindex="-1"></a><span class="co">and store in a second matrix*/</span></span>
-<span id="cb114-41"><a href="instrumental-variables-estimation-stata.html#cb114-41" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">summarize</span> wt82_71 <span class="kw">if</span> (highprice==0)</span>
-<span id="cb114-42"><a href="instrumental-variables-estimation-stata.html#cb114-42" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> input ey = (<span class="ot">`r(mean)&#39;</span>)</span>
-<span id="cb114-43"><a href="instrumental-variables-estimation-stata.html#cb114-43" aria-hidden="true" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">summarize</span> wt82_71 <span class="kw">if</span> (highprice==1)</span>
-<span id="cb114-44"><a href="instrumental-variables-estimation-stata.html#cb114-44" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> ey = (ey ,<span class="ot">`r(mean)&#39;</span>)</span>
-<span id="cb114-45"><a href="instrumental-variables-estimation-stata.html#cb114-45" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> <span class="ot">list</span> ey</span>
-<span id="cb114-46"><a href="instrumental-variables-estimation-stata.html#cb114-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb114-47"><a href="instrumental-variables-estimation-stata.html#cb114-47" aria-hidden="true" tabindex="-1"></a><span class="co">/*Using Stata&#39;s built-in matrix manipulation feature (Mata), </span></span>
-<span id="cb114-48"><a href="instrumental-variables-estimation-stata.html#cb114-48" aria-hidden="true" tabindex="-1"></a><span class="co">calculate numerator, denominator and IV estimator*/</span></span>
-<span id="cb114-49"><a href="instrumental-variables-estimation-stata.html#cb114-49" aria-hidden="true" tabindex="-1"></a>*Numerator: num = E[Y|Z=1] - E[Y|Z=0]*<span class="kw">mata</span></span>
-<span id="cb114-50"><a href="instrumental-variables-estimation-stata.html#cb114-50" aria-hidden="true" tabindex="-1"></a>*Denominator: denom = P[A=1|Z=1] - P[A=1|Z=0]*</span>
-<span id="cb114-51"><a href="instrumental-variables-estimation-stata.html#cb114-51" aria-hidden="true" tabindex="-1"></a>*IV estimator: iv_est = IV estimate <span class="kw">of</span> E[Ya=1] - E[Ya=0] *</span>
-<span id="cb114-52"><a href="instrumental-variables-estimation-stata.html#cb114-52" aria-hidden="true" tabindex="-1"></a><span class="kw">mata</span> </span>
-<span id="cb114-53"><a href="instrumental-variables-estimation-stata.html#cb114-53" aria-hidden="true" tabindex="-1"></a>pa = st_matrix(<span class="st">&quot;pa&quot;</span>)</span>
-<span id="cb114-54"><a href="instrumental-variables-estimation-stata.html#cb114-54" aria-hidden="true" tabindex="-1"></a>ey = st_matrix(<span class="st">&quot;ey&quot;</span>)</span>
-<span id="cb114-55"><a href="instrumental-variables-estimation-stata.html#cb114-55" aria-hidden="true" tabindex="-1"></a>num = ey[1,2] - ey[1,1] </span>
-<span id="cb114-56"><a href="instrumental-variables-estimation-stata.html#cb114-56" aria-hidden="true" tabindex="-1"></a>denom = pa[1,2] - pa[1,1]</span>
-<span id="cb114-57"><a href="instrumental-variables-estimation-stata.html#cb114-57" aria-hidden="true" tabindex="-1"></a>iv_est = num / denom </span>
-<span id="cb114-58"><a href="instrumental-variables-estimation-stata.html#cb114-58" aria-hidden="true" tabindex="-1"></a>num</span>
-<span id="cb114-59"><a href="instrumental-variables-estimation-stata.html#cb114-59" aria-hidden="true" tabindex="-1"></a>denom</span>
-<span id="cb114-60"><a href="instrumental-variables-estimation-stata.html#cb114-60" aria-hidden="true" tabindex="-1"></a>st_numscalar(<span class="st">&quot;iv_est&quot;</span>, iv_est)</span>
-<span id="cb114-61"><a href="instrumental-variables-estimation-stata.html#cb114-61" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb114-62"><a href="instrumental-variables-estimation-stata.html#cb114-62" aria-hidden="true" tabindex="-1"></a><span class="kw">di</span> <span class="fu">scalar</span>(iv_est)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb114-1"><a href="instrumental-variables-estimation-stata.html#cb114-1" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-formatted, <span class="kw">clear</span></span>
+<span id="cb114-2"><a href="instrumental-variables-estimation-stata.html#cb114-2" tabindex="-1"></a></span>
+<span id="cb114-3"><a href="instrumental-variables-estimation-stata.html#cb114-3" tabindex="-1"></a><span class="kw">summarize</span> price82</span>
+<span id="cb114-4"><a href="instrumental-variables-estimation-stata.html#cb114-4" tabindex="-1"></a></span>
+<span id="cb114-5"><a href="instrumental-variables-estimation-stata.html#cb114-5" tabindex="-1"></a><span class="co">/* ignore subjects with missing outcome or missing instrument for simplicity*/</span></span>
+<span id="cb114-6"><a href="instrumental-variables-estimation-stata.html#cb114-6" tabindex="-1"></a><span class="kw">foreach</span> <span class="kw">var</span> <span class="kw">of</span> <span class="kw">varlist</span> wt82 price82 {</span>
+<span id="cb114-7"><a href="instrumental-variables-estimation-stata.html#cb114-7" tabindex="-1"></a>  <span class="kw">drop</span> <span class="kw">if</span> <span class="ot">`var&#39;</span>==.</span>
+<span id="cb114-8"><a href="instrumental-variables-estimation-stata.html#cb114-8" tabindex="-1"></a>}</span>
+<span id="cb114-9"><a href="instrumental-variables-estimation-stata.html#cb114-9" tabindex="-1"></a></span>
+<span id="cb114-10"><a href="instrumental-variables-estimation-stata.html#cb114-10" tabindex="-1"></a><span class="co">/*Create categorical instrument*/</span></span>
+<span id="cb114-11"><a href="instrumental-variables-estimation-stata.html#cb114-11" tabindex="-1"></a><span class="kw">gen</span> <span class="kw">byte</span> highprice = (price82 &gt; 1.5 &amp; price82 &lt; .)</span>
+<span id="cb114-12"><a href="instrumental-variables-estimation-stata.html#cb114-12" tabindex="-1"></a></span>
+<span id="cb114-13"><a href="instrumental-variables-estimation-stata.html#cb114-13" tabindex="-1"></a><span class="kw">save</span> ./<span class="kw">data</span>/nhefs-highprice, <span class="kw">replace</span></span>
+<span id="cb114-14"><a href="instrumental-variables-estimation-stata.html#cb114-14" tabindex="-1"></a></span>
+<span id="cb114-15"><a href="instrumental-variables-estimation-stata.html#cb114-15" tabindex="-1"></a><span class="co">/*Calculate P[Z|A=a]*/</span></span>
+<span id="cb114-16"><a href="instrumental-variables-estimation-stata.html#cb114-16" tabindex="-1"></a><span class="kw">tab</span> highprice qsmk, <span class="ot">row</span></span>
+<span id="cb114-17"><a href="instrumental-variables-estimation-stata.html#cb114-17" tabindex="-1"></a></span>
+<span id="cb114-18"><a href="instrumental-variables-estimation-stata.html#cb114-18" tabindex="-1"></a><span class="co">/*Calculate P[Y|Z=z]*/</span></span>
+<span id="cb114-19"><a href="instrumental-variables-estimation-stata.html#cb114-19" tabindex="-1"></a><span class="kw">ttest</span> wt82_71, <span class="kw">by</span>(highprice)</span>
+<span id="cb114-20"><a href="instrumental-variables-estimation-stata.html#cb114-20" tabindex="-1"></a></span>
+<span id="cb114-21"><a href="instrumental-variables-estimation-stata.html#cb114-21" tabindex="-1"></a><span class="co">/*Final IV estimate, OPTION 1: Hand calculations*/</span></span>
+<span id="cb114-22"><a href="instrumental-variables-estimation-stata.html#cb114-22" tabindex="-1"></a><span class="co">/*Numerator: num = E[Y|Z=1] - E[Y|Z=0] = 2.686 - 2.536 = 0.150*/</span></span>
+<span id="cb114-23"><a href="instrumental-variables-estimation-stata.html#cb114-23" tabindex="-1"></a><span class="co">/*Denominator: denom = P[A=1|Z=1] - P[A=1|Z=0] = 0.258 - 0.195 = 0.063 */</span> </span>
+<span id="cb114-24"><a href="instrumental-variables-estimation-stata.html#cb114-24" tabindex="-1"></a><span class="co">/*IV estimator: E[Ya=1] - E[Ya=0] = </span></span>
+<span id="cb114-25"><a href="instrumental-variables-estimation-stata.html#cb114-25" tabindex="-1"></a><span class="co">(E[Y|Z=1]-E[Y|Z=0])/(P[A=1|Z=1]-P[A=1|Z=0]) = 0.150/0.063 = 2.397*/</span></span>
+<span id="cb114-26"><a href="instrumental-variables-estimation-stata.html#cb114-26" tabindex="-1"></a><span class="kw">display</span> <span class="st">&quot;Numerator, E[Y|Z=1] - E[Y|Z=0] =&quot;</span>, 2.686 - 2.536</span>
+<span id="cb114-27"><a href="instrumental-variables-estimation-stata.html#cb114-27" tabindex="-1"></a><span class="kw">display</span> <span class="st">&quot;Denominator: denom = P[A=1|Z=1] - P[A=1|Z=0] =&quot;</span>, 0.258 - 0.195</span>
+<span id="cb114-28"><a href="instrumental-variables-estimation-stata.html#cb114-28" tabindex="-1"></a><span class="kw">display</span> <span class="st">&quot;IV estimator =&quot;</span>, 0.150/0.063</span>
+<span id="cb114-29"><a href="instrumental-variables-estimation-stata.html#cb114-29" tabindex="-1"></a></span>
+<span id="cb114-30"><a href="instrumental-variables-estimation-stata.html#cb114-30" tabindex="-1"></a><span class="co">/*OPTION 2 2: automated calculation of instrument*/</span></span>
+<span id="cb114-31"><a href="instrumental-variables-estimation-stata.html#cb114-31" tabindex="-1"></a><span class="co">/*Calculate P[A=1|Z=z], for each value of the instrument, </span></span>
+<span id="cb114-32"><a href="instrumental-variables-estimation-stata.html#cb114-32" tabindex="-1"></a><span class="co">and store in a matrix*/</span></span>
+<span id="cb114-33"><a href="instrumental-variables-estimation-stata.html#cb114-33" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">summarize</span> qsmk <span class="kw">if</span> (highprice==0)</span>
+<span id="cb114-34"><a href="instrumental-variables-estimation-stata.html#cb114-34" tabindex="-1"></a><span class="fu">matrix</span> input pa = (<span class="ot">`r(mean)&#39;</span>)</span>
+<span id="cb114-35"><a href="instrumental-variables-estimation-stata.html#cb114-35" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">summarize</span> qsmk <span class="kw">if</span> (highprice==1)</span>
+<span id="cb114-36"><a href="instrumental-variables-estimation-stata.html#cb114-36" tabindex="-1"></a><span class="fu">matrix</span> pa = (pa ,<span class="ot">`r(mean)&#39;</span>)</span>
+<span id="cb114-37"><a href="instrumental-variables-estimation-stata.html#cb114-37" tabindex="-1"></a><span class="fu">matrix</span> <span class="ot">list</span> pa</span>
+<span id="cb114-38"><a href="instrumental-variables-estimation-stata.html#cb114-38" tabindex="-1"></a></span>
+<span id="cb114-39"><a href="instrumental-variables-estimation-stata.html#cb114-39" tabindex="-1"></a><span class="co">/*Calculate P[Y|Z=z], for each value of the instrument, </span></span>
+<span id="cb114-40"><a href="instrumental-variables-estimation-stata.html#cb114-40" tabindex="-1"></a><span class="co">and store in a second matrix*/</span></span>
+<span id="cb114-41"><a href="instrumental-variables-estimation-stata.html#cb114-41" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">summarize</span> wt82_71 <span class="kw">if</span> (highprice==0)</span>
+<span id="cb114-42"><a href="instrumental-variables-estimation-stata.html#cb114-42" tabindex="-1"></a><span class="fu">matrix</span> input ey = (<span class="ot">`r(mean)&#39;</span>)</span>
+<span id="cb114-43"><a href="instrumental-variables-estimation-stata.html#cb114-43" tabindex="-1"></a><span class="kw">quietly</span> <span class="kw">summarize</span> wt82_71 <span class="kw">if</span> (highprice==1)</span>
+<span id="cb114-44"><a href="instrumental-variables-estimation-stata.html#cb114-44" tabindex="-1"></a><span class="fu">matrix</span> ey = (ey ,<span class="ot">`r(mean)&#39;</span>)</span>
+<span id="cb114-45"><a href="instrumental-variables-estimation-stata.html#cb114-45" tabindex="-1"></a><span class="fu">matrix</span> <span class="ot">list</span> ey</span>
+<span id="cb114-46"><a href="instrumental-variables-estimation-stata.html#cb114-46" tabindex="-1"></a></span>
+<span id="cb114-47"><a href="instrumental-variables-estimation-stata.html#cb114-47" tabindex="-1"></a><span class="co">/*Using Stata&#39;s built-in matrix manipulation feature (Mata), </span></span>
+<span id="cb114-48"><a href="instrumental-variables-estimation-stata.html#cb114-48" tabindex="-1"></a><span class="co">calculate numerator, denominator and IV estimator*/</span></span>
+<span id="cb114-49"><a href="instrumental-variables-estimation-stata.html#cb114-49" tabindex="-1"></a>*Numerator: num = E[Y|Z=1] - E[Y|Z=0]*<span class="kw">mata</span></span>
+<span id="cb114-50"><a href="instrumental-variables-estimation-stata.html#cb114-50" tabindex="-1"></a>*Denominator: denom = P[A=1|Z=1] - P[A=1|Z=0]*</span>
+<span id="cb114-51"><a href="instrumental-variables-estimation-stata.html#cb114-51" tabindex="-1"></a>*IV estimator: iv_est = IV estimate <span class="kw">of</span> E[Ya=1] - E[Ya=0] *</span>
+<span id="cb114-52"><a href="instrumental-variables-estimation-stata.html#cb114-52" tabindex="-1"></a><span class="kw">mata</span> </span>
+<span id="cb114-53"><a href="instrumental-variables-estimation-stata.html#cb114-53" tabindex="-1"></a>pa = st_matrix(<span class="st">&quot;pa&quot;</span>)</span>
+<span id="cb114-54"><a href="instrumental-variables-estimation-stata.html#cb114-54" tabindex="-1"></a>ey = st_matrix(<span class="st">&quot;ey&quot;</span>)</span>
+<span id="cb114-55"><a href="instrumental-variables-estimation-stata.html#cb114-55" tabindex="-1"></a>num = ey[1,2] - ey[1,1] </span>
+<span id="cb114-56"><a href="instrumental-variables-estimation-stata.html#cb114-56" tabindex="-1"></a>denom = pa[1,2] - pa[1,1]</span>
+<span id="cb114-57"><a href="instrumental-variables-estimation-stata.html#cb114-57" tabindex="-1"></a>iv_est = num / denom </span>
+<span id="cb114-58"><a href="instrumental-variables-estimation-stata.html#cb114-58" tabindex="-1"></a>num</span>
+<span id="cb114-59"><a href="instrumental-variables-estimation-stata.html#cb114-59" tabindex="-1"></a>denom</span>
+<span id="cb114-60"><a href="instrumental-variables-estimation-stata.html#cb114-60" tabindex="-1"></a>st_numscalar(<span class="st">&quot;iv_est&quot;</span>, iv_est)</span>
+<span id="cb114-61"><a href="instrumental-variables-estimation-stata.html#cb114-61" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb114-62"><a href="instrumental-variables-estimation-stata.html#cb114-62" tabindex="-1"></a><span class="kw">di</span> <span class="fu">scalar</span>(iv_est)</span></code></pre></div>
 <pre><code>    Variable |        Obs        Mean    Std. dev.       Min        Max
 -------------+---------------------------------------------------------
      price82 |      1,476    1.805989    .1301703   1.451904   2.103027
@@ -453,7 +453,7 @@ ey[1,2]
            c1         c2
 r1   2.535729  2.6860178
 
-------------------------------------------------- mata (type end to exit) ------
+------------------------------------------------- mata (type end to exit) -------------------
 : pa = st_matrix(&quot;pa&quot;)
 
 : ey = st_matrix(&quot;ey&quot;)
@@ -473,7 +473,7 @@ r1   2.535729  2.6860178
 : st_numscalar(&quot;iv_est&quot;, iv_est)
 
 : end
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 
 2.3962701</code></pre>
 </div>
@@ -484,12 +484,12 @@ r1   2.535729  2.6860178
 <li>Data from NHEFS</li>
 <li>Section 16.2</li>
 </ul>
-<div class="sourceCode" id="cb116"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb116-1"><a href="instrumental-variables-estimation-stata.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-highprice, <span class="kw">clear</span></span>
-<span id="cb116-2"><a href="instrumental-variables-estimation-stata.html#cb116-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb116-3"><a href="instrumental-variables-estimation-stata.html#cb116-3" aria-hidden="true" tabindex="-1"></a><span class="co">/* ivregress fits the model in two stages:</span></span>
-<span id="cb116-4"><a href="instrumental-variables-estimation-stata.html#cb116-4" aria-hidden="true" tabindex="-1"></a><span class="co">- first model: qsmk = highprice</span></span>
-<span id="cb116-5"><a href="instrumental-variables-estimation-stata.html#cb116-5" aria-hidden="true" tabindex="-1"></a><span class="co">- second model: wt82_71 = predicted_qsmk */</span></span>
-<span id="cb116-6"><a href="instrumental-variables-estimation-stata.html#cb116-6" aria-hidden="true" tabindex="-1"></a>ivregress 2sls wt82_71 (qsmk = highprice)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb116-1"><a href="instrumental-variables-estimation-stata.html#cb116-1" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-highprice, <span class="kw">clear</span></span>
+<span id="cb116-2"><a href="instrumental-variables-estimation-stata.html#cb116-2" tabindex="-1"></a></span>
+<span id="cb116-3"><a href="instrumental-variables-estimation-stata.html#cb116-3" tabindex="-1"></a><span class="co">/* ivregress fits the model in two stages:</span></span>
+<span id="cb116-4"><a href="instrumental-variables-estimation-stata.html#cb116-4" tabindex="-1"></a><span class="co">- first model: qsmk = highprice</span></span>
+<span id="cb116-5"><a href="instrumental-variables-estimation-stata.html#cb116-5" tabindex="-1"></a><span class="co">- second model: wt82_71 = predicted_qsmk */</span></span>
+<span id="cb116-6"><a href="instrumental-variables-estimation-stata.html#cb116-6" tabindex="-1"></a>ivregress 2sls wt82_71 (qsmk = highprice)</span></code></pre></div>
 <pre><code>Instrumental variables 2SLS regression            Number of obs   =      1,476
                                                   Wald chi2(1)    =       0.01
                                                   Prob &gt; chi2     =     0.9038
@@ -515,12 +515,12 @@ Instrumented: qsmk
 </li>
 <li>Section 16.2</li>
 </ul>
-<div class="sourceCode" id="cb118"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb118-1"><a href="instrumental-variables-estimation-stata.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-highprice, <span class="kw">clear</span></span>
-<span id="cb118-2"><a href="instrumental-variables-estimation-stata.html#cb118-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb118-3"><a href="instrumental-variables-estimation-stata.html#cb118-3" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> psi = 2.396</span>
-<span id="cb118-4"><a href="instrumental-variables-estimation-stata.html#cb118-4" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> hspi = wt82_71 - psi*qsmk</span>
-<span id="cb118-5"><a href="instrumental-variables-estimation-stata.html#cb118-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb118-6"><a href="instrumental-variables-estimation-stata.html#cb118-6" aria-hidden="true" tabindex="-1"></a><span class="kw">logit</span> highprice hspi</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb118-1"><a href="instrumental-variables-estimation-stata.html#cb118-1" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-highprice, <span class="kw">clear</span></span>
+<span id="cb118-2"><a href="instrumental-variables-estimation-stata.html#cb118-2" tabindex="-1"></a></span>
+<span id="cb118-3"><a href="instrumental-variables-estimation-stata.html#cb118-3" tabindex="-1"></a><span class="kw">gen</span> psi = 2.396</span>
+<span id="cb118-4"><a href="instrumental-variables-estimation-stata.html#cb118-4" tabindex="-1"></a><span class="kw">gen</span> hspi = wt82_71 - psi*qsmk</span>
+<span id="cb118-5"><a href="instrumental-variables-estimation-stata.html#cb118-5" tabindex="-1"></a></span>
+<span id="cb118-6"><a href="instrumental-variables-estimation-stata.html#cb118-6" tabindex="-1"></a><span class="kw">logit</span> highprice hspi</span></code></pre></div>
 <pre><code>Iteration 0:   log likelihood = -187.34948  
 Iteration 1:   log likelihood = -187.34948  
 
@@ -543,31 +543,31 @@ Log likelihood = -187.34948                             Pseudo R2     = 0.0000
 <li>Data from NHEFS</li>
 <li>Section 16.5</li>
 </ul>
-<div class="sourceCode" id="cb120"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb120-1"><a href="instrumental-variables-estimation-stata.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-highprice, <span class="kw">clear</span></span>
-<span id="cb120-2"><a href="instrumental-variables-estimation-stata.html#cb120-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-3"><a href="instrumental-variables-estimation-stata.html#cb120-3" aria-hidden="true" tabindex="-1"></a><span class="co">/*Instrument cut-point: 1.6*/</span></span>
-<span id="cb120-4"><a href="instrumental-variables-estimation-stata.html#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> highprice = .</span>
-<span id="cb120-5"><a href="instrumental-variables-estimation-stata.html#cb120-5" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> highprice = (price82 &gt;1.6 &amp; price82 &lt; .)</span>
-<span id="cb120-6"><a href="instrumental-variables-estimation-stata.html#cb120-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-7"><a href="instrumental-variables-estimation-stata.html#cb120-7" aria-hidden="true" tabindex="-1"></a>ivregress 2sls wt82_71 (qsmk = highprice)</span>
-<span id="cb120-8"><a href="instrumental-variables-estimation-stata.html#cb120-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-9"><a href="instrumental-variables-estimation-stata.html#cb120-9" aria-hidden="true" tabindex="-1"></a><span class="co">/*Instrument cut-point: 1.7*/</span></span>
-<span id="cb120-10"><a href="instrumental-variables-estimation-stata.html#cb120-10" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> highprice = .</span>
-<span id="cb120-11"><a href="instrumental-variables-estimation-stata.html#cb120-11" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> highprice = (price82 &gt;1.7 &amp; price82 &lt; .)</span>
-<span id="cb120-12"><a href="instrumental-variables-estimation-stata.html#cb120-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-13"><a href="instrumental-variables-estimation-stata.html#cb120-13" aria-hidden="true" tabindex="-1"></a>ivregress 2sls wt82_71 (qsmk = highprice)</span>
-<span id="cb120-14"><a href="instrumental-variables-estimation-stata.html#cb120-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-15"><a href="instrumental-variables-estimation-stata.html#cb120-15" aria-hidden="true" tabindex="-1"></a><span class="co">/*Instrument cut-point: 1.8*/</span></span>
-<span id="cb120-16"><a href="instrumental-variables-estimation-stata.html#cb120-16" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> highprice = .</span>
-<span id="cb120-17"><a href="instrumental-variables-estimation-stata.html#cb120-17" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> highprice = (price82 &gt;1.8 &amp; price82 &lt; .)</span>
-<span id="cb120-18"><a href="instrumental-variables-estimation-stata.html#cb120-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-19"><a href="instrumental-variables-estimation-stata.html#cb120-19" aria-hidden="true" tabindex="-1"></a>ivregress 2sls wt82_71 (qsmk = highprice)</span>
-<span id="cb120-20"><a href="instrumental-variables-estimation-stata.html#cb120-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-21"><a href="instrumental-variables-estimation-stata.html#cb120-21" aria-hidden="true" tabindex="-1"></a><span class="co">/*Instrument cut-point: 1.9*/</span></span>
-<span id="cb120-22"><a href="instrumental-variables-estimation-stata.html#cb120-22" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> highprice = .</span>
-<span id="cb120-23"><a href="instrumental-variables-estimation-stata.html#cb120-23" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> highprice = (price82 &gt;1.9 &amp; price82 &lt; .)</span>
-<span id="cb120-24"><a href="instrumental-variables-estimation-stata.html#cb120-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-25"><a href="instrumental-variables-estimation-stata.html#cb120-25" aria-hidden="true" tabindex="-1"></a>ivregress 2sls wt82_71 (qsmk = highprice)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb120-1"><a href="instrumental-variables-estimation-stata.html#cb120-1" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-highprice, <span class="kw">clear</span></span>
+<span id="cb120-2"><a href="instrumental-variables-estimation-stata.html#cb120-2" tabindex="-1"></a></span>
+<span id="cb120-3"><a href="instrumental-variables-estimation-stata.html#cb120-3" tabindex="-1"></a><span class="co">/*Instrument cut-point: 1.6*/</span></span>
+<span id="cb120-4"><a href="instrumental-variables-estimation-stata.html#cb120-4" tabindex="-1"></a><span class="kw">replace</span> highprice = .</span>
+<span id="cb120-5"><a href="instrumental-variables-estimation-stata.html#cb120-5" tabindex="-1"></a><span class="kw">replace</span> highprice = (price82 &gt;1.6 &amp; price82 &lt; .)</span>
+<span id="cb120-6"><a href="instrumental-variables-estimation-stata.html#cb120-6" tabindex="-1"></a></span>
+<span id="cb120-7"><a href="instrumental-variables-estimation-stata.html#cb120-7" tabindex="-1"></a>ivregress 2sls wt82_71 (qsmk = highprice)</span>
+<span id="cb120-8"><a href="instrumental-variables-estimation-stata.html#cb120-8" tabindex="-1"></a></span>
+<span id="cb120-9"><a href="instrumental-variables-estimation-stata.html#cb120-9" tabindex="-1"></a><span class="co">/*Instrument cut-point: 1.7*/</span></span>
+<span id="cb120-10"><a href="instrumental-variables-estimation-stata.html#cb120-10" tabindex="-1"></a><span class="kw">replace</span> highprice = .</span>
+<span id="cb120-11"><a href="instrumental-variables-estimation-stata.html#cb120-11" tabindex="-1"></a><span class="kw">replace</span> highprice = (price82 &gt;1.7 &amp; price82 &lt; .)</span>
+<span id="cb120-12"><a href="instrumental-variables-estimation-stata.html#cb120-12" tabindex="-1"></a></span>
+<span id="cb120-13"><a href="instrumental-variables-estimation-stata.html#cb120-13" tabindex="-1"></a>ivregress 2sls wt82_71 (qsmk = highprice)</span>
+<span id="cb120-14"><a href="instrumental-variables-estimation-stata.html#cb120-14" tabindex="-1"></a></span>
+<span id="cb120-15"><a href="instrumental-variables-estimation-stata.html#cb120-15" tabindex="-1"></a><span class="co">/*Instrument cut-point: 1.8*/</span></span>
+<span id="cb120-16"><a href="instrumental-variables-estimation-stata.html#cb120-16" tabindex="-1"></a><span class="kw">replace</span> highprice = .</span>
+<span id="cb120-17"><a href="instrumental-variables-estimation-stata.html#cb120-17" tabindex="-1"></a><span class="kw">replace</span> highprice = (price82 &gt;1.8 &amp; price82 &lt; .)</span>
+<span id="cb120-18"><a href="instrumental-variables-estimation-stata.html#cb120-18" tabindex="-1"></a></span>
+<span id="cb120-19"><a href="instrumental-variables-estimation-stata.html#cb120-19" tabindex="-1"></a>ivregress 2sls wt82_71 (qsmk = highprice)</span>
+<span id="cb120-20"><a href="instrumental-variables-estimation-stata.html#cb120-20" tabindex="-1"></a></span>
+<span id="cb120-21"><a href="instrumental-variables-estimation-stata.html#cb120-21" tabindex="-1"></a><span class="co">/*Instrument cut-point: 1.9*/</span></span>
+<span id="cb120-22"><a href="instrumental-variables-estimation-stata.html#cb120-22" tabindex="-1"></a><span class="kw">replace</span> highprice = .</span>
+<span id="cb120-23"><a href="instrumental-variables-estimation-stata.html#cb120-23" tabindex="-1"></a><span class="kw">replace</span> highprice = (price82 &gt;1.9 &amp; price82 &lt; .)</span>
+<span id="cb120-24"><a href="instrumental-variables-estimation-stata.html#cb120-24" tabindex="-1"></a></span>
+<span id="cb120-25"><a href="instrumental-variables-estimation-stata.html#cb120-25" tabindex="-1"></a>ivregress 2sls wt82_71 (qsmk = highprice)</span></code></pre></div>
 <pre><code>(1,476 real changes made, 1,476 to missing)
 
 (1,476 real changes made)
@@ -655,14 +655,14 @@ Instrumented: qsmk
 <li>Data from NHEFS</li>
 <li>Section 16.5</li>
 </ul>
-<div class="sourceCode" id="cb122"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb122-1"><a href="instrumental-variables-estimation-stata.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-highprice, <span class="kw">clear</span></span>
-<span id="cb122-2"><a href="instrumental-variables-estimation-stata.html#cb122-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb122-3"><a href="instrumental-variables-estimation-stata.html#cb122-3" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> highprice = .</span>
-<span id="cb122-4"><a href="instrumental-variables-estimation-stata.html#cb122-4" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> highprice = (price82 &gt;1.5 &amp; price82 &lt; .)</span>
-<span id="cb122-5"><a href="instrumental-variables-estimation-stata.html#cb122-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb122-6"><a href="instrumental-variables-estimation-stata.html#cb122-6" aria-hidden="true" tabindex="-1"></a>ivregress 2sls wt82_71 sex race c.age c.smokeintensity <span class="co">///</span></span>
-<span id="cb122-7"><a href="instrumental-variables-estimation-stata.html#cb122-7" aria-hidden="true" tabindex="-1"></a>  c.smokeyrs i.exercise i.active c.wt7 <span class="co">///</span></span>
-<span id="cb122-8"><a href="instrumental-variables-estimation-stata.html#cb122-8" aria-hidden="true" tabindex="-1"></a>  (qsmk = highprice)</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb122-1"><a href="instrumental-variables-estimation-stata.html#cb122-1" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-highprice, <span class="kw">clear</span></span>
+<span id="cb122-2"><a href="instrumental-variables-estimation-stata.html#cb122-2" tabindex="-1"></a></span>
+<span id="cb122-3"><a href="instrumental-variables-estimation-stata.html#cb122-3" tabindex="-1"></a><span class="kw">replace</span> highprice = .</span>
+<span id="cb122-4"><a href="instrumental-variables-estimation-stata.html#cb122-4" tabindex="-1"></a><span class="kw">replace</span> highprice = (price82 &gt;1.5 &amp; price82 &lt; .)</span>
+<span id="cb122-5"><a href="instrumental-variables-estimation-stata.html#cb122-5" tabindex="-1"></a></span>
+<span id="cb122-6"><a href="instrumental-variables-estimation-stata.html#cb122-6" tabindex="-1"></a>ivregress 2sls wt82_71 sex race c.age c.smokeintensity <span class="co">///</span></span>
+<span id="cb122-7"><a href="instrumental-variables-estimation-stata.html#cb122-7" tabindex="-1"></a>  c.smokeyrs i.exercise i.active c.wt7 <span class="co">///</span></span>
+<span id="cb122-8"><a href="instrumental-variables-estimation-stata.html#cb122-8" tabindex="-1"></a>  (qsmk = highprice)</span></code></pre></div>
 <pre><code>(1,476 real changes made, 1,476 to missing)
 
 (1,476 real changes made)
@@ -674,27 +674,27 @@ Instrumental variables 2SLS regression            Number of obs   =      1,476
                                                   R-squared       =     0.0622
                                                   Root MSE        =     7.6848
 
--------------------------------------------------------------------------------
-      wt82_71 | Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]
---------------+----------------------------------------------------------------
-         qsmk |  -1.042295   29.86522    -0.03   0.972    -59.57705    57.49246
-          sex |  -1.644393   2.620115    -0.63   0.530    -6.779724    3.490938
-         race |  -.1832546   4.631443    -0.04   0.968    -9.260716    8.894207
-          age |    -.16364   .2395678    -0.68   0.495    -.6331844    .3059043
-smokeintens~y |   .0057669    .144911     0.04   0.968    -.2782534    .2897872
-     smokeyrs |   .0258357   .1607639     0.16   0.872    -.2892558    .3409271
-              |
-     exercise |
-           1  |   .4987479   2.162395     0.23   0.818    -3.739469    4.736964
-           2  |   .5818337   2.174255     0.27   0.789    -3.679628    4.843296
-              |
-       active |
-           1  |  -1.170145   .6049921    -1.93   0.053    -2.355908    .0156176
-           2  |  -.5122842   1.303121    -0.39   0.694    -3.066355    2.041787
-              |
-         wt71 |  -.0979493    .036123    -2.71   0.007     -.168749   -.0271496
-        _cons |   17.28033    2.32589     7.43   0.000     12.72167    21.83899
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+       wt82_71 | Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]
+---------------+----------------------------------------------------------------
+          qsmk |  -1.042295   29.86522    -0.03   0.972    -59.57705    57.49246
+           sex |  -1.644393   2.620115    -0.63   0.530    -6.779724    3.490938
+          race |  -.1832546   4.631443    -0.04   0.968    -9.260716    8.894207
+           age |    -.16364   .2395678    -0.68   0.495    -.6331844    .3059043
+smokeintensity |   .0057669    .144911     0.04   0.968    -.2782534    .2897872
+      smokeyrs |   .0258357   .1607639     0.16   0.872    -.2892558    .3409271
+               |
+      exercise |
+            1  |   .4987479   2.162395     0.23   0.818    -3.739469    4.736964
+            2  |   .5818337   2.174255     0.27   0.789    -3.679628    4.843296
+               |
+        active |
+            1  |  -1.170145   .6049921    -1.93   0.053    -2.355908    .0156176
+            2  |  -.5122842   1.303121    -0.39   0.694    -3.066355    2.041787
+               |
+          wt71 |  -.0979493    .036123    -2.71   0.007     -.168749   -.0271496
+         _cons |   17.28033    2.32589     7.43   0.000     12.72167    21.83899
+--------------------------------------------------------------------------------
 Instrumented: qsmk
  Instruments: sex race age smokeintensity smokeyrs 1.exercise 2.exercise
               1.active 2.active wt71 highprice</code></pre>

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>14. G-estimation of Structural Nested Models: Stata | Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
   <meta property="og:title" content="14. G-estimation of Structural Nested Models: Stata | Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2022-11-02" />
+<meta name="date" content="2023-02-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -304,7 +304,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="g-estimation-of-structural-nested-models-stata" class="section level1 unnumbered hasAnchor">
 <h1>14. G-estimation of Structural Nested Models: Stata<a href="g-estimation-of-structural-nested-models-stata.html#g-estimation-of-structural-nested-models-stata" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="g-estimation-of-structural-nested-models-stata.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Statamarkdown)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="g-estimation-of-structural-nested-models-stata.html#cb94-1" tabindex="-1"></a><span class="fu">library</span>(Statamarkdown)</span></code></pre></div>
 <pre><code>/***************************************************************
 Stata code for Causal Inference: What If by Miguel Hernan &amp; Jamie Robins
 Date: 10/10/2019
@@ -318,33 +318,33 @@ For errors contact: ejmurray@bu.edu
 <li>Data from NHEFS</li>
 <li>Section 14.4</li>
 </ul>
-<div class="sourceCode" id="cb96"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb96-1"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*For Stata 15 or later, first install the extremes function using this code:*/</span></span>
-<span id="cb96-2"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-2" aria-hidden="true" tabindex="-1"></a>* <span class="kw">ssc</span> install extremes </span>
-<span id="cb96-3"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb96-4"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-4" aria-hidden="true" tabindex="-1"></a>*Data preprocessing***</span>
-<span id="cb96-5"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb96-6"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-6" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs, <span class="kw">clear</span></span>
-<span id="cb96-7"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-7" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> <span class="kw">byte</span> cens = (wt82 == .)</span>
-<span id="cb96-8"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb96-9"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-9" aria-hidden="true" tabindex="-1"></a><span class="co">/*Ranking of extreme observations*/</span></span>
-<span id="cb96-10"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-10" aria-hidden="true" tabindex="-1"></a>extremes wt82_71 seqn</span>
-<span id="cb96-11"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb96-12"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-12" aria-hidden="true" tabindex="-1"></a><span class="co">/*Estimate unstabilized censoring weights for use in g-estimation models*/</span></span>
-<span id="cb96-13"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-13" aria-hidden="true" tabindex="-1"></a><span class="kw">glm</span> cens qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education <span class="co">///</span></span>
-<span id="cb96-14"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-14" aria-hidden="true" tabindex="-1"></a>  c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs <span class="co">///</span></span>
-<span id="cb96-15"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-15" aria-hidden="true" tabindex="-1"></a>  ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 <span class="co">///</span></span>
-<span id="cb96-16"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-16" aria-hidden="true" tabindex="-1"></a>  , <span class="kw">family</span>(binomial)</span>
-<span id="cb96-17"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-17" aria-hidden="true" tabindex="-1"></a><span class="kw">predict</span> pr_cens</span>
-<span id="cb96-18"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-18" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> w_cens = 1/(1-pr_cens)</span>
-<span id="cb96-19"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-19" aria-hidden="true" tabindex="-1"></a><span class="kw">replace</span> w_cens = . <span class="kw">if</span> cens == 1 </span>
-<span id="cb96-20"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-20" aria-hidden="true" tabindex="-1"></a><span class="co">/*observations with cens = 1 contribute to censoring models but not outcome model*/</span></span>
-<span id="cb96-21"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-21" aria-hidden="true" tabindex="-1"></a><span class="kw">summarize</span> w_cens</span>
-<span id="cb96-22"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb96-23"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-23" aria-hidden="true" tabindex="-1"></a><span class="co">/*Analyses restricted to N=1566*/</span></span>
-<span id="cb96-24"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-24" aria-hidden="true" tabindex="-1"></a><span class="kw">drop</span> <span class="kw">if</span> wt82 == .</span>
-<span id="cb96-25"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-25" aria-hidden="true" tabindex="-1"></a><span class="kw">summarize</span> wt82_71</span>
-<span id="cb96-26"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb96-27"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-27" aria-hidden="true" tabindex="-1"></a><span class="kw">save</span> ./<span class="kw">data</span>/nhefs-wcens, <span class="kw">replace</span></span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb96-1"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-1" tabindex="-1"></a><span class="co">/*For Stata 15 or later, first install the extremes function using this code:*/</span></span>
+<span id="cb96-2"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-2" tabindex="-1"></a>* <span class="kw">ssc</span> install extremes </span>
+<span id="cb96-3"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-3" tabindex="-1"></a></span>
+<span id="cb96-4"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-4" tabindex="-1"></a>*Data preprocessing***</span>
+<span id="cb96-5"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-5" tabindex="-1"></a></span>
+<span id="cb96-6"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-6" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs, <span class="kw">clear</span></span>
+<span id="cb96-7"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-7" tabindex="-1"></a><span class="kw">gen</span> <span class="kw">byte</span> cens = (wt82 == .)</span>
+<span id="cb96-8"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-8" tabindex="-1"></a></span>
+<span id="cb96-9"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-9" tabindex="-1"></a><span class="co">/*Ranking of extreme observations*/</span></span>
+<span id="cb96-10"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-10" tabindex="-1"></a>extremes wt82_71 seqn</span>
+<span id="cb96-11"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-11" tabindex="-1"></a></span>
+<span id="cb96-12"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-12" tabindex="-1"></a><span class="co">/*Estimate unstabilized censoring weights for use in g-estimation models*/</span></span>
+<span id="cb96-13"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-13" tabindex="-1"></a><span class="kw">glm</span> cens qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education <span class="co">///</span></span>
+<span id="cb96-14"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-14" tabindex="-1"></a>  c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs <span class="co">///</span></span>
+<span id="cb96-15"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-15" tabindex="-1"></a>  ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 <span class="co">///</span></span>
+<span id="cb96-16"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-16" tabindex="-1"></a>  , <span class="kw">family</span>(binomial)</span>
+<span id="cb96-17"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-17" tabindex="-1"></a><span class="kw">predict</span> pr_cens</span>
+<span id="cb96-18"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-18" tabindex="-1"></a><span class="kw">gen</span> w_cens = 1/(1-pr_cens)</span>
+<span id="cb96-19"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-19" tabindex="-1"></a><span class="kw">replace</span> w_cens = . <span class="kw">if</span> cens == 1 </span>
+<span id="cb96-20"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-20" tabindex="-1"></a><span class="co">/*observations with cens = 1 contribute to censoring models but not outcome model*/</span></span>
+<span id="cb96-21"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-21" tabindex="-1"></a><span class="kw">summarize</span> w_cens</span>
+<span id="cb96-22"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-22" tabindex="-1"></a></span>
+<span id="cb96-23"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-23" tabindex="-1"></a><span class="co">/*Analyses restricted to N=1566*/</span></span>
+<span id="cb96-24"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-24" tabindex="-1"></a><span class="kw">drop</span> <span class="kw">if</span> wt82 == .</span>
+<span id="cb96-25"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-25" tabindex="-1"></a><span class="kw">summarize</span> wt82_71</span>
+<span id="cb96-26"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-26" tabindex="-1"></a></span>
+<span id="cb96-27"><a href="g-estimation-of-structural-nested-models-stata.html#cb96-27" tabindex="-1"></a><span class="kw">save</span> ./<span class="kw">data</span>/nhefs-wcens, <span class="kw">replace</span></span></code></pre></div>
 <pre><code>  |  obs:        wt82_71    seqn |
   |------------------------------|
   | 1329.   -41.28046982   23321 |
@@ -381,49 +381,46 @@ Link function    : g(u) = ln(u/(1-u))             [Logit]
                                                   AIC             =   .3102271
 Log likelihood   = -232.6799949                   BIC             =  -11434.36
 
--------------------------------------------------------------------------------
-              |                 OIM
-         cens | Coefficient  std. err.      z    P&gt;|z|     [95% conf. interval]
---------------+----------------------------------------------------------------
-         qsmk |   .5168674   .2877162     1.80   0.072    -.0470459    1.080781
-          sex |   .0573131   .3302775     0.17   0.862     -.590019    .7046452
-         race |  -.0122715   .4524888    -0.03   0.978    -.8991332    .8745902
-          age |  -.2697293   .1174647    -2.30   0.022    -.4999558   -.0395027
-              |
-  c.age#c.age |   .0028837   .0011135     2.59   0.010     .0007012    .0050661
-              |
-    education |
-           1  |   .3823818   .5601808     0.68   0.495    -.7155523    1.480316
-           2  |  -.0584066   .5749586    -0.10   0.919    -1.185305    1.068491
-           3  |   .2176937   .5225008     0.42   0.677    -.8063891    1.241776
-           4  |   .5208288   .6678735     0.78   0.435    -.7881792    1.829837
-              |
-smokeintens~y |   .0157119   .0347319     0.45   0.651    -.0523614    .0837851
-              |
-           c. |
-smokeintens~y#|
-           c. |
-smokeintens~y |  -.0001133   .0006058    -0.19   0.852    -.0013007    .0010742
-              |
-     smokeyrs |   .0785973   .0749576     1.05   0.294     -.068317    .2255116
-              |
-   c.smokeyrs#|
-   c.smokeyrs |  -.0005569   .0010318    -0.54   0.589    -.0025791    .0014653
-              |
-     exercise |
-           0  |    .583989   .3723133     1.57   0.117    -.1457317     1.31371
-           1  |  -.3874824   .3439133    -1.13   0.260     -1.06154    .2865753
-              |
-       active |
-           0  |  -.7065829   .3964577    -1.78   0.075    -1.483626    .0704599
-           1  |  -.9540614   .3893181    -2.45   0.014    -1.717111   -.1910119
-              |
-         wt71 |  -.0878871   .0400115    -2.20   0.028    -.1663082   -.0094659
-              |
-c.wt71#c.wt71 |   .0006351   .0002257     2.81   0.005     .0001927    .0010775
-              |
-        _cons |   3.754678   2.651222     1.42   0.157    -1.441622    8.950978
--------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+                      |                 OIM
+                 cens | Coefficient  std. err.      z    P&gt;|z|     [95% conf. interval]
+----------------------+----------------------------------------------------------------
+                 qsmk |   .5168674   .2877162     1.80   0.072    -.0470459    1.080781
+                  sex |   .0573131   .3302775     0.17   0.862     -.590019    .7046452
+                 race |  -.0122715   .4524888    -0.03   0.978    -.8991332    .8745902
+                  age |  -.2697293   .1174647    -2.30   0.022    -.4999558   -.0395027
+                      |
+          c.age#c.age |   .0028837   .0011135     2.59   0.010     .0007012    .0050661
+                      |
+            education |
+                   1  |   .3823818   .5601808     0.68   0.495    -.7155523    1.480316
+                   2  |  -.0584066   .5749586    -0.10   0.919    -1.185305    1.068491
+                   3  |   .2176937   .5225008     0.42   0.677    -.8063891    1.241776
+                   4  |   .5208288   .6678735     0.78   0.435    -.7881792    1.829837
+                      |
+       smokeintensity |   .0157119   .0347319     0.45   0.651    -.0523614    .0837851
+                      |
+     c.smokeintensity#|
+     c.smokeintensity |  -.0001133   .0006058    -0.19   0.852    -.0013007    .0010742
+                      |
+             smokeyrs |   .0785973   .0749576     1.05   0.294     -.068317    .2255116
+                      |
+c.smokeyrs#c.smokeyrs |  -.0005569   .0010318    -0.54   0.589    -.0025791    .0014653
+                      |
+             exercise |
+                   0  |    .583989   .3723133     1.57   0.117    -.1457317     1.31371
+                   1  |  -.3874824   .3439133    -1.13   0.260     -1.06154    .2865753
+                      |
+               active |
+                   0  |  -.7065829   .3964577    -1.78   0.075    -1.483626    .0704599
+                   1  |  -.9540614   .3893181    -2.45   0.014    -1.717111   -.1910119
+                      |
+                 wt71 |  -.0878871   .0400115    -2.20   0.028    -.1663082   -.0094659
+                      |
+        c.wt71#c.wt71 |   .0006351   .0002257     2.81   0.005     .0001927    .0010775
+                      |
+                _cons |   3.754678   2.651222     1.42   0.157    -1.441622    8.950978
+---------------------------------------------------------------------------------------
 
 (option mu assumed; predicted mean cens)
 
@@ -450,68 +447,68 @@ file ./data/nhefs-wcens.dta saved</code></pre>
 <li>Data from NHEFS</li>
 <li>Section 14.5</li>
 </ul>
-<div class="sourceCode" id="cb98"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb98-1"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-wcens, <span class="kw">clear</span></span>
-<span id="cb98-2"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb98-3"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-3" aria-hidden="true" tabindex="-1"></a><span class="co">/*Generate test value of Psi = 3.446*/</span></span>
-<span id="cb98-4"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-4" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> psi = 3.446</span>
-<span id="cb98-5"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb98-6"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-6" aria-hidden="true" tabindex="-1"></a><span class="co">/*Generate H(Psi) for each individual using test value of Psi and</span></span>
-<span id="cb98-7"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-7" aria-hidden="true" tabindex="-1"></a><span class="co">their own values of weight change and smoking status*/</span></span>
-<span id="cb98-8"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-8" aria-hidden="true" tabindex="-1"></a><span class="kw">gen</span> Hpsi = wt82_71 - psi * qsmk </span>
-<span id="cb98-9"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb98-10"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-10" aria-hidden="true" tabindex="-1"></a><span class="co">/*Fit a model for smoking status, given confounders and H(Psi) value, </span></span>
-<span id="cb98-11"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-11" aria-hidden="true" tabindex="-1"></a><span class="co">with censoring weights and display H(Psi) coefficient*/</span></span>
-<span id="cb98-12"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-12" aria-hidden="true" tabindex="-1"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education <span class="co">///</span></span>
-<span id="cb98-13"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-13" aria-hidden="true" tabindex="-1"></a>  c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs <span class="co">///</span></span>
-<span id="cb98-14"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-14" aria-hidden="true" tabindex="-1"></a>  ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 Hpsi <span class="co">///</span></span>
-<span id="cb98-15"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-15" aria-hidden="true" tabindex="-1"></a>  [pw = w_cens], <span class="kw">cluster</span>(seqn)</span>
-<span id="cb98-16"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-16" aria-hidden="true" tabindex="-1"></a><span class="kw">di</span> _b[Hpsi]</span>
-<span id="cb98-17"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb98-18"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-18" aria-hidden="true" tabindex="-1"></a><span class="co">/*G-estimation*/</span></span>
-<span id="cb98-19"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-19" aria-hidden="true" tabindex="-1"></a><span class="co">/*Checking multiple possible values of psi*/</span></span>
-<span id="cb98-20"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-20" aria-hidden="true" tabindex="-1"></a>cap <span class="kw">noi</span> <span class="kw">drop</span> psi Hpsi</span>
-<span id="cb98-21"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb98-22"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-22" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> seq_start = 2</span>
-<span id="cb98-23"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-23" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> seq_end = 5</span>
-<span id="cb98-24"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-24" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> seq_by = 0.1 <span class="co">// Setting seq_by = 0.01 will yield the result 3.46</span></span>
-<span id="cb98-25"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-25" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> seq_len = (<span class="ot">`seq_end&#39;</span>-<span class="ot">`seq_start&#39;</span>)/<span class="ot">`seq_by&#39;</span> + 1</span>
-<span id="cb98-26"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-26" aria-hidden="true" tabindex="-1"></a>                 </span>
-<span id="cb98-27"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-27" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> results = <span class="fu">J</span>(<span class="ot">`seq_len&#39;</span>, 4, 0)</span>
-<span id="cb98-28"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb98-29"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-29" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">gen</span> psi = .</span>
-<span id="cb98-30"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-30" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">gen</span> Hpsi = .</span>
-<span id="cb98-31"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb98-32"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-32" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> j = 0</span>
-<span id="cb98-33"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb98-34"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-34" aria-hidden="true" tabindex="-1"></a><span class="kw">forvalues</span> i =  <span class="ot">`seq_start&#39;</span>(<span class="ot">`seq_by&#39;</span>)<span class="ot">`seq_end&#39;</span> {</span>
-<span id="cb98-35"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> j = <span class="ot">`j&#39;</span> + 1</span>
-<span id="cb98-36"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">qui</span> <span class="kw">replace</span> psi = <span class="ot">`i&#39;</span></span>
-<span id="cb98-37"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-37" aria-hidden="true" tabindex="-1"></a>    <span class="kw">qui</span> <span class="kw">replace</span> Hpsi = wt82_71 - psi * qsmk </span>
-<span id="cb98-38"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">quietly</span> <span class="kw">logit</span> qsmk sex race c.age##c.age <span class="co">///</span></span>
-<span id="cb98-39"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-39" aria-hidden="true" tabindex="-1"></a>      ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
-<span id="cb98-40"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-40" aria-hidden="true" tabindex="-1"></a>      c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active <span class="co">///</span></span>
-<span id="cb98-41"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-41" aria-hidden="true" tabindex="-1"></a>      c.wt71##c.wt71 Hpsi <span class="co">///</span></span>
-<span id="cb98-42"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-42" aria-hidden="true" tabindex="-1"></a>      [pw = w_cens], <span class="kw">cluster</span>(seqn)</span>
-<span id="cb98-43"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">matrix</span> p_mat = <span class="fu">r</span>(<span class="kw">table</span>)</span>
-<span id="cb98-44"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">matrix</span> p_mat = p_mat[<span class="st">&quot;pvalue&quot;</span>,<span class="st">&quot;qsmk:Hpsi&quot;</span>]</span>
-<span id="cb98-45"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-45" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> <span class="kw">p</span> = p_mat[1,1]</span>
-<span id="cb98-46"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">local</span> b = _b[Hpsi]</span>
-<span id="cb98-47"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-47" aria-hidden="true" tabindex="-1"></a>    <span class="kw">di</span> <span class="st">&quot;coeff&quot;</span>, %6.3f <span class="ot">`b&#39;</span>, <span class="st">&quot;is generated from psi&quot;</span>, %4.1f <span class="ot">`i&#39;</span></span>
-<span id="cb98-48"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">matrix</span> results[<span class="ot">`j&#39;</span>,1]= <span class="ot">`i&#39;</span></span>
-<span id="cb98-49"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">matrix</span> results[<span class="ot">`j&#39;</span>,2]= <span class="ot">`b&#39;</span></span>
-<span id="cb98-50"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">matrix</span> results[<span class="ot">`j&#39;</span>,3]= <span class="fu">abs</span>(<span class="ot">`b&#39;</span>)</span>
-<span id="cb98-51"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">matrix</span> results[<span class="ot">`j&#39;</span>,4]= <span class="ot">`p&#39;</span></span>
-<span id="cb98-52"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-52" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb98-53"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-53" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span> <span class="ot">colnames</span> results = <span class="st">&quot;psi&quot;</span> <span class="st">&quot;B(Hpsi)&quot;</span> <span class="st">&quot;AbsB(Hpsi)&quot;</span> <span class="st">&quot;pvalue&quot;</span></span>
-<span id="cb98-54"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-54" aria-hidden="true" tabindex="-1"></a>mat li results </span>
-<span id="cb98-55"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb98-56"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-56" aria-hidden="true" tabindex="-1"></a><span class="kw">mata</span></span>
-<span id="cb98-57"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-57" aria-hidden="true" tabindex="-1"></a>res = st_matrix(<span class="st">&quot;results&quot;</span>)</span>
-<span id="cb98-58"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-58" aria-hidden="true" tabindex="-1"></a><span class="kw">for</span>(i=1; i&lt;= <span class="bn">rows</span>(res); i++) { </span>
-<span id="cb98-59"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-59" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if</span> (res[i,3] == <span class="kw">colmin</span>(res[,3])) res[i,1]</span>
-<span id="cb98-60"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-60" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb98-61"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-61" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb98-62"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-62" aria-hidden="true" tabindex="-1"></a>* Setting seq_by = 0.01 will yield the result 3.46</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb98-1"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-1" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-wcens, <span class="kw">clear</span></span>
+<span id="cb98-2"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-2" tabindex="-1"></a></span>
+<span id="cb98-3"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-3" tabindex="-1"></a><span class="co">/*Generate test value of Psi = 3.446*/</span></span>
+<span id="cb98-4"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-4" tabindex="-1"></a><span class="kw">gen</span> psi = 3.446</span>
+<span id="cb98-5"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-5" tabindex="-1"></a></span>
+<span id="cb98-6"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-6" tabindex="-1"></a><span class="co">/*Generate H(Psi) for each individual using test value of Psi and</span></span>
+<span id="cb98-7"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-7" tabindex="-1"></a><span class="co">their own values of weight change and smoking status*/</span></span>
+<span id="cb98-8"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-8" tabindex="-1"></a><span class="kw">gen</span> Hpsi = wt82_71 - psi * qsmk </span>
+<span id="cb98-9"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-9" tabindex="-1"></a></span>
+<span id="cb98-10"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-10" tabindex="-1"></a><span class="co">/*Fit a model for smoking status, given confounders and H(Psi) value, </span></span>
+<span id="cb98-11"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-11" tabindex="-1"></a><span class="co">with censoring weights and display H(Psi) coefficient*/</span></span>
+<span id="cb98-12"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-12" tabindex="-1"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education <span class="co">///</span></span>
+<span id="cb98-13"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-13" tabindex="-1"></a>  c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs <span class="co">///</span></span>
+<span id="cb98-14"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-14" tabindex="-1"></a>  ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 Hpsi <span class="co">///</span></span>
+<span id="cb98-15"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-15" tabindex="-1"></a>  [pw = w_cens], <span class="kw">cluster</span>(seqn)</span>
+<span id="cb98-16"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-16" tabindex="-1"></a><span class="kw">di</span> _b[Hpsi]</span>
+<span id="cb98-17"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-17" tabindex="-1"></a></span>
+<span id="cb98-18"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-18" tabindex="-1"></a><span class="co">/*G-estimation*/</span></span>
+<span id="cb98-19"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-19" tabindex="-1"></a><span class="co">/*Checking multiple possible values of psi*/</span></span>
+<span id="cb98-20"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-20" tabindex="-1"></a>cap <span class="kw">noi</span> <span class="kw">drop</span> psi Hpsi</span>
+<span id="cb98-21"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-21" tabindex="-1"></a></span>
+<span id="cb98-22"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-22" tabindex="-1"></a><span class="kw">local</span> seq_start = 2</span>
+<span id="cb98-23"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-23" tabindex="-1"></a><span class="kw">local</span> seq_end = 5</span>
+<span id="cb98-24"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-24" tabindex="-1"></a><span class="kw">local</span> seq_by = 0.1 <span class="co">// Setting seq_by = 0.01 will yield the result 3.46</span></span>
+<span id="cb98-25"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-25" tabindex="-1"></a><span class="kw">local</span> seq_len = (<span class="ot">`seq_end&#39;</span>-<span class="ot">`seq_start&#39;</span>)/<span class="ot">`seq_by&#39;</span> + 1</span>
+<span id="cb98-26"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-26" tabindex="-1"></a>                 </span>
+<span id="cb98-27"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-27" tabindex="-1"></a><span class="fu">matrix</span> results = <span class="fu">J</span>(<span class="ot">`seq_len&#39;</span>, 4, 0)</span>
+<span id="cb98-28"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-28" tabindex="-1"></a></span>
+<span id="cb98-29"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-29" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">gen</span> psi = .</span>
+<span id="cb98-30"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-30" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">gen</span> Hpsi = .</span>
+<span id="cb98-31"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-31" tabindex="-1"></a></span>
+<span id="cb98-32"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-32" tabindex="-1"></a><span class="kw">local</span> j = 0</span>
+<span id="cb98-33"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-33" tabindex="-1"></a></span>
+<span id="cb98-34"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-34" tabindex="-1"></a><span class="kw">forvalues</span> i =  <span class="ot">`seq_start&#39;</span>(<span class="ot">`seq_by&#39;</span>)<span class="ot">`seq_end&#39;</span> {</span>
+<span id="cb98-35"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-35" tabindex="-1"></a>    <span class="kw">local</span> j = <span class="ot">`j&#39;</span> + 1</span>
+<span id="cb98-36"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-36" tabindex="-1"></a>    <span class="kw">qui</span> <span class="kw">replace</span> psi = <span class="ot">`i&#39;</span></span>
+<span id="cb98-37"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-37" tabindex="-1"></a>    <span class="kw">qui</span> <span class="kw">replace</span> Hpsi = wt82_71 - psi * qsmk </span>
+<span id="cb98-38"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-38" tabindex="-1"></a>    <span class="kw">quietly</span> <span class="kw">logit</span> qsmk sex race c.age##c.age <span class="co">///</span></span>
+<span id="cb98-39"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-39" tabindex="-1"></a>      ib(<span class="fu">last</span>).education c.smokeintensity##c.smokeintensity <span class="co">///</span></span>
+<span id="cb98-40"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-40" tabindex="-1"></a>      c.smokeyrs##c.smokeyrs ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active <span class="co">///</span></span>
+<span id="cb98-41"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-41" tabindex="-1"></a>      c.wt71##c.wt71 Hpsi <span class="co">///</span></span>
+<span id="cb98-42"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-42" tabindex="-1"></a>      [pw = w_cens], <span class="kw">cluster</span>(seqn)</span>
+<span id="cb98-43"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-43" tabindex="-1"></a>    <span class="fu">matrix</span> p_mat = <span class="fu">r</span>(<span class="kw">table</span>)</span>
+<span id="cb98-44"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-44" tabindex="-1"></a>    <span class="fu">matrix</span> p_mat = p_mat[<span class="st">&quot;pvalue&quot;</span>,<span class="st">&quot;qsmk:Hpsi&quot;</span>]</span>
+<span id="cb98-45"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-45" tabindex="-1"></a>    <span class="kw">local</span> <span class="kw">p</span> = p_mat[1,1]</span>
+<span id="cb98-46"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-46" tabindex="-1"></a>    <span class="kw">local</span> b = _b[Hpsi]</span>
+<span id="cb98-47"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-47" tabindex="-1"></a>    <span class="kw">di</span> <span class="st">&quot;coeff&quot;</span>, %6.3f <span class="ot">`b&#39;</span>, <span class="st">&quot;is generated from psi&quot;</span>, %4.1f <span class="ot">`i&#39;</span></span>
+<span id="cb98-48"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-48" tabindex="-1"></a>    <span class="fu">matrix</span> results[<span class="ot">`j&#39;</span>,1]= <span class="ot">`i&#39;</span></span>
+<span id="cb98-49"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-49" tabindex="-1"></a>    <span class="fu">matrix</span> results[<span class="ot">`j&#39;</span>,2]= <span class="ot">`b&#39;</span></span>
+<span id="cb98-50"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-50" tabindex="-1"></a>    <span class="fu">matrix</span> results[<span class="ot">`j&#39;</span>,3]= <span class="fu">abs</span>(<span class="ot">`b&#39;</span>)</span>
+<span id="cb98-51"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-51" tabindex="-1"></a>    <span class="fu">matrix</span> results[<span class="ot">`j&#39;</span>,4]= <span class="ot">`p&#39;</span></span>
+<span id="cb98-52"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-52" tabindex="-1"></a>}</span>
+<span id="cb98-53"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-53" tabindex="-1"></a><span class="fu">matrix</span> <span class="ot">colnames</span> results = <span class="st">&quot;psi&quot;</span> <span class="st">&quot;B(Hpsi)&quot;</span> <span class="st">&quot;AbsB(Hpsi)&quot;</span> <span class="st">&quot;pvalue&quot;</span></span>
+<span id="cb98-54"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-54" tabindex="-1"></a>mat li results </span>
+<span id="cb98-55"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-55" tabindex="-1"></a></span>
+<span id="cb98-56"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-56" tabindex="-1"></a><span class="kw">mata</span></span>
+<span id="cb98-57"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-57" tabindex="-1"></a>res = st_matrix(<span class="st">&quot;results&quot;</span>)</span>
+<span id="cb98-58"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-58" tabindex="-1"></a><span class="kw">for</span>(i=1; i&lt;= <span class="bn">rows</span>(res); i++) { </span>
+<span id="cb98-59"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-59" tabindex="-1"></a>  <span class="kw">if</span> (res[i,3] == <span class="kw">colmin</span>(res[,3])) res[i,1]</span>
+<span id="cb98-60"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-60" tabindex="-1"></a>}</span>
+<span id="cb98-61"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-61" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb98-62"><a href="g-estimation-of-structural-nested-models-stata.html#cb98-62" tabindex="-1"></a>* Setting seq_by = 0.01 will yield the result 3.46</span></code></pre></div>
 <pre><code>Iteration 0:   log pseudolikelihood = -936.10067  
 Iteration 1:   log pseudolikelihood = -879.13942  
 Iteration 2:   log pseudolikelihood = -877.82647  
@@ -523,50 +520,47 @@ Logistic regression                                     Number of obs =  1,566
                                                         Prob &gt; chi2   = 0.0000
 Log pseudolikelihood = -877.82423                       Pseudo R2     = 0.0623
 
-                                (Std. err. adjusted for 1,566 clusters in seqn)
--------------------------------------------------------------------------------
-              |               Robust
-         qsmk | Coefficient  std. err.      z    P&gt;|z|     [95% conf. interval]
---------------+----------------------------------------------------------------
-          sex |  -.5137324   .1536024    -3.34   0.001    -.8147876   -.2126772
-         race |  -.8608912   .2099415    -4.10   0.000    -1.272369   -.4494133
-          age |   .1151589   .0502116     2.29   0.022      .016746    .2135718
-              |
-  c.age#c.age |  -.0007593   .0005297    -1.43   0.152    -.0017976     .000279
-              |
-    education |
-           1  |  -.4710855   .2247701    -2.10   0.036    -.9116268   -.0305441
-           2  |  -.5000231   .2208583    -2.26   0.024    -.9328974   -.0671487
-           3  |  -.3833788    .195914    -1.96   0.050    -.7673632    .0006056
-           4  |  -.4047116   .2836068    -1.43   0.154    -.9605707    .1511476
-              |
-smokeintens~y |  -.0783425    .014645    -5.35   0.000    -.1070461   -.0496389
-              |
-           c. |
-smokeintens~y#|
-           c. |
-smokeintens~y |   .0010722   .0002651     4.04   0.000     .0005526    .0015917
-              |
-     smokeyrs |  -.0711097    .026398    -2.69   0.007    -.1228488   -.0193705
-              |
-   c.smokeyrs#|
-   c.smokeyrs |   .0008153   .0004491     1.82   0.069     -.000065    .0016955
-              |
-     exercise |
-           0  |  -.3800465   .1889205    -2.01   0.044    -.7503238   -.0097692
-           1  |  -.0437043   .1372725    -0.32   0.750    -.3127534    .2253447
-              |
-       active |
-           0  |  -.2134552   .2122025    -1.01   0.314    -.6293645    .2024541
-           1  |  -.1793327    .207151    -0.87   0.387    -.5853412    .2266758
-              |
-         wt71 |  -.0076607   .0256319    -0.30   0.765    -.0578983    .0425769
-              |
-c.wt71#c.wt71 |   .0000866   .0001582     0.55   0.584    -.0002236    .0003967
-              |
-         Hpsi |  -1.90e-06   .0088414    -0.00   1.000    -.0173307    .0173269
-        _cons |  -1.338367   1.359613    -0.98   0.325     -4.00316    1.326426
--------------------------------------------------------------------------------
+                                        (Std. err. adjusted for 1,566 clusters in seqn)
+---------------------------------------------------------------------------------------
+                      |               Robust
+                 qsmk | Coefficient  std. err.      z    P&gt;|z|     [95% conf. interval]
+----------------------+----------------------------------------------------------------
+                  sex |  -.5137324   .1536024    -3.34   0.001    -.8147876   -.2126772
+                 race |  -.8608912   .2099415    -4.10   0.000    -1.272369   -.4494133
+                  age |   .1151589   .0502116     2.29   0.022      .016746    .2135718
+                      |
+          c.age#c.age |  -.0007593   .0005297    -1.43   0.152    -.0017976     .000279
+                      |
+            education |
+                   1  |  -.4710855   .2247701    -2.10   0.036    -.9116268   -.0305441
+                   2  |  -.5000231   .2208583    -2.26   0.024    -.9328974   -.0671487
+                   3  |  -.3833788    .195914    -1.96   0.050    -.7673632    .0006056
+                   4  |  -.4047116   .2836068    -1.43   0.154    -.9605707    .1511476
+                      |
+       smokeintensity |  -.0783425    .014645    -5.35   0.000    -.1070461   -.0496389
+                      |
+     c.smokeintensity#|
+     c.smokeintensity |   .0010722   .0002651     4.04   0.000     .0005526    .0015917
+                      |
+             smokeyrs |  -.0711097    .026398    -2.69   0.007    -.1228488   -.0193705
+                      |
+c.smokeyrs#c.smokeyrs |   .0008153   .0004491     1.82   0.069     -.000065    .0016955
+                      |
+             exercise |
+                   0  |  -.3800465   .1889205    -2.01   0.044    -.7503238   -.0097692
+                   1  |  -.0437043   .1372725    -0.32   0.750    -.3127534    .2253447
+                      |
+               active |
+                   0  |  -.2134552   .2122025    -1.01   0.314    -.6293645    .2024541
+                   1  |  -.1793327    .207151    -0.87   0.387    -.5853412    .2266758
+                      |
+                 wt71 |  -.0076607   .0256319    -0.30   0.765    -.0578983    .0425769
+                      |
+        c.wt71#c.wt71 |   .0000866   .0001582     0.55   0.584    -.0002236    .0003967
+                      |
+                 Hpsi |  -1.90e-06   .0088414    -0.00   1.000    -.0173307    .0173269
+                _cons |  -1.338367   1.359613    -0.98   0.325     -4.00316    1.326426
+---------------------------------------------------------------------------------------
 
 -1.905e-06
 
@@ -657,7 +651,7 @@ r29         4.8  -.02603888   .02603888   .00680955
 r30         4.9  -.02801063   .02801063   .00385828
 r31           5  -.02998926   .02998926   .00213639
 
-------------------------------------------------- mata (type end to exit) ------
+------------------------------------------------- mata (type end to exit) -------------------
 : res = st_matrix(&quot;results&quot;)
 
 : for(i=1; i&lt;= rows(res); i++) { 
@@ -666,7 +660,7 @@ r31           5  -.02998926   .02998926   .00213639
   3.4
 
 : end
---------------------------------------------------------------------------------</code></pre>
+---------------------------------------------------------------------------------------------</code></pre>
 </div>
 <div id="program-14.3-1" class="section level2 hasAnchor">
 <h2>Program 14.3<a href="g-estimation-of-structural-nested-models-stata.html#program-14.3-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -676,44 +670,44 @@ r31           5  -.02998926   .02998926   .00213639
 <li>Data from NHEFS</li>
 <li>Section 14.6</li>
 </ul>
-<div class="sourceCode" id="cb100"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb100-1"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-wcens, <span class="kw">clear</span></span>
-<span id="cb100-2"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-3"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-3" aria-hidden="true" tabindex="-1"></a><span class="co">/*create weights*/</span></span>
-<span id="cb100-4"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-4" aria-hidden="true" tabindex="-1"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education <span class="co">///</span></span>
-<span id="cb100-5"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-5" aria-hidden="true" tabindex="-1"></a>  c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs <span class="co">///</span></span>
-<span id="cb100-6"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-6" aria-hidden="true" tabindex="-1"></a>  ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 <span class="co">///</span></span>
-<span id="cb100-7"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-7" aria-hidden="true" tabindex="-1"></a>  [pw = w_cens], <span class="kw">cluster</span>(seqn)</span>
-<span id="cb100-8"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-8" aria-hidden="true" tabindex="-1"></a><span class="kw">predict</span> pr_qsmk</span>
-<span id="cb100-9"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-9" aria-hidden="true" tabindex="-1"></a><span class="kw">summarize</span> pr_qsmk</span>
-<span id="cb100-10"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-11"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-11" aria-hidden="true" tabindex="-1"></a><span class="co">/* Closed form estimator linear mean models  **/</span></span>
-<span id="cb100-12"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-12" aria-hidden="true" tabindex="-1"></a>* <span class="kw">ssc</span> install tomata</span>
-<span id="cb100-13"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-13" aria-hidden="true" tabindex="-1"></a>putmata *, <span class="kw">replace</span></span>
-<span id="cb100-14"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-14" aria-hidden="true" tabindex="-1"></a><span class="kw">mata</span>: <span class="fu">diff</span> = qsmk - pr_qsmk</span>
-<span id="cb100-15"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-15" aria-hidden="true" tabindex="-1"></a><span class="kw">mata</span>: part1 = w_cens :* wt82_71 :* <span class="fu">diff</span></span>
-<span id="cb100-16"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-16" aria-hidden="true" tabindex="-1"></a><span class="kw">mata</span>: part2 = w_cens :* qsmk :* <span class="fu">diff</span></span>
-<span id="cb100-17"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-17" aria-hidden="true" tabindex="-1"></a><span class="kw">mata</span>: psi = <span class="kw">sum</span>(part1)/<span class="kw">sum</span>(part2)</span>
-<span id="cb100-18"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-19"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-19" aria-hidden="true" tabindex="-1"></a><span class="co">/*** Closed form estimator for 2-parameter model **/</span></span>
-<span id="cb100-20"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-20" aria-hidden="true" tabindex="-1"></a><span class="kw">mata</span></span>
-<span id="cb100-21"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-21" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span> = qsmk - pr_qsmk</span>
-<span id="cb100-22"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-22" aria-hidden="true" tabindex="-1"></a>diff2 = w_cens :* <span class="fu">diff</span></span>
-<span id="cb100-23"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-24"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-24" aria-hidden="true" tabindex="-1"></a>lhs = <span class="fu">J</span>(2,2, 0)</span>
-<span id="cb100-25"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-25" aria-hidden="true" tabindex="-1"></a>lhs[1,1] = <span class="kw">sum</span>( qsmk :* diff2)</span>
-<span id="cb100-26"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-26" aria-hidden="true" tabindex="-1"></a>lhs[1,2] = <span class="kw">sum</span>( qsmk :* smokeintensity :* diff2 )</span>
-<span id="cb100-27"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-27" aria-hidden="true" tabindex="-1"></a>lhs[2,1] = <span class="kw">sum</span>( qsmk :* smokeintensity :* diff2)</span>
-<span id="cb100-28"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-28" aria-hidden="true" tabindex="-1"></a>lhs[2,2] = <span class="kw">sum</span>( qsmk :* smokeintensity :* smokeintensity :* diff2 )</span>
-<span id="cb100-29"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-29" aria-hidden="true" tabindex="-1"></a>                                                                </span>
-<span id="cb100-30"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-30" aria-hidden="true" tabindex="-1"></a>rhs = <span class="fu">J</span>(2,1,0)</span>
-<span id="cb100-31"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-31" aria-hidden="true" tabindex="-1"></a>rhs[1] = <span class="kw">sum</span>(wt82_71 :* diff2 )</span>
-<span id="cb100-32"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-32" aria-hidden="true" tabindex="-1"></a>rhs[2] = <span class="kw">sum</span>(wt82_71 :* smokeintensity :* diff2 )</span>
-<span id="cb100-33"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-34"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-34" aria-hidden="true" tabindex="-1"></a>psi = (<span class="kw">lusolve</span>(lhs, rhs))&#39;</span>
-<span id="cb100-35"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-35" aria-hidden="true" tabindex="-1"></a>psi</span>
-<span id="cb100-36"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-36" aria-hidden="true" tabindex="-1"></a>psi = (<span class="fu">invsym</span>(lhs&#39;lhs)*lhs&#39;rhs)&#39;</span>
-<span id="cb100-37"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-37" aria-hidden="true" tabindex="-1"></a>psi</span>
-<span id="cb100-38"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-38" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb100-1"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-1" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/nhefs-wcens, <span class="kw">clear</span></span>
+<span id="cb100-2"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-2" tabindex="-1"></a></span>
+<span id="cb100-3"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-3" tabindex="-1"></a><span class="co">/*create weights*/</span></span>
+<span id="cb100-4"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-4" tabindex="-1"></a><span class="kw">logit</span> qsmk sex race c.age##c.age ib(<span class="fu">last</span>).education <span class="co">///</span></span>
+<span id="cb100-5"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-5" tabindex="-1"></a>  c.smokeintensity##c.smokeintensity c.smokeyrs##c.smokeyrs <span class="co">///</span></span>
+<span id="cb100-6"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-6" tabindex="-1"></a>  ib(<span class="fu">last</span>).exercise ib(<span class="fu">last</span>).active c.wt71##c.wt71 <span class="co">///</span></span>
+<span id="cb100-7"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-7" tabindex="-1"></a>  [pw = w_cens], <span class="kw">cluster</span>(seqn)</span>
+<span id="cb100-8"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-8" tabindex="-1"></a><span class="kw">predict</span> pr_qsmk</span>
+<span id="cb100-9"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-9" tabindex="-1"></a><span class="kw">summarize</span> pr_qsmk</span>
+<span id="cb100-10"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-10" tabindex="-1"></a></span>
+<span id="cb100-11"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-11" tabindex="-1"></a><span class="co">/* Closed form estimator linear mean models  **/</span></span>
+<span id="cb100-12"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-12" tabindex="-1"></a>* <span class="kw">ssc</span> install tomata</span>
+<span id="cb100-13"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-13" tabindex="-1"></a>putmata *, <span class="kw">replace</span></span>
+<span id="cb100-14"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-14" tabindex="-1"></a><span class="kw">mata</span>: <span class="fu">diff</span> = qsmk - pr_qsmk</span>
+<span id="cb100-15"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-15" tabindex="-1"></a><span class="kw">mata</span>: part1 = w_cens :* wt82_71 :* <span class="fu">diff</span></span>
+<span id="cb100-16"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-16" tabindex="-1"></a><span class="kw">mata</span>: part2 = w_cens :* qsmk :* <span class="fu">diff</span></span>
+<span id="cb100-17"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-17" tabindex="-1"></a><span class="kw">mata</span>: psi = <span class="kw">sum</span>(part1)/<span class="kw">sum</span>(part2)</span>
+<span id="cb100-18"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-18" tabindex="-1"></a></span>
+<span id="cb100-19"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-19" tabindex="-1"></a><span class="co">/*** Closed form estimator for 2-parameter model **/</span></span>
+<span id="cb100-20"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-20" tabindex="-1"></a><span class="kw">mata</span></span>
+<span id="cb100-21"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-21" tabindex="-1"></a><span class="fu">diff</span> = qsmk - pr_qsmk</span>
+<span id="cb100-22"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-22" tabindex="-1"></a>diff2 = w_cens :* <span class="fu">diff</span></span>
+<span id="cb100-23"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-23" tabindex="-1"></a></span>
+<span id="cb100-24"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-24" tabindex="-1"></a>lhs = <span class="fu">J</span>(2,2, 0)</span>
+<span id="cb100-25"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-25" tabindex="-1"></a>lhs[1,1] = <span class="kw">sum</span>( qsmk :* diff2)</span>
+<span id="cb100-26"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-26" tabindex="-1"></a>lhs[1,2] = <span class="kw">sum</span>( qsmk :* smokeintensity :* diff2 )</span>
+<span id="cb100-27"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-27" tabindex="-1"></a>lhs[2,1] = <span class="kw">sum</span>( qsmk :* smokeintensity :* diff2)</span>
+<span id="cb100-28"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-28" tabindex="-1"></a>lhs[2,2] = <span class="kw">sum</span>( qsmk :* smokeintensity :* smokeintensity :* diff2 )</span>
+<span id="cb100-29"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-29" tabindex="-1"></a>                                                                </span>
+<span id="cb100-30"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-30" tabindex="-1"></a>rhs = <span class="fu">J</span>(2,1,0)</span>
+<span id="cb100-31"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-31" tabindex="-1"></a>rhs[1] = <span class="kw">sum</span>(wt82_71 :* diff2 )</span>
+<span id="cb100-32"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-32" tabindex="-1"></a>rhs[2] = <span class="kw">sum</span>(wt82_71 :* smokeintensity :* diff2 )</span>
+<span id="cb100-33"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-33" tabindex="-1"></a></span>
+<span id="cb100-34"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-34" tabindex="-1"></a>psi = (<span class="kw">lusolve</span>(lhs, rhs))&#39;</span>
+<span id="cb100-35"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-35" tabindex="-1"></a>psi</span>
+<span id="cb100-36"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-36" tabindex="-1"></a>psi = (<span class="fu">invsym</span>(lhs&#39;lhs)*lhs&#39;rhs)&#39;</span>
+<span id="cb100-37"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-37" tabindex="-1"></a>psi</span>
+<span id="cb100-38"><a href="g-estimation-of-structural-nested-models-stata.html#cb100-38" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
 <pre><code>Iteration 0:   log pseudolikelihood = -936.10067  
 Iteration 1:   log pseudolikelihood = -879.13943  
 Iteration 2:   log pseudolikelihood = -877.82647  
@@ -725,49 +719,46 @@ Logistic regression                                     Number of obs =  1,566
                                                         Prob &gt; chi2   = 0.0000
 Log pseudolikelihood = -877.82423                       Pseudo R2     = 0.0623
 
-                                (Std. err. adjusted for 1,566 clusters in seqn)
--------------------------------------------------------------------------------
-              |               Robust
-         qsmk | Coefficient  std. err.      z    P&gt;|z|     [95% conf. interval]
---------------+----------------------------------------------------------------
-          sex |  -.5137295   .1533507    -3.35   0.001    -.8142913   -.2131677
-         race |  -.8608919   .2099555    -4.10   0.000    -1.272397   -.4493867
-          age |   .1151581   .0503079     2.29   0.022     .0165564    .2137598
-              |
-  c.age#c.age |  -.0007593     .00053    -1.43   0.152    -.0017981    .0002795
-              |
-    education |
-           1  |  -.4710854   .2247796    -2.10   0.036    -.9116454   -.0305255
-           2  |  -.5000247    .220776    -2.26   0.024    -.9327378   -.0673116
-           3  |  -.3833802   .1954991    -1.96   0.050    -.7665515   -.0002089
-           4  |  -.4047148   .2833093    -1.43   0.153    -.9599908    .1505613
-              |
-smokeintens~y |  -.0783426   .0146634    -5.34   0.000    -.1070824   -.0496029
-              |
-           c. |
-smokeintens~y#|
-           c. |
-smokeintens~y |   .0010722   .0002655     4.04   0.000     .0005518    .0015925
-              |
-     smokeyrs |  -.0711099   .0263523    -2.70   0.007    -.1227596   -.0194602
-              |
-   c.smokeyrs#|
-   c.smokeyrs |   .0008153   .0004486     1.82   0.069    -.0000639    .0016945
-              |
-     exercise |
-           0  |  -.3800461   .1890123    -2.01   0.044    -.7505034   -.0095887
-           1  |  -.0437044    .137269    -0.32   0.750    -.3127467     .225338
-              |
-       active |
-           0  |  -.2134564   .2121759    -1.01   0.314    -.6293135    .2024007
-           1  |  -.1793322   .2070848    -0.87   0.386    -.5852109    .2265466
-              |
-         wt71 |  -.0076609   .0255841    -0.30   0.765    -.0578048     .042483
-              |
-c.wt71#c.wt71 |   .0000866   .0001572     0.55   0.582    -.0002216    .0003947
-              |
-        _cons |  -1.338358   1.359289    -0.98   0.325    -4.002516      1.3258
--------------------------------------------------------------------------------
+                                        (Std. err. adjusted for 1,566 clusters in seqn)
+---------------------------------------------------------------------------------------
+                      |               Robust
+                 qsmk | Coefficient  std. err.      z    P&gt;|z|     [95% conf. interval]
+----------------------+----------------------------------------------------------------
+                  sex |  -.5137295   .1533507    -3.35   0.001    -.8142913   -.2131677
+                 race |  -.8608919   .2099555    -4.10   0.000    -1.272397   -.4493867
+                  age |   .1151581   .0503079     2.29   0.022     .0165564    .2137598
+                      |
+          c.age#c.age |  -.0007593     .00053    -1.43   0.152    -.0017981    .0002795
+                      |
+            education |
+                   1  |  -.4710854   .2247796    -2.10   0.036    -.9116454   -.0305255
+                   2  |  -.5000247    .220776    -2.26   0.024    -.9327378   -.0673116
+                   3  |  -.3833802   .1954991    -1.96   0.050    -.7665515   -.0002089
+                   4  |  -.4047148   .2833093    -1.43   0.153    -.9599908    .1505613
+                      |
+       smokeintensity |  -.0783426   .0146634    -5.34   0.000    -.1070824   -.0496029
+                      |
+     c.smokeintensity#|
+     c.smokeintensity |   .0010722   .0002655     4.04   0.000     .0005518    .0015925
+                      |
+             smokeyrs |  -.0711099   .0263523    -2.70   0.007    -.1227596   -.0194602
+                      |
+c.smokeyrs#c.smokeyrs |   .0008153   .0004486     1.82   0.069    -.0000639    .0016945
+                      |
+             exercise |
+                   0  |  -.3800461   .1890123    -2.01   0.044    -.7505034   -.0095887
+                   1  |  -.0437044    .137269    -0.32   0.750    -.3127467     .225338
+                      |
+               active |
+                   0  |  -.2134564   .2121759    -1.01   0.314    -.6293135    .2024007
+                   1  |  -.1793322   .2070848    -0.87   0.386    -.5852109    .2265466
+                      |
+                 wt71 |  -.0076609   .0255841    -0.30   0.765    -.0578048     .042483
+                      |
+        c.wt71#c.wt71 |   .0000866   .0001572     0.55   0.582    -.0002216    .0003947
+                      |
+                _cons |  -1.338358   1.359289    -0.98   0.325    -4.002516      1.3258
+---------------------------------------------------------------------------------------
 
 (option pr assumed; Pr(qsmk))
 
@@ -781,7 +772,7 @@ c.wt71#c.wt71 |   .0000866   .0001572     0.55   0.582    -.0002216    .0003947
 
 
 
-------------------------------------------------- mata (type end to exit) ------
+------------------------------------------------- mata (type end to exit) -------------------
 : diff = qsmk - pr_qsmk
 
 : diff2 = w_cens :* diff
@@ -822,7 +813,7 @@ c.wt71#c.wt71 |   .0000866   .0001572     0.55   0.582    -.0002216    .0003947
     +-----------------------------+
 
 : end
---------------------------------------------------------------------------------</code></pre>
+---------------------------------------------------------------------------------------------</code></pre>
 
 </div>
 </div>
