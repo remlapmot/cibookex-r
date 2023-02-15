@@ -32,5 +32,3 @@ Imports:
   tinytex
 SystemRequirements: 
   pandoc (>= 2.3.1) - https://pandoc.org/
-Remotes:
-  Hemken/Statamarkdown
