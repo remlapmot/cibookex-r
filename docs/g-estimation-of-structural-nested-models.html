@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>14. G-estimation of Structural Nested Models | Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
   <meta property="og:title" content="14. G-estimation of Structural Nested Models | Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2023-02-15" />
+<meta name="date" content="2023-03-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -321,78 +321,74 @@ div.csl-indent {
 <span id="cb24-8"><a href="g-estimation-of-structural-nested-models.html#cb24-8" tabindex="-1"></a><span class="co"># ranking of extreme observations</span></span>
 <span id="cb24-9"><a href="g-estimation-of-structural-nested-models.html#cb24-9" tabindex="-1"></a><span class="co">#install.packages(&quot;Hmisc&quot;)</span></span>
 <span id="cb24-10"><a href="g-estimation-of-structural-nested-models.html#cb24-10" tabindex="-1"></a><span class="fu">library</span>(Hmisc)</span>
-<span id="cb24-11"><a href="g-estimation-of-structural-nested-models.html#cb24-11" tabindex="-1"></a><span class="do">## Loading required package: lattice</span></span>
-<span id="cb24-12"><a href="g-estimation-of-structural-nested-models.html#cb24-12" tabindex="-1"></a><span class="do">## Loading required package: survival</span></span>
-<span id="cb24-13"><a href="g-estimation-of-structural-nested-models.html#cb24-13" tabindex="-1"></a><span class="do">## Loading required package: Formula</span></span>
-<span id="cb24-14"><a href="g-estimation-of-structural-nested-models.html#cb24-14" tabindex="-1"></a><span class="do">## Loading required package: ggplot2</span></span>
-<span id="cb24-15"><a href="g-estimation-of-structural-nested-models.html#cb24-15" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb24-16"><a href="g-estimation-of-structural-nested-models.html#cb24-16" tabindex="-1"></a><span class="do">## Attaching package: &#39;Hmisc&#39;</span></span>
-<span id="cb24-17"><a href="g-estimation-of-structural-nested-models.html#cb24-17" tabindex="-1"></a><span class="do">## The following objects are masked from &#39;package:base&#39;:</span></span>
-<span id="cb24-18"><a href="g-estimation-of-structural-nested-models.html#cb24-18" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb24-19"><a href="g-estimation-of-structural-nested-models.html#cb24-19" tabindex="-1"></a><span class="do">##     format.pval, units</span></span>
-<span id="cb24-20"><a href="g-estimation-of-structural-nested-models.html#cb24-20" tabindex="-1"></a><span class="fu">describe</span>(nhefs<span class="sc">$</span>wt82_71)</span>
-<span id="cb24-21"><a href="g-estimation-of-structural-nested-models.html#cb24-21" tabindex="-1"></a><span class="do">## nhefs$wt82_71 </span></span>
-<span id="cb24-22"><a href="g-estimation-of-structural-nested-models.html#cb24-22" tabindex="-1"></a><span class="do">##        n  missing distinct     Info     Mean      Gmd      .05      .10 </span></span>
-<span id="cb24-23"><a href="g-estimation-of-structural-nested-models.html#cb24-23" tabindex="-1"></a><span class="do">##     1566       63     1510        1    2.638    8.337   -9.752   -6.292 </span></span>
-<span id="cb24-24"><a href="g-estimation-of-structural-nested-models.html#cb24-24" tabindex="-1"></a><span class="do">##      .25      .50      .75      .90      .95 </span></span>
-<span id="cb24-25"><a href="g-estimation-of-structural-nested-models.html#cb24-25" tabindex="-1"></a><span class="do">##   -1.478    2.604    6.690   11.117   14.739 </span></span>
-<span id="cb24-26"><a href="g-estimation-of-structural-nested-models.html#cb24-26" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb24-27"><a href="g-estimation-of-structural-nested-models.html#cb24-27" tabindex="-1"></a><span class="do">## lowest : -41.28047 -30.50192 -30.05007 -29.02579 -25.97056</span></span>
-<span id="cb24-28"><a href="g-estimation-of-structural-nested-models.html#cb24-28" tabindex="-1"></a><span class="do">## highest:  34.01780  36.96925  37.65051  47.51130  48.53839</span></span>
-<span id="cb24-29"><a href="g-estimation-of-structural-nested-models.html#cb24-29" tabindex="-1"></a></span>
-<span id="cb24-30"><a href="g-estimation-of-structural-nested-models.html#cb24-30" tabindex="-1"></a><span class="co"># estimation of denominator of ip weights for C</span></span>
-<span id="cb24-31"><a href="g-estimation-of-structural-nested-models.html#cb24-31" tabindex="-1"></a>cw.denom <span class="ot">&lt;-</span> <span class="fu">glm</span>(cens<span class="sc">==</span><span class="dv">0</span> <span class="sc">~</span> qsmk <span class="sc">+</span> sex <span class="sc">+</span> race <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(age<span class="sc">^</span><span class="dv">2</span>) </span>
-<span id="cb24-32"><a href="g-estimation-of-structural-nested-models.html#cb24-32" tabindex="-1"></a>                     <span class="sc">+</span> <span class="fu">as.factor</span>(education) <span class="sc">+</span> smokeintensity <span class="sc">+</span> <span class="fu">I</span>(smokeintensity<span class="sc">^</span><span class="dv">2</span>) </span>
-<span id="cb24-33"><a href="g-estimation-of-structural-nested-models.html#cb24-33" tabindex="-1"></a>                     <span class="sc">+</span> smokeyrs <span class="sc">+</span> <span class="fu">I</span>(smokeyrs<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fu">as.factor</span>(exercise) </span>
-<span id="cb24-34"><a href="g-estimation-of-structural-nested-models.html#cb24-34" tabindex="-1"></a>                     <span class="sc">+</span> <span class="fu">as.factor</span>(active) <span class="sc">+</span> wt71 <span class="sc">+</span> <span class="fu">I</span>(wt71<span class="sc">^</span><span class="dv">2</span>), </span>
-<span id="cb24-35"><a href="g-estimation-of-structural-nested-models.html#cb24-35" tabindex="-1"></a>                     <span class="at">data =</span> nhefs, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="st">&quot;logit&quot;</span>))</span>
-<span id="cb24-36"><a href="g-estimation-of-structural-nested-models.html#cb24-36" tabindex="-1"></a><span class="fu">summary</span>(cw.denom)</span>
-<span id="cb24-37"><a href="g-estimation-of-structural-nested-models.html#cb24-37" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb24-38"><a href="g-estimation-of-structural-nested-models.html#cb24-38" tabindex="-1"></a><span class="do">## Call:</span></span>
-<span id="cb24-39"><a href="g-estimation-of-structural-nested-models.html#cb24-39" tabindex="-1"></a><span class="do">## glm(formula = cens == 0 ~ qsmk + sex + race + age + I(age^2) + </span></span>
-<span id="cb24-40"><a href="g-estimation-of-structural-nested-models.html#cb24-40" tabindex="-1"></a><span class="do">##     as.factor(education) + smokeintensity + I(smokeintensity^2) + </span></span>
-<span id="cb24-41"><a href="g-estimation-of-structural-nested-models.html#cb24-41" tabindex="-1"></a><span class="do">##     smokeyrs + I(smokeyrs^2) + as.factor(exercise) + as.factor(active) + </span></span>
-<span id="cb24-42"><a href="g-estimation-of-structural-nested-models.html#cb24-42" tabindex="-1"></a><span class="do">##     wt71 + I(wt71^2), family = binomial(&quot;logit&quot;), data = nhefs)</span></span>
+<span id="cb24-11"><a href="g-estimation-of-structural-nested-models.html#cb24-11" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb24-12"><a href="g-estimation-of-structural-nested-models.html#cb24-12" tabindex="-1"></a><span class="do">## Attaching package: &#39;Hmisc&#39;</span></span>
+<span id="cb24-13"><a href="g-estimation-of-structural-nested-models.html#cb24-13" tabindex="-1"></a><span class="do">## The following objects are masked from &#39;package:base&#39;:</span></span>
+<span id="cb24-14"><a href="g-estimation-of-structural-nested-models.html#cb24-14" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb24-15"><a href="g-estimation-of-structural-nested-models.html#cb24-15" tabindex="-1"></a><span class="do">##     format.pval, units</span></span>
+<span id="cb24-16"><a href="g-estimation-of-structural-nested-models.html#cb24-16" tabindex="-1"></a><span class="fu">describe</span>(nhefs<span class="sc">$</span>wt82_71)</span>
+<span id="cb24-17"><a href="g-estimation-of-structural-nested-models.html#cb24-17" tabindex="-1"></a><span class="do">## nhefs$wt82_71 </span></span>
+<span id="cb24-18"><a href="g-estimation-of-structural-nested-models.html#cb24-18" tabindex="-1"></a><span class="do">##        n  missing distinct     Info     Mean      Gmd      .05      .10 </span></span>
+<span id="cb24-19"><a href="g-estimation-of-structural-nested-models.html#cb24-19" tabindex="-1"></a><span class="do">##     1566       63     1510        1    2.638    8.337   -9.752   -6.292 </span></span>
+<span id="cb24-20"><a href="g-estimation-of-structural-nested-models.html#cb24-20" tabindex="-1"></a><span class="do">##      .25      .50      .75      .90      .95 </span></span>
+<span id="cb24-21"><a href="g-estimation-of-structural-nested-models.html#cb24-21" tabindex="-1"></a><span class="do">##   -1.478    2.604    6.690   11.117   14.739 </span></span>
+<span id="cb24-22"><a href="g-estimation-of-structural-nested-models.html#cb24-22" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb24-23"><a href="g-estimation-of-structural-nested-models.html#cb24-23" tabindex="-1"></a><span class="do">## lowest : -41.28047 -30.50192 -30.05007 -29.02579 -25.97056</span></span>
+<span id="cb24-24"><a href="g-estimation-of-structural-nested-models.html#cb24-24" tabindex="-1"></a><span class="do">## highest:  34.01780  36.96925  37.65051  47.51130  48.53839</span></span>
+<span id="cb24-25"><a href="g-estimation-of-structural-nested-models.html#cb24-25" tabindex="-1"></a></span>
+<span id="cb24-26"><a href="g-estimation-of-structural-nested-models.html#cb24-26" tabindex="-1"></a><span class="co"># estimation of denominator of ip weights for C</span></span>
+<span id="cb24-27"><a href="g-estimation-of-structural-nested-models.html#cb24-27" tabindex="-1"></a>cw.denom <span class="ot">&lt;-</span> <span class="fu">glm</span>(cens<span class="sc">==</span><span class="dv">0</span> <span class="sc">~</span> qsmk <span class="sc">+</span> sex <span class="sc">+</span> race <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(age<span class="sc">^</span><span class="dv">2</span>) </span>
+<span id="cb24-28"><a href="g-estimation-of-structural-nested-models.html#cb24-28" tabindex="-1"></a>                     <span class="sc">+</span> <span class="fu">as.factor</span>(education) <span class="sc">+</span> smokeintensity <span class="sc">+</span> <span class="fu">I</span>(smokeintensity<span class="sc">^</span><span class="dv">2</span>) </span>
+<span id="cb24-29"><a href="g-estimation-of-structural-nested-models.html#cb24-29" tabindex="-1"></a>                     <span class="sc">+</span> smokeyrs <span class="sc">+</span> <span class="fu">I</span>(smokeyrs<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fu">as.factor</span>(exercise) </span>
+<span id="cb24-30"><a href="g-estimation-of-structural-nested-models.html#cb24-30" tabindex="-1"></a>                     <span class="sc">+</span> <span class="fu">as.factor</span>(active) <span class="sc">+</span> wt71 <span class="sc">+</span> <span class="fu">I</span>(wt71<span class="sc">^</span><span class="dv">2</span>), </span>
+<span id="cb24-31"><a href="g-estimation-of-structural-nested-models.html#cb24-31" tabindex="-1"></a>                     <span class="at">data =</span> nhefs, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="st">&quot;logit&quot;</span>))</span>
+<span id="cb24-32"><a href="g-estimation-of-structural-nested-models.html#cb24-32" tabindex="-1"></a><span class="fu">summary</span>(cw.denom)</span>
+<span id="cb24-33"><a href="g-estimation-of-structural-nested-models.html#cb24-33" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb24-34"><a href="g-estimation-of-structural-nested-models.html#cb24-34" tabindex="-1"></a><span class="do">## Call:</span></span>
+<span id="cb24-35"><a href="g-estimation-of-structural-nested-models.html#cb24-35" tabindex="-1"></a><span class="do">## glm(formula = cens == 0 ~ qsmk + sex + race + age + I(age^2) + </span></span>
+<span id="cb24-36"><a href="g-estimation-of-structural-nested-models.html#cb24-36" tabindex="-1"></a><span class="do">##     as.factor(education) + smokeintensity + I(smokeintensity^2) + </span></span>
+<span id="cb24-37"><a href="g-estimation-of-structural-nested-models.html#cb24-37" tabindex="-1"></a><span class="do">##     smokeyrs + I(smokeyrs^2) + as.factor(exercise) + as.factor(active) + </span></span>
+<span id="cb24-38"><a href="g-estimation-of-structural-nested-models.html#cb24-38" tabindex="-1"></a><span class="do">##     wt71 + I(wt71^2), family = binomial(&quot;logit&quot;), data = nhefs)</span></span>
+<span id="cb24-39"><a href="g-estimation-of-structural-nested-models.html#cb24-39" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb24-40"><a href="g-estimation-of-structural-nested-models.html#cb24-40" tabindex="-1"></a><span class="do">## Deviance Residuals: </span></span>
+<span id="cb24-41"><a href="g-estimation-of-structural-nested-models.html#cb24-41" tabindex="-1"></a><span class="do">##     Min       1Q   Median       3Q      Max  </span></span>
+<span id="cb24-42"><a href="g-estimation-of-structural-nested-models.html#cb24-42" tabindex="-1"></a><span class="do">## -2.9959   0.1571   0.2069   0.2868   1.0967  </span></span>
 <span id="cb24-43"><a href="g-estimation-of-structural-nested-models.html#cb24-43" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb24-44"><a href="g-estimation-of-structural-nested-models.html#cb24-44" tabindex="-1"></a><span class="do">## Deviance Residuals: </span></span>
-<span id="cb24-45"><a href="g-estimation-of-structural-nested-models.html#cb24-45" tabindex="-1"></a><span class="do">##     Min       1Q   Median       3Q      Max  </span></span>
-<span id="cb24-46"><a href="g-estimation-of-structural-nested-models.html#cb24-46" tabindex="-1"></a><span class="do">## -2.9959   0.1571   0.2069   0.2868   1.0967  </span></span>
-<span id="cb24-47"><a href="g-estimation-of-structural-nested-models.html#cb24-47" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb24-48"><a href="g-estimation-of-structural-nested-models.html#cb24-48" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
-<span id="cb24-49"><a href="g-estimation-of-structural-nested-models.html#cb24-49" tabindex="-1"></a><span class="do">##                         Estimate Std. Error z value Pr(&gt;|z|)   </span></span>
-<span id="cb24-50"><a href="g-estimation-of-structural-nested-models.html#cb24-50" tabindex="-1"></a><span class="do">## (Intercept)           -4.0144661  2.5761058  -1.558  0.11915   </span></span>
-<span id="cb24-51"><a href="g-estimation-of-structural-nested-models.html#cb24-51" tabindex="-1"></a><span class="do">## qsmk                  -0.5168674  0.2877162  -1.796  0.07242 . </span></span>
-<span id="cb24-52"><a href="g-estimation-of-structural-nested-models.html#cb24-52" tabindex="-1"></a><span class="do">## sex                   -0.0573131  0.3302775  -0.174  0.86223   </span></span>
-<span id="cb24-53"><a href="g-estimation-of-structural-nested-models.html#cb24-53" tabindex="-1"></a><span class="do">## race                   0.0122715  0.4524887   0.027  0.97836   </span></span>
-<span id="cb24-54"><a href="g-estimation-of-structural-nested-models.html#cb24-54" tabindex="-1"></a><span class="do">## age                    0.2697293  0.1174647   2.296  0.02166 * </span></span>
-<span id="cb24-55"><a href="g-estimation-of-structural-nested-models.html#cb24-55" tabindex="-1"></a><span class="do">## I(age^2)              -0.0028837  0.0011135  -2.590  0.00961 **</span></span>
-<span id="cb24-56"><a href="g-estimation-of-structural-nested-models.html#cb24-56" tabindex="-1"></a><span class="do">## as.factor(education)2  0.4407884  0.4193993   1.051  0.29326   </span></span>
-<span id="cb24-57"><a href="g-estimation-of-structural-nested-models.html#cb24-57" tabindex="-1"></a><span class="do">## as.factor(education)3  0.1646881  0.3705471   0.444  0.65672   </span></span>
-<span id="cb24-58"><a href="g-estimation-of-structural-nested-models.html#cb24-58" tabindex="-1"></a><span class="do">## as.factor(education)4 -0.1384470  0.5697969  -0.243  0.80802   </span></span>
-<span id="cb24-59"><a href="g-estimation-of-structural-nested-models.html#cb24-59" tabindex="-1"></a><span class="do">## as.factor(education)5  0.3823818  0.5601808   0.683  0.49486   </span></span>
-<span id="cb24-60"><a href="g-estimation-of-structural-nested-models.html#cb24-60" tabindex="-1"></a><span class="do">## smokeintensity        -0.0157119  0.0347319  -0.452  0.65100   </span></span>
-<span id="cb24-61"><a href="g-estimation-of-structural-nested-models.html#cb24-61" tabindex="-1"></a><span class="do">## I(smokeintensity^2)    0.0001133  0.0006058   0.187  0.85171   </span></span>
-<span id="cb24-62"><a href="g-estimation-of-structural-nested-models.html#cb24-62" tabindex="-1"></a><span class="do">## smokeyrs              -0.0785973  0.0749576  -1.049  0.29438   </span></span>
-<span id="cb24-63"><a href="g-estimation-of-structural-nested-models.html#cb24-63" tabindex="-1"></a><span class="do">## I(smokeyrs^2)          0.0005569  0.0010318   0.540  0.58938   </span></span>
-<span id="cb24-64"><a href="g-estimation-of-structural-nested-models.html#cb24-64" tabindex="-1"></a><span class="do">## as.factor(exercise)1   0.9714714  0.3878101   2.505  0.01224 * </span></span>
-<span id="cb24-65"><a href="g-estimation-of-structural-nested-models.html#cb24-65" tabindex="-1"></a><span class="do">## as.factor(exercise)2   0.5839890  0.3723133   1.569  0.11675   </span></span>
-<span id="cb24-66"><a href="g-estimation-of-structural-nested-models.html#cb24-66" tabindex="-1"></a><span class="do">## as.factor(active)1     0.2474785  0.3254548   0.760  0.44701   </span></span>
-<span id="cb24-67"><a href="g-estimation-of-structural-nested-models.html#cb24-67" tabindex="-1"></a><span class="do">## as.factor(active)2    -0.7065829  0.3964577  -1.782  0.07471 . </span></span>
-<span id="cb24-68"><a href="g-estimation-of-structural-nested-models.html#cb24-68" tabindex="-1"></a><span class="do">## wt71                   0.0878871  0.0400115   2.197  0.02805 * </span></span>
-<span id="cb24-69"><a href="g-estimation-of-structural-nested-models.html#cb24-69" tabindex="-1"></a><span class="do">## I(wt71^2)             -0.0006351  0.0002257  -2.813  0.00490 **</span></span>
-<span id="cb24-70"><a href="g-estimation-of-structural-nested-models.html#cb24-70" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb24-71"><a href="g-estimation-of-structural-nested-models.html#cb24-71" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb24-72"><a href="g-estimation-of-structural-nested-models.html#cb24-72" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb24-73"><a href="g-estimation-of-structural-nested-models.html#cb24-73" tabindex="-1"></a><span class="do">## (Dispersion parameter for binomial family taken to be 1)</span></span>
+<span id="cb24-44"><a href="g-estimation-of-structural-nested-models.html#cb24-44" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
+<span id="cb24-45"><a href="g-estimation-of-structural-nested-models.html#cb24-45" tabindex="-1"></a><span class="do">##                         Estimate Std. Error z value Pr(&gt;|z|)   </span></span>
+<span id="cb24-46"><a href="g-estimation-of-structural-nested-models.html#cb24-46" tabindex="-1"></a><span class="do">## (Intercept)           -4.0144661  2.5761058  -1.558  0.11915   </span></span>
+<span id="cb24-47"><a href="g-estimation-of-structural-nested-models.html#cb24-47" tabindex="-1"></a><span class="do">## qsmk                  -0.5168674  0.2877162  -1.796  0.07242 . </span></span>
+<span id="cb24-48"><a href="g-estimation-of-structural-nested-models.html#cb24-48" tabindex="-1"></a><span class="do">## sex                   -0.0573131  0.3302775  -0.174  0.86223   </span></span>
+<span id="cb24-49"><a href="g-estimation-of-structural-nested-models.html#cb24-49" tabindex="-1"></a><span class="do">## race                   0.0122715  0.4524887   0.027  0.97836   </span></span>
+<span id="cb24-50"><a href="g-estimation-of-structural-nested-models.html#cb24-50" tabindex="-1"></a><span class="do">## age                    0.2697293  0.1174647   2.296  0.02166 * </span></span>
+<span id="cb24-51"><a href="g-estimation-of-structural-nested-models.html#cb24-51" tabindex="-1"></a><span class="do">## I(age^2)              -0.0028837  0.0011135  -2.590  0.00961 **</span></span>
+<span id="cb24-52"><a href="g-estimation-of-structural-nested-models.html#cb24-52" tabindex="-1"></a><span class="do">## as.factor(education)2  0.4407884  0.4193993   1.051  0.29326   </span></span>
+<span id="cb24-53"><a href="g-estimation-of-structural-nested-models.html#cb24-53" tabindex="-1"></a><span class="do">## as.factor(education)3  0.1646881  0.3705471   0.444  0.65672   </span></span>
+<span id="cb24-54"><a href="g-estimation-of-structural-nested-models.html#cb24-54" tabindex="-1"></a><span class="do">## as.factor(education)4 -0.1384470  0.5697969  -0.243  0.80802   </span></span>
+<span id="cb24-55"><a href="g-estimation-of-structural-nested-models.html#cb24-55" tabindex="-1"></a><span class="do">## as.factor(education)5  0.3823818  0.5601808   0.683  0.49486   </span></span>
+<span id="cb24-56"><a href="g-estimation-of-structural-nested-models.html#cb24-56" tabindex="-1"></a><span class="do">## smokeintensity        -0.0157119  0.0347319  -0.452  0.65100   </span></span>
+<span id="cb24-57"><a href="g-estimation-of-structural-nested-models.html#cb24-57" tabindex="-1"></a><span class="do">## I(smokeintensity^2)    0.0001133  0.0006058   0.187  0.85171   </span></span>
+<span id="cb24-58"><a href="g-estimation-of-structural-nested-models.html#cb24-58" tabindex="-1"></a><span class="do">## smokeyrs              -0.0785973  0.0749576  -1.049  0.29438   </span></span>
+<span id="cb24-59"><a href="g-estimation-of-structural-nested-models.html#cb24-59" tabindex="-1"></a><span class="do">## I(smokeyrs^2)          0.0005569  0.0010318   0.540  0.58938   </span></span>
+<span id="cb24-60"><a href="g-estimation-of-structural-nested-models.html#cb24-60" tabindex="-1"></a><span class="do">## as.factor(exercise)1   0.9714714  0.3878101   2.505  0.01224 * </span></span>
+<span id="cb24-61"><a href="g-estimation-of-structural-nested-models.html#cb24-61" tabindex="-1"></a><span class="do">## as.factor(exercise)2   0.5839890  0.3723133   1.569  0.11675   </span></span>
+<span id="cb24-62"><a href="g-estimation-of-structural-nested-models.html#cb24-62" tabindex="-1"></a><span class="do">## as.factor(active)1     0.2474785  0.3254548   0.760  0.44701   </span></span>
+<span id="cb24-63"><a href="g-estimation-of-structural-nested-models.html#cb24-63" tabindex="-1"></a><span class="do">## as.factor(active)2    -0.7065829  0.3964577  -1.782  0.07471 . </span></span>
+<span id="cb24-64"><a href="g-estimation-of-structural-nested-models.html#cb24-64" tabindex="-1"></a><span class="do">## wt71                   0.0878871  0.0400115   2.197  0.02805 * </span></span>
+<span id="cb24-65"><a href="g-estimation-of-structural-nested-models.html#cb24-65" tabindex="-1"></a><span class="do">## I(wt71^2)             -0.0006351  0.0002257  -2.813  0.00490 **</span></span>
+<span id="cb24-66"><a href="g-estimation-of-structural-nested-models.html#cb24-66" tabindex="-1"></a><span class="do">## ---</span></span>
+<span id="cb24-67"><a href="g-estimation-of-structural-nested-models.html#cb24-67" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb24-68"><a href="g-estimation-of-structural-nested-models.html#cb24-68" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb24-69"><a href="g-estimation-of-structural-nested-models.html#cb24-69" tabindex="-1"></a><span class="do">## (Dispersion parameter for binomial family taken to be 1)</span></span>
+<span id="cb24-70"><a href="g-estimation-of-structural-nested-models.html#cb24-70" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb24-71"><a href="g-estimation-of-structural-nested-models.html#cb24-71" tabindex="-1"></a><span class="do">##     Null deviance: 533.36  on 1628  degrees of freedom</span></span>
+<span id="cb24-72"><a href="g-estimation-of-structural-nested-models.html#cb24-72" tabindex="-1"></a><span class="do">## Residual deviance: 465.36  on 1609  degrees of freedom</span></span>
+<span id="cb24-73"><a href="g-estimation-of-structural-nested-models.html#cb24-73" tabindex="-1"></a><span class="do">## AIC: 505.36</span></span>
 <span id="cb24-74"><a href="g-estimation-of-structural-nested-models.html#cb24-74" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb24-75"><a href="g-estimation-of-structural-nested-models.html#cb24-75" tabindex="-1"></a><span class="do">##     Null deviance: 533.36  on 1628  degrees of freedom</span></span>
-<span id="cb24-76"><a href="g-estimation-of-structural-nested-models.html#cb24-76" tabindex="-1"></a><span class="do">## Residual deviance: 465.36  on 1609  degrees of freedom</span></span>
-<span id="cb24-77"><a href="g-estimation-of-structural-nested-models.html#cb24-77" tabindex="-1"></a><span class="do">## AIC: 505.36</span></span>
-<span id="cb24-78"><a href="g-estimation-of-structural-nested-models.html#cb24-78" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb24-79"><a href="g-estimation-of-structural-nested-models.html#cb24-79" tabindex="-1"></a><span class="do">## Number of Fisher Scoring iterations: 7</span></span>
-<span id="cb24-80"><a href="g-estimation-of-structural-nested-models.html#cb24-80" tabindex="-1"></a>nhefs<span class="sc">$</span>pd.c <span class="ot">&lt;-</span> <span class="fu">predict</span>(cw.denom, nhefs, <span class="at">type=</span><span class="st">&quot;response&quot;</span>)</span>
-<span id="cb24-81"><a href="g-estimation-of-structural-nested-models.html#cb24-81" tabindex="-1"></a>nhefs<span class="sc">$</span>wc <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(nhefs<span class="sc">$</span>cens<span class="sc">==</span><span class="dv">0</span>, <span class="dv">1</span><span class="sc">/</span>nhefs<span class="sc">$</span>pd.c, <span class="cn">NA</span>) </span>
-<span id="cb24-82"><a href="g-estimation-of-structural-nested-models.html#cb24-82" tabindex="-1"></a><span class="co"># observations with cens=1 only contribute to censoring models</span></span></code></pre></div>
+<span id="cb24-75"><a href="g-estimation-of-structural-nested-models.html#cb24-75" tabindex="-1"></a><span class="do">## Number of Fisher Scoring iterations: 7</span></span>
+<span id="cb24-76"><a href="g-estimation-of-structural-nested-models.html#cb24-76" tabindex="-1"></a>nhefs<span class="sc">$</span>pd.c <span class="ot">&lt;-</span> <span class="fu">predict</span>(cw.denom, nhefs, <span class="at">type=</span><span class="st">&quot;response&quot;</span>)</span>
+<span id="cb24-77"><a href="g-estimation-of-structural-nested-models.html#cb24-77" tabindex="-1"></a>nhefs<span class="sc">$</span>wc <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(nhefs<span class="sc">$</span>cens<span class="sc">==</span><span class="dv">0</span>, <span class="dv">1</span><span class="sc">/</span>nhefs<span class="sc">$</span>pd.c, <span class="cn">NA</span>) </span>
+<span id="cb24-78"><a href="g-estimation-of-structural-nested-models.html#cb24-78" tabindex="-1"></a><span class="co"># observations with cens=1 only contribute to censoring models</span></span></code></pre></div>
 </div>
 <div id="program-14.2" class="section level2 hasAnchor">
 <h2>Program 14.2<a href="g-estimation-of-structural-nested-models.html#program-14.2" class="anchor-section" aria-label="Anchor link to header"></a></h2>

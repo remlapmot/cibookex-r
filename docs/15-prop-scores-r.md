@@ -749,16 +749,16 @@ ul <- mean + qnorm(0.975)*se
 bootstrap <- data.frame(cbind(c("Observed", "No Treatment", "Treatment", 
                                 "Treatment - No Treatment"), mean, se, ll, ul))
 bootstrap
-##                         V1             mean                 se               ll
-## 1                 Observed 2.63384609228479   0.19021007978293 2.26104118641376
-## 2             No Treatment 1.71983636149843 0.0858192999210374 1.55163362447475
-## 3                Treatment 5.35072300362993  0.629018001232082 4.11787037558768
-## 4 Treatment - No Treatment  3.6308866421315  0.558190500764664 2.53685336412038
+##                         V1             mean                se               ll
+## 1                 Observed 2.63384609228479  0.15838301300376 2.32342109103448
+## 2             No Treatment 1.71983636149843 0.235359356855094 1.25854049863793
+## 3                Treatment 5.35072300362993 0.276725917662981 4.80835017142169
+## 4 Treatment - No Treatment  3.6308866421315 0.448910673768739 2.75103788926916
 ##                 ul
-## 1 3.00665099815583
-## 2  1.8880390985221
-## 3 6.58357563167218
-## 4 4.72491992014262
+## 1  2.9442710935351
+## 2 2.18113222435892
+## 3 5.89309583583817
+## 4 4.51073539499384
 ```
 
 
@@ -855,7 +855,7 @@ for(i in 1:nboot) {
   }
 }
 ## 95% CI for the causal mean difference
-## 2.651297 , 4.517373
+## 2.564305 , 4.589064
 ```
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.

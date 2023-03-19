@@ -24,10 +24,6 @@ nhefs$cens <- ifelse(is.na(nhefs$wt82), 1, 0)
 # ranking of extreme observations
 #install.packages("Hmisc")
 library(Hmisc)
-## Loading required package: lattice
-## Loading required package: survival
-## Loading required package: Formula
-## Loading required package: ggplot2
 ## 
 ## Attaching package: 'Hmisc'
 ## The following objects are masked from 'package:base':
