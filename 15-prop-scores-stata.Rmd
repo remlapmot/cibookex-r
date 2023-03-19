@@ -215,7 +215,7 @@ as many times as we want.
 Start with reps(10) to make sure your code runs, 
 and then change to reps(1000) to generate your final CIs*/
 simulate EY_a0=r(boot_0) EY_a1 = r(boot_1) ///
-  difference = r(boot_diff), reps(500) seed(1): bootstdz /
+  difference = r(boot_diff), reps(500) seed(1): bootstdz
 
 matrix pe = observe[2..4, 2]'
 matrix list pe
