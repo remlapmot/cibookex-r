@@ -15,6 +15,8 @@ geometry: margin=1in
 fontsize: 10pt
 linestretch: 1.1
 bibliography: bibliography.bib
+papersize: a4
+urlcolor: blue
 ---
 
 
