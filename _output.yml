@@ -16,6 +16,7 @@ bookdown::gitbook:
     search:
       engine: fuse # lunr is the default
   number_sections: false
+  highlight: arrow
 bookdown::pdf_book:
   includes:
     in_header: latex/preamble.tex
@@ -27,5 +28,6 @@ bookdown::pdf_book:
   toc: true
   toc_unnumbered: true
   keep_tex: true
+  highlight: arrow
 bookdown::epub_book:
   number_sections: false
