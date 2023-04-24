@@ -148,10 +148,6 @@ summary(fit)
 ##     as.factor(exercise) + as.factor(active) + wt71 + I(wt71^2), 
 ##     family = binomial(), data = nhefs.nmv)
 ## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.5127  -0.7907  -0.6387   0.9832   2.3729  
-## 
 ## Coefficients:
 ##                         Estimate Std. Error z value Pr(>|z|)    
 ## (Intercept)           -2.2425191  1.3808360  -1.624 0.104369    
@@ -321,10 +317,6 @@ summary(denom.fit)
 ##     smokeyrs + I(smokeyrs^2) + as.factor(exercise) + as.factor(active) + 
 ##     wt71 + I(wt71^2), family = binomial(), data = nhefs.nmv)
 ## 
-## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -1.513  -0.791  -0.639   0.983   2.373  
-## 
 ## Coefficients:
 ##                        Estimate Std. Error z value Pr(>|z|)    
 ## (Intercept)           -2.242519   1.380836   -1.62  0.10437    
@@ -365,10 +357,6 @@ summary(numer.fit)
 ## 
 ## Call:
 ## glm(formula = qsmk ~ 1, family = binomial(), data = nhefs.nmv)
-## 
-## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -0.771  -0.771  -0.771   1.648   1.648  
 ## 
 ## Coefficients:
 ##             Estimate Std. Error z value Pr(>|z|)    
@@ -601,10 +589,6 @@ summary(denom.fit)
 ##     smokeyrs + I(smokeyrs^2) + as.factor(exercise) + as.factor(active) + 
 ##     wt71 + I(wt71^2), family = binomial(), data = nhefs.nmv)
 ## 
-## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -1.513  -0.791  -0.639   0.983   2.373  
-## 
 ## Coefficients:
 ##                        Estimate Std. Error z value Pr(>|z|)    
 ## (Intercept)           -2.242519   1.380836   -1.62  0.10437    
@@ -646,10 +630,6 @@ summary(numer.fit)
 ## 
 ## Call:
 ## glm(formula = qsmk ~ as.factor(sex), family = binomial(), data = nhefs.nmv)
-## 
-## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -0.825  -0.825  -0.719   1.576   1.720  
 ## 
 ## Coefficients:
 ##                 Estimate Std. Error z value Pr(>|z|)    
@@ -759,10 +739,6 @@ summary(denom.fit)
 ##     smokeyrs + I(smokeyrs^2) + as.factor(exercise) + as.factor(active) + 
 ##     wt71 + I(wt71^2), family = binomial(), data = nhefs)
 ## 
-## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -1.465  -0.804  -0.646   1.058   2.355  
-## 
 ## Coefficients:
 ##                        Estimate Std. Error z value Pr(>|z|)    
 ## (Intercept)           -1.988902   1.241279   -1.60  0.10909    
@@ -804,10 +780,6 @@ summary(numer.fit)
 ## Call:
 ## glm(formula = qsmk ~ 1, family = binomial(), data = nhefs)
 ## 
-## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -0.781  -0.781  -0.781   1.635   1.635  
-## 
 ## Coefficients:
 ##             Estimate Std. Error z value Pr(>|z|)    
 ## (Intercept)  -1.0318     0.0563   -18.3   <2e-16 ***
@@ -841,10 +813,6 @@ summary(denom.cens)
 ##     I(smokeintensity^2) + smokeyrs + I(smokeyrs^2) + as.factor(exercise) + 
 ##     as.factor(active) + wt71 + I(wt71^2), family = binomial(), 
 ##     data = nhefs)
-## 
-## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -1.097  -0.287  -0.207  -0.157   2.996  
 ## 
 ## Coefficients:
 ##                        Estimate Std. Error z value Pr(>|z|)   
@@ -888,10 +856,6 @@ summary(numer.cens)
 ## 
 ## Call:
 ## glm(formula = cens ~ as.factor(qsmk), family = binomial(), data = nhefs)
-## 
-## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -0.347  -0.254  -0.254  -0.254   2.628  
 ## 
 ## Coefficients:
 ##                  Estimate Std. Error z value Pr(>|z|)    

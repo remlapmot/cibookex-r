@@ -137,7 +137,7 @@
 
 \title{Causal Inference: What If. R and Stata code for Exercises}
 \author{Book by M. A. Hernán and J. M. Robins \and R code by Joy Shi and Sean McGrath \and Stata code by Eleanor Murray and Roger Logan \and R Markdown code by Tom Palmer}
-\date{19 March 2023}
+\date{24 April 2023}
 
 \begin{document}
 \maketitle
@@ -330,10 +330,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\# Call:}
 \DocumentationTok{\#\# glm(formula = Y3 \textasciitilde{} A3)}
 \DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#     Min       1Q   Median       3Q      Max  }
-\DocumentationTok{\#\# {-}61.930  {-}30.564   {-}5.741   30.653   77.225  }
-\DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#             Estimate Std. Error t value Pr(\textgreater{}|t|)    }
 \DocumentationTok{\#\# (Intercept)  24.5464    21.3300   1.151 0.269094    }
@@ -356,10 +352,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# Call:}
 \DocumentationTok{\#\# glm(formula = Y \textasciitilde{} A)}
-\DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#     Min       1Q   Median       3Q      Max  }
-\DocumentationTok{\#\# {-}96.250  {-}40.000    3.125   35.938  102.500  }
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#             Estimate Std. Error t value Pr(\textgreater{}|t|)   }
@@ -398,10 +390,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# Call:}
 \DocumentationTok{\#\# glm(formula = Y3 \textasciitilde{} A3 + Asq)}
-\DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#    Min      1Q  Median      3Q     Max  }
-\DocumentationTok{\#\# {-}65.27  {-}34.41   13.21   26.11   64.36  }
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#             Estimate Std. Error t value Pr(\textgreater{}|t|)  }
@@ -586,10 +574,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\#     as.factor(exercise) + as.factor(active) + wt71 + I(wt71\^{}2), }
 \DocumentationTok{\#\#     family = binomial(), data = nhefs.nmv)}
 \DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#     Min       1Q   Median       3Q      Max  }
-\DocumentationTok{\#\# {-}1.5127  {-}0.7907  {-}0.6387   0.9832   2.3729  }
-\DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#                         Estimate Std. Error z value Pr(\textgreater{}|z|)    }
 \DocumentationTok{\#\# (Intercept)           {-}2.2425191  1.3808360  {-}1.624 0.104369    }
@@ -766,10 +750,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\#     smokeyrs + I(smokeyrs\^{}2) + as.factor(exercise) + as.factor(active) + }
 \DocumentationTok{\#\#     wt71 + I(wt71\^{}2), family = binomial(), data = nhefs.nmv)}
 \DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#    Min      1Q  Median      3Q     Max  }
-\DocumentationTok{\#\# {-}1.513  {-}0.791  {-}0.639   0.983   2.373  }
-\DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#                        Estimate Std. Error z value Pr(\textgreater{}|z|)    }
 \DocumentationTok{\#\# (Intercept)           {-}2.242519   1.380836   {-}1.62  0.10437    }
@@ -810,10 +790,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# Call:}
 \DocumentationTok{\#\# glm(formula = qsmk \textasciitilde{} 1, family = binomial(), data = nhefs.nmv)}
-\DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#    Min      1Q  Median      3Q     Max  }
-\DocumentationTok{\#\# {-}0.771  {-}0.771  {-}0.771   1.648   1.648  }
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#             Estimate Std. Error z value Pr(\textgreater{}|z|)    }
@@ -1066,10 +1042,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\#     smokeyrs + I(smokeyrs\^{}2) + as.factor(exercise) + as.factor(active) + }
 \DocumentationTok{\#\#     wt71 + I(wt71\^{}2), family = binomial(), data = nhefs.nmv)}
 \DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#    Min      1Q  Median      3Q     Max  }
-\DocumentationTok{\#\# {-}1.513  {-}0.791  {-}0.639   0.983   2.373  }
-\DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#                        Estimate Std. Error z value Pr(\textgreater{}|z|)    }
 \DocumentationTok{\#\# (Intercept)           {-}2.242519   1.380836   {-}1.62  0.10437    }
@@ -1111,10 +1083,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# Call:}
 \DocumentationTok{\#\# glm(formula = qsmk \textasciitilde{} as.factor(sex), family = binomial(), data = nhefs.nmv)}
-\DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#    Min      1Q  Median      3Q     Max  }
-\DocumentationTok{\#\# {-}0.825  {-}0.825  {-}0.719   1.576   1.720  }
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#                 Estimate Std. Error z value Pr(\textgreater{}|z|)    }
@@ -1231,10 +1199,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\#     smokeyrs + I(smokeyrs\^{}2) + as.factor(exercise) + as.factor(active) + }
 \DocumentationTok{\#\#     wt71 + I(wt71\^{}2), family = binomial(), data = nhefs)}
 \DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#    Min      1Q  Median      3Q     Max  }
-\DocumentationTok{\#\# {-}1.465  {-}0.804  {-}0.646   1.058   2.355  }
-\DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#                        Estimate Std. Error z value Pr(\textgreater{}|z|)    }
 \DocumentationTok{\#\# (Intercept)           {-}1.988902   1.241279   {-}1.60  0.10909    }
@@ -1276,10 +1240,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\# Call:}
 \DocumentationTok{\#\# glm(formula = qsmk \textasciitilde{} 1, family = binomial(), data = nhefs)}
 \DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#    Min      1Q  Median      3Q     Max  }
-\DocumentationTok{\#\# {-}0.781  {-}0.781  {-}0.781   1.635   1.635  }
-\DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#             Estimate Std. Error z value Pr(\textgreater{}|z|)    }
 \DocumentationTok{\#\# (Intercept)  {-}1.0318     0.0563   {-}18.3   \textless{}2e{-}16 ***}
@@ -1313,10 +1273,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\#     I(smokeintensity\^{}2) + smokeyrs + I(smokeyrs\^{}2) + as.factor(exercise) + }
 \DocumentationTok{\#\#     as.factor(active) + wt71 + I(wt71\^{}2), family = binomial(), }
 \DocumentationTok{\#\#     data = nhefs)}
-\DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#    Min      1Q  Median      3Q     Max  }
-\DocumentationTok{\#\# {-}1.097  {-}0.287  {-}0.207  {-}0.157   2.996  }
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#                        Estimate Std. Error z value Pr(\textgreater{}|z|)   }
@@ -1360,10 +1316,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# Call:}
 \DocumentationTok{\#\# glm(formula = cens \textasciitilde{} as.factor(qsmk), family = binomial(), data = nhefs)}
-\DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#    Min      1Q  Median      3Q     Max  }
-\DocumentationTok{\#\# {-}0.347  {-}0.254  {-}0.254  {-}0.254   2.628  }
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#                  Estimate Std. Error z value Pr(\textgreater{}|z|)    }
@@ -1488,10 +1440,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\#     as.factor(active) + wt71 + I(wt71 * wt71) + qsmk * smokeintensity, }
 \DocumentationTok{\#\#     data = nhefs)}
 \DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#     Min       1Q   Median       3Q      Max  }
-\DocumentationTok{\#\# {-}42.056   {-}4.171   {-}0.343    3.891   44.606  }
-\DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#                                      Estimate Std. Error t value Pr(\textgreater{}|t|)    }
 \DocumentationTok{\#\# (Intercept)                        {-}1.5881657  4.3130359  {-}0.368 0.712756    }
@@ -1542,11 +1490,10 @@ We assume that you have downloaded the data from the Causal Inference Book websi
   \StringTok{"wt71"}
 \NormalTok{)]}
 \DocumentationTok{\#\# \# A tibble: 1 x 11}
-\DocumentationTok{\#\#   predict\textasciitilde{}1  qsmk   sex  race   age educa\textasciitilde{}2 smoke\textasciitilde{}3 smoke\textasciitilde{}4 exerc\textasciitilde{}5 active  wt71}
-\DocumentationTok{\#\#       \textless{}dbl\textgreater{} \textless{}dbl\textgreater{} \textless{}dbl\textgreater{} \textless{}dbl\textgreater{} \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}   \textless{}dbl\textgreater{}  \textless{}dbl\textgreater{} \textless{}dbl\textgreater{}}
-\DocumentationTok{\#\# 1     0.342     0     0     0    26       4      15      12       1      0  112.}
-\DocumentationTok{\#\# \# ... with abbreviated variable names 1: predicted.meanY, 2: education,}
-\DocumentationTok{\#\# \#   3: smokeintensity, 4: smokeyrs, 5: exercise}
+\DocumentationTok{\#\#   predicted.meanY  qsmk   sex  race   age education smokeintensity smokeyrs}
+\DocumentationTok{\#\#             \textless{}dbl\textgreater{} \textless{}dbl\textgreater{} \textless{}dbl\textgreater{} \textless{}dbl\textgreater{} \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}          \textless{}dbl\textgreater{}    \textless{}dbl\textgreater{}}
+\DocumentationTok{\#\# 1           0.342     0     0     0    26         4             15       12}
+\DocumentationTok{\#\# \# i 3 more variables: exercise \textless{}dbl\textgreater{}, active \textless{}dbl\textgreater{}, wt71 \textless{}dbl\textgreater{}}
 
 \FunctionTok{summary}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{predicted.meanY[nhefs}\SpecialCharTok{$}\NormalTok{cens }\SpecialCharTok{==} \DecValTok{0}\NormalTok{])}
 \DocumentationTok{\#\#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
@@ -1609,16 +1556,12 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\# Call:}
 \DocumentationTok{\#\# glm(formula = Y \textasciitilde{} A * L, data = table22)}
 \DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#      Min        1Q    Median        3Q       Max  }
-\DocumentationTok{\#\# {-}0.66667  {-}0.25000   0.04167   0.33333   0.75000  }
-\DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#               Estimate Std. Error t value Pr(\textgreater{}|t|)}
 \DocumentationTok{\#\# (Intercept)  2.500e{-}01  2.552e{-}01   0.980    0.342}
-\DocumentationTok{\#\# A           {-}1.079e{-}16  3.608e{-}01   0.000    1.000}
+\DocumentationTok{\#\# A            3.957e{-}17  3.608e{-}01   0.000    1.000}
 \DocumentationTok{\#\# L            4.167e{-}01  3.898e{-}01   1.069    0.301}
-\DocumentationTok{\#\# A:L         {-}6.935e{-}17  4.959e{-}01   0.000    1.000}
+\DocumentationTok{\#\# A:L         {-}1.313e{-}16  4.959e{-}01   0.000    1.000}
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# (Dispersion parameter for gaussian family taken to be 0.2604167)}
 \DocumentationTok{\#\# }
@@ -1688,10 +1631,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\#     smokeintensity) + smokeyrs + I(smokeyrs * smokeyrs) + as.factor(exercise) + }
 \DocumentationTok{\#\#     as.factor(active) + wt71 + I(wt71 * wt71) + I(qsmk * smokeintensity), }
 \DocumentationTok{\#\#     data = onesample)}
-\DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#     Min       1Q   Median       3Q      Max  }
-\DocumentationTok{\#\# {-}42.056   {-}4.171   {-}0.343    3.891   44.606  }
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#                                      Estimate Std. Error t value Pr(\textgreater{}|t|)    }
@@ -1827,15 +1766,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{  ))}
 \NormalTok{bootstrap}
 \DocumentationTok{\#\#                         V1             mean                se               ll}
-\DocumentationTok{\#\# 1                 Observed 2.56188497106099   0.1733270156651 2.22217026280958}
-\DocumentationTok{\#\# 2             No Treatment 1.65212306626741 0.213774463021324 1.23313281793123}
-\DocumentationTok{\#\# 3                Treatment 5.11474489549342 0.274685235043587 4.57637172772307}
-\DocumentationTok{\#\# 4 Treatment {-} No Treatment 3.46262182922601 0.332020679033194 2.81187325619842}
+\DocumentationTok{\#\# 1                 Observed 2.56188497106099 0.100880560037889 2.36416270664649}
+\DocumentationTok{\#\# 2             No Treatment 1.65212306626744 0.175544457433156 1.30806225201283}
+\DocumentationTok{\#\# 3                Treatment 5.11474489549336 0.398009040062483 4.33466151144953}
+\DocumentationTok{\#\# 4 Treatment {-} No Treatment 3.46262182922592 0.542169235265909 2.39998965457911}
 \DocumentationTok{\#\#                 ul}
-\DocumentationTok{\#\# 1 2.90159967931239}
-\DocumentationTok{\#\# 2  2.0711133146036}
-\DocumentationTok{\#\# 3 5.65311806326377}
-\DocumentationTok{\#\# 4  4.1133704022536}
+\DocumentationTok{\#\# 1 2.75960723547548}
+\DocumentationTok{\#\# 2 1.99618388052205}
+\DocumentationTok{\#\# 3 5.89482827953718}
+\DocumentationTok{\#\# 4 4.52525400387272}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1900,10 +1839,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\#     as.factor(education) + smokeintensity + I(smokeintensity\^{}2) + }
 \DocumentationTok{\#\#     smokeyrs + I(smokeyrs\^{}2) + as.factor(exercise) + as.factor(active) + }
 \DocumentationTok{\#\#     wt71 + I(wt71\^{}2), family = binomial("logit"), data = nhefs)}
-\DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#     Min       1Q   Median       3Q      Max  }
-\DocumentationTok{\#\# {-}2.9959   0.1571   0.2069   0.2868   1.0967  }
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#                         Estimate Std. Error z value Pr(\textgreater{}|z|)   }
@@ -2169,10 +2104,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\#     as.factor(exercise) + as.factor(active) + wt71 + I(wt71\^{}2), }
 \DocumentationTok{\#\#     family = binomial(), data = nhefs, weights = wc)}
 \DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#    Min      1Q  Median      3Q     Max  }
-\DocumentationTok{\#\# {-}1.529  {-}0.808  {-}0.650   1.029   2.417  }
-\DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#                        Estimate Std. Error z value Pr(\textgreater{}|z|)    }
 \DocumentationTok{\#\# (Intercept)           {-}2.40e+00   1.31e+00   {-}1.83  0.06743 .  }
@@ -2297,10 +2228,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\#     smokeintensity) + smokeyrs + I(smokeyrs * smokeyrs) + as.factor(exercise) + }
 \DocumentationTok{\#\#     as.factor(active) + wt71 + I(wt71 * wt71) + I(qsmk * smokeintensity), }
 \DocumentationTok{\#\#     data = nhefs)}
-\DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#     Min       1Q   Median       3Q      Max  }
-\DocumentationTok{\#\# {-}42.056   {-}4.171   {-}0.343    3.891   44.606  }
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#                                      Estimate Std. Error t value Pr(\textgreater{}|t|)    }
@@ -2475,10 +2402,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\#     smokeintensity) + smokeyrs + I(smokeyrs * smokeyrs) + as.factor(exercise) + }
 \DocumentationTok{\#\#     as.factor(active) + wt71 + I(wt71 * wt71), data = nhefs)}
 \DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#     Min       1Q   Median       3Q      Max  }
-\DocumentationTok{\#\# {-}42.332   {-}4.216   {-}0.318    3.807   44.668  }
-\DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#                                      Estimate Std. Error t value Pr(\textgreater{}|t|)    }
 \DocumentationTok{\#\# (Intercept)                        {-}1.6586176  4.3137734  {-}0.384 0.700666    }
@@ -2539,10 +2462,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\#     smokeintensity + I(smokeintensity * smokeintensity) + smokeyrs + }
 \DocumentationTok{\#\#     I(smokeyrs * smokeyrs) + as.factor(exercise) + as.factor(active) + }
 \DocumentationTok{\#\#     wt71 + I(wt71 * wt71), family = binomial(), data = nhefs)}
-\DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#     Min       1Q   Median       3Q      Max  }
-\DocumentationTok{\#\# {-}1.4646  {-}0.8044  {-}0.6460   1.0578   2.3550  }
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#                                      Estimate Std. Error z value Pr(\textgreater{}|z|)    }
@@ -2923,10 +2842,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\# Call:}
 \DocumentationTok{\#\# glm(formula = wt82\_71 \textasciitilde{} qsmk + as.factor(ps.dec), data = nhefs)}
 \DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#     Min       1Q   Median       3Q      Max  }
-\DocumentationTok{\#\# {-}43.543   {-}3.932   {-}0.085    4.233   46.773  }
-\DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#                     Estimate Std. Error t value Pr(\textgreater{}|t|)    }
 \DocumentationTok{\#\# (Intercept)           3.7505     0.6089   6.159 9.29e{-}10 ***}
@@ -3040,15 +2955,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
                                 \StringTok{"Treatment {-} No Treatment"}\NormalTok{), mean, se, ll, ul))}
 \NormalTok{bootstrap}
 \DocumentationTok{\#\#                         V1             mean                se               ll}
-\DocumentationTok{\#\# 1                 Observed 2.63384609228479 0.117050780819442  2.4044307775164}
-\DocumentationTok{\#\# 2             No Treatment 1.71983636149843 0.178094618476614 1.37077732344386}
-\DocumentationTok{\#\# 3                Treatment 5.35072300362993 0.532149317613134 4.30772950671062}
-\DocumentationTok{\#\# 4 Treatment {-} No Treatment  3.6308866421315 0.617094558399907 2.42140353261204}
+\DocumentationTok{\#\# 1                 Observed 2.63384609228479 0.293000454454304 2.05957575410049}
+\DocumentationTok{\#\# 2             No Treatment 1.71983636149845 0.277586833732187 1.17577616480086}
+\DocumentationTok{\#\# 3                Treatment 5.35072300362985 0.489422523077058  4.3914724851761}
+\DocumentationTok{\#\# 4 Treatment {-} No Treatment  3.6308866421314 0.464643860468904  2.7202014099747}
 \DocumentationTok{\#\#                 ul}
-\DocumentationTok{\#\# 1 2.86326140705319}
-\DocumentationTok{\#\# 2 2.06889539955299}
-\DocumentationTok{\#\# 3 6.39371650054924}
-\DocumentationTok{\#\# 4 4.84036975165097}
+\DocumentationTok{\#\# 1  3.2081164304691}
+\DocumentationTok{\#\# 2 2.26389655819605}
+\DocumentationTok{\#\# 3 6.30997352208361}
+\DocumentationTok{\#\# 4  4.5415718742881}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3060,10 +2975,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# Call:}
 \DocumentationTok{\#\# glm(formula = wt82\_71 \textasciitilde{} qsmk + ps, data = nhefs)}
-\DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#     Min       1Q   Median       3Q      Max  }
-\DocumentationTok{\#\# {-}43.314   {-}4.006   {-}0.068    4.244   47.158  }
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#             Estimate Std. Error t value Pr(\textgreater{}|t|)    }
@@ -3146,7 +3057,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{  \}}
 \NormalTok{\}}
 \DocumentationTok{\#\# 95\% CI for the causal mean difference}
-\DocumentationTok{\#\# 2.561855 , 4.580866}
+\DocumentationTok{\#\# 2.63153 , 4.399715}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3544,10 +3455,6 @@ A more flexible and elegant way to do this is to write a function to perform the
 \DocumentationTok{\#\# glm(formula = event == 0 \textasciitilde{} qsmk + I(qsmk * time) + I(qsmk * timesq) + }
 \DocumentationTok{\#\#     time + timesq, family = binomial(), data = nhefs.surv)}
 \DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#     Min       1Q   Median       3Q      Max  }
-\DocumentationTok{\#\# {-}3.7253   0.0546   0.0601   0.0625   0.0783  }
-\DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#                    Estimate Std. Error z value Pr(\textgreater{}|z|)    }
 \DocumentationTok{\#\# (Intercept)       6.996e+00  2.309e{-}01  30.292   \textless{}2e{-}16 ***}
@@ -3653,10 +3560,6 @@ A more flexible and elegant way to do this is to write a function to perform the
 \DocumentationTok{\#\# glm(formula = event == 0 \textasciitilde{} qsmk + I(qsmk * time) + I(qsmk * timesq) + }
 \DocumentationTok{\#\#     time + timesq, family = binomial(), data = nhefs.ipw, weights = sw.a)}
 \DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#     Min       1Q   Median       3Q      Max  }
-\DocumentationTok{\#\# {-}7.1859   0.0528   0.0595   0.0640   0.1452  }
-\DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#                    Estimate Std. Error z value Pr(\textgreater{}|z|)    }
 \DocumentationTok{\#\# (Intercept)       6.897e+00  2.208e{-}01  31.242   \textless{}2e{-}16 ***}
@@ -3742,10 +3645,6 @@ A more flexible and elegant way to do this is to write a function to perform the
 \DocumentationTok{\#\#     smokeyrs + I(smokeyrs * smokeyrs) + as.factor(exercise) + }
 \DocumentationTok{\#\#     as.factor(active) + wt71 + I(wt71 * wt71), family = binomial(), }
 \DocumentationTok{\#\#     data = nhefs.surv)}
-\DocumentationTok{\#\# }
-\DocumentationTok{\#\# Deviance Residuals: }
-\DocumentationTok{\#\#     Min       1Q   Median       3Q      Max  }
-\DocumentationTok{\#\# {-}4.3160   0.0244   0.0395   0.0640   0.3303  }
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#                                      Estimate Std. Error z value Pr(\textgreater{}|z|)    }
@@ -4009,34 +3908,34 @@ For reproducibility.
 \NormalTok{sessioninfo}\SpecialCharTok{::}\FunctionTok{session\_info}\NormalTok{()}
 \DocumentationTok{\#\# {-} Session info {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \DocumentationTok{\#\#  setting  value}
-\DocumentationTok{\#\#  version  R version 4.2.3 (2023{-}03{-}15)}
-\DocumentationTok{\#\#  os       macOS Ventura 13.2.1}
+\DocumentationTok{\#\#  version  R version 4.3.0 (2023{-}04{-}21)}
+\DocumentationTok{\#\#  os       macOS Ventura 13.3.1}
 \DocumentationTok{\#\#  system   aarch64, darwin20}
 \DocumentationTok{\#\#  ui       X11}
 \DocumentationTok{\#\#  language (EN)}
 \DocumentationTok{\#\#  collate  en\_US.UTF{-}8}
 \DocumentationTok{\#\#  ctype    en\_US.UTF{-}8}
 \DocumentationTok{\#\#  tz       Europe/London}
-\DocumentationTok{\#\#  date     2023{-}03{-}19}
-\DocumentationTok{\#\#  pandoc   3.1.1 @ /opt/homebrew/bin/ (via rmarkdown)}
+\DocumentationTok{\#\#  date     2023{-}04{-}24}
+\DocumentationTok{\#\#  pandoc   3.1.2 @ /opt/homebrew/bin/ (via rmarkdown)}
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# {-} Packages {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \DocumentationTok{\#\#  package     * version date (UTC) lib source}
-\DocumentationTok{\#\#  bookdown      0.33    2023{-}03{-}06 [1] CRAN (R 4.2.0)}
-\DocumentationTok{\#\#  cli           3.6.0   2023{-}01{-}09 [1] CRAN (R 4.2.0)}
-\DocumentationTok{\#\#  digest        0.6.31  2022{-}12{-}11 [1] CRAN (R 4.2.0)}
-\DocumentationTok{\#\#  evaluate      0.20    2023{-}01{-}17 [1] CRAN (R 4.2.0)}
-\DocumentationTok{\#\#  fastmap       1.1.1   2023{-}02{-}24 [1] CRAN (R 4.2.0)}
-\DocumentationTok{\#\#  htmltools     0.5.4   2022{-}12{-}07 [1] CRAN (R 4.2.0)}
-\DocumentationTok{\#\#  knitr         1.42.5  2023{-}03{-}15 [1] Github (yihui/knitr@c50d307)}
-\DocumentationTok{\#\#  rlang         1.1.0   2023{-}03{-}14 [1] CRAN (R 4.2.0)}
-\DocumentationTok{\#\#  rmarkdown     2.20    2023{-}01{-}19 [1] CRAN (R 4.2.0)}
-\DocumentationTok{\#\#  rstudioapi    0.14    2022{-}08{-}22 [1] CRAN (R 4.2.0)}
-\DocumentationTok{\#\#  sessioninfo   1.2.2   2021{-}12{-}06 [1] CRAN (R 4.2.0)}
-\DocumentationTok{\#\#  xfun          0.37    2023{-}01{-}31 [1] CRAN (R 4.2.0)}
-\DocumentationTok{\#\#  yaml          2.3.7   2023{-}01{-}23 [1] CRAN (R 4.2.0)}
+\DocumentationTok{\#\#  bookdown      0.33    2023{-}03{-}06 [1] CRAN (R 4.3.0)}
+\DocumentationTok{\#\#  cli           3.6.1   2023{-}03{-}23 [1] CRAN (R 4.3.0)}
+\DocumentationTok{\#\#  digest        0.6.31  2022{-}12{-}11 [1] CRAN (R 4.3.0)}
+\DocumentationTok{\#\#  evaluate      0.20    2023{-}01{-}17 [1] CRAN (R 4.3.0)}
+\DocumentationTok{\#\#  fastmap       1.1.1   2023{-}02{-}24 [1] CRAN (R 4.3.0)}
+\DocumentationTok{\#\#  htmltools     0.5.5   2023{-}03{-}23 [1] CRAN (R 4.3.0)}
+\DocumentationTok{\#\#  knitr         1.42.7  2023{-}04{-}24 [1] Github (yihui/knitr@5ce5531)}
+\DocumentationTok{\#\#  rlang         1.1.0   2023{-}03{-}14 [1] CRAN (R 4.3.0)}
+\DocumentationTok{\#\#  rmarkdown     2.21    2023{-}03{-}26 [1] CRAN (R 4.3.0)}
+\DocumentationTok{\#\#  rstudioapi    0.14    2022{-}08{-}22 [1] CRAN (R 4.3.0)}
+\DocumentationTok{\#\#  sessioninfo   1.2.2   2021{-}12{-}06 [1] CRAN (R 4.3.0)}
+\DocumentationTok{\#\#  xfun          0.39    2023{-}04{-}20 [1] CRAN (R 4.3.0)}
+\DocumentationTok{\#\#  yaml          2.3.7   2023{-}01{-}23 [1] CRAN (R 4.3.0)}
 \DocumentationTok{\#\# }
-\DocumentationTok{\#\#  [1] /Library/Frameworks/R.framework/Versions/4.2{-}arm64/Resources/library}
+\DocumentationTok{\#\#  [1] /Library/Frameworks/R.framework/Versions/4.3{-}arm64/Resources/library}
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \end{Highlighting}
@@ -9187,7 +9086,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated observ
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 20:24:39
+r; t=0.00 7:47:07
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -9197,7 +9096,7 @@ r; t=0.00 20:24:39
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=19.05 20:24:58
+r; t=18.16 7:47:25
 
 
 
@@ -9444,7 +9343,7 @@ file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 20:25:08
+r; t=0.00 7:47:35
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -9454,7 +9353,7 @@ r; t=0.00 20:25:08
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=20.52 20:25:28
+r; t=20.77 7:47:56
 
 
 
@@ -9511,35 +9410,35 @@ Serial number: 501709378202
 \NormalTok{sessioninfo}\SpecialCharTok{::}\FunctionTok{session\_info}\NormalTok{()}
 \SpecialCharTok{{-}}\NormalTok{ Session info }\SpecialCharTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \NormalTok{ setting  value}
-\NormalTok{ version  R version }\DecValTok{4}\NormalTok{.}\FloatTok{2.3}\NormalTok{ (}\DecValTok{2023{-}03{-}15}\NormalTok{)}
-\NormalTok{ os       macOS Ventura }\DecValTok{13}\NormalTok{.}\FloatTok{2.1}
+\NormalTok{ version  R version }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{ (}\DecValTok{2023{-}04{-}21}\NormalTok{)}
+\NormalTok{ os       macOS Ventura }\DecValTok{13}\NormalTok{.}\FloatTok{3.1}
 \NormalTok{ system   aarch64, darwin20}
 \NormalTok{ ui       X11}
  \FunctionTok{language}\NormalTok{ (EN)}
 \NormalTok{ collate  en\_US.UTF}\DecValTok{{-}8}
 \NormalTok{ ctype    en\_US.UTF}\DecValTok{{-}8}
 \NormalTok{ tz       Europe}\SpecialCharTok{/}\NormalTok{London}
-\NormalTok{ date     }\DecValTok{2023{-}03{-}19}
-\NormalTok{ pandoc   }\DecValTok{3}\NormalTok{.}\FloatTok{1.1} \SpecialCharTok{@} \ErrorTok{/}\NormalTok{opt}\SpecialCharTok{/}\NormalTok{homebrew}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{ (via rmarkdown)}
+\NormalTok{ date     }\DecValTok{2023{-}04{-}24}
+\NormalTok{ pandoc   }\DecValTok{3}\NormalTok{.}\FloatTok{1.2} \SpecialCharTok{@} \ErrorTok{/}\NormalTok{opt}\SpecialCharTok{/}\NormalTok{homebrew}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{ (via rmarkdown)}
 
 \SpecialCharTok{{-}}\NormalTok{ Packages }\SpecialCharTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \NormalTok{ package       }\SpecialCharTok{*}\NormalTok{ version }\FunctionTok{date}\NormalTok{ (UTC) lib source}
-\NormalTok{ bookdown        }\FloatTok{0.33}    \DecValTok{2023{-}03{-}06}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
-\NormalTok{ cli             }\DecValTok{3}\NormalTok{.}\FloatTok{6.0}   \DecValTok{2023{-}01{-}09}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
-\NormalTok{ digest          }\DecValTok{0}\NormalTok{.}\FloatTok{6.31}  \DecValTok{2022{-}12{-}11}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
-\NormalTok{ evaluate        }\FloatTok{0.20}    \DecValTok{2023{-}01{-}17}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
-\NormalTok{ fastmap         }\DecValTok{1}\NormalTok{.}\FloatTok{1.1}   \DecValTok{2023{-}02{-}24}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
-\NormalTok{ htmltools       }\DecValTok{0}\NormalTok{.}\FloatTok{5.4}   \DecValTok{2022{-}12{-}07}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
-\NormalTok{ knitr           }\DecValTok{1}\NormalTok{.}\FloatTok{42.5}  \DecValTok{2023{-}03{-}15}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{Github}\NormalTok{ (yihui}\SpecialCharTok{/}\NormalTok{knitr}\SpecialCharTok{@}\NormalTok{c50d307)}
-\NormalTok{ rlang           }\DecValTok{1}\NormalTok{.}\FloatTok{1.0}   \DecValTok{2023{-}03{-}14}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
-\NormalTok{ rmarkdown       }\FloatTok{2.20}    \DecValTok{2023{-}01{-}19}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
-\NormalTok{ rstudioapi      }\FloatTok{0.14}    \DecValTok{2022{-}08{-}22}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
-\NormalTok{ sessioninfo     }\DecValTok{1}\NormalTok{.}\FloatTok{2.2}   \DecValTok{2021{-}12{-}06}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
-\NormalTok{ Statamarkdown }\SpecialCharTok{*} \DecValTok{0}\NormalTok{.}\FloatTok{7.2}   \DecValTok{2023{-}02{-}15}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
-\NormalTok{ xfun            }\FloatTok{0.37}    \DecValTok{2023{-}01{-}31}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
-\NormalTok{ yaml            }\DecValTok{2}\NormalTok{.}\FloatTok{3.7}   \DecValTok{2023{-}01{-}23}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{2.0}\NormalTok{)}
+\NormalTok{ bookdown        }\FloatTok{0.33}    \DecValTok{2023{-}03{-}06}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
+\NormalTok{ cli             }\DecValTok{3}\NormalTok{.}\FloatTok{6.1}   \DecValTok{2023{-}03{-}23}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
+\NormalTok{ digest          }\DecValTok{0}\NormalTok{.}\FloatTok{6.31}  \DecValTok{2022{-}12{-}11}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
+\NormalTok{ evaluate        }\FloatTok{0.20}    \DecValTok{2023{-}01{-}17}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
+\NormalTok{ fastmap         }\DecValTok{1}\NormalTok{.}\FloatTok{1.1}   \DecValTok{2023{-}02{-}24}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
+\NormalTok{ htmltools       }\DecValTok{0}\NormalTok{.}\FloatTok{5.5}   \DecValTok{2023{-}03{-}23}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
+\NormalTok{ knitr           }\DecValTok{1}\NormalTok{.}\FloatTok{42.7}  \DecValTok{2023{-}04{-}24}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{Github}\NormalTok{ (yihui}\SpecialCharTok{/}\NormalTok{knitr}\SpecialCharTok{@}\NormalTok{5ce5531)}
+\NormalTok{ rlang           }\DecValTok{1}\NormalTok{.}\FloatTok{1.0}   \DecValTok{2023{-}03{-}14}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
+\NormalTok{ rmarkdown       }\FloatTok{2.21}    \DecValTok{2023{-}03{-}26}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
+\NormalTok{ rstudioapi      }\FloatTok{0.14}    \DecValTok{2022{-}08{-}22}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
+\NormalTok{ sessioninfo     }\DecValTok{1}\NormalTok{.}\FloatTok{2.2}   \DecValTok{2021{-}12{-}06}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
+\NormalTok{ Statamarkdown }\SpecialCharTok{*} \DecValTok{0}\NormalTok{.}\FloatTok{7.2}   \DecValTok{2023{-}02{-}15}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
+\NormalTok{ xfun            }\FloatTok{0.39}    \DecValTok{2023{-}04{-}20}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
+\NormalTok{ yaml            }\DecValTok{2}\NormalTok{.}\FloatTok{3.7}   \DecValTok{2023{-}01{-}23}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
 
-\NormalTok{ [}\DecValTok{1}\NormalTok{] }\SpecialCharTok{/}\NormalTok{Library}\SpecialCharTok{/}\NormalTok{Frameworks}\SpecialCharTok{/}\NormalTok{R.framework}\SpecialCharTok{/}\NormalTok{Versions}\SpecialCharTok{/}\FloatTok{4.2}\SpecialCharTok{{-}}\NormalTok{arm64}\SpecialCharTok{/}\NormalTok{Resources}\SpecialCharTok{/}\NormalTok{library}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\SpecialCharTok{/}\NormalTok{Library}\SpecialCharTok{/}\NormalTok{Frameworks}\SpecialCharTok{/}\NormalTok{R.framework}\SpecialCharTok{/}\NormalTok{Versions}\SpecialCharTok{/}\FloatTok{4.3}\SpecialCharTok{{-}}\NormalTok{arm64}\SpecialCharTok{/}\NormalTok{Resources}\SpecialCharTok{/}\NormalTok{library}
 
 \SpecialCharTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \end{Highlighting}

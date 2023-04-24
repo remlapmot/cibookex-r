@@ -84,10 +84,6 @@ summary(hazards.model)
 ## glm(formula = event == 0 ~ qsmk + I(qsmk * time) + I(qsmk * timesq) + 
 ##     time + timesq, family = binomial(), data = nhefs.surv)
 ## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -3.7253   0.0546   0.0601   0.0625   0.0783  
-## 
 ## Coefficients:
 ##                    Estimate Std. Error z value Pr(>|z|)    
 ## (Intercept)       6.996e+00  2.309e-01  30.292   <2e-16 ***
@@ -185,10 +181,6 @@ summary(ipw.model)
 ## glm(formula = event == 0 ~ qsmk + I(qsmk * time) + I(qsmk * timesq) + 
 ##     time + timesq, family = binomial(), data = nhefs.ipw, weights = sw.a)
 ## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -7.1859   0.0528   0.0595   0.0640   0.1452  
-## 
 ## Coefficients:
 ##                    Estimate Std. Error z value Pr(>|z|)    
 ## (Intercept)       6.897e+00  2.208e-01  31.242   <2e-16 ***
@@ -266,10 +258,6 @@ summary(gf.model)
 ##     smokeyrs + I(smokeyrs * smokeyrs) + as.factor(exercise) + 
 ##     as.factor(active) + wt71 + I(wt71 * wt71), family = binomial(), 
 ##     data = nhefs.surv)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -4.3160   0.0244   0.0395   0.0640   0.3303  
 ## 
 ## Coefficients:
 ##                                      Estimate Std. Error z value Pr(>|z|)    

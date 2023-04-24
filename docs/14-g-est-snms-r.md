@@ -53,10 +53,6 @@ summary(cw.denom)
 ##     smokeyrs + I(smokeyrs^2) + as.factor(exercise) + as.factor(active) + 
 ##     wt71 + I(wt71^2), family = binomial("logit"), data = nhefs)
 ## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -2.9959   0.1571   0.2069   0.2868   1.0967  
-## 
 ## Coefficients:
 ##                         Estimate Std. Error z value Pr(>|z|)   
 ## (Intercept)           -4.0144661  2.5761058  -1.558  0.11915   
@@ -300,10 +296,6 @@ summary(logit.est)
 ##     smokeintensity + I(smokeintensity^2) + smokeyrs + I(smokeyrs^2) + 
 ##     as.factor(exercise) + as.factor(active) + wt71 + I(wt71^2), 
 ##     family = binomial(), data = nhefs, weights = wc)
-## 
-## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -1.529  -0.808  -0.650   1.029   2.417  
 ## 
 ## Coefficients:
 ##                        Estimate Std. Error z value Pr(>|z|)    

@@ -78,10 +78,6 @@ summary(glm(Y3 ~ A3))
 ## Call:
 ## glm(formula = Y3 ~ A3)
 ## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -61.930  -30.564   -5.741   30.653   77.225  
-## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
 ## (Intercept)  24.5464    21.3300   1.151 0.269094    
@@ -104,10 +100,6 @@ summary(glm(Y ~ A))
 ## 
 ## Call:
 ## glm(formula = Y ~ A)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -96.250  -40.000    3.125   35.938  102.500  
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)   
@@ -139,10 +131,6 @@ summary(mod3)
 ## 
 ## Call:
 ## glm(formula = Y3 ~ A3 + Asq)
-## 
-## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -65.27  -34.41   13.21   26.11   64.36  
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)  

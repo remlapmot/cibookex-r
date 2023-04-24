@@ -34,10 +34,6 @@ summary(fit)
 ##     as.factor(active) + wt71 + I(wt71 * wt71) + I(qsmk * smokeintensity), 
 ##     data = nhefs)
 ## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -42.056   -4.171   -0.343    3.891   44.606  
-## 
 ## Coefficients:
 ##                                      Estimate Std. Error t value Pr(>|t|)    
 ## (Intercept)                        -1.5881657  4.3130359  -0.368 0.712756    
@@ -211,10 +207,6 @@ summary(fit2)
 ##     smokeintensity) + smokeyrs + I(smokeyrs * smokeyrs) + as.factor(exercise) + 
 ##     as.factor(active) + wt71 + I(wt71 * wt71), data = nhefs)
 ## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -42.332   -4.216   -0.318    3.807   44.668  
-## 
 ## Coefficients:
 ##                                      Estimate Std. Error t value Pr(>|t|)    
 ## (Intercept)                        -1.6586176  4.3137734  -0.384 0.700666    
@@ -268,10 +260,6 @@ summary(fit3)
 ##     smokeintensity + I(smokeintensity * smokeintensity) + smokeyrs + 
 ##     I(smokeyrs * smokeyrs) + as.factor(exercise) + as.factor(active) + 
 ##     wt71 + I(wt71 * wt71), family = binomial(), data = nhefs)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.4646  -0.8044  -0.6460   1.0578   2.3550  
 ## 
 ## Coefficients:
 ##                                      Estimate Std. Error z value Pr(>|z|)    
@@ -641,10 +629,6 @@ summary(fit.psdec)
 ## Call:
 ## glm(formula = wt82_71 ~ qsmk + as.factor(ps.dec), data = nhefs)
 ## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -43.543   -3.932   -0.085    4.233   46.773  
-## 
 ## Coefficients:
 ##                     Estimate Std. Error t value Pr(>|t|)    
 ## (Intercept)           3.7505     0.6089   6.159 9.29e-10 ***
@@ -749,16 +733,16 @@ ul <- mean + qnorm(0.975)*se
 bootstrap <- data.frame(cbind(c("Observed", "No Treatment", "Treatment", 
                                 "Treatment - No Treatment"), mean, se, ll, ul))
 bootstrap
-##                         V1             mean                se               ll
-## 1                 Observed 2.63384609228479 0.166788348350795 2.30694693647631
-## 2             No Treatment 1.71983636149843 0.197415977453913 1.33290815571598
-## 3                Treatment 5.35072300362993 0.294077079249441 4.77434251962229
-## 4 Treatment - No Treatment  3.6308866421315 0.278214240952737 3.08559674987799
+##                         V1             mean                 se               ll
+## 1                 Observed 2.63384609228479 0.0908582779177055 2.45576713986876
+## 2             No Treatment 1.71983636149845   0.21151458661416 1.30527538952982
+## 3                Treatment 5.35072300362985  0.370899962086605 4.62377243607284
+## 4 Treatment - No Treatment  3.6308866421314  0.445567381594319 2.75759062152072
 ##                 ul
-## 1 2.96074524809327
-## 2 2.10676456728087
-## 3 5.92710348763756
-## 4 4.17617653438502
+## 1 2.81192504470083
+## 2 2.13439733346708
+## 3 6.07767357118687
+## 4 4.50418266274208
 ```
 
 
@@ -769,10 +753,6 @@ summary(model6)
 ## 
 ## Call:
 ## glm(formula = wt82_71 ~ qsmk + ps, data = nhefs)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -43.314   -4.006   -0.068    4.244   47.158  
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
@@ -855,7 +835,7 @@ for(i in 1:nboot) {
   }
 }
 ## 95% CI for the causal mean difference
-## 2.583537 , 4.66454
+## 2.478311 , 4.579927
 ```
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.

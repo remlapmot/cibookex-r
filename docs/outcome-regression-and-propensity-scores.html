@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2023-03-19" />
+<meta name="date" content="2023-04-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -332,220 +332,212 @@ div.csl-indent {
 <span id="cb30-18"><a href="outcome-regression-and-propensity-scores.html#cb30-18" tabindex="-1"></a><span class="do">##     as.factor(active) + wt71 + I(wt71 * wt71) + I(qsmk * smokeintensity), </span></span>
 <span id="cb30-19"><a href="outcome-regression-and-propensity-scores.html#cb30-19" tabindex="-1"></a><span class="do">##     data = nhefs)</span></span>
 <span id="cb30-20"><a href="outcome-regression-and-propensity-scores.html#cb30-20" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb30-21"><a href="outcome-regression-and-propensity-scores.html#cb30-21" tabindex="-1"></a><span class="do">## Deviance Residuals: </span></span>
-<span id="cb30-22"><a href="outcome-regression-and-propensity-scores.html#cb30-22" tabindex="-1"></a><span class="do">##     Min       1Q   Median       3Q      Max  </span></span>
-<span id="cb30-23"><a href="outcome-regression-and-propensity-scores.html#cb30-23" tabindex="-1"></a><span class="do">## -42.056   -4.171   -0.343    3.891   44.606  </span></span>
-<span id="cb30-24"><a href="outcome-regression-and-propensity-scores.html#cb30-24" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb30-25"><a href="outcome-regression-and-propensity-scores.html#cb30-25" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
-<span id="cb30-26"><a href="outcome-regression-and-propensity-scores.html#cb30-26" tabindex="-1"></a><span class="do">##                                      Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span id="cb30-27"><a href="outcome-regression-and-propensity-scores.html#cb30-27" tabindex="-1"></a><span class="do">## (Intercept)                        -1.5881657  4.3130359  -0.368 0.712756    </span></span>
-<span id="cb30-28"><a href="outcome-regression-and-propensity-scores.html#cb30-28" tabindex="-1"></a><span class="do">## qsmk                                2.5595941  0.8091486   3.163 0.001590 ** </span></span>
-<span id="cb30-29"><a href="outcome-regression-and-propensity-scores.html#cb30-29" tabindex="-1"></a><span class="do">## sex                                -1.4302717  0.4689576  -3.050 0.002328 ** </span></span>
-<span id="cb30-30"><a href="outcome-regression-and-propensity-scores.html#cb30-30" tabindex="-1"></a><span class="do">## race                                0.5601096  0.5818888   0.963 0.335913    </span></span>
-<span id="cb30-31"><a href="outcome-regression-and-propensity-scores.html#cb30-31" tabindex="-1"></a><span class="do">## age                                 0.3596353  0.1633188   2.202 0.027809 *  </span></span>
-<span id="cb30-32"><a href="outcome-regression-and-propensity-scores.html#cb30-32" tabindex="-1"></a><span class="do">## I(age * age)                       -0.0061010  0.0017261  -3.534 0.000421 ***</span></span>
-<span id="cb30-33"><a href="outcome-regression-and-propensity-scores.html#cb30-33" tabindex="-1"></a><span class="do">## as.factor(education)2               0.7904440  0.6070005   1.302 0.193038    </span></span>
-<span id="cb30-34"><a href="outcome-regression-and-propensity-scores.html#cb30-34" tabindex="-1"></a><span class="do">## as.factor(education)3               0.5563124  0.5561016   1.000 0.317284    </span></span>
-<span id="cb30-35"><a href="outcome-regression-and-propensity-scores.html#cb30-35" tabindex="-1"></a><span class="do">## as.factor(education)4               1.4915695  0.8322704   1.792 0.073301 .  </span></span>
-<span id="cb30-36"><a href="outcome-regression-and-propensity-scores.html#cb30-36" tabindex="-1"></a><span class="do">## as.factor(education)5              -0.1949770  0.7413692  -0.263 0.792589    </span></span>
-<span id="cb30-37"><a href="outcome-regression-and-propensity-scores.html#cb30-37" tabindex="-1"></a><span class="do">## smokeintensity                      0.0491365  0.0517254   0.950 0.342287    </span></span>
-<span id="cb30-38"><a href="outcome-regression-and-propensity-scores.html#cb30-38" tabindex="-1"></a><span class="do">## I(smokeintensity * smokeintensity) -0.0009907  0.0009380  -1.056 0.291097    </span></span>
-<span id="cb30-39"><a href="outcome-regression-and-propensity-scores.html#cb30-39" tabindex="-1"></a><span class="do">## smokeyrs                            0.1343686  0.0917122   1.465 0.143094    </span></span>
-<span id="cb30-40"><a href="outcome-regression-and-propensity-scores.html#cb30-40" tabindex="-1"></a><span class="do">## I(smokeyrs * smokeyrs)             -0.0018664  0.0015437  -1.209 0.226830    </span></span>
-<span id="cb30-41"><a href="outcome-regression-and-propensity-scores.html#cb30-41" tabindex="-1"></a><span class="do">## as.factor(exercise)1                0.2959754  0.5351533   0.553 0.580298    </span></span>
-<span id="cb30-42"><a href="outcome-regression-and-propensity-scores.html#cb30-42" tabindex="-1"></a><span class="do">## as.factor(exercise)2                0.3539128  0.5588587   0.633 0.526646    </span></span>
-<span id="cb30-43"><a href="outcome-regression-and-propensity-scores.html#cb30-43" tabindex="-1"></a><span class="do">## as.factor(active)1                 -0.9475695  0.4099344  -2.312 0.020935 *  </span></span>
-<span id="cb30-44"><a href="outcome-regression-and-propensity-scores.html#cb30-44" tabindex="-1"></a><span class="do">## as.factor(active)2                 -0.2613779  0.6845577  -0.382 0.702647    </span></span>
-<span id="cb30-45"><a href="outcome-regression-and-propensity-scores.html#cb30-45" tabindex="-1"></a><span class="do">## wt71                                0.0455018  0.0833709   0.546 0.585299    </span></span>
-<span id="cb30-46"><a href="outcome-regression-and-propensity-scores.html#cb30-46" tabindex="-1"></a><span class="do">## I(wt71 * wt71)                     -0.0009653  0.0005247  -1.840 0.066001 .  </span></span>
-<span id="cb30-47"><a href="outcome-regression-and-propensity-scores.html#cb30-47" tabindex="-1"></a><span class="do">## I(qsmk * smokeintensity)            0.0466628  0.0351448   1.328 0.184463    </span></span>
-<span id="cb30-48"><a href="outcome-regression-and-propensity-scores.html#cb30-48" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb30-49"><a href="outcome-regression-and-propensity-scores.html#cb30-49" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb30-50"><a href="outcome-regression-and-propensity-scores.html#cb30-50" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb30-51"><a href="outcome-regression-and-propensity-scores.html#cb30-51" tabindex="-1"></a><span class="do">## (Dispersion parameter for gaussian family taken to be 53.5683)</span></span>
-<span id="cb30-52"><a href="outcome-regression-and-propensity-scores.html#cb30-52" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb30-53"><a href="outcome-regression-and-propensity-scores.html#cb30-53" tabindex="-1"></a><span class="do">##     Null deviance: 97176  on 1565  degrees of freedom</span></span>
-<span id="cb30-54"><a href="outcome-regression-and-propensity-scores.html#cb30-54" tabindex="-1"></a><span class="do">## Residual deviance: 82763  on 1545  degrees of freedom</span></span>
-<span id="cb30-55"><a href="outcome-regression-and-propensity-scores.html#cb30-55" tabindex="-1"></a><span class="do">##   (63 observations deleted due to missingness)</span></span>
-<span id="cb30-56"><a href="outcome-regression-and-propensity-scores.html#cb30-56" tabindex="-1"></a><span class="do">## AIC: 10701</span></span>
-<span id="cb30-57"><a href="outcome-regression-and-propensity-scores.html#cb30-57" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb30-58"><a href="outcome-regression-and-propensity-scores.html#cb30-58" tabindex="-1"></a><span class="do">## Number of Fisher Scoring iterations: 2</span></span>
-<span id="cb30-59"><a href="outcome-regression-and-propensity-scores.html#cb30-59" tabindex="-1"></a></span>
-<span id="cb30-60"><a href="outcome-regression-and-propensity-scores.html#cb30-60" tabindex="-1"></a><span class="co"># (step 1) build the contrast matrix with all zeros</span></span>
-<span id="cb30-61"><a href="outcome-regression-and-propensity-scores.html#cb30-61" tabindex="-1"></a><span class="co"># this function builds the blank matrix </span></span>
-<span id="cb30-62"><a href="outcome-regression-and-propensity-scores.html#cb30-62" tabindex="-1"></a><span class="co"># install.packages(&quot;multcomp&quot;) # install packages if necessary</span></span>
-<span id="cb30-63"><a href="outcome-regression-and-propensity-scores.html#cb30-63" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;multcomp&quot;</span>)</span>
-<span id="cb30-64"><a href="outcome-regression-and-propensity-scores.html#cb30-64" tabindex="-1"></a><span class="do">## Loading required package: mvtnorm</span></span>
-<span id="cb30-65"><a href="outcome-regression-and-propensity-scores.html#cb30-65" tabindex="-1"></a><span class="do">## Loading required package: survival</span></span>
-<span id="cb30-66"><a href="outcome-regression-and-propensity-scores.html#cb30-66" tabindex="-1"></a><span class="do">## Loading required package: TH.data</span></span>
-<span id="cb30-67"><a href="outcome-regression-and-propensity-scores.html#cb30-67" tabindex="-1"></a><span class="do">## Loading required package: MASS</span></span>
-<span id="cb30-68"><a href="outcome-regression-and-propensity-scores.html#cb30-68" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb30-69"><a href="outcome-regression-and-propensity-scores.html#cb30-69" tabindex="-1"></a><span class="do">## Attaching package: &#39;TH.data&#39;</span></span>
-<span id="cb30-70"><a href="outcome-regression-and-propensity-scores.html#cb30-70" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:MASS&#39;:</span></span>
-<span id="cb30-71"><a href="outcome-regression-and-propensity-scores.html#cb30-71" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb30-72"><a href="outcome-regression-and-propensity-scores.html#cb30-72" tabindex="-1"></a><span class="do">##     geyser</span></span>
-<span id="cb30-73"><a href="outcome-regression-and-propensity-scores.html#cb30-73" tabindex="-1"></a>makeContrastMatrix <span class="ot">&lt;-</span> <span class="cf">function</span>(model, nrow, names) {</span>
-<span id="cb30-74"><a href="outcome-regression-and-propensity-scores.html#cb30-74" tabindex="-1"></a>  m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> nrow, <span class="at">ncol =</span> <span class="fu">length</span>(<span class="fu">coef</span>(model)))</span>
-<span id="cb30-75"><a href="outcome-regression-and-propensity-scores.html#cb30-75" tabindex="-1"></a>  <span class="fu">colnames</span>(m) <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">coef</span>(model))</span>
-<span id="cb30-76"><a href="outcome-regression-and-propensity-scores.html#cb30-76" tabindex="-1"></a>  <span class="fu">rownames</span>(m) <span class="ot">&lt;-</span> names</span>
-<span id="cb30-77"><a href="outcome-regression-and-propensity-scores.html#cb30-77" tabindex="-1"></a>  <span class="fu">return</span>(m)</span>
-<span id="cb30-78"><a href="outcome-regression-and-propensity-scores.html#cb30-78" tabindex="-1"></a>}</span>
-<span id="cb30-79"><a href="outcome-regression-and-propensity-scores.html#cb30-79" tabindex="-1"></a>K1 <span class="ot">&lt;-</span></span>
-<span id="cb30-80"><a href="outcome-regression-and-propensity-scores.html#cb30-80" tabindex="-1"></a>  <span class="fu">makeContrastMatrix</span>(</span>
-<span id="cb30-81"><a href="outcome-regression-and-propensity-scores.html#cb30-81" tabindex="-1"></a>    fit,</span>
-<span id="cb30-82"><a href="outcome-regression-and-propensity-scores.html#cb30-82" tabindex="-1"></a>    <span class="dv">2</span>,</span>
-<span id="cb30-83"><a href="outcome-regression-and-propensity-scores.html#cb30-83" tabindex="-1"></a>    <span class="fu">c</span>(</span>
-<span id="cb30-84"><a href="outcome-regression-and-propensity-scores.html#cb30-84" tabindex="-1"></a>      <span class="st">&#39;Effect of Quitting Smoking at Smokeintensity of 5&#39;</span>,</span>
-<span id="cb30-85"><a href="outcome-regression-and-propensity-scores.html#cb30-85" tabindex="-1"></a>      <span class="st">&#39;Effect of Quitting Smoking at Smokeintensity of 40&#39;</span></span>
-<span id="cb30-86"><a href="outcome-regression-and-propensity-scores.html#cb30-86" tabindex="-1"></a>    )</span>
-<span id="cb30-87"><a href="outcome-regression-and-propensity-scores.html#cb30-87" tabindex="-1"></a>  )</span>
-<span id="cb30-88"><a href="outcome-regression-and-propensity-scores.html#cb30-88" tabindex="-1"></a><span class="co"># (step 2) fill in the relevant non-zero elements </span></span>
-<span id="cb30-89"><a href="outcome-regression-and-propensity-scores.html#cb30-89" tabindex="-1"></a>K1[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="st">&#39;qsmk&#39;</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb30-90"><a href="outcome-regression-and-propensity-scores.html#cb30-90" tabindex="-1"></a>K1[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="st">&#39;I(qsmk * smokeintensity)&#39;</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">40</span>)</span>
-<span id="cb30-91"><a href="outcome-regression-and-propensity-scores.html#cb30-91" tabindex="-1"></a></span>
-<span id="cb30-92"><a href="outcome-regression-and-propensity-scores.html#cb30-92" tabindex="-1"></a><span class="co"># (step 3) check the contrast matrix</span></span>
-<span id="cb30-93"><a href="outcome-regression-and-propensity-scores.html#cb30-93" tabindex="-1"></a>K1 </span>
-<span id="cb30-94"><a href="outcome-regression-and-propensity-scores.html#cb30-94" tabindex="-1"></a><span class="do">##                                                    (Intercept) qsmk sex race</span></span>
-<span id="cb30-95"><a href="outcome-regression-and-propensity-scores.html#cb30-95" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5            0    1   0    0</span></span>
-<span id="cb30-96"><a href="outcome-regression-and-propensity-scores.html#cb30-96" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40           0    1   0    0</span></span>
-<span id="cb30-97"><a href="outcome-regression-and-propensity-scores.html#cb30-97" tabindex="-1"></a><span class="do">##                                                    age I(age * age)</span></span>
-<span id="cb30-98"><a href="outcome-regression-and-propensity-scores.html#cb30-98" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5    0            0</span></span>
-<span id="cb30-99"><a href="outcome-regression-and-propensity-scores.html#cb30-99" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40   0            0</span></span>
-<span id="cb30-100"><a href="outcome-regression-and-propensity-scores.html#cb30-100" tabindex="-1"></a><span class="do">##                                                    as.factor(education)2</span></span>
-<span id="cb30-101"><a href="outcome-regression-and-propensity-scores.html#cb30-101" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5                      0</span></span>
-<span id="cb30-102"><a href="outcome-regression-and-propensity-scores.html#cb30-102" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40                     0</span></span>
-<span id="cb30-103"><a href="outcome-regression-and-propensity-scores.html#cb30-103" tabindex="-1"></a><span class="do">##                                                    as.factor(education)3</span></span>
-<span id="cb30-104"><a href="outcome-regression-and-propensity-scores.html#cb30-104" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5                      0</span></span>
-<span id="cb30-105"><a href="outcome-regression-and-propensity-scores.html#cb30-105" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40                     0</span></span>
-<span id="cb30-106"><a href="outcome-regression-and-propensity-scores.html#cb30-106" tabindex="-1"></a><span class="do">##                                                    as.factor(education)4</span></span>
-<span id="cb30-107"><a href="outcome-regression-and-propensity-scores.html#cb30-107" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5                      0</span></span>
-<span id="cb30-108"><a href="outcome-regression-and-propensity-scores.html#cb30-108" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40                     0</span></span>
-<span id="cb30-109"><a href="outcome-regression-and-propensity-scores.html#cb30-109" tabindex="-1"></a><span class="do">##                                                    as.factor(education)5</span></span>
-<span id="cb30-110"><a href="outcome-regression-and-propensity-scores.html#cb30-110" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5                      0</span></span>
-<span id="cb30-111"><a href="outcome-regression-and-propensity-scores.html#cb30-111" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40                     0</span></span>
-<span id="cb30-112"><a href="outcome-regression-and-propensity-scores.html#cb30-112" tabindex="-1"></a><span class="do">##                                                    smokeintensity</span></span>
-<span id="cb30-113"><a href="outcome-regression-and-propensity-scores.html#cb30-113" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5               0</span></span>
-<span id="cb30-114"><a href="outcome-regression-and-propensity-scores.html#cb30-114" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40              0</span></span>
-<span id="cb30-115"><a href="outcome-regression-and-propensity-scores.html#cb30-115" tabindex="-1"></a><span class="do">##                                                    I(smokeintensity * smokeintensity)</span></span>
-<span id="cb30-116"><a href="outcome-regression-and-propensity-scores.html#cb30-116" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5                                   0</span></span>
-<span id="cb30-117"><a href="outcome-regression-and-propensity-scores.html#cb30-117" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40                                  0</span></span>
-<span id="cb30-118"><a href="outcome-regression-and-propensity-scores.html#cb30-118" tabindex="-1"></a><span class="do">##                                                    smokeyrs</span></span>
-<span id="cb30-119"><a href="outcome-regression-and-propensity-scores.html#cb30-119" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5         0</span></span>
-<span id="cb30-120"><a href="outcome-regression-and-propensity-scores.html#cb30-120" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40        0</span></span>
-<span id="cb30-121"><a href="outcome-regression-and-propensity-scores.html#cb30-121" tabindex="-1"></a><span class="do">##                                                    I(smokeyrs * smokeyrs)</span></span>
-<span id="cb30-122"><a href="outcome-regression-and-propensity-scores.html#cb30-122" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5                       0</span></span>
-<span id="cb30-123"><a href="outcome-regression-and-propensity-scores.html#cb30-123" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40                      0</span></span>
-<span id="cb30-124"><a href="outcome-regression-and-propensity-scores.html#cb30-124" tabindex="-1"></a><span class="do">##                                                    as.factor(exercise)1</span></span>
-<span id="cb30-125"><a href="outcome-regression-and-propensity-scores.html#cb30-125" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5                     0</span></span>
-<span id="cb30-126"><a href="outcome-regression-and-propensity-scores.html#cb30-126" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40                    0</span></span>
-<span id="cb30-127"><a href="outcome-regression-and-propensity-scores.html#cb30-127" tabindex="-1"></a><span class="do">##                                                    as.factor(exercise)2</span></span>
-<span id="cb30-128"><a href="outcome-regression-and-propensity-scores.html#cb30-128" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5                     0</span></span>
-<span id="cb30-129"><a href="outcome-regression-and-propensity-scores.html#cb30-129" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40                    0</span></span>
-<span id="cb30-130"><a href="outcome-regression-and-propensity-scores.html#cb30-130" tabindex="-1"></a><span class="do">##                                                    as.factor(active)1</span></span>
-<span id="cb30-131"><a href="outcome-regression-and-propensity-scores.html#cb30-131" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5                   0</span></span>
-<span id="cb30-132"><a href="outcome-regression-and-propensity-scores.html#cb30-132" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40                  0</span></span>
-<span id="cb30-133"><a href="outcome-regression-and-propensity-scores.html#cb30-133" tabindex="-1"></a><span class="do">##                                                    as.factor(active)2 wt71</span></span>
-<span id="cb30-134"><a href="outcome-regression-and-propensity-scores.html#cb30-134" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5                   0    0</span></span>
-<span id="cb30-135"><a href="outcome-regression-and-propensity-scores.html#cb30-135" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40                  0    0</span></span>
-<span id="cb30-136"><a href="outcome-regression-and-propensity-scores.html#cb30-136" tabindex="-1"></a><span class="do">##                                                    I(wt71 * wt71)</span></span>
-<span id="cb30-137"><a href="outcome-regression-and-propensity-scores.html#cb30-137" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5               0</span></span>
-<span id="cb30-138"><a href="outcome-regression-and-propensity-scores.html#cb30-138" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40              0</span></span>
-<span id="cb30-139"><a href="outcome-regression-and-propensity-scores.html#cb30-139" tabindex="-1"></a><span class="do">##                                                    I(qsmk * smokeintensity)</span></span>
-<span id="cb30-140"><a href="outcome-regression-and-propensity-scores.html#cb30-140" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5                         5</span></span>
-<span id="cb30-141"><a href="outcome-regression-and-propensity-scores.html#cb30-141" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40                       40</span></span>
-<span id="cb30-142"><a href="outcome-regression-and-propensity-scores.html#cb30-142" tabindex="-1"></a></span>
-<span id="cb30-143"><a href="outcome-regression-and-propensity-scores.html#cb30-143" tabindex="-1"></a><span class="co"># (step 4) estimate the contrasts, get tests and confidence intervals for them</span></span>
-<span id="cb30-144"><a href="outcome-regression-and-propensity-scores.html#cb30-144" tabindex="-1"></a>estimates1 <span class="ot">&lt;-</span> <span class="fu">glht</span>(fit, K1)</span>
-<span id="cb30-145"><a href="outcome-regression-and-propensity-scores.html#cb30-145" tabindex="-1"></a>  <span class="fu">summary</span>(estimates1)</span>
-<span id="cb30-146"><a href="outcome-regression-and-propensity-scores.html#cb30-146" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb30-147"><a href="outcome-regression-and-propensity-scores.html#cb30-147" tabindex="-1"></a><span class="do">##   Simultaneous Tests for General Linear Hypotheses</span></span>
-<span id="cb30-148"><a href="outcome-regression-and-propensity-scores.html#cb30-148" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb30-149"><a href="outcome-regression-and-propensity-scores.html#cb30-149" tabindex="-1"></a><span class="do">## Fit: glm(formula = wt82_71 ~ qsmk + sex + race + age + I(age * age) + </span></span>
-<span id="cb30-150"><a href="outcome-regression-and-propensity-scores.html#cb30-150" tabindex="-1"></a><span class="do">##     as.factor(education) + smokeintensity + I(smokeintensity * </span></span>
-<span id="cb30-151"><a href="outcome-regression-and-propensity-scores.html#cb30-151" tabindex="-1"></a><span class="do">##     smokeintensity) + smokeyrs + I(smokeyrs * smokeyrs) + as.factor(exercise) + </span></span>
-<span id="cb30-152"><a href="outcome-regression-and-propensity-scores.html#cb30-152" tabindex="-1"></a><span class="do">##     as.factor(active) + wt71 + I(wt71 * wt71) + I(qsmk * smokeintensity), </span></span>
-<span id="cb30-153"><a href="outcome-regression-and-propensity-scores.html#cb30-153" tabindex="-1"></a><span class="do">##     data = nhefs)</span></span>
-<span id="cb30-154"><a href="outcome-regression-and-propensity-scores.html#cb30-154" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb30-155"><a href="outcome-regression-and-propensity-scores.html#cb30-155" tabindex="-1"></a><span class="do">## Linear Hypotheses:</span></span>
-<span id="cb30-156"><a href="outcome-regression-and-propensity-scores.html#cb30-156" tabindex="-1"></a><span class="do">##                                                         Estimate Std. Error</span></span>
-<span id="cb30-157"><a href="outcome-regression-and-propensity-scores.html#cb30-157" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5 == 0    2.7929     0.6683</span></span>
-<span id="cb30-158"><a href="outcome-regression-and-propensity-scores.html#cb30-158" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40 == 0   4.4261     0.8478</span></span>
-<span id="cb30-159"><a href="outcome-regression-and-propensity-scores.html#cb30-159" tabindex="-1"></a><span class="do">##                                                         z value Pr(&gt;|z|)    </span></span>
-<span id="cb30-160"><a href="outcome-regression-and-propensity-scores.html#cb30-160" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5 == 0    4.179 5.84e-05 ***</span></span>
-<span id="cb30-161"><a href="outcome-regression-and-propensity-scores.html#cb30-161" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40 == 0   5.221 3.56e-07 ***</span></span>
-<span id="cb30-162"><a href="outcome-regression-and-propensity-scores.html#cb30-162" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb30-163"><a href="outcome-regression-and-propensity-scores.html#cb30-163" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb30-164"><a href="outcome-regression-and-propensity-scores.html#cb30-164" tabindex="-1"></a><span class="do">## (Adjusted p values reported -- single-step method)</span></span>
-<span id="cb30-165"><a href="outcome-regression-and-propensity-scores.html#cb30-165" tabindex="-1"></a>  <span class="fu">confint</span>(estimates1)</span>
-<span id="cb30-166"><a href="outcome-regression-and-propensity-scores.html#cb30-166" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb30-167"><a href="outcome-regression-and-propensity-scores.html#cb30-167" tabindex="-1"></a><span class="do">##   Simultaneous Confidence Intervals</span></span>
-<span id="cb30-168"><a href="outcome-regression-and-propensity-scores.html#cb30-168" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb30-169"><a href="outcome-regression-and-propensity-scores.html#cb30-169" tabindex="-1"></a><span class="do">## Fit: glm(formula = wt82_71 ~ qsmk + sex + race + age + I(age * age) + </span></span>
-<span id="cb30-170"><a href="outcome-regression-and-propensity-scores.html#cb30-170" tabindex="-1"></a><span class="do">##     as.factor(education) + smokeintensity + I(smokeintensity * </span></span>
-<span id="cb30-171"><a href="outcome-regression-and-propensity-scores.html#cb30-171" tabindex="-1"></a><span class="do">##     smokeintensity) + smokeyrs + I(smokeyrs * smokeyrs) + as.factor(exercise) + </span></span>
-<span id="cb30-172"><a href="outcome-regression-and-propensity-scores.html#cb30-172" tabindex="-1"></a><span class="do">##     as.factor(active) + wt71 + I(wt71 * wt71) + I(qsmk * smokeintensity), </span></span>
-<span id="cb30-173"><a href="outcome-regression-and-propensity-scores.html#cb30-173" tabindex="-1"></a><span class="do">##     data = nhefs)</span></span>
+<span id="cb30-21"><a href="outcome-regression-and-propensity-scores.html#cb30-21" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
+<span id="cb30-22"><a href="outcome-regression-and-propensity-scores.html#cb30-22" tabindex="-1"></a><span class="do">##                                      Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb30-23"><a href="outcome-regression-and-propensity-scores.html#cb30-23" tabindex="-1"></a><span class="do">## (Intercept)                        -1.5881657  4.3130359  -0.368 0.712756    </span></span>
+<span id="cb30-24"><a href="outcome-regression-and-propensity-scores.html#cb30-24" tabindex="-1"></a><span class="do">## qsmk                                2.5595941  0.8091486   3.163 0.001590 ** </span></span>
+<span id="cb30-25"><a href="outcome-regression-and-propensity-scores.html#cb30-25" tabindex="-1"></a><span class="do">## sex                                -1.4302717  0.4689576  -3.050 0.002328 ** </span></span>
+<span id="cb30-26"><a href="outcome-regression-and-propensity-scores.html#cb30-26" tabindex="-1"></a><span class="do">## race                                0.5601096  0.5818888   0.963 0.335913    </span></span>
+<span id="cb30-27"><a href="outcome-regression-and-propensity-scores.html#cb30-27" tabindex="-1"></a><span class="do">## age                                 0.3596353  0.1633188   2.202 0.027809 *  </span></span>
+<span id="cb30-28"><a href="outcome-regression-and-propensity-scores.html#cb30-28" tabindex="-1"></a><span class="do">## I(age * age)                       -0.0061010  0.0017261  -3.534 0.000421 ***</span></span>
+<span id="cb30-29"><a href="outcome-regression-and-propensity-scores.html#cb30-29" tabindex="-1"></a><span class="do">## as.factor(education)2               0.7904440  0.6070005   1.302 0.193038    </span></span>
+<span id="cb30-30"><a href="outcome-regression-and-propensity-scores.html#cb30-30" tabindex="-1"></a><span class="do">## as.factor(education)3               0.5563124  0.5561016   1.000 0.317284    </span></span>
+<span id="cb30-31"><a href="outcome-regression-and-propensity-scores.html#cb30-31" tabindex="-1"></a><span class="do">## as.factor(education)4               1.4915695  0.8322704   1.792 0.073301 .  </span></span>
+<span id="cb30-32"><a href="outcome-regression-and-propensity-scores.html#cb30-32" tabindex="-1"></a><span class="do">## as.factor(education)5              -0.1949770  0.7413692  -0.263 0.792589    </span></span>
+<span id="cb30-33"><a href="outcome-regression-and-propensity-scores.html#cb30-33" tabindex="-1"></a><span class="do">## smokeintensity                      0.0491365  0.0517254   0.950 0.342287    </span></span>
+<span id="cb30-34"><a href="outcome-regression-and-propensity-scores.html#cb30-34" tabindex="-1"></a><span class="do">## I(smokeintensity * smokeintensity) -0.0009907  0.0009380  -1.056 0.291097    </span></span>
+<span id="cb30-35"><a href="outcome-regression-and-propensity-scores.html#cb30-35" tabindex="-1"></a><span class="do">## smokeyrs                            0.1343686  0.0917122   1.465 0.143094    </span></span>
+<span id="cb30-36"><a href="outcome-regression-and-propensity-scores.html#cb30-36" tabindex="-1"></a><span class="do">## I(smokeyrs * smokeyrs)             -0.0018664  0.0015437  -1.209 0.226830    </span></span>
+<span id="cb30-37"><a href="outcome-regression-and-propensity-scores.html#cb30-37" tabindex="-1"></a><span class="do">## as.factor(exercise)1                0.2959754  0.5351533   0.553 0.580298    </span></span>
+<span id="cb30-38"><a href="outcome-regression-and-propensity-scores.html#cb30-38" tabindex="-1"></a><span class="do">## as.factor(exercise)2                0.3539128  0.5588587   0.633 0.526646    </span></span>
+<span id="cb30-39"><a href="outcome-regression-and-propensity-scores.html#cb30-39" tabindex="-1"></a><span class="do">## as.factor(active)1                 -0.9475695  0.4099344  -2.312 0.020935 *  </span></span>
+<span id="cb30-40"><a href="outcome-regression-and-propensity-scores.html#cb30-40" tabindex="-1"></a><span class="do">## as.factor(active)2                 -0.2613779  0.6845577  -0.382 0.702647    </span></span>
+<span id="cb30-41"><a href="outcome-regression-and-propensity-scores.html#cb30-41" tabindex="-1"></a><span class="do">## wt71                                0.0455018  0.0833709   0.546 0.585299    </span></span>
+<span id="cb30-42"><a href="outcome-regression-and-propensity-scores.html#cb30-42" tabindex="-1"></a><span class="do">## I(wt71 * wt71)                     -0.0009653  0.0005247  -1.840 0.066001 .  </span></span>
+<span id="cb30-43"><a href="outcome-regression-and-propensity-scores.html#cb30-43" tabindex="-1"></a><span class="do">## I(qsmk * smokeintensity)            0.0466628  0.0351448   1.328 0.184463    </span></span>
+<span id="cb30-44"><a href="outcome-regression-and-propensity-scores.html#cb30-44" tabindex="-1"></a><span class="do">## ---</span></span>
+<span id="cb30-45"><a href="outcome-regression-and-propensity-scores.html#cb30-45" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb30-46"><a href="outcome-regression-and-propensity-scores.html#cb30-46" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb30-47"><a href="outcome-regression-and-propensity-scores.html#cb30-47" tabindex="-1"></a><span class="do">## (Dispersion parameter for gaussian family taken to be 53.5683)</span></span>
+<span id="cb30-48"><a href="outcome-regression-and-propensity-scores.html#cb30-48" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb30-49"><a href="outcome-regression-and-propensity-scores.html#cb30-49" tabindex="-1"></a><span class="do">##     Null deviance: 97176  on 1565  degrees of freedom</span></span>
+<span id="cb30-50"><a href="outcome-regression-and-propensity-scores.html#cb30-50" tabindex="-1"></a><span class="do">## Residual deviance: 82763  on 1545  degrees of freedom</span></span>
+<span id="cb30-51"><a href="outcome-regression-and-propensity-scores.html#cb30-51" tabindex="-1"></a><span class="do">##   (63 observations deleted due to missingness)</span></span>
+<span id="cb30-52"><a href="outcome-regression-and-propensity-scores.html#cb30-52" tabindex="-1"></a><span class="do">## AIC: 10701</span></span>
+<span id="cb30-53"><a href="outcome-regression-and-propensity-scores.html#cb30-53" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb30-54"><a href="outcome-regression-and-propensity-scores.html#cb30-54" tabindex="-1"></a><span class="do">## Number of Fisher Scoring iterations: 2</span></span>
+<span id="cb30-55"><a href="outcome-regression-and-propensity-scores.html#cb30-55" tabindex="-1"></a></span>
+<span id="cb30-56"><a href="outcome-regression-and-propensity-scores.html#cb30-56" tabindex="-1"></a><span class="co"># (step 1) build the contrast matrix with all zeros</span></span>
+<span id="cb30-57"><a href="outcome-regression-and-propensity-scores.html#cb30-57" tabindex="-1"></a><span class="co"># this function builds the blank matrix </span></span>
+<span id="cb30-58"><a href="outcome-regression-and-propensity-scores.html#cb30-58" tabindex="-1"></a><span class="co"># install.packages(&quot;multcomp&quot;) # install packages if necessary</span></span>
+<span id="cb30-59"><a href="outcome-regression-and-propensity-scores.html#cb30-59" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;multcomp&quot;</span>)</span>
+<span id="cb30-60"><a href="outcome-regression-and-propensity-scores.html#cb30-60" tabindex="-1"></a><span class="do">## Loading required package: mvtnorm</span></span>
+<span id="cb30-61"><a href="outcome-regression-and-propensity-scores.html#cb30-61" tabindex="-1"></a><span class="do">## Loading required package: survival</span></span>
+<span id="cb30-62"><a href="outcome-regression-and-propensity-scores.html#cb30-62" tabindex="-1"></a><span class="do">## Loading required package: TH.data</span></span>
+<span id="cb30-63"><a href="outcome-regression-and-propensity-scores.html#cb30-63" tabindex="-1"></a><span class="do">## Loading required package: MASS</span></span>
+<span id="cb30-64"><a href="outcome-regression-and-propensity-scores.html#cb30-64" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb30-65"><a href="outcome-regression-and-propensity-scores.html#cb30-65" tabindex="-1"></a><span class="do">## Attaching package: &#39;TH.data&#39;</span></span>
+<span id="cb30-66"><a href="outcome-regression-and-propensity-scores.html#cb30-66" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:MASS&#39;:</span></span>
+<span id="cb30-67"><a href="outcome-regression-and-propensity-scores.html#cb30-67" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb30-68"><a href="outcome-regression-and-propensity-scores.html#cb30-68" tabindex="-1"></a><span class="do">##     geyser</span></span>
+<span id="cb30-69"><a href="outcome-regression-and-propensity-scores.html#cb30-69" tabindex="-1"></a>makeContrastMatrix <span class="ot">&lt;-</span> <span class="cf">function</span>(model, nrow, names) {</span>
+<span id="cb30-70"><a href="outcome-regression-and-propensity-scores.html#cb30-70" tabindex="-1"></a>  m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> nrow, <span class="at">ncol =</span> <span class="fu">length</span>(<span class="fu">coef</span>(model)))</span>
+<span id="cb30-71"><a href="outcome-regression-and-propensity-scores.html#cb30-71" tabindex="-1"></a>  <span class="fu">colnames</span>(m) <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">coef</span>(model))</span>
+<span id="cb30-72"><a href="outcome-regression-and-propensity-scores.html#cb30-72" tabindex="-1"></a>  <span class="fu">rownames</span>(m) <span class="ot">&lt;-</span> names</span>
+<span id="cb30-73"><a href="outcome-regression-and-propensity-scores.html#cb30-73" tabindex="-1"></a>  <span class="fu">return</span>(m)</span>
+<span id="cb30-74"><a href="outcome-regression-and-propensity-scores.html#cb30-74" tabindex="-1"></a>}</span>
+<span id="cb30-75"><a href="outcome-regression-and-propensity-scores.html#cb30-75" tabindex="-1"></a>K1 <span class="ot">&lt;-</span></span>
+<span id="cb30-76"><a href="outcome-regression-and-propensity-scores.html#cb30-76" tabindex="-1"></a>  <span class="fu">makeContrastMatrix</span>(</span>
+<span id="cb30-77"><a href="outcome-regression-and-propensity-scores.html#cb30-77" tabindex="-1"></a>    fit,</span>
+<span id="cb30-78"><a href="outcome-regression-and-propensity-scores.html#cb30-78" tabindex="-1"></a>    <span class="dv">2</span>,</span>
+<span id="cb30-79"><a href="outcome-regression-and-propensity-scores.html#cb30-79" tabindex="-1"></a>    <span class="fu">c</span>(</span>
+<span id="cb30-80"><a href="outcome-regression-and-propensity-scores.html#cb30-80" tabindex="-1"></a>      <span class="st">&#39;Effect of Quitting Smoking at Smokeintensity of 5&#39;</span>,</span>
+<span id="cb30-81"><a href="outcome-regression-and-propensity-scores.html#cb30-81" tabindex="-1"></a>      <span class="st">&#39;Effect of Quitting Smoking at Smokeintensity of 40&#39;</span></span>
+<span id="cb30-82"><a href="outcome-regression-and-propensity-scores.html#cb30-82" tabindex="-1"></a>    )</span>
+<span id="cb30-83"><a href="outcome-regression-and-propensity-scores.html#cb30-83" tabindex="-1"></a>  )</span>
+<span id="cb30-84"><a href="outcome-regression-and-propensity-scores.html#cb30-84" tabindex="-1"></a><span class="co"># (step 2) fill in the relevant non-zero elements </span></span>
+<span id="cb30-85"><a href="outcome-regression-and-propensity-scores.html#cb30-85" tabindex="-1"></a>K1[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="st">&#39;qsmk&#39;</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb30-86"><a href="outcome-regression-and-propensity-scores.html#cb30-86" tabindex="-1"></a>K1[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="st">&#39;I(qsmk * smokeintensity)&#39;</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">40</span>)</span>
+<span id="cb30-87"><a href="outcome-regression-and-propensity-scores.html#cb30-87" tabindex="-1"></a></span>
+<span id="cb30-88"><a href="outcome-regression-and-propensity-scores.html#cb30-88" tabindex="-1"></a><span class="co"># (step 3) check the contrast matrix</span></span>
+<span id="cb30-89"><a href="outcome-regression-and-propensity-scores.html#cb30-89" tabindex="-1"></a>K1 </span>
+<span id="cb30-90"><a href="outcome-regression-and-propensity-scores.html#cb30-90" tabindex="-1"></a><span class="do">##                                                    (Intercept) qsmk sex race</span></span>
+<span id="cb30-91"><a href="outcome-regression-and-propensity-scores.html#cb30-91" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5            0    1   0    0</span></span>
+<span id="cb30-92"><a href="outcome-regression-and-propensity-scores.html#cb30-92" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40           0    1   0    0</span></span>
+<span id="cb30-93"><a href="outcome-regression-and-propensity-scores.html#cb30-93" tabindex="-1"></a><span class="do">##                                                    age I(age * age)</span></span>
+<span id="cb30-94"><a href="outcome-regression-and-propensity-scores.html#cb30-94" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5    0            0</span></span>
+<span id="cb30-95"><a href="outcome-regression-and-propensity-scores.html#cb30-95" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40   0            0</span></span>
+<span id="cb30-96"><a href="outcome-regression-and-propensity-scores.html#cb30-96" tabindex="-1"></a><span class="do">##                                                    as.factor(education)2</span></span>
+<span id="cb30-97"><a href="outcome-regression-and-propensity-scores.html#cb30-97" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5                      0</span></span>
+<span id="cb30-98"><a href="outcome-regression-and-propensity-scores.html#cb30-98" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40                     0</span></span>
+<span id="cb30-99"><a href="outcome-regression-and-propensity-scores.html#cb30-99" tabindex="-1"></a><span class="do">##                                                    as.factor(education)3</span></span>
+<span id="cb30-100"><a href="outcome-regression-and-propensity-scores.html#cb30-100" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5                      0</span></span>
+<span id="cb30-101"><a href="outcome-regression-and-propensity-scores.html#cb30-101" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40                     0</span></span>
+<span id="cb30-102"><a href="outcome-regression-and-propensity-scores.html#cb30-102" tabindex="-1"></a><span class="do">##                                                    as.factor(education)4</span></span>
+<span id="cb30-103"><a href="outcome-regression-and-propensity-scores.html#cb30-103" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5                      0</span></span>
+<span id="cb30-104"><a href="outcome-regression-and-propensity-scores.html#cb30-104" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40                     0</span></span>
+<span id="cb30-105"><a href="outcome-regression-and-propensity-scores.html#cb30-105" tabindex="-1"></a><span class="do">##                                                    as.factor(education)5</span></span>
+<span id="cb30-106"><a href="outcome-regression-and-propensity-scores.html#cb30-106" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5                      0</span></span>
+<span id="cb30-107"><a href="outcome-regression-and-propensity-scores.html#cb30-107" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40                     0</span></span>
+<span id="cb30-108"><a href="outcome-regression-and-propensity-scores.html#cb30-108" tabindex="-1"></a><span class="do">##                                                    smokeintensity</span></span>
+<span id="cb30-109"><a href="outcome-regression-and-propensity-scores.html#cb30-109" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5               0</span></span>
+<span id="cb30-110"><a href="outcome-regression-and-propensity-scores.html#cb30-110" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40              0</span></span>
+<span id="cb30-111"><a href="outcome-regression-and-propensity-scores.html#cb30-111" tabindex="-1"></a><span class="do">##                                                    I(smokeintensity * smokeintensity)</span></span>
+<span id="cb30-112"><a href="outcome-regression-and-propensity-scores.html#cb30-112" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5                                   0</span></span>
+<span id="cb30-113"><a href="outcome-regression-and-propensity-scores.html#cb30-113" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40                                  0</span></span>
+<span id="cb30-114"><a href="outcome-regression-and-propensity-scores.html#cb30-114" tabindex="-1"></a><span class="do">##                                                    smokeyrs</span></span>
+<span id="cb30-115"><a href="outcome-regression-and-propensity-scores.html#cb30-115" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5         0</span></span>
+<span id="cb30-116"><a href="outcome-regression-and-propensity-scores.html#cb30-116" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40        0</span></span>
+<span id="cb30-117"><a href="outcome-regression-and-propensity-scores.html#cb30-117" tabindex="-1"></a><span class="do">##                                                    I(smokeyrs * smokeyrs)</span></span>
+<span id="cb30-118"><a href="outcome-regression-and-propensity-scores.html#cb30-118" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5                       0</span></span>
+<span id="cb30-119"><a href="outcome-regression-and-propensity-scores.html#cb30-119" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40                      0</span></span>
+<span id="cb30-120"><a href="outcome-regression-and-propensity-scores.html#cb30-120" tabindex="-1"></a><span class="do">##                                                    as.factor(exercise)1</span></span>
+<span id="cb30-121"><a href="outcome-regression-and-propensity-scores.html#cb30-121" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5                     0</span></span>
+<span id="cb30-122"><a href="outcome-regression-and-propensity-scores.html#cb30-122" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40                    0</span></span>
+<span id="cb30-123"><a href="outcome-regression-and-propensity-scores.html#cb30-123" tabindex="-1"></a><span class="do">##                                                    as.factor(exercise)2</span></span>
+<span id="cb30-124"><a href="outcome-regression-and-propensity-scores.html#cb30-124" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5                     0</span></span>
+<span id="cb30-125"><a href="outcome-regression-and-propensity-scores.html#cb30-125" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40                    0</span></span>
+<span id="cb30-126"><a href="outcome-regression-and-propensity-scores.html#cb30-126" tabindex="-1"></a><span class="do">##                                                    as.factor(active)1</span></span>
+<span id="cb30-127"><a href="outcome-regression-and-propensity-scores.html#cb30-127" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5                   0</span></span>
+<span id="cb30-128"><a href="outcome-regression-and-propensity-scores.html#cb30-128" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40                  0</span></span>
+<span id="cb30-129"><a href="outcome-regression-and-propensity-scores.html#cb30-129" tabindex="-1"></a><span class="do">##                                                    as.factor(active)2 wt71</span></span>
+<span id="cb30-130"><a href="outcome-regression-and-propensity-scores.html#cb30-130" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5                   0    0</span></span>
+<span id="cb30-131"><a href="outcome-regression-and-propensity-scores.html#cb30-131" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40                  0    0</span></span>
+<span id="cb30-132"><a href="outcome-regression-and-propensity-scores.html#cb30-132" tabindex="-1"></a><span class="do">##                                                    I(wt71 * wt71)</span></span>
+<span id="cb30-133"><a href="outcome-regression-and-propensity-scores.html#cb30-133" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5               0</span></span>
+<span id="cb30-134"><a href="outcome-regression-and-propensity-scores.html#cb30-134" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40              0</span></span>
+<span id="cb30-135"><a href="outcome-regression-and-propensity-scores.html#cb30-135" tabindex="-1"></a><span class="do">##                                                    I(qsmk * smokeintensity)</span></span>
+<span id="cb30-136"><a href="outcome-regression-and-propensity-scores.html#cb30-136" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5                         5</span></span>
+<span id="cb30-137"><a href="outcome-regression-and-propensity-scores.html#cb30-137" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40                       40</span></span>
+<span id="cb30-138"><a href="outcome-regression-and-propensity-scores.html#cb30-138" tabindex="-1"></a></span>
+<span id="cb30-139"><a href="outcome-regression-and-propensity-scores.html#cb30-139" tabindex="-1"></a><span class="co"># (step 4) estimate the contrasts, get tests and confidence intervals for them</span></span>
+<span id="cb30-140"><a href="outcome-regression-and-propensity-scores.html#cb30-140" tabindex="-1"></a>estimates1 <span class="ot">&lt;-</span> <span class="fu">glht</span>(fit, K1)</span>
+<span id="cb30-141"><a href="outcome-regression-and-propensity-scores.html#cb30-141" tabindex="-1"></a>  <span class="fu">summary</span>(estimates1)</span>
+<span id="cb30-142"><a href="outcome-regression-and-propensity-scores.html#cb30-142" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb30-143"><a href="outcome-regression-and-propensity-scores.html#cb30-143" tabindex="-1"></a><span class="do">##   Simultaneous Tests for General Linear Hypotheses</span></span>
+<span id="cb30-144"><a href="outcome-regression-and-propensity-scores.html#cb30-144" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb30-145"><a href="outcome-regression-and-propensity-scores.html#cb30-145" tabindex="-1"></a><span class="do">## Fit: glm(formula = wt82_71 ~ qsmk + sex + race + age + I(age * age) + </span></span>
+<span id="cb30-146"><a href="outcome-regression-and-propensity-scores.html#cb30-146" tabindex="-1"></a><span class="do">##     as.factor(education) + smokeintensity + I(smokeintensity * </span></span>
+<span id="cb30-147"><a href="outcome-regression-and-propensity-scores.html#cb30-147" tabindex="-1"></a><span class="do">##     smokeintensity) + smokeyrs + I(smokeyrs * smokeyrs) + as.factor(exercise) + </span></span>
+<span id="cb30-148"><a href="outcome-regression-and-propensity-scores.html#cb30-148" tabindex="-1"></a><span class="do">##     as.factor(active) + wt71 + I(wt71 * wt71) + I(qsmk * smokeintensity), </span></span>
+<span id="cb30-149"><a href="outcome-regression-and-propensity-scores.html#cb30-149" tabindex="-1"></a><span class="do">##     data = nhefs)</span></span>
+<span id="cb30-150"><a href="outcome-regression-and-propensity-scores.html#cb30-150" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb30-151"><a href="outcome-regression-and-propensity-scores.html#cb30-151" tabindex="-1"></a><span class="do">## Linear Hypotheses:</span></span>
+<span id="cb30-152"><a href="outcome-regression-and-propensity-scores.html#cb30-152" tabindex="-1"></a><span class="do">##                                                         Estimate Std. Error</span></span>
+<span id="cb30-153"><a href="outcome-regression-and-propensity-scores.html#cb30-153" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5 == 0    2.7929     0.6683</span></span>
+<span id="cb30-154"><a href="outcome-regression-and-propensity-scores.html#cb30-154" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40 == 0   4.4261     0.8478</span></span>
+<span id="cb30-155"><a href="outcome-regression-and-propensity-scores.html#cb30-155" tabindex="-1"></a><span class="do">##                                                         z value Pr(&gt;|z|)    </span></span>
+<span id="cb30-156"><a href="outcome-regression-and-propensity-scores.html#cb30-156" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5 == 0    4.179 5.84e-05 ***</span></span>
+<span id="cb30-157"><a href="outcome-regression-and-propensity-scores.html#cb30-157" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40 == 0   5.221 3.56e-07 ***</span></span>
+<span id="cb30-158"><a href="outcome-regression-and-propensity-scores.html#cb30-158" tabindex="-1"></a><span class="do">## ---</span></span>
+<span id="cb30-159"><a href="outcome-regression-and-propensity-scores.html#cb30-159" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb30-160"><a href="outcome-regression-and-propensity-scores.html#cb30-160" tabindex="-1"></a><span class="do">## (Adjusted p values reported -- single-step method)</span></span>
+<span id="cb30-161"><a href="outcome-regression-and-propensity-scores.html#cb30-161" tabindex="-1"></a>  <span class="fu">confint</span>(estimates1)</span>
+<span id="cb30-162"><a href="outcome-regression-and-propensity-scores.html#cb30-162" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb30-163"><a href="outcome-regression-and-propensity-scores.html#cb30-163" tabindex="-1"></a><span class="do">##   Simultaneous Confidence Intervals</span></span>
+<span id="cb30-164"><a href="outcome-regression-and-propensity-scores.html#cb30-164" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb30-165"><a href="outcome-regression-and-propensity-scores.html#cb30-165" tabindex="-1"></a><span class="do">## Fit: glm(formula = wt82_71 ~ qsmk + sex + race + age + I(age * age) + </span></span>
+<span id="cb30-166"><a href="outcome-regression-and-propensity-scores.html#cb30-166" tabindex="-1"></a><span class="do">##     as.factor(education) + smokeintensity + I(smokeintensity * </span></span>
+<span id="cb30-167"><a href="outcome-regression-and-propensity-scores.html#cb30-167" tabindex="-1"></a><span class="do">##     smokeintensity) + smokeyrs + I(smokeyrs * smokeyrs) + as.factor(exercise) + </span></span>
+<span id="cb30-168"><a href="outcome-regression-and-propensity-scores.html#cb30-168" tabindex="-1"></a><span class="do">##     as.factor(active) + wt71 + I(wt71 * wt71) + I(qsmk * smokeintensity), </span></span>
+<span id="cb30-169"><a href="outcome-regression-and-propensity-scores.html#cb30-169" tabindex="-1"></a><span class="do">##     data = nhefs)</span></span>
+<span id="cb30-170"><a href="outcome-regression-and-propensity-scores.html#cb30-170" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb30-171"><a href="outcome-regression-and-propensity-scores.html#cb30-171" tabindex="-1"></a><span class="do">## Quantile = 2.2281</span></span>
+<span id="cb30-172"><a href="outcome-regression-and-propensity-scores.html#cb30-172" tabindex="-1"></a><span class="do">## 95% family-wise confidence level</span></span>
+<span id="cb30-173"><a href="outcome-regression-and-propensity-scores.html#cb30-173" tabindex="-1"></a><span class="do">##  </span></span>
 <span id="cb30-174"><a href="outcome-regression-and-propensity-scores.html#cb30-174" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb30-175"><a href="outcome-regression-and-propensity-scores.html#cb30-175" tabindex="-1"></a><span class="do">## Quantile = 2.2281</span></span>
-<span id="cb30-176"><a href="outcome-regression-and-propensity-scores.html#cb30-176" tabindex="-1"></a><span class="do">## 95% family-wise confidence level</span></span>
-<span id="cb30-177"><a href="outcome-regression-and-propensity-scores.html#cb30-177" tabindex="-1"></a><span class="do">##  </span></span>
-<span id="cb30-178"><a href="outcome-regression-and-propensity-scores.html#cb30-178" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb30-179"><a href="outcome-regression-and-propensity-scores.html#cb30-179" tabindex="-1"></a><span class="do">## Linear Hypotheses:</span></span>
-<span id="cb30-180"><a href="outcome-regression-and-propensity-scores.html#cb30-180" tabindex="-1"></a><span class="do">##                                                         Estimate lwr    upr   </span></span>
-<span id="cb30-181"><a href="outcome-regression-and-propensity-scores.html#cb30-181" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5 == 0  2.7929   1.3039 4.2819</span></span>
-<span id="cb30-182"><a href="outcome-regression-and-propensity-scores.html#cb30-182" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40 == 0 4.4261   2.5372 6.3151</span></span>
-<span id="cb30-183"><a href="outcome-regression-and-propensity-scores.html#cb30-183" tabindex="-1"></a></span>
-<span id="cb30-184"><a href="outcome-regression-and-propensity-scores.html#cb30-184" tabindex="-1"></a><span class="co"># regression on covariates, not allowing for effect modification</span></span>
-<span id="cb30-185"><a href="outcome-regression-and-propensity-scores.html#cb30-185" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(wt82_71 <span class="sc">~</span> qsmk <span class="sc">+</span> sex <span class="sc">+</span> race <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(age<span class="sc">*</span>age) <span class="sc">+</span> <span class="fu">as.factor</span>(education)</span>
-<span id="cb30-186"><a href="outcome-regression-and-propensity-scores.html#cb30-186" tabindex="-1"></a>           <span class="sc">+</span> smokeintensity <span class="sc">+</span> <span class="fu">I</span>(smokeintensity<span class="sc">*</span>smokeintensity) <span class="sc">+</span> smokeyrs</span>
-<span id="cb30-187"><a href="outcome-regression-and-propensity-scores.html#cb30-187" tabindex="-1"></a>           <span class="sc">+</span> <span class="fu">I</span>(smokeyrs<span class="sc">*</span>smokeyrs) <span class="sc">+</span> <span class="fu">as.factor</span>(exercise) <span class="sc">+</span> <span class="fu">as.factor</span>(active)</span>
-<span id="cb30-188"><a href="outcome-regression-and-propensity-scores.html#cb30-188" tabindex="-1"></a>           <span class="sc">+</span> wt71 <span class="sc">+</span> <span class="fu">I</span>(wt71<span class="sc">*</span>wt71), <span class="at">data=</span>nhefs)</span>
-<span id="cb30-189"><a href="outcome-regression-and-propensity-scores.html#cb30-189" tabindex="-1"></a>  </span>
-<span id="cb30-190"><a href="outcome-regression-and-propensity-scores.html#cb30-190" tabindex="-1"></a><span class="fu">summary</span>(fit2)</span>
-<span id="cb30-191"><a href="outcome-regression-and-propensity-scores.html#cb30-191" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb30-192"><a href="outcome-regression-and-propensity-scores.html#cb30-192" tabindex="-1"></a><span class="do">## Call:</span></span>
-<span id="cb30-193"><a href="outcome-regression-and-propensity-scores.html#cb30-193" tabindex="-1"></a><span class="do">## glm(formula = wt82_71 ~ qsmk + sex + race + age + I(age * age) + </span></span>
-<span id="cb30-194"><a href="outcome-regression-and-propensity-scores.html#cb30-194" tabindex="-1"></a><span class="do">##     as.factor(education) + smokeintensity + I(smokeintensity * </span></span>
-<span id="cb30-195"><a href="outcome-regression-and-propensity-scores.html#cb30-195" tabindex="-1"></a><span class="do">##     smokeintensity) + smokeyrs + I(smokeyrs * smokeyrs) + as.factor(exercise) + </span></span>
-<span id="cb30-196"><a href="outcome-regression-and-propensity-scores.html#cb30-196" tabindex="-1"></a><span class="do">##     as.factor(active) + wt71 + I(wt71 * wt71), data = nhefs)</span></span>
-<span id="cb30-197"><a href="outcome-regression-and-propensity-scores.html#cb30-197" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb30-198"><a href="outcome-regression-and-propensity-scores.html#cb30-198" tabindex="-1"></a><span class="do">## Deviance Residuals: </span></span>
-<span id="cb30-199"><a href="outcome-regression-and-propensity-scores.html#cb30-199" tabindex="-1"></a><span class="do">##     Min       1Q   Median       3Q      Max  </span></span>
-<span id="cb30-200"><a href="outcome-regression-and-propensity-scores.html#cb30-200" tabindex="-1"></a><span class="do">## -42.332   -4.216   -0.318    3.807   44.668  </span></span>
-<span id="cb30-201"><a href="outcome-regression-and-propensity-scores.html#cb30-201" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb30-202"><a href="outcome-regression-and-propensity-scores.html#cb30-202" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
-<span id="cb30-203"><a href="outcome-regression-and-propensity-scores.html#cb30-203" tabindex="-1"></a><span class="do">##                                      Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span id="cb30-204"><a href="outcome-regression-and-propensity-scores.html#cb30-204" tabindex="-1"></a><span class="do">## (Intercept)                        -1.6586176  4.3137734  -0.384 0.700666    </span></span>
-<span id="cb30-205"><a href="outcome-regression-and-propensity-scores.html#cb30-205" tabindex="-1"></a><span class="do">## qsmk                                3.4626218  0.4384543   7.897 5.36e-15 ***</span></span>
-<span id="cb30-206"><a href="outcome-regression-and-propensity-scores.html#cb30-206" tabindex="-1"></a><span class="do">## sex                                -1.4650496  0.4683410  -3.128 0.001792 ** </span></span>
-<span id="cb30-207"><a href="outcome-regression-and-propensity-scores.html#cb30-207" tabindex="-1"></a><span class="do">## race                                0.5864117  0.5816949   1.008 0.313560    </span></span>
-<span id="cb30-208"><a href="outcome-regression-and-propensity-scores.html#cb30-208" tabindex="-1"></a><span class="do">## age                                 0.3626624  0.1633431   2.220 0.026546 *  </span></span>
-<span id="cb30-209"><a href="outcome-regression-and-propensity-scores.html#cb30-209" tabindex="-1"></a><span class="do">## I(age * age)                       -0.0061377  0.0017263  -3.555 0.000389 ***</span></span>
-<span id="cb30-210"><a href="outcome-regression-and-propensity-scores.html#cb30-210" tabindex="-1"></a><span class="do">## as.factor(education)2               0.8185263  0.6067815   1.349 0.177546    </span></span>
-<span id="cb30-211"><a href="outcome-regression-and-propensity-scores.html#cb30-211" tabindex="-1"></a><span class="do">## as.factor(education)3               0.5715004  0.5561211   1.028 0.304273    </span></span>
-<span id="cb30-212"><a href="outcome-regression-and-propensity-scores.html#cb30-212" tabindex="-1"></a><span class="do">## as.factor(education)4               1.5085173  0.8323778   1.812 0.070134 .  </span></span>
-<span id="cb30-213"><a href="outcome-regression-and-propensity-scores.html#cb30-213" tabindex="-1"></a><span class="do">## as.factor(education)5              -0.1708264  0.7413289  -0.230 0.817786    </span></span>
-<span id="cb30-214"><a href="outcome-regression-and-propensity-scores.html#cb30-214" tabindex="-1"></a><span class="do">## smokeintensity                      0.0651533  0.0503115   1.295 0.195514    </span></span>
-<span id="cb30-215"><a href="outcome-regression-and-propensity-scores.html#cb30-215" tabindex="-1"></a><span class="do">## I(smokeintensity * smokeintensity) -0.0010468  0.0009373  -1.117 0.264261    </span></span>
-<span id="cb30-216"><a href="outcome-regression-and-propensity-scores.html#cb30-216" tabindex="-1"></a><span class="do">## smokeyrs                            0.1333931  0.0917319   1.454 0.146104    </span></span>
-<span id="cb30-217"><a href="outcome-regression-and-propensity-scores.html#cb30-217" tabindex="-1"></a><span class="do">## I(smokeyrs * smokeyrs)             -0.0018270  0.0015438  -1.183 0.236818    </span></span>
-<span id="cb30-218"><a href="outcome-regression-and-propensity-scores.html#cb30-218" tabindex="-1"></a><span class="do">## as.factor(exercise)1                0.3206824  0.5349616   0.599 0.548961    </span></span>
-<span id="cb30-219"><a href="outcome-regression-and-propensity-scores.html#cb30-219" tabindex="-1"></a><span class="do">## as.factor(exercise)2                0.3628786  0.5589557   0.649 0.516300    </span></span>
-<span id="cb30-220"><a href="outcome-regression-and-propensity-scores.html#cb30-220" tabindex="-1"></a><span class="do">## as.factor(active)1                 -0.9429574  0.4100208  -2.300 0.021593 *  </span></span>
-<span id="cb30-221"><a href="outcome-regression-and-propensity-scores.html#cb30-221" tabindex="-1"></a><span class="do">## as.factor(active)2                 -0.2580374  0.6847219  -0.377 0.706337    </span></span>
-<span id="cb30-222"><a href="outcome-regression-and-propensity-scores.html#cb30-222" tabindex="-1"></a><span class="do">## wt71                                0.0373642  0.0831658   0.449 0.653297    </span></span>
-<span id="cb30-223"><a href="outcome-regression-and-propensity-scores.html#cb30-223" tabindex="-1"></a><span class="do">## I(wt71 * wt71)                     -0.0009158  0.0005235  -1.749 0.080426 .  </span></span>
-<span id="cb30-224"><a href="outcome-regression-and-propensity-scores.html#cb30-224" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb30-225"><a href="outcome-regression-and-propensity-scores.html#cb30-225" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb30-226"><a href="outcome-regression-and-propensity-scores.html#cb30-226" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb30-227"><a href="outcome-regression-and-propensity-scores.html#cb30-227" tabindex="-1"></a><span class="do">## (Dispersion parameter for gaussian family taken to be 53.59474)</span></span>
-<span id="cb30-228"><a href="outcome-regression-and-propensity-scores.html#cb30-228" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb30-229"><a href="outcome-regression-and-propensity-scores.html#cb30-229" tabindex="-1"></a><span class="do">##     Null deviance: 97176  on 1565  degrees of freedom</span></span>
-<span id="cb30-230"><a href="outcome-regression-and-propensity-scores.html#cb30-230" tabindex="-1"></a><span class="do">## Residual deviance: 82857  on 1546  degrees of freedom</span></span>
-<span id="cb30-231"><a href="outcome-regression-and-propensity-scores.html#cb30-231" tabindex="-1"></a><span class="do">##   (63 observations deleted due to missingness)</span></span>
-<span id="cb30-232"><a href="outcome-regression-and-propensity-scores.html#cb30-232" tabindex="-1"></a><span class="do">## AIC: 10701</span></span>
-<span id="cb30-233"><a href="outcome-regression-and-propensity-scores.html#cb30-233" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb30-234"><a href="outcome-regression-and-propensity-scores.html#cb30-234" tabindex="-1"></a><span class="do">## Number of Fisher Scoring iterations: 2</span></span></code></pre></div>
+<span id="cb30-175"><a href="outcome-regression-and-propensity-scores.html#cb30-175" tabindex="-1"></a><span class="do">## Linear Hypotheses:</span></span>
+<span id="cb30-176"><a href="outcome-regression-and-propensity-scores.html#cb30-176" tabindex="-1"></a><span class="do">##                                                         Estimate lwr    upr   </span></span>
+<span id="cb30-177"><a href="outcome-regression-and-propensity-scores.html#cb30-177" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 5 == 0  2.7929   1.3039 4.2819</span></span>
+<span id="cb30-178"><a href="outcome-regression-and-propensity-scores.html#cb30-178" tabindex="-1"></a><span class="do">## Effect of Quitting Smoking at Smokeintensity of 40 == 0 4.4261   2.5372 6.3151</span></span>
+<span id="cb30-179"><a href="outcome-regression-and-propensity-scores.html#cb30-179" tabindex="-1"></a></span>
+<span id="cb30-180"><a href="outcome-regression-and-propensity-scores.html#cb30-180" tabindex="-1"></a><span class="co"># regression on covariates, not allowing for effect modification</span></span>
+<span id="cb30-181"><a href="outcome-regression-and-propensity-scores.html#cb30-181" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(wt82_71 <span class="sc">~</span> qsmk <span class="sc">+</span> sex <span class="sc">+</span> race <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(age<span class="sc">*</span>age) <span class="sc">+</span> <span class="fu">as.factor</span>(education)</span>
+<span id="cb30-182"><a href="outcome-regression-and-propensity-scores.html#cb30-182" tabindex="-1"></a>           <span class="sc">+</span> smokeintensity <span class="sc">+</span> <span class="fu">I</span>(smokeintensity<span class="sc">*</span>smokeintensity) <span class="sc">+</span> smokeyrs</span>
+<span id="cb30-183"><a href="outcome-regression-and-propensity-scores.html#cb30-183" tabindex="-1"></a>           <span class="sc">+</span> <span class="fu">I</span>(smokeyrs<span class="sc">*</span>smokeyrs) <span class="sc">+</span> <span class="fu">as.factor</span>(exercise) <span class="sc">+</span> <span class="fu">as.factor</span>(active)</span>
+<span id="cb30-184"><a href="outcome-regression-and-propensity-scores.html#cb30-184" tabindex="-1"></a>           <span class="sc">+</span> wt71 <span class="sc">+</span> <span class="fu">I</span>(wt71<span class="sc">*</span>wt71), <span class="at">data=</span>nhefs)</span>
+<span id="cb30-185"><a href="outcome-regression-and-propensity-scores.html#cb30-185" tabindex="-1"></a>  </span>
+<span id="cb30-186"><a href="outcome-regression-and-propensity-scores.html#cb30-186" tabindex="-1"></a><span class="fu">summary</span>(fit2)</span>
+<span id="cb30-187"><a href="outcome-regression-and-propensity-scores.html#cb30-187" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb30-188"><a href="outcome-regression-and-propensity-scores.html#cb30-188" tabindex="-1"></a><span class="do">## Call:</span></span>
+<span id="cb30-189"><a href="outcome-regression-and-propensity-scores.html#cb30-189" tabindex="-1"></a><span class="do">## glm(formula = wt82_71 ~ qsmk + sex + race + age + I(age * age) + </span></span>
+<span id="cb30-190"><a href="outcome-regression-and-propensity-scores.html#cb30-190" tabindex="-1"></a><span class="do">##     as.factor(education) + smokeintensity + I(smokeintensity * </span></span>
+<span id="cb30-191"><a href="outcome-regression-and-propensity-scores.html#cb30-191" tabindex="-1"></a><span class="do">##     smokeintensity) + smokeyrs + I(smokeyrs * smokeyrs) + as.factor(exercise) + </span></span>
+<span id="cb30-192"><a href="outcome-regression-and-propensity-scores.html#cb30-192" tabindex="-1"></a><span class="do">##     as.factor(active) + wt71 + I(wt71 * wt71), data = nhefs)</span></span>
+<span id="cb30-193"><a href="outcome-regression-and-propensity-scores.html#cb30-193" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb30-194"><a href="outcome-regression-and-propensity-scores.html#cb30-194" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
+<span id="cb30-195"><a href="outcome-regression-and-propensity-scores.html#cb30-195" tabindex="-1"></a><span class="do">##                                      Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb30-196"><a href="outcome-regression-and-propensity-scores.html#cb30-196" tabindex="-1"></a><span class="do">## (Intercept)                        -1.6586176  4.3137734  -0.384 0.700666    </span></span>
+<span id="cb30-197"><a href="outcome-regression-and-propensity-scores.html#cb30-197" tabindex="-1"></a><span class="do">## qsmk                                3.4626218  0.4384543   7.897 5.36e-15 ***</span></span>
+<span id="cb30-198"><a href="outcome-regression-and-propensity-scores.html#cb30-198" tabindex="-1"></a><span class="do">## sex                                -1.4650496  0.4683410  -3.128 0.001792 ** </span></span>
+<span id="cb30-199"><a href="outcome-regression-and-propensity-scores.html#cb30-199" tabindex="-1"></a><span class="do">## race                                0.5864117  0.5816949   1.008 0.313560    </span></span>
+<span id="cb30-200"><a href="outcome-regression-and-propensity-scores.html#cb30-200" tabindex="-1"></a><span class="do">## age                                 0.3626624  0.1633431   2.220 0.026546 *  </span></span>
+<span id="cb30-201"><a href="outcome-regression-and-propensity-scores.html#cb30-201" tabindex="-1"></a><span class="do">## I(age * age)                       -0.0061377  0.0017263  -3.555 0.000389 ***</span></span>
+<span id="cb30-202"><a href="outcome-regression-and-propensity-scores.html#cb30-202" tabindex="-1"></a><span class="do">## as.factor(education)2               0.8185263  0.6067815   1.349 0.177546    </span></span>
+<span id="cb30-203"><a href="outcome-regression-and-propensity-scores.html#cb30-203" tabindex="-1"></a><span class="do">## as.factor(education)3               0.5715004  0.5561211   1.028 0.304273    </span></span>
+<span id="cb30-204"><a href="outcome-regression-and-propensity-scores.html#cb30-204" tabindex="-1"></a><span class="do">## as.factor(education)4               1.5085173  0.8323778   1.812 0.070134 .  </span></span>
+<span id="cb30-205"><a href="outcome-regression-and-propensity-scores.html#cb30-205" tabindex="-1"></a><span class="do">## as.factor(education)5              -0.1708264  0.7413289  -0.230 0.817786    </span></span>
+<span id="cb30-206"><a href="outcome-regression-and-propensity-scores.html#cb30-206" tabindex="-1"></a><span class="do">## smokeintensity                      0.0651533  0.0503115   1.295 0.195514    </span></span>
+<span id="cb30-207"><a href="outcome-regression-and-propensity-scores.html#cb30-207" tabindex="-1"></a><span class="do">## I(smokeintensity * smokeintensity) -0.0010468  0.0009373  -1.117 0.264261    </span></span>
+<span id="cb30-208"><a href="outcome-regression-and-propensity-scores.html#cb30-208" tabindex="-1"></a><span class="do">## smokeyrs                            0.1333931  0.0917319   1.454 0.146104    </span></span>
+<span id="cb30-209"><a href="outcome-regression-and-propensity-scores.html#cb30-209" tabindex="-1"></a><span class="do">## I(smokeyrs * smokeyrs)             -0.0018270  0.0015438  -1.183 0.236818    </span></span>
+<span id="cb30-210"><a href="outcome-regression-and-propensity-scores.html#cb30-210" tabindex="-1"></a><span class="do">## as.factor(exercise)1                0.3206824  0.5349616   0.599 0.548961    </span></span>
+<span id="cb30-211"><a href="outcome-regression-and-propensity-scores.html#cb30-211" tabindex="-1"></a><span class="do">## as.factor(exercise)2                0.3628786  0.5589557   0.649 0.516300    </span></span>
+<span id="cb30-212"><a href="outcome-regression-and-propensity-scores.html#cb30-212" tabindex="-1"></a><span class="do">## as.factor(active)1                 -0.9429574  0.4100208  -2.300 0.021593 *  </span></span>
+<span id="cb30-213"><a href="outcome-regression-and-propensity-scores.html#cb30-213" tabindex="-1"></a><span class="do">## as.factor(active)2                 -0.2580374  0.6847219  -0.377 0.706337    </span></span>
+<span id="cb30-214"><a href="outcome-regression-and-propensity-scores.html#cb30-214" tabindex="-1"></a><span class="do">## wt71                                0.0373642  0.0831658   0.449 0.653297    </span></span>
+<span id="cb30-215"><a href="outcome-regression-and-propensity-scores.html#cb30-215" tabindex="-1"></a><span class="do">## I(wt71 * wt71)                     -0.0009158  0.0005235  -1.749 0.080426 .  </span></span>
+<span id="cb30-216"><a href="outcome-regression-and-propensity-scores.html#cb30-216" tabindex="-1"></a><span class="do">## ---</span></span>
+<span id="cb30-217"><a href="outcome-regression-and-propensity-scores.html#cb30-217" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb30-218"><a href="outcome-regression-and-propensity-scores.html#cb30-218" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb30-219"><a href="outcome-regression-and-propensity-scores.html#cb30-219" tabindex="-1"></a><span class="do">## (Dispersion parameter for gaussian family taken to be 53.59474)</span></span>
+<span id="cb30-220"><a href="outcome-regression-and-propensity-scores.html#cb30-220" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb30-221"><a href="outcome-regression-and-propensity-scores.html#cb30-221" tabindex="-1"></a><span class="do">##     Null deviance: 97176  on 1565  degrees of freedom</span></span>
+<span id="cb30-222"><a href="outcome-regression-and-propensity-scores.html#cb30-222" tabindex="-1"></a><span class="do">## Residual deviance: 82857  on 1546  degrees of freedom</span></span>
+<span id="cb30-223"><a href="outcome-regression-and-propensity-scores.html#cb30-223" tabindex="-1"></a><span class="do">##   (63 observations deleted due to missingness)</span></span>
+<span id="cb30-224"><a href="outcome-regression-and-propensity-scores.html#cb30-224" tabindex="-1"></a><span class="do">## AIC: 10701</span></span>
+<span id="cb30-225"><a href="outcome-regression-and-propensity-scores.html#cb30-225" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb30-226"><a href="outcome-regression-and-propensity-scores.html#cb30-226" tabindex="-1"></a><span class="do">## Number of Fisher Scoring iterations: 2</span></span></code></pre></div>
 </div>
 <div id="program-15.2" class="section level2 hasAnchor">
 <h2>Program 15.2<a href="outcome-regression-and-propensity-scores.html#program-15.2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -565,76 +557,72 @@ div.csl-indent {
 <span id="cb31-10"><a href="outcome-regression-and-propensity-scores.html#cb31-10" tabindex="-1"></a><span class="do">##     I(smokeyrs * smokeyrs) + as.factor(exercise) + as.factor(active) + </span></span>
 <span id="cb31-11"><a href="outcome-regression-and-propensity-scores.html#cb31-11" tabindex="-1"></a><span class="do">##     wt71 + I(wt71 * wt71), family = binomial(), data = nhefs)</span></span>
 <span id="cb31-12"><a href="outcome-regression-and-propensity-scores.html#cb31-12" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb31-13"><a href="outcome-regression-and-propensity-scores.html#cb31-13" tabindex="-1"></a><span class="do">## Deviance Residuals: </span></span>
-<span id="cb31-14"><a href="outcome-regression-and-propensity-scores.html#cb31-14" tabindex="-1"></a><span class="do">##     Min       1Q   Median       3Q      Max  </span></span>
-<span id="cb31-15"><a href="outcome-regression-and-propensity-scores.html#cb31-15" tabindex="-1"></a><span class="do">## -1.4646  -0.8044  -0.6460   1.0578   2.3550  </span></span>
-<span id="cb31-16"><a href="outcome-regression-and-propensity-scores.html#cb31-16" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb31-17"><a href="outcome-regression-and-propensity-scores.html#cb31-17" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
-<span id="cb31-18"><a href="outcome-regression-and-propensity-scores.html#cb31-18" tabindex="-1"></a><span class="do">##                                      Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
-<span id="cb31-19"><a href="outcome-regression-and-propensity-scores.html#cb31-19" tabindex="-1"></a><span class="do">## (Intercept)                        -1.9889022  1.2412792  -1.602 0.109089    </span></span>
-<span id="cb31-20"><a href="outcome-regression-and-propensity-scores.html#cb31-20" tabindex="-1"></a><span class="do">## sex                                -0.5075218  0.1482316  -3.424 0.000617 ***</span></span>
-<span id="cb31-21"><a href="outcome-regression-and-propensity-scores.html#cb31-21" tabindex="-1"></a><span class="do">## race                               -0.8502312  0.2058720  -4.130 3.63e-05 ***</span></span>
-<span id="cb31-22"><a href="outcome-regression-and-propensity-scores.html#cb31-22" tabindex="-1"></a><span class="do">## age                                 0.1030132  0.0488996   2.107 0.035150 *  </span></span>
-<span id="cb31-23"><a href="outcome-regression-and-propensity-scores.html#cb31-23" tabindex="-1"></a><span class="do">## I(age * age)                       -0.0006052  0.0005074  -1.193 0.232973    </span></span>
-<span id="cb31-24"><a href="outcome-regression-and-propensity-scores.html#cb31-24" tabindex="-1"></a><span class="do">## as.factor(education)2              -0.0983203  0.1906553  -0.516 0.606066    </span></span>
-<span id="cb31-25"><a href="outcome-regression-and-propensity-scores.html#cb31-25" tabindex="-1"></a><span class="do">## as.factor(education)3               0.0156987  0.1707139   0.092 0.926730    </span></span>
-<span id="cb31-26"><a href="outcome-regression-and-propensity-scores.html#cb31-26" tabindex="-1"></a><span class="do">## as.factor(education)4              -0.0425260  0.2642761  -0.161 0.872160    </span></span>
-<span id="cb31-27"><a href="outcome-regression-and-propensity-scores.html#cb31-27" tabindex="-1"></a><span class="do">## as.factor(education)5               0.3796632  0.2203947   1.723 0.084952 .  </span></span>
-<span id="cb31-28"><a href="outcome-regression-and-propensity-scores.html#cb31-28" tabindex="-1"></a><span class="do">## smokeintensity                     -0.0651561  0.0147589  -4.415 1.01e-05 ***</span></span>
-<span id="cb31-29"><a href="outcome-regression-and-propensity-scores.html#cb31-29" tabindex="-1"></a><span class="do">## I(smokeintensity * smokeintensity)  0.0008461  0.0002758   3.067 0.002160 ** </span></span>
-<span id="cb31-30"><a href="outcome-regression-and-propensity-scores.html#cb31-30" tabindex="-1"></a><span class="do">## smokeyrs                           -0.0733708  0.0269958  -2.718 0.006571 ** </span></span>
-<span id="cb31-31"><a href="outcome-regression-and-propensity-scores.html#cb31-31" tabindex="-1"></a><span class="do">## I(smokeyrs * smokeyrs)              0.0008384  0.0004435   1.891 0.058669 .  </span></span>
-<span id="cb31-32"><a href="outcome-regression-and-propensity-scores.html#cb31-32" tabindex="-1"></a><span class="do">## as.factor(exercise)1                0.2914117  0.1735543   1.679 0.093136 .  </span></span>
-<span id="cb31-33"><a href="outcome-regression-and-propensity-scores.html#cb31-33" tabindex="-1"></a><span class="do">## as.factor(exercise)2                0.3550517  0.1799293   1.973 0.048463 *  </span></span>
-<span id="cb31-34"><a href="outcome-regression-and-propensity-scores.html#cb31-34" tabindex="-1"></a><span class="do">## as.factor(active)1                  0.0108754  0.1298320   0.084 0.933243    </span></span>
-<span id="cb31-35"><a href="outcome-regression-and-propensity-scores.html#cb31-35" tabindex="-1"></a><span class="do">## as.factor(active)2                  0.0683123  0.2087269   0.327 0.743455    </span></span>
-<span id="cb31-36"><a href="outcome-regression-and-propensity-scores.html#cb31-36" tabindex="-1"></a><span class="do">## wt71                               -0.0128478  0.0222829  -0.577 0.564226    </span></span>
-<span id="cb31-37"><a href="outcome-regression-and-propensity-scores.html#cb31-37" tabindex="-1"></a><span class="do">## I(wt71 * wt71)                      0.0001209  0.0001352   0.895 0.370957    </span></span>
-<span id="cb31-38"><a href="outcome-regression-and-propensity-scores.html#cb31-38" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb31-39"><a href="outcome-regression-and-propensity-scores.html#cb31-39" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb31-40"><a href="outcome-regression-and-propensity-scores.html#cb31-40" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb31-41"><a href="outcome-regression-and-propensity-scores.html#cb31-41" tabindex="-1"></a><span class="do">## (Dispersion parameter for binomial family taken to be 1)</span></span>
+<span id="cb31-13"><a href="outcome-regression-and-propensity-scores.html#cb31-13" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
+<span id="cb31-14"><a href="outcome-regression-and-propensity-scores.html#cb31-14" tabindex="-1"></a><span class="do">##                                      Estimate Std. Error z value Pr(&gt;|z|)    </span></span>
+<span id="cb31-15"><a href="outcome-regression-and-propensity-scores.html#cb31-15" tabindex="-1"></a><span class="do">## (Intercept)                        -1.9889022  1.2412792  -1.602 0.109089    </span></span>
+<span id="cb31-16"><a href="outcome-regression-and-propensity-scores.html#cb31-16" tabindex="-1"></a><span class="do">## sex                                -0.5075218  0.1482316  -3.424 0.000617 ***</span></span>
+<span id="cb31-17"><a href="outcome-regression-and-propensity-scores.html#cb31-17" tabindex="-1"></a><span class="do">## race                               -0.8502312  0.2058720  -4.130 3.63e-05 ***</span></span>
+<span id="cb31-18"><a href="outcome-regression-and-propensity-scores.html#cb31-18" tabindex="-1"></a><span class="do">## age                                 0.1030132  0.0488996   2.107 0.035150 *  </span></span>
+<span id="cb31-19"><a href="outcome-regression-and-propensity-scores.html#cb31-19" tabindex="-1"></a><span class="do">## I(age * age)                       -0.0006052  0.0005074  -1.193 0.232973    </span></span>
+<span id="cb31-20"><a href="outcome-regression-and-propensity-scores.html#cb31-20" tabindex="-1"></a><span class="do">## as.factor(education)2              -0.0983203  0.1906553  -0.516 0.606066    </span></span>
+<span id="cb31-21"><a href="outcome-regression-and-propensity-scores.html#cb31-21" tabindex="-1"></a><span class="do">## as.factor(education)3               0.0156987  0.1707139   0.092 0.926730    </span></span>
+<span id="cb31-22"><a href="outcome-regression-and-propensity-scores.html#cb31-22" tabindex="-1"></a><span class="do">## as.factor(education)4              -0.0425260  0.2642761  -0.161 0.872160    </span></span>
+<span id="cb31-23"><a href="outcome-regression-and-propensity-scores.html#cb31-23" tabindex="-1"></a><span class="do">## as.factor(education)5               0.3796632  0.2203947   1.723 0.084952 .  </span></span>
+<span id="cb31-24"><a href="outcome-regression-and-propensity-scores.html#cb31-24" tabindex="-1"></a><span class="do">## smokeintensity                     -0.0651561  0.0147589  -4.415 1.01e-05 ***</span></span>
+<span id="cb31-25"><a href="outcome-regression-and-propensity-scores.html#cb31-25" tabindex="-1"></a><span class="do">## I(smokeintensity * smokeintensity)  0.0008461  0.0002758   3.067 0.002160 ** </span></span>
+<span id="cb31-26"><a href="outcome-regression-and-propensity-scores.html#cb31-26" tabindex="-1"></a><span class="do">## smokeyrs                           -0.0733708  0.0269958  -2.718 0.006571 ** </span></span>
+<span id="cb31-27"><a href="outcome-regression-and-propensity-scores.html#cb31-27" tabindex="-1"></a><span class="do">## I(smokeyrs * smokeyrs)              0.0008384  0.0004435   1.891 0.058669 .  </span></span>
+<span id="cb31-28"><a href="outcome-regression-and-propensity-scores.html#cb31-28" tabindex="-1"></a><span class="do">## as.factor(exercise)1                0.2914117  0.1735543   1.679 0.093136 .  </span></span>
+<span id="cb31-29"><a href="outcome-regression-and-propensity-scores.html#cb31-29" tabindex="-1"></a><span class="do">## as.factor(exercise)2                0.3550517  0.1799293   1.973 0.048463 *  </span></span>
+<span id="cb31-30"><a href="outcome-regression-and-propensity-scores.html#cb31-30" tabindex="-1"></a><span class="do">## as.factor(active)1                  0.0108754  0.1298320   0.084 0.933243    </span></span>
+<span id="cb31-31"><a href="outcome-regression-and-propensity-scores.html#cb31-31" tabindex="-1"></a><span class="do">## as.factor(active)2                  0.0683123  0.2087269   0.327 0.743455    </span></span>
+<span id="cb31-32"><a href="outcome-regression-and-propensity-scores.html#cb31-32" tabindex="-1"></a><span class="do">## wt71                               -0.0128478  0.0222829  -0.577 0.564226    </span></span>
+<span id="cb31-33"><a href="outcome-regression-and-propensity-scores.html#cb31-33" tabindex="-1"></a><span class="do">## I(wt71 * wt71)                      0.0001209  0.0001352   0.895 0.370957    </span></span>
+<span id="cb31-34"><a href="outcome-regression-and-propensity-scores.html#cb31-34" tabindex="-1"></a><span class="do">## ---</span></span>
+<span id="cb31-35"><a href="outcome-regression-and-propensity-scores.html#cb31-35" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb31-36"><a href="outcome-regression-and-propensity-scores.html#cb31-36" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb31-37"><a href="outcome-regression-and-propensity-scores.html#cb31-37" tabindex="-1"></a><span class="do">## (Dispersion parameter for binomial family taken to be 1)</span></span>
+<span id="cb31-38"><a href="outcome-regression-and-propensity-scores.html#cb31-38" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb31-39"><a href="outcome-regression-and-propensity-scores.html#cb31-39" tabindex="-1"></a><span class="do">##     Null deviance: 1876.3  on 1628  degrees of freedom</span></span>
+<span id="cb31-40"><a href="outcome-regression-and-propensity-scores.html#cb31-40" tabindex="-1"></a><span class="do">## Residual deviance: 1766.7  on 1610  degrees of freedom</span></span>
+<span id="cb31-41"><a href="outcome-regression-and-propensity-scores.html#cb31-41" tabindex="-1"></a><span class="do">## AIC: 1804.7</span></span>
 <span id="cb31-42"><a href="outcome-regression-and-propensity-scores.html#cb31-42" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb31-43"><a href="outcome-regression-and-propensity-scores.html#cb31-43" tabindex="-1"></a><span class="do">##     Null deviance: 1876.3  on 1628  degrees of freedom</span></span>
-<span id="cb31-44"><a href="outcome-regression-and-propensity-scores.html#cb31-44" tabindex="-1"></a><span class="do">## Residual deviance: 1766.7  on 1610  degrees of freedom</span></span>
-<span id="cb31-45"><a href="outcome-regression-and-propensity-scores.html#cb31-45" tabindex="-1"></a><span class="do">## AIC: 1804.7</span></span>
-<span id="cb31-46"><a href="outcome-regression-and-propensity-scores.html#cb31-46" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb31-47"><a href="outcome-regression-and-propensity-scores.html#cb31-47" tabindex="-1"></a><span class="do">## Number of Fisher Scoring iterations: 4</span></span>
-<span id="cb31-48"><a href="outcome-regression-and-propensity-scores.html#cb31-48" tabindex="-1"></a>nhefs<span class="sc">$</span>ps <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit3, nhefs, <span class="at">type=</span><span class="st">&quot;response&quot;</span>)</span>
-<span id="cb31-49"><a href="outcome-regression-and-propensity-scores.html#cb31-49" tabindex="-1"></a></span>
-<span id="cb31-50"><a href="outcome-regression-and-propensity-scores.html#cb31-50" tabindex="-1"></a><span class="fu">summary</span>(nhefs<span class="sc">$</span>ps[nhefs<span class="sc">$</span>qsmk<span class="sc">==</span><span class="dv">0</span>])</span>
-<span id="cb31-51"><a href="outcome-regression-and-propensity-scores.html#cb31-51" tabindex="-1"></a><span class="do">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span id="cb31-52"><a href="outcome-regression-and-propensity-scores.html#cb31-52" tabindex="-1"></a><span class="do">## 0.05298 0.16949 0.22747 0.24504 0.30441 0.65788</span></span>
-<span id="cb31-53"><a href="outcome-regression-and-propensity-scores.html#cb31-53" tabindex="-1"></a><span class="fu">summary</span>(nhefs<span class="sc">$</span>ps[nhefs<span class="sc">$</span>qsmk<span class="sc">==</span><span class="dv">1</span>])</span>
-<span id="cb31-54"><a href="outcome-regression-and-propensity-scores.html#cb31-54" tabindex="-1"></a><span class="do">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span id="cb31-55"><a href="outcome-regression-and-propensity-scores.html#cb31-55" tabindex="-1"></a><span class="do">## 0.06248 0.22046 0.28897 0.31240 0.38122 0.79320</span></span>
-<span id="cb31-56"><a href="outcome-regression-and-propensity-scores.html#cb31-56" tabindex="-1"></a></span>
-<span id="cb31-57"><a href="outcome-regression-and-propensity-scores.html#cb31-57" tabindex="-1"></a><span class="co"># # plotting the estimated propensity score</span></span>
-<span id="cb31-58"><a href="outcome-regression-and-propensity-scores.html#cb31-58" tabindex="-1"></a><span class="co"># install.packages(&quot;ggplot2&quot;) # install packages if necessary</span></span>
-<span id="cb31-59"><a href="outcome-regression-and-propensity-scores.html#cb31-59" tabindex="-1"></a><span class="co"># install.packages(&quot;dplyr&quot;)</span></span>
-<span id="cb31-60"><a href="outcome-regression-and-propensity-scores.html#cb31-60" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
-<span id="cb31-61"><a href="outcome-regression-and-propensity-scores.html#cb31-61" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
-<span id="cb31-62"><a href="outcome-regression-and-propensity-scores.html#cb31-62" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb31-63"><a href="outcome-regression-and-propensity-scores.html#cb31-63" tabindex="-1"></a><span class="do">## Attaching package: &#39;dplyr&#39;</span></span>
-<span id="cb31-64"><a href="outcome-regression-and-propensity-scores.html#cb31-64" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:MASS&#39;:</span></span>
-<span id="cb31-65"><a href="outcome-regression-and-propensity-scores.html#cb31-65" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb31-66"><a href="outcome-regression-and-propensity-scores.html#cb31-66" tabindex="-1"></a><span class="do">##     select</span></span>
-<span id="cb31-67"><a href="outcome-regression-and-propensity-scores.html#cb31-67" tabindex="-1"></a><span class="do">## The following objects are masked from &#39;package:stats&#39;:</span></span>
-<span id="cb31-68"><a href="outcome-regression-and-propensity-scores.html#cb31-68" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb31-69"><a href="outcome-regression-and-propensity-scores.html#cb31-69" tabindex="-1"></a><span class="do">##     filter, lag</span></span>
-<span id="cb31-70"><a href="outcome-regression-and-propensity-scores.html#cb31-70" tabindex="-1"></a><span class="do">## The following objects are masked from &#39;package:base&#39;:</span></span>
-<span id="cb31-71"><a href="outcome-regression-and-propensity-scores.html#cb31-71" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb31-72"><a href="outcome-regression-and-propensity-scores.html#cb31-72" tabindex="-1"></a><span class="do">##     intersect, setdiff, setequal, union</span></span>
-<span id="cb31-73"><a href="outcome-regression-and-propensity-scores.html#cb31-73" tabindex="-1"></a><span class="fu">ggplot</span>(nhefs, <span class="fu">aes</span>(<span class="at">x =</span> ps, <span class="at">fill =</span> qsmk)) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb31-74"><a href="outcome-regression-and-propensity-scores.html#cb31-74" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Probability of Quitting Smoking During Follow-up&#39;</span>) <span class="sc">+</span></span>
-<span id="cb31-75"><a href="outcome-regression-and-propensity-scores.html#cb31-75" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Propensity Score Distribution by Treatment Group&#39;</span>) <span class="sc">+</span></span>
-<span id="cb31-76"><a href="outcome-regression-and-propensity-scores.html#cb31-76" tabindex="-1"></a>  <span class="fu">scale_fill_discrete</span>(<span class="st">&#39;&#39;</span>) <span class="sc">+</span></span>
-<span id="cb31-77"><a href="outcome-regression-and-propensity-scores.html#cb31-77" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>, <span class="at">legend.direction =</span> <span class="st">&#39;vertical&#39;</span>)</span>
-<span id="cb31-78"><a href="outcome-regression-and-propensity-scores.html#cb31-78" tabindex="-1"></a><span class="do">## Warning: The following aesthetics were dropped during statistical transformation: fill</span></span>
-<span id="cb31-79"><a href="outcome-regression-and-propensity-scores.html#cb31-79" tabindex="-1"></a><span class="do">## ℹ This can happen when ggplot fails to infer the correct grouping structure in</span></span>
-<span id="cb31-80"><a href="outcome-regression-and-propensity-scores.html#cb31-80" tabindex="-1"></a><span class="do">##   the data.</span></span>
-<span id="cb31-81"><a href="outcome-regression-and-propensity-scores.html#cb31-81" tabindex="-1"></a><span class="do">## ℹ Did you forget to specify a `group` aesthetic or to convert a numerical</span></span>
-<span id="cb31-82"><a href="outcome-regression-and-propensity-scores.html#cb31-82" tabindex="-1"></a><span class="do">##   variable into a factor?</span></span></code></pre></div>
+<span id="cb31-43"><a href="outcome-regression-and-propensity-scores.html#cb31-43" tabindex="-1"></a><span class="do">## Number of Fisher Scoring iterations: 4</span></span>
+<span id="cb31-44"><a href="outcome-regression-and-propensity-scores.html#cb31-44" tabindex="-1"></a>nhefs<span class="sc">$</span>ps <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit3, nhefs, <span class="at">type=</span><span class="st">&quot;response&quot;</span>)</span>
+<span id="cb31-45"><a href="outcome-regression-and-propensity-scores.html#cb31-45" tabindex="-1"></a></span>
+<span id="cb31-46"><a href="outcome-regression-and-propensity-scores.html#cb31-46" tabindex="-1"></a><span class="fu">summary</span>(nhefs<span class="sc">$</span>ps[nhefs<span class="sc">$</span>qsmk<span class="sc">==</span><span class="dv">0</span>])</span>
+<span id="cb31-47"><a href="outcome-regression-and-propensity-scores.html#cb31-47" tabindex="-1"></a><span class="do">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb31-48"><a href="outcome-regression-and-propensity-scores.html#cb31-48" tabindex="-1"></a><span class="do">## 0.05298 0.16949 0.22747 0.24504 0.30441 0.65788</span></span>
+<span id="cb31-49"><a href="outcome-regression-and-propensity-scores.html#cb31-49" tabindex="-1"></a><span class="fu">summary</span>(nhefs<span class="sc">$</span>ps[nhefs<span class="sc">$</span>qsmk<span class="sc">==</span><span class="dv">1</span>])</span>
+<span id="cb31-50"><a href="outcome-regression-and-propensity-scores.html#cb31-50" tabindex="-1"></a><span class="do">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb31-51"><a href="outcome-regression-and-propensity-scores.html#cb31-51" tabindex="-1"></a><span class="do">## 0.06248 0.22046 0.28897 0.31240 0.38122 0.79320</span></span>
+<span id="cb31-52"><a href="outcome-regression-and-propensity-scores.html#cb31-52" tabindex="-1"></a></span>
+<span id="cb31-53"><a href="outcome-regression-and-propensity-scores.html#cb31-53" tabindex="-1"></a><span class="co"># # plotting the estimated propensity score</span></span>
+<span id="cb31-54"><a href="outcome-regression-and-propensity-scores.html#cb31-54" tabindex="-1"></a><span class="co"># install.packages(&quot;ggplot2&quot;) # install packages if necessary</span></span>
+<span id="cb31-55"><a href="outcome-regression-and-propensity-scores.html#cb31-55" tabindex="-1"></a><span class="co"># install.packages(&quot;dplyr&quot;)</span></span>
+<span id="cb31-56"><a href="outcome-regression-and-propensity-scores.html#cb31-56" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
+<span id="cb31-57"><a href="outcome-regression-and-propensity-scores.html#cb31-57" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb31-58"><a href="outcome-regression-and-propensity-scores.html#cb31-58" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb31-59"><a href="outcome-regression-and-propensity-scores.html#cb31-59" tabindex="-1"></a><span class="do">## Attaching package: &#39;dplyr&#39;</span></span>
+<span id="cb31-60"><a href="outcome-regression-and-propensity-scores.html#cb31-60" tabindex="-1"></a><span class="do">## The following object is masked from &#39;package:MASS&#39;:</span></span>
+<span id="cb31-61"><a href="outcome-regression-and-propensity-scores.html#cb31-61" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb31-62"><a href="outcome-regression-and-propensity-scores.html#cb31-62" tabindex="-1"></a><span class="do">##     select</span></span>
+<span id="cb31-63"><a href="outcome-regression-and-propensity-scores.html#cb31-63" tabindex="-1"></a><span class="do">## The following objects are masked from &#39;package:stats&#39;:</span></span>
+<span id="cb31-64"><a href="outcome-regression-and-propensity-scores.html#cb31-64" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb31-65"><a href="outcome-regression-and-propensity-scores.html#cb31-65" tabindex="-1"></a><span class="do">##     filter, lag</span></span>
+<span id="cb31-66"><a href="outcome-regression-and-propensity-scores.html#cb31-66" tabindex="-1"></a><span class="do">## The following objects are masked from &#39;package:base&#39;:</span></span>
+<span id="cb31-67"><a href="outcome-regression-and-propensity-scores.html#cb31-67" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb31-68"><a href="outcome-regression-and-propensity-scores.html#cb31-68" tabindex="-1"></a><span class="do">##     intersect, setdiff, setequal, union</span></span>
+<span id="cb31-69"><a href="outcome-regression-and-propensity-scores.html#cb31-69" tabindex="-1"></a><span class="fu">ggplot</span>(nhefs, <span class="fu">aes</span>(<span class="at">x =</span> ps, <span class="at">fill =</span> qsmk)) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb31-70"><a href="outcome-regression-and-propensity-scores.html#cb31-70" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Probability of Quitting Smoking During Follow-up&#39;</span>) <span class="sc">+</span></span>
+<span id="cb31-71"><a href="outcome-regression-and-propensity-scores.html#cb31-71" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Propensity Score Distribution by Treatment Group&#39;</span>) <span class="sc">+</span></span>
+<span id="cb31-72"><a href="outcome-regression-and-propensity-scores.html#cb31-72" tabindex="-1"></a>  <span class="fu">scale_fill_discrete</span>(<span class="st">&#39;&#39;</span>) <span class="sc">+</span></span>
+<span id="cb31-73"><a href="outcome-regression-and-propensity-scores.html#cb31-73" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>, <span class="at">legend.direction =</span> <span class="st">&#39;vertical&#39;</span>)</span>
+<span id="cb31-74"><a href="outcome-regression-and-propensity-scores.html#cb31-74" tabindex="-1"></a><span class="do">## Warning: The following aesthetics were dropped during statistical transformation: fill</span></span>
+<span id="cb31-75"><a href="outcome-regression-and-propensity-scores.html#cb31-75" tabindex="-1"></a><span class="do">## ℹ This can happen when ggplot fails to infer the correct grouping structure in</span></span>
+<span id="cb31-76"><a href="outcome-regression-and-propensity-scores.html#cb31-76" tabindex="-1"></a><span class="do">##   the data.</span></span>
+<span id="cb31-77"><a href="outcome-regression-and-propensity-scores.html#cb31-77" tabindex="-1"></a><span class="do">## ℹ Did you forget to specify a `group` aesthetic or to convert a numerical</span></span>
+<span id="cb31-78"><a href="outcome-regression-and-propensity-scores.html#cb31-78" tabindex="-1"></a><span class="do">##   variable into a factor?</span></span></code></pre></div>
 <p><img src="15-prop-scores-r_files/figure-html/unnamed-chunk-3-1.png" width="85%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="outcome-regression-and-propensity-scores.html#cb32-1" tabindex="-1"></a></span>
 <span id="cb32-2"><a href="outcome-regression-and-propensity-scores.html#cb32-2" tabindex="-1"></a><span class="co"># alternative plot with histograms</span></span>
@@ -927,47 +915,43 @@ div.csl-indent {
 <span id="cb34-250"><a href="outcome-regression-and-propensity-scores.html#cb34-250" tabindex="-1"></a><span class="do">## Call:</span></span>
 <span id="cb34-251"><a href="outcome-regression-and-propensity-scores.html#cb34-251" tabindex="-1"></a><span class="do">## glm(formula = wt82_71 ~ qsmk + as.factor(ps.dec), data = nhefs)</span></span>
 <span id="cb34-252"><a href="outcome-regression-and-propensity-scores.html#cb34-252" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb34-253"><a href="outcome-regression-and-propensity-scores.html#cb34-253" tabindex="-1"></a><span class="do">## Deviance Residuals: </span></span>
-<span id="cb34-254"><a href="outcome-regression-and-propensity-scores.html#cb34-254" tabindex="-1"></a><span class="do">##     Min       1Q   Median       3Q      Max  </span></span>
-<span id="cb34-255"><a href="outcome-regression-and-propensity-scores.html#cb34-255" tabindex="-1"></a><span class="do">## -43.543   -3.932   -0.085    4.233   46.773  </span></span>
-<span id="cb34-256"><a href="outcome-regression-and-propensity-scores.html#cb34-256" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb34-257"><a href="outcome-regression-and-propensity-scores.html#cb34-257" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
-<span id="cb34-258"><a href="outcome-regression-and-propensity-scores.html#cb34-258" tabindex="-1"></a><span class="do">##                     Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span id="cb34-259"><a href="outcome-regression-and-propensity-scores.html#cb34-259" tabindex="-1"></a><span class="do">## (Intercept)           3.7505     0.6089   6.159 9.29e-10 ***</span></span>
-<span id="cb34-260"><a href="outcome-regression-and-propensity-scores.html#cb34-260" tabindex="-1"></a><span class="do">## qsmk                  3.5005     0.4571   7.659 3.28e-14 ***</span></span>
-<span id="cb34-261"><a href="outcome-regression-and-propensity-scores.html#cb34-261" tabindex="-1"></a><span class="do">## as.factor(ps.dec)2   -0.7391     0.8611  -0.858   0.3908    </span></span>
-<span id="cb34-262"><a href="outcome-regression-and-propensity-scores.html#cb34-262" tabindex="-1"></a><span class="do">## as.factor(ps.dec)3   -0.6182     0.8612  -0.718   0.4730    </span></span>
-<span id="cb34-263"><a href="outcome-regression-and-propensity-scores.html#cb34-263" tabindex="-1"></a><span class="do">## as.factor(ps.dec)4   -0.5204     0.8584  -0.606   0.5444    </span></span>
-<span id="cb34-264"><a href="outcome-regression-and-propensity-scores.html#cb34-264" tabindex="-1"></a><span class="do">## as.factor(ps.dec)5   -1.4884     0.8590  -1.733   0.0834 .  </span></span>
-<span id="cb34-265"><a href="outcome-regression-and-propensity-scores.html#cb34-265" tabindex="-1"></a><span class="do">## as.factor(ps.dec)6   -1.6227     0.8675  -1.871   0.0616 .  </span></span>
-<span id="cb34-266"><a href="outcome-regression-and-propensity-scores.html#cb34-266" tabindex="-1"></a><span class="do">## as.factor(ps.dec)7   -1.9853     0.8681  -2.287   0.0223 *  </span></span>
-<span id="cb34-267"><a href="outcome-regression-and-propensity-scores.html#cb34-267" tabindex="-1"></a><span class="do">## as.factor(ps.dec)8   -3.4447     0.8749  -3.937 8.61e-05 ***</span></span>
-<span id="cb34-268"><a href="outcome-regression-and-propensity-scores.html#cb34-268" tabindex="-1"></a><span class="do">## as.factor(ps.dec)9   -5.1544     0.8848  -5.825 6.91e-09 ***</span></span>
-<span id="cb34-269"><a href="outcome-regression-and-propensity-scores.html#cb34-269" tabindex="-1"></a><span class="do">## as.factor(ps.dec)10  -4.8403     0.8828  -5.483 4.87e-08 ***</span></span>
-<span id="cb34-270"><a href="outcome-regression-and-propensity-scores.html#cb34-270" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb34-271"><a href="outcome-regression-and-propensity-scores.html#cb34-271" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb34-272"><a href="outcome-regression-and-propensity-scores.html#cb34-272" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb34-273"><a href="outcome-regression-and-propensity-scores.html#cb34-273" tabindex="-1"></a><span class="do">## (Dispersion parameter for gaussian family taken to be 58.42297)</span></span>
-<span id="cb34-274"><a href="outcome-regression-and-propensity-scores.html#cb34-274" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb34-275"><a href="outcome-regression-and-propensity-scores.html#cb34-275" tabindex="-1"></a><span class="do">##     Null deviance: 97176  on 1565  degrees of freedom</span></span>
-<span id="cb34-276"><a href="outcome-regression-and-propensity-scores.html#cb34-276" tabindex="-1"></a><span class="do">## Residual deviance: 90848  on 1555  degrees of freedom</span></span>
-<span id="cb34-277"><a href="outcome-regression-and-propensity-scores.html#cb34-277" tabindex="-1"></a><span class="do">##   (63 observations deleted due to missingness)</span></span>
-<span id="cb34-278"><a href="outcome-regression-and-propensity-scores.html#cb34-278" tabindex="-1"></a><span class="do">## AIC: 10827</span></span>
-<span id="cb34-279"><a href="outcome-regression-and-propensity-scores.html#cb34-279" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb34-280"><a href="outcome-regression-and-propensity-scores.html#cb34-280" tabindex="-1"></a><span class="do">## Number of Fisher Scoring iterations: 2</span></span>
-<span id="cb34-281"><a href="outcome-regression-and-propensity-scores.html#cb34-281" tabindex="-1"></a><span class="fu">confint.lm</span>(fit.psdec)</span>
-<span id="cb34-282"><a href="outcome-regression-and-propensity-scores.html#cb34-282" tabindex="-1"></a><span class="do">##                         2.5 %      97.5 %</span></span>
-<span id="cb34-283"><a href="outcome-regression-and-propensity-scores.html#cb34-283" tabindex="-1"></a><span class="do">## (Intercept)          2.556098  4.94486263</span></span>
-<span id="cb34-284"><a href="outcome-regression-and-propensity-scores.html#cb34-284" tabindex="-1"></a><span class="do">## qsmk                 2.603953  4.39700504</span></span>
-<span id="cb34-285"><a href="outcome-regression-and-propensity-scores.html#cb34-285" tabindex="-1"></a><span class="do">## as.factor(ps.dec)2  -2.428074  0.94982494</span></span>
-<span id="cb34-286"><a href="outcome-regression-and-propensity-scores.html#cb34-286" tabindex="-1"></a><span class="do">## as.factor(ps.dec)3  -2.307454  1.07103569</span></span>
-<span id="cb34-287"><a href="outcome-regression-and-propensity-scores.html#cb34-287" tabindex="-1"></a><span class="do">## as.factor(ps.dec)4  -2.204103  1.16333143</span></span>
-<span id="cb34-288"><a href="outcome-regression-and-propensity-scores.html#cb34-288" tabindex="-1"></a><span class="do">## as.factor(ps.dec)5  -3.173337  0.19657938</span></span>
-<span id="cb34-289"><a href="outcome-regression-and-propensity-scores.html#cb34-289" tabindex="-1"></a><span class="do">## as.factor(ps.dec)6  -3.324345  0.07893027</span></span>
-<span id="cb34-290"><a href="outcome-regression-and-propensity-scores.html#cb34-290" tabindex="-1"></a><span class="do">## as.factor(ps.dec)7  -3.688043 -0.28248110</span></span>
-<span id="cb34-291"><a href="outcome-regression-and-propensity-scores.html#cb34-291" tabindex="-1"></a><span class="do">## as.factor(ps.dec)8  -5.160862 -1.72860113</span></span>
-<span id="cb34-292"><a href="outcome-regression-and-propensity-scores.html#cb34-292" tabindex="-1"></a><span class="do">## as.factor(ps.dec)9  -6.889923 -3.41883853</span></span>
-<span id="cb34-293"><a href="outcome-regression-and-propensity-scores.html#cb34-293" tabindex="-1"></a><span class="do">## as.factor(ps.dec)10 -6.571789 -3.10873731</span></span></code></pre></div>
+<span id="cb34-253"><a href="outcome-regression-and-propensity-scores.html#cb34-253" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
+<span id="cb34-254"><a href="outcome-regression-and-propensity-scores.html#cb34-254" tabindex="-1"></a><span class="do">##                     Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb34-255"><a href="outcome-regression-and-propensity-scores.html#cb34-255" tabindex="-1"></a><span class="do">## (Intercept)           3.7505     0.6089   6.159 9.29e-10 ***</span></span>
+<span id="cb34-256"><a href="outcome-regression-and-propensity-scores.html#cb34-256" tabindex="-1"></a><span class="do">## qsmk                  3.5005     0.4571   7.659 3.28e-14 ***</span></span>
+<span id="cb34-257"><a href="outcome-regression-and-propensity-scores.html#cb34-257" tabindex="-1"></a><span class="do">## as.factor(ps.dec)2   -0.7391     0.8611  -0.858   0.3908    </span></span>
+<span id="cb34-258"><a href="outcome-regression-and-propensity-scores.html#cb34-258" tabindex="-1"></a><span class="do">## as.factor(ps.dec)3   -0.6182     0.8612  -0.718   0.4730    </span></span>
+<span id="cb34-259"><a href="outcome-regression-and-propensity-scores.html#cb34-259" tabindex="-1"></a><span class="do">## as.factor(ps.dec)4   -0.5204     0.8584  -0.606   0.5444    </span></span>
+<span id="cb34-260"><a href="outcome-regression-and-propensity-scores.html#cb34-260" tabindex="-1"></a><span class="do">## as.factor(ps.dec)5   -1.4884     0.8590  -1.733   0.0834 .  </span></span>
+<span id="cb34-261"><a href="outcome-regression-and-propensity-scores.html#cb34-261" tabindex="-1"></a><span class="do">## as.factor(ps.dec)6   -1.6227     0.8675  -1.871   0.0616 .  </span></span>
+<span id="cb34-262"><a href="outcome-regression-and-propensity-scores.html#cb34-262" tabindex="-1"></a><span class="do">## as.factor(ps.dec)7   -1.9853     0.8681  -2.287   0.0223 *  </span></span>
+<span id="cb34-263"><a href="outcome-regression-and-propensity-scores.html#cb34-263" tabindex="-1"></a><span class="do">## as.factor(ps.dec)8   -3.4447     0.8749  -3.937 8.61e-05 ***</span></span>
+<span id="cb34-264"><a href="outcome-regression-and-propensity-scores.html#cb34-264" tabindex="-1"></a><span class="do">## as.factor(ps.dec)9   -5.1544     0.8848  -5.825 6.91e-09 ***</span></span>
+<span id="cb34-265"><a href="outcome-regression-and-propensity-scores.html#cb34-265" tabindex="-1"></a><span class="do">## as.factor(ps.dec)10  -4.8403     0.8828  -5.483 4.87e-08 ***</span></span>
+<span id="cb34-266"><a href="outcome-regression-and-propensity-scores.html#cb34-266" tabindex="-1"></a><span class="do">## ---</span></span>
+<span id="cb34-267"><a href="outcome-regression-and-propensity-scores.html#cb34-267" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb34-268"><a href="outcome-regression-and-propensity-scores.html#cb34-268" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb34-269"><a href="outcome-regression-and-propensity-scores.html#cb34-269" tabindex="-1"></a><span class="do">## (Dispersion parameter for gaussian family taken to be 58.42297)</span></span>
+<span id="cb34-270"><a href="outcome-regression-and-propensity-scores.html#cb34-270" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb34-271"><a href="outcome-regression-and-propensity-scores.html#cb34-271" tabindex="-1"></a><span class="do">##     Null deviance: 97176  on 1565  degrees of freedom</span></span>
+<span id="cb34-272"><a href="outcome-regression-and-propensity-scores.html#cb34-272" tabindex="-1"></a><span class="do">## Residual deviance: 90848  on 1555  degrees of freedom</span></span>
+<span id="cb34-273"><a href="outcome-regression-and-propensity-scores.html#cb34-273" tabindex="-1"></a><span class="do">##   (63 observations deleted due to missingness)</span></span>
+<span id="cb34-274"><a href="outcome-regression-and-propensity-scores.html#cb34-274" tabindex="-1"></a><span class="do">## AIC: 10827</span></span>
+<span id="cb34-275"><a href="outcome-regression-and-propensity-scores.html#cb34-275" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb34-276"><a href="outcome-regression-and-propensity-scores.html#cb34-276" tabindex="-1"></a><span class="do">## Number of Fisher Scoring iterations: 2</span></span>
+<span id="cb34-277"><a href="outcome-regression-and-propensity-scores.html#cb34-277" tabindex="-1"></a><span class="fu">confint.lm</span>(fit.psdec)</span>
+<span id="cb34-278"><a href="outcome-regression-and-propensity-scores.html#cb34-278" tabindex="-1"></a><span class="do">##                         2.5 %      97.5 %</span></span>
+<span id="cb34-279"><a href="outcome-regression-and-propensity-scores.html#cb34-279" tabindex="-1"></a><span class="do">## (Intercept)          2.556098  4.94486263</span></span>
+<span id="cb34-280"><a href="outcome-regression-and-propensity-scores.html#cb34-280" tabindex="-1"></a><span class="do">## qsmk                 2.603953  4.39700504</span></span>
+<span id="cb34-281"><a href="outcome-regression-and-propensity-scores.html#cb34-281" tabindex="-1"></a><span class="do">## as.factor(ps.dec)2  -2.428074  0.94982494</span></span>
+<span id="cb34-282"><a href="outcome-regression-and-propensity-scores.html#cb34-282" tabindex="-1"></a><span class="do">## as.factor(ps.dec)3  -2.307454  1.07103569</span></span>
+<span id="cb34-283"><a href="outcome-regression-and-propensity-scores.html#cb34-283" tabindex="-1"></a><span class="do">## as.factor(ps.dec)4  -2.204103  1.16333143</span></span>
+<span id="cb34-284"><a href="outcome-regression-and-propensity-scores.html#cb34-284" tabindex="-1"></a><span class="do">## as.factor(ps.dec)5  -3.173337  0.19657938</span></span>
+<span id="cb34-285"><a href="outcome-regression-and-propensity-scores.html#cb34-285" tabindex="-1"></a><span class="do">## as.factor(ps.dec)6  -3.324345  0.07893027</span></span>
+<span id="cb34-286"><a href="outcome-regression-and-propensity-scores.html#cb34-286" tabindex="-1"></a><span class="do">## as.factor(ps.dec)7  -3.688043 -0.28248110</span></span>
+<span id="cb34-287"><a href="outcome-regression-and-propensity-scores.html#cb34-287" tabindex="-1"></a><span class="do">## as.factor(ps.dec)8  -5.160862 -1.72860113</span></span>
+<span id="cb34-288"><a href="outcome-regression-and-propensity-scores.html#cb34-288" tabindex="-1"></a><span class="do">## as.factor(ps.dec)9  -6.889923 -3.41883853</span></span>
+<span id="cb34-289"><a href="outcome-regression-and-propensity-scores.html#cb34-289" tabindex="-1"></a><span class="do">## as.factor(ps.dec)10 -6.571789 -3.10873731</span></span></code></pre></div>
 </div>
 <div id="program-15.4" class="section level2 hasAnchor">
 <h2>Program 15.4<a href="outcome-regression-and-propensity-scores.html#program-15.4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -1035,15 +1019,15 @@ div.csl-indent {
 <span id="cb35-58"><a href="outcome-regression-and-propensity-scores.html#cb35-58" tabindex="-1"></a>                                <span class="st">&quot;Treatment - No Treatment&quot;</span>), mean, se, ll, ul))</span>
 <span id="cb35-59"><a href="outcome-regression-and-propensity-scores.html#cb35-59" tabindex="-1"></a>bootstrap</span>
 <span id="cb35-60"><a href="outcome-regression-and-propensity-scores.html#cb35-60" tabindex="-1"></a><span class="do">##                         V1             mean                se               ll</span></span>
-<span id="cb35-61"><a href="outcome-regression-and-propensity-scores.html#cb35-61" tabindex="-1"></a><span class="do">## 1                 Observed 2.63384609228479 0.221092636274586 2.20051248793959</span></span>
-<span id="cb35-62"><a href="outcome-regression-and-propensity-scores.html#cb35-62" tabindex="-1"></a><span class="do">## 2             No Treatment 1.71983636149843  0.21071446858497 1.30684359205039</span></span>
-<span id="cb35-63"><a href="outcome-regression-and-propensity-scores.html#cb35-63" tabindex="-1"></a><span class="do">## 3                Treatment 5.35072300362993 0.129508148565317 5.09689169673744</span></span>
-<span id="cb35-64"><a href="outcome-regression-and-propensity-scores.html#cb35-64" tabindex="-1"></a><span class="do">## 4 Treatment - No Treatment  3.6308866421315 0.259922826310698 3.12144726380267</span></span>
+<span id="cb35-61"><a href="outcome-regression-and-propensity-scores.html#cb35-61" tabindex="-1"></a><span class="do">## 1                 Observed 2.63384609228479 0.122606142683806 2.39354246834116</span></span>
+<span id="cb35-62"><a href="outcome-regression-and-propensity-scores.html#cb35-62" tabindex="-1"></a><span class="do">## 2             No Treatment 1.71983636149845 0.110941037383332 1.50239592381961</span></span>
+<span id="cb35-63"><a href="outcome-regression-and-propensity-scores.html#cb35-63" tabindex="-1"></a><span class="do">## 3                Treatment 5.35072300362985 0.200175665450999 4.95838590876456</span></span>
+<span id="cb35-64"><a href="outcome-regression-and-propensity-scores.html#cb35-64" tabindex="-1"></a><span class="do">## 4 Treatment - No Treatment  3.6308866421314 0.241504629174912 3.15754626684887</span></span>
 <span id="cb35-65"><a href="outcome-regression-and-propensity-scores.html#cb35-65" tabindex="-1"></a><span class="do">##                 ul</span></span>
-<span id="cb35-66"><a href="outcome-regression-and-propensity-scores.html#cb35-66" tabindex="-1"></a><span class="do">## 1    3.06717969663</span></span>
-<span id="cb35-67"><a href="outcome-regression-and-propensity-scores.html#cb35-67" tabindex="-1"></a><span class="do">## 2 2.13282913094646</span></span>
-<span id="cb35-68"><a href="outcome-regression-and-propensity-scores.html#cb35-68" tabindex="-1"></a><span class="do">## 3 5.60455431052241</span></span>
-<span id="cb35-69"><a href="outcome-regression-and-propensity-scores.html#cb35-69" tabindex="-1"></a><span class="do">## 4 4.14032602046033</span></span></code></pre></div>
+<span id="cb35-66"><a href="outcome-regression-and-propensity-scores.html#cb35-66" tabindex="-1"></a><span class="do">## 1 2.87414971622843</span></span>
+<span id="cb35-67"><a href="outcome-regression-and-propensity-scores.html#cb35-67" tabindex="-1"></a><span class="do">## 2  1.9372767991773</span></span>
+<span id="cb35-68"><a href="outcome-regression-and-propensity-scores.html#cb35-68" tabindex="-1"></a><span class="do">## 3 5.74306009849515</span></span>
+<span id="cb35-69"><a href="outcome-regression-and-propensity-scores.html#cb35-69" tabindex="-1"></a><span class="do">## 4 4.10422701741393</span></span></code></pre></div>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="outcome-regression-and-propensity-scores.html#cb36-1" tabindex="-1"></a><span class="co"># regression on the propensity score (linear term)</span></span>
 <span id="cb36-2"><a href="outcome-regression-and-propensity-scores.html#cb36-2" tabindex="-1"></a>model6 <span class="ot">&lt;-</span> <span class="fu">glm</span>(wt82_71 <span class="sc">~</span> qsmk <span class="sc">+</span> ps, <span class="at">data =</span> nhefs) <span class="co"># p.qsmk</span></span>
 <span id="cb36-3"><a href="outcome-regression-and-propensity-scores.html#cb36-3" tabindex="-1"></a><span class="fu">summary</span>(model6)</span>
@@ -1051,92 +1035,88 @@ div.csl-indent {
 <span id="cb36-5"><a href="outcome-regression-and-propensity-scores.html#cb36-5" tabindex="-1"></a><span class="do">## Call:</span></span>
 <span id="cb36-6"><a href="outcome-regression-and-propensity-scores.html#cb36-6" tabindex="-1"></a><span class="do">## glm(formula = wt82_71 ~ qsmk + ps, data = nhefs)</span></span>
 <span id="cb36-7"><a href="outcome-regression-and-propensity-scores.html#cb36-7" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb36-8"><a href="outcome-regression-and-propensity-scores.html#cb36-8" tabindex="-1"></a><span class="do">## Deviance Residuals: </span></span>
-<span id="cb36-9"><a href="outcome-regression-and-propensity-scores.html#cb36-9" tabindex="-1"></a><span class="do">##     Min       1Q   Median       3Q      Max  </span></span>
-<span id="cb36-10"><a href="outcome-regression-and-propensity-scores.html#cb36-10" tabindex="-1"></a><span class="do">## -43.314   -4.006   -0.068    4.244   47.158  </span></span>
-<span id="cb36-11"><a href="outcome-regression-and-propensity-scores.html#cb36-11" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb36-12"><a href="outcome-regression-and-propensity-scores.html#cb36-12" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
-<span id="cb36-13"><a href="outcome-regression-and-propensity-scores.html#cb36-13" tabindex="-1"></a><span class="do">##             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span id="cb36-14"><a href="outcome-regression-and-propensity-scores.html#cb36-14" tabindex="-1"></a><span class="do">## (Intercept)   5.5945     0.4831  11.581  &lt; 2e-16 ***</span></span>
-<span id="cb36-15"><a href="outcome-regression-and-propensity-scores.html#cb36-15" tabindex="-1"></a><span class="do">## qsmk          3.5506     0.4573   7.765 1.47e-14 ***</span></span>
-<span id="cb36-16"><a href="outcome-regression-and-propensity-scores.html#cb36-16" tabindex="-1"></a><span class="do">## ps          -14.8218     1.7576  -8.433  &lt; 2e-16 ***</span></span>
-<span id="cb36-17"><a href="outcome-regression-and-propensity-scores.html#cb36-17" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb36-18"><a href="outcome-regression-and-propensity-scores.html#cb36-18" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb36-19"><a href="outcome-regression-and-propensity-scores.html#cb36-19" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb36-20"><a href="outcome-regression-and-propensity-scores.html#cb36-20" tabindex="-1"></a><span class="do">## (Dispersion parameter for gaussian family taken to be 58.28455)</span></span>
-<span id="cb36-21"><a href="outcome-regression-and-propensity-scores.html#cb36-21" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb36-22"><a href="outcome-regression-and-propensity-scores.html#cb36-22" tabindex="-1"></a><span class="do">##     Null deviance: 97176  on 1565  degrees of freedom</span></span>
-<span id="cb36-23"><a href="outcome-regression-and-propensity-scores.html#cb36-23" tabindex="-1"></a><span class="do">## Residual deviance: 91099  on 1563  degrees of freedom</span></span>
-<span id="cb36-24"><a href="outcome-regression-and-propensity-scores.html#cb36-24" tabindex="-1"></a><span class="do">##   (63 observations deleted due to missingness)</span></span>
-<span id="cb36-25"><a href="outcome-regression-and-propensity-scores.html#cb36-25" tabindex="-1"></a><span class="do">## AIC: 10815</span></span>
-<span id="cb36-26"><a href="outcome-regression-and-propensity-scores.html#cb36-26" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb36-27"><a href="outcome-regression-and-propensity-scores.html#cb36-27" tabindex="-1"></a><span class="do">## Number of Fisher Scoring iterations: 2</span></span>
-<span id="cb36-28"><a href="outcome-regression-and-propensity-scores.html#cb36-28" tabindex="-1"></a></span>
-<span id="cb36-29"><a href="outcome-regression-and-propensity-scores.html#cb36-29" tabindex="-1"></a><span class="co"># standarization on the propensity score</span></span>
-<span id="cb36-30"><a href="outcome-regression-and-propensity-scores.html#cb36-30" tabindex="-1"></a><span class="co"># (step 1) create two new datasets, one with all treated and one with all untreated</span></span>
-<span id="cb36-31"><a href="outcome-regression-and-propensity-scores.html#cb36-31" tabindex="-1"></a>treated <span class="ot">&lt;-</span> nhefs</span>
-<span id="cb36-32"><a href="outcome-regression-and-propensity-scores.html#cb36-32" tabindex="-1"></a>  treated<span class="sc">$</span>qsmk <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb36-33"><a href="outcome-regression-and-propensity-scores.html#cb36-33" tabindex="-1"></a></span>
-<span id="cb36-34"><a href="outcome-regression-and-propensity-scores.html#cb36-34" tabindex="-1"></a>untreated <span class="ot">&lt;-</span> nhefs</span>
-<span id="cb36-35"><a href="outcome-regression-and-propensity-scores.html#cb36-35" tabindex="-1"></a>  untreated<span class="sc">$</span>qsmk <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb36-8"><a href="outcome-regression-and-propensity-scores.html#cb36-8" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
+<span id="cb36-9"><a href="outcome-regression-and-propensity-scores.html#cb36-9" tabindex="-1"></a><span class="do">##             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb36-10"><a href="outcome-regression-and-propensity-scores.html#cb36-10" tabindex="-1"></a><span class="do">## (Intercept)   5.5945     0.4831  11.581  &lt; 2e-16 ***</span></span>
+<span id="cb36-11"><a href="outcome-regression-and-propensity-scores.html#cb36-11" tabindex="-1"></a><span class="do">## qsmk          3.5506     0.4573   7.765 1.47e-14 ***</span></span>
+<span id="cb36-12"><a href="outcome-regression-and-propensity-scores.html#cb36-12" tabindex="-1"></a><span class="do">## ps          -14.8218     1.7576  -8.433  &lt; 2e-16 ***</span></span>
+<span id="cb36-13"><a href="outcome-regression-and-propensity-scores.html#cb36-13" tabindex="-1"></a><span class="do">## ---</span></span>
+<span id="cb36-14"><a href="outcome-regression-and-propensity-scores.html#cb36-14" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb36-15"><a href="outcome-regression-and-propensity-scores.html#cb36-15" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb36-16"><a href="outcome-regression-and-propensity-scores.html#cb36-16" tabindex="-1"></a><span class="do">## (Dispersion parameter for gaussian family taken to be 58.28455)</span></span>
+<span id="cb36-17"><a href="outcome-regression-and-propensity-scores.html#cb36-17" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb36-18"><a href="outcome-regression-and-propensity-scores.html#cb36-18" tabindex="-1"></a><span class="do">##     Null deviance: 97176  on 1565  degrees of freedom</span></span>
+<span id="cb36-19"><a href="outcome-regression-and-propensity-scores.html#cb36-19" tabindex="-1"></a><span class="do">## Residual deviance: 91099  on 1563  degrees of freedom</span></span>
+<span id="cb36-20"><a href="outcome-regression-and-propensity-scores.html#cb36-20" tabindex="-1"></a><span class="do">##   (63 observations deleted due to missingness)</span></span>
+<span id="cb36-21"><a href="outcome-regression-and-propensity-scores.html#cb36-21" tabindex="-1"></a><span class="do">## AIC: 10815</span></span>
+<span id="cb36-22"><a href="outcome-regression-and-propensity-scores.html#cb36-22" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb36-23"><a href="outcome-regression-and-propensity-scores.html#cb36-23" tabindex="-1"></a><span class="do">## Number of Fisher Scoring iterations: 2</span></span>
+<span id="cb36-24"><a href="outcome-regression-and-propensity-scores.html#cb36-24" tabindex="-1"></a></span>
+<span id="cb36-25"><a href="outcome-regression-and-propensity-scores.html#cb36-25" tabindex="-1"></a><span class="co"># standarization on the propensity score</span></span>
+<span id="cb36-26"><a href="outcome-regression-and-propensity-scores.html#cb36-26" tabindex="-1"></a><span class="co"># (step 1) create two new datasets, one with all treated and one with all untreated</span></span>
+<span id="cb36-27"><a href="outcome-regression-and-propensity-scores.html#cb36-27" tabindex="-1"></a>treated <span class="ot">&lt;-</span> nhefs</span>
+<span id="cb36-28"><a href="outcome-regression-and-propensity-scores.html#cb36-28" tabindex="-1"></a>  treated<span class="sc">$</span>qsmk <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb36-29"><a href="outcome-regression-and-propensity-scores.html#cb36-29" tabindex="-1"></a></span>
+<span id="cb36-30"><a href="outcome-regression-and-propensity-scores.html#cb36-30" tabindex="-1"></a>untreated <span class="ot">&lt;-</span> nhefs</span>
+<span id="cb36-31"><a href="outcome-regression-and-propensity-scores.html#cb36-31" tabindex="-1"></a>  untreated<span class="sc">$</span>qsmk <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb36-32"><a href="outcome-regression-and-propensity-scores.html#cb36-32" tabindex="-1"></a></span>
+<span id="cb36-33"><a href="outcome-regression-and-propensity-scores.html#cb36-33" tabindex="-1"></a><span class="co"># (step 2) predict values for everyone in each new dataset based on above model</span></span>
+<span id="cb36-34"><a href="outcome-regression-and-propensity-scores.html#cb36-34" tabindex="-1"></a>treated<span class="sc">$</span>pred.y <span class="ot">&lt;-</span> <span class="fu">predict</span>(model6, treated)</span>
+<span id="cb36-35"><a href="outcome-regression-and-propensity-scores.html#cb36-35" tabindex="-1"></a>untreated<span class="sc">$</span>pred.y <span class="ot">&lt;-</span> <span class="fu">predict</span>(model6, untreated)</span>
 <span id="cb36-36"><a href="outcome-regression-and-propensity-scores.html#cb36-36" tabindex="-1"></a></span>
-<span id="cb36-37"><a href="outcome-regression-and-propensity-scores.html#cb36-37" tabindex="-1"></a><span class="co"># (step 2) predict values for everyone in each new dataset based on above model</span></span>
-<span id="cb36-38"><a href="outcome-regression-and-propensity-scores.html#cb36-38" tabindex="-1"></a>treated<span class="sc">$</span>pred.y <span class="ot">&lt;-</span> <span class="fu">predict</span>(model6, treated)</span>
-<span id="cb36-39"><a href="outcome-regression-and-propensity-scores.html#cb36-39" tabindex="-1"></a>untreated<span class="sc">$</span>pred.y <span class="ot">&lt;-</span> <span class="fu">predict</span>(model6, untreated)</span>
-<span id="cb36-40"><a href="outcome-regression-and-propensity-scores.html#cb36-40" tabindex="-1"></a></span>
-<span id="cb36-41"><a href="outcome-regression-and-propensity-scores.html#cb36-41" tabindex="-1"></a><span class="co"># (step 3) compare mean weight loss had all been treated vs. that had all been untreated</span></span>
-<span id="cb36-42"><a href="outcome-regression-and-propensity-scores.html#cb36-42" tabindex="-1"></a>mean1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(treated<span class="sc">$</span>pred.y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb36-43"><a href="outcome-regression-and-propensity-scores.html#cb36-43" tabindex="-1"></a>mean0 <span class="ot">&lt;-</span> <span class="fu">mean</span>(untreated<span class="sc">$</span>pred.y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb36-44"><a href="outcome-regression-and-propensity-scores.html#cb36-44" tabindex="-1"></a>mean1</span>
-<span id="cb36-45"><a href="outcome-regression-and-propensity-scores.html#cb36-45" tabindex="-1"></a><span class="do">## [1] 5.250824</span></span>
-<span id="cb36-46"><a href="outcome-regression-and-propensity-scores.html#cb36-46" tabindex="-1"></a>mean0</span>
-<span id="cb36-47"><a href="outcome-regression-and-propensity-scores.html#cb36-47" tabindex="-1"></a><span class="do">## [1] 1.700228</span></span>
-<span id="cb36-48"><a href="outcome-regression-and-propensity-scores.html#cb36-48" tabindex="-1"></a>mean1 <span class="sc">-</span> mean0</span>
-<span id="cb36-49"><a href="outcome-regression-and-propensity-scores.html#cb36-49" tabindex="-1"></a><span class="do">## [1] 3.550596</span></span>
-<span id="cb36-50"><a href="outcome-regression-and-propensity-scores.html#cb36-50" tabindex="-1"></a></span>
-<span id="cb36-51"><a href="outcome-regression-and-propensity-scores.html#cb36-51" tabindex="-1"></a><span class="co"># (step 4) bootstrap a confidence interval</span></span>
-<span id="cb36-52"><a href="outcome-regression-and-propensity-scores.html#cb36-52" tabindex="-1"></a><span class="co"># number of bootstraps</span></span>
-<span id="cb36-53"><a href="outcome-regression-and-propensity-scores.html#cb36-53" tabindex="-1"></a>nboot <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb36-54"><a href="outcome-regression-and-propensity-scores.html#cb36-54" tabindex="-1"></a><span class="co"># set up a matrix to store results</span></span>
-<span id="cb36-55"><a href="outcome-regression-and-propensity-scores.html#cb36-55" tabindex="-1"></a>boots <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">i =</span> <span class="dv">1</span><span class="sc">:</span>nboot,</span>
-<span id="cb36-56"><a href="outcome-regression-and-propensity-scores.html#cb36-56" tabindex="-1"></a>                    <span class="at">mean1 =</span> <span class="cn">NA</span>,</span>
-<span id="cb36-57"><a href="outcome-regression-and-propensity-scores.html#cb36-57" tabindex="-1"></a>                    <span class="at">mean0 =</span> <span class="cn">NA</span>,</span>
-<span id="cb36-58"><a href="outcome-regression-and-propensity-scores.html#cb36-58" tabindex="-1"></a>                    <span class="at">difference =</span> <span class="cn">NA</span>)</span>
-<span id="cb36-59"><a href="outcome-regression-and-propensity-scores.html#cb36-59" tabindex="-1"></a><span class="co"># loop to perform the bootstrapping</span></span>
-<span id="cb36-60"><a href="outcome-regression-and-propensity-scores.html#cb36-60" tabindex="-1"></a>nhefs <span class="ot">&lt;-</span> <span class="fu">subset</span>(nhefs, <span class="sc">!</span><span class="fu">is.na</span>(ps) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(wt82_71)) <span class="co"># p.qsmk</span></span>
-<span id="cb36-61"><a href="outcome-regression-and-propensity-scores.html#cb36-61" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nboot) {</span>
-<span id="cb36-62"><a href="outcome-regression-and-propensity-scores.html#cb36-62" tabindex="-1"></a>  <span class="co"># sample with replacement</span></span>
-<span id="cb36-63"><a href="outcome-regression-and-propensity-scores.html#cb36-63" tabindex="-1"></a>  sampl <span class="ot">&lt;-</span> nhefs[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(nhefs), <span class="fu">nrow</span>(nhefs), <span class="at">replace =</span> <span class="cn">TRUE</span>), ]</span>
-<span id="cb36-64"><a href="outcome-regression-and-propensity-scores.html#cb36-64" tabindex="-1"></a>  </span>
-<span id="cb36-65"><a href="outcome-regression-and-propensity-scores.html#cb36-65" tabindex="-1"></a>  <span class="co"># fit the model in the bootstrap sample</span></span>
-<span id="cb36-66"><a href="outcome-regression-and-propensity-scores.html#cb36-66" tabindex="-1"></a>  bootmod <span class="ot">&lt;-</span> <span class="fu">glm</span>(wt82_71 <span class="sc">~</span> qsmk <span class="sc">+</span> ps, <span class="at">data =</span> sampl) <span class="co"># ps</span></span>
+<span id="cb36-37"><a href="outcome-regression-and-propensity-scores.html#cb36-37" tabindex="-1"></a><span class="co"># (step 3) compare mean weight loss had all been treated vs. that had all been untreated</span></span>
+<span id="cb36-38"><a href="outcome-regression-and-propensity-scores.html#cb36-38" tabindex="-1"></a>mean1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(treated<span class="sc">$</span>pred.y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-39"><a href="outcome-regression-and-propensity-scores.html#cb36-39" tabindex="-1"></a>mean0 <span class="ot">&lt;-</span> <span class="fu">mean</span>(untreated<span class="sc">$</span>pred.y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-40"><a href="outcome-regression-and-propensity-scores.html#cb36-40" tabindex="-1"></a>mean1</span>
+<span id="cb36-41"><a href="outcome-regression-and-propensity-scores.html#cb36-41" tabindex="-1"></a><span class="do">## [1] 5.250824</span></span>
+<span id="cb36-42"><a href="outcome-regression-and-propensity-scores.html#cb36-42" tabindex="-1"></a>mean0</span>
+<span id="cb36-43"><a href="outcome-regression-and-propensity-scores.html#cb36-43" tabindex="-1"></a><span class="do">## [1] 1.700228</span></span>
+<span id="cb36-44"><a href="outcome-regression-and-propensity-scores.html#cb36-44" tabindex="-1"></a>mean1 <span class="sc">-</span> mean0</span>
+<span id="cb36-45"><a href="outcome-regression-and-propensity-scores.html#cb36-45" tabindex="-1"></a><span class="do">## [1] 3.550596</span></span>
+<span id="cb36-46"><a href="outcome-regression-and-propensity-scores.html#cb36-46" tabindex="-1"></a></span>
+<span id="cb36-47"><a href="outcome-regression-and-propensity-scores.html#cb36-47" tabindex="-1"></a><span class="co"># (step 4) bootstrap a confidence interval</span></span>
+<span id="cb36-48"><a href="outcome-regression-and-propensity-scores.html#cb36-48" tabindex="-1"></a><span class="co"># number of bootstraps</span></span>
+<span id="cb36-49"><a href="outcome-regression-and-propensity-scores.html#cb36-49" tabindex="-1"></a>nboot <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb36-50"><a href="outcome-regression-and-propensity-scores.html#cb36-50" tabindex="-1"></a><span class="co"># set up a matrix to store results</span></span>
+<span id="cb36-51"><a href="outcome-regression-and-propensity-scores.html#cb36-51" tabindex="-1"></a>boots <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">i =</span> <span class="dv">1</span><span class="sc">:</span>nboot,</span>
+<span id="cb36-52"><a href="outcome-regression-and-propensity-scores.html#cb36-52" tabindex="-1"></a>                    <span class="at">mean1 =</span> <span class="cn">NA</span>,</span>
+<span id="cb36-53"><a href="outcome-regression-and-propensity-scores.html#cb36-53" tabindex="-1"></a>                    <span class="at">mean0 =</span> <span class="cn">NA</span>,</span>
+<span id="cb36-54"><a href="outcome-regression-and-propensity-scores.html#cb36-54" tabindex="-1"></a>                    <span class="at">difference =</span> <span class="cn">NA</span>)</span>
+<span id="cb36-55"><a href="outcome-regression-and-propensity-scores.html#cb36-55" tabindex="-1"></a><span class="co"># loop to perform the bootstrapping</span></span>
+<span id="cb36-56"><a href="outcome-regression-and-propensity-scores.html#cb36-56" tabindex="-1"></a>nhefs <span class="ot">&lt;-</span> <span class="fu">subset</span>(nhefs, <span class="sc">!</span><span class="fu">is.na</span>(ps) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(wt82_71)) <span class="co"># p.qsmk</span></span>
+<span id="cb36-57"><a href="outcome-regression-and-propensity-scores.html#cb36-57" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nboot) {</span>
+<span id="cb36-58"><a href="outcome-regression-and-propensity-scores.html#cb36-58" tabindex="-1"></a>  <span class="co"># sample with replacement</span></span>
+<span id="cb36-59"><a href="outcome-regression-and-propensity-scores.html#cb36-59" tabindex="-1"></a>  sampl <span class="ot">&lt;-</span> nhefs[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(nhefs), <span class="fu">nrow</span>(nhefs), <span class="at">replace =</span> <span class="cn">TRUE</span>), ]</span>
+<span id="cb36-60"><a href="outcome-regression-and-propensity-scores.html#cb36-60" tabindex="-1"></a>  </span>
+<span id="cb36-61"><a href="outcome-regression-and-propensity-scores.html#cb36-61" tabindex="-1"></a>  <span class="co"># fit the model in the bootstrap sample</span></span>
+<span id="cb36-62"><a href="outcome-regression-and-propensity-scores.html#cb36-62" tabindex="-1"></a>  bootmod <span class="ot">&lt;-</span> <span class="fu">glm</span>(wt82_71 <span class="sc">~</span> qsmk <span class="sc">+</span> ps, <span class="at">data =</span> sampl) <span class="co"># ps</span></span>
+<span id="cb36-63"><a href="outcome-regression-and-propensity-scores.html#cb36-63" tabindex="-1"></a>  </span>
+<span id="cb36-64"><a href="outcome-regression-and-propensity-scores.html#cb36-64" tabindex="-1"></a>  <span class="co"># create new datasets</span></span>
+<span id="cb36-65"><a href="outcome-regression-and-propensity-scores.html#cb36-65" tabindex="-1"></a>  sampl.treated <span class="ot">&lt;-</span> sampl <span class="sc">%&gt;%</span></span>
+<span id="cb36-66"><a href="outcome-regression-and-propensity-scores.html#cb36-66" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">qsmk =</span> <span class="dv">1</span>)</span>
 <span id="cb36-67"><a href="outcome-regression-and-propensity-scores.html#cb36-67" tabindex="-1"></a>  </span>
-<span id="cb36-68"><a href="outcome-regression-and-propensity-scores.html#cb36-68" tabindex="-1"></a>  <span class="co"># create new datasets</span></span>
-<span id="cb36-69"><a href="outcome-regression-and-propensity-scores.html#cb36-69" tabindex="-1"></a>  sampl.treated <span class="ot">&lt;-</span> sampl <span class="sc">%&gt;%</span></span>
-<span id="cb36-70"><a href="outcome-regression-and-propensity-scores.html#cb36-70" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">qsmk =</span> <span class="dv">1</span>)</span>
-<span id="cb36-71"><a href="outcome-regression-and-propensity-scores.html#cb36-71" tabindex="-1"></a>  </span>
-<span id="cb36-72"><a href="outcome-regression-and-propensity-scores.html#cb36-72" tabindex="-1"></a>  sampl.untreated <span class="ot">&lt;-</span> sampl <span class="sc">%&gt;%</span></span>
-<span id="cb36-73"><a href="outcome-regression-and-propensity-scores.html#cb36-73" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">qsmk =</span> <span class="dv">0</span>)</span>
+<span id="cb36-68"><a href="outcome-regression-and-propensity-scores.html#cb36-68" tabindex="-1"></a>  sampl.untreated <span class="ot">&lt;-</span> sampl <span class="sc">%&gt;%</span></span>
+<span id="cb36-69"><a href="outcome-regression-and-propensity-scores.html#cb36-69" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">qsmk =</span> <span class="dv">0</span>)</span>
+<span id="cb36-70"><a href="outcome-regression-and-propensity-scores.html#cb36-70" tabindex="-1"></a>  </span>
+<span id="cb36-71"><a href="outcome-regression-and-propensity-scores.html#cb36-71" tabindex="-1"></a>  <span class="co"># predict values</span></span>
+<span id="cb36-72"><a href="outcome-regression-and-propensity-scores.html#cb36-72" tabindex="-1"></a>  sampl.treated<span class="sc">$</span>pred.y <span class="ot">&lt;-</span> <span class="fu">predict</span>(bootmod, sampl.treated)</span>
+<span id="cb36-73"><a href="outcome-regression-and-propensity-scores.html#cb36-73" tabindex="-1"></a>  sampl.untreated<span class="sc">$</span>pred.y <span class="ot">&lt;-</span> <span class="fu">predict</span>(bootmod, sampl.untreated)</span>
 <span id="cb36-74"><a href="outcome-regression-and-propensity-scores.html#cb36-74" tabindex="-1"></a>  </span>
-<span id="cb36-75"><a href="outcome-regression-and-propensity-scores.html#cb36-75" tabindex="-1"></a>  <span class="co"># predict values</span></span>
-<span id="cb36-76"><a href="outcome-regression-and-propensity-scores.html#cb36-76" tabindex="-1"></a>  sampl.treated<span class="sc">$</span>pred.y <span class="ot">&lt;-</span> <span class="fu">predict</span>(bootmod, sampl.treated)</span>
-<span id="cb36-77"><a href="outcome-regression-and-propensity-scores.html#cb36-77" tabindex="-1"></a>  sampl.untreated<span class="sc">$</span>pred.y <span class="ot">&lt;-</span> <span class="fu">predict</span>(bootmod, sampl.untreated)</span>
-<span id="cb36-78"><a href="outcome-regression-and-propensity-scores.html#cb36-78" tabindex="-1"></a>  </span>
-<span id="cb36-79"><a href="outcome-regression-and-propensity-scores.html#cb36-79" tabindex="-1"></a>  <span class="co"># output results </span></span>
-<span id="cb36-80"><a href="outcome-regression-and-propensity-scores.html#cb36-80" tabindex="-1"></a>  boots[i, <span class="st">&#39;mean1&#39;</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(sampl.treated<span class="sc">$</span>pred.y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb36-81"><a href="outcome-regression-and-propensity-scores.html#cb36-81" tabindex="-1"></a>  boots[i, <span class="st">&#39;mean0&#39;</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(sampl.untreated<span class="sc">$</span>pred.y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb36-82"><a href="outcome-regression-and-propensity-scores.html#cb36-82" tabindex="-1"></a>  boots[i, <span class="st">&#39;difference&#39;</span>] <span class="ot">&lt;-</span> boots[i, <span class="st">&#39;mean1&#39;</span>] <span class="sc">-</span> boots[i, <span class="st">&#39;mean0&#39;</span>]</span>
-<span id="cb36-83"><a href="outcome-regression-and-propensity-scores.html#cb36-83" tabindex="-1"></a>  </span>
-<span id="cb36-84"><a href="outcome-regression-and-propensity-scores.html#cb36-84" tabindex="-1"></a>  <span class="co"># once loop is done, print the results</span></span>
-<span id="cb36-85"><a href="outcome-regression-and-propensity-scores.html#cb36-85" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">==</span> nboot) {</span>
-<span id="cb36-86"><a href="outcome-regression-and-propensity-scores.html#cb36-86" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&#39;95% CI for the causal mean difference</span><span class="sc">\n</span><span class="st">&#39;</span>)</span>
-<span id="cb36-87"><a href="outcome-regression-and-propensity-scores.html#cb36-87" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="fu">mean</span>(boots<span class="sc">$</span>difference) <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span><span class="fu">sd</span>(boots<span class="sc">$</span>difference), </span>
-<span id="cb36-88"><a href="outcome-regression-and-propensity-scores.html#cb36-88" tabindex="-1"></a>        <span class="st">&#39;,&#39;</span>,</span>
-<span id="cb36-89"><a href="outcome-regression-and-propensity-scores.html#cb36-89" tabindex="-1"></a>        <span class="fu">mean</span>(boots<span class="sc">$</span>difference) <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span><span class="fu">sd</span>(boots<span class="sc">$</span>difference))</span>
-<span id="cb36-90"><a href="outcome-regression-and-propensity-scores.html#cb36-90" tabindex="-1"></a>  }</span>
-<span id="cb36-91"><a href="outcome-regression-and-propensity-scores.html#cb36-91" tabindex="-1"></a>}</span>
-<span id="cb36-92"><a href="outcome-regression-and-propensity-scores.html#cb36-92" tabindex="-1"></a><span class="do">## 95% CI for the causal mean difference</span></span>
-<span id="cb36-93"><a href="outcome-regression-and-propensity-scores.html#cb36-93" tabindex="-1"></a><span class="do">## 2.677285 , 4.517467</span></span></code></pre></div>
+<span id="cb36-75"><a href="outcome-regression-and-propensity-scores.html#cb36-75" tabindex="-1"></a>  <span class="co"># output results </span></span>
+<span id="cb36-76"><a href="outcome-regression-and-propensity-scores.html#cb36-76" tabindex="-1"></a>  boots[i, <span class="st">&#39;mean1&#39;</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(sampl.treated<span class="sc">$</span>pred.y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-77"><a href="outcome-regression-and-propensity-scores.html#cb36-77" tabindex="-1"></a>  boots[i, <span class="st">&#39;mean0&#39;</span>] <span class="ot">&lt;-</span> <span class="fu">mean</span>(sampl.untreated<span class="sc">$</span>pred.y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-78"><a href="outcome-regression-and-propensity-scores.html#cb36-78" tabindex="-1"></a>  boots[i, <span class="st">&#39;difference&#39;</span>] <span class="ot">&lt;-</span> boots[i, <span class="st">&#39;mean1&#39;</span>] <span class="sc">-</span> boots[i, <span class="st">&#39;mean0&#39;</span>]</span>
+<span id="cb36-79"><a href="outcome-regression-and-propensity-scores.html#cb36-79" tabindex="-1"></a>  </span>
+<span id="cb36-80"><a href="outcome-regression-and-propensity-scores.html#cb36-80" tabindex="-1"></a>  <span class="co"># once loop is done, print the results</span></span>
+<span id="cb36-81"><a href="outcome-regression-and-propensity-scores.html#cb36-81" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">==</span> nboot) {</span>
+<span id="cb36-82"><a href="outcome-regression-and-propensity-scores.html#cb36-82" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&#39;95% CI for the causal mean difference</span><span class="sc">\n</span><span class="st">&#39;</span>)</span>
+<span id="cb36-83"><a href="outcome-regression-and-propensity-scores.html#cb36-83" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="fu">mean</span>(boots<span class="sc">$</span>difference) <span class="sc">-</span> <span class="fl">1.96</span><span class="sc">*</span><span class="fu">sd</span>(boots<span class="sc">$</span>difference), </span>
+<span id="cb36-84"><a href="outcome-regression-and-propensity-scores.html#cb36-84" tabindex="-1"></a>        <span class="st">&#39;,&#39;</span>,</span>
+<span id="cb36-85"><a href="outcome-regression-and-propensity-scores.html#cb36-85" tabindex="-1"></a>        <span class="fu">mean</span>(boots<span class="sc">$</span>difference) <span class="sc">+</span> <span class="fl">1.96</span><span class="sc">*</span><span class="fu">sd</span>(boots<span class="sc">$</span>difference))</span>
+<span id="cb36-86"><a href="outcome-regression-and-propensity-scores.html#cb36-86" tabindex="-1"></a>  }</span>
+<span id="cb36-87"><a href="outcome-regression-and-propensity-scores.html#cb36-87" tabindex="-1"></a>}</span>
+<span id="cb36-88"><a href="outcome-regression-and-propensity-scores.html#cb36-88" tabindex="-1"></a><span class="do">## 95% CI for the causal mean difference</span></span>
+<span id="cb36-89"><a href="outcome-regression-and-propensity-scores.html#cb36-89" tabindex="-1"></a><span class="do">## 2.701965 , 4.418067</span></span></code></pre></div>
 <p>A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.</p>
 
 </div>

@@ -38,10 +38,6 @@ summary(fit)
 ##     as.factor(active) + wt71 + I(wt71 * wt71) + qsmk * smokeintensity, 
 ##     data = nhefs)
 ## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -42.056   -4.171   -0.343    3.891   44.606  
-## 
 ## Coefficients:
 ##                                      Estimate Std. Error t value Pr(>|t|)    
 ## (Intercept)                        -1.5881657  4.3130359  -0.368 0.712756    
@@ -92,11 +88,10 @@ nhefs[which(nhefs$seqn == 24770), c(
   "wt71"
 )]
 ## # A tibble: 1 × 11
-##   predict…¹  qsmk   sex  race   age educa…² smoke…³ smoke…⁴ exerc…⁵ active  wt71
-##       <dbl> <dbl> <dbl> <dbl> <dbl>   <dbl>   <dbl>   <dbl>   <dbl>  <dbl> <dbl>
-## 1     0.342     0     0     0    26       4      15      12       1      0  112.
-## # … with abbreviated variable names ¹​predicted.meanY, ²​education,
-## #   ³​smokeintensity, ⁴​smokeyrs, ⁵​exercise
+##   predicted.meanY  qsmk   sex  race   age education smokeintensity smokeyrs
+##             <dbl> <dbl> <dbl> <dbl> <dbl>     <dbl>          <dbl>    <dbl>
+## 1           0.342     0     0     0    26         4             15       12
+## # ℹ 3 more variables: exercise <dbl>, active <dbl>, wt71 <dbl>
 
 summary(nhefs$predicted.meanY[nhefs$cens == 0])
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -152,16 +147,12 @@ summary(glm.obj)
 ## Call:
 ## glm(formula = Y ~ A * L, data = table22)
 ## 
-## Deviance Residuals: 
-##      Min        1Q    Median        3Q       Max  
-## -0.66667  -0.25000   0.04167   0.33333   0.75000  
-## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(>|t|)
 ## (Intercept)  2.500e-01  2.552e-01   0.980    0.342
-## A           -1.079e-16  3.608e-01   0.000    1.000
+## A            3.957e-17  3.608e-01   0.000    1.000
 ## L            4.167e-01  3.898e-01   1.069    0.301
-## A:L         -6.935e-17  4.959e-01   0.000    1.000
+## A:L         -1.313e-16  4.959e-01   0.000    1.000
 ## 
 ## (Dispersion parameter for gaussian family taken to be 0.2604167)
 ## 
@@ -225,10 +216,6 @@ summary(std)
 ##     smokeintensity) + smokeyrs + I(smokeyrs * smokeyrs) + as.factor(exercise) + 
 ##     as.factor(active) + wt71 + I(wt71 * wt71) + I(qsmk * smokeintensity), 
 ##     data = onesample)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -42.056   -4.171   -0.343    3.891   44.606  
 ## 
 ## Coefficients:
 ##                                      Estimate Std. Error t value Pr(>|t|)    
@@ -357,14 +344,14 @@ bootstrap <-
     ul
   ))
 bootstrap
-##                         V1             mean                se                ll
-## 1                 Observed 2.56188497106099  0.28072318396345  2.01167764086721
-## 2             No Treatment 1.65212306626741 0.335981460295918 0.993611504614237
-## 3                Treatment 5.11474489549342 0.404130524632117  4.32266362216119
-## 4 Treatment - No Treatment 3.46262182922601  0.42893487536994  2.62192492178775
+##                         V1             mean                se               ll
+## 1                 Observed 2.56188497106099 0.105407253483855 2.35529055052335
+## 2             No Treatment 1.65212306626744 0.165626677452115 1.32750074358226
+## 3                Treatment 5.11474489549336 0.340375594724489 4.44762098861696
+## 4 Treatment - No Treatment 3.46262182922592 0.475714181854893 2.53023916585539
 ##                 ul
-## 1 3.11209230125476
-## 2 2.31063462792058
-## 3 5.90682616882565
-## 4 4.30331873666427
+## 1 2.76847939159863
+## 2 1.97674538895261
+## 3 5.78186880236975
+## 4 4.39500449259645
 ```
