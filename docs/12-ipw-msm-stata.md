@@ -52,7 +52,6 @@ qui save ./data/nhefs-formatted, replace
 
 ```
 (63 observations deleted)
-
 ```
 
 

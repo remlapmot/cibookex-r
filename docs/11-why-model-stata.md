@@ -250,7 +250,6 @@ qui gr export figs/stata-fig-11-3.png, replace
  15. 15      11
  16. 45  190
  17. end
-
 ```
 
 <img src="figs/stata-fig-11-3.png" width="85%" style="display: block; margin: auto;" />
@@ -295,7 +294,6 @@ qui gr export figs/stata-fig-11-4.png, replace
 -------------+----------------------------------------------------------------
          (1) |     216.89    20.8614    10.40   0.000     172.1468    261.6333
 ------------------------------------------------------------------------------
-
 ```
 
 <img src="figs/stata-fig-11-4.png" width="85%" style="display: block; margin: auto;" />
@@ -363,7 +361,6 @@ qui gr export figs/stata-fig-11-5.png, replace
 -------------+----------------------------------------------------------------
          (1) |   197.1269   25.16157     7.83   0.000     142.7687    251.4852
 ------------------------------------------------------------------------------
-
 ```
 
 <img src="figs/stata-fig-11-5.png" width="85%" style="display: block; margin: auto;" />

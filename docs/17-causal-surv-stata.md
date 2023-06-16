@@ -276,7 +276,6 @@ Variable      Storage   Display    Value
 --------------------------------------------------------------------------------------
 psurv0          float   %9.0g                 psurv, interv == Original observation
 psurv1          float   %9.0g                 psurv, interv == Duplicated observation
-
 ```
 
 <img src="./figs/stata-fig-17-2.png" width="85%" style="display: block; margin: auto;" />
@@ -621,7 +620,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated observ
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 7:49:14
+r; t=0.00 22:44:03
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -631,7 +630,7 @@ r; t=0.00 7:49:14
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=17.77 7:49:32
+r; t=19.28 22:44:22
 
 
 
@@ -858,8 +857,7 @@ meanS_t1        float   %9.0g                 meanS_t, interv == Duplicated
                                                 observation
 
 
-file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
-    format
+file ./figs/stata-fig-17-4.png saved as PNG format
 
 (3,132 observations deleted)
 
@@ -869,7 +867,7 @@ file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 7:49:42
+r; t=0.00 22:44:29
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -879,7 +877,7 @@ r; t=0.00 7:49:42
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=20.47 7:50:02
+r; t=22.93 22:44:52
 
 
 

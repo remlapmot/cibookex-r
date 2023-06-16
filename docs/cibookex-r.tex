@@ -137,7 +137,7 @@
 
 \title{Causal Inference: What If. R and Stata code for Exercises}
 \author{Book by M. A. Hernán and J. M. Robins \and R code by Joy Shi and Sean McGrath \and Stata code by Eleanor Murray and Roger Logan \and R Markdown code by Tom Palmer}
-\date{24 April 2023}
+\date{16 June 2023}
 
 \begin{document}
 \maketitle
@@ -1559,9 +1559,9 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#               Estimate Std. Error t value Pr(\textgreater{}|t|)}
 \DocumentationTok{\#\# (Intercept)  2.500e{-}01  2.552e{-}01   0.980    0.342}
-\DocumentationTok{\#\# A            3.957e{-}17  3.608e{-}01   0.000    1.000}
+\DocumentationTok{\#\# A            2.602e{-}16  3.608e{-}01   0.000    1.000}
 \DocumentationTok{\#\# L            4.167e{-}01  3.898e{-}01   1.069    0.301}
-\DocumentationTok{\#\# A:L         {-}1.313e{-}16  4.959e{-}01   0.000    1.000}
+\DocumentationTok{\#\# A:L         {-}3.237e{-}16  4.959e{-}01   0.000    1.000}
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# (Dispersion parameter for gaussian family taken to be 0.2604167)}
 \DocumentationTok{\#\# }
@@ -1766,15 +1766,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{  ))}
 \NormalTok{bootstrap}
 \DocumentationTok{\#\#                         V1             mean                se               ll}
-\DocumentationTok{\#\# 1                 Observed 2.56188497106099 0.100880560037889 2.36416270664649}
-\DocumentationTok{\#\# 2             No Treatment 1.65212306626744 0.175544457433156 1.30806225201283}
-\DocumentationTok{\#\# 3                Treatment 5.11474489549336 0.398009040062483 4.33466151144953}
-\DocumentationTok{\#\# 4 Treatment {-} No Treatment 3.46262182922592 0.542169235265909 2.39998965457911}
+\DocumentationTok{\#\# 1                 Observed 2.56188497106103 0.167193715782231 2.23419130968643}
+\DocumentationTok{\#\# 2             No Treatment 1.65212306626748 0.124944840854993 1.40723567813761}
+\DocumentationTok{\#\# 3                Treatment  5.1147448954934 0.422665219600556  4.2863362875586}
+\DocumentationTok{\#\# 4 Treatment {-} No Treatment 3.46262182922592 0.370544446195721 2.73636806001097}
 \DocumentationTok{\#\#                 ul}
-\DocumentationTok{\#\# 1 2.75960723547548}
-\DocumentationTok{\#\# 2 1.99618388052205}
-\DocumentationTok{\#\# 3 5.89482827953718}
-\DocumentationTok{\#\# 4 4.52525400387272}
+\DocumentationTok{\#\# 1 2.88957863243563}
+\DocumentationTok{\#\# 2 1.89701045439736}
+\DocumentationTok{\#\# 3  5.9431535034282}
+\DocumentationTok{\#\# 4 4.18887559844087}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1823,8 +1823,8 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\#      .25      .50      .75      .90      .95 }
 \DocumentationTok{\#\#   {-}1.478    2.604    6.690   11.117   14.739 }
 \DocumentationTok{\#\# }
-\DocumentationTok{\#\# lowest : {-}41.28047 {-}30.50192 {-}30.05007 {-}29.02579 {-}25.97056}
-\DocumentationTok{\#\# highest:  34.01780  36.96925  37.65051  47.51130  48.53839}
+\DocumentationTok{\#\# lowest : {-}41.2805 {-}30.5019 {-}30.0501 {-}29.0258 {-}25.9706}
+\DocumentationTok{\#\# highest: 34.0178  36.9693  37.6505  47.5113  48.5384}
 
 \CommentTok{\# estimation of denominator of ip weights for C}
 \NormalTok{cw.denom }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(cens}\SpecialCharTok{==}\DecValTok{0} \SpecialCharTok{\textasciitilde{}}\NormalTok{ qsmk }\SpecialCharTok{+}\NormalTok{ sex }\SpecialCharTok{+}\NormalTok{ race }\SpecialCharTok{+}\NormalTok{ age }\SpecialCharTok{+} \FunctionTok{I}\NormalTok{(age}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }
@@ -2144,8 +2144,8 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\#      .25      .50      .75      .90      .95 }
 \DocumentationTok{\#\#   0.1780   0.2426   0.3251   0.4221   0.4965 }
 \DocumentationTok{\#\# }
-\DocumentationTok{\#\# lowest : 0.05145 0.05157 0.05438 0.05583 0.05931}
-\DocumentationTok{\#\# highest: 0.67208 0.68643 0.71391 0.73330 0.78914}
+\DocumentationTok{\#\# lowest : 0.0514466 0.0515703 0.0543802 0.0558308 0.0593059}
+\DocumentationTok{\#\# highest: 0.672083  0.686432  0.713913  0.733299  0.78914}
 \FunctionTok{summary}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{pqsmk)}
 \DocumentationTok{\#\#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \DocumentationTok{\#\#  0.0514  0.1780  0.2426  0.2622  0.3251  0.7891}
@@ -2955,15 +2955,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
                                 \StringTok{"Treatment {-} No Treatment"}\NormalTok{), mean, se, ll, ul))}
 \NormalTok{bootstrap}
 \DocumentationTok{\#\#                         V1             mean                se               ll}
-\DocumentationTok{\#\# 1                 Observed 2.63384609228479 0.293000454454304 2.05957575410049}
-\DocumentationTok{\#\# 2             No Treatment 1.71983636149845 0.277586833732187 1.17577616480086}
-\DocumentationTok{\#\# 3                Treatment 5.35072300362985 0.489422523077058  4.3914724851761}
-\DocumentationTok{\#\# 4 Treatment {-} No Treatment  3.6308866421314 0.464643860468904  2.7202014099747}
+\DocumentationTok{\#\# 1                 Observed 2.63384609228479 0.111607927294825 2.41509857439777}
+\DocumentationTok{\#\# 2             No Treatment 1.71983636149845 0.116141968455712 1.49220228623167}
+\DocumentationTok{\#\# 3                Treatment 5.35072300362985 0.295288817731863 4.77196755583798}
+\DocumentationTok{\#\# 4 Treatment {-} No Treatment  3.6308866421314 0.385151512975718 2.87600354810788}
 \DocumentationTok{\#\#                 ul}
-\DocumentationTok{\#\# 1  3.2081164304691}
-\DocumentationTok{\#\# 2 2.26389655819605}
-\DocumentationTok{\#\# 3 6.30997352208361}
-\DocumentationTok{\#\# 4  4.5415718742881}
+\DocumentationTok{\#\# 1 2.85259361017181}
+\DocumentationTok{\#\# 2 1.94747043676523}
+\DocumentationTok{\#\# 3 5.92947845142171}
+\DocumentationTok{\#\# 4 4.38576973615491}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3057,7 +3057,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{  \}}
 \NormalTok{\}}
 \DocumentationTok{\#\# 95\% CI for the causal mean difference}
-\DocumentationTok{\#\# 2.63153 , 4.399715}
+\DocumentationTok{\#\# 2.653562 , 4.514129}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3908,34 +3908,35 @@ For reproducibility.
 \NormalTok{sessioninfo}\SpecialCharTok{::}\FunctionTok{session\_info}\NormalTok{()}
 \DocumentationTok{\#\# {-} Session info {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \DocumentationTok{\#\#  setting  value}
-\DocumentationTok{\#\#  version  R version 4.3.0 (2023{-}04{-}21)}
-\DocumentationTok{\#\#  os       macOS Ventura 13.3.1}
-\DocumentationTok{\#\#  system   aarch64, darwin20}
-\DocumentationTok{\#\#  ui       X11}
+\DocumentationTok{\#\#  version  R version 4.3.0 (2023{-}04{-}21 ucrt)}
+\DocumentationTok{\#\#  os       Windows 11 x64 (build 22621)}
+\DocumentationTok{\#\#  system   x86\_64, mingw32}
+\DocumentationTok{\#\#  ui       RTerm}
 \DocumentationTok{\#\#  language (EN)}
-\DocumentationTok{\#\#  collate  en\_US.UTF{-}8}
-\DocumentationTok{\#\#  ctype    en\_US.UTF{-}8}
+\DocumentationTok{\#\#  collate  English\_United Kingdom.utf8}
+\DocumentationTok{\#\#  ctype    English\_United Kingdom.utf8}
 \DocumentationTok{\#\#  tz       Europe/London}
-\DocumentationTok{\#\#  date     2023{-}04{-}24}
-\DocumentationTok{\#\#  pandoc   3.1.2 @ /opt/homebrew/bin/ (via rmarkdown)}
+\DocumentationTok{\#\#  date     2023{-}06{-}16}
+\DocumentationTok{\#\#  pandoc   3.1.1 @ C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools/ (via rmarkdown)}
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# {-} Packages {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \DocumentationTok{\#\#  package     * version date (UTC) lib source}
-\DocumentationTok{\#\#  bookdown      0.33    2023{-}03{-}06 [1] CRAN (R 4.3.0)}
+\DocumentationTok{\#\#  bookdown      0.34    2023{-}05{-}09 [1] CRAN (R 4.3.0)}
 \DocumentationTok{\#\#  cli           3.6.1   2023{-}03{-}23 [1] CRAN (R 4.3.0)}
 \DocumentationTok{\#\#  digest        0.6.31  2022{-}12{-}11 [1] CRAN (R 4.3.0)}
-\DocumentationTok{\#\#  evaluate      0.20    2023{-}01{-}17 [1] CRAN (R 4.3.0)}
+\DocumentationTok{\#\#  evaluate      0.21    2023{-}05{-}05 [1] CRAN (R 4.3.0)}
 \DocumentationTok{\#\#  fastmap       1.1.1   2023{-}02{-}24 [1] CRAN (R 4.3.0)}
 \DocumentationTok{\#\#  htmltools     0.5.5   2023{-}03{-}23 [1] CRAN (R 4.3.0)}
-\DocumentationTok{\#\#  knitr         1.42.7  2023{-}04{-}24 [1] Github (yihui/knitr@5ce5531)}
-\DocumentationTok{\#\#  rlang         1.1.0   2023{-}03{-}14 [1] CRAN (R 4.3.0)}
-\DocumentationTok{\#\#  rmarkdown     2.21    2023{-}03{-}26 [1] CRAN (R 4.3.0)}
+\DocumentationTok{\#\#  knitr         1.43    2023{-}05{-}25 [1] CRAN (R 4.3.0)}
+\DocumentationTok{\#\#  rlang         1.1.1   2023{-}04{-}28 [1] CRAN (R 4.3.0)}
+\DocumentationTok{\#\#  rmarkdown     2.22    2023{-}06{-}01 [1] CRAN (R 4.3.0)}
 \DocumentationTok{\#\#  rstudioapi    0.14    2022{-}08{-}22 [1] CRAN (R 4.3.0)}
 \DocumentationTok{\#\#  sessioninfo   1.2.2   2021{-}12{-}06 [1] CRAN (R 4.3.0)}
 \DocumentationTok{\#\#  xfun          0.39    2023{-}04{-}20 [1] CRAN (R 4.3.0)}
 \DocumentationTok{\#\#  yaml          2.3.7   2023{-}01{-}23 [1] CRAN (R 4.3.0)}
 \DocumentationTok{\#\# }
-\DocumentationTok{\#\#  [1] /Library/Frameworks/R.framework/Versions/4.3{-}arm64/Resources/library}
+\DocumentationTok{\#\#  [1] C:/Users/tom/AppData/Local/R/win{-}library/4.3}
+\DocumentationTok{\#\#  [2] C:/Program Files/R/R{-}4.3.0/library}
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \end{Highlighting}
@@ -8657,82 +8658,12 @@ Observed time interval: (0, survtime]
       Total |    171,076      100.00
 
 
+file ./data/nhefs_surv.dta cannot be modified or erased; likely cause is read-only
+    directory or file
+r(608);
 
-
-
-Logistic regression                                    Number of obs = 171,076
-                                                       LR chi2(5)    =   24.26
-                                                       Prob > chi2   =  0.0002
-Log likelihood = -2134.1973                            Pseudo R2     =  0.0057
-
-------------------------------------------------------------------------------------
-             event | Odds ratio   Std. err.      z    P>|z|     [95% conf. interval]
--------------------+----------------------------------------------------------------
-              qsmk |   1.402527   .6000025     0.79   0.429     .6064099    3.243815
-                   |
-       qsmk#c.time |
-Smoking cessation  |   1.012318   .0162153     0.76   0.445     .9810299    1.044603
-                   |
-qsmk#c.time#c.time |
-Smoking cessation  |   .9998342   .0001321    -1.25   0.210     .9995753    1.000093
-                   |
-              time |   1.022048   .0090651     2.46   0.014     1.004434    1.039971
-                   |
-     c.time#c.time |   .9998637   .0000699    -1.95   0.051     .9997266    1.000001
-                   |
-             _cons |   .0007992   .0001972   -28.90   0.000     .0004927    .0012963
-------------------------------------------------------------------------------------
-Note: _cons estimates baseline odds.
-
-(169,510 observations deleted)
-
-(186,354 observations created)
-
-(186354 real changes made)
-
-(187,920 observations created)
-
-(187,920 real changes made)
-
-
-
-
-
-
-(372,708 missing values generated)
-
-(372708 real changes made)
-
-
---------------------------------------------------------------------------------------
--> interv = Original
-
-    Variable |        Obs        Mean    Std. dev.       Min        Max
--------------+---------------------------------------------------------
-       psurv |      1,566    .8279829           0   .8279829   .8279829
-
---------------------------------------------------------------------------------------
--> interv = Duplicat
-
-    Variable |        Obs        Mean    Std. dev.       Min        Max
--------------+---------------------------------------------------------
-       psurv |      1,566     .774282           0    .774282    .774282
-
-
-(3,132 observations created)
-
-(3,132 real changes made)
-
-(375,840 missing values generated)
-
-(375,840 real changes made)
-
-
-Variable      Storage   Display    Value
-    name         type    format    label      Variable label
---------------------------------------------------------------------------------------
-psurv0          float   %9.0g                 psurv, interv == Original observation
-psurv1          float   %9.0g                 psurv, interv == Duplicated observation
+end of do-file
+r(608);
 \end{verbatim}
 
 \begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-2} \end{center}
@@ -9086,7 +9017,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated observ
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 7:47:07
+r; t=0.00 22:41:01
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -9096,7 +9027,7 @@ r; t=0.00 7:47:07
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=18.16 7:47:25
+r; t=20.32 22:41:21
 
 
 
@@ -9332,8 +9263,7 @@ meanS_t1        float   %9.0g                 meanS_t, interv == Duplicated
                                                 observation
 
 
-file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
-    format
+file ./figs/stata-fig-17-4.png saved as PNG format
 
 (3,132 observations deleted)
 
@@ -9343,7 +9273,7 @@ file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 7:47:35
+r; t=0.00 22:41:28
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -9353,7 +9283,7 @@ r; t=0.00 7:47:35
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=20.77 7:47:56
+r; t=21.41 22:41:49
 
 
 
@@ -9392,11 +9322,12 @@ For reproducibility.
 \end{Shaded}
 
 \begin{verbatim}
-Stata/MP 17.0 for Mac (Apple Silicon)
-Revision 08 Mar 2023
+Stata/MP 17.0 for Windows (64-bit x86-64)
+Revision 16 May 2023
 Copyright 1985-2021 StataCorp LLC
 
-Total physical memory: 8.01 GB
+Total physical memory:       32.00 GB
+Available physical memory:    9.16 GB
 
 Stata license: Unlimited-user 2-core network, expiring 21 Jan 2024
 Serial number: 501709378202
@@ -9410,35 +9341,36 @@ Serial number: 501709378202
 \NormalTok{sessioninfo}\SpecialCharTok{::}\FunctionTok{session\_info}\NormalTok{()}
 \SpecialCharTok{{-}}\NormalTok{ Session info }\SpecialCharTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \NormalTok{ setting  value}
-\NormalTok{ version  R version }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{ (}\DecValTok{2023{-}04{-}21}\NormalTok{)}
-\NormalTok{ os       macOS Ventura }\DecValTok{13}\NormalTok{.}\FloatTok{3.1}
-\NormalTok{ system   aarch64, darwin20}
-\NormalTok{ ui       X11}
+\NormalTok{ version  R version }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{ (}\DecValTok{2023{-}04{-}21}\NormalTok{ ucrt)}
+\NormalTok{ os       Windows }\DecValTok{11} \FunctionTok{x64}\NormalTok{ (build }\DecValTok{22621}\NormalTok{)}
+\NormalTok{ system   x86\_64, mingw32}
+\NormalTok{ ui       RTerm}
  \FunctionTok{language}\NormalTok{ (EN)}
-\NormalTok{ collate  en\_US.UTF}\DecValTok{{-}8}
-\NormalTok{ ctype    en\_US.UTF}\DecValTok{{-}8}
+\NormalTok{ collate  English\_United Kingdom.utf8}
+\NormalTok{ ctype    English\_United Kingdom.utf8}
 \NormalTok{ tz       Europe}\SpecialCharTok{/}\NormalTok{London}
-\NormalTok{ date     }\DecValTok{2023{-}04{-}24}
-\NormalTok{ pandoc   }\DecValTok{3}\NormalTok{.}\FloatTok{1.2} \SpecialCharTok{@} \ErrorTok{/}\NormalTok{opt}\SpecialCharTok{/}\NormalTok{homebrew}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{ (via rmarkdown)}
+\NormalTok{ date     }\DecValTok{2023{-}06{-}16}
+\NormalTok{ pandoc   }\DecValTok{3}\NormalTok{.}\FloatTok{1.1} \SpecialCharTok{@}\NormalTok{ C}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{Program Files}\SpecialCharTok{/}\NormalTok{RStudio}\SpecialCharTok{/}\NormalTok{resources}\SpecialCharTok{/}\NormalTok{app}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{quarto}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{tools}\SpecialCharTok{/}\NormalTok{ (via rmarkdown)}
 
 \SpecialCharTok{{-}}\NormalTok{ Packages }\SpecialCharTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \NormalTok{ package       }\SpecialCharTok{*}\NormalTok{ version }\FunctionTok{date}\NormalTok{ (UTC) lib source}
-\NormalTok{ bookdown        }\FloatTok{0.33}    \DecValTok{2023{-}03{-}06}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
+\NormalTok{ bookdown        }\FloatTok{0.34}    \DecValTok{2023{-}05{-}09}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
 \NormalTok{ cli             }\DecValTok{3}\NormalTok{.}\FloatTok{6.1}   \DecValTok{2023{-}03{-}23}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
 \NormalTok{ digest          }\DecValTok{0}\NormalTok{.}\FloatTok{6.31}  \DecValTok{2022{-}12{-}11}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
-\NormalTok{ evaluate        }\FloatTok{0.20}    \DecValTok{2023{-}01{-}17}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
+\NormalTok{ evaluate        }\FloatTok{0.21}    \DecValTok{2023{-}05{-}05}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
 \NormalTok{ fastmap         }\DecValTok{1}\NormalTok{.}\FloatTok{1.1}   \DecValTok{2023{-}02{-}24}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
 \NormalTok{ htmltools       }\DecValTok{0}\NormalTok{.}\FloatTok{5.5}   \DecValTok{2023{-}03{-}23}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
-\NormalTok{ knitr           }\DecValTok{1}\NormalTok{.}\FloatTok{42.7}  \DecValTok{2023{-}04{-}24}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{Github}\NormalTok{ (yihui}\SpecialCharTok{/}\NormalTok{knitr}\SpecialCharTok{@}\NormalTok{5ce5531)}
-\NormalTok{ rlang           }\DecValTok{1}\NormalTok{.}\FloatTok{1.0}   \DecValTok{2023{-}03{-}14}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
-\NormalTok{ rmarkdown       }\FloatTok{2.21}    \DecValTok{2023{-}03{-}26}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
+\NormalTok{ knitr           }\FloatTok{1.43}    \DecValTok{2023{-}05{-}25}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
+\NormalTok{ rlang           }\DecValTok{1}\NormalTok{.}\FloatTok{1.1}   \DecValTok{2023{-}04{-}28}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
+\NormalTok{ rmarkdown       }\FloatTok{2.22}    \DecValTok{2023{-}06{-}01}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
 \NormalTok{ rstudioapi      }\FloatTok{0.14}    \DecValTok{2022{-}08{-}22}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
 \NormalTok{ sessioninfo     }\DecValTok{1}\NormalTok{.}\FloatTok{2.2}   \DecValTok{2021{-}12{-}06}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
-\NormalTok{ Statamarkdown }\SpecialCharTok{*} \DecValTok{0}\NormalTok{.}\FloatTok{7.2}   \DecValTok{2023{-}02{-}15}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
+\NormalTok{ Statamarkdown }\SpecialCharTok{*} \DecValTok{0}\NormalTok{.}\FloatTok{8.0}   \DecValTok{2023{-}06{-}01}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
 \NormalTok{ xfun            }\FloatTok{0.39}    \DecValTok{2023{-}04{-}20}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
 \NormalTok{ yaml            }\DecValTok{2}\NormalTok{.}\FloatTok{3.7}   \DecValTok{2023{-}01{-}23}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
 
-\NormalTok{ [}\DecValTok{1}\NormalTok{] }\SpecialCharTok{/}\NormalTok{Library}\SpecialCharTok{/}\NormalTok{Frameworks}\SpecialCharTok{/}\NormalTok{R.framework}\SpecialCharTok{/}\NormalTok{Versions}\SpecialCharTok{/}\FloatTok{4.3}\SpecialCharTok{{-}}\NormalTok{arm64}\SpecialCharTok{/}\NormalTok{Resources}\SpecialCharTok{/}\NormalTok{library}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] C}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{Users}\SpecialCharTok{/}\NormalTok{tom}\SpecialCharTok{/}\NormalTok{AppData}\SpecialCharTok{/}\NormalTok{Local}\SpecialCharTok{/}\NormalTok{R}\SpecialCharTok{/}\NormalTok{win}\SpecialCharTok{{-}}\NormalTok{library}\SpecialCharTok{/}\FloatTok{4.3}
+\NormalTok{ [}\DecValTok{2}\NormalTok{] C}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{Program Files}\SpecialCharTok{/}\NormalTok{R}\SpecialCharTok{/}\NormalTok{R}\DecValTok{{-}4}\NormalTok{.}\FloatTok{3.0}\SpecialCharTok{/}\NormalTok{library}
 
 \SpecialCharTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \end{Highlighting}
