@@ -16,7 +16,7 @@ Imports:
   ggplot2,
   here,
   Hmisc,
-  knitr,
+  knitr (>= 1.43),
   markdown,
   multcomp,
   psych,
