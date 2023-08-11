@@ -1,3 +1,11 @@
+/* Use Fira Code font for monospace text, i.e., code; with disabled ligatures */
+/* Instructions from https://github.com/tonsky/FiraCode#browser-support */
+@import url(https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css);
+code { font-family: 'Fira Code', monospace;
+       font-variant-ligatures: none;
+       font-feature-settings: "liga" 0;
+}
+
 p.caption {
   color: #777;
   margin-top: 10px;
