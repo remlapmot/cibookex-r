@@ -16,6 +16,8 @@
   do depdendency
   ```
 
+- For the pdf book please install the Fira Code font on your system from [here](https://github.com/tonsky/FiraCode/releases)
+
 ## Building the book
 
 - If you need to install LaTeX, in R install the tinytex package (which is included in the dependencies) and run
