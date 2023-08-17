@@ -78,7 +78,8 @@ Observed time interval: (0, survtime]
   Analysis time _t: survtime
 ```
 
-<img src="./figs/stata-fig-17-1.png" width="85%" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-1} \end{center}
 
 ## Program 17.2
 
@@ -278,7 +279,8 @@ psurv0          float   %9.0g                 psurv, interv == Original observat
 psurv1          float   %9.0g                 psurv, interv == Duplicated observation
 ```
 
-<img src="./figs/stata-fig-17-2.png" width="85%" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-2} \end{center}
 
 ## Program 17.3
 
@@ -620,7 +622,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated observ
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 19:55:44
+r; t=0.00 20:11:33
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -630,7 +632,7 @@ r; t=0.00 19:55:44
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=18.15 19:56:02
+r; t=19.39 20:11:52
 
 
 
@@ -648,7 +650,8 @@ Bootstrap results                                        Number of obs = 1,629
 ------------------------------------------------------------------------------
 ```
 
-<img src="./figs/stata-fig-17-3.png" width="85%" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-3} \end{center}
 
 ## Program 17.4
 
@@ -868,7 +871,7 @@ file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 19:56:09
+r; t=0.00 20:11:59
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -878,7 +881,7 @@ r; t=0.00 19:56:09
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=20.93 19:56:30
+r; t=21.51 20:12:20
 
 
 
@@ -896,4 +899,5 @@ Bootstrap results                                        Number of obs = 1,629
 ------------------------------------------------------------------------------
 ```
 
-<img src="./figs/stata-fig-17-4.png" width="85%" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-4} \end{center}
