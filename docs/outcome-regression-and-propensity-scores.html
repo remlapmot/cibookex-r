@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>15. Outcome regression and propensity scores | Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="15. Outcome regression and propensity scores | Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2023-08-17" />
+<meta name="date" content="2023-11-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1023,15 +1023,15 @@ div.csl-indent {
 <span id="cb35-58"><a href="outcome-regression-and-propensity-scores.html#cb35-58" tabindex="-1"></a>                                <span class="st">&quot;Treatment - No Treatment&quot;</span>), mean, se, ll, ul))</span>
 <span id="cb35-59"><a href="outcome-regression-and-propensity-scores.html#cb35-59" tabindex="-1"></a>bootstrap</span>
 <span id="cb35-60"><a href="outcome-regression-and-propensity-scores.html#cb35-60" tabindex="-1"></a><span class="do">##                         V1             mean                se               ll</span></span>
-<span id="cb35-61"><a href="outcome-regression-and-propensity-scores.html#cb35-61" tabindex="-1"></a><span class="do">## 1                 Observed 2.63384609228479 0.179744600201566 2.28155314947417</span></span>
-<span id="cb35-62"><a href="outcome-regression-and-propensity-scores.html#cb35-62" tabindex="-1"></a><span class="do">## 2             No Treatment 1.71983636149845  0.30772772665237 1.11670110021542</span></span>
-<span id="cb35-63"><a href="outcome-regression-and-propensity-scores.html#cb35-63" tabindex="-1"></a><span class="do">## 3                Treatment 5.35072300362985 0.492925465609279 4.38460684397303</span></span>
-<span id="cb35-64"><a href="outcome-regression-and-propensity-scores.html#cb35-64" tabindex="-1"></a><span class="do">## 4 Treatment - No Treatment  3.6308866421314 0.750717508466819 2.15950736297279</span></span>
+<span id="cb35-61"><a href="outcome-regression-and-propensity-scores.html#cb35-61" tabindex="-1"></a><span class="do">## 1                 Observed 2.63384609228479 0.399478859582813 1.85088191491735</span></span>
+<span id="cb35-62"><a href="outcome-regression-and-propensity-scores.html#cb35-62" tabindex="-1"></a><span class="do">## 2             No Treatment 1.71983636149845 0.336732751484105 1.05985229617453</span></span>
+<span id="cb35-63"><a href="outcome-regression-and-propensity-scores.html#cb35-63" tabindex="-1"></a><span class="do">## 3                Treatment 5.35072300362985 0.543256007940934 4.28596079368061</span></span>
+<span id="cb35-64"><a href="outcome-regression-and-propensity-scores.html#cb35-64" tabindex="-1"></a><span class="do">## 4 Treatment - No Treatment  3.6308866421314 0.266224887461527 3.10909545091857</span></span>
 <span id="cb35-65"><a href="outcome-regression-and-propensity-scores.html#cb35-65" tabindex="-1"></a><span class="do">##                 ul</span></span>
-<span id="cb35-66"><a href="outcome-regression-and-propensity-scores.html#cb35-66" tabindex="-1"></a><span class="do">## 1 2.98613903509541</span></span>
-<span id="cb35-67"><a href="outcome-regression-and-propensity-scores.html#cb35-67" tabindex="-1"></a><span class="do">## 2 2.32297162278149</span></span>
-<span id="cb35-68"><a href="outcome-regression-and-propensity-scores.html#cb35-68" tabindex="-1"></a><span class="do">## 3 6.31683916328668</span></span>
-<span id="cb35-69"><a href="outcome-regression-and-propensity-scores.html#cb35-69" tabindex="-1"></a><span class="do">## 4 5.10226592129001</span></span></code></pre></div>
+<span id="cb35-66"><a href="outcome-regression-and-propensity-scores.html#cb35-66" tabindex="-1"></a><span class="do">## 1 3.41681026965224</span></span>
+<span id="cb35-67"><a href="outcome-regression-and-propensity-scores.html#cb35-67" tabindex="-1"></a><span class="do">## 2 2.37982042682237</span></span>
+<span id="cb35-68"><a href="outcome-regression-and-propensity-scores.html#cb35-68" tabindex="-1"></a><span class="do">## 3 6.41548521357908</span></span>
+<span id="cb35-69"><a href="outcome-regression-and-propensity-scores.html#cb35-69" tabindex="-1"></a><span class="do">## 4 4.15267783334422</span></span></code></pre></div>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="outcome-regression-and-propensity-scores.html#cb36-1" tabindex="-1"></a><span class="co"># regression on the propensity score (linear term)</span></span>
 <span id="cb36-2"><a href="outcome-regression-and-propensity-scores.html#cb36-2" tabindex="-1"></a>model6 <span class="ot">&lt;-</span> <span class="fu">glm</span>(wt82_71 <span class="sc">~</span> qsmk <span class="sc">+</span> ps, <span class="at">data =</span> nhefs) <span class="co"># p.qsmk</span></span>
 <span id="cb36-3"><a href="outcome-regression-and-propensity-scores.html#cb36-3" tabindex="-1"></a><span class="fu">summary</span>(model6)</span>
@@ -1120,7 +1120,7 @@ div.csl-indent {
 <span id="cb36-86"><a href="outcome-regression-and-propensity-scores.html#cb36-86" tabindex="-1"></a>  }</span>
 <span id="cb36-87"><a href="outcome-regression-and-propensity-scores.html#cb36-87" tabindex="-1"></a>}</span>
 <span id="cb36-88"><a href="outcome-regression-and-propensity-scores.html#cb36-88" tabindex="-1"></a><span class="do">## 95% CI for the causal mean difference</span></span>
-<span id="cb36-89"><a href="outcome-regression-and-propensity-scores.html#cb36-89" tabindex="-1"></a><span class="do">## 2.701466 , 4.577445</span></span></code></pre></div>
+<span id="cb36-89"><a href="outcome-regression-and-propensity-scores.html#cb36-89" tabindex="-1"></a><span class="do">## 2.779177 , 4.453926</span></span></code></pre></div>
 <p>A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.</p>
 
 </div>

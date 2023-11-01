@@ -87,11 +87,11 @@ nhefs[which(nhefs$seqn == 24770), c(
   "active",
   "wt71"
 )]
-## # A tibble: 1 x 11
+## # A tibble: 1 × 11
 ##   predicted.meanY  qsmk   sex  race   age education smokeintensity smokeyrs
 ##             <dbl> <dbl> <dbl> <dbl> <dbl>     <dbl>          <dbl>    <dbl>
 ## 1           0.342     0     0     0    26         4             15       12
-## # i 3 more variables: exercise <dbl>, active <dbl>, wt71 <dbl>
+## # ℹ 3 more variables: exercise <dbl>, active <dbl>, wt71 <dbl>
 
 summary(nhefs$predicted.meanY[nhefs$cens == 0])
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -150,9 +150,9 @@ summary(glm.obj)
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(>|t|)
 ## (Intercept)  2.500e-01  2.552e-01   0.980    0.342
-## A            3.957e-17  3.608e-01   0.000    1.000
+## A            2.602e-16  3.608e-01   0.000    1.000
 ## L            4.167e-01  3.898e-01   1.069    0.301
-## A:L         -1.313e-16  4.959e-01   0.000    1.000
+## A:L         -3.237e-16  4.959e-01   0.000    1.000
 ## 
 ## (Dispersion parameter for gaussian family taken to be 0.2604167)
 ## 
@@ -345,13 +345,13 @@ bootstrap <-
   ))
 bootstrap
 ##                         V1             mean                se               ll
-## 1                 Observed 2.56188497106099 0.192887536565839 2.18383234632529
-## 2             No Treatment 1.65212306626744 0.150374208004723 1.35739503437445
-## 3                Treatment 5.11474489549336 0.225023272007586 4.67370738667513
-## 4 Treatment - No Treatment 3.46262182922592 0.137371522510182 3.19337859260453
+## 1                 Observed 2.56188497106103 0.111490524910664 2.34336755761866
+## 2             No Treatment 1.65212306626748 0.146316287347159 1.36534841271544
+## 3                Treatment  5.1147448954934 0.363908173238617 4.40149798226595
+## 4 Treatment - No Treatment 3.46262182922592 0.423315384649148 2.63293892121187
 ##                 ul
-## 1 2.93993759579668
-## 2 1.94685109816043
-## 3 5.55578240431158
-## 4 3.73186506584731
+## 1  2.7804023845034
+## 2 1.93889771981953
+## 3 5.82799180872085
+## 4 4.29230473723997
 ```

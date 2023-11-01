@@ -323,15 +323,13 @@ ggplot(nhefs, aes(x = ps, fill = qsmk)) + geom_density(alpha = 0.2) +
   scale_fill_discrete('') +
   theme(legend.position = 'bottom', legend.direction = 'vertical')
 ## Warning: The following aesthetics were dropped during statistical transformation: fill
-## i This can happen when ggplot fails to infer the correct grouping structure in
+## ℹ This can happen when ggplot fails to infer the correct grouping structure in
 ##   the data.
-## i Did you forget to specify a `group` aesthetic or to convert a numerical
+## ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
 ##   variable into a factor?
 ```
 
-
-
-\begin{center}\includegraphics[width=0.85\linewidth]{15-prop-scores-r_files/figure-latex/unnamed-chunk-3-1} \end{center}
+<img src="15-prop-scores-r_files/figure-epub3/unnamed-chunk-3-1.png" width="85%" style="display: block; margin: auto;" />
 
 ```r
 
@@ -349,9 +347,7 @@ ggplot(nhefs, aes(x = ps, fill = as.factor(qsmk), color = as.factor(qsmk))) +
   theme(legend.position = 'bottom', legend.direction = 'vertical')
 ```
 
-
-
-\begin{center}\includegraphics[width=0.85\linewidth]{15-prop-scores-r_files/figure-latex/unnamed-chunk-3-2} \end{center}
+<img src="15-prop-scores-r_files/figure-epub3/unnamed-chunk-3-2.png" width="85%" style="display: block; margin: auto;" />
 
 
 ```r
@@ -738,15 +734,15 @@ bootstrap <- data.frame(cbind(c("Observed", "No Treatment", "Treatment",
                                 "Treatment - No Treatment"), mean, se, ll, ul))
 bootstrap
 ##                         V1             mean                se               ll
-## 1                 Observed 2.63384609228479 0.411924904646118 1.82648811484331
-## 2             No Treatment 1.71983636149845 0.483047194729647 0.77308125699524
-## 3                Treatment 5.35072300362985 0.693852606703335 3.99079688391208
-## 4 Treatment - No Treatment  3.6308866421314 0.379591405990523 2.88690115754905
+## 1                 Observed 2.63384609228479 0.250578351618104 2.14272154780789
+## 2             No Treatment 1.71983636149845 0.181128320605523  1.3648313765314
+## 3                Treatment 5.35072300362985 0.602689625221556 4.16947304433966
+## 4 Treatment - No Treatment  3.6308866421314 0.640841786137571 2.37485982151344
 ##                 ul
-## 1 3.44120406972628
-## 2 2.66659146600167
-## 3 6.71064912334762
-## 4 4.37487212671375
+## 1 3.12497063676169
+## 2  2.0748413464655
+## 3 6.53197296292004
+## 4 4.88691346274936
 ```
 
 
@@ -839,7 +835,7 @@ for(i in 1:nboot) {
   }
 }
 ## 95% CI for the causal mean difference
-## 2.506115 , 4.428949
+## 2.62305 , 4.458254
 ```
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.

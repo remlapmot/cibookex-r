@@ -78,8 +78,7 @@ Observed time interval: (0, survtime]
   Analysis time _t: survtime
 ```
 
-
-\begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-1} \end{center}
+<img src="./figs/stata-fig-17-1.png" width="85%" style="display: block; margin: auto;" />
 
 ## Program 17.2
 
@@ -279,8 +278,7 @@ psurv0          float   %9.0g                 psurv, interv == Original observat
 psurv1          float   %9.0g                 psurv, interv == Duplicated observation
 ```
 
-
-\begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-2} \end{center}
+<img src="./figs/stata-fig-17-2.png" width="85%" style="display: block; margin: auto;" />
 
 ## Program 17.3
 
@@ -622,7 +620,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated observ
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 20:11:33
+r; t=0.00 10:11:06
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -632,7 +630,7 @@ r; t=0.00 20:11:33
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=19.39 20:11:52
+r; t=18.94 10:11:25
 
 
 
@@ -650,8 +648,7 @@ Bootstrap results                                        Number of obs = 1,629
 ------------------------------------------------------------------------------
 ```
 
-
-\begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-3} \end{center}
+<img src="./figs/stata-fig-17-3.png" width="85%" style="display: block; margin: auto;" />
 
 ## Program 17.4
 
@@ -860,8 +857,7 @@ meanS_t1        float   %9.0g                 meanS_t, interv == Duplicated
                                                 observation
 
 
-file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
-    format
+file ./figs/stata-fig-17-4.png saved as PNG format
 
 (3,132 observations deleted)
 
@@ -871,7 +867,7 @@ file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 20:11:59
+r; t=0.00 10:11:31
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -881,7 +877,7 @@ r; t=0.00 20:11:59
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=21.51 20:12:20
+r; t=21.11 10:11:52
 
 
 
@@ -899,5 +895,4 @@ Bootstrap results                                        Number of obs = 1,629
 ------------------------------------------------------------------------------
 ```
 
-
-\begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-4} \end{center}
+<img src="./figs/stata-fig-17-4.png" width="85%" style="display: block; margin: auto;" />

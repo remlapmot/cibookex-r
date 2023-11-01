@@ -5,7 +5,7 @@ author:
  - R code by Joy Shi and Sean McGrath
  - Stata code by Eleanor Murray and Roger Logan
  - R Markdown code by Tom Palmer
-date: "17 August 2023"
+date: "01 November 2023"
 site: bookdown::bookdown_site
 documentclass: book
 #biblio-style: apalike
@@ -33,8 +33,7 @@ The Stata code is based on the code by Eleanor Murray and Roger Logan given [her
 
 This repo is rendered at <https://remlapmot.github.io/cibookex-r/>. Click the download button above for the pdf and eBook versions.
 
-
-\begin{center}\includegraphics[width=0.65\linewidth]{figs/download} \end{center}
+<img src="figs/download.png" width="65%" style="display: block; margin: auto;" />
 
 ## Downloading the code
 
@@ -43,14 +42,12 @@ The repo is available on GitHub [here](https://github.com/remlapmot/cibookex-r).
 Either,
 
 * click the green *Clone or download* button then choose to *Open in Desktop* or *Download ZIP*. 
-    
-    \begin{center}\includegraphics[width=0.65\linewidth]{figs/clone-or-download} \end{center}
+    <img src="figs/clone-or-download.png" width="65%" style="display: block; margin: auto;" />
     
   The *Desktop* option means open in the [GitHub Desktop](https://desktop.github.com/) app (if you have that installed on your machine). The *ZIP* option will give you a zip archive of the repo, which you then unzip.
 
 * or fork the repo into your own GitHub account and then clone or download your forked repo to your machine.
-    
-    \begin{center}\includegraphics[width=0.65\linewidth]{figs/fork} \end{center}
+    <img src="figs/fork.png" width="65%" style="display: block; margin: auto;" />
 
 ## Installing dependency packages
 It is easiest to open the repo in RStudio, as an RStudio project, by doubling click the `.Rproj` file. This makes sure that R's working directory is at the top level of the repo. If you don't want to open the repo as a project set the working directory to the top level of the repo directories using `setwd()`. Then run:

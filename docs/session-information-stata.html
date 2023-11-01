@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Session information: Stata | Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Session information: Stata | Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2023-08-17" />
+<meta name="date" content="2023-11-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -312,11 +312,12 @@ div.csl-indent {
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="session-information-stata.html#cb134-1" tabindex="-1"></a><span class="fu">library</span>(Statamarkdown)</span></code></pre></div>
 <p>For reproducibility.</p>
 <div class="sourceCode" id="cb135"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb135-1"><a href="session-information-stata.html#cb135-1" tabindex="-1"></a>about</span></code></pre></div>
-<pre><code>Stata/MP 17.0 for Mac (Apple Silicon)
-Revision 18 Jul 2023
+<pre><code>Stata/MP 17.0 for Windows (64-bit x86-64)
+Revision 29 Aug 2023
 Copyright 1985-2021 StataCorp LLC
 
-Total physical memory: 8.01 GB
+Total physical memory:       32.00 GB
+Available physical memory:   20.29 GB
 
 Stata license: Unlimited-user 2-core network, expiring 21 Jan 2024
 Serial number: 501709378202
@@ -326,43 +327,44 @@ Serial number: 501709378202
 <span id="cb137-2"><a href="session-information-stata.html#cb137-2" tabindex="-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>()</span>
 <span id="cb137-3"><a href="session-information-stata.html#cb137-3" tabindex="-1"></a>─ Session info ───────────────────────────────────────────────────────────────</span>
 <span id="cb137-4"><a href="session-information-stata.html#cb137-4" tabindex="-1"></a> setting  value</span>
-<span id="cb137-5"><a href="session-information-stata.html#cb137-5" tabindex="-1"></a> version  R version <span class="dv">4</span>.<span class="fl">3.1</span> (<span class="dv">2023-06-16</span>)</span>
-<span id="cb137-6"><a href="session-information-stata.html#cb137-6" tabindex="-1"></a> os       macOS Ventura <span class="fl">13.5</span></span>
-<span id="cb137-7"><a href="session-information-stata.html#cb137-7" tabindex="-1"></a> system   aarch64, darwin20</span>
-<span id="cb137-8"><a href="session-information-stata.html#cb137-8" tabindex="-1"></a> ui       X11</span>
+<span id="cb137-5"><a href="session-information-stata.html#cb137-5" tabindex="-1"></a> version  R version <span class="dv">4</span>.<span class="fl">3.2</span> (<span class="dv">2023-10-31</span> ucrt)</span>
+<span id="cb137-6"><a href="session-information-stata.html#cb137-6" tabindex="-1"></a> os       Windows <span class="dv">11</span> <span class="fu">x64</span> (build <span class="dv">22621</span>)</span>
+<span id="cb137-7"><a href="session-information-stata.html#cb137-7" tabindex="-1"></a> system   x86_64, mingw32</span>
+<span id="cb137-8"><a href="session-information-stata.html#cb137-8" tabindex="-1"></a> ui       RTerm</span>
 <span id="cb137-9"><a href="session-information-stata.html#cb137-9" tabindex="-1"></a> <span class="fu">language</span> (EN)</span>
-<span id="cb137-10"><a href="session-information-stata.html#cb137-10" tabindex="-1"></a> collate  en_US.UTF<span class="dv">-8</span></span>
-<span id="cb137-11"><a href="session-information-stata.html#cb137-11" tabindex="-1"></a> ctype    en_US.UTF<span class="dv">-8</span></span>
+<span id="cb137-10"><a href="session-information-stata.html#cb137-10" tabindex="-1"></a> collate  English_United Kingdom.utf8</span>
+<span id="cb137-11"><a href="session-information-stata.html#cb137-11" tabindex="-1"></a> ctype    English_United Kingdom.utf8</span>
 <span id="cb137-12"><a href="session-information-stata.html#cb137-12" tabindex="-1"></a> tz       Europe<span class="sc">/</span>London</span>
-<span id="cb137-13"><a href="session-information-stata.html#cb137-13" tabindex="-1"></a> date     <span class="dv">2023-08-17</span></span>
-<span id="cb137-14"><a href="session-information-stata.html#cb137-14" tabindex="-1"></a> pandoc   <span class="dv">3</span>.<span class="dv">1</span>.<span class="fl">6.1</span> <span class="sc">@</span> <span class="er">/</span>opt<span class="sc">/</span>homebrew<span class="sc">/</span>bin<span class="sc">/</span> (via rmarkdown)</span>
+<span id="cb137-13"><a href="session-information-stata.html#cb137-13" tabindex="-1"></a> date     <span class="dv">2023-11-01</span></span>
+<span id="cb137-14"><a href="session-information-stata.html#cb137-14" tabindex="-1"></a> pandoc   <span class="dv">3</span>.<span class="fl">1.1</span> <span class="sc">@</span> C<span class="sc">:</span><span class="er">/</span>Program Files<span class="sc">/</span>RStudio<span class="sc">/</span>resources<span class="sc">/</span>app<span class="sc">/</span>bin<span class="sc">/</span>quarto<span class="sc">/</span>bin<span class="sc">/</span>tools<span class="sc">/</span> (via rmarkdown)</span>
 <span id="cb137-15"><a href="session-information-stata.html#cb137-15" tabindex="-1"></a></span>
 <span id="cb137-16"><a href="session-information-stata.html#cb137-16" tabindex="-1"></a>─ Packages ───────────────────────────────────────────────────────────────────</span>
 <span id="cb137-17"><a href="session-information-stata.html#cb137-17" tabindex="-1"></a> package       <span class="sc">*</span> version <span class="fu">date</span> (UTC) lib source</span>
-<span id="cb137-18"><a href="session-information-stata.html#cb137-18" tabindex="-1"></a> bookdown        <span class="fl">0.35</span>    <span class="dv">2023-08-09</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
-<span id="cb137-19"><a href="session-information-stata.html#cb137-19" tabindex="-1"></a> bslib           <span class="dv">0</span>.<span class="fl">5.1</span>   <span class="dv">2023-08-11</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb137-18"><a href="session-information-stata.html#cb137-18" tabindex="-1"></a> bookdown        <span class="fl">0.36</span>    <span class="dv">2023-10-16</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb137-19"><a href="session-information-stata.html#cb137-19" tabindex="-1"></a> bslib           <span class="dv">0</span>.<span class="fl">5.1</span>   <span class="dv">2023-08-11</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
 <span id="cb137-20"><a href="session-information-stata.html#cb137-20" tabindex="-1"></a> cachem          <span class="dv">1</span>.<span class="fl">0.8</span>   <span class="dv">2023-05-01</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
 <span id="cb137-21"><a href="session-information-stata.html#cb137-21" tabindex="-1"></a> cli             <span class="dv">3</span>.<span class="fl">6.1</span>   <span class="dv">2023-03-23</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
 <span id="cb137-22"><a href="session-information-stata.html#cb137-22" tabindex="-1"></a> digest          <span class="dv">0</span>.<span class="fl">6.33</span>  <span class="dv">2023-07-07</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb137-23"><a href="session-information-stata.html#cb137-23" tabindex="-1"></a> evaluate        <span class="fl">0.21</span>    <span class="dv">2023-05-05</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb137-23"><a href="session-information-stata.html#cb137-23" tabindex="-1"></a> evaluate        <span class="fl">0.22</span>    <span class="dv">2023-09-29</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
 <span id="cb137-24"><a href="session-information-stata.html#cb137-24" tabindex="-1"></a> fastmap         <span class="dv">1</span>.<span class="fl">1.1</span>   <span class="dv">2023-02-24</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
-<span id="cb137-25"><a href="session-information-stata.html#cb137-25" tabindex="-1"></a> htmltools       <span class="dv">0</span>.<span class="fl">5.6</span>   <span class="dv">2023-08-10</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb137-25"><a href="session-information-stata.html#cb137-25" tabindex="-1"></a> htmltools       <span class="dv">0</span>.<span class="dv">5</span>.<span class="fl">6.1</span> <span class="dv">2023-10-06</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
 <span id="cb137-26"><a href="session-information-stata.html#cb137-26" tabindex="-1"></a> jquerylib       <span class="dv">0</span>.<span class="fl">1.4</span>   <span class="dv">2021-04-26</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
-<span id="cb137-27"><a href="session-information-stata.html#cb137-27" tabindex="-1"></a> jsonlite        <span class="dv">1</span>.<span class="fl">8.7</span>   <span class="dv">2023-06-29</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
-<span id="cb137-28"><a href="session-information-stata.html#cb137-28" tabindex="-1"></a> knitr           <span class="fl">1.43</span>    <span class="dv">2023-05-25</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb137-27"><a href="session-information-stata.html#cb137-27" tabindex="-1"></a> jsonlite        <span class="dv">1</span>.<span class="fl">8.7</span>   <span class="dv">2023-06-29</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb137-28"><a href="session-information-stata.html#cb137-28" tabindex="-1"></a> knitr           <span class="fl">1.45</span>    <span class="dv">2023-10-30</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
 <span id="cb137-29"><a href="session-information-stata.html#cb137-29" tabindex="-1"></a> R6              <span class="dv">2</span>.<span class="fl">5.1</span>   <span class="dv">2021-08-19</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
 <span id="cb137-30"><a href="session-information-stata.html#cb137-30" tabindex="-1"></a> rlang           <span class="dv">1</span>.<span class="fl">1.1</span>   <span class="dv">2023-04-28</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
-<span id="cb137-31"><a href="session-information-stata.html#cb137-31" tabindex="-1"></a> rmarkdown       <span class="fl">2.24</span>    <span class="dv">2023-08-14</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
-<span id="cb137-32"><a href="session-information-stata.html#cb137-32" tabindex="-1"></a> rstudioapi      <span class="dv">0</span>.<span class="fl">15.0</span>  <span class="dv">2023-07-07</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
-<span id="cb137-33"><a href="session-information-stata.html#cb137-33" tabindex="-1"></a> sass            <span class="dv">0</span>.<span class="fl">4.7</span>   <span class="dv">2023-07-15</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb137-31"><a href="session-information-stata.html#cb137-31" tabindex="-1"></a> rmarkdown       <span class="fl">2.25</span>    <span class="dv">2023-09-18</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb137-32"><a href="session-information-stata.html#cb137-32" tabindex="-1"></a> rstudioapi      <span class="dv">0</span>.<span class="fl">15.0</span>  <span class="dv">2023-07-07</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb137-33"><a href="session-information-stata.html#cb137-33" tabindex="-1"></a> sass            <span class="dv">0</span>.<span class="fl">4.7</span>   <span class="dv">2023-07-15</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
 <span id="cb137-34"><a href="session-information-stata.html#cb137-34" tabindex="-1"></a> sessioninfo     <span class="dv">1</span>.<span class="fl">2.2</span>   <span class="dv">2021-12-06</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
-<span id="cb137-35"><a href="session-information-stata.html#cb137-35" tabindex="-1"></a> Statamarkdown <span class="sc">*</span> <span class="dv">0</span>.<span class="fl">8.0</span>   <span class="dv">2023-05-31</span> [<span class="dv">1</span>] <span class="fu">Github</span> (hemken<span class="sc">/</span>statamarkdown<span class="sc">@</span><span class="fl">1e52</span>b23)</span>
-<span id="cb137-36"><a href="session-information-stata.html#cb137-36" tabindex="-1"></a> xfun            <span class="fl">0.40</span>    <span class="dv">2023-08-09</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
+<span id="cb137-35"><a href="session-information-stata.html#cb137-35" tabindex="-1"></a> Statamarkdown <span class="sc">*</span> <span class="dv">0</span>.<span class="fl">8.0</span>   <span class="dv">2023-06-01</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
+<span id="cb137-36"><a href="session-information-stata.html#cb137-36" tabindex="-1"></a> xfun            <span class="fl">0.40</span>    <span class="dv">2023-08-09</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.1</span>)</span>
 <span id="cb137-37"><a href="session-information-stata.html#cb137-37" tabindex="-1"></a> yaml            <span class="dv">2</span>.<span class="fl">3.7</span>   <span class="dv">2023-01-23</span> [<span class="dv">1</span>] <span class="fu">CRAN</span> (R <span class="dv">4</span>.<span class="fl">3.0</span>)</span>
 <span id="cb137-38"><a href="session-information-stata.html#cb137-38" tabindex="-1"></a></span>
-<span id="cb137-39"><a href="session-information-stata.html#cb137-39" tabindex="-1"></a> [<span class="dv">1</span>] <span class="sc">/</span>Library<span class="sc">/</span>Frameworks<span class="sc">/</span>R.framework<span class="sc">/</span>Versions<span class="sc">/</span><span class="fl">4.3</span><span class="sc">-</span>arm64<span class="sc">/</span>Resources<span class="sc">/</span>library</span>
-<span id="cb137-40"><a href="session-information-stata.html#cb137-40" tabindex="-1"></a></span>
-<span id="cb137-41"><a href="session-information-stata.html#cb137-41" tabindex="-1"></a>──────────────────────────────────────────────────────────────────────────────</span></code></pre></div>
+<span id="cb137-39"><a href="session-information-stata.html#cb137-39" tabindex="-1"></a> [<span class="dv">1</span>] C<span class="sc">:</span><span class="er">/</span>Users<span class="sc">/</span>tom<span class="sc">/</span>AppData<span class="sc">/</span>Local<span class="sc">/</span>R<span class="sc">/</span>win<span class="sc">-</span>library<span class="sc">/</span><span class="fl">4.3</span></span>
+<span id="cb137-40"><a href="session-information-stata.html#cb137-40" tabindex="-1"></a> [<span class="dv">2</span>] C<span class="sc">:</span><span class="er">/</span>Program Files<span class="sc">/</span>R<span class="sc">/</span>R<span class="dv">-4</span>.<span class="fl">3.2</span><span class="sc">/</span>library</span>
+<span id="cb137-41"><a href="session-information-stata.html#cb137-41" tabindex="-1"></a></span>
+<span id="cb137-42"><a href="session-information-stata.html#cb137-42" tabindex="-1"></a>──────────────────────────────────────────────────────────────────────────────</span></code></pre></div>
 
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div class="csl-entry">
