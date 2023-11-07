@@ -1,34 +1,36 @@
 Package: cibookex-r
-Title: cibookex-r is not really an R package. This file lists the dependencies available from CRAN and GitHub for building the book.
+Title: cibookex-r is not really an R package. This file lists the
+    dependencies available from CRAN and GitHub for building the book.
 Version: 0.1
-Authors@R: person("Tom", "Palmer", email = "tom.palmer@bristol.ac.uk",
-                  role = c("aut", "cre"))
-Depends: R (>= 3.5.0)
+Authors@R: 
+    person("Tom", "Palmer", , "tom.palmer@bristol.ac.uk", role = c("aut", "cre"))
 URL: https://github.com/remlapmot/cibookex-r
+Depends: 
+    R (>= 3.5.0)
 Imports:
-  bookdown (>= 0.23),
-  boot,
-  commonmark,
-  devtools (>= 2.0.0),
-  dplyr,
-  formatR,
-  geepack,
-  ggplot2,
-  here,
-  Hmisc,
-  knitr (>= 1.43),
-  markdown,
-  multcomp,
-  psych,
-  readxl,
-  rmarkdown,
-  sem,
-  sessioninfo,
-  splitstackshape,
-  Statamarkdown,
-  survival,
-  survminer,
-  tidyverse,
-  tinytex
-SystemRequirements: 
-  pandoc (>= 2.3.1) - https://pandoc.org/
+    bookdown (>= 0.23),
+    boot,
+    commonmark,
+    devtools (>= 2.0.0),
+    dplyr,
+    formatR,
+    geepack,
+    ggplot2,
+    here,
+    Hmisc,
+    knitr (>= 1.43),
+    markdown,
+    multcomp,
+    psych,
+    readxl,
+    rmarkdown,
+    sem,
+    sessioninfo,
+    splitstackshape,
+    Statamarkdown,
+    survival,
+    survminer,
+    tidyverse,
+    tinytex
+Encoding: UTF-8
+SystemRequirements: pandoc (>= 2.3.1) - https://pandoc.org/
