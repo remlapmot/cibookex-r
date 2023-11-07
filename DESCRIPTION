@@ -4,7 +4,8 @@ Title: cibookex-r is not really an R package. This file lists the
 Version: 0.1
 Authors@R: 
     person("Tom", "Palmer", , "tom.palmer@bristol.ac.uk", role = c("aut", "cre"))
-URL: https://github.com/remlapmot/cibookex-r
+URL: https://github.com/remlapmot/cibookex-r,
+    https://remlapmot.github.io/cibookex-r/
 Depends: 
     R (>= 3.5.0)
 Imports:
