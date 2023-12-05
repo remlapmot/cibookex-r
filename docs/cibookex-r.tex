@@ -138,7 +138,7 @@
 
 \title{Causal Inference: What If. R and Stata code for Exercises}
 \author{Book by M. A. Hernán and J. M. Robins \and R code by Joy Shi and Sean McGrath \and Stata code by Eleanor Murray and Roger Logan \and R Markdown code by Tom Palmer}
-\date{01 November 2023}
+\date{05 December 2023}
 
 \begin{document}
 \maketitle
@@ -151,8 +151,7 @@
 \tableofcontents
 }
 \setstretch{1.1}
-\hypertarget{preface}{%
-\chapter*{Preface}\label{preface}}
+\chapter*{Preface}\label{preface}
 \addcontentsline{toc}{chapter}{Preface}
 
 This book presents code examples from \citet{ci-book}, which is available in draft form from the following webpage.
@@ -167,8 +166,7 @@ This repo is rendered at \url{https://remlapmot.github.io/cibookex-r/}. Click th
 
 \begin{center}\includegraphics[width=0.65\linewidth]{figs/download} \end{center}
 
-\hypertarget{downloading-the-code}{%
-\section{Downloading the code}\label{downloading-the-code}}
+\section{Downloading the code}\label{downloading-the-code}
 
 The repo is available on GitHub \href{https://github.com/remlapmot/cibookex-r}{here}. There are a number of ways to download the code.
 
@@ -187,8 +185,7 @@ Either,
   \begin{center}\includegraphics[width=0.65\linewidth]{figs/fork} \end{center}
 \end{itemize}
 
-\hypertarget{installing-dependency-packages}{%
-\section{Installing dependency packages}\label{installing-dependency-packages}}
+\section{Installing dependency packages}\label{installing-dependency-packages}
 
 It is easiest to open the repo in RStudio, as an RStudio project, by doubling click the \texttt{.Rproj} file. This makes sure that R's working directory is at the top level of the repo. If you don't want to open the repo as a project set the working directory to the top level of the repo directories using \texttt{setwd()}. Then run:
 
@@ -199,8 +196,7 @@ It is easiest to open the repo in RStudio, as an RStudio project, by doubling cl
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{downloading-the-datasets}{%
-\section{Downloading the datasets}\label{downloading-the-datasets}}
+\section{Downloading the datasets}\label{downloading-the-datasets}
 
 We assume that you have downloaded the data from the Causal Inference Book website and saved it to a \texttt{data} subdirectory. You can do this manually or with the following code (nb. we use the \href{https://here.r-lib.org/}{\texttt{here}} package to reference the data subdirectory).
 
@@ -231,16 +227,13 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 
 \mainmatter
 
-\hypertarget{part-r-code}{%
-\part*{R code}\label{part-r-code}}
+\part*{R code}\label{part-r-code}
 \addcontentsline{toc}{part}{R code}
 
-\hypertarget{why-model}{%
-\chapter*{11. Why model?}\label{why-model}}
+\chapter*{11. Why model?}\label{why-model}
 \addcontentsline{toc}{chapter}{11. Why model?}
 
-\hypertarget{program-11.1}{%
-\section{Program 11.1}\label{program-11.1}}
+\section{Program 11.1}\label{program-11.1}
 
 \begin{itemize}
 \tightlist
@@ -298,8 +291,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{program-11.2}{%
-\section{Program 11.2}\label{program-11.2}}
+\section{Program 11.2}\label{program-11.2}
 
 \begin{itemize}
 \tightlist
@@ -371,8 +363,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{program-11.3}{%
-\section{Program 11.3}\label{program-11.3}}
+\section{Program 11.3}\label{program-11.3}
 
 \begin{itemize}
 \tightlist
@@ -413,12 +404,10 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{ip-weighting-and-marginal-structural-models}{%
-\chapter*{12. IP Weighting and Marginal Structural Models}\label{ip-weighting-and-marginal-structural-models}}
+\chapter*{12. IP Weighting and Marginal Structural Models}\label{ip-weighting-and-marginal-structural-models}
 \addcontentsline{toc}{chapter}{12. IP Weighting and Marginal Structural Models}
 
-\hypertarget{program-12.1}{%
-\section{Program 12.1}\label{program-12.1}}
+\section{Program 12.1}\label{program-12.1}
 
 \begin{itemize}
 \tightlist
@@ -545,8 +534,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{program-12.2}{%
-\section{Program 12.2}\label{program-12.2}}
+\section{Program 12.2}\label{program-12.2}
 
 \begin{itemize}
 \tightlist
@@ -720,8 +708,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{program-12.3}{%
-\section{Program 12.3}\label{program-12.3}}
+\section{Program 12.3}\label{program-12.3}
 
 \begin{itemize}
 \tightlist
@@ -862,8 +849,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{program-12.4}{%
-\section{Program 12.4}\label{program-12.4}}
+\section{Program 12.4}\label{program-12.4}
 
 \begin{itemize}
 \tightlist
@@ -946,8 +932,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{program-12.5}{%
-\section{Program 12.5}\label{program-12.5}}
+\section{Program 12.5}\label{program-12.5}
 
 \begin{itemize}
 \tightlist
@@ -1007,8 +992,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{program-12.6}{%
-\section{Program 12.6}\label{program-12.6}}
+\section{Program 12.6}\label{program-12.6}
 
 \begin{itemize}
 \tightlist
@@ -1156,8 +1140,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{program-12.7}{%
-\section{Program 12.7}\label{program-12.7}}
+\section{Program 12.7}\label{program-12.7}
 
 \begin{itemize}
 \tightlist
@@ -1394,12 +1377,10 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{standardization-and-the-parametric-g-formula}{%
-\chapter*{13. Standardization and the parametric G-formula}\label{standardization-and-the-parametric-g-formula}}
+\chapter*{13. Standardization and the parametric G-formula}\label{standardization-and-the-parametric-g-formula}
 \addcontentsline{toc}{chapter}{13. Standardization and the parametric G-formula}
 
-\hypertarget{program-13.1}{%
-\section{Program 13.1}\label{program-13.1}}
+\section{Program 13.1}\label{program-13.1}
 
 \begin{itemize}
 \tightlist
@@ -1505,8 +1486,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{program-13.2}{%
-\section{Program 13.2}\label{program-13.2}}
+\section{Program 13.2}\label{program-13.2}
 
 \begin{itemize}
 \tightlist
@@ -1560,9 +1540,9 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \DocumentationTok{\#\# Coefficients:}
 \DocumentationTok{\#\#               Estimate Std. Error t value Pr(\textgreater{}|t|)}
 \DocumentationTok{\#\# (Intercept)  2.500e{-}01  2.552e{-}01   0.980    0.342}
-\DocumentationTok{\#\# A            2.602e{-}16  3.608e{-}01   0.000    1.000}
+\DocumentationTok{\#\# A            3.957e{-}17  3.608e{-}01   0.000    1.000}
 \DocumentationTok{\#\# L            4.167e{-}01  3.898e{-}01   1.069    0.301}
-\DocumentationTok{\#\# A:L         {-}3.237e{-}16  4.959e{-}01   0.000    1.000}
+\DocumentationTok{\#\# A:L         {-}1.313e{-}16  4.959e{-}01   0.000    1.000}
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# (Dispersion parameter for gaussian family taken to be 0.2604167)}
 \DocumentationTok{\#\# }
@@ -1583,8 +1563,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{program-13.3}{%
-\section{Program 13.3}\label{program-13.3}}
+\section{Program 13.3}\label{program-13.3}
 
 \begin{itemize}
 \tightlist
@@ -1681,8 +1660,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{program-13.4}{%
-\section{Program 13.4}\label{program-13.4}}
+\section{Program 13.4}\label{program-13.4}
 
 \begin{itemize}
 \tightlist
@@ -1767,24 +1745,22 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{  ))}
 \NormalTok{bootstrap}
 \DocumentationTok{\#\#                         V1             mean                se               ll}
-\DocumentationTok{\#\# 1                 Observed 2.56188497106103 0.166759462538625 2.23504243040407}
-\DocumentationTok{\#\# 2             No Treatment 1.65212306626748 0.218888477867158 1.22310953301706}
-\DocumentationTok{\#\# 3                Treatment  5.1147448954934 0.344569425114411 4.43940123209548}
-\DocumentationTok{\#\# 4 Treatment {-} No Treatment 3.46262182922592 0.439020375326088 2.60215770510753}
+\DocumentationTok{\#\# 1                 Observed 2.56188497106099 0.202735202876936 2.16453127502377}
+\DocumentationTok{\#\# 2             No Treatment 1.65212306626744 0.202832725422884 1.25457822955248}
+\DocumentationTok{\#\# 3                Treatment 5.11474489549336 0.417676016586298 4.29611494577806}
+\DocumentationTok{\#\# 4 Treatment {-} No Treatment 3.46262182922592 0.455181675409663 2.57048213900038}
 \DocumentationTok{\#\#                 ul}
-\DocumentationTok{\#\# 1 2.88872751171799}
-\DocumentationTok{\#\# 2  2.0811365995179}
-\DocumentationTok{\#\# 3 5.79008855889132}
-\DocumentationTok{\#\# 4 4.32308595334431}
+\DocumentationTok{\#\# 1  2.9592386670982}
+\DocumentationTok{\#\# 2 2.04966790298239}
+\DocumentationTok{\#\# 3 5.93337484520865}
+\DocumentationTok{\#\# 4 4.35476151945146}
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{g-estimation-of-structural-nested-models}{%
-\chapter*{14. G-estimation of Structural Nested Models}\label{g-estimation-of-structural-nested-models}}
+\chapter*{14. G-estimation of Structural Nested Models}\label{g-estimation-of-structural-nested-models}
 \addcontentsline{toc}{chapter}{14. G-estimation of Structural Nested Models}
 
-\hypertarget{program-14.1}{%
-\section{Program 14.1}\label{program-14.1}}
+\section{Program 14.1}\label{program-14.1}
 
 \begin{itemize}
 \tightlist
@@ -1879,8 +1855,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{program-14.2}{%
-\section{Program 14.2}\label{program-14.2}}
+\section{Program 14.2}\label{program-14.2}
 
 \begin{itemize}
 \tightlist
@@ -1892,8 +1867,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
   Data from NHEFS
 \end{itemize}
 
-\hypertarget{g-estimation-checking-one-possible-value-of-psi}{%
-\subsection{G-estimation: Checking one possible value of psi}\label{g-estimation-checking-one-possible-value-of-psi}}
+\subsection{G-estimation: Checking one possible value of psi}\label{g-estimation-checking-one-possible-value-of-psi}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1952,8 +1926,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{g-estimation-checking-multiple-possible-values-of-psi}{%
-\subsection{G-estimation: Checking multiple possible values of psi}\label{g-estimation-checking-multiple-possible-values-of-psi}}
+\subsection{G-estimation: Checking multiple possible values of psi}\label{g-estimation-checking-multiple-possible-values-of-psi}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2073,8 +2046,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{program-14.3}{%
-\section{Program 14.3}\label{program-14.3}}
+\section{Program 14.3}\label{program-14.3}
 
 \begin{itemize}
 \tightlist
@@ -2086,8 +2058,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
   Data from NHEFS
 \end{itemize}
 
-\hypertarget{g-estimation-closed-form-estimator-linear-mean-models}{%
-\subsection{G-estimation: Closed form estimator linear mean models}\label{g-estimation-closed-form-estimator-linear-mean-models}}
+\subsection{G-estimation: Closed form estimator linear mean models}\label{g-estimation-closed-form-estimator-linear-mean-models}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2162,8 +2133,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{g-estimation-closed-form-estimator-for-2-parameter-model}{%
-\subsection{G-estimation: Closed form estimator for 2-parameter model}\label{g-estimation-closed-form-estimator-for-2-parameter-model}}
+\subsection{G-estimation: Closed form estimator for 2-parameter model}\label{g-estimation-closed-form-estimator-for-2-parameter-model}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2187,12 +2157,10 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{outcome-regression-and-propensity-scores}{%
-\chapter*{15. Outcome regression and propensity scores}\label{outcome-regression-and-propensity-scores}}
+\chapter*{15. Outcome regression and propensity scores}\label{outcome-regression-and-propensity-scores}
 \addcontentsline{toc}{chapter}{15. Outcome regression and propensity scores}
 
-\hypertarget{program-15.1}{%
-\section{Program 15.1}\label{program-15.1}}
+\section{Program 15.1}\label{program-15.1}
 
 \begin{itemize}
 \tightlist
@@ -2439,8 +2407,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{program-15.2}{%
-\section{Program 15.2}\label{program-15.2}}
+\section{Program 15.2}\label{program-15.2}
 
 \begin{itemize}
 \tightlist
@@ -2578,8 +2545,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{program-15.3}{%
-\section{Program 15.3}\label{program-15.3}}
+\section{Program 15.3}\label{program-15.3}
 
 \begin{itemize}
 \tightlist
@@ -2883,8 +2849,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{program-15.4}{%
-\section{Program 15.4}\label{program-15.4}}
+\section{Program 15.4}\label{program-15.4}
 
 \begin{itemize}
 \tightlist
@@ -2956,15 +2921,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
                                 \StringTok{"Treatment {-} No Treatment"}\NormalTok{), mean, se, ll, ul))}
 \NormalTok{bootstrap}
 \DocumentationTok{\#\#                         V1             mean                se               ll}
-\DocumentationTok{\#\# 1                 Observed 2.63384609228479  0.10931939139797 2.41958402233293}
-\DocumentationTok{\#\# 2             No Treatment 1.71983636149845  0.20560687972976 1.31685428225446}
-\DocumentationTok{\#\# 3                Treatment 5.35072300362985 0.293832115555194 4.77482263964046}
-\DocumentationTok{\#\# 4 Treatment {-} No Treatment  3.6308866421314 0.433679379340606 2.78089067778612}
+\DocumentationTok{\#\# 1                 Observed 2.63384609228479 0.301757959061969 2.04241136047502}
+\DocumentationTok{\#\# 2             No Treatment 1.71983636149845 0.246825644197991 1.23606698840949}
+\DocumentationTok{\#\# 3                Treatment 5.35072300362985 0.207596203763713 4.94384192092574}
+\DocumentationTok{\#\# 4 Treatment {-} No Treatment  3.6308866421314 0.155221039634026 3.32665899480584}
 \DocumentationTok{\#\#                 ul}
-\DocumentationTok{\#\# 1 2.84810816223665}
-\DocumentationTok{\#\# 2 2.12281844074244}
-\DocumentationTok{\#\# 3 5.92662336761924}
-\DocumentationTok{\#\# 4 4.48088260647667}
+\DocumentationTok{\#\# 1 3.22528082409456}
+\DocumentationTok{\#\# 2 2.20360573458741}
+\DocumentationTok{\#\# 3 5.75760408633397}
+\DocumentationTok{\#\# 4 3.93511428945695}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3058,18 +3023,16 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{  \}}
 \NormalTok{\}}
 \DocumentationTok{\#\# 95\% CI for the causal mean difference}
-\DocumentationTok{\#\# 2.621386 , 4.509942}
+\DocumentationTok{\#\# 2.651479 , 4.423129}
 \end{Highlighting}
 \end{Shaded}
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.
 
-\hypertarget{instrumental-variables-estimation}{%
-\chapter*{16. Instrumental variables estimation}\label{instrumental-variables-estimation}}
+\chapter*{16. Instrumental variables estimation}\label{instrumental-variables-estimation}
 \addcontentsline{toc}{chapter}{16. Instrumental variables estimation}
 
-\hypertarget{program-16.1}{%
-\section{Program 16.1}\label{program-16.1}}
+\section{Program 16.1}\label{program-16.1}
 
 \begin{itemize}
 \tightlist
@@ -3122,8 +3085,7 @@ A more flexible and elegant way to do this is to write a function to perform the
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{program-16.2}{%
-\section{Program 16.2}\label{program-16.2}}
+\section{Program 16.2}\label{program-16.2}
 
 \begin{itemize}
 \tightlist
@@ -3163,8 +3125,7 @@ A more flexible and elegant way to do this is to write a function to perform the
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{program-16.3}{%
-\section{Program 16.3}\label{program-16.3}}
+\section{Program 16.3}\label{program-16.3}
 
 \begin{itemize}
 \tightlist
@@ -3218,8 +3179,7 @@ A more flexible and elegant way to do this is to write a function to perform the
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{program-16.4}{%
-\section{Program 16.4}\label{program-16.4}}
+\section{Program 16.4}\label{program-16.4}
 
 \begin{itemize}
 \tightlist
@@ -3302,8 +3262,7 @@ A more flexible and elegant way to do this is to write a function to perform the
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{program-16.5}{%
-\section{Program 16.5}\label{program-16.5}}
+\section{Program 16.5}\label{program-16.5}
 
 \begin{itemize}
 \tightlist
@@ -3355,12 +3314,10 @@ A more flexible and elegant way to do this is to write a function to perform the
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{causal-survival-analysis}{%
-\chapter*{17. Causal survival analysis}\label{causal-survival-analysis}}
+\chapter*{17. Causal survival analysis}\label{causal-survival-analysis}
 \addcontentsline{toc}{chapter}{17. Causal survival analysis}
 
-\hypertarget{program-17.1}{%
-\section{Program 17.1}\label{program-17.1}}
+\section{Program 17.1}\label{program-17.1}
 
 \begin{itemize}
 \tightlist
@@ -3425,8 +3382,7 @@ A more flexible and elegant way to do this is to write a function to perform the
 
 \begin{center}\includegraphics[width=0.85\linewidth]{17-causal-surv-r_files/figure-latex/unnamed-chunk-2-1} \end{center}
 
-\hypertarget{program-17.2}{%
-\section{Program 17.2}\label{program-17.2}}
+\section{Program 17.2}\label{program-17.2}
 
 \begin{itemize}
 \tightlist
@@ -3511,8 +3467,7 @@ A more flexible and elegant way to do this is to write a function to perform the
 
 \begin{center}\includegraphics[width=0.85\linewidth]{17-causal-surv-r_files/figure-latex/unnamed-chunk-3-1} \end{center}
 
-\hypertarget{program-17.3}{%
-\section{Program 17.3}\label{program-17.3}}
+\section{Program 17.3}\label{program-17.3}
 
 \begin{itemize}
 \tightlist
@@ -3616,8 +3571,7 @@ A more flexible and elegant way to do this is to write a function to perform the
 
 \begin{center}\includegraphics[width=0.85\linewidth]{17-causal-surv-r_files/figure-latex/unnamed-chunk-4-1} \end{center}
 
-\hypertarget{program-17.4}{%
-\section{Program 17.4}\label{program-17.4}}
+\section{Program 17.4}\label{program-17.4}
 
 \begin{itemize}
 \tightlist
@@ -3740,8 +3694,7 @@ A more flexible and elegant way to do this is to write a function to perform the
 
 \begin{center}\includegraphics[width=0.85\linewidth]{17-causal-surv-r_files/figure-latex/unnamed-chunk-5-1} \end{center}
 
-\hypertarget{program-17.5}{%
-\section{Program 17.5}\label{program-17.5}}
+\section{Program 17.5}\label{program-17.5}
 
 \begin{itemize}
 \tightlist
@@ -3897,8 +3850,7 @@ A more flexible and elegant way to do this is to write a function to perform the
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{session-information-r}{%
-\chapter*{Session information: R}\label{session-information-r}}
+\chapter*{Session information: R}\label{session-information-r}
 \addcontentsline{toc}{chapter}{Session information: R}
 
 For reproducibility.
@@ -3909,46 +3861,43 @@ For reproducibility.
 \NormalTok{sessioninfo}\SpecialCharTok{::}\FunctionTok{session\_info}\NormalTok{()}
 \DocumentationTok{\#\# {-} Session info {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \DocumentationTok{\#\#  setting  value}
-\DocumentationTok{\#\#  version  R version 4.3.2 (2023{-}10{-}31 ucrt)}
-\DocumentationTok{\#\#  os       Windows 11 x64 (build 22621)}
-\DocumentationTok{\#\#  system   x86\_64, mingw32}
-\DocumentationTok{\#\#  ui       RTerm}
+\DocumentationTok{\#\#  version  R version 4.3.2 (2023{-}10{-}31)}
+\DocumentationTok{\#\#  os       macOS Sonoma 14.1.2}
+\DocumentationTok{\#\#  system   aarch64, darwin20}
+\DocumentationTok{\#\#  ui       X11}
 \DocumentationTok{\#\#  language (EN)}
-\DocumentationTok{\#\#  collate  English\_United Kingdom.utf8}
-\DocumentationTok{\#\#  ctype    English\_United Kingdom.utf8}
+\DocumentationTok{\#\#  collate  en\_US.UTF{-}8}
+\DocumentationTok{\#\#  ctype    en\_US.UTF{-}8}
 \DocumentationTok{\#\#  tz       Europe/London}
-\DocumentationTok{\#\#  date     2023{-}11{-}01}
-\DocumentationTok{\#\#  pandoc   3.1.1 @ C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools/ (via rmarkdown)}
+\DocumentationTok{\#\#  date     2023{-}12{-}05}
+\DocumentationTok{\#\#  pandoc   3.1.9 @ /opt/homebrew/bin/ (via rmarkdown)}
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# {-} Packages {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \DocumentationTok{\#\#  package     * version date (UTC) lib source}
-\DocumentationTok{\#\#  bookdown      0.36    2023{-}10{-}16 [1] CRAN (R 4.3.1)}
+\DocumentationTok{\#\#  bookdown      0.37    2023{-}12{-}01 [1] CRAN (R 4.3.2)}
 \DocumentationTok{\#\#  cli           3.6.1   2023{-}03{-}23 [1] CRAN (R 4.3.0)}
 \DocumentationTok{\#\#  digest        0.6.33  2023{-}07{-}07 [1] CRAN (R 4.3.1)}
-\DocumentationTok{\#\#  evaluate      0.22    2023{-}09{-}29 [1] CRAN (R 4.3.1)}
+\DocumentationTok{\#\#  evaluate      0.23    2023{-}11{-}01 [1] CRAN (R 4.3.1)}
 \DocumentationTok{\#\#  fastmap       1.1.1   2023{-}02{-}24 [1] CRAN (R 4.3.0)}
-\DocumentationTok{\#\#  htmltools     0.5.6.1 2023{-}10{-}06 [1] CRAN (R 4.3.1)}
+\DocumentationTok{\#\#  htmltools     0.5.7   2023{-}11{-}03 [1] CRAN (R 4.3.2)}
 \DocumentationTok{\#\#  knitr         1.45    2023{-}10{-}30 [1] CRAN (R 4.3.1)}
-\DocumentationTok{\#\#  rlang         1.1.1   2023{-}04{-}28 [1] CRAN (R 4.3.0)}
+\DocumentationTok{\#\#  rlang         1.1.2   2023{-}11{-}04 [1] CRAN (R 4.3.2)}
 \DocumentationTok{\#\#  rmarkdown     2.25    2023{-}09{-}18 [1] CRAN (R 4.3.1)}
 \DocumentationTok{\#\#  rstudioapi    0.15.0  2023{-}07{-}07 [1] CRAN (R 4.3.1)}
 \DocumentationTok{\#\#  sessioninfo   1.2.2   2021{-}12{-}06 [1] CRAN (R 4.3.0)}
-\DocumentationTok{\#\#  xfun          0.40    2023{-}08{-}09 [1] CRAN (R 4.3.1)}
+\DocumentationTok{\#\#  xfun          0.41    2023{-}11{-}01 [1] CRAN (R 4.3.1)}
 \DocumentationTok{\#\#  yaml          2.3.7   2023{-}01{-}23 [1] CRAN (R 4.3.0)}
 \DocumentationTok{\#\# }
-\DocumentationTok{\#\#  [1] C:/Users/tom/AppData/Local/R/win{-}library/4.3}
-\DocumentationTok{\#\#  [2] C:/Program Files/R/R{-}4.3.2/library}
+\DocumentationTok{\#\#  [1] /Library/Frameworks/R.framework/Versions/4.3{-}arm64/Resources/library}
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{part-stata-code}{%
-\part*{Stata code}\label{part-stata-code}}
+\part*{Stata code}\label{part-stata-code}
 \addcontentsline{toc}{part}{Stata code}
 
-\hypertarget{why-model-stata}{%
-\chapter*{11. Why model: Stata}\label{why-model-stata}}
+\chapter*{11. Why model: Stata}\label{why-model-stata}
 \addcontentsline{toc}{chapter}{11. Why model: Stata}
 
 \begin{Shaded}
@@ -3969,8 +3918,6 @@ all files already exist and are up to date.
 
 checking tomata consistency and verifying not already installed...
 all files already exist and are up to date.
-
-end of do-file
 \end{verbatim}
 
 \begin{verbatim}
@@ -3982,8 +3929,7 @@ For errors contact: ejmurray@bu.edu
 ***************************************************************/
 \end{verbatim}
 
-\hypertarget{program-11.1-1}{%
-\section{Program 11.1}\label{program-11.1-1}}
+\section{Program 11.1}\label{program-11.1-1}
 
 \begin{itemize}
 \tightlist
@@ -4214,8 +4160,7 @@ For errors contact: ejmurray@bu.edu
 
 \begin{center}\includegraphics[width=0.85\linewidth]{figs/stata-fig-11-3} \end{center}
 
-\hypertarget{program-11.2-1}{%
-\section{Program 11.2}\label{program-11.2-1}}
+\section{Program 11.2}\label{program-11.2-1}
 
 \begin{itemize}
 \tightlist
@@ -4289,8 +4234,7 @@ For errors contact: ejmurray@bu.edu
 146.25
 \end{verbatim}
 
-\hypertarget{program-11.3-1}{%
-\section{Program 11.3}\label{program-11.3-1}}
+\section{Program 11.3}\label{program-11.3-1}
 
 \begin{itemize}
 \tightlist
@@ -4340,8 +4284,7 @@ For errors contact: ejmurray@bu.edu
 
 \begin{center}\includegraphics[width=0.85\linewidth]{figs/stata-fig-11-5} \end{center}
 
-\hypertarget{ip-weighting-and-marginal-structural-models-stata}{%
-\chapter*{12. IP Weighting and Marginal Structural Models: Stata}\label{ip-weighting-and-marginal-structural-models-stata}}
+\chapter*{12. IP Weighting and Marginal Structural Models: Stata}\label{ip-weighting-and-marginal-structural-models-stata}
 \addcontentsline{toc}{chapter}{12. IP Weighting and Marginal Structural Models: Stata}
 
 \begin{Shaded}
@@ -4359,8 +4302,7 @@ For errors contact: ejmurray@bu.edu
 ***************************************************************/
 \end{verbatim}
 
-\hypertarget{program-12.1-1}{%
-\section{Program 12.1}\label{program-12.1-1}}
+\section{Program 12.1}\label{program-12.1-1}
 
 \begin{itemize}
 \tightlist
@@ -4493,8 +4435,7 @@ No smoking cessation |                 8.9
 ------------------------------------------
 \end{verbatim}
 
-\hypertarget{program-12.2-1}{%
-\section{Program 12.2}\label{program-12.2-1}}
+\section{Program 12.2}\label{program-12.2-1}
 
 \begin{itemize}
 \tightlist
@@ -4611,8 +4552,7 @@ Linear regression                               Number of obs     =      1,566
 ------------------------------------------------------------------------------
 \end{verbatim}
 
-\hypertarget{program-12.3-1}{%
-\section{Program 12.3}\label{program-12.3-1}}
+\section{Program 12.3}\label{program-12.3-1}
 
 \begin{itemize}
 \tightlist
@@ -4854,8 +4794,7 @@ Linear regression                               Number of obs     =      1,566
      Total |        97         19 |       116 
 \end{verbatim}
 
-\hypertarget{program-12.4-1}{%
-\section{Program 12.4}\label{program-12.4-1}}
+\section{Program 12.4}\label{program-12.4-1}
 
 \begin{itemize}
 \tightlist
@@ -5007,8 +4946,7 @@ c.smkintensity82_71 |   .0026949   .0024203     1.11   0.266    -.0020537    .00
 ------------------------------------------------------------------------------
 \end{verbatim}
 
-\hypertarget{program-12.5-1}{%
-\section{Program 12.5}\label{program-12.5-1}}
+\section{Program 12.5}\label{program-12.5-1}
 
 \begin{itemize}
 \tightlist
@@ -5151,8 +5089,7 @@ Log pseudolikelihood = -749.11596                       Pseudo R2     = 0.0000
 Note: _cons estimates baseline odds.
 \end{verbatim}
 
-\hypertarget{program-12.6-1}{%
-\section{Program 12.6}\label{program-12.6-1}}
+\section{Program 12.6}\label{program-12.6-1}
 
 \begin{itemize}
 \tightlist
@@ -5308,8 +5245,7 @@ Linear regression                               Number of obs     =      1,566
 ------------------------------------------------------------------------------
 \end{verbatim}
 
-\hypertarget{program-12.7-1}{%
-\section{Program 12.7}\label{program-12.7-1}}
+\section{Program 12.7}\label{program-12.7-1}
 
 \begin{itemize}
 \tightlist
@@ -5589,8 +5525,7 @@ Linear regression                               Number of obs     =      1,566
 ------------------------------------------------------------------------------
 \end{verbatim}
 
-\hypertarget{standardization-and-the-parametric-g-formula-stata}{%
-\chapter*{13. Standardization and the parametric G-formula: Stata}\label{standardization-and-the-parametric-g-formula-stata}}
+\chapter*{13. Standardization and the parametric G-formula: Stata}\label{standardization-and-the-parametric-g-formula-stata}
 \addcontentsline{toc}{chapter}{13. Standardization and the parametric G-formula: Stata}
 
 \begin{Shaded}
@@ -5608,8 +5543,7 @@ For errors contact: ejmurray@bu.edu
 ***************************************************************/
 \end{verbatim}
 
-\hypertarget{program-13.1-1}{%
-\section{Program 13.1}\label{program-13.1-1}}
+\section{Program 13.1}\label{program-13.1-1}
 
 \begin{itemize}
 \tightlist
@@ -5725,8 +5659,7 @@ Smoking cessation  |   .0466628   .0351448     1.33   0.184    -.0222197    .115
      wt82_71 |      1,566      2.6383    7.879913  -41.28047   48.53839
 \end{verbatim}
 
-\hypertarget{program-13.2-1}{%
-\section{Program 13.2}\label{program-13.2-1}}
+\section{Program 13.2}\label{program-13.2-1}
 
 \begin{itemize}
 \tightlist
@@ -5974,8 +5907,7 @@ observe[4,2]
 difference          .          0
 \end{verbatim}
 
-\hypertarget{program-13.3-1}{%
-\section{Program 13.3}\label{program-13.3-1}}
+\section{Program 13.3}\label{program-13.3-1}
 
 \begin{itemize}
 \tightlist
@@ -6235,8 +6167,7 @@ file ./data/observe.mmat saved
 (1,566 missing values generated)
 \end{verbatim}
 
-\hypertarget{program-13.4-1}{%
-\section{Program 13.4}\label{program-13.4-1}}
+\section{Program 13.4}\label{program-13.4-1}
 
 \begin{itemize}
 \tightlist
@@ -6363,8 +6294,7 @@ Bootstrap results                                        Number of obs = 1,629
 ------------------------------------------------------------------------------
 \end{verbatim}
 
-\hypertarget{g-estimation-of-structural-nested-models-stata}{%
-\chapter*{14. G-estimation of Structural Nested Models: Stata}\label{g-estimation-of-structural-nested-models-stata}}
+\chapter*{14. G-estimation of Structural Nested Models: Stata}\label{g-estimation-of-structural-nested-models-stata}
 \addcontentsline{toc}{chapter}{14. G-estimation of Structural Nested Models: Stata}
 
 \begin{Shaded}
@@ -6382,8 +6312,7 @@ For errors contact: ejmurray@bu.edu
 ***************************************************************/
 \end{verbatim}
 
-\hypertarget{program-14.1-1}{%
-\section{Program 14.1}\label{program-14.1-1}}
+\section{Program 14.1}\label{program-14.1-1}
 
 \begin{itemize}
 \tightlist
@@ -6524,8 +6453,7 @@ Log likelihood   = -232.6799949                   BIC             =  -11434.36
 file ./data/nhefs-wcens.dta saved
 \end{verbatim}
 
-\hypertarget{program-14.2-1}{%
-\section{Program 14.2}\label{program-14.2-1}}
+\section{Program 14.2}\label{program-14.2-1}
 
 \begin{itemize}
 \tightlist
@@ -6762,8 +6690,7 @@ r31           5  -.02998926   .02998926   .00213639
 --------------------------------------------------------------------------------------
 \end{verbatim}
 
-\hypertarget{program-14.3-1}{%
-\section{Program 14.3}\label{program-14.3-1}}
+\section{Program 14.3}\label{program-14.3-1}
 
 \begin{itemize}
 \tightlist
@@ -6930,8 +6857,7 @@ Log pseudolikelihood = -877.82423                       Pseudo R2     = 0.0623
 --------------------------------------------------------------------------------------
 \end{verbatim}
 
-\hypertarget{outcome-regression-and-propensity-scores-stata}{%
-\chapter*{15. Outcome regression and propensity scores: Stata}\label{outcome-regression-and-propensity-scores-stata}}
+\chapter*{15. Outcome regression and propensity scores: Stata}\label{outcome-regression-and-propensity-scores-stata}
 \addcontentsline{toc}{chapter}{15. Outcome regression and propensity scores: Stata}
 
 \begin{Shaded}
@@ -6949,8 +6875,7 @@ For errors contact: ejmurray@bu.edu
 ***************************************************************/
 \end{verbatim}
 
-\hypertarget{program-15.1-1}{%
-\section{Program 15.1}\label{program-15.1-1}}
+\section{Program 15.1}\label{program-15.1-1}
 
 \begin{itemize}
 \tightlist
@@ -7108,8 +7033,7 @@ For errors contact: ejmurray@bu.edu
 -----------------------------------------------------------------------------------
 \end{verbatim}
 
-\hypertarget{prorgam-15.2}{%
-\section{Prorgam 15.2}\label{prorgam-15.2}}
+\section{Prorgam 15.2}\label{prorgam-15.2}
 
 \begin{itemize}
 \tightlist
@@ -7298,8 +7222,7 @@ file ./data/nhefs-ps.dta saved
 
 \begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-15-2} \end{center}
 
-\hypertarget{program-15.3-1}{%
-\section{Program 15.3}\label{program-15.3-1}}
+\section{Program 15.3}\label{program-15.3-1}
 
 \begin{itemize}
 \tightlist
@@ -7630,8 +7553,7 @@ H0: diff = 0                                     Degrees of freedom =      154
 ------------------------------------------------------------------------------
 \end{verbatim}
 
-\hypertarget{program-15.4-1}{%
-\section{Program 15.4}\label{program-15.4-1}}
+\section{Program 15.4}\label{program-15.4-1}
 
 \begin{itemize}
 \tightlist
@@ -7964,8 +7886,7 @@ Bootstrap results                               Number of obs     =      1,629
 Key: P: Percentile
 \end{verbatim}
 
-\hypertarget{instrumental-variables-estimation-stata}{%
-\chapter*{16. Instrumental variables estimation: Stata}\label{instrumental-variables-estimation-stata}}
+\chapter*{16. Instrumental variables estimation: Stata}\label{instrumental-variables-estimation-stata}
 \addcontentsline{toc}{chapter}{16. Instrumental variables estimation: Stata}
 
 \begin{Shaded}
@@ -7983,8 +7904,7 @@ For errors contact: ejmurray@bu.edu
 ***************************************************************/
 \end{verbatim}
 
-\hypertarget{program-16.1-1}{%
-\section{Program 16.1}\label{program-16.1-1}}
+\section{Program 16.1}\label{program-16.1-1}
 
 \begin{itemize}
 \tightlist
@@ -8162,8 +8082,7 @@ r1   2.535729  2.6860178
 2.3962701
 \end{verbatim}
 
-\hypertarget{program-16.2-1}{%
-\section{Program 16.2}\label{program-16.2-1}}
+\section{Program 16.2}\label{program-16.2-1}
 
 \begin{itemize}
 \tightlist
@@ -8203,8 +8122,7 @@ Instrumented: qsmk
  Instruments: highprice
 \end{verbatim}
 
-\hypertarget{program-16.3-1}{%
-\section{Program 16.3}\label{program-16.3-1}}
+\section{Program 16.3}\label{program-16.3-1}
 
 \begin{itemize}
 \tightlist
@@ -8248,8 +8166,7 @@ Log likelihood = -187.34948                             Pseudo R2     = 0.0000
 ------------------------------------------------------------------------------
 \end{verbatim}
 
-\hypertarget{program-16.4-1}{%
-\section{Program 16.4}\label{program-16.4-1}}
+\section{Program 16.4}\label{program-16.4-1}
 
 \begin{itemize}
 \tightlist
@@ -8373,8 +8290,7 @@ Instrumented: qsmk
  Instruments: highprice
 \end{verbatim}
 
-\hypertarget{program-16.5-1}{%
-\section{Program 16.5}\label{program-16.5-1}}
+\section{Program 16.5}\label{program-16.5-1}
 
 \begin{itemize}
 \tightlist
@@ -8437,8 +8353,7 @@ Instrumented: qsmk
               1.active 2.active wt71 highprice
 \end{verbatim}
 
-\hypertarget{causal-survival-analysis-stata}{%
-\chapter*{17. Causal survival analysis: Stata}\label{causal-survival-analysis-stata}}
+\chapter*{17. Causal survival analysis: Stata}\label{causal-survival-analysis-stata}
 \addcontentsline{toc}{chapter}{17. Causal survival analysis: Stata}
 
 \begin{Shaded}
@@ -8456,8 +8371,7 @@ For errors contact: ejmurray@bu.edu
 ***************************************************************/
 \end{verbatim}
 
-\hypertarget{program-17.1-1}{%
-\section{Program 17.1}\label{program-17.1-1}}
+\section{Program 17.1}\label{program-17.1-1}
 
 \begin{itemize}
 \tightlist
@@ -8530,8 +8444,7 @@ Observed time interval: (0, survtime]
 
 \begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-1} \end{center}
 
-\hypertarget{program-17.2-1}{%
-\section{Program 17.2}\label{program-17.2-1}}
+\section{Program 17.2}\label{program-17.2-1}
 
 \begin{itemize}
 \tightlist
@@ -8659,18 +8572,87 @@ Observed time interval: (0, survtime]
       Total |    171,076      100.00
 
 
-file ./data/nhefs_surv.dta cannot be modified or erased; likely cause is read-only
-    directory or file
-r(608);
 
-end of do-file
-r(608);
+
+
+Logistic regression                                    Number of obs = 171,076
+                                                       LR chi2(5)    =   24.26
+                                                       Prob > chi2   =  0.0002
+Log likelihood = -2134.1973                            Pseudo R2     =  0.0057
+
+------------------------------------------------------------------------------------
+             event | Odds ratio   Std. err.      z    P>|z|     [95% conf. interval]
+-------------------+----------------------------------------------------------------
+              qsmk |   1.402527   .6000025     0.79   0.429     .6064099    3.243815
+                   |
+       qsmk#c.time |
+Smoking cessation  |   1.012318   .0162153     0.76   0.445     .9810299    1.044603
+                   |
+qsmk#c.time#c.time |
+Smoking cessation  |   .9998342   .0001321    -1.25   0.210     .9995753    1.000093
+                   |
+              time |   1.022048   .0090651     2.46   0.014     1.004434    1.039971
+                   |
+     c.time#c.time |   .9998637   .0000699    -1.95   0.051     .9997266    1.000001
+                   |
+             _cons |   .0007992   .0001972   -28.90   0.000     .0004927    .0012963
+------------------------------------------------------------------------------------
+Note: _cons estimates baseline odds.
+
+(169,510 observations deleted)
+
+(186,354 observations created)
+
+(186354 real changes made)
+
+(187,920 observations created)
+
+(187,920 real changes made)
+
+
+
+
+
+
+(372,708 missing values generated)
+
+(372708 real changes made)
+
+
+--------------------------------------------------------------------------------------
+-> interv = Original
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+       psurv |      1,566    .8279829           0   .8279829   .8279829
+
+--------------------------------------------------------------------------------------
+-> interv = Duplicat
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+       psurv |      1,566     .774282           0    .774282    .774282
+
+
+(3,132 observations created)
+
+(3,132 real changes made)
+
+(375,840 missing values generated)
+
+(375,840 real changes made)
+
+
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+--------------------------------------------------------------------------------------
+psurv0          float   %9.0g                 psurv, interv == Original observation
+psurv1          float   %9.0g                 psurv, interv == Duplicated observation
 \end{verbatim}
 
 \begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-2} \end{center}
 
-\hypertarget{program-17.3-1}{%
-\section{Program 17.3}\label{program-17.3-1}}
+\section{Program 17.3}\label{program-17.3-1}
 
 \begin{itemize}
 \tightlist
@@ -9018,7 +9000,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated observ
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 10:07:59
+r; t=0.00 11:58:32
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -9028,7 +9010,7 @@ r; t=0.00 10:07:59
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=19.02 10:08:18
+r; t=18.29 11:58:51
 
 
 
@@ -9048,8 +9030,7 @@ Bootstrap results                                        Number of obs = 1,629
 
 \begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-3} \end{center}
 
-\hypertarget{program-17.4-1}{%
-\section{Program 17.4}\label{program-17.4-1}}
+\section{Program 17.4}\label{program-17.4-1}
 
 \begin{itemize}
 \tightlist
@@ -9264,7 +9245,8 @@ meanS_t1        float   %9.0g                 meanS_t, interv == Duplicated
                                                 observation
 
 
-file ./figs/stata-fig-17-4.png saved as PNG format
+file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
+    format
 
 (3,132 observations deleted)
 
@@ -9274,7 +9256,7 @@ file ./figs/stata-fig-17-4.png saved as PNG format
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 10:08:24
+r; t=0.00 11:58:58
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -9284,7 +9266,7 @@ r; t=0.00 10:08:24
 Simulations (10)
 ----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
 ..........
-r; t=22.14 10:08:46
+r; t=20.35 11:59:18
 
 
 
@@ -9304,8 +9286,7 @@ Bootstrap results                                        Number of obs = 1,629
 
 \begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-4} \end{center}
 
-\hypertarget{session-information-stata}{%
-\chapter*{Session information: Stata}\label{session-information-stata}}
+\chapter*{Session information: Stata}\label{session-information-stata}
 \addcontentsline{toc}{chapter}{Session information: Stata}
 
 \begin{Shaded}
@@ -9323,12 +9304,11 @@ For reproducibility.
 \end{Shaded}
 
 \begin{verbatim}
-Stata/MP 17.0 for Windows (64-bit x86-64)
-Revision 29 Aug 2023
+Stata/MP 17.0 for Mac (Apple Silicon)
+Revision 14 Nov 2023
 Copyright 1985-2021 StataCorp LLC
 
-Total physical memory:       32.00 GB
-Available physical memory:   21.12 GB
+Total physical memory: 8.01 GB
 
 Stata license: Unlimited-user 2-core network, expiring 21 Jan 2024
 Serial number: 501709378202
@@ -9342,36 +9322,35 @@ Serial number: 501709378202
 \NormalTok{sessioninfo}\SpecialCharTok{::}\FunctionTok{session\_info}\NormalTok{()}
 \SpecialCharTok{{-}}\NormalTok{ Session info }\SpecialCharTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \NormalTok{ setting  value}
-\NormalTok{ version  R version }\DecValTok{4}\NormalTok{.}\FloatTok{3.2}\NormalTok{ (}\DecValTok{2023{-}10{-}31}\NormalTok{ ucrt)}
-\NormalTok{ os       Windows }\DecValTok{11} \FunctionTok{x64}\NormalTok{ (build }\DecValTok{22621}\NormalTok{)}
-\NormalTok{ system   x86\_64, mingw32}
-\NormalTok{ ui       RTerm}
+\NormalTok{ version  R version }\DecValTok{4}\NormalTok{.}\FloatTok{3.2}\NormalTok{ (}\DecValTok{2023{-}10{-}31}\NormalTok{)}
+\NormalTok{ os       macOS Sonoma }\DecValTok{14}\NormalTok{.}\FloatTok{1.2}
+\NormalTok{ system   aarch64, darwin20}
+\NormalTok{ ui       X11}
  \FunctionTok{language}\NormalTok{ (EN)}
-\NormalTok{ collate  English\_United Kingdom.utf8}
-\NormalTok{ ctype    English\_United Kingdom.utf8}
+\NormalTok{ collate  en\_US.UTF}\DecValTok{{-}8}
+\NormalTok{ ctype    en\_US.UTF}\DecValTok{{-}8}
 \NormalTok{ tz       Europe}\SpecialCharTok{/}\NormalTok{London}
-\NormalTok{ date     }\DecValTok{2023{-}11{-}01}
-\NormalTok{ pandoc   }\DecValTok{3}\NormalTok{.}\FloatTok{1.1} \SpecialCharTok{@}\NormalTok{ C}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{Program Files}\SpecialCharTok{/}\NormalTok{RStudio}\SpecialCharTok{/}\NormalTok{resources}\SpecialCharTok{/}\NormalTok{app}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{quarto}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{tools}\SpecialCharTok{/}\NormalTok{ (via rmarkdown)}
+\NormalTok{ date     }\DecValTok{2023{-}12{-}05}
+\NormalTok{ pandoc   }\DecValTok{3}\NormalTok{.}\FloatTok{1.9} \SpecialCharTok{@} \ErrorTok{/}\NormalTok{opt}\SpecialCharTok{/}\NormalTok{homebrew}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{ (via rmarkdown)}
 
 \SpecialCharTok{{-}}\NormalTok{ Packages }\SpecialCharTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \NormalTok{ package       }\SpecialCharTok{*}\NormalTok{ version }\FunctionTok{date}\NormalTok{ (UTC) lib source}
-\NormalTok{ bookdown        }\FloatTok{0.36}    \DecValTok{2023{-}10{-}16}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.1}\NormalTok{)}
+\NormalTok{ bookdown        }\FloatTok{0.37}    \DecValTok{2023{-}12{-}01}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.2}\NormalTok{)}
 \NormalTok{ cli             }\DecValTok{3}\NormalTok{.}\FloatTok{6.1}   \DecValTok{2023{-}03{-}23}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
 \NormalTok{ digest          }\DecValTok{0}\NormalTok{.}\FloatTok{6.33}  \DecValTok{2023{-}07{-}07}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.1}\NormalTok{)}
-\NormalTok{ evaluate        }\FloatTok{0.22}    \DecValTok{2023{-}09{-}29}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.1}\NormalTok{)}
+\NormalTok{ evaluate        }\FloatTok{0.23}    \DecValTok{2023{-}11{-}01}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.1}\NormalTok{)}
 \NormalTok{ fastmap         }\DecValTok{1}\NormalTok{.}\FloatTok{1.1}   \DecValTok{2023{-}02{-}24}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
-\NormalTok{ htmltools       }\DecValTok{0}\NormalTok{.}\DecValTok{5}\NormalTok{.}\FloatTok{6.1} \DecValTok{2023{-}10{-}06}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.1}\NormalTok{)}
+\NormalTok{ htmltools       }\DecValTok{0}\NormalTok{.}\FloatTok{5.7}   \DecValTok{2023{-}11{-}03}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.2}\NormalTok{)}
 \NormalTok{ knitr           }\FloatTok{1.45}    \DecValTok{2023{-}10{-}30}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.1}\NormalTok{)}
-\NormalTok{ rlang           }\DecValTok{1}\NormalTok{.}\FloatTok{1.1}   \DecValTok{2023{-}04{-}28}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
+\NormalTok{ rlang           }\DecValTok{1}\NormalTok{.}\FloatTok{1.2}   \DecValTok{2023{-}11{-}04}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.2}\NormalTok{)}
 \NormalTok{ rmarkdown       }\FloatTok{2.25}    \DecValTok{2023{-}09{-}18}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.1}\NormalTok{)}
 \NormalTok{ rstudioapi      }\DecValTok{0}\NormalTok{.}\FloatTok{15.0}  \DecValTok{2023{-}07{-}07}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.1}\NormalTok{)}
 \NormalTok{ sessioninfo     }\DecValTok{1}\NormalTok{.}\FloatTok{2.2}   \DecValTok{2021{-}12{-}06}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
-\NormalTok{ Statamarkdown }\SpecialCharTok{*} \DecValTok{0}\NormalTok{.}\FloatTok{8.0}   \DecValTok{2023{-}06{-}01}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.1}\NormalTok{)}
-\NormalTok{ xfun            }\FloatTok{0.40}    \DecValTok{2023{-}08{-}09}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.1}\NormalTok{)}
+\NormalTok{ Statamarkdown }\SpecialCharTok{*} \DecValTok{0}\NormalTok{.}\FloatTok{9.2}   \DecValTok{2023{-}12{-}04}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.1}\NormalTok{)}
+\NormalTok{ xfun            }\FloatTok{0.41}    \DecValTok{2023{-}11{-}01}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.1}\NormalTok{)}
 \NormalTok{ yaml            }\DecValTok{2}\NormalTok{.}\FloatTok{3.7}   \DecValTok{2023{-}01{-}23}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
 
-\NormalTok{ [}\DecValTok{1}\NormalTok{] C}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{Users}\SpecialCharTok{/}\NormalTok{tom}\SpecialCharTok{/}\NormalTok{AppData}\SpecialCharTok{/}\NormalTok{Local}\SpecialCharTok{/}\NormalTok{R}\SpecialCharTok{/}\NormalTok{win}\SpecialCharTok{{-}}\NormalTok{library}\SpecialCharTok{/}\FloatTok{4.3}
-\NormalTok{ [}\DecValTok{2}\NormalTok{] C}\SpecialCharTok{:}\ErrorTok{/}\NormalTok{Program Files}\SpecialCharTok{/}\NormalTok{R}\SpecialCharTok{/}\NormalTok{R}\DecValTok{{-}4}\NormalTok{.}\FloatTok{3.2}\SpecialCharTok{/}\NormalTok{library}
+\NormalTok{ [}\DecValTok{1}\NormalTok{] }\SpecialCharTok{/}\NormalTok{Library}\SpecialCharTok{/}\NormalTok{Frameworks}\SpecialCharTok{/}\NormalTok{R.framework}\SpecialCharTok{/}\NormalTok{Versions}\SpecialCharTok{/}\FloatTok{4.3}\SpecialCharTok{{-}}\NormalTok{arm64}\SpecialCharTok{/}\NormalTok{Resources}\SpecialCharTok{/}\NormalTok{library}
 
 \SpecialCharTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \end{Highlighting}

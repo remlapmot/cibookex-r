@@ -18,8 +18,6 @@ all files already exist and are up to date.
 
 checking tomata consistency and verifying not already installed...
 all files already exist and are up to date.
-
-end of do-file
 ```
 
 ```
