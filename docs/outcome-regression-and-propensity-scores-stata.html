@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2023-12-05" />
+<meta name="date" content="2024-01-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -506,11 +506,11 @@ For errors contact: ejmurray@bu.edu
 <span id="cb106-34"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-34" tabindex="-1"></a>  <span class="kw">by</span>(qsmk, style(compact) colfirst) <span class="co">///</span></span>
 <span id="cb106-35"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-35" tabindex="-1"></a>  <span class="bn">subtitle</span>(, <span class="kw">size</span>(small) box bexpand)</span>
 <span id="cb106-36"><a href="outcome-regression-and-propensity-scores-stata.html#cb106-36" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">gr</span> <span class="kw">export</span> ./figs/stata-fig-15-2.png, <span class="kw">replace</span></span></code></pre></div>
-<pre><code>Iteration 0:   log likelihood = -893.02712  
-Iteration 1:   log likelihood = -839.70016  
-Iteration 2:   log likelihood = -838.45045  
-Iteration 3:   log likelihood = -838.44842  
-Iteration 4:   log likelihood = -838.44842  
+<pre><code>Iteration 0:  Log likelihood = -893.02712  
+Iteration 1:  Log likelihood = -839.70016  
+Iteration 2:  Log likelihood = -838.45045  
+Iteration 3:  Log likelihood = -838.44842  
+Iteration 4:  Log likelihood = -838.44842  
 
 Logistic regression                                     Number of obs =  1,566
                                                         LR chi2(18)   = 109.16
@@ -1060,11 +1060,11 @@ H0: diff = 0                                     Degrees of freedom =      154
 <span id="cb110-94"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-94" tabindex="-1"></a><span class="fu">matrix</span> <span class="ot">list</span> pe</span>
 <span id="cb110-95"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-95" tabindex="-1"></a><span class="kw">bstat</span>, stat(pe) n(1629) </span>
 <span id="cb110-96"><a href="outcome-regression-and-propensity-scores-stata.html#cb110-96" tabindex="-1"></a><span class="kw">estat</span> <span class="kw">bootstrap</span>, <span class="kw">p</span></span></code></pre></div>
-<pre><code>Iteration 0:   log likelihood = -893.02712  
-Iteration 1:   log likelihood = -839.70016  
-Iteration 2:   log likelihood = -838.45045  
-Iteration 3:   log likelihood = -838.44842  
-Iteration 4:   log likelihood = -838.44842  
+<pre><code>Iteration 0:  Log likelihood = -893.02712  
+Iteration 1:  Log likelihood = -839.70016  
+Iteration 2:  Log likelihood = -838.45045  
+Iteration 3:  Log likelihood = -838.44842  
+Iteration 4:  Log likelihood = -838.44842  
 
 Logistic regression                                     Number of obs =  1,566
                                                         LR chi2(18)   = 109.16
@@ -1232,18 +1232,14 @@ difference          .  3.5117778
         EY_a1: r(boot_1)
    difference: r(boot_diff)
 
-Simulations (500)
-----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
-..................................................    50
-..................................................   100
-..................................................   150
-..................................................   200
-..................................................   250
-..................................................   300
-..................................................   350
-..................................................   400
-..................................................   450
-..................................................   500
+Simulations (500): .........10.........20.........30.........40.........50.........60.
+&gt; ........70.........80.........90.........100.........110.........120.........130....
+&gt; .....140.........150.........160.........170.........180.........190.........200....
+&gt; .....210.........220.........230.........240.........250.........260.........270....
+&gt; .....280.........290.........300.........310.........320.........330.........340....
+&gt; .....350.........360.........370.........380.........390.........400.........410....
+&gt; .....420.........430.........440.........450.........460.........470.........480....
+&gt; .....490.........500 done
 
 
 

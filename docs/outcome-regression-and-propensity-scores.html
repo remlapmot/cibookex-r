@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2023-12-05" />
+<meta name="date" content="2024-01-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1023,16 +1023,16 @@ div.csl-indent {
 <span id="cb35-57"><a href="outcome-regression-and-propensity-scores.html#cb35-57" tabindex="-1"></a>bootstrap <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>(<span class="fu">c</span>(<span class="st">&quot;Observed&quot;</span>, <span class="st">&quot;No Treatment&quot;</span>, <span class="st">&quot;Treatment&quot;</span>, </span>
 <span id="cb35-58"><a href="outcome-regression-and-propensity-scores.html#cb35-58" tabindex="-1"></a>                                <span class="st">&quot;Treatment - No Treatment&quot;</span>), mean, se, ll, ul))</span>
 <span id="cb35-59"><a href="outcome-regression-and-propensity-scores.html#cb35-59" tabindex="-1"></a>bootstrap</span>
-<span id="cb35-60"><a href="outcome-regression-and-propensity-scores.html#cb35-60" tabindex="-1"></a><span class="do">##                         V1             mean                se               ll</span></span>
-<span id="cb35-61"><a href="outcome-regression-and-propensity-scores.html#cb35-61" tabindex="-1"></a><span class="do">## 1                 Observed 2.63384609228479 0.238110258274577 2.16715856171709</span></span>
-<span id="cb35-62"><a href="outcome-regression-and-propensity-scores.html#cb35-62" tabindex="-1"></a><span class="do">## 2             No Treatment 1.71983636149845 0.314483679746058 1.10345967547055</span></span>
-<span id="cb35-63"><a href="outcome-regression-and-propensity-scores.html#cb35-63" tabindex="-1"></a><span class="do">## 3                Treatment 5.35072300362985 0.685556820605738 4.00705632588682</span></span>
-<span id="cb35-64"><a href="outcome-regression-and-propensity-scores.html#cb35-64" tabindex="-1"></a><span class="do">## 4 Treatment - No Treatment  3.6308866421314 0.771757781106728 2.11826918637367</span></span>
+<span id="cb35-60"><a href="outcome-regression-and-propensity-scores.html#cb35-60" tabindex="-1"></a><span class="do">##                         V1             mean                se                ll</span></span>
+<span id="cb35-61"><a href="outcome-regression-and-propensity-scores.html#cb35-61" tabindex="-1"></a><span class="do">## 1                 Observed 2.63384609228479 0.254596782872718   2.1348455672745</span></span>
+<span id="cb35-62"><a href="outcome-regression-and-propensity-scores.html#cb35-62" tabindex="-1"></a><span class="do">## 2             No Treatment 1.71983636149845 0.398579234660771 0.938635416577805</span></span>
+<span id="cb35-63"><a href="outcome-regression-and-propensity-scores.html#cb35-63" tabindex="-1"></a><span class="do">## 3                Treatment 5.35072300362985 0.526254819627351  4.31928251046962</span></span>
+<span id="cb35-64"><a href="outcome-regression-and-propensity-scores.html#cb35-64" tabindex="-1"></a><span class="do">## 4 Treatment - No Treatment  3.6308866421314 0.516010265960279  2.61952510519632</span></span>
 <span id="cb35-65"><a href="outcome-regression-and-propensity-scores.html#cb35-65" tabindex="-1"></a><span class="do">##                 ul</span></span>
-<span id="cb35-66"><a href="outcome-regression-and-propensity-scores.html#cb35-66" tabindex="-1"></a><span class="do">## 1  3.1005336228525</span></span>
-<span id="cb35-67"><a href="outcome-regression-and-propensity-scores.html#cb35-67" tabindex="-1"></a><span class="do">## 2 2.33621304752635</span></span>
-<span id="cb35-68"><a href="outcome-regression-and-propensity-scores.html#cb35-68" tabindex="-1"></a><span class="do">## 3 6.69438968137289</span></span>
-<span id="cb35-69"><a href="outcome-regression-and-propensity-scores.html#cb35-69" tabindex="-1"></a><span class="do">## 4 5.14350409788913</span></span></code></pre></div>
+<span id="cb35-66"><a href="outcome-regression-and-propensity-scores.html#cb35-66" tabindex="-1"></a><span class="do">## 1 3.13284661729509</span></span>
+<span id="cb35-67"><a href="outcome-regression-and-propensity-scores.html#cb35-67" tabindex="-1"></a><span class="do">## 2  2.5010373064191</span></span>
+<span id="cb35-68"><a href="outcome-regression-and-propensity-scores.html#cb35-68" tabindex="-1"></a><span class="do">## 3 6.38216349679008</span></span>
+<span id="cb35-69"><a href="outcome-regression-and-propensity-scores.html#cb35-69" tabindex="-1"></a><span class="do">## 4 4.64224817906648</span></span></code></pre></div>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="outcome-regression-and-propensity-scores.html#cb36-1" tabindex="-1"></a><span class="co"># regression on the propensity score (linear term)</span></span>
 <span id="cb36-2"><a href="outcome-regression-and-propensity-scores.html#cb36-2" tabindex="-1"></a>model6 <span class="ot">&lt;-</span> <span class="fu">glm</span>(wt82_71 <span class="sc">~</span> qsmk <span class="sc">+</span> ps, <span class="at">data =</span> nhefs) <span class="co"># p.qsmk</span></span>
 <span id="cb36-3"><a href="outcome-regression-and-propensity-scores.html#cb36-3" tabindex="-1"></a><span class="fu">summary</span>(model6)</span>
@@ -1121,7 +1121,7 @@ div.csl-indent {
 <span id="cb36-86"><a href="outcome-regression-and-propensity-scores.html#cb36-86" tabindex="-1"></a>  }</span>
 <span id="cb36-87"><a href="outcome-regression-and-propensity-scores.html#cb36-87" tabindex="-1"></a>}</span>
 <span id="cb36-88"><a href="outcome-regression-and-propensity-scores.html#cb36-88" tabindex="-1"></a><span class="do">## 95% CI for the causal mean difference</span></span>
-<span id="cb36-89"><a href="outcome-regression-and-propensity-scores.html#cb36-89" tabindex="-1"></a><span class="do">## 2.632626 , 4.438562</span></span></code></pre></div>
+<span id="cb36-89"><a href="outcome-regression-and-propensity-scores.html#cb36-89" tabindex="-1"></a><span class="do">## 2.636757 , 4.610017</span></span></code></pre></div>
 <p>A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.</p>
 
 </div>

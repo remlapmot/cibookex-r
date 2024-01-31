@@ -70,11 +70,11 @@ save ./data/nhefs-wcens, replace
   +-----------------------------+
 
 
-Iteration 0:   log likelihood = -292.45812  
-Iteration 1:   log likelihood =  -233.5099  
-Iteration 2:   log likelihood = -232.68635  
-Iteration 3:   log likelihood =    -232.68  
-Iteration 4:   log likelihood = -232.67999  
+Iteration 0:  Log likelihood = -292.45812  
+Iteration 1:  Log likelihood =  -233.5099  
+Iteration 2:  Log likelihood = -232.68635  
+Iteration 3:  Log likelihood =    -232.68  
+Iteration 4:  Log likelihood = -232.67999  
 
 Generalized linear models                         Number of obs   =      1,629
 Optimization     : ML                             Residual df     =      1,609
@@ -222,11 +222,11 @@ end
 ```
 
 ```
-Iteration 0:   log pseudolikelihood = -936.10067  
-Iteration 1:   log pseudolikelihood = -879.13942  
-Iteration 2:   log pseudolikelihood = -877.82647  
-Iteration 3:   log pseudolikelihood = -877.82423  
-Iteration 4:   log pseudolikelihood = -877.82423  
+Iteration 0:  Log pseudolikelihood = -936.10067  
+Iteration 1:  Log pseudolikelihood = -879.13942  
+Iteration 2:  Log pseudolikelihood = -877.82647  
+Iteration 3:  Log pseudolikelihood = -877.82423  
+Iteration 4:  Log pseudolikelihood = -877.82423  
 
 Logistic regression                                     Number of obs =  1,566
                                                         Wald chi2(19) = 106.13
@@ -427,11 +427,11 @@ end
 ```
 
 ```
-Iteration 0:   log pseudolikelihood = -936.10067  
-Iteration 1:   log pseudolikelihood = -879.13943  
-Iteration 2:   log pseudolikelihood = -877.82647  
-Iteration 3:   log pseudolikelihood = -877.82423  
-Iteration 4:   log pseudolikelihood = -877.82423  
+Iteration 0:  Log pseudolikelihood = -936.10067  
+Iteration 1:  Log pseudolikelihood = -879.13943  
+Iteration 2:  Log pseudolikelihood = -877.82647  
+Iteration 3:  Log pseudolikelihood = -877.82423  
+Iteration 4:  Log pseudolikelihood = -877.82423  
 
 Logistic regression                                     Number of obs =  1,566
                                                         Wald chi2(18) = 106.13

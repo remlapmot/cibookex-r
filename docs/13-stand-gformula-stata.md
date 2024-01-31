@@ -43,7 +43,7 @@ summarize wt82_71
 note: 1.qsmk omitted because of collinearity.
 note: smokeintensity omitted because of collinearity.
 
-Iteration 0:   log likelihood = -5328.5765  
+Iteration 0:  Log likelihood = -5328.5765  
 
 Generalized linear models                         Number of obs   =      1,566
 Optimization     : ML                             Residual df     =      1,545
@@ -712,9 +712,7 @@ bstat, stat(pe) n(1629)
         EY_a1: r(boot_1)
    difference: r(boot_diff)
 
-Simulations (10)
-----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
-..........
+Simulations (10): .........10 done
 
 (loading observe[4,2])
 

@@ -173,11 +173,11 @@ regress wt82_71 qsmk [pweight=w], cluster(seqn)
 ```
 
 ```
-Iteration 0:   log likelihood = -893.02712  
-Iteration 1:   log likelihood = -839.70016  
-Iteration 2:   log likelihood = -838.45045  
-Iteration 3:   log likelihood = -838.44842  
-Iteration 4:   log likelihood = -838.44842  
+Iteration 0:  Log likelihood = -893.02712  
+Iteration 1:  Log likelihood = -839.70016  
+Iteration 2:  Log likelihood = -838.45045  
+Iteration 3:  Log likelihood = -838.44842  
+Iteration 4:  Log likelihood = -838.44842  
 
 Logistic regression                                     Number of obs =  1,566
                                                         LR chi2(18)   = 109.16
@@ -294,11 +294,11 @@ tab age qsmk if race==1 & sex==1 & wt82!=.
 ```
 
 ```
-Iteration 0:   log likelihood = -893.02712  
-Iteration 1:   log likelihood = -839.70016  
-Iteration 2:   log likelihood = -838.45045  
-Iteration 3:   log likelihood = -838.44842  
-Iteration 4:   log likelihood = -838.44842  
+Iteration 0:  Log likelihood = -893.02712  
+Iteration 1:  Log likelihood = -839.70016  
+Iteration 2:  Log likelihood = -838.45045  
+Iteration 3:  Log likelihood = -838.44842  
+Iteration 4:  Log likelihood = -838.44842  
 
 Logistic regression                                     Number of obs =  1,566
                                                         LR chi2(18)   = 109.16
@@ -347,8 +347,8 @@ Log likelihood = -838.44842                             Pseudo R2     = 0.0611
 
 
 
-Iteration 0:   log likelihood = -893.02712  
-Iteration 1:   log likelihood = -893.02712  
+Iteration 0:  Log likelihood = -893.02712  
+Iteration 1:  Log likelihood = -893.02712  
 
 Logistic regression                                     Number of obs =  1,566
                                                         LR chi2(0)    =   0.00
@@ -676,11 +676,11 @@ logistic death qsmk [pweight=sw_a], cluster(seqn)
 (63 observations deleted)
 
 
-Iteration 0:   log likelihood = -893.02712  
-Iteration 1:   log likelihood = -839.70016  
-Iteration 2:   log likelihood = -838.45045  
-Iteration 3:   log likelihood = -838.44842  
-Iteration 4:   log likelihood = -838.44842  
+Iteration 0:  Log likelihood = -893.02712  
+Iteration 1:  Log likelihood = -839.70016  
+Iteration 2:  Log likelihood = -838.45045  
+Iteration 3:  Log likelihood = -838.44842  
+Iteration 4:  Log likelihood = -838.44842  
 
 Logistic regression                                     Number of obs =  1,566
                                                         LR chi2(18)   = 109.16
@@ -729,8 +729,8 @@ Log likelihood = -838.44842                             Pseudo R2     = 0.0611
 
 
 
-Iteration 0:   log likelihood = -893.02712  
-Iteration 1:   log likelihood = -893.02712  
+Iteration 0:  Log likelihood = -893.02712  
+Iteration 1:  Log likelihood = -893.02712  
 
 Logistic regression                                    Number of obs =   1,566
                                                        LR chi2(0)    =   -0.00
@@ -816,11 +816,11 @@ regress wt82_71 qsmk##sex [pw=sw_a], cluster(seqn)
       Total |      1,629      100.00
 
 
-Iteration 0:   log likelihood = -938.14308  
-Iteration 1:   log likelihood = -884.53806  
-Iteration 2:   log likelihood = -883.35064  
-Iteration 3:   log likelihood = -883.34876  
-Iteration 4:   log likelihood = -883.34876  
+Iteration 0:  Log likelihood = -938.14308  
+Iteration 1:  Log likelihood = -884.53806  
+Iteration 2:  Log likelihood = -883.35064  
+Iteration 3:  Log likelihood = -883.34876  
+Iteration 4:  Log likelihood = -883.34876  
 
 Logistic regression                                     Number of obs =  1,629
                                                         LR chi2(18)   = 109.59
@@ -869,10 +869,10 @@ Log likelihood = -883.34876                             Pseudo R2     = 0.0584
 
 
 
-Iteration 0:   log likelihood = -938.14308  
-Iteration 1:   log likelihood = -933.49896  
-Iteration 2:   log likelihood = -933.49126  
-Iteration 3:   log likelihood = -933.49126  
+Iteration 0:  Log likelihood = -938.14308  
+Iteration 1:  Log likelihood = -933.49896  
+Iteration 2:  Log likelihood = -933.49126  
+Iteration 3:  Log likelihood = -933.49126  
 
 Logistic regression                                     Number of obs =  1,629
                                                         LR chi2(1)    =   9.30
@@ -1016,11 +1016,11 @@ regress wt82_71 qsmk [pw=sw], cluster(seqn)
 
 
 
-Iteration 0:   log likelihood = -938.14308  
-Iteration 1:   log likelihood = -884.53806  
-Iteration 2:   log likelihood = -883.35064  
-Iteration 3:   log likelihood = -883.34876  
-Iteration 4:   log likelihood = -883.34876  
+Iteration 0:  Log likelihood = -938.14308  
+Iteration 1:  Log likelihood = -884.53806  
+Iteration 2:  Log likelihood = -883.35064  
+Iteration 3:  Log likelihood = -883.34876  
+Iteration 4:  Log likelihood = -883.34876  
 
 Logistic regression                                     Number of obs =  1,629
                                                         LR chi2(18)   = 109.59
@@ -1069,8 +1069,8 @@ Log likelihood = -883.34876                             Pseudo R2     = 0.0584
 
 
 
-Iteration 0:   log likelihood = -938.14308  
-Iteration 1:   log likelihood = -938.14308  
+Iteration 0:  Log likelihood = -938.14308  
+Iteration 1:  Log likelihood = -938.14308  
 
 Logistic regression                                     Number of obs =  1,629
                                                         LR chi2(0)    =   0.00
@@ -1085,12 +1085,12 @@ Log likelihood = -938.14308                             Pseudo R2     = 0.0000
 
 
 
-Iteration 0:   log likelihood = -266.67873  
-Iteration 1:   log likelihood = -238.48654  
-Iteration 2:   log likelihood = -232.82848  
-Iteration 3:   log likelihood = -232.68043  
-Iteration 4:   log likelihood = -232.67999  
-Iteration 5:   log likelihood = -232.67999  
+Iteration 0:  Log likelihood = -266.67873  
+Iteration 1:  Log likelihood = -238.48654  
+Iteration 2:  Log likelihood = -232.82848  
+Iteration 3:  Log likelihood = -232.68043  
+Iteration 4:  Log likelihood = -232.67999  
+Iteration 5:  Log likelihood = -232.67999  
 
 Logistic regression                                     Number of obs =  1,629
                                                         LR chi2(19)   =  68.00
@@ -1140,11 +1140,11 @@ Log likelihood = -232.67999                             Pseudo R2     = 0.1275
 
 
 
-Iteration 0:   log likelihood = -266.67873  
-Iteration 1:   log likelihood = -264.00252  
-Iteration 2:   log likelihood = -263.88028  
-Iteration 3:   log likelihood = -263.88009  
-Iteration 4:   log likelihood = -263.88009  
+Iteration 0:  Log likelihood = -266.67873  
+Iteration 1:  Log likelihood = -264.00252  
+Iteration 2:  Log likelihood = -263.88028  
+Iteration 3:  Log likelihood = -263.88009  
+Iteration 4:  Log likelihood = -263.88009  
 
 Logistic regression                                     Number of obs =  1,629
                                                         LR chi2(1)    =   5.60

@@ -214,8 +214,8 @@ Instrumental variables 2SLS regression            Number of obs   =      1,476
         qsmk |    2.39627   19.82659     0.12   0.904    -36.46313    41.25567
        _cons |   2.068164   5.081652     0.41   0.684     -7.89169    12.02802
 ------------------------------------------------------------------------------
-Instrumented: qsmk
- Instruments: highprice
+Endogenous: qsmk
+Exogenous:  highprice
 ```
 
 ## Program 16.3
@@ -237,8 +237,8 @@ logit highprice hspi
 ```
 
 ```
-Iteration 0:   log likelihood = -187.34948  
-Iteration 1:   log likelihood = -187.34948  
+Iteration 0:  Log likelihood = -187.34948  
+Iteration 1:  Log likelihood = -187.34948  
 
 Logistic regression                                     Number of obs =  1,476
                                                         LR chi2(1)    =   0.00
@@ -306,8 +306,8 @@ Instrumental variables 2SLS regression            Number of obs   =      1,476
         qsmk |   41.28124   164.8417     0.25   0.802    -281.8026     364.365
        _cons |  -7.890182   42.21833    -0.19   0.852    -90.63659    74.85623
 ------------------------------------------------------------------------------
-Instrumented: qsmk
- Instruments: highprice
+Endogenous: qsmk
+Exogenous:  highprice
 
 (1,476 real changes made, 1,476 to missing)
 
@@ -326,8 +326,8 @@ Instrumental variables 2SLS regression            Number of obs   =      1,476
         qsmk |  -40.91185   187.6162    -0.22   0.827    -408.6328    326.8091
        _cons |   13.15927   48.05103     0.27   0.784    -81.01901    107.3375
 ------------------------------------------------------------------------------
-Instrumented: qsmk
- Instruments: highprice
+Endogenous: qsmk
+Exogenous:  highprice
 
 (1,476 real changes made, 1,476 to missing)
 
@@ -346,8 +346,8 @@ Instrumental variables 2SLS regression            Number of obs   =      1,476
         qsmk |  -21.10342   28.40885    -0.74   0.458    -76.78374    34.57691
        _cons |   8.086377   7.283314     1.11   0.267    -6.188657    22.36141
 ------------------------------------------------------------------------------
-Instrumented: qsmk
- Instruments: highprice
+Endogenous: qsmk
+Exogenous:  highprice
 
 (1,476 real changes made, 1,476 to missing)
 
@@ -366,8 +366,8 @@ Instrumental variables 2SLS regression            Number of obs   =      1,476
         qsmk |  -12.81141   23.65099    -0.54   0.588    -59.16649    33.54368
        _cons |   5.962813   6.062956     0.98   0.325    -5.920362    17.84599
 ------------------------------------------------------------------------------
-Instrumented: qsmk
- Instruments: highprice
+Endogenous: qsmk
+Exogenous:  highprice
 ```
 
 ## Program 16.5
@@ -421,7 +421,7 @@ smokeintensity |   .0057669    .144911     0.04   0.968    -.2782534    .2897872
           wt71 |  -.0979493    .036123    -2.71   0.007     -.168749   -.0271496
          _cons |   17.28033    2.32589     7.43   0.000     12.72167    21.83899
 --------------------------------------------------------------------------------
-Instrumented: qsmk
- Instruments: sex race age smokeintensity smokeyrs 1.exercise 2.exercise
-              1.active 2.active wt71 highprice
+Endogenous: qsmk
+Exogenous:  sex race age smokeintensity smokeyrs 1.exercise 2.exercise
+            1.active 2.active wt71 highprice
 ```

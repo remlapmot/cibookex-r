@@ -434,11 +434,11 @@ bstat, stat(pe) n(1629)
 ```
 
 ```
-Iteration 0:   log likelihood = -893.02712  
-Iteration 1:   log likelihood = -839.70016  
-Iteration 2:   log likelihood = -838.45045  
-Iteration 3:   log likelihood = -838.44842  
-Iteration 4:   log likelihood = -838.44842  
+Iteration 0:  Log likelihood = -893.02712  
+Iteration 1:  Log likelihood = -839.70016  
+Iteration 2:  Log likelihood = -838.45045  
+Iteration 3:  Log likelihood = -838.44842  
+Iteration 4:  Log likelihood = -838.44842  
 
 Logistic regression                                     Number of obs =  1,566
                                                         LR chi2(18)   = 109.16
@@ -487,8 +487,8 @@ Log likelihood = -838.44842                             Pseudo R2     = 0.0611
 
 
 
-Iteration 0:   log likelihood = -893.02712  
-Iteration 1:   log likelihood = -893.02712  
+Iteration 0:  Log likelihood = -893.02712  
+Iteration 1:  Log likelihood = -893.02712  
 
 Logistic regression                                    Number of obs =   1,566
                                                        LR chi2(0)    =   -0.00
@@ -511,10 +511,10 @@ Log likelihood = -893.02712                            Pseudo R2     = -0.0000
           sw |    171,076    1.000509    .2851505   .3312489   4.297662
 
 
-Iteration 0:   log pseudolikelihood = -2136.3671  
-Iteration 1:   log pseudolikelihood = -2127.0974  
-Iteration 2:   log pseudolikelihood = -2126.8556  
-Iteration 3:   log pseudolikelihood = -2126.8554  
+Iteration 0:  Log pseudolikelihood = -2136.3671  
+Iteration 1:  Log pseudolikelihood = -2127.0974  
+Iteration 2:  Log pseudolikelihood = -2126.8556  
+Iteration 3:  Log pseudolikelihood = -2126.8554  
 
 Logistic regression                                    Number of obs = 171,076
                                                        Wald chi2(5)  =   22.74
@@ -620,17 +620,15 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated observ
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 12:00:29
+r; t=0.00 4:31:21
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
        PrY_a1: r(boot_1)
    difference: r(boot_diff)
 
-Simulations (10)
-----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
-..........
-r; t=17.77 12:00:47
+Simulations (10): .........10 done
+r; t=20.64 4:31:42
 
 
 
@@ -868,17 +866,15 @@ file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 12:00:54
+r; t=0.00 4:31:50
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
        PrY_a1: r(boot_1)
    difference: r(boot_diff)
 
-Simulations (10)
-----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
-..........
-r; t=20.52 12:01:14
+Simulations (10): .........10 done
+r; t=23.68 4:32:13
 
 
 

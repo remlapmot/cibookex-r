@@ -123,7 +123,7 @@
 \fi
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -138,7 +138,7 @@
 
 \title{Causal Inference: What If. R and Stata code for Exercises}
 \author{Book by M. A. Hernán and J. M. Robins \and R code by Joy Shi and Sean McGrath \and Stata code by Eleanor Murray and Roger Logan \and R Markdown code by Tom Palmer}
-\date{05 December 2023}
+\date{31 January 2024}
 
 \begin{document}
 \maketitle
@@ -1745,15 +1745,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{  ))}
 \NormalTok{bootstrap}
 \DocumentationTok{\#\#                         V1             mean                se               ll}
-\DocumentationTok{\#\# 1                 Observed 2.56188497106099 0.202735202876936 2.16453127502377}
-\DocumentationTok{\#\# 2             No Treatment 1.65212306626744 0.202832725422884 1.25457822955248}
-\DocumentationTok{\#\# 3                Treatment 5.11474489549336 0.417676016586298 4.29611494577806}
-\DocumentationTok{\#\# 4 Treatment {-} No Treatment 3.46262182922592 0.455181675409663 2.57048213900038}
+\DocumentationTok{\#\# 1                 Observed 2.56188497106099 0.141231556919052 2.28507620601913}
+\DocumentationTok{\#\# 2             No Treatment 1.65212306626744 0.208575085094193 1.24332341141044}
+\DocumentationTok{\#\# 3                Treatment 5.11474489549336 0.278601148658053 4.56869667807208}
+\DocumentationTok{\#\# 4 Treatment {-} No Treatment 3.46262182922592 0.401600750755449 2.67549882158099}
 \DocumentationTok{\#\#                 ul}
-\DocumentationTok{\#\# 1  2.9592386670982}
-\DocumentationTok{\#\# 2 2.04966790298239}
-\DocumentationTok{\#\# 3 5.93337484520865}
-\DocumentationTok{\#\# 4 4.35476151945146}
+\DocumentationTok{\#\# 1 2.83869373610285}
+\DocumentationTok{\#\# 2 2.06092272112443}
+\DocumentationTok{\#\# 3 5.66079311291463}
+\DocumentationTok{\#\# 4 4.24974483687085}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2920,16 +2920,16 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{bootstrap }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Observed"}\NormalTok{, }\StringTok{"No Treatment"}\NormalTok{, }\StringTok{"Treatment"}\NormalTok{, }
                                 \StringTok{"Treatment {-} No Treatment"}\NormalTok{), mean, se, ll, ul))}
 \NormalTok{bootstrap}
-\DocumentationTok{\#\#                         V1             mean                se               ll}
-\DocumentationTok{\#\# 1                 Observed 2.63384609228479 0.301757959061969 2.04241136047502}
-\DocumentationTok{\#\# 2             No Treatment 1.71983636149845 0.246825644197991 1.23606698840949}
-\DocumentationTok{\#\# 3                Treatment 5.35072300362985 0.207596203763713 4.94384192092574}
-\DocumentationTok{\#\# 4 Treatment {-} No Treatment  3.6308866421314 0.155221039634026 3.32665899480584}
+\DocumentationTok{\#\#                         V1             mean                 se               ll}
+\DocumentationTok{\#\# 1                 Observed 2.63384609228479   0.19463945621683 2.25235976812935}
+\DocumentationTok{\#\# 2             No Treatment 1.71983636149845  0.293043121047398 1.14548239832834}
+\DocumentationTok{\#\# 3                Treatment 5.35072300362985 0.0834451098193815 5.18717359369788}
+\DocumentationTok{\#\# 4 Treatment {-} No Treatment  3.6308866421314  0.274675005552958 3.09253352379426}
 \DocumentationTok{\#\#                 ul}
-\DocumentationTok{\#\# 1 3.22528082409456}
-\DocumentationTok{\#\# 2 2.20360573458741}
-\DocumentationTok{\#\# 3 5.75760408633397}
-\DocumentationTok{\#\# 4 3.93511428945695}
+\DocumentationTok{\#\# 1 3.01533241644024}
+\DocumentationTok{\#\# 2 2.29419032466856}
+\DocumentationTok{\#\# 3 5.51427241356183}
+\DocumentationTok{\#\# 4 4.16923976046854}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3023,7 +3023,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{  \}}
 \NormalTok{\}}
 \DocumentationTok{\#\# 95\% CI for the causal mean difference}
-\DocumentationTok{\#\# 2.651479 , 4.423129}
+\DocumentationTok{\#\# 2.574637 , 4.445816}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3862,31 +3862,31 @@ For reproducibility.
 \DocumentationTok{\#\# {-} Session info {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \DocumentationTok{\#\#  setting  value}
 \DocumentationTok{\#\#  version  R version 4.3.2 (2023{-}10{-}31)}
-\DocumentationTok{\#\#  os       macOS Sonoma 14.1.2}
+\DocumentationTok{\#\#  os       macOS Sonoma 14.3}
 \DocumentationTok{\#\#  system   aarch64, darwin20}
 \DocumentationTok{\#\#  ui       X11}
 \DocumentationTok{\#\#  language (EN)}
 \DocumentationTok{\#\#  collate  en\_US.UTF{-}8}
 \DocumentationTok{\#\#  ctype    en\_US.UTF{-}8}
 \DocumentationTok{\#\#  tz       Europe/London}
-\DocumentationTok{\#\#  date     2023{-}12{-}05}
-\DocumentationTok{\#\#  pandoc   3.1.9 @ /opt/homebrew/bin/ (via rmarkdown)}
+\DocumentationTok{\#\#  date     2024{-}01{-}31}
+\DocumentationTok{\#\#  pandoc   3.1.11.1 @ /opt/homebrew/bin/ (via rmarkdown)}
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\# {-} Packages {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \DocumentationTok{\#\#  package     * version date (UTC) lib source}
 \DocumentationTok{\#\#  bookdown      0.37    2023{-}12{-}01 [1] CRAN (R 4.3.2)}
-\DocumentationTok{\#\#  cli           3.6.1   2023{-}03{-}23 [1] CRAN (R 4.3.0)}
-\DocumentationTok{\#\#  digest        0.6.33  2023{-}07{-}07 [1] CRAN (R 4.3.1)}
+\DocumentationTok{\#\#  cli           3.6.2   2023{-}12{-}11 [1] CRAN (R 4.3.2)}
+\DocumentationTok{\#\#  digest        0.6.34  2024{-}01{-}11 [1] CRAN (R 4.3.2)}
 \DocumentationTok{\#\#  evaluate      0.23    2023{-}11{-}01 [1] CRAN (R 4.3.1)}
 \DocumentationTok{\#\#  fastmap       1.1.1   2023{-}02{-}24 [1] CRAN (R 4.3.0)}
 \DocumentationTok{\#\#  htmltools     0.5.7   2023{-}11{-}03 [1] CRAN (R 4.3.2)}
 \DocumentationTok{\#\#  knitr         1.45    2023{-}10{-}30 [1] CRAN (R 4.3.1)}
-\DocumentationTok{\#\#  rlang         1.1.2   2023{-}11{-}04 [1] CRAN (R 4.3.2)}
+\DocumentationTok{\#\#  rlang         1.1.3   2024{-}01{-}10 [1] CRAN (R 4.3.2)}
 \DocumentationTok{\#\#  rmarkdown     2.25    2023{-}09{-}18 [1] CRAN (R 4.3.1)}
 \DocumentationTok{\#\#  rstudioapi    0.15.0  2023{-}07{-}07 [1] CRAN (R 4.3.1)}
 \DocumentationTok{\#\#  sessioninfo   1.2.2   2021{-}12{-}06 [1] CRAN (R 4.3.0)}
 \DocumentationTok{\#\#  xfun          0.41    2023{-}11{-}01 [1] CRAN (R 4.3.1)}
-\DocumentationTok{\#\#  yaml          2.3.7   2023{-}01{-}23 [1] CRAN (R 4.3.0)}
+\DocumentationTok{\#\#  yaml          2.3.8   2023{-}12{-}11 [1] CRAN (R 4.3.2)}
 \DocumentationTok{\#\# }
 \DocumentationTok{\#\#  [1] /Library/Frameworks/R.framework/Versions/4.3{-}arm64/Resources/library}
 \DocumentationTok{\#\# }
@@ -4472,11 +4472,11 @@ No smoking cessation |                 8.9
 \end{Shaded}
 
 \begin{verbatim}
-Iteration 0:   log likelihood = -893.02712  
-Iteration 1:   log likelihood = -839.70016  
-Iteration 2:   log likelihood = -838.45045  
-Iteration 3:   log likelihood = -838.44842  
-Iteration 4:   log likelihood = -838.44842  
+Iteration 0:  Log likelihood = -893.02712  
+Iteration 1:  Log likelihood = -839.70016  
+Iteration 2:  Log likelihood = -838.45045  
+Iteration 3:  Log likelihood = -838.44842  
+Iteration 4:  Log likelihood = -838.44842  
 
 Logistic regression                                     Number of obs =  1,566
                                                         LR chi2(18)   = 109.16
@@ -4599,11 +4599,11 @@ Linear regression                               Number of obs     =      1,566
 \end{Shaded}
 
 \begin{verbatim}
-Iteration 0:   log likelihood = -893.02712  
-Iteration 1:   log likelihood = -839.70016  
-Iteration 2:   log likelihood = -838.45045  
-Iteration 3:   log likelihood = -838.44842  
-Iteration 4:   log likelihood = -838.44842  
+Iteration 0:  Log likelihood = -893.02712  
+Iteration 1:  Log likelihood = -839.70016  
+Iteration 2:  Log likelihood = -838.45045  
+Iteration 3:  Log likelihood = -838.44842  
+Iteration 4:  Log likelihood = -838.44842  
 
 Logistic regression                                     Number of obs =  1,566
                                                         LR chi2(18)   = 109.16
@@ -4652,8 +4652,8 @@ Log likelihood = -838.44842                             Pseudo R2     = 0.0611
 
 
 
-Iteration 0:   log likelihood = -893.02712  
-Iteration 1:   log likelihood = -893.02712  
+Iteration 0:  Log likelihood = -893.02712  
+Iteration 1:  Log likelihood = -893.02712  
 
 Logistic regression                                     Number of obs =  1,566
                                                         LR chi2(0)    =   0.00
@@ -4994,11 +4994,11 @@ c.smkintensity82_71 |   .0026949   .0024203     1.11   0.266    -.0020537    .00
 (63 observations deleted)
 
 
-Iteration 0:   log likelihood = -893.02712  
-Iteration 1:   log likelihood = -839.70016  
-Iteration 2:   log likelihood = -838.45045  
-Iteration 3:   log likelihood = -838.44842  
-Iteration 4:   log likelihood = -838.44842  
+Iteration 0:  Log likelihood = -893.02712  
+Iteration 1:  Log likelihood = -839.70016  
+Iteration 2:  Log likelihood = -838.45045  
+Iteration 3:  Log likelihood = -838.44842  
+Iteration 4:  Log likelihood = -838.44842  
 
 Logistic regression                                     Number of obs =  1,566
                                                         LR chi2(18)   = 109.16
@@ -5047,8 +5047,8 @@ Log likelihood = -838.44842                             Pseudo R2     = 0.0611
 
 
 
-Iteration 0:   log likelihood = -893.02712  
-Iteration 1:   log likelihood = -893.02712  
+Iteration 0:  Log likelihood = -893.02712  
+Iteration 1:  Log likelihood = -893.02712  
 
 Logistic regression                                    Number of obs =   1,566
                                                        LR chi2(0)    =   -0.00
@@ -5141,11 +5141,11 @@ Note: _cons estimates baseline odds.
       Total |      1,629      100.00
 
 
-Iteration 0:   log likelihood = -938.14308  
-Iteration 1:   log likelihood = -884.53806  
-Iteration 2:   log likelihood = -883.35064  
-Iteration 3:   log likelihood = -883.34876  
-Iteration 4:   log likelihood = -883.34876  
+Iteration 0:  Log likelihood = -938.14308  
+Iteration 1:  Log likelihood = -884.53806  
+Iteration 2:  Log likelihood = -883.35064  
+Iteration 3:  Log likelihood = -883.34876  
+Iteration 4:  Log likelihood = -883.34876  
 
 Logistic regression                                     Number of obs =  1,629
                                                         LR chi2(18)   = 109.59
@@ -5194,10 +5194,10 @@ Log likelihood = -883.34876                             Pseudo R2     = 0.0584
 
 
 
-Iteration 0:   log likelihood = -938.14308  
-Iteration 1:   log likelihood = -933.49896  
-Iteration 2:   log likelihood = -933.49126  
-Iteration 3:   log likelihood = -933.49126  
+Iteration 0:  Log likelihood = -938.14308  
+Iteration 1:  Log likelihood = -933.49896  
+Iteration 2:  Log likelihood = -933.49126  
+Iteration 3:  Log likelihood = -933.49126  
 
 Logistic regression                                     Number of obs =  1,629
                                                         LR chi2(1)    =   9.30
@@ -5348,11 +5348,11 @@ Linear regression                               Number of obs     =      1,566
 
 
 
-Iteration 0:   log likelihood = -938.14308  
-Iteration 1:   log likelihood = -884.53806  
-Iteration 2:   log likelihood = -883.35064  
-Iteration 3:   log likelihood = -883.34876  
-Iteration 4:   log likelihood = -883.34876  
+Iteration 0:  Log likelihood = -938.14308  
+Iteration 1:  Log likelihood = -884.53806  
+Iteration 2:  Log likelihood = -883.35064  
+Iteration 3:  Log likelihood = -883.34876  
+Iteration 4:  Log likelihood = -883.34876  
 
 Logistic regression                                     Number of obs =  1,629
                                                         LR chi2(18)   = 109.59
@@ -5401,8 +5401,8 @@ Log likelihood = -883.34876                             Pseudo R2     = 0.0584
 
 
 
-Iteration 0:   log likelihood = -938.14308  
-Iteration 1:   log likelihood = -938.14308  
+Iteration 0:  Log likelihood = -938.14308  
+Iteration 1:  Log likelihood = -938.14308  
 
 Logistic regression                                     Number of obs =  1,629
                                                         LR chi2(0)    =   0.00
@@ -5417,12 +5417,12 @@ Log likelihood = -938.14308                             Pseudo R2     = 0.0000
 
 
 
-Iteration 0:   log likelihood = -266.67873  
-Iteration 1:   log likelihood = -238.48654  
-Iteration 2:   log likelihood = -232.82848  
-Iteration 3:   log likelihood = -232.68043  
-Iteration 4:   log likelihood = -232.67999  
-Iteration 5:   log likelihood = -232.67999  
+Iteration 0:  Log likelihood = -266.67873  
+Iteration 1:  Log likelihood = -238.48654  
+Iteration 2:  Log likelihood = -232.82848  
+Iteration 3:  Log likelihood = -232.68043  
+Iteration 4:  Log likelihood = -232.67999  
+Iteration 5:  Log likelihood = -232.67999  
 
 Logistic regression                                     Number of obs =  1,629
                                                         LR chi2(19)   =  68.00
@@ -5472,11 +5472,11 @@ Log likelihood = -232.67999                             Pseudo R2     = 0.1275
 
 
 
-Iteration 0:   log likelihood = -266.67873  
-Iteration 1:   log likelihood = -264.00252  
-Iteration 2:   log likelihood = -263.88028  
-Iteration 3:   log likelihood = -263.88009  
-Iteration 4:   log likelihood = -263.88009  
+Iteration 0:  Log likelihood = -266.67873  
+Iteration 1:  Log likelihood = -264.00252  
+Iteration 2:  Log likelihood = -263.88028  
+Iteration 3:  Log likelihood = -263.88009  
+Iteration 4:  Log likelihood = -263.88009  
 
 Logistic regression                                     Number of obs =  1,629
                                                         LR chi2(1)    =   5.60
@@ -5578,7 +5578,7 @@ For errors contact: ejmurray@bu.edu
 note: 1.qsmk omitted because of collinearity.
 note: smokeintensity omitted because of collinearity.
 
-Iteration 0:   log likelihood = -5328.5765  
+Iteration 0:  Log likelihood = -5328.5765  
 
 Generalized linear models                         Number of obs   =      1,566
 Optimization     : ML                             Residual df     =      1,545
@@ -6267,9 +6267,7 @@ file ./data/observe.mmat saved
         EY_a1: r(boot_1)
    difference: r(boot_diff)
 
-Simulations (10)
-----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
-..........
+Simulations (10): .........10 done
 
 (loading observe[4,2])
 
@@ -6375,11 +6373,11 @@ For errors contact: ejmurray@bu.edu
   +-----------------------------+
 
 
-Iteration 0:   log likelihood = -292.45812  
-Iteration 1:   log likelihood =  -233.5099  
-Iteration 2:   log likelihood = -232.68635  
-Iteration 3:   log likelihood =    -232.68  
-Iteration 4:   log likelihood = -232.67999  
+Iteration 0:  Log likelihood = -292.45812  
+Iteration 1:  Log likelihood =  -233.5099  
+Iteration 2:  Log likelihood = -232.68635  
+Iteration 3:  Log likelihood =    -232.68  
+Iteration 4:  Log likelihood = -232.67999  
 
 Generalized linear models                         Number of obs   =      1,629
 Optimization     : ML                             Residual df     =      1,609
@@ -6535,11 +6533,11 @@ file ./data/nhefs-wcens.dta saved
 \end{Shaded}
 
 \begin{verbatim}
-Iteration 0:   log pseudolikelihood = -936.10067  
-Iteration 1:   log pseudolikelihood = -879.13942  
-Iteration 2:   log pseudolikelihood = -877.82647  
-Iteration 3:   log pseudolikelihood = -877.82423  
-Iteration 4:   log pseudolikelihood = -877.82423  
+Iteration 0:  Log pseudolikelihood = -936.10067  
+Iteration 1:  Log pseudolikelihood = -879.13942  
+Iteration 2:  Log pseudolikelihood = -877.82647  
+Iteration 3:  Log pseudolikelihood = -877.82423  
+Iteration 4:  Log pseudolikelihood = -877.82423  
 
 Logistic regression                                     Number of obs =  1,566
                                                         Wald chi2(19) = 106.13
@@ -6748,11 +6746,11 @@ r31           5  -.02998926   .02998926   .00213639
 \end{Shaded}
 
 \begin{verbatim}
-Iteration 0:   log pseudolikelihood = -936.10067  
-Iteration 1:   log pseudolikelihood = -879.13943  
-Iteration 2:   log pseudolikelihood = -877.82647  
-Iteration 3:   log pseudolikelihood = -877.82423  
-Iteration 4:   log pseudolikelihood = -877.82423  
+Iteration 0:  Log pseudolikelihood = -936.10067  
+Iteration 1:  Log pseudolikelihood = -879.13943  
+Iteration 2:  Log pseudolikelihood = -877.82647  
+Iteration 3:  Log pseudolikelihood = -877.82423  
+Iteration 4:  Log pseudolikelihood = -877.82423  
 
 Logistic regression                                     Number of obs =  1,566
                                                         Wald chi2(18) = 106.13
@@ -7087,11 +7085,11 @@ For errors contact: ejmurray@bu.edu
 \end{Shaded}
 
 \begin{verbatim}
-Iteration 0:   log likelihood = -893.02712  
-Iteration 1:   log likelihood = -839.70016  
-Iteration 2:   log likelihood = -838.45045  
-Iteration 3:   log likelihood = -838.44842  
-Iteration 4:   log likelihood = -838.44842  
+Iteration 0:  Log likelihood = -893.02712  
+Iteration 1:  Log likelihood = -839.70016  
+Iteration 2:  Log likelihood = -838.45045  
+Iteration 3:  Log likelihood = -838.44842  
+Iteration 4:  Log likelihood = -838.44842  
 
 Logistic regression                                     Number of obs =  1,566
                                                         LR chi2(18)   = 109.16
@@ -7667,11 +7665,11 @@ H0: diff = 0                                     Degrees of freedom =      154
 \end{Shaded}
 
 \begin{verbatim}
-Iteration 0:   log likelihood = -893.02712  
-Iteration 1:   log likelihood = -839.70016  
-Iteration 2:   log likelihood = -838.45045  
-Iteration 3:   log likelihood = -838.44842  
-Iteration 4:   log likelihood = -838.44842  
+Iteration 0:  Log likelihood = -893.02712  
+Iteration 1:  Log likelihood = -839.70016  
+Iteration 2:  Log likelihood = -838.45045  
+Iteration 3:  Log likelihood = -838.44842  
+Iteration 4:  Log likelihood = -838.44842  
 
 Logistic regression                                     Number of obs =  1,566
                                                         LR chi2(18)   = 109.16
@@ -7839,18 +7837,14 @@ difference          .  3.5117778
         EY_a1: r(boot_1)
    difference: r(boot_diff)
 
-Simulations (500)
-----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
-..................................................    50
-..................................................   100
-..................................................   150
-..................................................   200
-..................................................   250
-..................................................   300
-..................................................   350
-..................................................   400
-..................................................   450
-..................................................   500
+Simulations (500): .........10.........20.........30.........40.........50.........60.
+> ........70.........80.........90.........100.........110.........120.........130....
+> .....140.........150.........160.........170.........180.........190.........200....
+> .....210.........220.........230.........240.........250.........260.........270....
+> .....280.........290.........300.........310.........320.........330.........340....
+> .....350.........360.........370.........380.........390.........400.........410....
+> .....420.........430.........440.........450.........460.........470.........480....
+> .....490.........500 done
 
 
 
@@ -8118,8 +8112,8 @@ Instrumental variables 2SLS regression            Number of obs   =      1,476
         qsmk |    2.39627   19.82659     0.12   0.904    -36.46313    41.25567
        _cons |   2.068164   5.081652     0.41   0.684     -7.89169    12.02802
 ------------------------------------------------------------------------------
-Instrumented: qsmk
- Instruments: highprice
+Endogenous: qsmk
+Exogenous:  highprice
 \end{verbatim}
 
 \section{Program 16.3}\label{program-16.3-1}
@@ -8150,8 +8144,8 @@ Instrumented: qsmk
 \end{Shaded}
 
 \begin{verbatim}
-Iteration 0:   log likelihood = -187.34948  
-Iteration 1:   log likelihood = -187.34948  
+Iteration 0:  Log likelihood = -187.34948  
+Iteration 1:  Log likelihood = -187.34948  
 
 Logistic regression                                     Number of obs =  1,476
                                                         LR chi2(1)    =   0.00
@@ -8226,8 +8220,8 @@ Instrumental variables 2SLS regression            Number of obs   =      1,476
         qsmk |   41.28124   164.8417     0.25   0.802    -281.8026     364.365
        _cons |  -7.890182   42.21833    -0.19   0.852    -90.63659    74.85623
 ------------------------------------------------------------------------------
-Instrumented: qsmk
- Instruments: highprice
+Endogenous: qsmk
+Exogenous:  highprice
 
 (1,476 real changes made, 1,476 to missing)
 
@@ -8246,8 +8240,8 @@ Instrumental variables 2SLS regression            Number of obs   =      1,476
         qsmk |  -40.91185   187.6162    -0.22   0.827    -408.6328    326.8091
        _cons |   13.15927   48.05103     0.27   0.784    -81.01901    107.3375
 ------------------------------------------------------------------------------
-Instrumented: qsmk
- Instruments: highprice
+Endogenous: qsmk
+Exogenous:  highprice
 
 (1,476 real changes made, 1,476 to missing)
 
@@ -8266,8 +8260,8 @@ Instrumental variables 2SLS regression            Number of obs   =      1,476
         qsmk |  -21.10342   28.40885    -0.74   0.458    -76.78374    34.57691
        _cons |   8.086377   7.283314     1.11   0.267    -6.188657    22.36141
 ------------------------------------------------------------------------------
-Instrumented: qsmk
- Instruments: highprice
+Endogenous: qsmk
+Exogenous:  highprice
 
 (1,476 real changes made, 1,476 to missing)
 
@@ -8286,8 +8280,8 @@ Instrumental variables 2SLS regression            Number of obs   =      1,476
         qsmk |  -12.81141   23.65099    -0.54   0.588    -59.16649    33.54368
        _cons |   5.962813   6.062956     0.98   0.325    -5.920362    17.84599
 ------------------------------------------------------------------------------
-Instrumented: qsmk
- Instruments: highprice
+Endogenous: qsmk
+Exogenous:  highprice
 \end{verbatim}
 
 \section{Program 16.5}\label{program-16.5-1}
@@ -8348,9 +8342,9 @@ smokeintensity |   .0057669    .144911     0.04   0.968    -.2782534    .2897872
           wt71 |  -.0979493    .036123    -2.71   0.007     -.168749   -.0271496
          _cons |   17.28033    2.32589     7.43   0.000     12.72167    21.83899
 --------------------------------------------------------------------------------
-Instrumented: qsmk
- Instruments: sex race age smokeintensity smokeyrs 1.exercise 2.exercise
-              1.active 2.active wt71 highprice
+Endogenous: qsmk
+Exogenous:  sex race age smokeintensity smokeyrs 1.exercise 2.exercise
+            1.active 2.active wt71 highprice
 \end{verbatim}
 
 \chapter*{17. Causal survival analysis: Stata}\label{causal-survival-analysis-stata}
@@ -8814,11 +8808,11 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated observ
 \end{Shaded}
 
 \begin{verbatim}
-Iteration 0:   log likelihood = -893.02712  
-Iteration 1:   log likelihood = -839.70016  
-Iteration 2:   log likelihood = -838.45045  
-Iteration 3:   log likelihood = -838.44842  
-Iteration 4:   log likelihood = -838.44842  
+Iteration 0:  Log likelihood = -893.02712  
+Iteration 1:  Log likelihood = -839.70016  
+Iteration 2:  Log likelihood = -838.45045  
+Iteration 3:  Log likelihood = -838.44842  
+Iteration 4:  Log likelihood = -838.44842  
 
 Logistic regression                                     Number of obs =  1,566
                                                         LR chi2(18)   = 109.16
@@ -8867,8 +8861,8 @@ Log likelihood = -838.44842                             Pseudo R2     = 0.0611
 
 
 
-Iteration 0:   log likelihood = -893.02712  
-Iteration 1:   log likelihood = -893.02712  
+Iteration 0:  Log likelihood = -893.02712  
+Iteration 1:  Log likelihood = -893.02712  
 
 Logistic regression                                    Number of obs =   1,566
                                                        LR chi2(0)    =   -0.00
@@ -8891,10 +8885,10 @@ Log likelihood = -893.02712                            Pseudo R2     = -0.0000
           sw |    171,076    1.000509    .2851505   .3312489   4.297662
 
 
-Iteration 0:   log pseudolikelihood = -2136.3671  
-Iteration 1:   log pseudolikelihood = -2127.0974  
-Iteration 2:   log pseudolikelihood = -2126.8556  
-Iteration 3:   log pseudolikelihood = -2126.8554  
+Iteration 0:  Log pseudolikelihood = -2136.3671  
+Iteration 1:  Log pseudolikelihood = -2127.0974  
+Iteration 2:  Log pseudolikelihood = -2126.8556  
+Iteration 3:  Log pseudolikelihood = -2126.8554  
 
 Logistic regression                                    Number of obs = 171,076
                                                        Wald chi2(5)  =   22.74
@@ -9000,17 +8994,15 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated observ
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 11:58:32
+r; t=0.00 4:29:13
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
        PrY_a1: r(boot_1)
    difference: r(boot_diff)
 
-Simulations (10)
-----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
-..........
-r; t=18.29 11:58:51
+Simulations (10): .........10 done
+r; t=20.80 4:29:34
 
 
 
@@ -9256,17 +9248,15 @@ file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 11:58:58
+r; t=0.00 4:29:41
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
        PrY_a1: r(boot_1)
    difference: r(boot_diff)
 
-Simulations (10)
-----+--- 1 ---+--- 2 ---+--- 3 ---+--- 4 ---+--- 5 
-..........
-r; t=20.35 11:59:18
+Simulations (10): .........10 done
+r; t=23.54 4:30:05
 
 
 
@@ -9304,14 +9294,14 @@ For reproducibility.
 \end{Shaded}
 
 \begin{verbatim}
-Stata/MP 17.0 for Mac (Apple Silicon)
-Revision 14 Nov 2023
-Copyright 1985-2021 StataCorp LLC
+Stata/MP 18.0 for Mac (Apple Silicon)
+Revision 20 Dec 2023
+Copyright 1985-2023 StataCorp LLC
 
 Total physical memory: 8.01 GB
 
-Stata license: Unlimited-user 2-core network, expiring 21 Jan 2024
-Serial number: 501709378202
+Stata license: Unlimited-user 2-core network, expiring 29 Jan 2025
+Serial number: 501809305331
   Licensed to: Tom Palmer
                University of Bristol
 \end{verbatim}
@@ -9323,32 +9313,32 @@ Serial number: 501709378202
 \SpecialCharTok{{-}}\NormalTok{ Session info }\SpecialCharTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \NormalTok{ setting  value}
 \NormalTok{ version  R version }\DecValTok{4}\NormalTok{.}\FloatTok{3.2}\NormalTok{ (}\DecValTok{2023{-}10{-}31}\NormalTok{)}
-\NormalTok{ os       macOS Sonoma }\DecValTok{14}\NormalTok{.}\FloatTok{1.2}
+\NormalTok{ os       macOS Sonoma }\FloatTok{14.3}
 \NormalTok{ system   aarch64, darwin20}
 \NormalTok{ ui       X11}
  \FunctionTok{language}\NormalTok{ (EN)}
 \NormalTok{ collate  en\_US.UTF}\DecValTok{{-}8}
 \NormalTok{ ctype    en\_US.UTF}\DecValTok{{-}8}
 \NormalTok{ tz       Europe}\SpecialCharTok{/}\NormalTok{London}
-\NormalTok{ date     }\DecValTok{2023{-}12{-}05}
-\NormalTok{ pandoc   }\DecValTok{3}\NormalTok{.}\FloatTok{1.9} \SpecialCharTok{@} \ErrorTok{/}\NormalTok{opt}\SpecialCharTok{/}\NormalTok{homebrew}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{ (via rmarkdown)}
+\NormalTok{ date     }\DecValTok{2024{-}01{-}31}
+\NormalTok{ pandoc   }\DecValTok{3}\NormalTok{.}\DecValTok{1}\NormalTok{.}\FloatTok{11.1} \SpecialCharTok{@} \ErrorTok{/}\NormalTok{opt}\SpecialCharTok{/}\NormalTok{homebrew}\SpecialCharTok{/}\NormalTok{bin}\SpecialCharTok{/}\NormalTok{ (via rmarkdown)}
 
 \SpecialCharTok{{-}}\NormalTok{ Packages }\SpecialCharTok{{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \NormalTok{ package       }\SpecialCharTok{*}\NormalTok{ version }\FunctionTok{date}\NormalTok{ (UTC) lib source}
 \NormalTok{ bookdown        }\FloatTok{0.37}    \DecValTok{2023{-}12{-}01}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.2}\NormalTok{)}
-\NormalTok{ cli             }\DecValTok{3}\NormalTok{.}\FloatTok{6.1}   \DecValTok{2023{-}03{-}23}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
-\NormalTok{ digest          }\DecValTok{0}\NormalTok{.}\FloatTok{6.33}  \DecValTok{2023{-}07{-}07}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.1}\NormalTok{)}
+\NormalTok{ cli             }\DecValTok{3}\NormalTok{.}\FloatTok{6.2}   \DecValTok{2023{-}12{-}11}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.2}\NormalTok{)}
+\NormalTok{ digest          }\DecValTok{0}\NormalTok{.}\FloatTok{6.34}  \DecValTok{2024{-}01{-}11}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.2}\NormalTok{)}
 \NormalTok{ evaluate        }\FloatTok{0.23}    \DecValTok{2023{-}11{-}01}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.1}\NormalTok{)}
 \NormalTok{ fastmap         }\DecValTok{1}\NormalTok{.}\FloatTok{1.1}   \DecValTok{2023{-}02{-}24}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
 \NormalTok{ htmltools       }\DecValTok{0}\NormalTok{.}\FloatTok{5.7}   \DecValTok{2023{-}11{-}03}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.2}\NormalTok{)}
 \NormalTok{ knitr           }\FloatTok{1.45}    \DecValTok{2023{-}10{-}30}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.1}\NormalTok{)}
-\NormalTok{ rlang           }\DecValTok{1}\NormalTok{.}\FloatTok{1.2}   \DecValTok{2023{-}11{-}04}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.2}\NormalTok{)}
+\NormalTok{ rlang           }\DecValTok{1}\NormalTok{.}\FloatTok{1.3}   \DecValTok{2024{-}01{-}10}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.2}\NormalTok{)}
 \NormalTok{ rmarkdown       }\FloatTok{2.25}    \DecValTok{2023{-}09{-}18}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.1}\NormalTok{)}
 \NormalTok{ rstudioapi      }\DecValTok{0}\NormalTok{.}\FloatTok{15.0}  \DecValTok{2023{-}07{-}07}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.1}\NormalTok{)}
 \NormalTok{ sessioninfo     }\DecValTok{1}\NormalTok{.}\FloatTok{2.2}   \DecValTok{2021{-}12{-}06}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
 \NormalTok{ Statamarkdown }\SpecialCharTok{*} \DecValTok{0}\NormalTok{.}\FloatTok{9.2}   \DecValTok{2023{-}12{-}04}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.1}\NormalTok{)}
 \NormalTok{ xfun            }\FloatTok{0.41}    \DecValTok{2023{-}11{-}01}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.1}\NormalTok{)}
-\NormalTok{ yaml            }\DecValTok{2}\NormalTok{.}\FloatTok{3.7}   \DecValTok{2023{-}01{-}23}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.0}\NormalTok{)}
+\NormalTok{ yaml            }\DecValTok{2}\NormalTok{.}\FloatTok{3.8}   \DecValTok{2023{-}12{-}11}\NormalTok{ [}\DecValTok{1}\NormalTok{] }\FunctionTok{CRAN}\NormalTok{ (R }\DecValTok{4}\NormalTok{.}\FloatTok{3.2}\NormalTok{)}
 
 \NormalTok{ [}\DecValTok{1}\NormalTok{] }\SpecialCharTok{/}\NormalTok{Library}\SpecialCharTok{/}\NormalTok{Frameworks}\SpecialCharTok{/}\NormalTok{R.framework}\SpecialCharTok{/}\NormalTok{Versions}\SpecialCharTok{/}\FloatTok{4.3}\SpecialCharTok{{-}}\NormalTok{arm64}\SpecialCharTok{/}\NormalTok{Resources}\SpecialCharTok{/}\NormalTok{library}
 
