@@ -4,10 +4,10 @@
 knitr::opts_chunk$set(collapse = TRUE, comment = '#>')
 ```
 
-## Program 15.1                                                                  
+## Program 15.1
 
-- Estimating the average causal effect within levels of confounders under the assumption of effect-measure modification by smoking intensity ONLY 
-- Data from NHEFS                                                               
+- Estimating the average causal effect within levels of confounders under the assumption of effect-measure modification by smoking intensity ONLY
+- Data from NHEFS
 
 ```{r, results='hide', message=FALSE, warning=FALSE}
 library(here)
@@ -28,7 +28,7 @@ fit <- glm(wt82_71 ~ qsmk + sex + race + age + I(age*age) + as.factor(education)
 summary(fit)
 
 # (step 1) build the contrast matrix with all zeros
-# this function builds the blank matrix 
+# this function builds the blank matrix
 # install.packages("multcomp") # install packages if necessary
 library("multcomp")
 makeContrastMatrix <- function(model, nrow, names) {
@@ -46,12 +46,12 @@ K1 <-
       'Effect of Quitting Smoking at Smokeintensity of 40'
     )
   )
-# (step 2) fill in the relevant non-zero elements 
+# (step 2) fill in the relevant non-zero elements
 K1[1:2, 'qsmk'] <- 1
 K1[1:2, 'I(qsmk * smokeintensity)'] <- c(5, 40)
 
 # (step 3) check the contrast matrix
-K1 
+K1
 
 # (step 4) estimate the contrasts, get tests and confidence intervals for them
 estimates1 <- glht(fit, K1)
@@ -63,15 +63,15 @@ fit2 <- glm(wt82_71 ~ qsmk + sex + race + age + I(age*age) + as.factor(education
            + smokeintensity + I(smokeintensity*smokeintensity) + smokeyrs
            + I(smokeyrs*smokeyrs) + as.factor(exercise) + as.factor(active)
            + wt71 + I(wt71*wt71), data=nhefs)
-  
+
 summary(fit2)
 ```
 
 
-## Program 15.2 
+## Program 15.2
 
 - Estimating and plotting the propensity score
-- Data from NHEFS                            
+- Data from NHEFS
 ```{r, out.width="85%", fig.align='center'}
 fit3 <- glm(qsmk ~ sex + race + age + I(age*age) + as.factor(education)
             + smokeintensity + I(smokeintensity*smokeintensity) + smokeyrs
@@ -129,13 +129,13 @@ nhefs %>%
         axis.text.y = element_blank())
 ```
 
-## Program 15.3         
+## Program 15.3
 
-- Stratification on the propensity score 
-- Data from NHEFS  
+- Stratification on the propensity score
+- Data from NHEFS
 ```{r}
 # calculation of deciles
-nhefs$ps.dec <- cut(nhefs$ps, 
+nhefs$ps.dec <- cut(nhefs$ps,
                     breaks=c(quantile(nhefs$ps, probs=seq(0,1,0.1))),
                     labels=seq(1:10),
                     include.lowest=TRUE)
@@ -168,18 +168,18 @@ confint.lm(fit.psdec)
 #install.packages("boot") # install package if required
 library("boot")
 
-# standardization by propensity score, agnostic regarding effect modification 
+# standardization by propensity score, agnostic regarding effect modification
 std.ps <- function(data, indices) {
   d <- data[indices,] # 1st copy: equal to original one`
   # calculating propensity scores
-  ps.fit <- glm(qsmk ~ sex + race + age + I(age*age) 
+  ps.fit <- glm(qsmk ~ sex + race + age + I(age*age)
                 + as.factor(education) + smokeintensity
                 + I(smokeintensity*smokeintensity) + smokeyrs
                 + I(smokeyrs*smokeyrs) + as.factor(exercise)
                 + as.factor(active) + wt71 + I(wt71*wt71),
                 data=d, family=binomial())
   d$pscore <- predict(ps.fit, d, type="response")
-  
+
   # create a dataset with 3 copies of each subject
   d$interv <- -1 # 1st copy: equal to original one`
   d0 <- d # 2nd copy: treatment set to 0, outcome to missing
@@ -207,13 +207,13 @@ std.ps <- function(data, indices) {
 results <- boot(data=nhefs, statistic=std.ps, R=5)
 
 # generating confidence intervals
-se <- c(sd(results$t[,1]), sd(results$t[,2]), 
+se <- c(sd(results$t[,1]), sd(results$t[,2]),
         sd(results$t[,3]), sd(results$t[,4]))
 mean <- results$t0
 ll <- mean - qnorm(0.975)*se
 ul <- mean + qnorm(0.975)*se
 
-bootstrap <- data.frame(cbind(c("Observed", "No Treatment", "Treatment", 
+bootstrap <- data.frame(cbind(c("Observed", "No Treatment", "Treatment",
                                 "Treatment - No Treatment"), mean, se, ll, ul))
 bootstrap
 ```
@@ -255,30 +255,30 @@ nhefs <- subset(nhefs, !is.na(ps) & !is.na(wt82_71)) # p.qsmk
 for(i in 1:nboot) {
   # sample with replacement
   sampl <- nhefs[sample(1:nrow(nhefs), nrow(nhefs), replace = TRUE), ]
-  
+
   # fit the model in the bootstrap sample
   bootmod <- glm(wt82_71 ~ qsmk + ps, data = sampl) # ps
-  
+
   # create new datasets
   sampl.treated <- sampl %>%
     mutate(qsmk = 1)
-  
+
   sampl.untreated <- sampl %>%
     mutate(qsmk = 0)
-  
+
   # predict values
   sampl.treated$pred.y <- predict(bootmod, sampl.treated)
   sampl.untreated$pred.y <- predict(bootmod, sampl.untreated)
-  
-  # output results 
+
+  # output results
   boots[i, 'mean1'] <- mean(sampl.treated$pred.y, na.rm = TRUE)
   boots[i, 'mean0'] <- mean(sampl.untreated$pred.y, na.rm = TRUE)
   boots[i, 'difference'] <- boots[i, 'mean1'] - boots[i, 'mean0']
-  
+
   # once loop is done, print the results
   if(i == nboot) {
     cat('95% CI for the causal mean difference\n')
-    cat(mean(boots$difference) - 1.96*sd(boots$difference), 
+    cat(mean(boots$difference) - 1.96*sd(boots$difference),
         ',',
         mean(boots$difference) + 1.96*sd(boots$difference))
   }
