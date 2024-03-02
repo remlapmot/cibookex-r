@@ -37,7 +37,7 @@ t.test(wt82_71 ~ highprice, data=nhefs.iv)
 - Data from NHEFS
 ```{r}
 #install.packages ("sem") # install package if required
-library(sem) 
+library(sem)
 
 model1 <- tsls(wt82_71 ~ qsmk, ~ highprice, data = nhefs.iv)
 summary(model1)
@@ -49,7 +49,7 @@ confint(model1)  # note the wide confidence intervals
 - Estimating the average causal using the standard IV estimator via additive marginal structural models
 - Data from NHEFS
 - G-estimation: Checking one possible value of psi
-- See Chapter 14 for program that checks several values and computes 95% confidence intervals                 
+- See Chapter 14 for program that checks several values and computes 95% confidence intervals
 
 ```{r}
 nhefs.iv$psi <- 2.396
@@ -63,7 +63,7 @@ summary(g.est)
 
 beta <- coef(g.est)
 SE <- coef(summary(g.est))[,2]
-lcl <- beta-qnorm(0.975)*SE 
+lcl <- beta-qnorm(0.975)*SE
 ucl <- beta+qnorm(0.975)*SE
 cbind(beta, lcl, ucl)
 ```
@@ -85,7 +85,7 @@ summary(tsls(wt82_71 ~ qsmk, ~ ifelse(price82 >= 1.9, 1, 0), data = nhefs.iv))
 - Conditional on baseline covariates
 - Data from NHEFS
 ```{r}
-model2 <- tsls(wt82_71 ~ qsmk + sex + race + age + smokeintensity + smokeyrs + 
+model2 <- tsls(wt82_71 ~ qsmk + sex + race + age + smokeintensity + smokeyrs +
                       as.factor(exercise) + as.factor(active) + wt71,
              ~ highprice + sex + race + age + smokeintensity + smokeyrs + as.factor(exercise) +
                as.factor(active) + wt71, data = nhefs.iv)
