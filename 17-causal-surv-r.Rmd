@@ -1,7 +1,7 @@
 # 17. Causal survival analysis{-}
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(collapse = TRUE) 
+knitr::opts_chunk$set(collapse = TRUE, comment = '#>')
 ```
 
 ## Program 17.1
