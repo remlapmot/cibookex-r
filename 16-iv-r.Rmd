@@ -1,7 +1,7 @@
 # 16. Instrumental variables estimation{-}
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(collapse = TRUE) 
+knitr::opts_chunk$set(collapse = TRUE, comment = '#>')
 ```
 
 ## Program 16.1
