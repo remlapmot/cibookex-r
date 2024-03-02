@@ -14,7 +14,7 @@ library(here)
 ```
 
 ```{r}
-#install.packages("readxl") # install package if required
+# install.packages("readxl") # install package if required
 library("readxl")
 nhefs <- read_excel(here("data", "NHEFS.xls"))
 
@@ -168,7 +168,7 @@ standardization <- function(data, indices) {
   d1$qsmk <- 1
   d1$wt82_71 <- NA
   d.onesample <- rbind(d, d0, d1) # combining datasets
-  
+
   # linear model to estimate mean outcome conditional on treatment and confounders
   # parameters are estimated using original observations only (interv= -1)
   # parameter estimates are used to predict mean outcome for observations with set
@@ -182,9 +182,9 @@ standardization <- function(data, indices) {
                                                            wt71),
     data = d.onesample
   )
-  
+
   d.onesample$predicted_meanY <- predict(fit, d.onesample)
-  
+
   # estimate mean outcome in each of the groups interv=-1, interv=0, and interv=1
   return(c(
     mean(d.onesample$predicted_meanY[d.onesample$interv == -1]),
