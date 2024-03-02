@@ -322,7 +322,7 @@ ggplot(nhefs, aes(x = ps, fill = qsmk)) + geom_density(alpha = 0.2) +
   ggtitle('Propensity Score Distribution by Treatment Group') +
   scale_fill_discrete('') +
   theme(legend.position = 'bottom', legend.direction = 'vertical')
-## Warning: The following aesthetics were dropped during statistical transformation: fill
+## Warning: The following aesthetics were dropped during statistical transformation: fill.
 ## ℹ This can happen when ggplot fails to infer the correct grouping structure in
 ##   the data.
 ## ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
@@ -734,15 +734,15 @@ bootstrap <- data.frame(cbind(c("Observed", "No Treatment", "Treatment",
                                 "Treatment - No Treatment"), mean, se, ll, ul))
 bootstrap
 ##                         V1             mean                se               ll
-## 1                 Observed 2.63384609228479 0.265945988495998 2.11260153299974
-## 2             No Treatment 1.71983636149845 0.200169111881144 1.32751211139404
-## 3                Treatment 5.35072300362985 0.518974405050474 4.33355186083282
-## 4 Treatment - No Treatment  3.6308866421314 0.398831772787055 2.84919073157851
+## 1                 Observed 2.63384609228479 0.186192791552867  2.2689149266602
+## 2             No Treatment 1.71983636149845 0.132440282419702 1.46025817785353
+## 3                Treatment 5.35072300362985 0.265560864956734 4.83023327261135
+## 4 Treatment - No Treatment  3.6308866421314 0.147935458216573 3.34093847199049
 ##                 ul
-## 1 3.15509065156985
-## 2 2.11216061160286
-## 3 6.36789414642688
-## 4 4.41258255268429
+## 1 2.99877725790939
+## 2 1.97941454514338
+## 3 5.87121273464836
+## 4 3.92083481227231
 ```
 
 
@@ -835,7 +835,7 @@ for(i in 1:nboot) {
   }
 }
 ## 95% CI for the causal mean difference
-## 2.530251 , 4.605843
+## 2.619204 , 4.448435
 ```
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.
