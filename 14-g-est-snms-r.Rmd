@@ -1,7 +1,7 @@
 # 14. G-estimation of Structural Nested Models{-}
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(collapse = TRUE) 
+knitr::opts_chunk$set(collapse = TRUE, comment = '#>')
 ```
 
 ## Program 14.1
