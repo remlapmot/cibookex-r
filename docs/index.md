@@ -1,6 +1,6 @@
---- 
+---
 title: "Causal Inference: What If. R and Stata code for Exercises"
-author: 
+author:
  - Book by M. A. Hernán and J. M. Robins
  - R code by Joy Shi and Sean McGrath
  - Stata code by Eleanor Murray and Roger Logan
@@ -41,9 +41,9 @@ The repo is available on GitHub [here](https://github.com/remlapmot/cibookex-r).
 
 Either,
 
-* click the green *Clone or download* button then choose to *Open in Desktop* or *Download ZIP*. 
+* click the green *Clone or download* button then choose to *Open in Desktop* or *Download ZIP*.
     <img src="figs/clone-or-download.png" width="65%" style="display: block; margin: auto;" />
-    
+
   The *Desktop* option means open in the [GitHub Desktop](https://desktop.github.com/) app (if you have that installed on your machine). The *ZIP* option will give you a zip archive of the repo, which you then unzip.
 
 * or fork the repo into your own GitHub account and then clone or download your forked repo to your machine.
