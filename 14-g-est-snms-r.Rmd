@@ -14,7 +14,7 @@ library(here)
 ```
 
 ```{r}
-#install.packages("readxl") # install package if required
+# install.packages("readxl") # install package if required
 library("readxl")
 nhefs <- read_excel(here("data", "NHEFS.xls"))
 
@@ -27,14 +27,14 @@ library(Hmisc)
 describe(nhefs$wt82_71)
 
 # estimation of denominator of ip weights for C
-cw.denom <- glm(cens==0 ~ qsmk + sex + race + age + I(age^2) 
-                     + as.factor(education) + smokeintensity + I(smokeintensity^2) 
-                     + smokeyrs + I(smokeyrs^2) + as.factor(exercise) 
-                     + as.factor(active) + wt71 + I(wt71^2), 
+cw.denom <- glm(cens==0 ~ qsmk + sex + race + age + I(age^2)
+                     + as.factor(education) + smokeintensity + I(smokeintensity^2)
+                     + smokeyrs + I(smokeyrs^2) + as.factor(exercise)
+                     + as.factor(active) + wt71 + I(wt71^2),
                      data = nhefs, family = binomial("logit"))
 summary(cw.denom)
 nhefs$pd.c <- predict(cw.denom, nhefs, type="response")
-nhefs$wc <- ifelse(nhefs$cens==0, 1/nhefs$pd.c, NA) 
+nhefs$wc <- ifelse(nhefs$cens==0, 1/nhefs$pd.c, NA)
 # observations with cens=1 only contribute to censoring models
 ```
 
@@ -74,8 +74,8 @@ colnames(Hpsi.coefs) <- c("Estimate", "p-value")
 for (i in grid){
   psi = i
   j = j+1
-  nhefs$Hpsi <- nhefs$wt82_71 - psi * nhefs$qsmk 
-  
+  nhefs$Hpsi <- nhefs$wt82_71 - psi * nhefs$qsmk
+
   gest.fit <- geeglm(qsmk ~ sex + race + age + I(age*age) + as.factor(education)
                   + smokeintensity + I(smokeintensity*smokeintensity) + smokeyrs
                   + I(smokeyrs*smokeyrs) + as.factor(exercise) + as.factor(active)
@@ -95,10 +95,10 @@ Hpsi.coefs
 
 ### G-estimation: Closed form estimator linear mean models #
 ```{r}
-logit.est <- glm(qsmk ~ sex + race + age + I(age^2) + as.factor(education) 
-                 + smokeintensity + I(smokeintensity^2) + smokeyrs 
-                 + I(smokeyrs^2) + as.factor(exercise) + as.factor(active) 
-                 + wt71 + I(wt71^2), data = nhefs, weight = wc, 
+logit.est <- glm(qsmk ~ sex + race + age + I(age^2) + as.factor(education)
+                 + smokeintensity + I(smokeintensity^2) + smokeyrs
+                 + I(smokeyrs^2) + as.factor(exercise) + as.factor(active)
+                 + wt71 + I(wt71^2), data = nhefs, weight = wc,
                  family = binomial())
 summary(logit.est)
 nhefs$pqsmk <- predict(logit.est, nhefs, type = "response")
@@ -107,7 +107,7 @@ summary(nhefs$pqsmk)
 
 # solve sum(w_c * H(psi) * (qsmk - E[qsmk | L]))  = 0
 # for a single psi and H(psi) = wt82_71 - psi * qsmk
-# this can be solved as 
+# this can be solved as
 # psi = sum( w_c * wt82_71 * (qsmk - pqsmk)) / sum(w_c * qsmk * (qsmk - pqsmk))
 
 nhefs.c <- nhefs[which(!is.na(nhefs$wt82)),]
