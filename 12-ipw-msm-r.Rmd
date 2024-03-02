@@ -1,7 +1,7 @@
 # 12. IP Weighting and Marginal Structural Models{-}
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(collapse = TRUE) 
+knitr::opts_chunk$set(collapse = TRUE, comment = '#>')
 ```
 
 ## Program 12.1
