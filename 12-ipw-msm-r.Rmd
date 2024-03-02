@@ -21,13 +21,13 @@ nhefs$cens <- ifelse(is.na(nhefs$wt82), 1, 0)
 
 # provisionally ignore subjects with missing values for weight in 1982
 nhefs.nmv <-
-  nhefs[which(!is.na(nhefs$wt82)),] 
+  nhefs[which(!is.na(nhefs$wt82)),]
 
 lm(wt82_71 ~ qsmk, data = nhefs.nmv)
 # Smoking cessation
 predict(lm(wt82_71 ~ qsmk, data = nhefs.nmv), data.frame(qsmk = 1))
 # No smoking cessation
-predict(lm(wt82_71 ~ qsmk, data = nhefs.nmv), data.frame(qsmk = 0)) 
+predict(lm(wt82_71 ~ qsmk, data = nhefs.nmv), data.frame(qsmk = 0))
 
 # Table
 summary(nhefs.nmv[which(nhefs.nmv$qsmk == 0),]$age)
