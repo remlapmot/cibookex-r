@@ -1,7 +1,7 @@
 # 15. Outcome regression and propensity scores{-}
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(collapse = TRUE) 
+knitr::opts_chunk$set(collapse = TRUE, comment = '#>')
 ```
 
 ## Program 15.1                                                                  
