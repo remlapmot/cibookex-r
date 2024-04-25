@@ -179,65 +179,35 @@ for (i in grid){
   Hpsi.coefs[j,2] <- summary(gest.fit)$coefficients["Hpsi", "Pr(>|W|)"]
 }
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 Hpsi.coefs
 #>         Estimate  p-value
