@@ -5,7 +5,7 @@ author:
  - R code by Joy Shi and Sean McGrath
  - Stata code by Eleanor Murray and Roger Logan
  - R Markdown code by Tom Palmer
-date: "25 April 2024"
+date: "16 June 2024"
 site: bookdown::bookdown_site
 documentclass: book
 #biblio-style: apalike
@@ -52,7 +52,7 @@ Either,
 ## Installing dependency packages
 It is easiest to open the repo in RStudio, as an RStudio project, by doubling click the `.Rproj` file. This makes sure that R's working directory is at the top level of the repo. If you don't want to open the repo as a project set the working directory to the top level of the repo directories using `setwd()`. Then run:
 
-```r
+``` r
 # install.packages("devtools") # uncomment if devtools not installed
 devtools::install_dev_deps()
 ```
@@ -61,12 +61,12 @@ devtools::install_dev_deps()
 We assume that you have downloaded the data from the Causal Inference Book website and saved it to a `data` subdirectory. You can do this manually or with the following code (nb. we use the [`here`](https://here.r-lib.org/) package to reference the data subdirectory).
 
 
-```r
+``` r
 library(here)
 ```
 
 
-```r
+``` r
 dataurls <- list()
 stub <- "https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/"
 dataurls[[1]] <- paste0(stub, "2012/10/nhefs_sas.zip")

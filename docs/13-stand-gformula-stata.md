@@ -1,7 +1,7 @@
 # 13. Standardization and the parametric G-formula: Stata{-}
 
 
-```r
+``` r
 library(Statamarkdown)
 ```
 
@@ -20,7 +20,7 @@ For errors contact: ejmurray@bu.edu
 - Section 13.2
 
 
-```stata
+``` stata
 use ./data/nhefs-formatted, clear
 
 /* Estimate the the conditional mean outcome within strata of quitting 
@@ -131,7 +131,7 @@ Smoking cessation  |   .0466628   .0351448     1.33   0.184    -.0222197    .115
 - Section 13.3
 
 
-```stata
+``` stata
 clear
 input str10 ID L A Y
 "Rheia" 	0 0 0 
@@ -372,7 +372,7 @@ difference          .          0
 - Section 13.3
 
 
-```stata
+``` stata
 use ./data/nhefs-formatted, clear
 
 *i.Data set up for standardization: create 3 copies of each subject*
@@ -624,7 +624,7 @@ file ./data/observe.mmat saved
 - Section 13.3
 
 
-```stata
+``` stata
 *Run program 13.3 to obtain point estimates, and then the code below*
 
 capture program drop bootstdz

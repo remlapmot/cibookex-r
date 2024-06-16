@@ -1,7 +1,7 @@
 # 12. IP Weighting and Marginal Structural Models: Stata{-}
 
 
-```r
+``` r
 library(Statamarkdown)
 ```
 
@@ -19,7 +19,7 @@ For errors contact: ejmurray@bu.edu
 - Descriptive statistics from NHEFS data (Table 12.1)
 
 
-```stata
+``` stata
 use ./data/nhefs, clear
 
 /*Provisionally ignore subjects with missing values for follow-up weight*/
@@ -56,7 +56,7 @@ qui save ./data/nhefs-formatted, replace
 
 
 
-```stata
+``` stata
 use ./data/nhefs-formatted, clear
 
 /*Output table*/
@@ -148,7 +148,7 @@ No smoking cessation |                 8.9
 - Data from NHEFS
 
 
-```stata
+``` stata
 use ./data/nhefs-formatted, clear
 
 /*Fit a logistic model for the IP weights*/ 
@@ -259,7 +259,7 @@ Linear regression                               Number of obs     =      1,566
 - Data from NHEFS
 
 
-```stata
+``` stata
 use ./data/nhefs-formatted, clear
 
 /*Fit a logistic model for the denominator of the IP weights and predict the */
@@ -495,7 +495,7 @@ Linear regression                               Number of obs     =      1,566
 - Section 12.4
 
 
-```stata
+``` stata
 use ./data/nhefs-formatted, clear
 
 * drop sw_a
@@ -642,7 +642,7 @@ c.smkintensity82_71 |   .0026949   .0024203     1.11   0.266    -.0020537    .00
 - Section 12.4
 
 
-```stata
+``` stata
 use ./data/nhefs, clear
 
 /*Provisionally ignore subjects with missing values for follow-up weight*/
@@ -778,7 +778,7 @@ Note: _cons estimates baseline odds.
 - Section 12.5
 
 
-```stata
+``` stata
 use ./data/nhefs, clear
 
 * drop pd_qsmk pn_qsmk sw_a
@@ -927,7 +927,7 @@ Linear regression                               Number of obs     =      1,566
 - Section 12.6
 
 
-```stata
+``` stata
 use ./data/nhefs, clear
 
 /*Analysis including all individuals regardless of missing wt82 status: N=1629*/

@@ -8,12 +8,12 @@
 - Data from NHEFS
 
 
-```r
+``` r
 library(here)
 ```
 
 
-```r
+``` r
 # install.packages("readxl") # install package if required
 library("readxl")
 nhefs <- read_excel(here("data", "NHEFS.xls"))
@@ -72,6 +72,9 @@ summary(fit)
 #> AIC: 10701
 #> 
 #> Number of Fisher Scoring iterations: 2
+```
+
+``` r
 nhefs$predicted.meanY <- predict(fit, nhefs)
 
 nhefs[which(nhefs$seqn == 24770), c(
@@ -92,10 +95,16 @@ nhefs[which(nhefs$seqn == 24770), c(
 #>             <dbl> <dbl> <dbl> <dbl> <dbl>     <dbl>          <dbl>    <dbl>
 #> 1           0.342     0     0     0    26         4             15       12
 #> # ℹ 3 more variables: exercise <dbl>, active <dbl>, wt71 <dbl>
+```
+
+``` r
 
 summary(nhefs$predicted.meanY[nhefs$cens == 0])
 #>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 #> -10.876   1.116   3.042   2.638   4.511   9.876
+```
+
+``` r
 summary(nhefs$wt82_71[nhefs$cens == 0])
 #>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 #> -41.280  -1.478   2.604   2.638   6.690  48.538
@@ -107,7 +116,7 @@ summary(nhefs$wt82_71[nhefs$cens == 0])
 - Data from Table 2.2
 
 
-```r
+``` r
 id <- c(
   "Rheia",
   "Kronos",
@@ -162,12 +171,21 @@ summary(glm.obj)
 #> AIC: 35.385
 #> 
 #> Number of Fisher Scoring iterations: 2
+```
+
+``` r
 table22$predicted.meanY <- predict(glm.obj, table22)
 
 mean(table22$predicted.meanY[table22$interv == -1])
 #> [1] 0.5
+```
+
+``` r
 mean(table22$predicted.meanY[table22$interv == 0])
 #> [1] 0.5
+```
+
+``` r
 mean(table22$predicted.meanY[table22$interv == 1])
 #> [1] 0.5
 ```
@@ -179,7 +197,7 @@ mean(table22$predicted.meanY[table22$interv == 1])
 - Data from NHEFS
 
 
-```r
+``` r
 # create a dataset with 3 copies of each subject
 nhefs$interv <- -1 # 1st copy: equal to original one
 
@@ -251,6 +269,9 @@ summary(std)
 #> AIC: 10701
 #> 
 #> Number of Fisher Scoring iterations: 2
+```
+
+``` r
 onesample$predicted_meanY <- predict(std, onesample)
 
 # estimate mean outcome in each of the groups interv=0, and interv=1
@@ -258,8 +279,14 @@ onesample$predicted_meanY <- predict(std, onesample)
 # of values of treatment and confounders, that is, the standardized outcome
 mean(onesample[which(onesample$interv == -1), ]$predicted_meanY)
 #> [1] 2.56319
+```
+
+``` r
 mean(onesample[which(onesample$interv == 0), ]$predicted_meanY)
 #> [1] 1.660267
+```
+
+``` r
 mean(onesample[which(onesample$interv == 1), ]$predicted_meanY)
 #> [1] 5.178841
 ```
@@ -271,7 +298,7 @@ mean(onesample[which(onesample$interv == 1), ]$predicted_meanY)
 - Data from NHEFS
 
 
-```r
+``` r
 #install.packages("boot") # install package if required
 library(boot)
 
@@ -345,13 +372,13 @@ bootstrap <-
   ))
 bootstrap
 #>                         V1             mean                se               ll
-#> 1                 Observed 2.56188497106099  0.26781025659343 2.03698651344743
-#> 2             No Treatment 1.65212306626744 0.329134113146693 1.00703205841639
-#> 3                Treatment 5.11474489549336 0.527389628905355 4.08108021701892
-#> 4 Treatment - No Treatment 3.46262182922592 0.632367548388815 2.22320420939195
+#> 1                 Observed 2.56188497106099 0.263207346569584 2.04600805131825
+#> 2             No Treatment 1.65212306626744 0.267304245870594 1.12821637144643
+#> 3                Treatment 5.11474489549336 0.490898308829222 4.15260189011646
+#> 4 Treatment - No Treatment 3.46262182922592 0.469653863737132 2.54211717110106
 #>                 ul
-#> 1 3.08678342867454
-#> 2 2.29721407411848
-#> 3  6.1484095739678
-#> 4 4.70203944905989
+#> 1 3.07776189080372
+#> 2 2.17602976108844
+#> 3 6.07688790087025
+#> 4 4.38312648735078
 ```

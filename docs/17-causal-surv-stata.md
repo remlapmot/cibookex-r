@@ -1,7 +1,7 @@
 # 17. Causal survival analysis: Stata{-}
 
 
-```r
+``` r
 library(Statamarkdown)
 ```
 
@@ -21,7 +21,7 @@ For errors contact: ejmurray@bu.edu
 - Section 17.1
 
 
-```stata
+``` stata
 use ./data/nhefs-formatted, clear
 
 /*Some preprocessing of the data*/
@@ -88,7 +88,7 @@ Observed time interval: (0, survtime]
 - Generates Figure 17.4
 
 
-```stata
+``` stata
 /**Create person-month dataset for survival analyses**/
 
 /* We want our new dataset to include 1 observation per person 
@@ -288,7 +288,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated observ
 - Generates Figure 17.6
 
 
-```stata
+``` stata
 use ./data/nhefs_surv, clear
 
 keep seqn event qsmk time sex race age education ///
@@ -620,7 +620,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated observ
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 14:53:12
+r; t=0.00 6:54:29
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -628,7 +628,7 @@ r; t=0.00 14:53:12
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=18.60 14:53:30
+r; t=19.55 6:54:48
 
 
 
@@ -656,7 +656,7 @@ Bootstrap results                                        Number of obs = 1,629
 - Generates Figure 17.7
 
 
-```stata
+``` stata
 use ./data/nhefs_surv, clear
 
 keep seqn event qsmk time sex race age education ///
@@ -855,7 +855,7 @@ meanS_t1        float   %9.0g                 meanS_t, interv == Duplicated
                                                 observation
 
 
-file /Users/eptmp/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
+file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
     format
 
 (3,132 observations deleted)
@@ -866,7 +866,7 @@ file /Users/eptmp/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as P
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 14:53:37
+r; t=0.00 6:54:56
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -874,7 +874,7 @@ r; t=0.00 14:53:37
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=21.18 14:53:58
+r; t=23.54 6:55:20
 
 
 

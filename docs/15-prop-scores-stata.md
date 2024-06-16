@@ -1,7 +1,7 @@
 # 15. Outcome regression and propensity scores: Stata{-}
 
 
-```r
+``` r
 library(Statamarkdown)
 ```
 
@@ -21,7 +21,7 @@ For errors contact: ejmurray@bu.edu
 - Section 15.1
 
 
-```stata
+``` stata
 use ./data/nhefs-formatted, clear
 
 /* Generate smoking intensity among smokers product term */
@@ -172,7 +172,7 @@ regress wt82_71 qsmk c.smokeintensity##c.smokeintensity ///
 - Section 15.2
 
 
-```stata
+``` stata
 use ./data/nhefs-formatted, clear
 
 /*Fit a model for the exposure, quitting smoking*/
@@ -355,7 +355,7 @@ file ./data/nhefs-ps.dta saved
 - Note: Stata decides borderline cutpoints differently from SAS, so, despite identically distributed propensity scores, the results of regression using deciles are not an exact match with the book.
 
 
-```stata
+``` stata
 use ./data/nhefs-ps, clear
 
 /*Calculation of deciles of ps*/
@@ -677,7 +677,7 @@ H0: diff = 0                                     Degrees of freedom =      154
 - Section 15.3
 
 
-```stata
+``` stata
 use ./data/nhefs-formatted, clear
 
 /*Estimate the propensity score*/

@@ -7,12 +7,12 @@
 - Nonparametric estimation of survival curves
 - Data from NHEFS
 
-```r
+``` r
 library(here)
 ```
 
 
-```r
+``` r
 library("readxl")
 nhefs <- read_excel(here("data","NHEFS.xls"))
 
@@ -25,9 +25,15 @@ table(nhefs$death, nhefs$qsmk)
 #>       0   1
 #>   0 985 326
 #>   1 216 102
+```
+
+``` r
 summary(nhefs[which(nhefs$death==1),]$survtime)
 #>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 #>    1.00   35.00   61.00   61.14   86.75  120.00
+```
+
+``` r
 
 #install.packages("survival")
 #install.packages("ggplot2") # for plots
@@ -41,6 +47,9 @@ library("survminer")
 #> The following object is masked from 'package:survival':
 #> 
 #>     myeloma
+```
+
+``` r
 survdiff(Surv(survtime, death) ~ qsmk, data=nhefs)
 #> Call:
 #> survdiff(formula = Surv(survtime, death) ~ qsmk, data = nhefs)
@@ -50,6 +59,9 @@ survdiff(Surv(survtime, death) ~ qsmk, data=nhefs)
 #> qsmk=1  428      102     80.5      5.76      7.73
 #> 
 #>  Chisq= 7.7  on 1 degrees of freedom, p= 0.005
+```
+
+``` r
 
 fit <- survfit(Surv(survtime, death) ~ qsmk, data=nhefs)
 ggsurvplot(fit, data = nhefs, xlab="Months of follow-up",
@@ -65,7 +77,7 @@ ggsurvplot(fit, data = nhefs, xlab="Months of follow-up",
 - Data from NHEFS
 
 
-```r
+``` r
 # creation of person-month data
 #install.packages("splitstackshape")
 library("splitstackshape")
@@ -102,6 +114,9 @@ summary(hazards.model)
 #> AIC: 4643.3
 #> 
 #> Number of Fisher Scoring iterations: 9
+```
+
+``` r
 
 # creation of dataset with all time points under each treatment level
 qsmk0 <- data.frame(cbind(seq(0, 119),0,(seq(0, 119))^2))
@@ -143,7 +158,7 @@ ggplot(hazards.graph, aes(x=time, y=surv)) +
 - Estimation of survival curves via IP weighted hazards model
 - Data from NHEFS
 
-```r
+``` r
 # estimation of denominator of ip weights
 p.denom <- glm(qsmk ~ sex + race + age + I(age*age) + as.factor(education)
                + smokeintensity + I(smokeintensity*smokeintensity)
@@ -162,6 +177,9 @@ nhefs$sw.a <- ifelse(nhefs$qsmk==1, nhefs$pn.qsmk/nhefs$pd.qsmk,
 summary(nhefs$sw.a)
 #>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 #>  0.3312  0.8640  0.9504  0.9991  1.0755  4.2054
+```
+
+``` r
 
 # creation of person-month data
 nhefs.ipw <- expandRows(nhefs, "survtime", drop=F)
@@ -175,6 +193,9 @@ ipw.model <- glm(event==0 ~ qsmk + I(qsmk*time) + I(qsmk*timesq) +
                    time + timesq, family=binomial(), weight=sw.a,
                  data=nhefs.ipw)
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
+```
+
+``` r
 summary(ipw.model)
 #> 
 #> Call:
@@ -199,6 +220,9 @@ summary(ipw.model)
 #> AIC: 4633.5
 #> 
 #> Number of Fisher Scoring iterations: 9
+```
+
+``` r
 
 # creation of survival curves
 ipw.qsmk0 <- data.frame(cbind(seq(0, 119),0,(seq(0, 119))^2))
@@ -240,7 +264,7 @@ ggplot(ipw.graph, aes(x=time, y=surv)) +
 - Estimating of survival curves via g-formula
 - Data from NHEFS
 
-```r
+``` r
 # fit of hazards model with covariates
 gf.model <- glm(event==0 ~ qsmk + I(qsmk*time) + I(qsmk*timesq)
                 + time + timesq + sex + race + age + I(age*age)
@@ -296,6 +320,9 @@ summary(gf.model)
 #> AIC: 4235.7
 #> 
 #> Number of Fisher Scoring iterations: 10
+```
+
+``` r
 
 # creation of dataset with all time points for
 # each individual under each treatment level
@@ -320,6 +347,9 @@ library("dplyr")
 #> The following objects are masked from 'package:base':
 #> 
 #>     intersect, setdiff, setequal, union
+```
+
+``` r
 gf.qsmk0.surv <- gf.qsmk0 %>% group_by(seqn) %>% mutate(surv0 = cumprod(p.noevent0))
 gf.qsmk1.surv <- gf.qsmk1 %>% group_by(seqn) %>% mutate(surv1 = cumprod(p.noevent1))
 
@@ -356,7 +386,7 @@ ggplot(gf.graph, aes(x=time, y=surv)) +
 - Estimating of median survival time ratio via a structural nested AFT model
 - Data from NHEFS
 
-```r
+``` r
 # some preprocessing of the data
 nhefs <- read_excel(here("data", "NHEFS.xls"))
 nhefs$survtime <-

@@ -1,7 +1,7 @@
 # 16. Instrumental variables estimation: Stata{-}
 
 
-```r
+``` r
 library(Statamarkdown)
 ```
 
@@ -21,7 +21,7 @@ For errors contact: ejmurray@bu.edu
 - Section 16.2
 
 
-```stata
+``` stata
 use ./data/nhefs-formatted, clear
 
 summarize price82
@@ -192,7 +192,7 @@ r1   2.535729  2.6860178
 - Section 16.2
 
 
-```stata
+``` stata
 use ./data/nhefs-highprice, clear
 
 /* ivregress fits the model in two stages:
@@ -227,7 +227,7 @@ Exogenous:  highprice
 - Section 16.2
 
 
-```stata
+``` stata
 use ./data/nhefs-highprice, clear
 
 gen psi = 2.396
@@ -260,7 +260,7 @@ Log likelihood = -187.34948                             Pseudo R2     = 0.0000
 - Section 16.5
 
 
-```stata
+``` stata
 use ./data/nhefs-highprice, clear
 
 /*Instrument cut-point: 1.6*/
@@ -377,7 +377,7 @@ Exogenous:  highprice
 - Section 16.5
 
 
-```stata
+``` stata
 use ./data/nhefs-highprice, clear
 
 replace highprice = .

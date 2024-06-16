@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2024-04-25" />
+<meta name="date" content="2024-06-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -316,92 +316,92 @@ div.csl-indent {
 <li>Estimating the mean outcome within levels of treatment and confounders</li>
 <li>Data from NHEFS</li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="standardization-and-the-parametric-g-formula.html#cb18-1" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="standardization-and-the-parametric-g-formula.html#cb19-1" tabindex="-1"></a><span class="co"># install.packages(&quot;readxl&quot;) # install package if required</span></span>
-<span id="cb19-2"><a href="standardization-and-the-parametric-g-formula.html#cb19-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;readxl&quot;</span>)</span>
-<span id="cb19-3"><a href="standardization-and-the-parametric-g-formula.html#cb19-3" tabindex="-1"></a>nhefs <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;NHEFS.xls&quot;</span>))</span>
-<span id="cb19-4"><a href="standardization-and-the-parametric-g-formula.html#cb19-4" tabindex="-1"></a></span>
-<span id="cb19-5"><a href="standardization-and-the-parametric-g-formula.html#cb19-5" tabindex="-1"></a><span class="co"># some preprocessing of the data</span></span>
-<span id="cb19-6"><a href="standardization-and-the-parametric-g-formula.html#cb19-6" tabindex="-1"></a>nhefs<span class="sc">$</span>cens <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(nhefs<span class="sc">$</span>wt82), <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb19-7"><a href="standardization-and-the-parametric-g-formula.html#cb19-7" tabindex="-1"></a></span>
-<span id="cb19-8"><a href="standardization-and-the-parametric-g-formula.html#cb19-8" tabindex="-1"></a>fit <span class="ot">&lt;-</span></span>
-<span id="cb19-9"><a href="standardization-and-the-parametric-g-formula.html#cb19-9" tabindex="-1"></a>  <span class="fu">glm</span>(</span>
-<span id="cb19-10"><a href="standardization-and-the-parametric-g-formula.html#cb19-10" tabindex="-1"></a>    wt82_71 <span class="sc">~</span> qsmk <span class="sc">+</span> sex <span class="sc">+</span> race <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(age <span class="sc">*</span> age) <span class="sc">+</span> <span class="fu">as.factor</span>(education)</span>
-<span id="cb19-11"><a href="standardization-and-the-parametric-g-formula.html#cb19-11" tabindex="-1"></a>    <span class="sc">+</span> smokeintensity <span class="sc">+</span> <span class="fu">I</span>(smokeintensity <span class="sc">*</span> smokeintensity) <span class="sc">+</span> smokeyrs</span>
-<span id="cb19-12"><a href="standardization-and-the-parametric-g-formula.html#cb19-12" tabindex="-1"></a>    <span class="sc">+</span> <span class="fu">I</span>(smokeyrs <span class="sc">*</span> smokeyrs) <span class="sc">+</span> <span class="fu">as.factor</span>(exercise) <span class="sc">+</span> <span class="fu">as.factor</span>(active)</span>
-<span id="cb19-13"><a href="standardization-and-the-parametric-g-formula.html#cb19-13" tabindex="-1"></a>    <span class="sc">+</span> wt71 <span class="sc">+</span> <span class="fu">I</span>(wt71 <span class="sc">*</span> wt71) <span class="sc">+</span> qsmk <span class="sc">*</span> smokeintensity,</span>
-<span id="cb19-14"><a href="standardization-and-the-parametric-g-formula.html#cb19-14" tabindex="-1"></a>    <span class="at">data =</span> nhefs</span>
-<span id="cb19-15"><a href="standardization-and-the-parametric-g-formula.html#cb19-15" tabindex="-1"></a>  )</span>
-<span id="cb19-16"><a href="standardization-and-the-parametric-g-formula.html#cb19-16" tabindex="-1"></a><span class="fu">summary</span>(fit)</span>
-<span id="cb19-17"><a href="standardization-and-the-parametric-g-formula.html#cb19-17" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb19-18"><a href="standardization-and-the-parametric-g-formula.html#cb19-18" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
-<span id="cb19-19"><a href="standardization-and-the-parametric-g-formula.html#cb19-19" tabindex="-1"></a><span class="co">#&gt; glm(formula = wt82_71 ~ qsmk + sex + race + age + I(age * age) + </span></span>
-<span id="cb19-20"><a href="standardization-and-the-parametric-g-formula.html#cb19-20" tabindex="-1"></a><span class="co">#&gt;     as.factor(education) + smokeintensity + I(smokeintensity * </span></span>
-<span id="cb19-21"><a href="standardization-and-the-parametric-g-formula.html#cb19-21" tabindex="-1"></a><span class="co">#&gt;     smokeintensity) + smokeyrs + I(smokeyrs * smokeyrs) + as.factor(exercise) + </span></span>
-<span id="cb19-22"><a href="standardization-and-the-parametric-g-formula.html#cb19-22" tabindex="-1"></a><span class="co">#&gt;     as.factor(active) + wt71 + I(wt71 * wt71) + qsmk * smokeintensity, </span></span>
-<span id="cb19-23"><a href="standardization-and-the-parametric-g-formula.html#cb19-23" tabindex="-1"></a><span class="co">#&gt;     data = nhefs)</span></span>
-<span id="cb19-24"><a href="standardization-and-the-parametric-g-formula.html#cb19-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb19-25"><a href="standardization-and-the-parametric-g-formula.html#cb19-25" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
-<span id="cb19-26"><a href="standardization-and-the-parametric-g-formula.html#cb19-26" tabindex="-1"></a><span class="co">#&gt;                                      Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span id="cb19-27"><a href="standardization-and-the-parametric-g-formula.html#cb19-27" tabindex="-1"></a><span class="co">#&gt; (Intercept)                        -1.5881657  4.3130359  -0.368 0.712756    </span></span>
-<span id="cb19-28"><a href="standardization-and-the-parametric-g-formula.html#cb19-28" tabindex="-1"></a><span class="co">#&gt; qsmk                                2.5595941  0.8091486   3.163 0.001590 ** </span></span>
-<span id="cb19-29"><a href="standardization-and-the-parametric-g-formula.html#cb19-29" tabindex="-1"></a><span class="co">#&gt; sex                                -1.4302717  0.4689576  -3.050 0.002328 ** </span></span>
-<span id="cb19-30"><a href="standardization-and-the-parametric-g-formula.html#cb19-30" tabindex="-1"></a><span class="co">#&gt; race                                0.5601096  0.5818888   0.963 0.335913    </span></span>
-<span id="cb19-31"><a href="standardization-and-the-parametric-g-formula.html#cb19-31" tabindex="-1"></a><span class="co">#&gt; age                                 0.3596353  0.1633188   2.202 0.027809 *  </span></span>
-<span id="cb19-32"><a href="standardization-and-the-parametric-g-formula.html#cb19-32" tabindex="-1"></a><span class="co">#&gt; I(age * age)                       -0.0061010  0.0017261  -3.534 0.000421 ***</span></span>
-<span id="cb19-33"><a href="standardization-and-the-parametric-g-formula.html#cb19-33" tabindex="-1"></a><span class="co">#&gt; as.factor(education)2               0.7904440  0.6070005   1.302 0.193038    </span></span>
-<span id="cb19-34"><a href="standardization-and-the-parametric-g-formula.html#cb19-34" tabindex="-1"></a><span class="co">#&gt; as.factor(education)3               0.5563124  0.5561016   1.000 0.317284    </span></span>
-<span id="cb19-35"><a href="standardization-and-the-parametric-g-formula.html#cb19-35" tabindex="-1"></a><span class="co">#&gt; as.factor(education)4               1.4915695  0.8322704   1.792 0.073301 .  </span></span>
-<span id="cb19-36"><a href="standardization-and-the-parametric-g-formula.html#cb19-36" tabindex="-1"></a><span class="co">#&gt; as.factor(education)5              -0.1949770  0.7413692  -0.263 0.792589    </span></span>
-<span id="cb19-37"><a href="standardization-and-the-parametric-g-formula.html#cb19-37" tabindex="-1"></a><span class="co">#&gt; smokeintensity                      0.0491365  0.0517254   0.950 0.342287    </span></span>
-<span id="cb19-38"><a href="standardization-and-the-parametric-g-formula.html#cb19-38" tabindex="-1"></a><span class="co">#&gt; I(smokeintensity * smokeintensity) -0.0009907  0.0009380  -1.056 0.291097    </span></span>
-<span id="cb19-39"><a href="standardization-and-the-parametric-g-formula.html#cb19-39" tabindex="-1"></a><span class="co">#&gt; smokeyrs                            0.1343686  0.0917122   1.465 0.143094    </span></span>
-<span id="cb19-40"><a href="standardization-and-the-parametric-g-formula.html#cb19-40" tabindex="-1"></a><span class="co">#&gt; I(smokeyrs * smokeyrs)             -0.0018664  0.0015437  -1.209 0.226830    </span></span>
-<span id="cb19-41"><a href="standardization-and-the-parametric-g-formula.html#cb19-41" tabindex="-1"></a><span class="co">#&gt; as.factor(exercise)1                0.2959754  0.5351533   0.553 0.580298    </span></span>
-<span id="cb19-42"><a href="standardization-and-the-parametric-g-formula.html#cb19-42" tabindex="-1"></a><span class="co">#&gt; as.factor(exercise)2                0.3539128  0.5588587   0.633 0.526646    </span></span>
-<span id="cb19-43"><a href="standardization-and-the-parametric-g-formula.html#cb19-43" tabindex="-1"></a><span class="co">#&gt; as.factor(active)1                 -0.9475695  0.4099344  -2.312 0.020935 *  </span></span>
-<span id="cb19-44"><a href="standardization-and-the-parametric-g-formula.html#cb19-44" tabindex="-1"></a><span class="co">#&gt; as.factor(active)2                 -0.2613779  0.6845577  -0.382 0.702647    </span></span>
-<span id="cb19-45"><a href="standardization-and-the-parametric-g-formula.html#cb19-45" tabindex="-1"></a><span class="co">#&gt; wt71                                0.0455018  0.0833709   0.546 0.585299    </span></span>
-<span id="cb19-46"><a href="standardization-and-the-parametric-g-formula.html#cb19-46" tabindex="-1"></a><span class="co">#&gt; I(wt71 * wt71)                     -0.0009653  0.0005247  -1.840 0.066001 .  </span></span>
-<span id="cb19-47"><a href="standardization-and-the-parametric-g-formula.html#cb19-47" tabindex="-1"></a><span class="co">#&gt; qsmk:smokeintensity                 0.0466628  0.0351448   1.328 0.184463    </span></span>
-<span id="cb19-48"><a href="standardization-and-the-parametric-g-formula.html#cb19-48" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
-<span id="cb19-49"><a href="standardization-and-the-parametric-g-formula.html#cb19-49" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb19-50"><a href="standardization-and-the-parametric-g-formula.html#cb19-50" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb19-51"><a href="standardization-and-the-parametric-g-formula.html#cb19-51" tabindex="-1"></a><span class="co">#&gt; (Dispersion parameter for gaussian family taken to be 53.5683)</span></span>
-<span id="cb19-52"><a href="standardization-and-the-parametric-g-formula.html#cb19-52" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb19-53"><a href="standardization-and-the-parametric-g-formula.html#cb19-53" tabindex="-1"></a><span class="co">#&gt;     Null deviance: 97176  on 1565  degrees of freedom</span></span>
-<span id="cb19-54"><a href="standardization-and-the-parametric-g-formula.html#cb19-54" tabindex="-1"></a><span class="co">#&gt; Residual deviance: 82763  on 1545  degrees of freedom</span></span>
-<span id="cb19-55"><a href="standardization-and-the-parametric-g-formula.html#cb19-55" tabindex="-1"></a><span class="co">#&gt;   (63 observations deleted due to missingness)</span></span>
-<span id="cb19-56"><a href="standardization-and-the-parametric-g-formula.html#cb19-56" tabindex="-1"></a><span class="co">#&gt; AIC: 10701</span></span>
-<span id="cb19-57"><a href="standardization-and-the-parametric-g-formula.html#cb19-57" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb19-58"><a href="standardization-and-the-parametric-g-formula.html#cb19-58" tabindex="-1"></a><span class="co">#&gt; Number of Fisher Scoring iterations: 2</span></span>
-<span id="cb19-59"><a href="standardization-and-the-parametric-g-formula.html#cb19-59" tabindex="-1"></a>nhefs<span class="sc">$</span>predicted.meanY <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, nhefs)</span>
-<span id="cb19-60"><a href="standardization-and-the-parametric-g-formula.html#cb19-60" tabindex="-1"></a></span>
-<span id="cb19-61"><a href="standardization-and-the-parametric-g-formula.html#cb19-61" tabindex="-1"></a>nhefs[<span class="fu">which</span>(nhefs<span class="sc">$</span>seqn <span class="sc">==</span> <span class="dv">24770</span>), <span class="fu">c</span>(</span>
-<span id="cb19-62"><a href="standardization-and-the-parametric-g-formula.html#cb19-62" tabindex="-1"></a>  <span class="st">&quot;predicted.meanY&quot;</span>,</span>
-<span id="cb19-63"><a href="standardization-and-the-parametric-g-formula.html#cb19-63" tabindex="-1"></a>  <span class="st">&quot;qsmk&quot;</span>,</span>
-<span id="cb19-64"><a href="standardization-and-the-parametric-g-formula.html#cb19-64" tabindex="-1"></a>  <span class="st">&quot;sex&quot;</span>,</span>
-<span id="cb19-65"><a href="standardization-and-the-parametric-g-formula.html#cb19-65" tabindex="-1"></a>  <span class="st">&quot;race&quot;</span>,</span>
-<span id="cb19-66"><a href="standardization-and-the-parametric-g-formula.html#cb19-66" tabindex="-1"></a>  <span class="st">&quot;age&quot;</span>,</span>
-<span id="cb19-67"><a href="standardization-and-the-parametric-g-formula.html#cb19-67" tabindex="-1"></a>  <span class="st">&quot;education&quot;</span>,</span>
-<span id="cb19-68"><a href="standardization-and-the-parametric-g-formula.html#cb19-68" tabindex="-1"></a>  <span class="st">&quot;smokeintensity&quot;</span>,</span>
-<span id="cb19-69"><a href="standardization-and-the-parametric-g-formula.html#cb19-69" tabindex="-1"></a>  <span class="st">&quot;smokeyrs&quot;</span>,</span>
-<span id="cb19-70"><a href="standardization-and-the-parametric-g-formula.html#cb19-70" tabindex="-1"></a>  <span class="st">&quot;exercise&quot;</span>,</span>
-<span id="cb19-71"><a href="standardization-and-the-parametric-g-formula.html#cb19-71" tabindex="-1"></a>  <span class="st">&quot;active&quot;</span>,</span>
-<span id="cb19-72"><a href="standardization-and-the-parametric-g-formula.html#cb19-72" tabindex="-1"></a>  <span class="st">&quot;wt71&quot;</span></span>
-<span id="cb19-73"><a href="standardization-and-the-parametric-g-formula.html#cb19-73" tabindex="-1"></a>)]</span>
-<span id="cb19-74"><a href="standardization-and-the-parametric-g-formula.html#cb19-74" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 11</span></span>
-<span id="cb19-75"><a href="standardization-and-the-parametric-g-formula.html#cb19-75" tabindex="-1"></a><span class="co">#&gt;   predicted.meanY  qsmk   sex  race   age education smokeintensity smokeyrs</span></span>
-<span id="cb19-76"><a href="standardization-and-the-parametric-g-formula.html#cb19-76" tabindex="-1"></a><span class="co">#&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;          &lt;dbl&gt;    &lt;dbl&gt;</span></span>
-<span id="cb19-77"><a href="standardization-and-the-parametric-g-formula.html#cb19-77" tabindex="-1"></a><span class="co">#&gt; 1           0.342     0     0     0    26         4             15       12</span></span>
-<span id="cb19-78"><a href="standardization-and-the-parametric-g-formula.html#cb19-78" tabindex="-1"></a><span class="co">#&gt; # ℹ 3 more variables: exercise &lt;dbl&gt;, active &lt;dbl&gt;, wt71 &lt;dbl&gt;</span></span>
-<span id="cb19-79"><a href="standardization-and-the-parametric-g-formula.html#cb19-79" tabindex="-1"></a></span>
-<span id="cb19-80"><a href="standardization-and-the-parametric-g-formula.html#cb19-80" tabindex="-1"></a><span class="fu">summary</span>(nhefs<span class="sc">$</span>predicted.meanY[nhefs<span class="sc">$</span>cens <span class="sc">==</span> <span class="dv">0</span>])</span>
-<span id="cb19-81"><a href="standardization-and-the-parametric-g-formula.html#cb19-81" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span id="cb19-82"><a href="standardization-and-the-parametric-g-formula.html#cb19-82" tabindex="-1"></a><span class="co">#&gt; -10.876   1.116   3.042   2.638   4.511   9.876</span></span>
-<span id="cb19-83"><a href="standardization-and-the-parametric-g-formula.html#cb19-83" tabindex="-1"></a><span class="fu">summary</span>(nhefs<span class="sc">$</span>wt82_71[nhefs<span class="sc">$</span>cens <span class="sc">==</span> <span class="dv">0</span>])</span>
-<span id="cb19-84"><a href="standardization-and-the-parametric-g-formula.html#cb19-84" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span id="cb19-85"><a href="standardization-and-the-parametric-g-formula.html#cb19-85" tabindex="-1"></a><span class="co">#&gt; -41.280  -1.478   2.604   2.638   6.690  48.538</span></span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="standardization-and-the-parametric-g-formula.html#cb82-1" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="standardization-and-the-parametric-g-formula.html#cb83-1" tabindex="-1"></a><span class="co"># install.packages(&quot;readxl&quot;) # install package if required</span></span>
+<span id="cb83-2"><a href="standardization-and-the-parametric-g-formula.html#cb83-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;readxl&quot;</span>)</span>
+<span id="cb83-3"><a href="standardization-and-the-parametric-g-formula.html#cb83-3" tabindex="-1"></a>nhefs <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;NHEFS.xls&quot;</span>))</span>
+<span id="cb83-4"><a href="standardization-and-the-parametric-g-formula.html#cb83-4" tabindex="-1"></a></span>
+<span id="cb83-5"><a href="standardization-and-the-parametric-g-formula.html#cb83-5" tabindex="-1"></a><span class="co"># some preprocessing of the data</span></span>
+<span id="cb83-6"><a href="standardization-and-the-parametric-g-formula.html#cb83-6" tabindex="-1"></a>nhefs<span class="sc">$</span>cens <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(nhefs<span class="sc">$</span>wt82), <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb83-7"><a href="standardization-and-the-parametric-g-formula.html#cb83-7" tabindex="-1"></a></span>
+<span id="cb83-8"><a href="standardization-and-the-parametric-g-formula.html#cb83-8" tabindex="-1"></a>fit <span class="ot">&lt;-</span></span>
+<span id="cb83-9"><a href="standardization-and-the-parametric-g-formula.html#cb83-9" tabindex="-1"></a>  <span class="fu">glm</span>(</span>
+<span id="cb83-10"><a href="standardization-and-the-parametric-g-formula.html#cb83-10" tabindex="-1"></a>    wt82_71 <span class="sc">~</span> qsmk <span class="sc">+</span> sex <span class="sc">+</span> race <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(age <span class="sc">*</span> age) <span class="sc">+</span> <span class="fu">as.factor</span>(education)</span>
+<span id="cb83-11"><a href="standardization-and-the-parametric-g-formula.html#cb83-11" tabindex="-1"></a>    <span class="sc">+</span> smokeintensity <span class="sc">+</span> <span class="fu">I</span>(smokeintensity <span class="sc">*</span> smokeintensity) <span class="sc">+</span> smokeyrs</span>
+<span id="cb83-12"><a href="standardization-and-the-parametric-g-formula.html#cb83-12" tabindex="-1"></a>    <span class="sc">+</span> <span class="fu">I</span>(smokeyrs <span class="sc">*</span> smokeyrs) <span class="sc">+</span> <span class="fu">as.factor</span>(exercise) <span class="sc">+</span> <span class="fu">as.factor</span>(active)</span>
+<span id="cb83-13"><a href="standardization-and-the-parametric-g-formula.html#cb83-13" tabindex="-1"></a>    <span class="sc">+</span> wt71 <span class="sc">+</span> <span class="fu">I</span>(wt71 <span class="sc">*</span> wt71) <span class="sc">+</span> qsmk <span class="sc">*</span> smokeintensity,</span>
+<span id="cb83-14"><a href="standardization-and-the-parametric-g-formula.html#cb83-14" tabindex="-1"></a>    <span class="at">data =</span> nhefs</span>
+<span id="cb83-15"><a href="standardization-and-the-parametric-g-formula.html#cb83-15" tabindex="-1"></a>  )</span>
+<span id="cb83-16"><a href="standardization-and-the-parametric-g-formula.html#cb83-16" tabindex="-1"></a><span class="fu">summary</span>(fit)</span>
+<span id="cb83-17"><a href="standardization-and-the-parametric-g-formula.html#cb83-17" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb83-18"><a href="standardization-and-the-parametric-g-formula.html#cb83-18" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb83-19"><a href="standardization-and-the-parametric-g-formula.html#cb83-19" tabindex="-1"></a><span class="co">#&gt; glm(formula = wt82_71 ~ qsmk + sex + race + age + I(age * age) + </span></span>
+<span id="cb83-20"><a href="standardization-and-the-parametric-g-formula.html#cb83-20" tabindex="-1"></a><span class="co">#&gt;     as.factor(education) + smokeintensity + I(smokeintensity * </span></span>
+<span id="cb83-21"><a href="standardization-and-the-parametric-g-formula.html#cb83-21" tabindex="-1"></a><span class="co">#&gt;     smokeintensity) + smokeyrs + I(smokeyrs * smokeyrs) + as.factor(exercise) + </span></span>
+<span id="cb83-22"><a href="standardization-and-the-parametric-g-formula.html#cb83-22" tabindex="-1"></a><span class="co">#&gt;     as.factor(active) + wt71 + I(wt71 * wt71) + qsmk * smokeintensity, </span></span>
+<span id="cb83-23"><a href="standardization-and-the-parametric-g-formula.html#cb83-23" tabindex="-1"></a><span class="co">#&gt;     data = nhefs)</span></span>
+<span id="cb83-24"><a href="standardization-and-the-parametric-g-formula.html#cb83-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb83-25"><a href="standardization-and-the-parametric-g-formula.html#cb83-25" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb83-26"><a href="standardization-and-the-parametric-g-formula.html#cb83-26" tabindex="-1"></a><span class="co">#&gt;                                      Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb83-27"><a href="standardization-and-the-parametric-g-formula.html#cb83-27" tabindex="-1"></a><span class="co">#&gt; (Intercept)                        -1.5881657  4.3130359  -0.368 0.712756    </span></span>
+<span id="cb83-28"><a href="standardization-and-the-parametric-g-formula.html#cb83-28" tabindex="-1"></a><span class="co">#&gt; qsmk                                2.5595941  0.8091486   3.163 0.001590 ** </span></span>
+<span id="cb83-29"><a href="standardization-and-the-parametric-g-formula.html#cb83-29" tabindex="-1"></a><span class="co">#&gt; sex                                -1.4302717  0.4689576  -3.050 0.002328 ** </span></span>
+<span id="cb83-30"><a href="standardization-and-the-parametric-g-formula.html#cb83-30" tabindex="-1"></a><span class="co">#&gt; race                                0.5601096  0.5818888   0.963 0.335913    </span></span>
+<span id="cb83-31"><a href="standardization-and-the-parametric-g-formula.html#cb83-31" tabindex="-1"></a><span class="co">#&gt; age                                 0.3596353  0.1633188   2.202 0.027809 *  </span></span>
+<span id="cb83-32"><a href="standardization-and-the-parametric-g-formula.html#cb83-32" tabindex="-1"></a><span class="co">#&gt; I(age * age)                       -0.0061010  0.0017261  -3.534 0.000421 ***</span></span>
+<span id="cb83-33"><a href="standardization-and-the-parametric-g-formula.html#cb83-33" tabindex="-1"></a><span class="co">#&gt; as.factor(education)2               0.7904440  0.6070005   1.302 0.193038    </span></span>
+<span id="cb83-34"><a href="standardization-and-the-parametric-g-formula.html#cb83-34" tabindex="-1"></a><span class="co">#&gt; as.factor(education)3               0.5563124  0.5561016   1.000 0.317284    </span></span>
+<span id="cb83-35"><a href="standardization-and-the-parametric-g-formula.html#cb83-35" tabindex="-1"></a><span class="co">#&gt; as.factor(education)4               1.4915695  0.8322704   1.792 0.073301 .  </span></span>
+<span id="cb83-36"><a href="standardization-and-the-parametric-g-formula.html#cb83-36" tabindex="-1"></a><span class="co">#&gt; as.factor(education)5              -0.1949770  0.7413692  -0.263 0.792589    </span></span>
+<span id="cb83-37"><a href="standardization-and-the-parametric-g-formula.html#cb83-37" tabindex="-1"></a><span class="co">#&gt; smokeintensity                      0.0491365  0.0517254   0.950 0.342287    </span></span>
+<span id="cb83-38"><a href="standardization-and-the-parametric-g-formula.html#cb83-38" tabindex="-1"></a><span class="co">#&gt; I(smokeintensity * smokeintensity) -0.0009907  0.0009380  -1.056 0.291097    </span></span>
+<span id="cb83-39"><a href="standardization-and-the-parametric-g-formula.html#cb83-39" tabindex="-1"></a><span class="co">#&gt; smokeyrs                            0.1343686  0.0917122   1.465 0.143094    </span></span>
+<span id="cb83-40"><a href="standardization-and-the-parametric-g-formula.html#cb83-40" tabindex="-1"></a><span class="co">#&gt; I(smokeyrs * smokeyrs)             -0.0018664  0.0015437  -1.209 0.226830    </span></span>
+<span id="cb83-41"><a href="standardization-and-the-parametric-g-formula.html#cb83-41" tabindex="-1"></a><span class="co">#&gt; as.factor(exercise)1                0.2959754  0.5351533   0.553 0.580298    </span></span>
+<span id="cb83-42"><a href="standardization-and-the-parametric-g-formula.html#cb83-42" tabindex="-1"></a><span class="co">#&gt; as.factor(exercise)2                0.3539128  0.5588587   0.633 0.526646    </span></span>
+<span id="cb83-43"><a href="standardization-and-the-parametric-g-formula.html#cb83-43" tabindex="-1"></a><span class="co">#&gt; as.factor(active)1                 -0.9475695  0.4099344  -2.312 0.020935 *  </span></span>
+<span id="cb83-44"><a href="standardization-and-the-parametric-g-formula.html#cb83-44" tabindex="-1"></a><span class="co">#&gt; as.factor(active)2                 -0.2613779  0.6845577  -0.382 0.702647    </span></span>
+<span id="cb83-45"><a href="standardization-and-the-parametric-g-formula.html#cb83-45" tabindex="-1"></a><span class="co">#&gt; wt71                                0.0455018  0.0833709   0.546 0.585299    </span></span>
+<span id="cb83-46"><a href="standardization-and-the-parametric-g-formula.html#cb83-46" tabindex="-1"></a><span class="co">#&gt; I(wt71 * wt71)                     -0.0009653  0.0005247  -1.840 0.066001 .  </span></span>
+<span id="cb83-47"><a href="standardization-and-the-parametric-g-formula.html#cb83-47" tabindex="-1"></a><span class="co">#&gt; qsmk:smokeintensity                 0.0466628  0.0351448   1.328 0.184463    </span></span>
+<span id="cb83-48"><a href="standardization-and-the-parametric-g-formula.html#cb83-48" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb83-49"><a href="standardization-and-the-parametric-g-formula.html#cb83-49" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb83-50"><a href="standardization-and-the-parametric-g-formula.html#cb83-50" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb83-51"><a href="standardization-and-the-parametric-g-formula.html#cb83-51" tabindex="-1"></a><span class="co">#&gt; (Dispersion parameter for gaussian family taken to be 53.5683)</span></span>
+<span id="cb83-52"><a href="standardization-and-the-parametric-g-formula.html#cb83-52" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb83-53"><a href="standardization-and-the-parametric-g-formula.html#cb83-53" tabindex="-1"></a><span class="co">#&gt;     Null deviance: 97176  on 1565  degrees of freedom</span></span>
+<span id="cb83-54"><a href="standardization-and-the-parametric-g-formula.html#cb83-54" tabindex="-1"></a><span class="co">#&gt; Residual deviance: 82763  on 1545  degrees of freedom</span></span>
+<span id="cb83-55"><a href="standardization-and-the-parametric-g-formula.html#cb83-55" tabindex="-1"></a><span class="co">#&gt;   (63 observations deleted due to missingness)</span></span>
+<span id="cb83-56"><a href="standardization-and-the-parametric-g-formula.html#cb83-56" tabindex="-1"></a><span class="co">#&gt; AIC: 10701</span></span>
+<span id="cb83-57"><a href="standardization-and-the-parametric-g-formula.html#cb83-57" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb83-58"><a href="standardization-and-the-parametric-g-formula.html#cb83-58" tabindex="-1"></a><span class="co">#&gt; Number of Fisher Scoring iterations: 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="standardization-and-the-parametric-g-formula.html#cb84-1" tabindex="-1"></a>nhefs<span class="sc">$</span>predicted.meanY <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, nhefs)</span>
+<span id="cb84-2"><a href="standardization-and-the-parametric-g-formula.html#cb84-2" tabindex="-1"></a></span>
+<span id="cb84-3"><a href="standardization-and-the-parametric-g-formula.html#cb84-3" tabindex="-1"></a>nhefs[<span class="fu">which</span>(nhefs<span class="sc">$</span>seqn <span class="sc">==</span> <span class="dv">24770</span>), <span class="fu">c</span>(</span>
+<span id="cb84-4"><a href="standardization-and-the-parametric-g-formula.html#cb84-4" tabindex="-1"></a>  <span class="st">&quot;predicted.meanY&quot;</span>,</span>
+<span id="cb84-5"><a href="standardization-and-the-parametric-g-formula.html#cb84-5" tabindex="-1"></a>  <span class="st">&quot;qsmk&quot;</span>,</span>
+<span id="cb84-6"><a href="standardization-and-the-parametric-g-formula.html#cb84-6" tabindex="-1"></a>  <span class="st">&quot;sex&quot;</span>,</span>
+<span id="cb84-7"><a href="standardization-and-the-parametric-g-formula.html#cb84-7" tabindex="-1"></a>  <span class="st">&quot;race&quot;</span>,</span>
+<span id="cb84-8"><a href="standardization-and-the-parametric-g-formula.html#cb84-8" tabindex="-1"></a>  <span class="st">&quot;age&quot;</span>,</span>
+<span id="cb84-9"><a href="standardization-and-the-parametric-g-formula.html#cb84-9" tabindex="-1"></a>  <span class="st">&quot;education&quot;</span>,</span>
+<span id="cb84-10"><a href="standardization-and-the-parametric-g-formula.html#cb84-10" tabindex="-1"></a>  <span class="st">&quot;smokeintensity&quot;</span>,</span>
+<span id="cb84-11"><a href="standardization-and-the-parametric-g-formula.html#cb84-11" tabindex="-1"></a>  <span class="st">&quot;smokeyrs&quot;</span>,</span>
+<span id="cb84-12"><a href="standardization-and-the-parametric-g-formula.html#cb84-12" tabindex="-1"></a>  <span class="st">&quot;exercise&quot;</span>,</span>
+<span id="cb84-13"><a href="standardization-and-the-parametric-g-formula.html#cb84-13" tabindex="-1"></a>  <span class="st">&quot;active&quot;</span>,</span>
+<span id="cb84-14"><a href="standardization-and-the-parametric-g-formula.html#cb84-14" tabindex="-1"></a>  <span class="st">&quot;wt71&quot;</span></span>
+<span id="cb84-15"><a href="standardization-and-the-parametric-g-formula.html#cb84-15" tabindex="-1"></a>)]</span>
+<span id="cb84-16"><a href="standardization-and-the-parametric-g-formula.html#cb84-16" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 11</span></span>
+<span id="cb84-17"><a href="standardization-and-the-parametric-g-formula.html#cb84-17" tabindex="-1"></a><span class="co">#&gt;   predicted.meanY  qsmk   sex  race   age education smokeintensity smokeyrs</span></span>
+<span id="cb84-18"><a href="standardization-and-the-parametric-g-formula.html#cb84-18" tabindex="-1"></a><span class="co">#&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;          &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span id="cb84-19"><a href="standardization-and-the-parametric-g-formula.html#cb84-19" tabindex="-1"></a><span class="co">#&gt; 1           0.342     0     0     0    26         4             15       12</span></span>
+<span id="cb84-20"><a href="standardization-and-the-parametric-g-formula.html#cb84-20" tabindex="-1"></a><span class="co">#&gt; # ℹ 3 more variables: exercise &lt;dbl&gt;, active &lt;dbl&gt;, wt71 &lt;dbl&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="standardization-and-the-parametric-g-formula.html#cb85-1" tabindex="-1"></a></span>
+<span id="cb85-2"><a href="standardization-and-the-parametric-g-formula.html#cb85-2" tabindex="-1"></a><span class="fu">summary</span>(nhefs<span class="sc">$</span>predicted.meanY[nhefs<span class="sc">$</span>cens <span class="sc">==</span> <span class="dv">0</span>])</span>
+<span id="cb85-3"><a href="standardization-and-the-parametric-g-formula.html#cb85-3" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb85-4"><a href="standardization-and-the-parametric-g-formula.html#cb85-4" tabindex="-1"></a><span class="co">#&gt; -10.876   1.116   3.042   2.638   4.511   9.876</span></span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="standardization-and-the-parametric-g-formula.html#cb86-1" tabindex="-1"></a><span class="fu">summary</span>(nhefs<span class="sc">$</span>wt82_71[nhefs<span class="sc">$</span>cens <span class="sc">==</span> <span class="dv">0</span>])</span>
+<span id="cb86-2"><a href="standardization-and-the-parametric-g-formula.html#cb86-2" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb86-3"><a href="standardization-and-the-parametric-g-formula.html#cb86-3" tabindex="-1"></a><span class="co">#&gt; -41.280  -1.478   2.604   2.638   6.690  48.538</span></span></code></pre></div>
 </div>
 <div id="program-13.2" class="section level2 hasAnchor">
 <h2>Program 13.2<a href="standardization-and-the-parametric-g-formula.html#program-13.2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -409,68 +409,68 @@ div.csl-indent {
 <li>Standardizing the mean outcome to the baseline confounders</li>
 <li>Data from Table 2.2</li>
 </ul>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="standardization-and-the-parametric-g-formula.html#cb20-1" tabindex="-1"></a>id <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb20-2"><a href="standardization-and-the-parametric-g-formula.html#cb20-2" tabindex="-1"></a>  <span class="st">&quot;Rheia&quot;</span>,</span>
-<span id="cb20-3"><a href="standardization-and-the-parametric-g-formula.html#cb20-3" tabindex="-1"></a>  <span class="st">&quot;Kronos&quot;</span>,</span>
-<span id="cb20-4"><a href="standardization-and-the-parametric-g-formula.html#cb20-4" tabindex="-1"></a>  <span class="st">&quot;Demeter&quot;</span>,</span>
-<span id="cb20-5"><a href="standardization-and-the-parametric-g-formula.html#cb20-5" tabindex="-1"></a>  <span class="st">&quot;Hades&quot;</span>,</span>
-<span id="cb20-6"><a href="standardization-and-the-parametric-g-formula.html#cb20-6" tabindex="-1"></a>  <span class="st">&quot;Hestia&quot;</span>,</span>
-<span id="cb20-7"><a href="standardization-and-the-parametric-g-formula.html#cb20-7" tabindex="-1"></a>  <span class="st">&quot;Poseidon&quot;</span>,</span>
-<span id="cb20-8"><a href="standardization-and-the-parametric-g-formula.html#cb20-8" tabindex="-1"></a>  <span class="st">&quot;Hera&quot;</span>,</span>
-<span id="cb20-9"><a href="standardization-and-the-parametric-g-formula.html#cb20-9" tabindex="-1"></a>  <span class="st">&quot;Zeus&quot;</span>,</span>
-<span id="cb20-10"><a href="standardization-and-the-parametric-g-formula.html#cb20-10" tabindex="-1"></a>  <span class="st">&quot;Artemis&quot;</span>,</span>
-<span id="cb20-11"><a href="standardization-and-the-parametric-g-formula.html#cb20-11" tabindex="-1"></a>  <span class="st">&quot;Apollo&quot;</span>,</span>
-<span id="cb20-12"><a href="standardization-and-the-parametric-g-formula.html#cb20-12" tabindex="-1"></a>  <span class="st">&quot;Leto&quot;</span>,</span>
-<span id="cb20-13"><a href="standardization-and-the-parametric-g-formula.html#cb20-13" tabindex="-1"></a>  <span class="st">&quot;Ares&quot;</span>,</span>
-<span id="cb20-14"><a href="standardization-and-the-parametric-g-formula.html#cb20-14" tabindex="-1"></a>  <span class="st">&quot;Athena&quot;</span>,</span>
-<span id="cb20-15"><a href="standardization-and-the-parametric-g-formula.html#cb20-15" tabindex="-1"></a>  <span class="st">&quot;Hephaestus&quot;</span>,</span>
-<span id="cb20-16"><a href="standardization-and-the-parametric-g-formula.html#cb20-16" tabindex="-1"></a>  <span class="st">&quot;Aphrodite&quot;</span>,</span>
-<span id="cb20-17"><a href="standardization-and-the-parametric-g-formula.html#cb20-17" tabindex="-1"></a>  <span class="st">&quot;Cyclope&quot;</span>,</span>
-<span id="cb20-18"><a href="standardization-and-the-parametric-g-formula.html#cb20-18" tabindex="-1"></a>  <span class="st">&quot;Persephone&quot;</span>,</span>
-<span id="cb20-19"><a href="standardization-and-the-parametric-g-formula.html#cb20-19" tabindex="-1"></a>  <span class="st">&quot;Hermes&quot;</span>,</span>
-<span id="cb20-20"><a href="standardization-and-the-parametric-g-formula.html#cb20-20" tabindex="-1"></a>  <span class="st">&quot;Hebe&quot;</span>,</span>
-<span id="cb20-21"><a href="standardization-and-the-parametric-g-formula.html#cb20-21" tabindex="-1"></a>  <span class="st">&quot;Dionysus&quot;</span></span>
-<span id="cb20-22"><a href="standardization-and-the-parametric-g-formula.html#cb20-22" tabindex="-1"></a>)</span>
-<span id="cb20-23"><a href="standardization-and-the-parametric-g-formula.html#cb20-23" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">length</span>(id)</span>
-<span id="cb20-24"><a href="standardization-and-the-parametric-g-formula.html#cb20-24" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb20-25"><a href="standardization-and-the-parametric-g-formula.html#cb20-25" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb20-26"><a href="standardization-and-the-parametric-g-formula.html#cb20-26" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb20-27"><a href="standardization-and-the-parametric-g-formula.html#cb20-27" tabindex="-1"></a>interv <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="sc">-</span><span class="dv">1</span>, N)</span>
-<span id="cb20-28"><a href="standardization-and-the-parametric-g-formula.html#cb20-28" tabindex="-1"></a>observed <span class="ot">&lt;-</span> <span class="fu">cbind</span>(L, A, Y, interv)</span>
-<span id="cb20-29"><a href="standardization-and-the-parametric-g-formula.html#cb20-29" tabindex="-1"></a>untreated <span class="ot">&lt;-</span> <span class="fu">cbind</span>(L, <span class="fu">rep</span>(<span class="dv">0</span>, N), <span class="fu">rep</span>(<span class="cn">NA</span>, N), <span class="fu">rep</span>(<span class="dv">0</span>, N))</span>
-<span id="cb20-30"><a href="standardization-and-the-parametric-g-formula.html#cb20-30" tabindex="-1"></a>treated <span class="ot">&lt;-</span> <span class="fu">cbind</span>(L, <span class="fu">rep</span>(<span class="dv">1</span>, N), <span class="fu">rep</span>(<span class="cn">NA</span>, N), <span class="fu">rep</span>(<span class="dv">1</span>, N))</span>
-<span id="cb20-31"><a href="standardization-and-the-parametric-g-formula.html#cb20-31" tabindex="-1"></a>table22 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">rbind</span>(observed, untreated, treated))</span>
-<span id="cb20-32"><a href="standardization-and-the-parametric-g-formula.html#cb20-32" tabindex="-1"></a>table22<span class="sc">$</span>id <span class="ot">&lt;-</span> <span class="fu">rep</span>(id, <span class="dv">3</span>)</span>
-<span id="cb20-33"><a href="standardization-and-the-parametric-g-formula.html#cb20-33" tabindex="-1"></a></span>
-<span id="cb20-34"><a href="standardization-and-the-parametric-g-formula.html#cb20-34" tabindex="-1"></a>glm.obj <span class="ot">&lt;-</span> <span class="fu">glm</span>(Y <span class="sc">~</span> A <span class="sc">*</span> L, <span class="at">data =</span> table22)</span>
-<span id="cb20-35"><a href="standardization-and-the-parametric-g-formula.html#cb20-35" tabindex="-1"></a><span class="fu">summary</span>(glm.obj)</span>
-<span id="cb20-36"><a href="standardization-and-the-parametric-g-formula.html#cb20-36" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb20-37"><a href="standardization-and-the-parametric-g-formula.html#cb20-37" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
-<span id="cb20-38"><a href="standardization-and-the-parametric-g-formula.html#cb20-38" tabindex="-1"></a><span class="co">#&gt; glm(formula = Y ~ A * L, data = table22)</span></span>
-<span id="cb20-39"><a href="standardization-and-the-parametric-g-formula.html#cb20-39" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb20-40"><a href="standardization-and-the-parametric-g-formula.html#cb20-40" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
-<span id="cb20-41"><a href="standardization-and-the-parametric-g-formula.html#cb20-41" tabindex="-1"></a><span class="co">#&gt;               Estimate Std. Error t value Pr(&gt;|t|)</span></span>
-<span id="cb20-42"><a href="standardization-and-the-parametric-g-formula.html#cb20-42" tabindex="-1"></a><span class="co">#&gt; (Intercept)  2.500e-01  2.552e-01   0.980    0.342</span></span>
-<span id="cb20-43"><a href="standardization-and-the-parametric-g-formula.html#cb20-43" tabindex="-1"></a><span class="co">#&gt; A            3.957e-17  3.608e-01   0.000    1.000</span></span>
-<span id="cb20-44"><a href="standardization-and-the-parametric-g-formula.html#cb20-44" tabindex="-1"></a><span class="co">#&gt; L            4.167e-01  3.898e-01   1.069    0.301</span></span>
-<span id="cb20-45"><a href="standardization-and-the-parametric-g-formula.html#cb20-45" tabindex="-1"></a><span class="co">#&gt; A:L         -1.313e-16  4.959e-01   0.000    1.000</span></span>
-<span id="cb20-46"><a href="standardization-and-the-parametric-g-formula.html#cb20-46" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb20-47"><a href="standardization-and-the-parametric-g-formula.html#cb20-47" tabindex="-1"></a><span class="co">#&gt; (Dispersion parameter for gaussian family taken to be 0.2604167)</span></span>
-<span id="cb20-48"><a href="standardization-and-the-parametric-g-formula.html#cb20-48" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb20-49"><a href="standardization-and-the-parametric-g-formula.html#cb20-49" tabindex="-1"></a><span class="co">#&gt;     Null deviance: 5.0000  on 19  degrees of freedom</span></span>
-<span id="cb20-50"><a href="standardization-and-the-parametric-g-formula.html#cb20-50" tabindex="-1"></a><span class="co">#&gt; Residual deviance: 4.1667  on 16  degrees of freedom</span></span>
-<span id="cb20-51"><a href="standardization-and-the-parametric-g-formula.html#cb20-51" tabindex="-1"></a><span class="co">#&gt;   (40 observations deleted due to missingness)</span></span>
-<span id="cb20-52"><a href="standardization-and-the-parametric-g-formula.html#cb20-52" tabindex="-1"></a><span class="co">#&gt; AIC: 35.385</span></span>
-<span id="cb20-53"><a href="standardization-and-the-parametric-g-formula.html#cb20-53" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb20-54"><a href="standardization-and-the-parametric-g-formula.html#cb20-54" tabindex="-1"></a><span class="co">#&gt; Number of Fisher Scoring iterations: 2</span></span>
-<span id="cb20-55"><a href="standardization-and-the-parametric-g-formula.html#cb20-55" tabindex="-1"></a>table22<span class="sc">$</span>predicted.meanY <span class="ot">&lt;-</span> <span class="fu">predict</span>(glm.obj, table22)</span>
-<span id="cb20-56"><a href="standardization-and-the-parametric-g-formula.html#cb20-56" tabindex="-1"></a></span>
-<span id="cb20-57"><a href="standardization-and-the-parametric-g-formula.html#cb20-57" tabindex="-1"></a><span class="fu">mean</span>(table22<span class="sc">$</span>predicted.meanY[table22<span class="sc">$</span>interv <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>])</span>
-<span id="cb20-58"><a href="standardization-and-the-parametric-g-formula.html#cb20-58" tabindex="-1"></a><span class="co">#&gt; [1] 0.5</span></span>
-<span id="cb20-59"><a href="standardization-and-the-parametric-g-formula.html#cb20-59" tabindex="-1"></a><span class="fu">mean</span>(table22<span class="sc">$</span>predicted.meanY[table22<span class="sc">$</span>interv <span class="sc">==</span> <span class="dv">0</span>])</span>
-<span id="cb20-60"><a href="standardization-and-the-parametric-g-formula.html#cb20-60" tabindex="-1"></a><span class="co">#&gt; [1] 0.5</span></span>
-<span id="cb20-61"><a href="standardization-and-the-parametric-g-formula.html#cb20-61" tabindex="-1"></a><span class="fu">mean</span>(table22<span class="sc">$</span>predicted.meanY[table22<span class="sc">$</span>interv <span class="sc">==</span> <span class="dv">1</span>])</span>
-<span id="cb20-62"><a href="standardization-and-the-parametric-g-formula.html#cb20-62" tabindex="-1"></a><span class="co">#&gt; [1] 0.5</span></span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="standardization-and-the-parametric-g-formula.html#cb87-1" tabindex="-1"></a>id <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb87-2"><a href="standardization-and-the-parametric-g-formula.html#cb87-2" tabindex="-1"></a>  <span class="st">&quot;Rheia&quot;</span>,</span>
+<span id="cb87-3"><a href="standardization-and-the-parametric-g-formula.html#cb87-3" tabindex="-1"></a>  <span class="st">&quot;Kronos&quot;</span>,</span>
+<span id="cb87-4"><a href="standardization-and-the-parametric-g-formula.html#cb87-4" tabindex="-1"></a>  <span class="st">&quot;Demeter&quot;</span>,</span>
+<span id="cb87-5"><a href="standardization-and-the-parametric-g-formula.html#cb87-5" tabindex="-1"></a>  <span class="st">&quot;Hades&quot;</span>,</span>
+<span id="cb87-6"><a href="standardization-and-the-parametric-g-formula.html#cb87-6" tabindex="-1"></a>  <span class="st">&quot;Hestia&quot;</span>,</span>
+<span id="cb87-7"><a href="standardization-and-the-parametric-g-formula.html#cb87-7" tabindex="-1"></a>  <span class="st">&quot;Poseidon&quot;</span>,</span>
+<span id="cb87-8"><a href="standardization-and-the-parametric-g-formula.html#cb87-8" tabindex="-1"></a>  <span class="st">&quot;Hera&quot;</span>,</span>
+<span id="cb87-9"><a href="standardization-and-the-parametric-g-formula.html#cb87-9" tabindex="-1"></a>  <span class="st">&quot;Zeus&quot;</span>,</span>
+<span id="cb87-10"><a href="standardization-and-the-parametric-g-formula.html#cb87-10" tabindex="-1"></a>  <span class="st">&quot;Artemis&quot;</span>,</span>
+<span id="cb87-11"><a href="standardization-and-the-parametric-g-formula.html#cb87-11" tabindex="-1"></a>  <span class="st">&quot;Apollo&quot;</span>,</span>
+<span id="cb87-12"><a href="standardization-and-the-parametric-g-formula.html#cb87-12" tabindex="-1"></a>  <span class="st">&quot;Leto&quot;</span>,</span>
+<span id="cb87-13"><a href="standardization-and-the-parametric-g-formula.html#cb87-13" tabindex="-1"></a>  <span class="st">&quot;Ares&quot;</span>,</span>
+<span id="cb87-14"><a href="standardization-and-the-parametric-g-formula.html#cb87-14" tabindex="-1"></a>  <span class="st">&quot;Athena&quot;</span>,</span>
+<span id="cb87-15"><a href="standardization-and-the-parametric-g-formula.html#cb87-15" tabindex="-1"></a>  <span class="st">&quot;Hephaestus&quot;</span>,</span>
+<span id="cb87-16"><a href="standardization-and-the-parametric-g-formula.html#cb87-16" tabindex="-1"></a>  <span class="st">&quot;Aphrodite&quot;</span>,</span>
+<span id="cb87-17"><a href="standardization-and-the-parametric-g-formula.html#cb87-17" tabindex="-1"></a>  <span class="st">&quot;Cyclope&quot;</span>,</span>
+<span id="cb87-18"><a href="standardization-and-the-parametric-g-formula.html#cb87-18" tabindex="-1"></a>  <span class="st">&quot;Persephone&quot;</span>,</span>
+<span id="cb87-19"><a href="standardization-and-the-parametric-g-formula.html#cb87-19" tabindex="-1"></a>  <span class="st">&quot;Hermes&quot;</span>,</span>
+<span id="cb87-20"><a href="standardization-and-the-parametric-g-formula.html#cb87-20" tabindex="-1"></a>  <span class="st">&quot;Hebe&quot;</span>,</span>
+<span id="cb87-21"><a href="standardization-and-the-parametric-g-formula.html#cb87-21" tabindex="-1"></a>  <span class="st">&quot;Dionysus&quot;</span></span>
+<span id="cb87-22"><a href="standardization-and-the-parametric-g-formula.html#cb87-22" tabindex="-1"></a>)</span>
+<span id="cb87-23"><a href="standardization-and-the-parametric-g-formula.html#cb87-23" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">length</span>(id)</span>
+<span id="cb87-24"><a href="standardization-and-the-parametric-g-formula.html#cb87-24" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb87-25"><a href="standardization-and-the-parametric-g-formula.html#cb87-25" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb87-26"><a href="standardization-and-the-parametric-g-formula.html#cb87-26" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb87-27"><a href="standardization-and-the-parametric-g-formula.html#cb87-27" tabindex="-1"></a>interv <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="sc">-</span><span class="dv">1</span>, N)</span>
+<span id="cb87-28"><a href="standardization-and-the-parametric-g-formula.html#cb87-28" tabindex="-1"></a>observed <span class="ot">&lt;-</span> <span class="fu">cbind</span>(L, A, Y, interv)</span>
+<span id="cb87-29"><a href="standardization-and-the-parametric-g-formula.html#cb87-29" tabindex="-1"></a>untreated <span class="ot">&lt;-</span> <span class="fu">cbind</span>(L, <span class="fu">rep</span>(<span class="dv">0</span>, N), <span class="fu">rep</span>(<span class="cn">NA</span>, N), <span class="fu">rep</span>(<span class="dv">0</span>, N))</span>
+<span id="cb87-30"><a href="standardization-and-the-parametric-g-formula.html#cb87-30" tabindex="-1"></a>treated <span class="ot">&lt;-</span> <span class="fu">cbind</span>(L, <span class="fu">rep</span>(<span class="dv">1</span>, N), <span class="fu">rep</span>(<span class="cn">NA</span>, N), <span class="fu">rep</span>(<span class="dv">1</span>, N))</span>
+<span id="cb87-31"><a href="standardization-and-the-parametric-g-formula.html#cb87-31" tabindex="-1"></a>table22 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">rbind</span>(observed, untreated, treated))</span>
+<span id="cb87-32"><a href="standardization-and-the-parametric-g-formula.html#cb87-32" tabindex="-1"></a>table22<span class="sc">$</span>id <span class="ot">&lt;-</span> <span class="fu">rep</span>(id, <span class="dv">3</span>)</span>
+<span id="cb87-33"><a href="standardization-and-the-parametric-g-formula.html#cb87-33" tabindex="-1"></a></span>
+<span id="cb87-34"><a href="standardization-and-the-parametric-g-formula.html#cb87-34" tabindex="-1"></a>glm.obj <span class="ot">&lt;-</span> <span class="fu">glm</span>(Y <span class="sc">~</span> A <span class="sc">*</span> L, <span class="at">data =</span> table22)</span>
+<span id="cb87-35"><a href="standardization-and-the-parametric-g-formula.html#cb87-35" tabindex="-1"></a><span class="fu">summary</span>(glm.obj)</span>
+<span id="cb87-36"><a href="standardization-and-the-parametric-g-formula.html#cb87-36" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb87-37"><a href="standardization-and-the-parametric-g-formula.html#cb87-37" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb87-38"><a href="standardization-and-the-parametric-g-formula.html#cb87-38" tabindex="-1"></a><span class="co">#&gt; glm(formula = Y ~ A * L, data = table22)</span></span>
+<span id="cb87-39"><a href="standardization-and-the-parametric-g-formula.html#cb87-39" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb87-40"><a href="standardization-and-the-parametric-g-formula.html#cb87-40" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb87-41"><a href="standardization-and-the-parametric-g-formula.html#cb87-41" tabindex="-1"></a><span class="co">#&gt;               Estimate Std. Error t value Pr(&gt;|t|)</span></span>
+<span id="cb87-42"><a href="standardization-and-the-parametric-g-formula.html#cb87-42" tabindex="-1"></a><span class="co">#&gt; (Intercept)  2.500e-01  2.552e-01   0.980    0.342</span></span>
+<span id="cb87-43"><a href="standardization-and-the-parametric-g-formula.html#cb87-43" tabindex="-1"></a><span class="co">#&gt; A            3.957e-17  3.608e-01   0.000    1.000</span></span>
+<span id="cb87-44"><a href="standardization-and-the-parametric-g-formula.html#cb87-44" tabindex="-1"></a><span class="co">#&gt; L            4.167e-01  3.898e-01   1.069    0.301</span></span>
+<span id="cb87-45"><a href="standardization-and-the-parametric-g-formula.html#cb87-45" tabindex="-1"></a><span class="co">#&gt; A:L         -1.313e-16  4.959e-01   0.000    1.000</span></span>
+<span id="cb87-46"><a href="standardization-and-the-parametric-g-formula.html#cb87-46" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb87-47"><a href="standardization-and-the-parametric-g-formula.html#cb87-47" tabindex="-1"></a><span class="co">#&gt; (Dispersion parameter for gaussian family taken to be 0.2604167)</span></span>
+<span id="cb87-48"><a href="standardization-and-the-parametric-g-formula.html#cb87-48" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb87-49"><a href="standardization-and-the-parametric-g-formula.html#cb87-49" tabindex="-1"></a><span class="co">#&gt;     Null deviance: 5.0000  on 19  degrees of freedom</span></span>
+<span id="cb87-50"><a href="standardization-and-the-parametric-g-formula.html#cb87-50" tabindex="-1"></a><span class="co">#&gt; Residual deviance: 4.1667  on 16  degrees of freedom</span></span>
+<span id="cb87-51"><a href="standardization-and-the-parametric-g-formula.html#cb87-51" tabindex="-1"></a><span class="co">#&gt;   (40 observations deleted due to missingness)</span></span>
+<span id="cb87-52"><a href="standardization-and-the-parametric-g-formula.html#cb87-52" tabindex="-1"></a><span class="co">#&gt; AIC: 35.385</span></span>
+<span id="cb87-53"><a href="standardization-and-the-parametric-g-formula.html#cb87-53" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb87-54"><a href="standardization-and-the-parametric-g-formula.html#cb87-54" tabindex="-1"></a><span class="co">#&gt; Number of Fisher Scoring iterations: 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="standardization-and-the-parametric-g-formula.html#cb88-1" tabindex="-1"></a>table22<span class="sc">$</span>predicted.meanY <span class="ot">&lt;-</span> <span class="fu">predict</span>(glm.obj, table22)</span>
+<span id="cb88-2"><a href="standardization-and-the-parametric-g-formula.html#cb88-2" tabindex="-1"></a></span>
+<span id="cb88-3"><a href="standardization-and-the-parametric-g-formula.html#cb88-3" tabindex="-1"></a><span class="fu">mean</span>(table22<span class="sc">$</span>predicted.meanY[table22<span class="sc">$</span>interv <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb88-4"><a href="standardization-and-the-parametric-g-formula.html#cb88-4" tabindex="-1"></a><span class="co">#&gt; [1] 0.5</span></span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="standardization-and-the-parametric-g-formula.html#cb89-1" tabindex="-1"></a><span class="fu">mean</span>(table22<span class="sc">$</span>predicted.meanY[table22<span class="sc">$</span>interv <span class="sc">==</span> <span class="dv">0</span>])</span>
+<span id="cb89-2"><a href="standardization-and-the-parametric-g-formula.html#cb89-2" tabindex="-1"></a><span class="co">#&gt; [1] 0.5</span></span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="standardization-and-the-parametric-g-formula.html#cb90-1" tabindex="-1"></a><span class="fu">mean</span>(table22<span class="sc">$</span>predicted.meanY[table22<span class="sc">$</span>interv <span class="sc">==</span> <span class="dv">1</span>])</span>
+<span id="cb90-2"><a href="standardization-and-the-parametric-g-formula.html#cb90-2" tabindex="-1"></a><span class="co">#&gt; [1] 0.5</span></span></code></pre></div>
 </div>
 <div id="program-13.3" class="section level2 hasAnchor">
 <h2>Program 13.3<a href="standardization-and-the-parametric-g-formula.html#program-13.3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -478,88 +478,88 @@ div.csl-indent {
 <li>Standardizing the mean outcome to the baseline confounders:</li>
 <li>Data from NHEFS</li>
 </ul>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="standardization-and-the-parametric-g-formula.html#cb21-1" tabindex="-1"></a><span class="co"># create a dataset with 3 copies of each subject</span></span>
-<span id="cb21-2"><a href="standardization-and-the-parametric-g-formula.html#cb21-2" tabindex="-1"></a>nhefs<span class="sc">$</span>interv <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="co"># 1st copy: equal to original one</span></span>
-<span id="cb21-3"><a href="standardization-and-the-parametric-g-formula.html#cb21-3" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="standardization-and-the-parametric-g-formula.html#cb21-4" tabindex="-1"></a>interv0 <span class="ot">&lt;-</span> nhefs <span class="co"># 2nd copy: treatment set to 0, outcome to missing</span></span>
-<span id="cb21-5"><a href="standardization-and-the-parametric-g-formula.html#cb21-5" tabindex="-1"></a>interv0<span class="sc">$</span>interv <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb21-6"><a href="standardization-and-the-parametric-g-formula.html#cb21-6" tabindex="-1"></a>interv0<span class="sc">$</span>qsmk <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb21-7"><a href="standardization-and-the-parametric-g-formula.html#cb21-7" tabindex="-1"></a>interv0<span class="sc">$</span>wt82_71 <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb21-8"><a href="standardization-and-the-parametric-g-formula.html#cb21-8" tabindex="-1"></a></span>
-<span id="cb21-9"><a href="standardization-and-the-parametric-g-formula.html#cb21-9" tabindex="-1"></a>interv1 <span class="ot">&lt;-</span> nhefs <span class="co"># 3rd copy: treatment set to 1, outcome to missing</span></span>
-<span id="cb21-10"><a href="standardization-and-the-parametric-g-formula.html#cb21-10" tabindex="-1"></a>interv1<span class="sc">$</span>interv <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb21-11"><a href="standardization-and-the-parametric-g-formula.html#cb21-11" tabindex="-1"></a>interv1<span class="sc">$</span>qsmk <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb21-12"><a href="standardization-and-the-parametric-g-formula.html#cb21-12" tabindex="-1"></a>interv1<span class="sc">$</span>wt82_71 <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb21-13"><a href="standardization-and-the-parametric-g-formula.html#cb21-13" tabindex="-1"></a></span>
-<span id="cb21-14"><a href="standardization-and-the-parametric-g-formula.html#cb21-14" tabindex="-1"></a>onesample <span class="ot">&lt;-</span> <span class="fu">rbind</span>(nhefs, interv0, interv1) <span class="co"># combining datasets</span></span>
-<span id="cb21-15"><a href="standardization-and-the-parametric-g-formula.html#cb21-15" tabindex="-1"></a></span>
-<span id="cb21-16"><a href="standardization-and-the-parametric-g-formula.html#cb21-16" tabindex="-1"></a><span class="co"># linear model to estimate mean outcome conditional on treatment and confounders</span></span>
-<span id="cb21-17"><a href="standardization-and-the-parametric-g-formula.html#cb21-17" tabindex="-1"></a><span class="co"># parameters are estimated using original observations only (nhefs)</span></span>
-<span id="cb21-18"><a href="standardization-and-the-parametric-g-formula.html#cb21-18" tabindex="-1"></a><span class="co"># parameter estimates are used to predict mean outcome for observations with</span></span>
-<span id="cb21-19"><a href="standardization-and-the-parametric-g-formula.html#cb21-19" tabindex="-1"></a><span class="co"># treatment set to 0 (interv=0) and to 1 (interv=1)</span></span>
-<span id="cb21-20"><a href="standardization-and-the-parametric-g-formula.html#cb21-20" tabindex="-1"></a></span>
-<span id="cb21-21"><a href="standardization-and-the-parametric-g-formula.html#cb21-21" tabindex="-1"></a>std <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
-<span id="cb21-22"><a href="standardization-and-the-parametric-g-formula.html#cb21-22" tabindex="-1"></a>  wt82_71 <span class="sc">~</span> qsmk <span class="sc">+</span> sex <span class="sc">+</span> race <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(age <span class="sc">*</span> age)</span>
-<span id="cb21-23"><a href="standardization-and-the-parametric-g-formula.html#cb21-23" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">as.factor</span>(education) <span class="sc">+</span> smokeintensity</span>
-<span id="cb21-24"><a href="standardization-and-the-parametric-g-formula.html#cb21-24" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">I</span>(smokeintensity <span class="sc">*</span> smokeintensity) <span class="sc">+</span> smokeyrs</span>
-<span id="cb21-25"><a href="standardization-and-the-parametric-g-formula.html#cb21-25" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">I</span>(smokeyrs <span class="sc">*</span> smokeyrs) <span class="sc">+</span> <span class="fu">as.factor</span>(exercise)</span>
-<span id="cb21-26"><a href="standardization-and-the-parametric-g-formula.html#cb21-26" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">as.factor</span>(active) <span class="sc">+</span> wt71 <span class="sc">+</span> <span class="fu">I</span>(wt71 <span class="sc">*</span> wt71) <span class="sc">+</span> <span class="fu">I</span>(qsmk <span class="sc">*</span> smokeintensity),</span>
-<span id="cb21-27"><a href="standardization-and-the-parametric-g-formula.html#cb21-27" tabindex="-1"></a>  <span class="at">data =</span> onesample</span>
-<span id="cb21-28"><a href="standardization-and-the-parametric-g-formula.html#cb21-28" tabindex="-1"></a>)</span>
-<span id="cb21-29"><a href="standardization-and-the-parametric-g-formula.html#cb21-29" tabindex="-1"></a><span class="fu">summary</span>(std)</span>
-<span id="cb21-30"><a href="standardization-and-the-parametric-g-formula.html#cb21-30" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-31"><a href="standardization-and-the-parametric-g-formula.html#cb21-31" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
-<span id="cb21-32"><a href="standardization-and-the-parametric-g-formula.html#cb21-32" tabindex="-1"></a><span class="co">#&gt; glm(formula = wt82_71 ~ qsmk + sex + race + age + I(age * age) + </span></span>
-<span id="cb21-33"><a href="standardization-and-the-parametric-g-formula.html#cb21-33" tabindex="-1"></a><span class="co">#&gt;     as.factor(education) + smokeintensity + I(smokeintensity * </span></span>
-<span id="cb21-34"><a href="standardization-and-the-parametric-g-formula.html#cb21-34" tabindex="-1"></a><span class="co">#&gt;     smokeintensity) + smokeyrs + I(smokeyrs * smokeyrs) + as.factor(exercise) + </span></span>
-<span id="cb21-35"><a href="standardization-and-the-parametric-g-formula.html#cb21-35" tabindex="-1"></a><span class="co">#&gt;     as.factor(active) + wt71 + I(wt71 * wt71) + I(qsmk * smokeintensity), </span></span>
-<span id="cb21-36"><a href="standardization-and-the-parametric-g-formula.html#cb21-36" tabindex="-1"></a><span class="co">#&gt;     data = onesample)</span></span>
-<span id="cb21-37"><a href="standardization-and-the-parametric-g-formula.html#cb21-37" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-38"><a href="standardization-and-the-parametric-g-formula.html#cb21-38" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
-<span id="cb21-39"><a href="standardization-and-the-parametric-g-formula.html#cb21-39" tabindex="-1"></a><span class="co">#&gt;                                      Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span id="cb21-40"><a href="standardization-and-the-parametric-g-formula.html#cb21-40" tabindex="-1"></a><span class="co">#&gt; (Intercept)                        -1.5881657  4.3130359  -0.368 0.712756    </span></span>
-<span id="cb21-41"><a href="standardization-and-the-parametric-g-formula.html#cb21-41" tabindex="-1"></a><span class="co">#&gt; qsmk                                2.5595941  0.8091486   3.163 0.001590 ** </span></span>
-<span id="cb21-42"><a href="standardization-and-the-parametric-g-formula.html#cb21-42" tabindex="-1"></a><span class="co">#&gt; sex                                -1.4302717  0.4689576  -3.050 0.002328 ** </span></span>
-<span id="cb21-43"><a href="standardization-and-the-parametric-g-formula.html#cb21-43" tabindex="-1"></a><span class="co">#&gt; race                                0.5601096  0.5818888   0.963 0.335913    </span></span>
-<span id="cb21-44"><a href="standardization-and-the-parametric-g-formula.html#cb21-44" tabindex="-1"></a><span class="co">#&gt; age                                 0.3596353  0.1633188   2.202 0.027809 *  </span></span>
-<span id="cb21-45"><a href="standardization-and-the-parametric-g-formula.html#cb21-45" tabindex="-1"></a><span class="co">#&gt; I(age * age)                       -0.0061010  0.0017261  -3.534 0.000421 ***</span></span>
-<span id="cb21-46"><a href="standardization-and-the-parametric-g-formula.html#cb21-46" tabindex="-1"></a><span class="co">#&gt; as.factor(education)2               0.7904440  0.6070005   1.302 0.193038    </span></span>
-<span id="cb21-47"><a href="standardization-and-the-parametric-g-formula.html#cb21-47" tabindex="-1"></a><span class="co">#&gt; as.factor(education)3               0.5563124  0.5561016   1.000 0.317284    </span></span>
-<span id="cb21-48"><a href="standardization-and-the-parametric-g-formula.html#cb21-48" tabindex="-1"></a><span class="co">#&gt; as.factor(education)4               1.4915695  0.8322704   1.792 0.073301 .  </span></span>
-<span id="cb21-49"><a href="standardization-and-the-parametric-g-formula.html#cb21-49" tabindex="-1"></a><span class="co">#&gt; as.factor(education)5              -0.1949770  0.7413692  -0.263 0.792589    </span></span>
-<span id="cb21-50"><a href="standardization-and-the-parametric-g-formula.html#cb21-50" tabindex="-1"></a><span class="co">#&gt; smokeintensity                      0.0491365  0.0517254   0.950 0.342287    </span></span>
-<span id="cb21-51"><a href="standardization-and-the-parametric-g-formula.html#cb21-51" tabindex="-1"></a><span class="co">#&gt; I(smokeintensity * smokeintensity) -0.0009907  0.0009380  -1.056 0.291097    </span></span>
-<span id="cb21-52"><a href="standardization-and-the-parametric-g-formula.html#cb21-52" tabindex="-1"></a><span class="co">#&gt; smokeyrs                            0.1343686  0.0917122   1.465 0.143094    </span></span>
-<span id="cb21-53"><a href="standardization-and-the-parametric-g-formula.html#cb21-53" tabindex="-1"></a><span class="co">#&gt; I(smokeyrs * smokeyrs)             -0.0018664  0.0015437  -1.209 0.226830    </span></span>
-<span id="cb21-54"><a href="standardization-and-the-parametric-g-formula.html#cb21-54" tabindex="-1"></a><span class="co">#&gt; as.factor(exercise)1                0.2959754  0.5351533   0.553 0.580298    </span></span>
-<span id="cb21-55"><a href="standardization-and-the-parametric-g-formula.html#cb21-55" tabindex="-1"></a><span class="co">#&gt; as.factor(exercise)2                0.3539128  0.5588587   0.633 0.526646    </span></span>
-<span id="cb21-56"><a href="standardization-and-the-parametric-g-formula.html#cb21-56" tabindex="-1"></a><span class="co">#&gt; as.factor(active)1                 -0.9475695  0.4099344  -2.312 0.020935 *  </span></span>
-<span id="cb21-57"><a href="standardization-and-the-parametric-g-formula.html#cb21-57" tabindex="-1"></a><span class="co">#&gt; as.factor(active)2                 -0.2613779  0.6845577  -0.382 0.702647    </span></span>
-<span id="cb21-58"><a href="standardization-and-the-parametric-g-formula.html#cb21-58" tabindex="-1"></a><span class="co">#&gt; wt71                                0.0455018  0.0833709   0.546 0.585299    </span></span>
-<span id="cb21-59"><a href="standardization-and-the-parametric-g-formula.html#cb21-59" tabindex="-1"></a><span class="co">#&gt; I(wt71 * wt71)                     -0.0009653  0.0005247  -1.840 0.066001 .  </span></span>
-<span id="cb21-60"><a href="standardization-and-the-parametric-g-formula.html#cb21-60" tabindex="-1"></a><span class="co">#&gt; I(qsmk * smokeintensity)            0.0466628  0.0351448   1.328 0.184463    </span></span>
-<span id="cb21-61"><a href="standardization-and-the-parametric-g-formula.html#cb21-61" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
-<span id="cb21-62"><a href="standardization-and-the-parametric-g-formula.html#cb21-62" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb21-63"><a href="standardization-and-the-parametric-g-formula.html#cb21-63" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-64"><a href="standardization-and-the-parametric-g-formula.html#cb21-64" tabindex="-1"></a><span class="co">#&gt; (Dispersion parameter for gaussian family taken to be 53.5683)</span></span>
-<span id="cb21-65"><a href="standardization-and-the-parametric-g-formula.html#cb21-65" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-66"><a href="standardization-and-the-parametric-g-formula.html#cb21-66" tabindex="-1"></a><span class="co">#&gt;     Null deviance: 97176  on 1565  degrees of freedom</span></span>
-<span id="cb21-67"><a href="standardization-and-the-parametric-g-formula.html#cb21-67" tabindex="-1"></a><span class="co">#&gt; Residual deviance: 82763  on 1545  degrees of freedom</span></span>
-<span id="cb21-68"><a href="standardization-and-the-parametric-g-formula.html#cb21-68" tabindex="-1"></a><span class="co">#&gt;   (3321 observations deleted due to missingness)</span></span>
-<span id="cb21-69"><a href="standardization-and-the-parametric-g-formula.html#cb21-69" tabindex="-1"></a><span class="co">#&gt; AIC: 10701</span></span>
-<span id="cb21-70"><a href="standardization-and-the-parametric-g-formula.html#cb21-70" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb21-71"><a href="standardization-and-the-parametric-g-formula.html#cb21-71" tabindex="-1"></a><span class="co">#&gt; Number of Fisher Scoring iterations: 2</span></span>
-<span id="cb21-72"><a href="standardization-and-the-parametric-g-formula.html#cb21-72" tabindex="-1"></a>onesample<span class="sc">$</span>predicted_meanY <span class="ot">&lt;-</span> <span class="fu">predict</span>(std, onesample)</span>
-<span id="cb21-73"><a href="standardization-and-the-parametric-g-formula.html#cb21-73" tabindex="-1"></a></span>
-<span id="cb21-74"><a href="standardization-and-the-parametric-g-formula.html#cb21-74" tabindex="-1"></a><span class="co"># estimate mean outcome in each of the groups interv=0, and interv=1</span></span>
-<span id="cb21-75"><a href="standardization-and-the-parametric-g-formula.html#cb21-75" tabindex="-1"></a><span class="co"># this mean outcome is a weighted average of the mean outcomes in each combination</span></span>
-<span id="cb21-76"><a href="standardization-and-the-parametric-g-formula.html#cb21-76" tabindex="-1"></a><span class="co"># of values of treatment and confounders, that is, the standardized outcome</span></span>
-<span id="cb21-77"><a href="standardization-and-the-parametric-g-formula.html#cb21-77" tabindex="-1"></a><span class="fu">mean</span>(onesample[<span class="fu">which</span>(onesample<span class="sc">$</span>interv <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>), ]<span class="sc">$</span>predicted_meanY)</span>
-<span id="cb21-78"><a href="standardization-and-the-parametric-g-formula.html#cb21-78" tabindex="-1"></a><span class="co">#&gt; [1] 2.56319</span></span>
-<span id="cb21-79"><a href="standardization-and-the-parametric-g-formula.html#cb21-79" tabindex="-1"></a><span class="fu">mean</span>(onesample[<span class="fu">which</span>(onesample<span class="sc">$</span>interv <span class="sc">==</span> <span class="dv">0</span>), ]<span class="sc">$</span>predicted_meanY)</span>
-<span id="cb21-80"><a href="standardization-and-the-parametric-g-formula.html#cb21-80" tabindex="-1"></a><span class="co">#&gt; [1] 1.660267</span></span>
-<span id="cb21-81"><a href="standardization-and-the-parametric-g-formula.html#cb21-81" tabindex="-1"></a><span class="fu">mean</span>(onesample[<span class="fu">which</span>(onesample<span class="sc">$</span>interv <span class="sc">==</span> <span class="dv">1</span>), ]<span class="sc">$</span>predicted_meanY)</span>
-<span id="cb21-82"><a href="standardization-and-the-parametric-g-formula.html#cb21-82" tabindex="-1"></a><span class="co">#&gt; [1] 5.178841</span></span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="standardization-and-the-parametric-g-formula.html#cb91-1" tabindex="-1"></a><span class="co"># create a dataset with 3 copies of each subject</span></span>
+<span id="cb91-2"><a href="standardization-and-the-parametric-g-formula.html#cb91-2" tabindex="-1"></a>nhefs<span class="sc">$</span>interv <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span> <span class="co"># 1st copy: equal to original one</span></span>
+<span id="cb91-3"><a href="standardization-and-the-parametric-g-formula.html#cb91-3" tabindex="-1"></a></span>
+<span id="cb91-4"><a href="standardization-and-the-parametric-g-formula.html#cb91-4" tabindex="-1"></a>interv0 <span class="ot">&lt;-</span> nhefs <span class="co"># 2nd copy: treatment set to 0, outcome to missing</span></span>
+<span id="cb91-5"><a href="standardization-and-the-parametric-g-formula.html#cb91-5" tabindex="-1"></a>interv0<span class="sc">$</span>interv <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb91-6"><a href="standardization-and-the-parametric-g-formula.html#cb91-6" tabindex="-1"></a>interv0<span class="sc">$</span>qsmk <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb91-7"><a href="standardization-and-the-parametric-g-formula.html#cb91-7" tabindex="-1"></a>interv0<span class="sc">$</span>wt82_71 <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb91-8"><a href="standardization-and-the-parametric-g-formula.html#cb91-8" tabindex="-1"></a></span>
+<span id="cb91-9"><a href="standardization-and-the-parametric-g-formula.html#cb91-9" tabindex="-1"></a>interv1 <span class="ot">&lt;-</span> nhefs <span class="co"># 3rd copy: treatment set to 1, outcome to missing</span></span>
+<span id="cb91-10"><a href="standardization-and-the-parametric-g-formula.html#cb91-10" tabindex="-1"></a>interv1<span class="sc">$</span>interv <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb91-11"><a href="standardization-and-the-parametric-g-formula.html#cb91-11" tabindex="-1"></a>interv1<span class="sc">$</span>qsmk <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb91-12"><a href="standardization-and-the-parametric-g-formula.html#cb91-12" tabindex="-1"></a>interv1<span class="sc">$</span>wt82_71 <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb91-13"><a href="standardization-and-the-parametric-g-formula.html#cb91-13" tabindex="-1"></a></span>
+<span id="cb91-14"><a href="standardization-and-the-parametric-g-formula.html#cb91-14" tabindex="-1"></a>onesample <span class="ot">&lt;-</span> <span class="fu">rbind</span>(nhefs, interv0, interv1) <span class="co"># combining datasets</span></span>
+<span id="cb91-15"><a href="standardization-and-the-parametric-g-formula.html#cb91-15" tabindex="-1"></a></span>
+<span id="cb91-16"><a href="standardization-and-the-parametric-g-formula.html#cb91-16" tabindex="-1"></a><span class="co"># linear model to estimate mean outcome conditional on treatment and confounders</span></span>
+<span id="cb91-17"><a href="standardization-and-the-parametric-g-formula.html#cb91-17" tabindex="-1"></a><span class="co"># parameters are estimated using original observations only (nhefs)</span></span>
+<span id="cb91-18"><a href="standardization-and-the-parametric-g-formula.html#cb91-18" tabindex="-1"></a><span class="co"># parameter estimates are used to predict mean outcome for observations with</span></span>
+<span id="cb91-19"><a href="standardization-and-the-parametric-g-formula.html#cb91-19" tabindex="-1"></a><span class="co"># treatment set to 0 (interv=0) and to 1 (interv=1)</span></span>
+<span id="cb91-20"><a href="standardization-and-the-parametric-g-formula.html#cb91-20" tabindex="-1"></a></span>
+<span id="cb91-21"><a href="standardization-and-the-parametric-g-formula.html#cb91-21" tabindex="-1"></a>std <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb91-22"><a href="standardization-and-the-parametric-g-formula.html#cb91-22" tabindex="-1"></a>  wt82_71 <span class="sc">~</span> qsmk <span class="sc">+</span> sex <span class="sc">+</span> race <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(age <span class="sc">*</span> age)</span>
+<span id="cb91-23"><a href="standardization-and-the-parametric-g-formula.html#cb91-23" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">as.factor</span>(education) <span class="sc">+</span> smokeintensity</span>
+<span id="cb91-24"><a href="standardization-and-the-parametric-g-formula.html#cb91-24" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">I</span>(smokeintensity <span class="sc">*</span> smokeintensity) <span class="sc">+</span> smokeyrs</span>
+<span id="cb91-25"><a href="standardization-and-the-parametric-g-formula.html#cb91-25" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">I</span>(smokeyrs <span class="sc">*</span> smokeyrs) <span class="sc">+</span> <span class="fu">as.factor</span>(exercise)</span>
+<span id="cb91-26"><a href="standardization-and-the-parametric-g-formula.html#cb91-26" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">as.factor</span>(active) <span class="sc">+</span> wt71 <span class="sc">+</span> <span class="fu">I</span>(wt71 <span class="sc">*</span> wt71) <span class="sc">+</span> <span class="fu">I</span>(qsmk <span class="sc">*</span> smokeintensity),</span>
+<span id="cb91-27"><a href="standardization-and-the-parametric-g-formula.html#cb91-27" tabindex="-1"></a>  <span class="at">data =</span> onesample</span>
+<span id="cb91-28"><a href="standardization-and-the-parametric-g-formula.html#cb91-28" tabindex="-1"></a>)</span>
+<span id="cb91-29"><a href="standardization-and-the-parametric-g-formula.html#cb91-29" tabindex="-1"></a><span class="fu">summary</span>(std)</span>
+<span id="cb91-30"><a href="standardization-and-the-parametric-g-formula.html#cb91-30" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb91-31"><a href="standardization-and-the-parametric-g-formula.html#cb91-31" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb91-32"><a href="standardization-and-the-parametric-g-formula.html#cb91-32" tabindex="-1"></a><span class="co">#&gt; glm(formula = wt82_71 ~ qsmk + sex + race + age + I(age * age) + </span></span>
+<span id="cb91-33"><a href="standardization-and-the-parametric-g-formula.html#cb91-33" tabindex="-1"></a><span class="co">#&gt;     as.factor(education) + smokeintensity + I(smokeintensity * </span></span>
+<span id="cb91-34"><a href="standardization-and-the-parametric-g-formula.html#cb91-34" tabindex="-1"></a><span class="co">#&gt;     smokeintensity) + smokeyrs + I(smokeyrs * smokeyrs) + as.factor(exercise) + </span></span>
+<span id="cb91-35"><a href="standardization-and-the-parametric-g-formula.html#cb91-35" tabindex="-1"></a><span class="co">#&gt;     as.factor(active) + wt71 + I(wt71 * wt71) + I(qsmk * smokeintensity), </span></span>
+<span id="cb91-36"><a href="standardization-and-the-parametric-g-formula.html#cb91-36" tabindex="-1"></a><span class="co">#&gt;     data = onesample)</span></span>
+<span id="cb91-37"><a href="standardization-and-the-parametric-g-formula.html#cb91-37" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb91-38"><a href="standardization-and-the-parametric-g-formula.html#cb91-38" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb91-39"><a href="standardization-and-the-parametric-g-formula.html#cb91-39" tabindex="-1"></a><span class="co">#&gt;                                      Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb91-40"><a href="standardization-and-the-parametric-g-formula.html#cb91-40" tabindex="-1"></a><span class="co">#&gt; (Intercept)                        -1.5881657  4.3130359  -0.368 0.712756    </span></span>
+<span id="cb91-41"><a href="standardization-and-the-parametric-g-formula.html#cb91-41" tabindex="-1"></a><span class="co">#&gt; qsmk                                2.5595941  0.8091486   3.163 0.001590 ** </span></span>
+<span id="cb91-42"><a href="standardization-and-the-parametric-g-formula.html#cb91-42" tabindex="-1"></a><span class="co">#&gt; sex                                -1.4302717  0.4689576  -3.050 0.002328 ** </span></span>
+<span id="cb91-43"><a href="standardization-and-the-parametric-g-formula.html#cb91-43" tabindex="-1"></a><span class="co">#&gt; race                                0.5601096  0.5818888   0.963 0.335913    </span></span>
+<span id="cb91-44"><a href="standardization-and-the-parametric-g-formula.html#cb91-44" tabindex="-1"></a><span class="co">#&gt; age                                 0.3596353  0.1633188   2.202 0.027809 *  </span></span>
+<span id="cb91-45"><a href="standardization-and-the-parametric-g-formula.html#cb91-45" tabindex="-1"></a><span class="co">#&gt; I(age * age)                       -0.0061010  0.0017261  -3.534 0.000421 ***</span></span>
+<span id="cb91-46"><a href="standardization-and-the-parametric-g-formula.html#cb91-46" tabindex="-1"></a><span class="co">#&gt; as.factor(education)2               0.7904440  0.6070005   1.302 0.193038    </span></span>
+<span id="cb91-47"><a href="standardization-and-the-parametric-g-formula.html#cb91-47" tabindex="-1"></a><span class="co">#&gt; as.factor(education)3               0.5563124  0.5561016   1.000 0.317284    </span></span>
+<span id="cb91-48"><a href="standardization-and-the-parametric-g-formula.html#cb91-48" tabindex="-1"></a><span class="co">#&gt; as.factor(education)4               1.4915695  0.8322704   1.792 0.073301 .  </span></span>
+<span id="cb91-49"><a href="standardization-and-the-parametric-g-formula.html#cb91-49" tabindex="-1"></a><span class="co">#&gt; as.factor(education)5              -0.1949770  0.7413692  -0.263 0.792589    </span></span>
+<span id="cb91-50"><a href="standardization-and-the-parametric-g-formula.html#cb91-50" tabindex="-1"></a><span class="co">#&gt; smokeintensity                      0.0491365  0.0517254   0.950 0.342287    </span></span>
+<span id="cb91-51"><a href="standardization-and-the-parametric-g-formula.html#cb91-51" tabindex="-1"></a><span class="co">#&gt; I(smokeintensity * smokeintensity) -0.0009907  0.0009380  -1.056 0.291097    </span></span>
+<span id="cb91-52"><a href="standardization-and-the-parametric-g-formula.html#cb91-52" tabindex="-1"></a><span class="co">#&gt; smokeyrs                            0.1343686  0.0917122   1.465 0.143094    </span></span>
+<span id="cb91-53"><a href="standardization-and-the-parametric-g-formula.html#cb91-53" tabindex="-1"></a><span class="co">#&gt; I(smokeyrs * smokeyrs)             -0.0018664  0.0015437  -1.209 0.226830    </span></span>
+<span id="cb91-54"><a href="standardization-and-the-parametric-g-formula.html#cb91-54" tabindex="-1"></a><span class="co">#&gt; as.factor(exercise)1                0.2959754  0.5351533   0.553 0.580298    </span></span>
+<span id="cb91-55"><a href="standardization-and-the-parametric-g-formula.html#cb91-55" tabindex="-1"></a><span class="co">#&gt; as.factor(exercise)2                0.3539128  0.5588587   0.633 0.526646    </span></span>
+<span id="cb91-56"><a href="standardization-and-the-parametric-g-formula.html#cb91-56" tabindex="-1"></a><span class="co">#&gt; as.factor(active)1                 -0.9475695  0.4099344  -2.312 0.020935 *  </span></span>
+<span id="cb91-57"><a href="standardization-and-the-parametric-g-formula.html#cb91-57" tabindex="-1"></a><span class="co">#&gt; as.factor(active)2                 -0.2613779  0.6845577  -0.382 0.702647    </span></span>
+<span id="cb91-58"><a href="standardization-and-the-parametric-g-formula.html#cb91-58" tabindex="-1"></a><span class="co">#&gt; wt71                                0.0455018  0.0833709   0.546 0.585299    </span></span>
+<span id="cb91-59"><a href="standardization-and-the-parametric-g-formula.html#cb91-59" tabindex="-1"></a><span class="co">#&gt; I(wt71 * wt71)                     -0.0009653  0.0005247  -1.840 0.066001 .  </span></span>
+<span id="cb91-60"><a href="standardization-and-the-parametric-g-formula.html#cb91-60" tabindex="-1"></a><span class="co">#&gt; I(qsmk * smokeintensity)            0.0466628  0.0351448   1.328 0.184463    </span></span>
+<span id="cb91-61"><a href="standardization-and-the-parametric-g-formula.html#cb91-61" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb91-62"><a href="standardization-and-the-parametric-g-formula.html#cb91-62" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb91-63"><a href="standardization-and-the-parametric-g-formula.html#cb91-63" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb91-64"><a href="standardization-and-the-parametric-g-formula.html#cb91-64" tabindex="-1"></a><span class="co">#&gt; (Dispersion parameter for gaussian family taken to be 53.5683)</span></span>
+<span id="cb91-65"><a href="standardization-and-the-parametric-g-formula.html#cb91-65" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb91-66"><a href="standardization-and-the-parametric-g-formula.html#cb91-66" tabindex="-1"></a><span class="co">#&gt;     Null deviance: 97176  on 1565  degrees of freedom</span></span>
+<span id="cb91-67"><a href="standardization-and-the-parametric-g-formula.html#cb91-67" tabindex="-1"></a><span class="co">#&gt; Residual deviance: 82763  on 1545  degrees of freedom</span></span>
+<span id="cb91-68"><a href="standardization-and-the-parametric-g-formula.html#cb91-68" tabindex="-1"></a><span class="co">#&gt;   (3321 observations deleted due to missingness)</span></span>
+<span id="cb91-69"><a href="standardization-and-the-parametric-g-formula.html#cb91-69" tabindex="-1"></a><span class="co">#&gt; AIC: 10701</span></span>
+<span id="cb91-70"><a href="standardization-and-the-parametric-g-formula.html#cb91-70" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb91-71"><a href="standardization-and-the-parametric-g-formula.html#cb91-71" tabindex="-1"></a><span class="co">#&gt; Number of Fisher Scoring iterations: 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="standardization-and-the-parametric-g-formula.html#cb92-1" tabindex="-1"></a>onesample<span class="sc">$</span>predicted_meanY <span class="ot">&lt;-</span> <span class="fu">predict</span>(std, onesample)</span>
+<span id="cb92-2"><a href="standardization-and-the-parametric-g-formula.html#cb92-2" tabindex="-1"></a></span>
+<span id="cb92-3"><a href="standardization-and-the-parametric-g-formula.html#cb92-3" tabindex="-1"></a><span class="co"># estimate mean outcome in each of the groups interv=0, and interv=1</span></span>
+<span id="cb92-4"><a href="standardization-and-the-parametric-g-formula.html#cb92-4" tabindex="-1"></a><span class="co"># this mean outcome is a weighted average of the mean outcomes in each combination</span></span>
+<span id="cb92-5"><a href="standardization-and-the-parametric-g-formula.html#cb92-5" tabindex="-1"></a><span class="co"># of values of treatment and confounders, that is, the standardized outcome</span></span>
+<span id="cb92-6"><a href="standardization-and-the-parametric-g-formula.html#cb92-6" tabindex="-1"></a><span class="fu">mean</span>(onesample[<span class="fu">which</span>(onesample<span class="sc">$</span>interv <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>), ]<span class="sc">$</span>predicted_meanY)</span>
+<span id="cb92-7"><a href="standardization-and-the-parametric-g-formula.html#cb92-7" tabindex="-1"></a><span class="co">#&gt; [1] 2.56319</span></span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="standardization-and-the-parametric-g-formula.html#cb93-1" tabindex="-1"></a><span class="fu">mean</span>(onesample[<span class="fu">which</span>(onesample<span class="sc">$</span>interv <span class="sc">==</span> <span class="dv">0</span>), ]<span class="sc">$</span>predicted_meanY)</span>
+<span id="cb93-2"><a href="standardization-and-the-parametric-g-formula.html#cb93-2" tabindex="-1"></a><span class="co">#&gt; [1] 1.660267</span></span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="standardization-and-the-parametric-g-formula.html#cb94-1" tabindex="-1"></a><span class="fu">mean</span>(onesample[<span class="fu">which</span>(onesample<span class="sc">$</span>interv <span class="sc">==</span> <span class="dv">1</span>), ]<span class="sc">$</span>predicted_meanY)</span>
+<span id="cb94-2"><a href="standardization-and-the-parametric-g-formula.html#cb94-2" tabindex="-1"></a><span class="co">#&gt; [1] 5.178841</span></span></code></pre></div>
 </div>
 <div id="program-13.4" class="section level2 hasAnchor">
 <h2>Program 13.4<a href="standardization-and-the-parametric-g-formula.html#program-13.4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -567,88 +567,88 @@ div.csl-indent {
 <li>Computing the 95% confidence interval of the standardized means and their difference</li>
 <li>Data from NHEFS</li>
 </ul>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="standardization-and-the-parametric-g-formula.html#cb22-1" tabindex="-1"></a><span class="co">#install.packages(&quot;boot&quot;) # install package if required</span></span>
-<span id="cb22-2"><a href="standardization-and-the-parametric-g-formula.html#cb22-2" tabindex="-1"></a><span class="fu">library</span>(boot)</span>
-<span id="cb22-3"><a href="standardization-and-the-parametric-g-formula.html#cb22-3" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="standardization-and-the-parametric-g-formula.html#cb22-4" tabindex="-1"></a><span class="co"># function to calculate difference in means</span></span>
-<span id="cb22-5"><a href="standardization-and-the-parametric-g-formula.html#cb22-5" tabindex="-1"></a>standardization <span class="ot">&lt;-</span> <span class="cf">function</span>(data, indices) {</span>
-<span id="cb22-6"><a href="standardization-and-the-parametric-g-formula.html#cb22-6" tabindex="-1"></a>  <span class="co"># create a dataset with 3 copies of each subject</span></span>
-<span id="cb22-7"><a href="standardization-and-the-parametric-g-formula.html#cb22-7" tabindex="-1"></a>  d <span class="ot">&lt;-</span> data[indices, ] <span class="co"># 1st copy: equal to original one`</span></span>
-<span id="cb22-8"><a href="standardization-and-the-parametric-g-formula.html#cb22-8" tabindex="-1"></a>  d<span class="sc">$</span>interv <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span></span>
-<span id="cb22-9"><a href="standardization-and-the-parametric-g-formula.html#cb22-9" tabindex="-1"></a>  d0 <span class="ot">&lt;-</span> d <span class="co"># 2nd copy: treatment set to 0, outcome to missing</span></span>
-<span id="cb22-10"><a href="standardization-and-the-parametric-g-formula.html#cb22-10" tabindex="-1"></a>  d0<span class="sc">$</span>interv <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb22-11"><a href="standardization-and-the-parametric-g-formula.html#cb22-11" tabindex="-1"></a>  d0<span class="sc">$</span>qsmk <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb22-12"><a href="standardization-and-the-parametric-g-formula.html#cb22-12" tabindex="-1"></a>  d0<span class="sc">$</span>wt82_71 <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb22-13"><a href="standardization-and-the-parametric-g-formula.html#cb22-13" tabindex="-1"></a>  d1 <span class="ot">&lt;-</span> d <span class="co"># 3rd copy: treatment set to 1, outcome to missing</span></span>
-<span id="cb22-14"><a href="standardization-and-the-parametric-g-formula.html#cb22-14" tabindex="-1"></a>  d1<span class="sc">$</span>interv <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb22-15"><a href="standardization-and-the-parametric-g-formula.html#cb22-15" tabindex="-1"></a>  d1<span class="sc">$</span>qsmk <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb22-16"><a href="standardization-and-the-parametric-g-formula.html#cb22-16" tabindex="-1"></a>  d1<span class="sc">$</span>wt82_71 <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb22-17"><a href="standardization-and-the-parametric-g-formula.html#cb22-17" tabindex="-1"></a>  d.onesample <span class="ot">&lt;-</span> <span class="fu">rbind</span>(d, d0, d1) <span class="co"># combining datasets</span></span>
-<span id="cb22-18"><a href="standardization-and-the-parametric-g-formula.html#cb22-18" tabindex="-1"></a></span>
-<span id="cb22-19"><a href="standardization-and-the-parametric-g-formula.html#cb22-19" tabindex="-1"></a>  <span class="co"># linear model to estimate mean outcome conditional on treatment and confounders</span></span>
-<span id="cb22-20"><a href="standardization-and-the-parametric-g-formula.html#cb22-20" tabindex="-1"></a>  <span class="co"># parameters are estimated using original observations only (interv= -1)</span></span>
-<span id="cb22-21"><a href="standardization-and-the-parametric-g-formula.html#cb22-21" tabindex="-1"></a>  <span class="co"># parameter estimates are used to predict mean outcome for observations with set</span></span>
-<span id="cb22-22"><a href="standardization-and-the-parametric-g-formula.html#cb22-22" tabindex="-1"></a>  <span class="co"># treatment (interv=0 and interv=1)</span></span>
-<span id="cb22-23"><a href="standardization-and-the-parametric-g-formula.html#cb22-23" tabindex="-1"></a>  fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
-<span id="cb22-24"><a href="standardization-and-the-parametric-g-formula.html#cb22-24" tabindex="-1"></a>    wt82_71 <span class="sc">~</span> qsmk <span class="sc">+</span> sex <span class="sc">+</span> race <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(age <span class="sc">*</span> age) <span class="sc">+</span></span>
-<span id="cb22-25"><a href="standardization-and-the-parametric-g-formula.html#cb22-25" tabindex="-1"></a>      <span class="fu">as.factor</span>(education) <span class="sc">+</span> smokeintensity <span class="sc">+</span></span>
-<span id="cb22-26"><a href="standardization-and-the-parametric-g-formula.html#cb22-26" tabindex="-1"></a>      <span class="fu">I</span>(smokeintensity <span class="sc">*</span> smokeintensity) <span class="sc">+</span> smokeyrs <span class="sc">+</span> <span class="fu">I</span>(smokeyrs <span class="sc">*</span></span>
-<span id="cb22-27"><a href="standardization-and-the-parametric-g-formula.html#cb22-27" tabindex="-1"></a>                                                          smokeyrs) <span class="sc">+</span></span>
-<span id="cb22-28"><a href="standardization-and-the-parametric-g-formula.html#cb22-28" tabindex="-1"></a>      <span class="fu">as.factor</span>(exercise) <span class="sc">+</span> <span class="fu">as.factor</span>(active) <span class="sc">+</span> wt71 <span class="sc">+</span> <span class="fu">I</span>(wt71 <span class="sc">*</span></span>
-<span id="cb22-29"><a href="standardization-and-the-parametric-g-formula.html#cb22-29" tabindex="-1"></a>                                                           wt71),</span>
-<span id="cb22-30"><a href="standardization-and-the-parametric-g-formula.html#cb22-30" tabindex="-1"></a>    <span class="at">data =</span> d.onesample</span>
-<span id="cb22-31"><a href="standardization-and-the-parametric-g-formula.html#cb22-31" tabindex="-1"></a>  )</span>
-<span id="cb22-32"><a href="standardization-and-the-parametric-g-formula.html#cb22-32" tabindex="-1"></a></span>
-<span id="cb22-33"><a href="standardization-and-the-parametric-g-formula.html#cb22-33" tabindex="-1"></a>  d.onesample<span class="sc">$</span>predicted_meanY <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, d.onesample)</span>
-<span id="cb22-34"><a href="standardization-and-the-parametric-g-formula.html#cb22-34" tabindex="-1"></a></span>
-<span id="cb22-35"><a href="standardization-and-the-parametric-g-formula.html#cb22-35" tabindex="-1"></a>  <span class="co"># estimate mean outcome in each of the groups interv=-1, interv=0, and interv=1</span></span>
-<span id="cb22-36"><a href="standardization-and-the-parametric-g-formula.html#cb22-36" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(</span>
-<span id="cb22-37"><a href="standardization-and-the-parametric-g-formula.html#cb22-37" tabindex="-1"></a>    <span class="fu">mean</span>(d.onesample<span class="sc">$</span>predicted_meanY[d.onesample<span class="sc">$</span>interv <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>]),</span>
-<span id="cb22-38"><a href="standardization-and-the-parametric-g-formula.html#cb22-38" tabindex="-1"></a>    <span class="fu">mean</span>(d.onesample<span class="sc">$</span>predicted_meanY[d.onesample<span class="sc">$</span>interv <span class="sc">==</span> <span class="dv">0</span>]),</span>
-<span id="cb22-39"><a href="standardization-and-the-parametric-g-formula.html#cb22-39" tabindex="-1"></a>    <span class="fu">mean</span>(d.onesample<span class="sc">$</span>predicted_meanY[d.onesample<span class="sc">$</span>interv <span class="sc">==</span> <span class="dv">1</span>]),</span>
-<span id="cb22-40"><a href="standardization-and-the-parametric-g-formula.html#cb22-40" tabindex="-1"></a>    <span class="fu">mean</span>(d.onesample<span class="sc">$</span>predicted_meanY[d.onesample<span class="sc">$</span>interv <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span></span>
-<span id="cb22-41"><a href="standardization-and-the-parametric-g-formula.html#cb22-41" tabindex="-1"></a>      <span class="fu">mean</span>(d.onesample<span class="sc">$</span>predicted_meanY[d.onesample<span class="sc">$</span>interv <span class="sc">==</span> <span class="dv">0</span>])</span>
-<span id="cb22-42"><a href="standardization-and-the-parametric-g-formula.html#cb22-42" tabindex="-1"></a>  ))</span>
-<span id="cb22-43"><a href="standardization-and-the-parametric-g-formula.html#cb22-43" tabindex="-1"></a>}</span>
-<span id="cb22-44"><a href="standardization-and-the-parametric-g-formula.html#cb22-44" tabindex="-1"></a></span>
-<span id="cb22-45"><a href="standardization-and-the-parametric-g-formula.html#cb22-45" tabindex="-1"></a><span class="co"># bootstrap</span></span>
-<span id="cb22-46"><a href="standardization-and-the-parametric-g-formula.html#cb22-46" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">boot</span>(<span class="at">data =</span> nhefs,</span>
-<span id="cb22-47"><a href="standardization-and-the-parametric-g-formula.html#cb22-47" tabindex="-1"></a>                <span class="at">statistic =</span> standardization,</span>
-<span id="cb22-48"><a href="standardization-and-the-parametric-g-formula.html#cb22-48" tabindex="-1"></a>                <span class="at">R =</span> <span class="dv">5</span>)</span>
-<span id="cb22-49"><a href="standardization-and-the-parametric-g-formula.html#cb22-49" tabindex="-1"></a></span>
-<span id="cb22-50"><a href="standardization-and-the-parametric-g-formula.html#cb22-50" tabindex="-1"></a><span class="co"># generating confidence intervals</span></span>
-<span id="cb22-51"><a href="standardization-and-the-parametric-g-formula.html#cb22-51" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">sd</span>(results<span class="sc">$</span>t[, <span class="dv">1</span>]),</span>
-<span id="cb22-52"><a href="standardization-and-the-parametric-g-formula.html#cb22-52" tabindex="-1"></a>        <span class="fu">sd</span>(results<span class="sc">$</span>t[, <span class="dv">2</span>]),</span>
-<span id="cb22-53"><a href="standardization-and-the-parametric-g-formula.html#cb22-53" tabindex="-1"></a>        <span class="fu">sd</span>(results<span class="sc">$</span>t[, <span class="dv">3</span>]),</span>
-<span id="cb22-54"><a href="standardization-and-the-parametric-g-formula.html#cb22-54" tabindex="-1"></a>        <span class="fu">sd</span>(results<span class="sc">$</span>t[, <span class="dv">4</span>]))</span>
-<span id="cb22-55"><a href="standardization-and-the-parametric-g-formula.html#cb22-55" tabindex="-1"></a>mean <span class="ot">&lt;-</span> results<span class="sc">$</span>t0</span>
-<span id="cb22-56"><a href="standardization-and-the-parametric-g-formula.html#cb22-56" tabindex="-1"></a>ll <span class="ot">&lt;-</span> mean <span class="sc">-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> se</span>
-<span id="cb22-57"><a href="standardization-and-the-parametric-g-formula.html#cb22-57" tabindex="-1"></a>ul <span class="ot">&lt;-</span> mean <span class="sc">+</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> se</span>
-<span id="cb22-58"><a href="standardization-and-the-parametric-g-formula.html#cb22-58" tabindex="-1"></a></span>
-<span id="cb22-59"><a href="standardization-and-the-parametric-g-formula.html#cb22-59" tabindex="-1"></a>bootstrap <span class="ot">&lt;-</span></span>
-<span id="cb22-60"><a href="standardization-and-the-parametric-g-formula.html#cb22-60" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="fu">cbind</span>(</span>
-<span id="cb22-61"><a href="standardization-and-the-parametric-g-formula.html#cb22-61" tabindex="-1"></a>    <span class="fu">c</span>(</span>
-<span id="cb22-62"><a href="standardization-and-the-parametric-g-formula.html#cb22-62" tabindex="-1"></a>      <span class="st">&quot;Observed&quot;</span>,</span>
-<span id="cb22-63"><a href="standardization-and-the-parametric-g-formula.html#cb22-63" tabindex="-1"></a>      <span class="st">&quot;No Treatment&quot;</span>,</span>
-<span id="cb22-64"><a href="standardization-and-the-parametric-g-formula.html#cb22-64" tabindex="-1"></a>      <span class="st">&quot;Treatment&quot;</span>,</span>
-<span id="cb22-65"><a href="standardization-and-the-parametric-g-formula.html#cb22-65" tabindex="-1"></a>      <span class="st">&quot;Treatment - No Treatment&quot;</span></span>
-<span id="cb22-66"><a href="standardization-and-the-parametric-g-formula.html#cb22-66" tabindex="-1"></a>    ),</span>
-<span id="cb22-67"><a href="standardization-and-the-parametric-g-formula.html#cb22-67" tabindex="-1"></a>    mean,</span>
-<span id="cb22-68"><a href="standardization-and-the-parametric-g-formula.html#cb22-68" tabindex="-1"></a>    se,</span>
-<span id="cb22-69"><a href="standardization-and-the-parametric-g-formula.html#cb22-69" tabindex="-1"></a>    ll,</span>
-<span id="cb22-70"><a href="standardization-and-the-parametric-g-formula.html#cb22-70" tabindex="-1"></a>    ul</span>
-<span id="cb22-71"><a href="standardization-and-the-parametric-g-formula.html#cb22-71" tabindex="-1"></a>  ))</span>
-<span id="cb22-72"><a href="standardization-and-the-parametric-g-formula.html#cb22-72" tabindex="-1"></a>bootstrap</span>
-<span id="cb22-73"><a href="standardization-and-the-parametric-g-formula.html#cb22-73" tabindex="-1"></a><span class="co">#&gt;                         V1             mean                 se               ll</span></span>
-<span id="cb22-74"><a href="standardization-and-the-parametric-g-formula.html#cb22-74" tabindex="-1"></a><span class="co">#&gt; 1                 Observed 2.56188497106099 0.0984024612972166 2.36901969092835</span></span>
-<span id="cb22-75"><a href="standardization-and-the-parametric-g-formula.html#cb22-75" tabindex="-1"></a><span class="co">#&gt; 2             No Treatment 1.65212306626744  0.212209617046544 1.23619985968317</span></span>
-<span id="cb22-76"><a href="standardization-and-the-parametric-g-formula.html#cb22-76" tabindex="-1"></a><span class="co">#&gt; 3                Treatment 5.11474489549336  0.641158250090791 3.85809781692468</span></span>
-<span id="cb22-77"><a href="standardization-and-the-parametric-g-formula.html#cb22-77" tabindex="-1"></a><span class="co">#&gt; 4 Treatment - No Treatment 3.46262182922592  0.828981620853456 1.83784770850751</span></span>
-<span id="cb22-78"><a href="standardization-and-the-parametric-g-formula.html#cb22-78" tabindex="-1"></a><span class="co">#&gt;                 ul</span></span>
-<span id="cb22-79"><a href="standardization-and-the-parametric-g-formula.html#cb22-79" tabindex="-1"></a><span class="co">#&gt; 1 2.75475025119363</span></span>
-<span id="cb22-80"><a href="standardization-and-the-parametric-g-formula.html#cb22-80" tabindex="-1"></a><span class="co">#&gt; 2  2.0680462728517</span></span>
-<span id="cb22-81"><a href="standardization-and-the-parametric-g-formula.html#cb22-81" tabindex="-1"></a><span class="co">#&gt; 3 6.37139197406203</span></span>
-<span id="cb22-82"><a href="standardization-and-the-parametric-g-formula.html#cb22-82" tabindex="-1"></a><span class="co">#&gt; 4 5.08739594994433</span></span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="standardization-and-the-parametric-g-formula.html#cb95-1" tabindex="-1"></a><span class="co">#install.packages(&quot;boot&quot;) # install package if required</span></span>
+<span id="cb95-2"><a href="standardization-and-the-parametric-g-formula.html#cb95-2" tabindex="-1"></a><span class="fu">library</span>(boot)</span>
+<span id="cb95-3"><a href="standardization-and-the-parametric-g-formula.html#cb95-3" tabindex="-1"></a></span>
+<span id="cb95-4"><a href="standardization-and-the-parametric-g-formula.html#cb95-4" tabindex="-1"></a><span class="co"># function to calculate difference in means</span></span>
+<span id="cb95-5"><a href="standardization-and-the-parametric-g-formula.html#cb95-5" tabindex="-1"></a>standardization <span class="ot">&lt;-</span> <span class="cf">function</span>(data, indices) {</span>
+<span id="cb95-6"><a href="standardization-and-the-parametric-g-formula.html#cb95-6" tabindex="-1"></a>  <span class="co"># create a dataset with 3 copies of each subject</span></span>
+<span id="cb95-7"><a href="standardization-and-the-parametric-g-formula.html#cb95-7" tabindex="-1"></a>  d <span class="ot">&lt;-</span> data[indices, ] <span class="co"># 1st copy: equal to original one`</span></span>
+<span id="cb95-8"><a href="standardization-and-the-parametric-g-formula.html#cb95-8" tabindex="-1"></a>  d<span class="sc">$</span>interv <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb95-9"><a href="standardization-and-the-parametric-g-formula.html#cb95-9" tabindex="-1"></a>  d0 <span class="ot">&lt;-</span> d <span class="co"># 2nd copy: treatment set to 0, outcome to missing</span></span>
+<span id="cb95-10"><a href="standardization-and-the-parametric-g-formula.html#cb95-10" tabindex="-1"></a>  d0<span class="sc">$</span>interv <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb95-11"><a href="standardization-and-the-parametric-g-formula.html#cb95-11" tabindex="-1"></a>  d0<span class="sc">$</span>qsmk <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb95-12"><a href="standardization-and-the-parametric-g-formula.html#cb95-12" tabindex="-1"></a>  d0<span class="sc">$</span>wt82_71 <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb95-13"><a href="standardization-and-the-parametric-g-formula.html#cb95-13" tabindex="-1"></a>  d1 <span class="ot">&lt;-</span> d <span class="co"># 3rd copy: treatment set to 1, outcome to missing</span></span>
+<span id="cb95-14"><a href="standardization-and-the-parametric-g-formula.html#cb95-14" tabindex="-1"></a>  d1<span class="sc">$</span>interv <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb95-15"><a href="standardization-and-the-parametric-g-formula.html#cb95-15" tabindex="-1"></a>  d1<span class="sc">$</span>qsmk <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb95-16"><a href="standardization-and-the-parametric-g-formula.html#cb95-16" tabindex="-1"></a>  d1<span class="sc">$</span>wt82_71 <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb95-17"><a href="standardization-and-the-parametric-g-formula.html#cb95-17" tabindex="-1"></a>  d.onesample <span class="ot">&lt;-</span> <span class="fu">rbind</span>(d, d0, d1) <span class="co"># combining datasets</span></span>
+<span id="cb95-18"><a href="standardization-and-the-parametric-g-formula.html#cb95-18" tabindex="-1"></a></span>
+<span id="cb95-19"><a href="standardization-and-the-parametric-g-formula.html#cb95-19" tabindex="-1"></a>  <span class="co"># linear model to estimate mean outcome conditional on treatment and confounders</span></span>
+<span id="cb95-20"><a href="standardization-and-the-parametric-g-formula.html#cb95-20" tabindex="-1"></a>  <span class="co"># parameters are estimated using original observations only (interv= -1)</span></span>
+<span id="cb95-21"><a href="standardization-and-the-parametric-g-formula.html#cb95-21" tabindex="-1"></a>  <span class="co"># parameter estimates are used to predict mean outcome for observations with set</span></span>
+<span id="cb95-22"><a href="standardization-and-the-parametric-g-formula.html#cb95-22" tabindex="-1"></a>  <span class="co"># treatment (interv=0 and interv=1)</span></span>
+<span id="cb95-23"><a href="standardization-and-the-parametric-g-formula.html#cb95-23" tabindex="-1"></a>  fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb95-24"><a href="standardization-and-the-parametric-g-formula.html#cb95-24" tabindex="-1"></a>    wt82_71 <span class="sc">~</span> qsmk <span class="sc">+</span> sex <span class="sc">+</span> race <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">I</span>(age <span class="sc">*</span> age) <span class="sc">+</span></span>
+<span id="cb95-25"><a href="standardization-and-the-parametric-g-formula.html#cb95-25" tabindex="-1"></a>      <span class="fu">as.factor</span>(education) <span class="sc">+</span> smokeintensity <span class="sc">+</span></span>
+<span id="cb95-26"><a href="standardization-and-the-parametric-g-formula.html#cb95-26" tabindex="-1"></a>      <span class="fu">I</span>(smokeintensity <span class="sc">*</span> smokeintensity) <span class="sc">+</span> smokeyrs <span class="sc">+</span> <span class="fu">I</span>(smokeyrs <span class="sc">*</span></span>
+<span id="cb95-27"><a href="standardization-and-the-parametric-g-formula.html#cb95-27" tabindex="-1"></a>                                                          smokeyrs) <span class="sc">+</span></span>
+<span id="cb95-28"><a href="standardization-and-the-parametric-g-formula.html#cb95-28" tabindex="-1"></a>      <span class="fu">as.factor</span>(exercise) <span class="sc">+</span> <span class="fu">as.factor</span>(active) <span class="sc">+</span> wt71 <span class="sc">+</span> <span class="fu">I</span>(wt71 <span class="sc">*</span></span>
+<span id="cb95-29"><a href="standardization-and-the-parametric-g-formula.html#cb95-29" tabindex="-1"></a>                                                           wt71),</span>
+<span id="cb95-30"><a href="standardization-and-the-parametric-g-formula.html#cb95-30" tabindex="-1"></a>    <span class="at">data =</span> d.onesample</span>
+<span id="cb95-31"><a href="standardization-and-the-parametric-g-formula.html#cb95-31" tabindex="-1"></a>  )</span>
+<span id="cb95-32"><a href="standardization-and-the-parametric-g-formula.html#cb95-32" tabindex="-1"></a></span>
+<span id="cb95-33"><a href="standardization-and-the-parametric-g-formula.html#cb95-33" tabindex="-1"></a>  d.onesample<span class="sc">$</span>predicted_meanY <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, d.onesample)</span>
+<span id="cb95-34"><a href="standardization-and-the-parametric-g-formula.html#cb95-34" tabindex="-1"></a></span>
+<span id="cb95-35"><a href="standardization-and-the-parametric-g-formula.html#cb95-35" tabindex="-1"></a>  <span class="co"># estimate mean outcome in each of the groups interv=-1, interv=0, and interv=1</span></span>
+<span id="cb95-36"><a href="standardization-and-the-parametric-g-formula.html#cb95-36" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(</span>
+<span id="cb95-37"><a href="standardization-and-the-parametric-g-formula.html#cb95-37" tabindex="-1"></a>    <span class="fu">mean</span>(d.onesample<span class="sc">$</span>predicted_meanY[d.onesample<span class="sc">$</span>interv <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>]),</span>
+<span id="cb95-38"><a href="standardization-and-the-parametric-g-formula.html#cb95-38" tabindex="-1"></a>    <span class="fu">mean</span>(d.onesample<span class="sc">$</span>predicted_meanY[d.onesample<span class="sc">$</span>interv <span class="sc">==</span> <span class="dv">0</span>]),</span>
+<span id="cb95-39"><a href="standardization-and-the-parametric-g-formula.html#cb95-39" tabindex="-1"></a>    <span class="fu">mean</span>(d.onesample<span class="sc">$</span>predicted_meanY[d.onesample<span class="sc">$</span>interv <span class="sc">==</span> <span class="dv">1</span>]),</span>
+<span id="cb95-40"><a href="standardization-and-the-parametric-g-formula.html#cb95-40" tabindex="-1"></a>    <span class="fu">mean</span>(d.onesample<span class="sc">$</span>predicted_meanY[d.onesample<span class="sc">$</span>interv <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span></span>
+<span id="cb95-41"><a href="standardization-and-the-parametric-g-formula.html#cb95-41" tabindex="-1"></a>      <span class="fu">mean</span>(d.onesample<span class="sc">$</span>predicted_meanY[d.onesample<span class="sc">$</span>interv <span class="sc">==</span> <span class="dv">0</span>])</span>
+<span id="cb95-42"><a href="standardization-and-the-parametric-g-formula.html#cb95-42" tabindex="-1"></a>  ))</span>
+<span id="cb95-43"><a href="standardization-and-the-parametric-g-formula.html#cb95-43" tabindex="-1"></a>}</span>
+<span id="cb95-44"><a href="standardization-and-the-parametric-g-formula.html#cb95-44" tabindex="-1"></a></span>
+<span id="cb95-45"><a href="standardization-and-the-parametric-g-formula.html#cb95-45" tabindex="-1"></a><span class="co"># bootstrap</span></span>
+<span id="cb95-46"><a href="standardization-and-the-parametric-g-formula.html#cb95-46" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">boot</span>(<span class="at">data =</span> nhefs,</span>
+<span id="cb95-47"><a href="standardization-and-the-parametric-g-formula.html#cb95-47" tabindex="-1"></a>                <span class="at">statistic =</span> standardization,</span>
+<span id="cb95-48"><a href="standardization-and-the-parametric-g-formula.html#cb95-48" tabindex="-1"></a>                <span class="at">R =</span> <span class="dv">5</span>)</span>
+<span id="cb95-49"><a href="standardization-and-the-parametric-g-formula.html#cb95-49" tabindex="-1"></a></span>
+<span id="cb95-50"><a href="standardization-and-the-parametric-g-formula.html#cb95-50" tabindex="-1"></a><span class="co"># generating confidence intervals</span></span>
+<span id="cb95-51"><a href="standardization-and-the-parametric-g-formula.html#cb95-51" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">sd</span>(results<span class="sc">$</span>t[, <span class="dv">1</span>]),</span>
+<span id="cb95-52"><a href="standardization-and-the-parametric-g-formula.html#cb95-52" tabindex="-1"></a>        <span class="fu">sd</span>(results<span class="sc">$</span>t[, <span class="dv">2</span>]),</span>
+<span id="cb95-53"><a href="standardization-and-the-parametric-g-formula.html#cb95-53" tabindex="-1"></a>        <span class="fu">sd</span>(results<span class="sc">$</span>t[, <span class="dv">3</span>]),</span>
+<span id="cb95-54"><a href="standardization-and-the-parametric-g-formula.html#cb95-54" tabindex="-1"></a>        <span class="fu">sd</span>(results<span class="sc">$</span>t[, <span class="dv">4</span>]))</span>
+<span id="cb95-55"><a href="standardization-and-the-parametric-g-formula.html#cb95-55" tabindex="-1"></a>mean <span class="ot">&lt;-</span> results<span class="sc">$</span>t0</span>
+<span id="cb95-56"><a href="standardization-and-the-parametric-g-formula.html#cb95-56" tabindex="-1"></a>ll <span class="ot">&lt;-</span> mean <span class="sc">-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> se</span>
+<span id="cb95-57"><a href="standardization-and-the-parametric-g-formula.html#cb95-57" tabindex="-1"></a>ul <span class="ot">&lt;-</span> mean <span class="sc">+</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> se</span>
+<span id="cb95-58"><a href="standardization-and-the-parametric-g-formula.html#cb95-58" tabindex="-1"></a></span>
+<span id="cb95-59"><a href="standardization-and-the-parametric-g-formula.html#cb95-59" tabindex="-1"></a>bootstrap <span class="ot">&lt;-</span></span>
+<span id="cb95-60"><a href="standardization-and-the-parametric-g-formula.html#cb95-60" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="fu">cbind</span>(</span>
+<span id="cb95-61"><a href="standardization-and-the-parametric-g-formula.html#cb95-61" tabindex="-1"></a>    <span class="fu">c</span>(</span>
+<span id="cb95-62"><a href="standardization-and-the-parametric-g-formula.html#cb95-62" tabindex="-1"></a>      <span class="st">&quot;Observed&quot;</span>,</span>
+<span id="cb95-63"><a href="standardization-and-the-parametric-g-formula.html#cb95-63" tabindex="-1"></a>      <span class="st">&quot;No Treatment&quot;</span>,</span>
+<span id="cb95-64"><a href="standardization-and-the-parametric-g-formula.html#cb95-64" tabindex="-1"></a>      <span class="st">&quot;Treatment&quot;</span>,</span>
+<span id="cb95-65"><a href="standardization-and-the-parametric-g-formula.html#cb95-65" tabindex="-1"></a>      <span class="st">&quot;Treatment - No Treatment&quot;</span></span>
+<span id="cb95-66"><a href="standardization-and-the-parametric-g-formula.html#cb95-66" tabindex="-1"></a>    ),</span>
+<span id="cb95-67"><a href="standardization-and-the-parametric-g-formula.html#cb95-67" tabindex="-1"></a>    mean,</span>
+<span id="cb95-68"><a href="standardization-and-the-parametric-g-formula.html#cb95-68" tabindex="-1"></a>    se,</span>
+<span id="cb95-69"><a href="standardization-and-the-parametric-g-formula.html#cb95-69" tabindex="-1"></a>    ll,</span>
+<span id="cb95-70"><a href="standardization-and-the-parametric-g-formula.html#cb95-70" tabindex="-1"></a>    ul</span>
+<span id="cb95-71"><a href="standardization-and-the-parametric-g-formula.html#cb95-71" tabindex="-1"></a>  ))</span>
+<span id="cb95-72"><a href="standardization-and-the-parametric-g-formula.html#cb95-72" tabindex="-1"></a>bootstrap</span>
+<span id="cb95-73"><a href="standardization-and-the-parametric-g-formula.html#cb95-73" tabindex="-1"></a><span class="co">#&gt;                         V1             mean                se               ll</span></span>
+<span id="cb95-74"><a href="standardization-and-the-parametric-g-formula.html#cb95-74" tabindex="-1"></a><span class="co">#&gt; 1                 Observed 2.56188497106099 0.145472494596704 2.27676412091025</span></span>
+<span id="cb95-75"><a href="standardization-and-the-parametric-g-formula.html#cb95-75" tabindex="-1"></a><span class="co">#&gt; 2             No Treatment 1.65212306626744 0.101915266567174 1.45237281432098</span></span>
+<span id="cb95-76"><a href="standardization-and-the-parametric-g-formula.html#cb95-76" tabindex="-1"></a><span class="co">#&gt; 3                Treatment 5.11474489549336 0.333215898342795 4.46165373566532</span></span>
+<span id="cb95-77"><a href="standardization-and-the-parametric-g-formula.html#cb95-77" tabindex="-1"></a><span class="co">#&gt; 4 Treatment - No Treatment 3.46262182922592 0.301829821703863  2.8710462492262</span></span>
+<span id="cb95-78"><a href="standardization-and-the-parametric-g-formula.html#cb95-78" tabindex="-1"></a><span class="co">#&gt;                 ul</span></span>
+<span id="cb95-79"><a href="standardization-and-the-parametric-g-formula.html#cb95-79" tabindex="-1"></a><span class="co">#&gt; 1 2.84700582121172</span></span>
+<span id="cb95-80"><a href="standardization-and-the-parametric-g-formula.html#cb95-80" tabindex="-1"></a><span class="co">#&gt; 2  1.8518733182139</span></span>
+<span id="cb95-81"><a href="standardization-and-the-parametric-g-formula.html#cb95-81" tabindex="-1"></a><span class="co">#&gt; 3 5.76783605532139</span></span>
+<span id="cb95-82"><a href="standardization-and-the-parametric-g-formula.html#cb95-82" tabindex="-1"></a><span class="co">#&gt; 4 4.05419740922564</span></span></code></pre></div>
 
 </div>
 </div>

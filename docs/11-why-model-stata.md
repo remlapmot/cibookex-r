@@ -3,12 +3,12 @@
 # 11. Why model: Stata{-}
 
 
-```r
+``` r
 library(Statamarkdown)
 ```
 
 
-```stata
+``` stata
 do dependency
 ```
 
@@ -35,7 +35,7 @@ For errors contact: ejmurray@bu.edu
 - Sample averages by treatment level
 
 
-```stata
+``` stata
 clear
 
 **Figure 11.1**
@@ -112,7 +112,7 @@ bysort A: sum Y
 <img src="figs/stata-fig-11-1.png" width="85%" style="display: block; margin: auto;" />
 
 
-```stata
+``` stata
 *Clear the workspace to be able to use a new dataset*
 clear
 
@@ -200,7 +200,7 @@ bysort A: sum Y
 <img src="figs/stata-fig-11-2.png" width="85%" style="display: block; margin: auto;" />
 
 
-```stata
+``` stata
 clear
 
 **Figure 11.3**
@@ -258,7 +258,7 @@ qui gr export figs/stata-fig-11-3.png, replace
 - Creates Figure 11.4, parameter estimates with 95% confidence intervals from Section 11.2, and parameter estimates with 95% confidence intervals from Section 11.3
 
 
-```stata
+``` stata
 **Section 11.2: parametric estimators**
 *Reload data
 use ./data/fig3, clear
@@ -297,7 +297,7 @@ qui gr export figs/stata-fig-11-4.png, replace
 <img src="figs/stata-fig-11-4.png" width="85%" style="display: block; margin: auto;" />
 
 
-```stata
+``` stata
 **Section 11.3: non-parametric estimation*
 * Reload the data
 use ./data/fig1, clear
@@ -325,7 +325,7 @@ di 67.50 + 78.75
 - Creates Figure 11.5 and Parameter estimates for Section 11.4
 
 
-```stata
+``` stata
 * Reload the data
 use ./data/fig3, clear
 

@@ -1,7 +1,7 @@
 # 14. G-estimation of Structural Nested Models: Stata{-}
 
 
-```r
+``` r
 library(Statamarkdown)
 ```
 
@@ -21,7 +21,7 @@ For errors contact: ejmurray@bu.edu
 - Section 14.4
 
 
-```stata
+``` stata
 /*For Stata 15 or later, first install the extremes function using this code:*/
 * ssc install extremes 
 
@@ -156,7 +156,7 @@ file ./data/nhefs-wcens.dta saved
 - Section 14.5
 
 
-```stata
+``` stata
 use ./data/nhefs-wcens, clear
 
 /*Generate test value of Psi = 3.446*/
@@ -385,7 +385,7 @@ r31           5  -.02998926   .02998926   .00213639
 - Section 14.6
 
 
-```stata
+``` stata
 use ./data/nhefs-wcens, clear
 
 /*create weights*/
