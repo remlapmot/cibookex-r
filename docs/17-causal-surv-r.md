@@ -66,7 +66,8 @@ survdiff(Surv(survtime, death) ~ qsmk, data=nhefs)
 fit <- survfit(Surv(survtime, death) ~ qsmk, data=nhefs)
 ggsurvplot(fit, data = nhefs, xlab="Months of follow-up",
            ylab="Survival probability",
-           main="Product-Limit Survival Estimates", risk.table = TRUE)
+           title="Product-Limit Survival Estimates", risk.table = TRUE,
+           fontsize = 3)
 ```
 
 <img src="17-causal-surv-r_files/figure-epub3/unnamed-chunk-2-1.png" width="85%" style="display: block; margin: auto;" />

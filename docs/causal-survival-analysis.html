@@ -358,7 +358,8 @@ div.csl-indent {
 <span id="cb155-2"><a href="causal-survival-analysis.html#cb155-2" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">survfit</span>(<span class="fu">Surv</span>(survtime, death) <span class="sc">~</span> qsmk, <span class="at">data=</span>nhefs)</span>
 <span id="cb155-3"><a href="causal-survival-analysis.html#cb155-3" tabindex="-1"></a><span class="fu">ggsurvplot</span>(fit, <span class="at">data =</span> nhefs, <span class="at">xlab=</span><span class="st">&quot;Months of follow-up&quot;</span>,</span>
 <span id="cb155-4"><a href="causal-survival-analysis.html#cb155-4" tabindex="-1"></a>           <span class="at">ylab=</span><span class="st">&quot;Survival probability&quot;</span>,</span>
-<span id="cb155-5"><a href="causal-survival-analysis.html#cb155-5" tabindex="-1"></a>           <span class="at">main=</span><span class="st">&quot;Product-Limit Survival Estimates&quot;</span>, <span class="at">risk.table =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<span id="cb155-5"><a href="causal-survival-analysis.html#cb155-5" tabindex="-1"></a>           <span class="at">title=</span><span class="st">&quot;Product-Limit Survival Estimates&quot;</span>, <span class="at">risk.table =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb155-6"><a href="causal-survival-analysis.html#cb155-6" tabindex="-1"></a>           <span class="at">fontsize =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p><img src="17-causal-surv-r_files/figure-html/unnamed-chunk-2-1.png" width="85%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="program-17.2" class="section level2 hasAnchor">

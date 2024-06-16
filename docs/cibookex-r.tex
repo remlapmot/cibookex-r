@@ -2109,16 +2109,16 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{    ul}
 \NormalTok{  ))}
 \NormalTok{bootstrap}
-\CommentTok{\#\textgreater{}                         V1             mean                se               ll}
-\CommentTok{\#\textgreater{} 1                 Observed 2.56188497106099 0.123459016607626 2.31990974494331}
-\CommentTok{\#\textgreater{} 2             No Treatment 1.65212306626744 0.141930671422846 1.37394406197707}
-\CommentTok{\#\textgreater{} 3                Treatment 5.11474489549336 0.354044979666702  4.4208294864394}
-\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment 3.46262182922592 0.380835968041716 2.71619704784671}
+\CommentTok{\#\textgreater{}                         V1             mean                 se               ll}
+\CommentTok{\#\textgreater{} 1                 Observed 2.56188497106099 0.0699303338739596 2.42482403524116}
+\CommentTok{\#\textgreater{} 2             No Treatment 1.65212306626744  0.175389505496242 1.30836595222851}
+\CommentTok{\#\textgreater{} 3                Treatment 5.11474489549336    0.3707801675766 4.38802912086149}
+\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment 3.46262182922592  0.541338444201742 2.40161797514356}
 \CommentTok{\#\textgreater{}                 ul}
-\CommentTok{\#\textgreater{} 1 2.80386019717867}
-\CommentTok{\#\textgreater{} 2  1.9303020705578}
-\CommentTok{\#\textgreater{} 3 5.80866030454731}
-\CommentTok{\#\textgreater{} 4 4.20904661060513}
+\CommentTok{\#\textgreater{} 1 2.69894590688081}
+\CommentTok{\#\textgreater{} 2 1.99588018030636}
+\CommentTok{\#\textgreater{} 3 5.84146067012522}
+\CommentTok{\#\textgreater{} 4 4.52362568330828}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3371,15 +3371,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
                                 \StringTok{"Treatment {-} No Treatment"}\NormalTok{), mean, se, ll, ul))}
 \NormalTok{bootstrap}
 \CommentTok{\#\textgreater{}                         V1             mean                se               ll}
-\CommentTok{\#\textgreater{} 1                 Observed 2.63384609228479 0.177966260967055 2.28503863032611}
-\CommentTok{\#\textgreater{} 2             No Treatment 1.71983636149845 0.270728819824025 1.18921762506633}
-\CommentTok{\#\textgreater{} 3                Treatment 5.35072300362985 0.215967803091529 4.92743388775022}
-\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment  3.6308866421314 0.468506275891746 2.71263121485259}
+\CommentTok{\#\textgreater{} 1                 Observed 2.63384609228479  0.29512275529644 2.05541612088554}
+\CommentTok{\#\textgreater{} 2             No Treatment 1.71983636149845  0.31039025630685 1.11148263798487}
+\CommentTok{\#\textgreater{} 3                Treatment 5.35072300362985 0.451775468916142 4.46525935545552}
+\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment  3.6308866421314 0.510359814241161 2.63059978706217}
 \CommentTok{\#\textgreater{}                 ul}
-\CommentTok{\#\textgreater{} 1 2.98265355424348}
-\CommentTok{\#\textgreater{} 2 2.25045509793058}
-\CommentTok{\#\textgreater{} 3 5.77401211950949}
-\CommentTok{\#\textgreater{} 4 4.54914206941021}
+\CommentTok{\#\textgreater{} 1 3.21227606368404}
+\CommentTok{\#\textgreater{} 2 2.32819008501204}
+\CommentTok{\#\textgreater{} 3 6.23618665180419}
+\CommentTok{\#\textgreater{} 4 4.63117349720063}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3493,7 +3493,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{  \}}
 \NormalTok{\}}
 \CommentTok{\#\textgreater{} 95\% CI for the causal mean difference}
-\CommentTok{\#\textgreater{} 2.538496 , 4.595036}
+\CommentTok{\#\textgreater{} 2.466489 , 4.563831}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3901,7 +3901,8 @@ A more flexible and elegant way to do this is to write a function to perform the
 \NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{survfit}\NormalTok{(}\FunctionTok{Surv}\NormalTok{(survtime, death) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ qsmk, }\AttributeTok{data=}\NormalTok{nhefs)}
 \FunctionTok{ggsurvplot}\NormalTok{(fit, }\AttributeTok{data =}\NormalTok{ nhefs, }\AttributeTok{xlab=}\StringTok{"Months of follow{-}up"}\NormalTok{,}
            \AttributeTok{ylab=}\StringTok{"Survival probability"}\NormalTok{,}
-           \AttributeTok{main=}\StringTok{"Product{-}Limit Survival Estimates"}\NormalTok{, }\AttributeTok{risk.table =} \ConstantTok{TRUE}\NormalTok{)}
+           \AttributeTok{title=}\StringTok{"Product{-}Limit Survival Estimates"}\NormalTok{, }\AttributeTok{risk.table =} \ConstantTok{TRUE}\NormalTok{,}
+           \AttributeTok{fontsize =} \DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -9549,7 +9550,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated observ
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 6:52:19
+r; t=0.00 8:35:45
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -9557,7 +9558,7 @@ r; t=0.00 6:52:19
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=19.63 6:52:38
+r; t=22.18 8:36:07
 
 
 
@@ -9803,7 +9804,7 @@ file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 6:52:46
+r; t=0.00 8:36:15
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -9811,7 +9812,7 @@ r; t=0.00 6:52:46
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=23.32 6:53:10
+r; t=24.78 8:36:40
 
 
 
