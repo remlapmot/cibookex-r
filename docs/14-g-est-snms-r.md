@@ -29,9 +29,6 @@ library(Hmisc)
 #> The following objects are masked from 'package:base':
 #> 
 #>     format.pval, units
-```
-
-``` r
 describe(nhefs$wt82_71)
 #> nhefs$wt82_71 
 #>        n  missing distinct     Info     Mean      Gmd      .05      .10 
@@ -41,9 +38,6 @@ describe(nhefs$wt82_71)
 #> 
 #> lowest : -41.2805 -30.5019 -30.0501 -29.0258 -25.9706
 #> highest: 34.0178  36.9693  37.6505  47.5113  48.5384
-```
-
-``` r
 
 # estimation of denominator of ip weights for C
 cw.denom <- glm(cens==0 ~ qsmk + sex + race + age + I(age^2)
@@ -91,9 +85,6 @@ summary(cw.denom)
 #> AIC: 505.36
 #> 
 #> Number of Fisher Scoring iterations: 7
-```
-
-``` r
 nhefs$pd.c <- predict(cw.denom, nhefs, type="response")
 nhefs$wc <- ifelse(nhefs$cens==0, 1/nhefs$pd.c, NA)
 # observations with cens=1 only contribute to censoring models
@@ -122,9 +113,6 @@ fit <- geeglm(qsmk ~ sex + race + age + I(age*age) + as.factor(education)
            + wt71 + I(wt71*wt71) + Hpsi, family=binomial, data=nhefs,
            weights=wc, id=seqn, corstr="independence")
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-```
-
-``` r
 summary(fit)
 #> 
 #> Call:
@@ -221,9 +209,6 @@ for (i in grid){
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-```
-
-``` r
 Hpsi.coefs
 #>         Estimate  p-value
 #>  [1,]  0.0267219 0.001772
@@ -274,9 +259,6 @@ logit.est <- glm(qsmk ~ sex + race + age + I(age^2) + as.factor(education)
                  + wt71 + I(wt71^2), data = nhefs, weight = wc,
                  family = binomial())
 #> Warning in eval(family$initialize): non-integer #successes in a binomial glm!
-```
-
-``` r
 summary(logit.est)
 #> 
 #> Call:
@@ -317,9 +299,6 @@ summary(logit.est)
 #> AIC: 1719
 #> 
 #> Number of Fisher Scoring iterations: 4
-```
-
-``` r
 nhefs$pqsmk <- predict(logit.est, nhefs, type = "response")
 describe(nhefs$pqsmk)
 #> nhefs$pqsmk 
@@ -330,15 +309,9 @@ describe(nhefs$pqsmk)
 #> 
 #> lowest : 0.0514466 0.0515703 0.0543802 0.0558308 0.0593059
 #> highest: 0.672083  0.686432  0.713913  0.733299  0.78914
-```
-
-``` r
 summary(nhefs$pqsmk)
 #>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 #>  0.0514  0.1780  0.2426  0.2622  0.3251  0.7891
-```
-
-``` r
 
 # solve sum(w_c * H(psi) * (qsmk - E[qsmk | L]))  = 0
 # for a single psi and H(psi) = wt82_71 - psi * qsmk

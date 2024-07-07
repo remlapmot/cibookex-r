@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>11. Why model? | Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="11. Why model? | Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2024-06-16" />
+<meta name="date" content="2024-07-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -324,29 +324,29 @@ div.csl-indent {
 <p><img src="11-why-model-r_files/figure-html/unnamed-chunk-1-1.png" width="85%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="why-model.html#cb5-1" tabindex="-1"></a><span class="fu">summary</span>(Y[A <span class="sc">==</span> <span class="dv">0</span>])</span>
 <span id="cb5-2"><a href="why-model.html#cb5-2" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span id="cb5-3"><a href="why-model.html#cb5-3" tabindex="-1"></a><span class="co">#&gt;    10.0    27.5    60.0    67.5    87.5   170.0</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="why-model.html#cb6-1" tabindex="-1"></a><span class="fu">summary</span>(Y[A <span class="sc">==</span> <span class="dv">1</span>])</span>
-<span id="cb6-2"><a href="why-model.html#cb6-2" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span id="cb6-3"><a href="why-model.html#cb6-3" tabindex="-1"></a><span class="co">#&gt;    50.0   105.0   160.0   146.2   185.0   220.0</span></span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="why-model.html#cb7-1" tabindex="-1"></a></span>
-<span id="cb7-2"><a href="why-model.html#cb7-2" tabindex="-1"></a>A2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>)</span>
-<span id="cb7-3"><a href="why-model.html#cb7-3" tabindex="-1"></a>Y2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">110</span>, <span class="dv">80</span>, <span class="dv">50</span>, <span class="dv">40</span>, <span class="dv">170</span>, <span class="dv">30</span>, <span class="dv">70</span>, <span class="dv">50</span>, <span class="dv">110</span>, <span class="dv">50</span>, <span class="dv">180</span>,</span>
-<span id="cb7-4"><a href="why-model.html#cb7-4" tabindex="-1"></a>        <span class="dv">130</span>, <span class="dv">200</span>, <span class="dv">150</span>, <span class="dv">220</span>, <span class="dv">210</span>)</span>
-<span id="cb7-5"><a href="why-model.html#cb7-5" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="why-model.html#cb7-6" tabindex="-1"></a><span class="fu">plot</span>(A2, Y2)</span></code></pre></div>
+<span id="cb5-3"><a href="why-model.html#cb5-3" tabindex="-1"></a><span class="co">#&gt;    10.0    27.5    60.0    67.5    87.5   170.0</span></span>
+<span id="cb5-4"><a href="why-model.html#cb5-4" tabindex="-1"></a><span class="fu">summary</span>(Y[A <span class="sc">==</span> <span class="dv">1</span>])</span>
+<span id="cb5-5"><a href="why-model.html#cb5-5" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb5-6"><a href="why-model.html#cb5-6" tabindex="-1"></a><span class="co">#&gt;    50.0   105.0   160.0   146.2   185.0   220.0</span></span>
+<span id="cb5-7"><a href="why-model.html#cb5-7" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="why-model.html#cb5-8" tabindex="-1"></a>A2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">4</span>)</span>
+<span id="cb5-9"><a href="why-model.html#cb5-9" tabindex="-1"></a>Y2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">110</span>, <span class="dv">80</span>, <span class="dv">50</span>, <span class="dv">40</span>, <span class="dv">170</span>, <span class="dv">30</span>, <span class="dv">70</span>, <span class="dv">50</span>, <span class="dv">110</span>, <span class="dv">50</span>, <span class="dv">180</span>,</span>
+<span id="cb5-10"><a href="why-model.html#cb5-10" tabindex="-1"></a>        <span class="dv">130</span>, <span class="dv">200</span>, <span class="dv">150</span>, <span class="dv">220</span>, <span class="dv">210</span>)</span>
+<span id="cb5-11"><a href="why-model.html#cb5-11" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="why-model.html#cb5-12" tabindex="-1"></a><span class="fu">plot</span>(A2, Y2)</span></code></pre></div>
 <p><img src="11-why-model-r_files/figure-html/unnamed-chunk-1-2.png" width="85%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="why-model.html#cb8-1" tabindex="-1"></a><span class="fu">summary</span>(Y2[A2 <span class="sc">==</span> <span class="dv">1</span>])</span>
-<span id="cb8-2"><a href="why-model.html#cb8-2" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span id="cb8-3"><a href="why-model.html#cb8-3" tabindex="-1"></a><span class="co">#&gt;    40.0    47.5    65.0    70.0    87.5   110.0</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="why-model.html#cb9-1" tabindex="-1"></a><span class="fu">summary</span>(Y2[A2 <span class="sc">==</span> <span class="dv">2</span>])</span>
-<span id="cb9-2"><a href="why-model.html#cb9-2" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span id="cb9-3"><a href="why-model.html#cb9-3" tabindex="-1"></a><span class="co">#&gt;      30      45      60      80      95     170</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="why-model.html#cb10-1" tabindex="-1"></a><span class="fu">summary</span>(Y2[A2 <span class="sc">==</span> <span class="dv">3</span>])</span>
-<span id="cb10-2"><a href="why-model.html#cb10-2" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span id="cb10-3"><a href="why-model.html#cb10-3" tabindex="-1"></a><span class="co">#&gt;    50.0    95.0   120.0   117.5   142.5   180.0</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="why-model.html#cb11-1" tabindex="-1"></a><span class="fu">summary</span>(Y2[A2 <span class="sc">==</span> <span class="dv">4</span>])</span>
-<span id="cb11-2"><a href="why-model.html#cb11-2" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span id="cb11-3"><a href="why-model.html#cb11-3" tabindex="-1"></a><span class="co">#&gt;   150.0   187.5   205.0   195.0   212.5   220.0</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="why-model.html#cb6-1" tabindex="-1"></a><span class="fu">summary</span>(Y2[A2 <span class="sc">==</span> <span class="dv">1</span>])</span>
+<span id="cb6-2"><a href="why-model.html#cb6-2" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb6-3"><a href="why-model.html#cb6-3" tabindex="-1"></a><span class="co">#&gt;    40.0    47.5    65.0    70.0    87.5   110.0</span></span>
+<span id="cb6-4"><a href="why-model.html#cb6-4" tabindex="-1"></a><span class="fu">summary</span>(Y2[A2 <span class="sc">==</span> <span class="dv">2</span>])</span>
+<span id="cb6-5"><a href="why-model.html#cb6-5" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb6-6"><a href="why-model.html#cb6-6" tabindex="-1"></a><span class="co">#&gt;      30      45      60      80      95     170</span></span>
+<span id="cb6-7"><a href="why-model.html#cb6-7" tabindex="-1"></a><span class="fu">summary</span>(Y2[A2 <span class="sc">==</span> <span class="dv">3</span>])</span>
+<span id="cb6-8"><a href="why-model.html#cb6-8" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb6-9"><a href="why-model.html#cb6-9" tabindex="-1"></a><span class="co">#&gt;    50.0    95.0   120.0   117.5   142.5   180.0</span></span>
+<span id="cb6-10"><a href="why-model.html#cb6-10" tabindex="-1"></a><span class="fu">summary</span>(Y2[A2 <span class="sc">==</span> <span class="dv">4</span>])</span>
+<span id="cb6-11"><a href="why-model.html#cb6-11" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb6-12"><a href="why-model.html#cb6-12" tabindex="-1"></a><span class="co">#&gt;   150.0   187.5   205.0   195.0   212.5   220.0</span></span></code></pre></div>
 </div>
 <div id="program-11.2" class="section level2 hasAnchor">
 <h2>Program 11.2<a href="why-model.html#program-11.2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -354,57 +354,57 @@ div.csl-indent {
 <li>2-parameter linear model</li>
 <li>Data from Figures 11.3 and 11.1</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="why-model.html#cb12-1" tabindex="-1"></a>A3 <span class="ot">&lt;-</span></span>
-<span id="cb12-2"><a href="why-model.html#cb12-2" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">11</span>, <span class="dv">17</span>, <span class="dv">23</span>, <span class="dv">29</span>, <span class="dv">37</span>, <span class="dv">41</span>, <span class="dv">53</span>, <span class="dv">67</span>, <span class="dv">79</span>, <span class="dv">83</span>, <span class="dv">97</span>, <span class="dv">60</span>, <span class="dv">71</span>, <span class="dv">15</span>, <span class="dv">45</span>)</span>
-<span id="cb12-3"><a href="why-model.html#cb12-3" tabindex="-1"></a>Y3 <span class="ot">&lt;-</span></span>
-<span id="cb12-4"><a href="why-model.html#cb12-4" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">21</span>, <span class="dv">54</span>, <span class="dv">33</span>, <span class="dv">101</span>, <span class="dv">85</span>, <span class="dv">65</span>, <span class="dv">157</span>, <span class="dv">120</span>, <span class="dv">111</span>, <span class="dv">200</span>, <span class="dv">140</span>, <span class="dv">220</span>, <span class="dv">230</span>, <span class="dv">217</span>,</span>
-<span id="cb12-5"><a href="why-model.html#cb12-5" tabindex="-1"></a>    <span class="dv">11</span>, <span class="dv">190</span>)</span>
-<span id="cb12-6"><a href="why-model.html#cb12-6" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="why-model.html#cb12-7" tabindex="-1"></a><span class="fu">plot</span>(Y3 <span class="sc">~</span> A3)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="why-model.html#cb7-1" tabindex="-1"></a>A3 <span class="ot">&lt;-</span></span>
+<span id="cb7-2"><a href="why-model.html#cb7-2" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">11</span>, <span class="dv">17</span>, <span class="dv">23</span>, <span class="dv">29</span>, <span class="dv">37</span>, <span class="dv">41</span>, <span class="dv">53</span>, <span class="dv">67</span>, <span class="dv">79</span>, <span class="dv">83</span>, <span class="dv">97</span>, <span class="dv">60</span>, <span class="dv">71</span>, <span class="dv">15</span>, <span class="dv">45</span>)</span>
+<span id="cb7-3"><a href="why-model.html#cb7-3" tabindex="-1"></a>Y3 <span class="ot">&lt;-</span></span>
+<span id="cb7-4"><a href="why-model.html#cb7-4" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">21</span>, <span class="dv">54</span>, <span class="dv">33</span>, <span class="dv">101</span>, <span class="dv">85</span>, <span class="dv">65</span>, <span class="dv">157</span>, <span class="dv">120</span>, <span class="dv">111</span>, <span class="dv">200</span>, <span class="dv">140</span>, <span class="dv">220</span>, <span class="dv">230</span>, <span class="dv">217</span>,</span>
+<span id="cb7-5"><a href="why-model.html#cb7-5" tabindex="-1"></a>    <span class="dv">11</span>, <span class="dv">190</span>)</span>
+<span id="cb7-6"><a href="why-model.html#cb7-6" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="why-model.html#cb7-7" tabindex="-1"></a><span class="fu">plot</span>(Y3 <span class="sc">~</span> A3)</span></code></pre></div>
 <p><img src="11-why-model-r_files/figure-html/unnamed-chunk-2-1.png" width="85%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="why-model.html#cb13-1" tabindex="-1"></a></span>
-<span id="cb13-2"><a href="why-model.html#cb13-2" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">glm</span>(Y3 <span class="sc">~</span> A3))</span>
-<span id="cb13-3"><a href="why-model.html#cb13-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb13-4"><a href="why-model.html#cb13-4" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
-<span id="cb13-5"><a href="why-model.html#cb13-5" tabindex="-1"></a><span class="co">#&gt; glm(formula = Y3 ~ A3)</span></span>
-<span id="cb13-6"><a href="why-model.html#cb13-6" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb13-7"><a href="why-model.html#cb13-7" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
-<span id="cb13-8"><a href="why-model.html#cb13-8" tabindex="-1"></a><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span id="cb13-9"><a href="why-model.html#cb13-9" tabindex="-1"></a><span class="co">#&gt; (Intercept)  24.5464    21.3300   1.151 0.269094    </span></span>
-<span id="cb13-10"><a href="why-model.html#cb13-10" tabindex="-1"></a><span class="co">#&gt; A3            2.1372     0.3997   5.347 0.000103 ***</span></span>
-<span id="cb13-11"><a href="why-model.html#cb13-11" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
-<span id="cb13-12"><a href="why-model.html#cb13-12" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb13-13"><a href="why-model.html#cb13-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb13-14"><a href="why-model.html#cb13-14" tabindex="-1"></a><span class="co">#&gt; (Dispersion parameter for gaussian family taken to be 1944.109)</span></span>
-<span id="cb13-15"><a href="why-model.html#cb13-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb13-16"><a href="why-model.html#cb13-16" tabindex="-1"></a><span class="co">#&gt;     Null deviance: 82800  on 15  degrees of freedom</span></span>
-<span id="cb13-17"><a href="why-model.html#cb13-17" tabindex="-1"></a><span class="co">#&gt; Residual deviance: 27218  on 14  degrees of freedom</span></span>
-<span id="cb13-18"><a href="why-model.html#cb13-18" tabindex="-1"></a><span class="co">#&gt; AIC: 170.43</span></span>
-<span id="cb13-19"><a href="why-model.html#cb13-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb13-20"><a href="why-model.html#cb13-20" tabindex="-1"></a><span class="co">#&gt; Number of Fisher Scoring iterations: 2</span></span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="why-model.html#cb14-1" tabindex="-1"></a><span class="fu">predict</span>(<span class="fu">glm</span>(Y3 <span class="sc">~</span> A3), <span class="fu">data.frame</span>(<span class="at">A3 =</span> <span class="dv">90</span>))</span>
-<span id="cb14-2"><a href="why-model.html#cb14-2" tabindex="-1"></a><span class="co">#&gt;      1 </span></span>
-<span id="cb14-3"><a href="why-model.html#cb14-3" tabindex="-1"></a><span class="co">#&gt; 216.89</span></span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="why-model.html#cb15-1" tabindex="-1"></a></span>
-<span id="cb15-2"><a href="why-model.html#cb15-2" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">glm</span>(Y <span class="sc">~</span> A))</span>
-<span id="cb15-3"><a href="why-model.html#cb15-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb15-4"><a href="why-model.html#cb15-4" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
-<span id="cb15-5"><a href="why-model.html#cb15-5" tabindex="-1"></a><span class="co">#&gt; glm(formula = Y ~ A)</span></span>
-<span id="cb15-6"><a href="why-model.html#cb15-6" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb15-7"><a href="why-model.html#cb15-7" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
-<span id="cb15-8"><a href="why-model.html#cb15-8" tabindex="-1"></a><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)   </span></span>
-<span id="cb15-9"><a href="why-model.html#cb15-9" tabindex="-1"></a><span class="co">#&gt; (Intercept)    67.50      19.72   3.424  0.00412 **</span></span>
-<span id="cb15-10"><a href="why-model.html#cb15-10" tabindex="-1"></a><span class="co">#&gt; A              78.75      27.88   2.824  0.01352 * </span></span>
-<span id="cb15-11"><a href="why-model.html#cb15-11" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
-<span id="cb15-12"><a href="why-model.html#cb15-12" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb15-13"><a href="why-model.html#cb15-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb15-14"><a href="why-model.html#cb15-14" tabindex="-1"></a><span class="co">#&gt; (Dispersion parameter for gaussian family taken to be 3109.821)</span></span>
-<span id="cb15-15"><a href="why-model.html#cb15-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb15-16"><a href="why-model.html#cb15-16" tabindex="-1"></a><span class="co">#&gt;     Null deviance: 68344  on 15  degrees of freedom</span></span>
-<span id="cb15-17"><a href="why-model.html#cb15-17" tabindex="-1"></a><span class="co">#&gt; Residual deviance: 43538  on 14  degrees of freedom</span></span>
-<span id="cb15-18"><a href="why-model.html#cb15-18" tabindex="-1"></a><span class="co">#&gt; AIC: 177.95</span></span>
-<span id="cb15-19"><a href="why-model.html#cb15-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb15-20"><a href="why-model.html#cb15-20" tabindex="-1"></a><span class="co">#&gt; Number of Fisher Scoring iterations: 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="why-model.html#cb8-1" tabindex="-1"></a></span>
+<span id="cb8-2"><a href="why-model.html#cb8-2" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">glm</span>(Y3 <span class="sc">~</span> A3))</span>
+<span id="cb8-3"><a href="why-model.html#cb8-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-4"><a href="why-model.html#cb8-4" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb8-5"><a href="why-model.html#cb8-5" tabindex="-1"></a><span class="co">#&gt; glm(formula = Y3 ~ A3)</span></span>
+<span id="cb8-6"><a href="why-model.html#cb8-6" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-7"><a href="why-model.html#cb8-7" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb8-8"><a href="why-model.html#cb8-8" tabindex="-1"></a><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb8-9"><a href="why-model.html#cb8-9" tabindex="-1"></a><span class="co">#&gt; (Intercept)  24.5464    21.3300   1.151 0.269094    </span></span>
+<span id="cb8-10"><a href="why-model.html#cb8-10" tabindex="-1"></a><span class="co">#&gt; A3            2.1372     0.3997   5.347 0.000103 ***</span></span>
+<span id="cb8-11"><a href="why-model.html#cb8-11" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb8-12"><a href="why-model.html#cb8-12" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb8-13"><a href="why-model.html#cb8-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-14"><a href="why-model.html#cb8-14" tabindex="-1"></a><span class="co">#&gt; (Dispersion parameter for gaussian family taken to be 1944.109)</span></span>
+<span id="cb8-15"><a href="why-model.html#cb8-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-16"><a href="why-model.html#cb8-16" tabindex="-1"></a><span class="co">#&gt;     Null deviance: 82800  on 15  degrees of freedom</span></span>
+<span id="cb8-17"><a href="why-model.html#cb8-17" tabindex="-1"></a><span class="co">#&gt; Residual deviance: 27218  on 14  degrees of freedom</span></span>
+<span id="cb8-18"><a href="why-model.html#cb8-18" tabindex="-1"></a><span class="co">#&gt; AIC: 170.43</span></span>
+<span id="cb8-19"><a href="why-model.html#cb8-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-20"><a href="why-model.html#cb8-20" tabindex="-1"></a><span class="co">#&gt; Number of Fisher Scoring iterations: 2</span></span>
+<span id="cb8-21"><a href="why-model.html#cb8-21" tabindex="-1"></a><span class="fu">predict</span>(<span class="fu">glm</span>(Y3 <span class="sc">~</span> A3), <span class="fu">data.frame</span>(<span class="at">A3 =</span> <span class="dv">90</span>))</span>
+<span id="cb8-22"><a href="why-model.html#cb8-22" tabindex="-1"></a><span class="co">#&gt;      1 </span></span>
+<span id="cb8-23"><a href="why-model.html#cb8-23" tabindex="-1"></a><span class="co">#&gt; 216.89</span></span>
+<span id="cb8-24"><a href="why-model.html#cb8-24" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="why-model.html#cb8-25" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">glm</span>(Y <span class="sc">~</span> A))</span>
+<span id="cb8-26"><a href="why-model.html#cb8-26" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-27"><a href="why-model.html#cb8-27" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb8-28"><a href="why-model.html#cb8-28" tabindex="-1"></a><span class="co">#&gt; glm(formula = Y ~ A)</span></span>
+<span id="cb8-29"><a href="why-model.html#cb8-29" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-30"><a href="why-model.html#cb8-30" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb8-31"><a href="why-model.html#cb8-31" tabindex="-1"></a><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)   </span></span>
+<span id="cb8-32"><a href="why-model.html#cb8-32" tabindex="-1"></a><span class="co">#&gt; (Intercept)    67.50      19.72   3.424  0.00412 **</span></span>
+<span id="cb8-33"><a href="why-model.html#cb8-33" tabindex="-1"></a><span class="co">#&gt; A              78.75      27.88   2.824  0.01352 * </span></span>
+<span id="cb8-34"><a href="why-model.html#cb8-34" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb8-35"><a href="why-model.html#cb8-35" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb8-36"><a href="why-model.html#cb8-36" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-37"><a href="why-model.html#cb8-37" tabindex="-1"></a><span class="co">#&gt; (Dispersion parameter for gaussian family taken to be 3109.821)</span></span>
+<span id="cb8-38"><a href="why-model.html#cb8-38" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-39"><a href="why-model.html#cb8-39" tabindex="-1"></a><span class="co">#&gt;     Null deviance: 68344  on 15  degrees of freedom</span></span>
+<span id="cb8-40"><a href="why-model.html#cb8-40" tabindex="-1"></a><span class="co">#&gt; Residual deviance: 43538  on 14  degrees of freedom</span></span>
+<span id="cb8-41"><a href="why-model.html#cb8-41" tabindex="-1"></a><span class="co">#&gt; AIC: 177.95</span></span>
+<span id="cb8-42"><a href="why-model.html#cb8-42" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-43"><a href="why-model.html#cb8-43" tabindex="-1"></a><span class="co">#&gt; Number of Fisher Scoring iterations: 2</span></span></code></pre></div>
 </div>
 <div id="program-11.3" class="section level2 hasAnchor">
 <h2>Program 11.3<a href="why-model.html#program-11.3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -412,32 +412,32 @@ div.csl-indent {
 <li>3-parameter linear model</li>
 <li>Data from Figure 11.3</li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="why-model.html#cb16-1" tabindex="-1"></a>Asq <span class="ot">&lt;-</span> A3 <span class="sc">*</span> A3</span>
-<span id="cb16-2"><a href="why-model.html#cb16-2" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="why-model.html#cb16-3" tabindex="-1"></a>mod3 <span class="ot">&lt;-</span> <span class="fu">glm</span>(Y3 <span class="sc">~</span> A3 <span class="sc">+</span> Asq)</span>
-<span id="cb16-4"><a href="why-model.html#cb16-4" tabindex="-1"></a><span class="fu">summary</span>(mod3)</span>
-<span id="cb16-5"><a href="why-model.html#cb16-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb16-6"><a href="why-model.html#cb16-6" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
-<span id="cb16-7"><a href="why-model.html#cb16-7" tabindex="-1"></a><span class="co">#&gt; glm(formula = Y3 ~ A3 + Asq)</span></span>
-<span id="cb16-8"><a href="why-model.html#cb16-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb16-9"><a href="why-model.html#cb16-9" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
-<span id="cb16-10"><a href="why-model.html#cb16-10" tabindex="-1"></a><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)  </span></span>
-<span id="cb16-11"><a href="why-model.html#cb16-11" tabindex="-1"></a><span class="co">#&gt; (Intercept) -7.40688   31.74777  -0.233   0.8192  </span></span>
-<span id="cb16-12"><a href="why-model.html#cb16-12" tabindex="-1"></a><span class="co">#&gt; A3           4.10723    1.53088   2.683   0.0188 *</span></span>
-<span id="cb16-13"><a href="why-model.html#cb16-13" tabindex="-1"></a><span class="co">#&gt; Asq         -0.02038    0.01532  -1.331   0.2062  </span></span>
-<span id="cb16-14"><a href="why-model.html#cb16-14" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
-<span id="cb16-15"><a href="why-model.html#cb16-15" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb16-16"><a href="why-model.html#cb16-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb16-17"><a href="why-model.html#cb16-17" tabindex="-1"></a><span class="co">#&gt; (Dispersion parameter for gaussian family taken to be 1842.697)</span></span>
-<span id="cb16-18"><a href="why-model.html#cb16-18" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb16-19"><a href="why-model.html#cb16-19" tabindex="-1"></a><span class="co">#&gt;     Null deviance: 82800  on 15  degrees of freedom</span></span>
-<span id="cb16-20"><a href="why-model.html#cb16-20" tabindex="-1"></a><span class="co">#&gt; Residual deviance: 23955  on 13  degrees of freedom</span></span>
-<span id="cb16-21"><a href="why-model.html#cb16-21" tabindex="-1"></a><span class="co">#&gt; AIC: 170.39</span></span>
-<span id="cb16-22"><a href="why-model.html#cb16-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb16-23"><a href="why-model.html#cb16-23" tabindex="-1"></a><span class="co">#&gt; Number of Fisher Scoring iterations: 2</span></span></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="why-model.html#cb17-1" tabindex="-1"></a><span class="fu">predict</span>(mod3, <span class="fu">data.frame</span>(<span class="fu">cbind</span>(<span class="at">A3 =</span> <span class="dv">90</span>, <span class="at">Asq =</span> <span class="dv">8100</span>)))</span>
-<span id="cb17-2"><a href="why-model.html#cb17-2" tabindex="-1"></a><span class="co">#&gt;        1 </span></span>
-<span id="cb17-3"><a href="why-model.html#cb17-3" tabindex="-1"></a><span class="co">#&gt; 197.1269</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="why-model.html#cb9-1" tabindex="-1"></a>Asq <span class="ot">&lt;-</span> A3 <span class="sc">*</span> A3</span>
+<span id="cb9-2"><a href="why-model.html#cb9-2" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="why-model.html#cb9-3" tabindex="-1"></a>mod3 <span class="ot">&lt;-</span> <span class="fu">glm</span>(Y3 <span class="sc">~</span> A3 <span class="sc">+</span> Asq)</span>
+<span id="cb9-4"><a href="why-model.html#cb9-4" tabindex="-1"></a><span class="fu">summary</span>(mod3)</span>
+<span id="cb9-5"><a href="why-model.html#cb9-5" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-6"><a href="why-model.html#cb9-6" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb9-7"><a href="why-model.html#cb9-7" tabindex="-1"></a><span class="co">#&gt; glm(formula = Y3 ~ A3 + Asq)</span></span>
+<span id="cb9-8"><a href="why-model.html#cb9-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-9"><a href="why-model.html#cb9-9" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb9-10"><a href="why-model.html#cb9-10" tabindex="-1"></a><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)  </span></span>
+<span id="cb9-11"><a href="why-model.html#cb9-11" tabindex="-1"></a><span class="co">#&gt; (Intercept) -7.40688   31.74777  -0.233   0.8192  </span></span>
+<span id="cb9-12"><a href="why-model.html#cb9-12" tabindex="-1"></a><span class="co">#&gt; A3           4.10723    1.53088   2.683   0.0188 *</span></span>
+<span id="cb9-13"><a href="why-model.html#cb9-13" tabindex="-1"></a><span class="co">#&gt; Asq         -0.02038    0.01532  -1.331   0.2062  </span></span>
+<span id="cb9-14"><a href="why-model.html#cb9-14" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb9-15"><a href="why-model.html#cb9-15" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb9-16"><a href="why-model.html#cb9-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-17"><a href="why-model.html#cb9-17" tabindex="-1"></a><span class="co">#&gt; (Dispersion parameter for gaussian family taken to be 1842.697)</span></span>
+<span id="cb9-18"><a href="why-model.html#cb9-18" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-19"><a href="why-model.html#cb9-19" tabindex="-1"></a><span class="co">#&gt;     Null deviance: 82800  on 15  degrees of freedom</span></span>
+<span id="cb9-20"><a href="why-model.html#cb9-20" tabindex="-1"></a><span class="co">#&gt; Residual deviance: 23955  on 13  degrees of freedom</span></span>
+<span id="cb9-21"><a href="why-model.html#cb9-21" tabindex="-1"></a><span class="co">#&gt; AIC: 170.39</span></span>
+<span id="cb9-22"><a href="why-model.html#cb9-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-23"><a href="why-model.html#cb9-23" tabindex="-1"></a><span class="co">#&gt; Number of Fisher Scoring iterations: 2</span></span>
+<span id="cb9-24"><a href="why-model.html#cb9-24" tabindex="-1"></a><span class="fu">predict</span>(mod3, <span class="fu">data.frame</span>(<span class="fu">cbind</span>(<span class="at">A3 =</span> <span class="dv">90</span>, <span class="at">Asq =</span> <span class="dv">8100</span>)))</span>
+<span id="cb9-25"><a href="why-model.html#cb9-25" tabindex="-1"></a><span class="co">#&gt;        1 </span></span>
+<span id="cb9-26"><a href="why-model.html#cb9-26" tabindex="-1"></a><span class="co">#&gt; 197.1269</span></span></code></pre></div>
 
 </div>
 </div>

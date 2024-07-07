@@ -93,15 +93,17 @@
 \makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
 % Set default figure placement to htbp
-\makeatletter
 \def\fps@figure{htbp}
 \makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -118,9 +120,6 @@
 \usepackage[sort, round]{natbib}
 \setmonofont{Fira Code}
 \frontmatter
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
 \usepackage{bookmark}
@@ -138,7 +137,7 @@
 
 \title{Causal Inference: What If. R and Stata code for Exercises}
 \author{Book by M. A. Hernán and J. M. Robins \and R code by Joy Shi and Sean McGrath \and Stata code by Eleanor Murray and Roger Logan \and R Markdown code by Tom Palmer}
-\date{16 June 2024}
+\date{07 July 2024}
 
 \begin{document}
 \maketitle
@@ -260,19 +259,9 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \FunctionTok{summary}\NormalTok{(Y[A }\SpecialCharTok{==} \DecValTok{0}\NormalTok{])}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}    10.0    27.5    60.0    67.5    87.5   170.0}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(Y[A }\SpecialCharTok{==} \DecValTok{1}\NormalTok{])}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}    50.0   105.0   160.0   146.2   185.0   220.0}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \NormalTok{A2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{)}
 \NormalTok{Y2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{110}\NormalTok{, }\DecValTok{80}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{40}\NormalTok{, }\DecValTok{170}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{70}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{110}\NormalTok{, }\DecValTok{50}\NormalTok{, }\DecValTok{180}\NormalTok{,}
@@ -289,27 +278,12 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \FunctionTok{summary}\NormalTok{(Y2[A2 }\SpecialCharTok{==} \DecValTok{1}\NormalTok{])}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}    40.0    47.5    65.0    70.0    87.5   110.0}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(Y2[A2 }\SpecialCharTok{==} \DecValTok{2}\NormalTok{])}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}      30      45      60      80      95     170}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(Y2[A2 }\SpecialCharTok{==} \DecValTok{3}\NormalTok{])}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}    50.0    95.0   120.0   117.5   142.5   180.0}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(Y2[A2 }\SpecialCharTok{==} \DecValTok{4}\NormalTok{])}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}   150.0   187.5   205.0   195.0   212.5   220.0}
@@ -362,19 +336,9 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} AIC: 170.43}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Number of Fisher Scoring iterations: 2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{predict}\NormalTok{(}\FunctionTok{glm}\NormalTok{(Y3 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ A3), }\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{A3 =} \DecValTok{90}\NormalTok{))}
 \CommentTok{\#\textgreater{}      1 }
 \CommentTok{\#\textgreater{} 216.89}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \FunctionTok{summary}\NormalTok{(}\FunctionTok{glm}\NormalTok{(Y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ A))}
 \CommentTok{\#\textgreater{} }
@@ -433,11 +397,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} AIC: 170.39}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Number of Fisher Scoring iterations: 2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{predict}\NormalTok{(mod3, }\FunctionTok{data.frame}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(}\AttributeTok{A3 =} \DecValTok{90}\NormalTok{, }\AttributeTok{Asq =} \DecValTok{8100}\NormalTok{)))}
 \CommentTok{\#\textgreater{}        1 }
 \CommentTok{\#\textgreater{} 197.1269}
@@ -481,191 +440,91 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} Coefficients:}
 \CommentTok{\#\textgreater{} (Intercept)         qsmk  }
 \CommentTok{\#\textgreater{}       1.984        2.541}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \CommentTok{\# Smoking cessation}
 \FunctionTok{predict}\NormalTok{(}\FunctionTok{lm}\NormalTok{(wt82\_71 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ qsmk, }\AttributeTok{data =}\NormalTok{ nhefs.nmv), }\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{qsmk =} \DecValTok{1}\NormalTok{))}
 \CommentTok{\#\textgreater{}        1 }
 \CommentTok{\#\textgreater{} 4.525079}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \CommentTok{\# No smoking cessation}
 \FunctionTok{predict}\NormalTok{(}\FunctionTok{lm}\NormalTok{(wt82\_71 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ qsmk, }\AttributeTok{data =}\NormalTok{ nhefs.nmv), }\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{qsmk =} \DecValTok{0}\NormalTok{))}
 \CommentTok{\#\textgreater{}        1 }
 \CommentTok{\#\textgreater{} 1.984498}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# Table}
 \FunctionTok{summary}\NormalTok{(nhefs.nmv[}\FunctionTok{which}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{qsmk }\SpecialCharTok{==} \DecValTok{0}\NormalTok{),]}\SpecialCharTok{$}\NormalTok{age)}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}   25.00   33.00   42.00   42.79   51.00   72.00}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(nhefs.nmv[}\FunctionTok{which}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{qsmk }\SpecialCharTok{==} \DecValTok{0}\NormalTok{),]}\SpecialCharTok{$}\NormalTok{wt71)}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}   40.82   59.19   68.49   70.30   79.38  151.73}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(nhefs.nmv[}\FunctionTok{which}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{qsmk }\SpecialCharTok{==} \DecValTok{0}\NormalTok{),]}\SpecialCharTok{$}\NormalTok{smokeintensity)}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}    1.00   15.00   20.00   21.19   30.00   60.00}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(nhefs.nmv[}\FunctionTok{which}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{qsmk }\SpecialCharTok{==} \DecValTok{0}\NormalTok{),]}\SpecialCharTok{$}\NormalTok{smokeyrs)}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}    1.00   15.00   23.00   24.09   32.00   64.00}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \FunctionTok{summary}\NormalTok{(nhefs.nmv[}\FunctionTok{which}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{qsmk }\SpecialCharTok{==} \DecValTok{1}\NormalTok{),]}\SpecialCharTok{$}\NormalTok{age)}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}   25.00   35.00   46.00   46.17   56.00   74.00}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(nhefs.nmv[}\FunctionTok{which}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{qsmk }\SpecialCharTok{==} \DecValTok{1}\NormalTok{),]}\SpecialCharTok{$}\NormalTok{wt71)}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}   39.58   60.67   71.21   72.35   81.08  136.98}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(nhefs.nmv[}\FunctionTok{which}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{qsmk }\SpecialCharTok{==} \DecValTok{1}\NormalTok{),]}\SpecialCharTok{$}\NormalTok{smokeintensity)}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}     1.0    10.0    20.0    18.6    25.0    80.0}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(nhefs.nmv[}\FunctionTok{which}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{qsmk }\SpecialCharTok{==} \DecValTok{1}\NormalTok{),]}\SpecialCharTok{$}\NormalTok{smokeyrs)}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}    1.00   15.00   26.00   26.03   35.00   60.00}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \FunctionTok{table}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{qsmk, nhefs.nmv}\SpecialCharTok{$}\NormalTok{sex)}
 \CommentTok{\#\textgreater{}    }
 \CommentTok{\#\textgreater{}       0   1}
 \CommentTok{\#\textgreater{}   0 542 621}
 \CommentTok{\#\textgreater{}   1 220 183}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{prop.table}\NormalTok{(}\FunctionTok{table}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{qsmk, nhefs.nmv}\SpecialCharTok{$}\NormalTok{sex), }\DecValTok{1}\NormalTok{)}
 \CommentTok{\#\textgreater{}    }
 \CommentTok{\#\textgreater{}             0         1}
 \CommentTok{\#\textgreater{}   0 0.4660361 0.5339639}
 \CommentTok{\#\textgreater{}   1 0.5459057 0.4540943}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \FunctionTok{table}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{qsmk, nhefs.nmv}\SpecialCharTok{$}\NormalTok{race)}
 \CommentTok{\#\textgreater{}    }
 \CommentTok{\#\textgreater{}       0   1}
 \CommentTok{\#\textgreater{}   0 993 170}
 \CommentTok{\#\textgreater{}   1 367  36}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{prop.table}\NormalTok{(}\FunctionTok{table}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{qsmk, nhefs.nmv}\SpecialCharTok{$}\NormalTok{race), }\DecValTok{1}\NormalTok{)}
 \CommentTok{\#\textgreater{}    }
 \CommentTok{\#\textgreater{}              0          1}
 \CommentTok{\#\textgreater{}   0 0.85382631 0.14617369}
 \CommentTok{\#\textgreater{}   1 0.91066998 0.08933002}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \FunctionTok{table}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{qsmk, nhefs.nmv}\SpecialCharTok{$}\NormalTok{education)}
 \CommentTok{\#\textgreater{}    }
 \CommentTok{\#\textgreater{}       1   2   3   4   5}
 \CommentTok{\#\textgreater{}   0 210 266 480  92 115}
 \CommentTok{\#\textgreater{}   1  81  74 157  29  62}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{prop.table}\NormalTok{(}\FunctionTok{table}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{qsmk, nhefs.nmv}\SpecialCharTok{$}\NormalTok{education), }\DecValTok{1}\NormalTok{)}
 \CommentTok{\#\textgreater{}    }
 \CommentTok{\#\textgreater{}              1          2          3          4          5}
 \CommentTok{\#\textgreater{}   0 0.18056750 0.22871883 0.41272571 0.07910576 0.09888220}
 \CommentTok{\#\textgreater{}   1 0.20099256 0.18362283 0.38957816 0.07196030 0.15384615}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \FunctionTok{table}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{qsmk, nhefs.nmv}\SpecialCharTok{$}\NormalTok{exercise)}
 \CommentTok{\#\textgreater{}    }
 \CommentTok{\#\textgreater{}       0   1   2}
 \CommentTok{\#\textgreater{}   0 237 485 441}
 \CommentTok{\#\textgreater{}   1  63 176 164}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{prop.table}\NormalTok{(}\FunctionTok{table}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{qsmk, nhefs.nmv}\SpecialCharTok{$}\NormalTok{exercise), }\DecValTok{1}\NormalTok{)}
 \CommentTok{\#\textgreater{}    }
 \CommentTok{\#\textgreater{}             0         1         2}
 \CommentTok{\#\textgreater{}   0 0.2037833 0.4170249 0.3791917}
 \CommentTok{\#\textgreater{}   1 0.1563275 0.4367246 0.4069479}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \FunctionTok{table}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{qsmk, nhefs.nmv}\SpecialCharTok{$}\NormalTok{active)}
 \CommentTok{\#\textgreater{}    }
 \CommentTok{\#\textgreater{}       0   1   2}
 \CommentTok{\#\textgreater{}   0 532 527 104}
 \CommentTok{\#\textgreater{}   1 170 188  45}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{prop.table}\NormalTok{(}\FunctionTok{table}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{qsmk, nhefs.nmv}\SpecialCharTok{$}\NormalTok{active), }\DecValTok{1}\NormalTok{)}
 \CommentTok{\#\textgreater{}    }
 \CommentTok{\#\textgreater{}             0         1         2}
@@ -734,11 +593,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} AIC: 1714.9}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Number of Fisher Scoring iterations: 4}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \NormalTok{p.qsmk.obs }\OtherTok{\textless{}{-}}
   \FunctionTok{ifelse}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{qsmk }\SpecialCharTok{==} \DecValTok{0}\NormalTok{,}
@@ -749,18 +603,8 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \FunctionTok{summary}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{w)}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}   1.054   1.230   1.373   1.996   1.990  16.700}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{sd}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{w)}
 \CommentTok{\#\textgreater{} [1] 1.474787}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# install.packages("geepack") \# install package if required}
 \FunctionTok{library}\NormalTok{(}\StringTok{"geepack"}\NormalTok{)}
@@ -790,11 +634,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{}             Estimate Std.err}
 \CommentTok{\#\textgreater{} (Intercept)    65.06   4.221}
 \CommentTok{\#\textgreater{} Number of clusters:   1566  Maximum cluster size: 1}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \NormalTok{beta }\OtherTok{\textless{}{-}} \FunctionTok{coef}\NormalTok{(msm.w)}
 \NormalTok{SE }\OtherTok{\textless{}{-}} \FunctionTok{coef}\NormalTok{(}\FunctionTok{summary}\NormalTok{(msm.w))[, }\DecValTok{2}\NormalTok{]}
@@ -804,11 +643,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{}              beta   lcl  ucl}
 \CommentTok{\#\textgreater{} (Intercept) 1.780 1.340 2.22}
 \CommentTok{\#\textgreater{} qsmk        3.441 2.411 4.47}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# no association between sex and qsmk in pseudo{-}population}
 \FunctionTok{xtabs}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{w }\SpecialCharTok{\textasciitilde{}}\NormalTok{ nhefs.nmv}\SpecialCharTok{$}\NormalTok{sex }\SpecialCharTok{+}\NormalTok{ nhefs.nmv}\SpecialCharTok{$}\NormalTok{qsmk)}
@@ -816,11 +650,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} nhefs.nmv$sex     0     1}
 \CommentTok{\#\textgreater{}             0 763.6 763.6}
 \CommentTok{\#\textgreater{}             1 801.7 797.2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# "check" for positivity (White women)}
 \FunctionTok{table}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{age[nhefs.nmv}\SpecialCharTok{$}\NormalTok{race }\SpecialCharTok{==} \DecValTok{0} \SpecialCharTok{\&}\NormalTok{ nhefs.nmv}\SpecialCharTok{$}\NormalTok{sex }\SpecialCharTok{==} \DecValTok{1}\NormalTok{],}
@@ -939,11 +768,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} AIC: 1715}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Number of Fisher Scoring iterations: 4}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \NormalTok{pd.qsmk }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(denom.fit, }\AttributeTok{type =} \StringTok{"response"}\NormalTok{)}
 
@@ -967,11 +791,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} AIC: 1788}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Number of Fisher Scoring iterations: 4}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \NormalTok{pn.qsmk }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(numer.fit, }\AttributeTok{type =} \StringTok{"response"}\NormalTok{)}
 
@@ -982,11 +801,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \FunctionTok{summary}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{sw)}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}   0.331   0.867   0.950   0.999   1.079   4.298}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 
 \NormalTok{msm.sw }\OtherTok{\textless{}{-}} \FunctionTok{geeglm}\NormalTok{(}
@@ -1015,11 +829,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{}             Estimate Std.err}
 \CommentTok{\#\textgreater{} (Intercept)     60.7    3.71}
 \CommentTok{\#\textgreater{} Number of clusters:   1566  Maximum cluster size: 1}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \NormalTok{beta }\OtherTok{\textless{}{-}} \FunctionTok{coef}\NormalTok{(msm.sw)}
 \NormalTok{SE }\OtherTok{\textless{}{-}} \FunctionTok{coef}\NormalTok{(}\FunctionTok{summary}\NormalTok{(msm.sw))[, }\DecValTok{2}\NormalTok{]}
@@ -1029,11 +838,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{}             beta  lcl  ucl}
 \CommentTok{\#\textgreater{} (Intercept) 1.78 1.34 2.22}
 \CommentTok{\#\textgreater{} qsmk        3.44 2.41 4.47}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# no association between sex and qsmk in pseudo{-}population}
 \FunctionTok{xtabs}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{sw }\SpecialCharTok{\textasciitilde{}}\NormalTok{ nhefs.nmv}\SpecialCharTok{$}\NormalTok{sex }\SpecialCharTok{+}\NormalTok{ nhefs.nmv}\SpecialCharTok{$}\NormalTok{qsmk)}
@@ -1084,11 +888,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \FunctionTok{summary}\NormalTok{(nhefs.nmv.s}\SpecialCharTok{$}\NormalTok{sw.a)}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}    0.19    0.89    0.97    1.00    1.05    5.10}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \NormalTok{msm.sw.cont }\OtherTok{\textless{}{-}}
   \FunctionTok{geeglm}\NormalTok{(}
@@ -1119,11 +918,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{}             Estimate Std.err}
 \CommentTok{\#\textgreater{} (Intercept)     60.5     4.5}
 \CommentTok{\#\textgreater{} Number of clusters:   1162  Maximum cluster size: 1}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \NormalTok{beta }\OtherTok{\textless{}{-}} \FunctionTok{coef}\NormalTok{(msm.sw.cont)}
 \NormalTok{SE }\OtherTok{\textless{}{-}} \FunctionTok{coef}\NormalTok{(}\FunctionTok{summary}\NormalTok{(msm.sw.cont))[, }\DecValTok{2}\NormalTok{]}
@@ -1154,11 +948,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{}       0   1}
 \CommentTok{\#\textgreater{}   0 963 200}
 \CommentTok{\#\textgreater{}   1 312  91}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# First, estimation of stabilized weights sw (same as in Program 12.3)}
 \CommentTok{\# Second, fit logistic model below}
@@ -1171,11 +960,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
   \AttributeTok{corstr =} \StringTok{"independence"}
 \NormalTok{)}
 \CommentTok{\#\textgreater{} Warning in eval(family$initialize): non{-}integer \#successes in a binomial glm!}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(msm.logistic)}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Call:}
@@ -1195,11 +979,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{}             Estimate Std.err}
 \CommentTok{\#\textgreater{} (Intercept)        1  0.0678}
 \CommentTok{\#\textgreater{} Number of clusters:   1566  Maximum cluster size: 1}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \NormalTok{beta }\OtherTok{\textless{}{-}} \FunctionTok{coef}\NormalTok{(msm.logistic)}
 \NormalTok{SE }\OtherTok{\textless{}{-}} \FunctionTok{coef}\NormalTok{(}\FunctionTok{summary}\NormalTok{(msm.logistic))[, }\DecValTok{2}\NormalTok{]}
@@ -1228,11 +1007,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{}   0   1 }
 \CommentTok{\#\textgreater{} 762 804}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# estimation of denominator of ip weights}
 \NormalTok{denom.fit }\OtherTok{\textless{}{-}}
@@ -1283,11 +1057,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} AIC: 1715}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Number of Fisher Scoring iterations: 4}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \NormalTok{pd.qsmk }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(denom.fit, }\AttributeTok{type =} \StringTok{"response"}\NormalTok{)}
 
@@ -1313,11 +1082,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} AIC: 1782}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Number of Fisher Scoring iterations: 4}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{pn.qsmk }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(numer.fit, }\AttributeTok{type =} \StringTok{"response"}\NormalTok{)}
 
 \NormalTok{nhefs.nmv}\SpecialCharTok{$}\NormalTok{sw.a }\OtherTok{\textless{}{-}}
@@ -1327,18 +1091,8 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \FunctionTok{summary}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{sw.a)}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}    0.29    0.88    0.96    1.00    1.08    3.80}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{sd}\NormalTok{(nhefs.nmv}\SpecialCharTok{$}\NormalTok{sw.a)}
 \CommentTok{\#\textgreater{} [1] 0.271}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# Estimating parameters of a marginal structural mean model}
 \NormalTok{msm.emm }\OtherTok{\textless{}{-}} \FunctionTok{geeglm}\NormalTok{(}
@@ -1371,11 +1125,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{}             Estimate Std.err}
 \CommentTok{\#\textgreater{} (Intercept)     60.8    3.71}
 \CommentTok{\#\textgreater{} Number of clusters:   1566  Maximum cluster size: 1}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \NormalTok{beta }\OtherTok{\textless{}{-}} \FunctionTok{coef}\NormalTok{(msm.emm)}
 \NormalTok{SE }\OtherTok{\textless{}{-}} \FunctionTok{coef}\NormalTok{(}\FunctionTok{summary}\NormalTok{(msm.emm))[, }\DecValTok{2}\NormalTok{]}
@@ -1407,28 +1156,13 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{}        0    1}
 \CommentTok{\#\textgreater{}   0 1163   38}
 \CommentTok{\#\textgreater{}   1  403   25}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \FunctionTok{summary}\NormalTok{(nhefs[}\FunctionTok{which}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{cens }\SpecialCharTok{==} \DecValTok{0}\NormalTok{),]}\SpecialCharTok{$}\NormalTok{wt71)}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}    39.6    59.5    69.2    70.8    79.8   151.7}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(nhefs[}\FunctionTok{which}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{cens }\SpecialCharTok{==} \DecValTok{1}\NormalTok{),]}\SpecialCharTok{$}\NormalTok{wt71)}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}    36.2    63.1    72.1    76.6    87.9   169.2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# estimation of denominator of ip weights for A}
 \NormalTok{denom.fit }\OtherTok{\textless{}{-}}
@@ -1479,11 +1213,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} AIC: 1805}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Number of Fisher Scoring iterations: 4}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \NormalTok{pd.qsmk }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(denom.fit, }\AttributeTok{type =} \StringTok{"response"}\NormalTok{)}
 
@@ -1507,11 +1236,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} AIC: 1878}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Number of Fisher Scoring iterations: 4}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{pn.qsmk }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(numer.fit, }\AttributeTok{type =} \StringTok{"response"}\NormalTok{)}
 
 \CommentTok{\# estimation of denominator of ip weights for C}
@@ -1565,11 +1289,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} AIC: 505.4}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Number of Fisher Scoring iterations: 7}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \NormalTok{pd.cens }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{predict}\NormalTok{(denom.cens, }\AttributeTok{type =} \StringTok{"response"}\NormalTok{)}
 
@@ -1595,11 +1314,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} AIC: 531.8}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Number of Fisher Scoring iterations: 6}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{pn.cens }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{predict}\NormalTok{(numer.cens, }\AttributeTok{type =} \StringTok{"response"}\NormalTok{)}
 
 \NormalTok{nhefs}\SpecialCharTok{$}\NormalTok{sw.a }\OtherTok{\textless{}{-}}
@@ -1611,48 +1325,18 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \FunctionTok{summary}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{sw.a)}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}    0.33    0.86    0.95    1.00    1.08    4.21}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{sd}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{sw.a)}
 \CommentTok{\#\textgreater{} [1] 0.284}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{sw.c)}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}    0.94    0.98    0.99    1.01    1.01    7.58}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{sd}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{sw.c)}
 \CommentTok{\#\textgreater{} [1] 0.178}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{sw)}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}    0.35    0.86    0.94    1.01    1.08   12.86}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{sd}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{sw)}
 \CommentTok{\#\textgreater{} [1] 0.411}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \NormalTok{msm.sw }\OtherTok{\textless{}{-}} \FunctionTok{geeglm}\NormalTok{(}
 \NormalTok{  wt82\_71 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ qsmk,}
@@ -1680,11 +1364,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{}             Estimate Std.err}
 \CommentTok{\#\textgreater{} (Intercept)     61.8    3.83}
 \CommentTok{\#\textgreater{} Number of clusters:   1566  Maximum cluster size: 1}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \NormalTok{beta }\OtherTok{\textless{}{-}} \FunctionTok{coef}\NormalTok{(msm.sw)}
 \NormalTok{SE }\OtherTok{\textless{}{-}} \FunctionTok{coef}\NormalTok{(}\FunctionTok{summary}\NormalTok{(msm.sw))[, }\DecValTok{2}\NormalTok{]}
@@ -1776,11 +1455,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} AIC: 10701}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Number of Fisher Scoring iterations: 2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{nhefs}\SpecialCharTok{$}\NormalTok{predicted.meanY }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(fit, nhefs)}
 
 \NormalTok{nhefs[}\FunctionTok{which}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{seqn }\SpecialCharTok{==} \DecValTok{24770}\NormalTok{), }\FunctionTok{c}\NormalTok{(}
@@ -1801,20 +1475,10 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{}             \textless{}dbl\textgreater{} \textless{}dbl\textgreater{} \textless{}dbl\textgreater{} \textless{}dbl\textgreater{} \textless{}dbl\textgreater{}     \textless{}dbl\textgreater{}          \textless{}dbl\textgreater{}    \textless{}dbl\textgreater{}}
 \CommentTok{\#\textgreater{} 1           0.342     0     0     0    26         4             15       12}
 \CommentTok{\#\textgreater{} \# i 3 more variables: exercise \textless{}dbl\textgreater{}, active \textless{}dbl\textgreater{}, wt71 \textless{}dbl\textgreater{}}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \FunctionTok{summary}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{predicted.meanY[nhefs}\SpecialCharTok{$}\NormalTok{cens }\SpecialCharTok{==} \DecValTok{0}\NormalTok{])}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{} {-}10.876   1.116   3.042   2.638   4.511   9.876}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{wt82\_71[nhefs}\SpecialCharTok{$}\NormalTok{cens }\SpecialCharTok{==} \DecValTok{0}\NormalTok{])}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{} {-}41.280  {-}1.478   2.604   2.638   6.690  48.538}
@@ -1887,27 +1551,12 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} AIC: 35.385}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Number of Fisher Scoring iterations: 2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{table22}\SpecialCharTok{$}\NormalTok{predicted.meanY }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(glm.obj, table22)}
 
 \FunctionTok{mean}\NormalTok{(table22}\SpecialCharTok{$}\NormalTok{predicted.meanY[table22}\SpecialCharTok{$}\NormalTok{interv }\SpecialCharTok{==} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{])}
 \CommentTok{\#\textgreater{} [1] 0.5}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{mean}\NormalTok{(table22}\SpecialCharTok{$}\NormalTok{predicted.meanY[table22}\SpecialCharTok{$}\NormalTok{interv }\SpecialCharTok{==} \DecValTok{0}\NormalTok{])}
 \CommentTok{\#\textgreater{} [1] 0.5}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{mean}\NormalTok{(table22}\SpecialCharTok{$}\NormalTok{predicted.meanY[table22}\SpecialCharTok{$}\NormalTok{interv }\SpecialCharTok{==} \DecValTok{1}\NormalTok{])}
 \CommentTok{\#\textgreater{} [1] 0.5}
 \end{Highlighting}
@@ -1996,11 +1645,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} AIC: 10701}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Number of Fisher Scoring iterations: 2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{onesample}\SpecialCharTok{$}\NormalTok{predicted\_meanY }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(std, onesample)}
 
 \CommentTok{\# estimate mean outcome in each of the groups interv=0, and interv=1}
@@ -2008,18 +1652,8 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\# of values of treatment and confounders, that is, the standardized outcome}
 \FunctionTok{mean}\NormalTok{(onesample[}\FunctionTok{which}\NormalTok{(onesample}\SpecialCharTok{$}\NormalTok{interv }\SpecialCharTok{==} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{), ]}\SpecialCharTok{$}\NormalTok{predicted\_meanY)}
 \CommentTok{\#\textgreater{} [1] 2.56319}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{mean}\NormalTok{(onesample[}\FunctionTok{which}\NormalTok{(onesample}\SpecialCharTok{$}\NormalTok{interv }\SpecialCharTok{==} \DecValTok{0}\NormalTok{), ]}\SpecialCharTok{$}\NormalTok{predicted\_meanY)}
 \CommentTok{\#\textgreater{} [1] 1.660267}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{mean}\NormalTok{(onesample[}\FunctionTok{which}\NormalTok{(onesample}\SpecialCharTok{$}\NormalTok{interv }\SpecialCharTok{==} \DecValTok{1}\NormalTok{), ]}\SpecialCharTok{$}\NormalTok{predicted\_meanY)}
 \CommentTok{\#\textgreater{} [1] 5.178841}
 \end{Highlighting}
@@ -2110,15 +1744,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{  ))}
 \NormalTok{bootstrap}
 \CommentTok{\#\textgreater{}                         V1             mean                 se               ll}
-\CommentTok{\#\textgreater{} 1                 Observed 2.56188497106099 0.0699303338739596 2.42482403524116}
-\CommentTok{\#\textgreater{} 2             No Treatment 1.65212306626744  0.175389505496242 1.30836595222851}
-\CommentTok{\#\textgreater{} 3                Treatment 5.11474489549336    0.3707801675766 4.38802912086149}
-\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment 3.46262182922592  0.541338444201742 2.40161797514356}
+\CommentTok{\#\textgreater{} 1                 Observed 2.56188497106099 0.0950425645851467 2.37560496747578}
+\CommentTok{\#\textgreater{} 2             No Treatment 1.65212306626744   0.22465472276569 1.21180790068985}
+\CommentTok{\#\textgreater{} 3                Treatment 5.11474489549336  0.580263439671742 3.97744945219141}
+\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment 3.46262182922592  0.789792629180607 1.91465672077673}
 \CommentTok{\#\textgreater{}                 ul}
-\CommentTok{\#\textgreater{} 1 2.69894590688081}
-\CommentTok{\#\textgreater{} 2 1.99588018030636}
-\CommentTok{\#\textgreater{} 3 5.84146067012522}
-\CommentTok{\#\textgreater{} 4 4.52362568330828}
+\CommentTok{\#\textgreater{} 1  2.7481649746462}
+\CommentTok{\#\textgreater{} 2 2.09243823184502}
+\CommentTok{\#\textgreater{} 3  6.2520403387953}
+\CommentTok{\#\textgreater{} 4 5.01058693767511}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2158,11 +1792,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} The following objects are masked from \textquotesingle{}package:base\textquotesingle{}:}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{}     format.pval, units}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{describe}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{wt82\_71)}
 \CommentTok{\#\textgreater{} nhefs$wt82\_71 }
 \CommentTok{\#\textgreater{}        n  missing distinct     Info     Mean      Gmd      .05      .10 }
@@ -2172,11 +1801,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} lowest : {-}41.2805 {-}30.5019 {-}30.0501 {-}29.0258 {-}25.9706}
 \CommentTok{\#\textgreater{} highest: 34.0178  36.9693  37.6505  47.5113  48.5384}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# estimation of denominator of ip weights for C}
 \NormalTok{cw.denom }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(cens}\SpecialCharTok{==}\DecValTok{0} \SpecialCharTok{\textasciitilde{}}\NormalTok{ qsmk }\SpecialCharTok{+}\NormalTok{ sex }\SpecialCharTok{+}\NormalTok{ race }\SpecialCharTok{+}\NormalTok{ age }\SpecialCharTok{+} \FunctionTok{I}\NormalTok{(age}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
@@ -2224,11 +1848,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} AIC: 505.36}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Number of Fisher Scoring iterations: 7}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{nhefs}\SpecialCharTok{$}\NormalTok{pd.c }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(cw.denom, nhefs, }\AttributeTok{type=}\StringTok{"response"}\NormalTok{)}
 \NormalTok{nhefs}\SpecialCharTok{$}\NormalTok{wc }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{cens}\SpecialCharTok{==}\DecValTok{0}\NormalTok{, }\DecValTok{1}\SpecialCharTok{/}\NormalTok{nhefs}\SpecialCharTok{$}\NormalTok{pd.c, }\ConstantTok{NA}\NormalTok{)}
 \CommentTok{\# observations with cens=1 only contribute to censoring models}
@@ -2263,11 +1882,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
            \SpecialCharTok{+}\NormalTok{ wt71 }\SpecialCharTok{+} \FunctionTok{I}\NormalTok{(wt71}\SpecialCharTok{*}\NormalTok{wt71) }\SpecialCharTok{+}\NormalTok{ Hpsi, }\AttributeTok{family=}\NormalTok{binomial, }\AttributeTok{data=}\NormalTok{nhefs,}
            \AttributeTok{weights=}\NormalTok{wc, }\AttributeTok{id=}\NormalTok{seqn, }\AttributeTok{corstr=}\StringTok{"independence"}\NormalTok{)}
 \CommentTok{\#\textgreater{} Warning in eval(family$initialize): non{-}integer \#successes in a binomial glm!}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(fit)}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Call:}
@@ -2365,11 +1979,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} Warning in eval(family$initialize): non{-}integer \#successes in a binomial glm!}
 \CommentTok{\#\textgreater{} Warning in eval(family$initialize): non{-}integer \#successes in a binomial glm!}
 \CommentTok{\#\textgreater{} Warning in eval(family$initialize): non{-}integer \#successes in a binomial glm!}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{Hpsi.coefs}
 \CommentTok{\#\textgreater{}         Estimate  p{-}value}
 \CommentTok{\#\textgreater{}  [1,]  0.0267219 0.001772}
@@ -2428,11 +2037,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
                  \SpecialCharTok{+}\NormalTok{ wt71 }\SpecialCharTok{+} \FunctionTok{I}\NormalTok{(wt71}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{), }\AttributeTok{data =}\NormalTok{ nhefs, }\AttributeTok{weight =}\NormalTok{ wc,}
                  \AttributeTok{family =} \FunctionTok{binomial}\NormalTok{())}
 \CommentTok{\#\textgreater{} Warning in eval(family$initialize): non{-}integer \#successes in a binomial glm!}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(logit.est)}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Call:}
@@ -2473,11 +2077,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} AIC: 1719}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Number of Fisher Scoring iterations: 4}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{nhefs}\SpecialCharTok{$}\NormalTok{pqsmk }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(logit.est, nhefs, }\AttributeTok{type =} \StringTok{"response"}\NormalTok{)}
 \FunctionTok{describe}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{pqsmk)}
 \CommentTok{\#\textgreater{} nhefs$pqsmk }
@@ -2488,19 +2087,9 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} lowest : 0.0514466 0.0515703 0.0543802 0.0558308 0.0593059}
 \CommentTok{\#\textgreater{} highest: 0.672083  0.686432  0.713913  0.733299  0.78914}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{pqsmk)}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}  0.0514  0.1780  0.2426  0.2622  0.3251  0.7891}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# solve sum(w\_c * H(psi) * (qsmk {-} E[qsmk | L]))  = 0}
 \CommentTok{\# for a single psi and H(psi) = wt82\_71 {-} psi * qsmk}
@@ -2612,11 +2201,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} AIC: 10701}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Number of Fisher Scoring iterations: 2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# (step 1) build the contrast matrix with all zeros}
 \CommentTok{\# this function builds the blank matrix}
@@ -2631,11 +2215,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} The following object is masked from \textquotesingle{}package:MASS\textquotesingle{}:}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{}     geyser}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{makeContrastMatrix }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(model, nrow, names) \{}
 \NormalTok{  m }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, }\AttributeTok{nrow =}\NormalTok{ nrow, }\AttributeTok{ncol =} \FunctionTok{length}\NormalTok{(}\FunctionTok{coef}\NormalTok{(model)))}
   \FunctionTok{colnames}\NormalTok{(m) }\OtherTok{\textless{}{-}} \FunctionTok{names}\NormalTok{(}\FunctionTok{coef}\NormalTok{(model))}
@@ -2705,11 +2284,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{}                                                    I(qsmk * smokeintensity)}
 \CommentTok{\#\textgreater{} Effect of Quitting Smoking at Smokeintensity of 5                         5}
 \CommentTok{\#\textgreater{} Effect of Quitting Smoking at Smokeintensity of 40                       40}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# (step 4) estimate the contrasts, get tests and confidence intervals for them}
 \NormalTok{estimates1 }\OtherTok{\textless{}{-}} \FunctionTok{glht}\NormalTok{(fit, K1)}
@@ -2733,11 +2307,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} {-}{-}{-}}
 \CommentTok{\#\textgreater{} Signif. codes:  0 \textquotesingle{}***\textquotesingle{} 0.001 \textquotesingle{}**\textquotesingle{} 0.01 \textquotesingle{}*\textquotesingle{} 0.05 \textquotesingle{}.\textquotesingle{} 0.1 \textquotesingle{} \textquotesingle{} 1}
 \CommentTok{\#\textgreater{} (Adjusted p values reported {-}{-} single{-}step method)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
   \FunctionTok{confint}\NormalTok{(estimates1)}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{}   Simultaneous Confidence Intervals}
@@ -2756,11 +2325,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{}                                                         Estimate lwr    upr   }
 \CommentTok{\#\textgreater{} Effect of Quitting Smoking at Smokeintensity of 5 == 0  2.7929   1.3039 4.2819}
 \CommentTok{\#\textgreater{} Effect of Quitting Smoking at Smokeintensity of 40 == 0 4.4261   2.5372 6.3151}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# regression on covariates, not allowing for effect modification}
 \NormalTok{fit2 }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(wt82\_71 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ qsmk }\SpecialCharTok{+}\NormalTok{ sex }\SpecialCharTok{+}\NormalTok{ race }\SpecialCharTok{+}\NormalTok{ age }\SpecialCharTok{+} \FunctionTok{I}\NormalTok{(age}\SpecialCharTok{*}\NormalTok{age) }\SpecialCharTok{+} \FunctionTok{as.factor}\NormalTok{(education)}
@@ -2867,29 +2431,14 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} AIC: 1804.7}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Number of Fisher Scoring iterations: 4}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{nhefs}\SpecialCharTok{$}\NormalTok{ps }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(fit3, nhefs, }\AttributeTok{type=}\StringTok{"response"}\NormalTok{)}
 
 \FunctionTok{summary}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{ps[nhefs}\SpecialCharTok{$}\NormalTok{qsmk}\SpecialCharTok{==}\DecValTok{0}\NormalTok{])}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{} 0.05298 0.16949 0.22747 0.24504 0.30441 0.65788}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{ps[nhefs}\SpecialCharTok{$}\NormalTok{qsmk}\SpecialCharTok{==}\DecValTok{1}\NormalTok{])}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{} 0.06248 0.22046 0.28897 0.31240 0.38122 0.79320}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# \# plotting the estimated propensity score}
 \CommentTok{\# install.packages("ggplot2") \# install packages if necessary}
@@ -2907,11 +2456,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} The following objects are masked from \textquotesingle{}package:base\textquotesingle{}:}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{}     intersect, setdiff, setequal, union}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{ggplot}\NormalTok{(nhefs, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ ps, }\AttributeTok{fill =}\NormalTok{ qsmk)) }\SpecialCharTok{+} \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.2}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Probability of Quitting Smoking During Follow{-}up\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Propensity Score Distribution by Treatment Group\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
@@ -2995,11 +2539,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} The following objects are masked from \textquotesingle{}package:ggplot2\textquotesingle{}:}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{}     \%+\%, alpha}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{describeBy}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{ps, }\FunctionTok{list}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{ps.dec, nhefs}\SpecialCharTok{$}\NormalTok{qsmk))}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{}  Descriptive statistics by group }
@@ -3102,11 +2641,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} : 1}
 \CommentTok{\#\textgreater{}    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se}
 \CommentTok{\#\textgreater{} X1    1 77 0.52 0.08   0.51    0.51 0.08 0.42 0.79  0.38 0.88     0.81 0.01}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# function to create deciles easily}
 \NormalTok{decile }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{}
@@ -3236,11 +2770,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} sample estimates:}
 \CommentTok{\#\textgreater{} mean in group 0 mean in group 1 }
 \CommentTok{\#\textgreater{}      {-}0.5043766       1.7358528}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# regression on PS deciles, not allowing for effect modification}
 \NormalTok{fit.psdec }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(wt82\_71 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ qsmk }\SpecialCharTok{+} \FunctionTok{as.factor}\NormalTok{(ps.dec), }\AttributeTok{data =}\NormalTok{ nhefs)}
@@ -3273,11 +2802,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} AIC: 10827}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Number of Fisher Scoring iterations: 2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{confint.lm}\NormalTok{(fit.psdec)}
 \CommentTok{\#\textgreater{}                         2.5 \%      97.5 \%}
 \CommentTok{\#\textgreater{} (Intercept)          2.556098  4.94486263}
@@ -3316,11 +2840,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} The following object is masked from \textquotesingle{}package:survival\textquotesingle{}:}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{}     aml}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# standardization by propensity score, agnostic regarding effect modification}
 \NormalTok{std.ps }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(data, indices) \{}
@@ -3371,15 +2890,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
                                 \StringTok{"Treatment {-} No Treatment"}\NormalTok{), mean, se, ll, ul))}
 \NormalTok{bootstrap}
 \CommentTok{\#\textgreater{}                         V1             mean                se               ll}
-\CommentTok{\#\textgreater{} 1                 Observed 2.63384609228479  0.29512275529644 2.05541612088554}
-\CommentTok{\#\textgreater{} 2             No Treatment 1.71983636149845  0.31039025630685 1.11148263798487}
-\CommentTok{\#\textgreater{} 3                Treatment 5.35072300362985 0.451775468916142 4.46525935545552}
-\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment  3.6308866421314 0.510359814241161 2.63059978706217}
+\CommentTok{\#\textgreater{} 1                 Observed 2.63384609228479 0.115753263333386 2.40697386505838}
+\CommentTok{\#\textgreater{} 2             No Treatment 1.71983636149845 0.246130465469883  1.2374295136794}
+\CommentTok{\#\textgreater{} 3                Treatment 5.35072300362985 0.649787210667958 4.07716347310591}
+\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment  3.6308866421314 0.878257146640732 1.90953426555065}
 \CommentTok{\#\textgreater{}                 ul}
-\CommentTok{\#\textgreater{} 1 3.21227606368404}
-\CommentTok{\#\textgreater{} 2 2.32819008501204}
-\CommentTok{\#\textgreater{} 3 6.23618665180419}
-\CommentTok{\#\textgreater{} 4 4.63117349720063}
+\CommentTok{\#\textgreater{} 1 2.86071831951121}
+\CommentTok{\#\textgreater{} 2  2.2022432093175}
+\CommentTok{\#\textgreater{} 3 6.62428253415379}
+\CommentTok{\#\textgreater{} 4 5.35223901871215}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3408,11 +2927,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} AIC: 10815}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Number of Fisher Scoring iterations: 2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# standarization on the propensity score}
 \CommentTok{\# (step 1) create two new datasets, one with all treated and one with all untreated}
@@ -3431,25 +2945,10 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{mean0 }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(untreated}\SpecialCharTok{$}\NormalTok{pred.y, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
 \NormalTok{mean1}
 \CommentTok{\#\textgreater{} [1] 5.250824}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{mean0}
 \CommentTok{\#\textgreater{} [1] 1.700228}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{mean1 }\SpecialCharTok{{-}}\NormalTok{ mean0}
 \CommentTok{\#\textgreater{} [1] 3.550596}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# (step 4) bootstrap a confidence interval}
 \CommentTok{\# number of bootstraps}
@@ -3493,7 +2992,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{  \}}
 \NormalTok{\}}
 \CommentTok{\#\textgreater{} 95\% CI for the causal mean difference}
-\CommentTok{\#\textgreater{} 2.466489 , 4.563831}
+\CommentTok{\#\textgreater{} 2.640253 , 4.480888}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3529,11 +3028,6 @@ A more flexible and elegant way to do this is to write a function to perform the
 \FunctionTok{summary}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{price82)}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA\textquotesingle{}s }
 \CommentTok{\#\textgreater{}   1.452   1.740   1.815   1.806   1.868   2.103      92}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# for simplicity, ignore subjects with missing outcome or missing instrument}
 \NormalTok{nhefs.iv }\OtherTok{\textless{}{-}}\NormalTok{ nhefs[}\FunctionTok{which}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{wt82) }\SpecialCharTok{\&} \SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{price82)),]}
@@ -3544,11 +3038,6 @@ A more flexible and elegant way to do this is to write a function to perform the
 \CommentTok{\#\textgreater{}        0    1}
 \CommentTok{\#\textgreater{}   0   33    8}
 \CommentTok{\#\textgreater{}   1 1065  370}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \FunctionTok{t.test}\NormalTok{(wt82\_71 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ highprice, }\AttributeTok{data=}\NormalTok{nhefs.iv)}
 \CommentTok{\#\textgreater{} }
@@ -3598,11 +3087,6 @@ A more flexible and elegant way to do this is to write a function to perform the
 \CommentTok{\#\textgreater{} qsmk         2.396270  19.840037 0.12078  0.90388}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Residual standard error: 7.8561141 on 1474 degrees of freedom}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{confint}\NormalTok{(model1)  }\CommentTok{\# note the wide confidence intervals}
 \CommentTok{\#\textgreater{}                  2.5 \%   97.5 \%}
 \CommentTok{\#\textgreater{} (Intercept)  {-}7.898445 12.03477}
@@ -3652,11 +3136,6 @@ A more flexible and elegant way to do this is to write a function to perform the
 \CommentTok{\#\textgreater{}             Estimate Std.err}
 \CommentTok{\#\textgreater{} (Intercept)        1  0.7607}
 \CommentTok{\#\textgreater{} Number of clusters:   1476  Maximum cluster size: 1}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \NormalTok{beta }\OtherTok{\textless{}{-}} \FunctionTok{coef}\NormalTok{(g.est)}
 \NormalTok{SE }\OtherTok{\textless{}{-}} \FunctionTok{coef}\NormalTok{(}\FunctionTok{summary}\NormalTok{(g.est))[,}\DecValTok{2}\NormalTok{]}
@@ -3698,11 +3177,6 @@ A more flexible and elegant way to do this is to write a function to perform the
 \CommentTok{\#\textgreater{} qsmk           41.28     164.95   0.250    0.802}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Residual standard error: 18.6055 on 1474 degrees of freedom}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(}\FunctionTok{tsls}\NormalTok{(wt82\_71 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ qsmk, }\SpecialCharTok{\textasciitilde{}} \FunctionTok{ifelse}\NormalTok{(price82 }\SpecialCharTok{\textgreater{}=} \FloatTok{1.7}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{), }\AttributeTok{data =}\NormalTok{ nhefs.iv))}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{}  2SLS Estimates}
@@ -3720,11 +3194,6 @@ A more flexible and elegant way to do this is to write a function to perform the
 \CommentTok{\#\textgreater{} qsmk          {-}40.91     187.74  {-}0.218    0.828}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Residual standard error: 20.591 on 1474 degrees of freedom}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(}\FunctionTok{tsls}\NormalTok{(wt82\_71 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ qsmk, }\SpecialCharTok{\textasciitilde{}} \FunctionTok{ifelse}\NormalTok{(price82 }\SpecialCharTok{\textgreater{}=} \FloatTok{1.8}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{), }\AttributeTok{data =}\NormalTok{ nhefs.iv))}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{}  2SLS Estimates}
@@ -3742,11 +3211,6 @@ A more flexible and elegant way to do this is to write a function to perform the
 \CommentTok{\#\textgreater{} qsmk         {-}21.103     28.428  {-}0.742    0.458}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Residual standard error: 13.0188 on 1474 degrees of freedom}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(}\FunctionTok{tsls}\NormalTok{(wt82\_71 }\SpecialCharTok{\textasciitilde{}}\NormalTok{ qsmk, }\SpecialCharTok{\textasciitilde{}} \FunctionTok{ifelse}\NormalTok{(price82 }\SpecialCharTok{\textgreater{}=} \FloatTok{1.9}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{), }\AttributeTok{data =}\NormalTok{ nhefs.iv))}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{}  2SLS Estimates}
@@ -3852,19 +3316,9 @@ A more flexible and elegant way to do this is to write a function to perform the
 \CommentTok{\#\textgreater{}       0   1}
 \CommentTok{\#\textgreater{}   0 985 326}
 \CommentTok{\#\textgreater{}   1 216 102}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(nhefs[}\FunctionTok{which}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{death}\SpecialCharTok{==}\DecValTok{1}\NormalTok{),]}\SpecialCharTok{$}\NormalTok{survtime)}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}    1.00   35.00   61.00   61.14   86.75  120.00}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\#install.packages("survival")}
 \CommentTok{\#install.packages("ggplot2") \# for plots}
@@ -3878,11 +3332,6 @@ A more flexible and elegant way to do this is to write a function to perform the
 \CommentTok{\#\textgreater{} The following object is masked from \textquotesingle{}package:survival\textquotesingle{}:}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{}     myeloma}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{survdiff}\NormalTok{(}\FunctionTok{Surv}\NormalTok{(survtime, death) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ qsmk, }\AttributeTok{data=}\NormalTok{nhefs)}
 \CommentTok{\#\textgreater{} Call:}
 \CommentTok{\#\textgreater{} survdiff(formula = Surv(survtime, death) \textasciitilde{} qsmk, data = nhefs)}
@@ -3892,11 +3341,6 @@ A more flexible and elegant way to do this is to write a function to perform the
 \CommentTok{\#\textgreater{} qsmk=1  428      102     80.5      5.76      7.73}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{}  Chisq= 7.7  on 1 degrees of freedom, p= 0.005}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{survfit}\NormalTok{(}\FunctionTok{Surv}\NormalTok{(survtime, death) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ qsmk, }\AttributeTok{data=}\NormalTok{nhefs)}
 \FunctionTok{ggsurvplot}\NormalTok{(fit, }\AttributeTok{data =}\NormalTok{ nhefs, }\AttributeTok{xlab=}\StringTok{"Months of follow{-}up"}\NormalTok{,}
@@ -3956,11 +3400,6 @@ A more flexible and elegant way to do this is to write a function to perform the
 \CommentTok{\#\textgreater{} AIC: 4643.3}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Number of Fisher Scoring iterations: 9}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# creation of dataset with all time points under each treatment level}
 \NormalTok{qsmk0 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{119}\NormalTok{),}\DecValTok{0}\NormalTok{,(}\FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{119}\NormalTok{))}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}
@@ -4028,11 +3467,6 @@ A more flexible and elegant way to do this is to write a function to perform the
 \FunctionTok{summary}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{sw.a)}
 \CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. }
 \CommentTok{\#\textgreater{}  0.3312  0.8640  0.9504  0.9991  1.0755  4.2054}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# creation of person{-}month data}
 \NormalTok{nhefs.ipw }\OtherTok{\textless{}{-}} \FunctionTok{expandRows}\NormalTok{(nhefs, }\StringTok{"survtime"}\NormalTok{, }\AttributeTok{drop=}\NormalTok{F)}
@@ -4046,11 +3480,6 @@ A more flexible and elegant way to do this is to write a function to perform the
 \NormalTok{                   time }\SpecialCharTok{+}\NormalTok{ timesq, }\AttributeTok{family=}\FunctionTok{binomial}\NormalTok{(), }\AttributeTok{weight=}\NormalTok{sw.a,}
                  \AttributeTok{data=}\NormalTok{nhefs.ipw)}
 \CommentTok{\#\textgreater{} Warning in eval(family$initialize): non{-}integer \#successes in a binomial glm!}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{summary}\NormalTok{(ipw.model)}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Call:}
@@ -4075,11 +3504,6 @@ A more flexible and elegant way to do this is to write a function to perform the
 \CommentTok{\#\textgreater{} AIC: 4633.5}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Number of Fisher Scoring iterations: 9}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# creation of survival curves}
 \NormalTok{ipw.qsmk0 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{119}\NormalTok{),}\DecValTok{0}\NormalTok{,(}\FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{119}\NormalTok{))}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}
@@ -4184,11 +3608,6 @@ A more flexible and elegant way to do this is to write a function to perform the
 \CommentTok{\#\textgreater{} AIC: 4235.7}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} Number of Fisher Scoring iterations: 10}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 
 \CommentTok{\# creation of dataset with all time points for}
 \CommentTok{\# each individual under each treatment level}
@@ -4213,11 +3632,6 @@ A more flexible and elegant way to do this is to write a function to perform the
 \CommentTok{\#\textgreater{} The following objects are masked from \textquotesingle{}package:base\textquotesingle{}:}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{}     intersect, setdiff, setequal, union}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{gf.qsmk0.surv }\OtherTok{\textless{}{-}}\NormalTok{ gf.qsmk0 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(seqn) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{surv0 =} \FunctionTok{cumprod}\NormalTok{(p.noevent0))}
 \NormalTok{gf.qsmk1.surv }\OtherTok{\textless{}{-}}\NormalTok{ gf.qsmk1 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{group\_by}\NormalTok{(seqn) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{surv1 =} \FunctionTok{cumprod}\NormalTok{(p.noevent1))}
 
@@ -4425,26 +3839,27 @@ For reproducibility.
 \CommentTok{\#\textgreater{}  collate  en\_US.UTF{-}8}
 \CommentTok{\#\textgreater{}  ctype    en\_US.UTF{-}8}
 \CommentTok{\#\textgreater{}  tz       Europe/London}
-\CommentTok{\#\textgreater{}  date     2024{-}06{-}16}
-\CommentTok{\#\textgreater{}  pandoc   3.2 @ /opt/homebrew/bin/ (via rmarkdown)}
+\CommentTok{\#\textgreater{}  date     2024{-}07{-}07}
+\CommentTok{\#\textgreater{}  pandoc   3.2.1 @ /opt/homebrew/bin/ (via rmarkdown)}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} {-} Packages {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \CommentTok{\#\textgreater{}  package     * version date (UTC) lib source}
-\CommentTok{\#\textgreater{}  bookdown      0.39    2024{-}04{-}15 [1] CRAN (R 4.4.0)}
-\CommentTok{\#\textgreater{}  cli           3.6.2   2023{-}12{-}11 [1] CRAN (R 4.4.0)}
-\CommentTok{\#\textgreater{}  digest        0.6.35  2024{-}03{-}11 [1] CRAN (R 4.4.0)}
+\CommentTok{\#\textgreater{}  bookdown      0.40    2024{-}07{-}02 [1] CRAN (R 4.4.0)}
+\CommentTok{\#\textgreater{}  cli           3.6.3   2024{-}06{-}21 [1] CRAN (R 4.4.0)}
+\CommentTok{\#\textgreater{}  digest        0.6.36  2024{-}06{-}23 [1] CRAN (R 4.4.0)}
 \CommentTok{\#\textgreater{}  evaluate      0.24.0  2024{-}06{-}10 [1] CRAN (R 4.4.0)}
 \CommentTok{\#\textgreater{}  fastmap       1.2.0   2024{-}05{-}15 [1] CRAN (R 4.4.0)}
 \CommentTok{\#\textgreater{}  htmltools     0.5.8.1 2024{-}04{-}04 [1] CRAN (R 4.4.0)}
-\CommentTok{\#\textgreater{}  knitr         1.47    2024{-}05{-}29 [1] CRAN (R 4.4.0)}
+\CommentTok{\#\textgreater{}  knitr         1.48    2024{-}07{-}07 [1] CRAN (R 4.4.1)}
 \CommentTok{\#\textgreater{}  rlang         1.1.4   2024{-}06{-}04 [1] CRAN (R 4.4.0)}
 \CommentTok{\#\textgreater{}  rmarkdown     2.27    2024{-}05{-}17 [1] CRAN (R 4.4.0)}
 \CommentTok{\#\textgreater{}  rstudioapi    0.16.0  2024{-}03{-}24 [1] CRAN (R 4.4.0)}
 \CommentTok{\#\textgreater{}  sessioninfo   1.2.2   2021{-}12{-}06 [1] CRAN (R 4.4.0)}
-\CommentTok{\#\textgreater{}  xfun          0.44    2024{-}05{-}15 [1] CRAN (R 4.4.0)}
-\CommentTok{\#\textgreater{}  yaml          2.3.8   2023{-}12{-}11 [1] CRAN (R 4.4.0)}
+\CommentTok{\#\textgreater{}  xfun          0.45    2024{-}06{-}16 [1] CRAN (R 4.4.0)}
+\CommentTok{\#\textgreater{}  yaml          2.3.9   2024{-}07{-}05 [1] CRAN (R 4.4.1)}
 \CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{}  [1] /Library/Frameworks/R.framework/Versions/4.4{-}arm64/Resources/library}
+\CommentTok{\#\textgreater{}  [1] /Users/tom/Library/R/arm64/4.4/library}
+\CommentTok{\#\textgreater{}  [2] /Library/Frameworks/R.framework/Versions/4.4{-}arm64/Resources/library}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \end{Highlighting}
@@ -9550,7 +8965,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated observ
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 8:35:45
+r; t=0.00 21:14:12
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -9558,7 +8973,7 @@ r; t=0.00 8:35:45
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=22.18 8:36:07
+r; t=23.73 21:14:36
 
 
 
@@ -9804,7 +9219,7 @@ file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 8:36:15
+r; t=0.00 21:14:45
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -9812,7 +9227,7 @@ r; t=0.00 8:36:15
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=24.78 8:36:40
+r; t=25.56 21:15:10
 
 
 
@@ -9851,7 +9266,7 @@ For reproducibility.
 
 \begin{verbatim}
 StataNow/MP 18.5 for Mac (Apple Silicon)
-Revision 22 May 2024
+Revision 25 Jun 2024
 Copyright 1985-2023 StataCorp LLC
 
 Total physical memory: 8.01 GB
@@ -9876,27 +9291,28 @@ Serial number: 501809305331
 \CommentTok{\#\textgreater{}  collate  en\_US.UTF{-}8}
 \CommentTok{\#\textgreater{}  ctype    en\_US.UTF{-}8}
 \CommentTok{\#\textgreater{}  tz       Europe/London}
-\CommentTok{\#\textgreater{}  date     2024{-}06{-}16}
-\CommentTok{\#\textgreater{}  pandoc   3.2 @ /opt/homebrew/bin/ (via rmarkdown)}
+\CommentTok{\#\textgreater{}  date     2024{-}07{-}07}
+\CommentTok{\#\textgreater{}  pandoc   3.2.1 @ /opt/homebrew/bin/ (via rmarkdown)}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} {-} Packages {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \CommentTok{\#\textgreater{}  package       * version date (UTC) lib source}
-\CommentTok{\#\textgreater{}  bookdown        0.39    2024{-}04{-}15 [1] CRAN (R 4.4.0)}
-\CommentTok{\#\textgreater{}  cli             3.6.2   2023{-}12{-}11 [1] CRAN (R 4.4.0)}
-\CommentTok{\#\textgreater{}  digest          0.6.35  2024{-}03{-}11 [1] CRAN (R 4.4.0)}
+\CommentTok{\#\textgreater{}  bookdown        0.40    2024{-}07{-}02 [1] CRAN (R 4.4.0)}
+\CommentTok{\#\textgreater{}  cli             3.6.3   2024{-}06{-}21 [1] CRAN (R 4.4.0)}
+\CommentTok{\#\textgreater{}  digest          0.6.36  2024{-}06{-}23 [1] CRAN (R 4.4.0)}
 \CommentTok{\#\textgreater{}  evaluate        0.24.0  2024{-}06{-}10 [1] CRAN (R 4.4.0)}
 \CommentTok{\#\textgreater{}  fastmap         1.2.0   2024{-}05{-}15 [1] CRAN (R 4.4.0)}
 \CommentTok{\#\textgreater{}  htmltools       0.5.8.1 2024{-}04{-}04 [1] CRAN (R 4.4.0)}
-\CommentTok{\#\textgreater{}  knitr           1.47    2024{-}05{-}29 [1] CRAN (R 4.4.0)}
+\CommentTok{\#\textgreater{}  knitr           1.48    2024{-}07{-}07 [1] CRAN (R 4.4.1)}
 \CommentTok{\#\textgreater{}  rlang           1.1.4   2024{-}06{-}04 [1] CRAN (R 4.4.0)}
 \CommentTok{\#\textgreater{}  rmarkdown       2.27    2024{-}05{-}17 [1] CRAN (R 4.4.0)}
 \CommentTok{\#\textgreater{}  rstudioapi      0.16.0  2024{-}03{-}24 [1] CRAN (R 4.4.0)}
 \CommentTok{\#\textgreater{}  sessioninfo     1.2.2   2021{-}12{-}06 [1] CRAN (R 4.4.0)}
 \CommentTok{\#\textgreater{}  Statamarkdown * 0.9.2   2023{-}12{-}04 [1] CRAN (R 4.4.0)}
-\CommentTok{\#\textgreater{}  xfun            0.44    2024{-}05{-}15 [1] CRAN (R 4.4.0)}
-\CommentTok{\#\textgreater{}  yaml            2.3.8   2023{-}12{-}11 [1] CRAN (R 4.4.0)}
+\CommentTok{\#\textgreater{}  xfun            0.45    2024{-}06{-}16 [1] CRAN (R 4.4.0)}
+\CommentTok{\#\textgreater{}  yaml            2.3.9   2024{-}07{-}05 [1] CRAN (R 4.4.1)}
 \CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{}  [1] /Library/Frameworks/R.framework/Versions/4.4{-}arm64/Resources/library}
+\CommentTok{\#\textgreater{}  [1] /Users/tom/Library/R/arm64/4.4/library}
+\CommentTok{\#\textgreater{}  [2] /Library/Frameworks/R.framework/Versions/4.4{-}arm64/Resources/library}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \end{Highlighting}

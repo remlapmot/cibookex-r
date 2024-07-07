@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Session information: R | Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Session information: R | Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2024-06-16" />
+<meta name="date" content="2024-07-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -311,47 +311,48 @@ div.csl-indent {
 <div id="session-information-r" class="section level1 unnumbered hasAnchor">
 <h1>Session information: R<a href="session-information-r.html#session-information-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>For reproducibility.</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="session-information-r.html#cb166-1" tabindex="-1"></a><span class="co"># install.packages(&quot;sessioninfo&quot;)</span></span>
-<span id="cb166-2"><a href="session-information-r.html#cb166-2" tabindex="-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>()</span>
-<span id="cb166-3"><a href="session-information-r.html#cb166-3" tabindex="-1"></a><span class="co">#&gt; ─ Session info ───────────────────────────────────────────────────────────────</span></span>
-<span id="cb166-4"><a href="session-information-r.html#cb166-4" tabindex="-1"></a><span class="co">#&gt;  setting  value</span></span>
-<span id="cb166-5"><a href="session-information-r.html#cb166-5" tabindex="-1"></a><span class="co">#&gt;  version  R version 4.4.1 (2024-06-14)</span></span>
-<span id="cb166-6"><a href="session-information-r.html#cb166-6" tabindex="-1"></a><span class="co">#&gt;  os       macOS Sonoma 14.5</span></span>
-<span id="cb166-7"><a href="session-information-r.html#cb166-7" tabindex="-1"></a><span class="co">#&gt;  system   aarch64, darwin20</span></span>
-<span id="cb166-8"><a href="session-information-r.html#cb166-8" tabindex="-1"></a><span class="co">#&gt;  ui       X11</span></span>
-<span id="cb166-9"><a href="session-information-r.html#cb166-9" tabindex="-1"></a><span class="co">#&gt;  language (EN)</span></span>
-<span id="cb166-10"><a href="session-information-r.html#cb166-10" tabindex="-1"></a><span class="co">#&gt;  collate  en_US.UTF-8</span></span>
-<span id="cb166-11"><a href="session-information-r.html#cb166-11" tabindex="-1"></a><span class="co">#&gt;  ctype    en_US.UTF-8</span></span>
-<span id="cb166-12"><a href="session-information-r.html#cb166-12" tabindex="-1"></a><span class="co">#&gt;  tz       Europe/London</span></span>
-<span id="cb166-13"><a href="session-information-r.html#cb166-13" tabindex="-1"></a><span class="co">#&gt;  date     2024-06-16</span></span>
-<span id="cb166-14"><a href="session-information-r.html#cb166-14" tabindex="-1"></a><span class="co">#&gt;  pandoc   3.2 @ /opt/homebrew/bin/ (via rmarkdown)</span></span>
-<span id="cb166-15"><a href="session-information-r.html#cb166-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb166-16"><a href="session-information-r.html#cb166-16" tabindex="-1"></a><span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────</span></span>
-<span id="cb166-17"><a href="session-information-r.html#cb166-17" tabindex="-1"></a><span class="co">#&gt;  package     * version date (UTC) lib source</span></span>
-<span id="cb166-18"><a href="session-information-r.html#cb166-18" tabindex="-1"></a><span class="co">#&gt;  bookdown      0.39    2024-04-15 [1] CRAN (R 4.4.0)</span></span>
-<span id="cb166-19"><a href="session-information-r.html#cb166-19" tabindex="-1"></a><span class="co">#&gt;  bslib         0.7.0   2024-03-29 [1] CRAN (R 4.4.0)</span></span>
-<span id="cb166-20"><a href="session-information-r.html#cb166-20" tabindex="-1"></a><span class="co">#&gt;  cachem        1.1.0   2024-05-16 [1] CRAN (R 4.4.0)</span></span>
-<span id="cb166-21"><a href="session-information-r.html#cb166-21" tabindex="-1"></a><span class="co">#&gt;  cli           3.6.2   2023-12-11 [1] CRAN (R 4.4.0)</span></span>
-<span id="cb166-22"><a href="session-information-r.html#cb166-22" tabindex="-1"></a><span class="co">#&gt;  digest        0.6.35  2024-03-11 [1] CRAN (R 4.4.0)</span></span>
-<span id="cb166-23"><a href="session-information-r.html#cb166-23" tabindex="-1"></a><span class="co">#&gt;  evaluate      0.24.0  2024-06-10 [1] CRAN (R 4.4.0)</span></span>
-<span id="cb166-24"><a href="session-information-r.html#cb166-24" tabindex="-1"></a><span class="co">#&gt;  fastmap       1.2.0   2024-05-15 [1] CRAN (R 4.4.0)</span></span>
-<span id="cb166-25"><a href="session-information-r.html#cb166-25" tabindex="-1"></a><span class="co">#&gt;  htmltools     0.5.8.1 2024-04-04 [1] CRAN (R 4.4.0)</span></span>
-<span id="cb166-26"><a href="session-information-r.html#cb166-26" tabindex="-1"></a><span class="co">#&gt;  jquerylib     0.1.4   2021-04-26 [1] CRAN (R 4.4.0)</span></span>
-<span id="cb166-27"><a href="session-information-r.html#cb166-27" tabindex="-1"></a><span class="co">#&gt;  jsonlite      1.8.8   2023-12-04 [1] CRAN (R 4.4.0)</span></span>
-<span id="cb166-28"><a href="session-information-r.html#cb166-28" tabindex="-1"></a><span class="co">#&gt;  knitr         1.47    2024-05-29 [1] CRAN (R 4.4.0)</span></span>
-<span id="cb166-29"><a href="session-information-r.html#cb166-29" tabindex="-1"></a><span class="co">#&gt;  lifecycle     1.0.4   2023-11-07 [1] CRAN (R 4.4.0)</span></span>
-<span id="cb166-30"><a href="session-information-r.html#cb166-30" tabindex="-1"></a><span class="co">#&gt;  R6            2.5.1   2021-08-19 [1] CRAN (R 4.4.0)</span></span>
-<span id="cb166-31"><a href="session-information-r.html#cb166-31" tabindex="-1"></a><span class="co">#&gt;  rlang         1.1.4   2024-06-04 [1] CRAN (R 4.4.0)</span></span>
-<span id="cb166-32"><a href="session-information-r.html#cb166-32" tabindex="-1"></a><span class="co">#&gt;  rmarkdown     2.27    2024-05-17 [1] CRAN (R 4.4.0)</span></span>
-<span id="cb166-33"><a href="session-information-r.html#cb166-33" tabindex="-1"></a><span class="co">#&gt;  rstudioapi    0.16.0  2024-03-24 [1] CRAN (R 4.4.0)</span></span>
-<span id="cb166-34"><a href="session-information-r.html#cb166-34" tabindex="-1"></a><span class="co">#&gt;  sass          0.4.9   2024-03-15 [1] CRAN (R 4.4.0)</span></span>
-<span id="cb166-35"><a href="session-information-r.html#cb166-35" tabindex="-1"></a><span class="co">#&gt;  sessioninfo   1.2.2   2021-12-06 [1] CRAN (R 4.4.0)</span></span>
-<span id="cb166-36"><a href="session-information-r.html#cb166-36" tabindex="-1"></a><span class="co">#&gt;  xfun          0.44    2024-05-15 [1] CRAN (R 4.4.0)</span></span>
-<span id="cb166-37"><a href="session-information-r.html#cb166-37" tabindex="-1"></a><span class="co">#&gt;  yaml          2.3.8   2023-12-11 [1] CRAN (R 4.4.0)</span></span>
-<span id="cb166-38"><a href="session-information-r.html#cb166-38" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb166-39"><a href="session-information-r.html#cb166-39" tabindex="-1"></a><span class="co">#&gt;  [1] /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library</span></span>
-<span id="cb166-40"><a href="session-information-r.html#cb166-40" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb166-41"><a href="session-information-r.html#cb166-41" tabindex="-1"></a><span class="co">#&gt; ──────────────────────────────────────────────────────────────────────────────</span></span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="session-information-r.html#cb49-1" tabindex="-1"></a><span class="co"># install.packages(&quot;sessioninfo&quot;)</span></span>
+<span id="cb49-2"><a href="session-information-r.html#cb49-2" tabindex="-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>()</span>
+<span id="cb49-3"><a href="session-information-r.html#cb49-3" tabindex="-1"></a><span class="co">#&gt; ─ Session info ───────────────────────────────────────────────────────────────</span></span>
+<span id="cb49-4"><a href="session-information-r.html#cb49-4" tabindex="-1"></a><span class="co">#&gt;  setting  value</span></span>
+<span id="cb49-5"><a href="session-information-r.html#cb49-5" tabindex="-1"></a><span class="co">#&gt;  version  R version 4.4.1 (2024-06-14)</span></span>
+<span id="cb49-6"><a href="session-information-r.html#cb49-6" tabindex="-1"></a><span class="co">#&gt;  os       macOS Sonoma 14.5</span></span>
+<span id="cb49-7"><a href="session-information-r.html#cb49-7" tabindex="-1"></a><span class="co">#&gt;  system   aarch64, darwin20</span></span>
+<span id="cb49-8"><a href="session-information-r.html#cb49-8" tabindex="-1"></a><span class="co">#&gt;  ui       X11</span></span>
+<span id="cb49-9"><a href="session-information-r.html#cb49-9" tabindex="-1"></a><span class="co">#&gt;  language (EN)</span></span>
+<span id="cb49-10"><a href="session-information-r.html#cb49-10" tabindex="-1"></a><span class="co">#&gt;  collate  en_US.UTF-8</span></span>
+<span id="cb49-11"><a href="session-information-r.html#cb49-11" tabindex="-1"></a><span class="co">#&gt;  ctype    en_US.UTF-8</span></span>
+<span id="cb49-12"><a href="session-information-r.html#cb49-12" tabindex="-1"></a><span class="co">#&gt;  tz       Europe/London</span></span>
+<span id="cb49-13"><a href="session-information-r.html#cb49-13" tabindex="-1"></a><span class="co">#&gt;  date     2024-07-07</span></span>
+<span id="cb49-14"><a href="session-information-r.html#cb49-14" tabindex="-1"></a><span class="co">#&gt;  pandoc   3.2.1 @ /opt/homebrew/bin/ (via rmarkdown)</span></span>
+<span id="cb49-15"><a href="session-information-r.html#cb49-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb49-16"><a href="session-information-r.html#cb49-16" tabindex="-1"></a><span class="co">#&gt; ─ Packages ───────────────────────────────────────────────────────────────────</span></span>
+<span id="cb49-17"><a href="session-information-r.html#cb49-17" tabindex="-1"></a><span class="co">#&gt;  package     * version date (UTC) lib source</span></span>
+<span id="cb49-18"><a href="session-information-r.html#cb49-18" tabindex="-1"></a><span class="co">#&gt;  bookdown      0.40    2024-07-02 [1] CRAN (R 4.4.0)</span></span>
+<span id="cb49-19"><a href="session-information-r.html#cb49-19" tabindex="-1"></a><span class="co">#&gt;  bslib         0.7.0   2024-03-29 [1] CRAN (R 4.4.0)</span></span>
+<span id="cb49-20"><a href="session-information-r.html#cb49-20" tabindex="-1"></a><span class="co">#&gt;  cachem        1.1.0   2024-05-16 [1] CRAN (R 4.4.0)</span></span>
+<span id="cb49-21"><a href="session-information-r.html#cb49-21" tabindex="-1"></a><span class="co">#&gt;  cli           3.6.3   2024-06-21 [1] CRAN (R 4.4.0)</span></span>
+<span id="cb49-22"><a href="session-information-r.html#cb49-22" tabindex="-1"></a><span class="co">#&gt;  digest        0.6.36  2024-06-23 [1] CRAN (R 4.4.0)</span></span>
+<span id="cb49-23"><a href="session-information-r.html#cb49-23" tabindex="-1"></a><span class="co">#&gt;  evaluate      0.24.0  2024-06-10 [1] CRAN (R 4.4.0)</span></span>
+<span id="cb49-24"><a href="session-information-r.html#cb49-24" tabindex="-1"></a><span class="co">#&gt;  fastmap       1.2.0   2024-05-15 [1] CRAN (R 4.4.0)</span></span>
+<span id="cb49-25"><a href="session-information-r.html#cb49-25" tabindex="-1"></a><span class="co">#&gt;  htmltools     0.5.8.1 2024-04-04 [1] CRAN (R 4.4.0)</span></span>
+<span id="cb49-26"><a href="session-information-r.html#cb49-26" tabindex="-1"></a><span class="co">#&gt;  jquerylib     0.1.4   2021-04-26 [1] CRAN (R 4.4.0)</span></span>
+<span id="cb49-27"><a href="session-information-r.html#cb49-27" tabindex="-1"></a><span class="co">#&gt;  jsonlite      1.8.8   2023-12-04 [1] CRAN (R 4.4.0)</span></span>
+<span id="cb49-28"><a href="session-information-r.html#cb49-28" tabindex="-1"></a><span class="co">#&gt;  knitr         1.48    2024-07-07 [1] CRAN (R 4.4.1)</span></span>
+<span id="cb49-29"><a href="session-information-r.html#cb49-29" tabindex="-1"></a><span class="co">#&gt;  lifecycle     1.0.4   2023-11-07 [1] CRAN (R 4.4.0)</span></span>
+<span id="cb49-30"><a href="session-information-r.html#cb49-30" tabindex="-1"></a><span class="co">#&gt;  R6            2.5.1   2021-08-19 [1] CRAN (R 4.4.0)</span></span>
+<span id="cb49-31"><a href="session-information-r.html#cb49-31" tabindex="-1"></a><span class="co">#&gt;  rlang         1.1.4   2024-06-04 [1] CRAN (R 4.4.0)</span></span>
+<span id="cb49-32"><a href="session-information-r.html#cb49-32" tabindex="-1"></a><span class="co">#&gt;  rmarkdown     2.27    2024-05-17 [1] CRAN (R 4.4.0)</span></span>
+<span id="cb49-33"><a href="session-information-r.html#cb49-33" tabindex="-1"></a><span class="co">#&gt;  rstudioapi    0.16.0  2024-03-24 [1] CRAN (R 4.4.0)</span></span>
+<span id="cb49-34"><a href="session-information-r.html#cb49-34" tabindex="-1"></a><span class="co">#&gt;  sass          0.4.9   2024-03-15 [1] CRAN (R 4.4.0)</span></span>
+<span id="cb49-35"><a href="session-information-r.html#cb49-35" tabindex="-1"></a><span class="co">#&gt;  sessioninfo   1.2.2   2021-12-06 [1] CRAN (R 4.4.0)</span></span>
+<span id="cb49-36"><a href="session-information-r.html#cb49-36" tabindex="-1"></a><span class="co">#&gt;  xfun          0.45    2024-06-16 [1] CRAN (R 4.4.0)</span></span>
+<span id="cb49-37"><a href="session-information-r.html#cb49-37" tabindex="-1"></a><span class="co">#&gt;  yaml          2.3.9   2024-07-05 [1] CRAN (R 4.4.1)</span></span>
+<span id="cb49-38"><a href="session-information-r.html#cb49-38" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb49-39"><a href="session-information-r.html#cb49-39" tabindex="-1"></a><span class="co">#&gt;  [1] /Users/tom/Library/R/arm64/4.4/library</span></span>
+<span id="cb49-40"><a href="session-information-r.html#cb49-40" tabindex="-1"></a><span class="co">#&gt;  [2] /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library</span></span>
+<span id="cb49-41"><a href="session-information-r.html#cb49-41" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb49-42"><a href="session-information-r.html#cb49-42" tabindex="-1"></a><span class="co">#&gt; ──────────────────────────────────────────────────────────────────────────────</span></span></code></pre></div>
 
 </div>
 

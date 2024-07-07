@@ -72,9 +72,6 @@ summary(fit)
 #> AIC: 10701
 #> 
 #> Number of Fisher Scoring iterations: 2
-```
-
-``` r
 nhefs$predicted.meanY <- predict(fit, nhefs)
 
 nhefs[which(nhefs$seqn == 24770), c(
@@ -95,16 +92,10 @@ nhefs[which(nhefs$seqn == 24770), c(
 #>             <dbl> <dbl> <dbl> <dbl> <dbl>     <dbl>          <dbl>    <dbl>
 #> 1           0.342     0     0     0    26         4             15       12
 #> # ℹ 3 more variables: exercise <dbl>, active <dbl>, wt71 <dbl>
-```
-
-``` r
 
 summary(nhefs$predicted.meanY[nhefs$cens == 0])
 #>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 #> -10.876   1.116   3.042   2.638   4.511   9.876
-```
-
-``` r
 summary(nhefs$wt82_71[nhefs$cens == 0])
 #>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 #> -41.280  -1.478   2.604   2.638   6.690  48.538
@@ -171,21 +162,12 @@ summary(glm.obj)
 #> AIC: 35.385
 #> 
 #> Number of Fisher Scoring iterations: 2
-```
-
-``` r
 table22$predicted.meanY <- predict(glm.obj, table22)
 
 mean(table22$predicted.meanY[table22$interv == -1])
 #> [1] 0.5
-```
-
-``` r
 mean(table22$predicted.meanY[table22$interv == 0])
 #> [1] 0.5
-```
-
-``` r
 mean(table22$predicted.meanY[table22$interv == 1])
 #> [1] 0.5
 ```
@@ -269,9 +251,6 @@ summary(std)
 #> AIC: 10701
 #> 
 #> Number of Fisher Scoring iterations: 2
-```
-
-``` r
 onesample$predicted_meanY <- predict(std, onesample)
 
 # estimate mean outcome in each of the groups interv=0, and interv=1
@@ -279,14 +258,8 @@ onesample$predicted_meanY <- predict(std, onesample)
 # of values of treatment and confounders, that is, the standardized outcome
 mean(onesample[which(onesample$interv == -1), ]$predicted_meanY)
 #> [1] 2.56319
-```
-
-``` r
 mean(onesample[which(onesample$interv == 0), ]$predicted_meanY)
 #> [1] 1.660267
-```
-
-``` r
 mean(onesample[which(onesample$interv == 1), ]$predicted_meanY)
 #> [1] 5.178841
 ```
@@ -372,13 +345,13 @@ bootstrap <-
   ))
 bootstrap
 #>                         V1             mean                se               ll
-#> 1                 Observed 2.56188497106099 0.108953793307423 2.34833946019942
-#> 2             No Treatment 1.65212306626744 0.182083782663198 1.29524541007875
-#> 3                Treatment 5.11474489549336 0.299665030619624  4.5274122280528
-#> 4 Treatment - No Treatment 3.46262182922592 0.441803048671606 2.59670376556958
+#> 1                 Observed 2.56188497106099 0.168349828777233 2.23192536985413
+#> 2             No Treatment 1.65212306626744 0.225373916008055 1.21039830783689
+#> 3                Treatment 5.11474489549336  0.21120201799248 4.70079654676591
+#> 4 Treatment - No Treatment 3.46262182922592 0.156834175112253 3.15523249446086
 #>                 ul
-#> 1 2.77543048192256
-#> 2 2.00900072245612
-#> 3 5.70207756293391
-#> 4 4.32853989288226
+#> 1 2.89184457226785
+#> 2 2.09384782469798
+#> 3  5.5286932442208
+#> 4 3.77001116399098
 ```

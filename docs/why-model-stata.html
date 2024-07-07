@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>11. Why model: Stata | Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="11. Why model: Stata | Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2024-06-16" />
+<meta name="date" content="2024-07-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -310,8 +310,8 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="why-model-stata" class="section level1 unnumbered hasAnchor">
 <h1>11. Why model: Stata<a href="why-model-stata.html#why-model-stata" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="why-model-stata.html#cb167-1" tabindex="-1"></a><span class="fu">library</span>(Statamarkdown)</span></code></pre></div>
-<div class="sourceCode" id="cb168"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb168-1"><a href="why-model-stata.html#cb168-1" tabindex="-1"></a><span class="kw">do</span> dependency</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="why-model-stata.html#cb50-1" tabindex="-1"></a><span class="fu">library</span>(Statamarkdown)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb51-1"><a href="why-model-stata.html#cb51-1" tabindex="-1"></a><span class="kw">do</span> dependency</span></code></pre></div>
 <pre><code>checking extremes consistency and verifying not already installed...
 all files already exist and are up to date.
 
@@ -329,38 +329,38 @@ For errors contact: ejmurray@bu.edu
 <li>Figures 11.1, 11.2, and 11.3</li>
 <li>Sample averages by treatment level</li>
 </ul>
-<div class="sourceCode" id="cb171"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb171-1"><a href="why-model-stata.html#cb171-1" tabindex="-1"></a><span class="kw">clear</span></span>
-<span id="cb171-2"><a href="why-model-stata.html#cb171-2" tabindex="-1"></a></span>
-<span id="cb171-3"><a href="why-model-stata.html#cb171-3" tabindex="-1"></a>**Figure 11.1**</span>
-<span id="cb171-4"><a href="why-model-stata.html#cb171-4" tabindex="-1"></a>*create the dataset*</span>
-<span id="cb171-5"><a href="why-model-stata.html#cb171-5" tabindex="-1"></a>input A Y</span>
-<span id="cb171-6"><a href="why-model-stata.html#cb171-6" tabindex="-1"></a>1 200</span>
-<span id="cb171-7"><a href="why-model-stata.html#cb171-7" tabindex="-1"></a>1 150</span>
-<span id="cb171-8"><a href="why-model-stata.html#cb171-8" tabindex="-1"></a>1 220</span>
-<span id="cb171-9"><a href="why-model-stata.html#cb171-9" tabindex="-1"></a>1 110</span>
-<span id="cb171-10"><a href="why-model-stata.html#cb171-10" tabindex="-1"></a>1 50</span>
-<span id="cb171-11"><a href="why-model-stata.html#cb171-11" tabindex="-1"></a>1 180</span>
-<span id="cb171-12"><a href="why-model-stata.html#cb171-12" tabindex="-1"></a>1 90</span>
-<span id="cb171-13"><a href="why-model-stata.html#cb171-13" tabindex="-1"></a>1 170</span>
-<span id="cb171-14"><a href="why-model-stata.html#cb171-14" tabindex="-1"></a>0 170</span>
-<span id="cb171-15"><a href="why-model-stata.html#cb171-15" tabindex="-1"></a>0 30</span>
-<span id="cb171-16"><a href="why-model-stata.html#cb171-16" tabindex="-1"></a>0 70</span>
-<span id="cb171-17"><a href="why-model-stata.html#cb171-17" tabindex="-1"></a>0 110</span>
-<span id="cb171-18"><a href="why-model-stata.html#cb171-18" tabindex="-1"></a>0 80</span>
-<span id="cb171-19"><a href="why-model-stata.html#cb171-19" tabindex="-1"></a>0 50</span>
-<span id="cb171-20"><a href="why-model-stata.html#cb171-20" tabindex="-1"></a>0 10</span>
-<span id="cb171-21"><a href="why-model-stata.html#cb171-21" tabindex="-1"></a>0 20</span>
-<span id="cb171-22"><a href="why-model-stata.html#cb171-22" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb171-23"><a href="why-model-stata.html#cb171-23" tabindex="-1"></a></span>
-<span id="cb171-24"><a href="why-model-stata.html#cb171-24" tabindex="-1"></a>*Save the <span class="kw">data</span>*</span>
-<span id="cb171-25"><a href="why-model-stata.html#cb171-25" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">save</span> ./<span class="kw">data</span>/fig1, <span class="kw">replace</span></span>
-<span id="cb171-26"><a href="why-model-stata.html#cb171-26" tabindex="-1"></a></span>
-<span id="cb171-27"><a href="why-model-stata.html#cb171-27" tabindex="-1"></a>*Build the scatterplot*</span>
-<span id="cb171-28"><a href="why-model-stata.html#cb171-28" tabindex="-1"></a><span class="kw">scatter</span> Y A, ylab(0(50)250) xlab(0 1) <span class="bn">xscale</span>(<span class="kw">range</span>(-0.5 1.5))</span>
-<span id="cb171-29"><a href="why-model-stata.html#cb171-29" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">gr</span> <span class="kw">export</span> figs/stata-fig-11-1.png, <span class="kw">replace</span></span>
-<span id="cb171-30"><a href="why-model-stata.html#cb171-30" tabindex="-1"></a></span>
-<span id="cb171-31"><a href="why-model-stata.html#cb171-31" tabindex="-1"></a>*Output the <span class="kw">mean</span> <span class="kw">values</span> <span class="kw">for</span> Y <span class="kw">in</span> each <span class="dv">level</span> <span class="kw">of</span> A*</span>
-<span id="cb171-32"><a href="why-model-stata.html#cb171-32" tabindex="-1"></a><span class="kw">bysort</span> A: <span class="kw">sum</span> Y</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb54-1"><a href="why-model-stata.html#cb54-1" tabindex="-1"></a><span class="kw">clear</span></span>
+<span id="cb54-2"><a href="why-model-stata.html#cb54-2" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="why-model-stata.html#cb54-3" tabindex="-1"></a>**Figure 11.1**</span>
+<span id="cb54-4"><a href="why-model-stata.html#cb54-4" tabindex="-1"></a>*create the dataset*</span>
+<span id="cb54-5"><a href="why-model-stata.html#cb54-5" tabindex="-1"></a>input A Y</span>
+<span id="cb54-6"><a href="why-model-stata.html#cb54-6" tabindex="-1"></a>1 200</span>
+<span id="cb54-7"><a href="why-model-stata.html#cb54-7" tabindex="-1"></a>1 150</span>
+<span id="cb54-8"><a href="why-model-stata.html#cb54-8" tabindex="-1"></a>1 220</span>
+<span id="cb54-9"><a href="why-model-stata.html#cb54-9" tabindex="-1"></a>1 110</span>
+<span id="cb54-10"><a href="why-model-stata.html#cb54-10" tabindex="-1"></a>1 50</span>
+<span id="cb54-11"><a href="why-model-stata.html#cb54-11" tabindex="-1"></a>1 180</span>
+<span id="cb54-12"><a href="why-model-stata.html#cb54-12" tabindex="-1"></a>1 90</span>
+<span id="cb54-13"><a href="why-model-stata.html#cb54-13" tabindex="-1"></a>1 170</span>
+<span id="cb54-14"><a href="why-model-stata.html#cb54-14" tabindex="-1"></a>0 170</span>
+<span id="cb54-15"><a href="why-model-stata.html#cb54-15" tabindex="-1"></a>0 30</span>
+<span id="cb54-16"><a href="why-model-stata.html#cb54-16" tabindex="-1"></a>0 70</span>
+<span id="cb54-17"><a href="why-model-stata.html#cb54-17" tabindex="-1"></a>0 110</span>
+<span id="cb54-18"><a href="why-model-stata.html#cb54-18" tabindex="-1"></a>0 80</span>
+<span id="cb54-19"><a href="why-model-stata.html#cb54-19" tabindex="-1"></a>0 50</span>
+<span id="cb54-20"><a href="why-model-stata.html#cb54-20" tabindex="-1"></a>0 10</span>
+<span id="cb54-21"><a href="why-model-stata.html#cb54-21" tabindex="-1"></a>0 20</span>
+<span id="cb54-22"><a href="why-model-stata.html#cb54-22" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb54-23"><a href="why-model-stata.html#cb54-23" tabindex="-1"></a></span>
+<span id="cb54-24"><a href="why-model-stata.html#cb54-24" tabindex="-1"></a>*Save the <span class="kw">data</span>*</span>
+<span id="cb54-25"><a href="why-model-stata.html#cb54-25" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">save</span> ./<span class="kw">data</span>/fig1, <span class="kw">replace</span></span>
+<span id="cb54-26"><a href="why-model-stata.html#cb54-26" tabindex="-1"></a></span>
+<span id="cb54-27"><a href="why-model-stata.html#cb54-27" tabindex="-1"></a>*Build the scatterplot*</span>
+<span id="cb54-28"><a href="why-model-stata.html#cb54-28" tabindex="-1"></a><span class="kw">scatter</span> Y A, ylab(0(50)250) xlab(0 1) <span class="bn">xscale</span>(<span class="kw">range</span>(-0.5 1.5))</span>
+<span id="cb54-29"><a href="why-model-stata.html#cb54-29" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">gr</span> <span class="kw">export</span> figs/stata-fig-11-1.png, <span class="kw">replace</span></span>
+<span id="cb54-30"><a href="why-model-stata.html#cb54-30" tabindex="-1"></a></span>
+<span id="cb54-31"><a href="why-model-stata.html#cb54-31" tabindex="-1"></a>*Output the <span class="kw">mean</span> <span class="kw">values</span> <span class="kw">for</span> Y <span class="kw">in</span> each <span class="dv">level</span> <span class="kw">of</span> A*</span>
+<span id="cb54-32"><a href="why-model-stata.html#cb54-32" tabindex="-1"></a><span class="kw">bysort</span> A: <span class="kw">sum</span> Y</span></code></pre></div>
 <pre><code>             A          Y
   1. 1 200
   2. 1 150
@@ -398,35 +398,35 @@ For errors contact: ejmurray@bu.edu
 -------------+---------------------------------------------------------
            Y |          8      146.25     58.2942         50        220</code></pre>
 <p><img src="figs/stata-fig-11-1.png" width="85%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb173-1"><a href="why-model-stata.html#cb173-1" tabindex="-1"></a>*Clear the workspace to <span class="kw">be</span> able to <span class="kw">use</span> a <span class="kw">new</span> dataset*</span>
-<span id="cb173-2"><a href="why-model-stata.html#cb173-2" tabindex="-1"></a><span class="kw">clear</span></span>
-<span id="cb173-3"><a href="why-model-stata.html#cb173-3" tabindex="-1"></a></span>
-<span id="cb173-4"><a href="why-model-stata.html#cb173-4" tabindex="-1"></a>**Figure 11.2**</span>
-<span id="cb173-5"><a href="why-model-stata.html#cb173-5" tabindex="-1"></a>input A Y</span>
-<span id="cb173-6"><a href="why-model-stata.html#cb173-6" tabindex="-1"></a>1 110</span>
-<span id="cb173-7"><a href="why-model-stata.html#cb173-7" tabindex="-1"></a>1 80</span>
-<span id="cb173-8"><a href="why-model-stata.html#cb173-8" tabindex="-1"></a>1 50</span>
-<span id="cb173-9"><a href="why-model-stata.html#cb173-9" tabindex="-1"></a>1 40</span>
-<span id="cb173-10"><a href="why-model-stata.html#cb173-10" tabindex="-1"></a>2 170</span>
-<span id="cb173-11"><a href="why-model-stata.html#cb173-11" tabindex="-1"></a>2 30</span>
-<span id="cb173-12"><a href="why-model-stata.html#cb173-12" tabindex="-1"></a>2 70</span>
-<span id="cb173-13"><a href="why-model-stata.html#cb173-13" tabindex="-1"></a>2 50</span>
-<span id="cb173-14"><a href="why-model-stata.html#cb173-14" tabindex="-1"></a>3 110</span>
-<span id="cb173-15"><a href="why-model-stata.html#cb173-15" tabindex="-1"></a>3 50</span>
-<span id="cb173-16"><a href="why-model-stata.html#cb173-16" tabindex="-1"></a>3 180</span>
-<span id="cb173-17"><a href="why-model-stata.html#cb173-17" tabindex="-1"></a>3 130</span>
-<span id="cb173-18"><a href="why-model-stata.html#cb173-18" tabindex="-1"></a>4 200</span>
-<span id="cb173-19"><a href="why-model-stata.html#cb173-19" tabindex="-1"></a>4 150</span>
-<span id="cb173-20"><a href="why-model-stata.html#cb173-20" tabindex="-1"></a>4 220</span>
-<span id="cb173-21"><a href="why-model-stata.html#cb173-21" tabindex="-1"></a>4 210</span>
-<span id="cb173-22"><a href="why-model-stata.html#cb173-22" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb173-23"><a href="why-model-stata.html#cb173-23" tabindex="-1"></a></span>
-<span id="cb173-24"><a href="why-model-stata.html#cb173-24" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">save</span> ./<span class="kw">data</span>/fig2, <span class="kw">replace</span></span>
-<span id="cb173-25"><a href="why-model-stata.html#cb173-25" tabindex="-1"></a></span>
-<span id="cb173-26"><a href="why-model-stata.html#cb173-26" tabindex="-1"></a><span class="kw">scatter</span> Y A, ylab(0(50)250) xlab(0(1)4) <span class="bn">xscale</span>(<span class="kw">range</span>(0 4.5))</span>
-<span id="cb173-27"><a href="why-model-stata.html#cb173-27" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">gr</span> <span class="kw">export</span> figs/stata-fig-11-2.png, <span class="kw">replace</span></span>
-<span id="cb173-28"><a href="why-model-stata.html#cb173-28" tabindex="-1"></a></span>
-<span id="cb173-29"><a href="why-model-stata.html#cb173-29" tabindex="-1"></a><span class="kw">bysort</span> A: <span class="kw">sum</span> Y</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb56-1"><a href="why-model-stata.html#cb56-1" tabindex="-1"></a>*Clear the workspace to <span class="kw">be</span> able to <span class="kw">use</span> a <span class="kw">new</span> dataset*</span>
+<span id="cb56-2"><a href="why-model-stata.html#cb56-2" tabindex="-1"></a><span class="kw">clear</span></span>
+<span id="cb56-3"><a href="why-model-stata.html#cb56-3" tabindex="-1"></a></span>
+<span id="cb56-4"><a href="why-model-stata.html#cb56-4" tabindex="-1"></a>**Figure 11.2**</span>
+<span id="cb56-5"><a href="why-model-stata.html#cb56-5" tabindex="-1"></a>input A Y</span>
+<span id="cb56-6"><a href="why-model-stata.html#cb56-6" tabindex="-1"></a>1 110</span>
+<span id="cb56-7"><a href="why-model-stata.html#cb56-7" tabindex="-1"></a>1 80</span>
+<span id="cb56-8"><a href="why-model-stata.html#cb56-8" tabindex="-1"></a>1 50</span>
+<span id="cb56-9"><a href="why-model-stata.html#cb56-9" tabindex="-1"></a>1 40</span>
+<span id="cb56-10"><a href="why-model-stata.html#cb56-10" tabindex="-1"></a>2 170</span>
+<span id="cb56-11"><a href="why-model-stata.html#cb56-11" tabindex="-1"></a>2 30</span>
+<span id="cb56-12"><a href="why-model-stata.html#cb56-12" tabindex="-1"></a>2 70</span>
+<span id="cb56-13"><a href="why-model-stata.html#cb56-13" tabindex="-1"></a>2 50</span>
+<span id="cb56-14"><a href="why-model-stata.html#cb56-14" tabindex="-1"></a>3 110</span>
+<span id="cb56-15"><a href="why-model-stata.html#cb56-15" tabindex="-1"></a>3 50</span>
+<span id="cb56-16"><a href="why-model-stata.html#cb56-16" tabindex="-1"></a>3 180</span>
+<span id="cb56-17"><a href="why-model-stata.html#cb56-17" tabindex="-1"></a>3 130</span>
+<span id="cb56-18"><a href="why-model-stata.html#cb56-18" tabindex="-1"></a>4 200</span>
+<span id="cb56-19"><a href="why-model-stata.html#cb56-19" tabindex="-1"></a>4 150</span>
+<span id="cb56-20"><a href="why-model-stata.html#cb56-20" tabindex="-1"></a>4 220</span>
+<span id="cb56-21"><a href="why-model-stata.html#cb56-21" tabindex="-1"></a>4 210</span>
+<span id="cb56-22"><a href="why-model-stata.html#cb56-22" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb56-23"><a href="why-model-stata.html#cb56-23" tabindex="-1"></a></span>
+<span id="cb56-24"><a href="why-model-stata.html#cb56-24" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">save</span> ./<span class="kw">data</span>/fig2, <span class="kw">replace</span></span>
+<span id="cb56-25"><a href="why-model-stata.html#cb56-25" tabindex="-1"></a></span>
+<span id="cb56-26"><a href="why-model-stata.html#cb56-26" tabindex="-1"></a><span class="kw">scatter</span> Y A, ylab(0(50)250) xlab(0(1)4) <span class="bn">xscale</span>(<span class="kw">range</span>(0 4.5))</span>
+<span id="cb56-27"><a href="why-model-stata.html#cb56-27" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">gr</span> <span class="kw">export</span> figs/stata-fig-11-2.png, <span class="kw">replace</span></span>
+<span id="cb56-28"><a href="why-model-stata.html#cb56-28" tabindex="-1"></a></span>
+<span id="cb56-29"><a href="why-model-stata.html#cb56-29" tabindex="-1"></a><span class="kw">bysort</span> A: <span class="kw">sum</span> Y</span></code></pre></div>
 <pre><code>             A          Y
   1. 1 110
   2. 1 80
@@ -478,32 +478,32 @@ For errors contact: ejmurray@bu.edu
 -------------+---------------------------------------------------------
            Y |          4         195    31.09126        150        220</code></pre>
 <p><img src="figs/stata-fig-11-2.png" width="85%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb175-1"><a href="why-model-stata.html#cb175-1" tabindex="-1"></a><span class="kw">clear</span></span>
-<span id="cb175-2"><a href="why-model-stata.html#cb175-2" tabindex="-1"></a></span>
-<span id="cb175-3"><a href="why-model-stata.html#cb175-3" tabindex="-1"></a>**Figure 11.3**</span>
-<span id="cb175-4"><a href="why-model-stata.html#cb175-4" tabindex="-1"></a>input A Y</span>
-<span id="cb175-5"><a href="why-model-stata.html#cb175-5" tabindex="-1"></a>3   21  </span>
-<span id="cb175-6"><a href="why-model-stata.html#cb175-6" tabindex="-1"></a>11  54</span>
-<span id="cb175-7"><a href="why-model-stata.html#cb175-7" tabindex="-1"></a>17  33</span>
-<span id="cb175-8"><a href="why-model-stata.html#cb175-8" tabindex="-1"></a>23  101</span>
-<span id="cb175-9"><a href="why-model-stata.html#cb175-9" tabindex="-1"></a>29  85</span>
-<span id="cb175-10"><a href="why-model-stata.html#cb175-10" tabindex="-1"></a>37  65</span>
-<span id="cb175-11"><a href="why-model-stata.html#cb175-11" tabindex="-1"></a>41  157</span>
-<span id="cb175-12"><a href="why-model-stata.html#cb175-12" tabindex="-1"></a>53  120</span>
-<span id="cb175-13"><a href="why-model-stata.html#cb175-13" tabindex="-1"></a>67  111</span>
-<span id="cb175-14"><a href="why-model-stata.html#cb175-14" tabindex="-1"></a>79  200</span>
-<span id="cb175-15"><a href="why-model-stata.html#cb175-15" tabindex="-1"></a>83  140</span>
-<span id="cb175-16"><a href="why-model-stata.html#cb175-16" tabindex="-1"></a>97  220</span>
-<span id="cb175-17"><a href="why-model-stata.html#cb175-17" tabindex="-1"></a>60  230</span>
-<span id="cb175-18"><a href="why-model-stata.html#cb175-18" tabindex="-1"></a>71  217</span>
-<span id="cb175-19"><a href="why-model-stata.html#cb175-19" tabindex="-1"></a>15  11</span>
-<span id="cb175-20"><a href="why-model-stata.html#cb175-20" tabindex="-1"></a>45  190</span>
-<span id="cb175-21"><a href="why-model-stata.html#cb175-21" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb175-22"><a href="why-model-stata.html#cb175-22" tabindex="-1"></a></span>
-<span id="cb175-23"><a href="why-model-stata.html#cb175-23" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">save</span> ./<span class="kw">data</span>/fig3, <span class="kw">replace</span></span>
-<span id="cb175-24"><a href="why-model-stata.html#cb175-24" tabindex="-1"></a></span>
-<span id="cb175-25"><a href="why-model-stata.html#cb175-25" tabindex="-1"></a><span class="kw">scatter</span> Y A, ylab(0(50)250) xlab(0(10)100) <span class="bn">xscale</span>(<span class="kw">range</span>(0 100))</span>
-<span id="cb175-26"><a href="why-model-stata.html#cb175-26" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">gr</span> <span class="kw">export</span> figs/stata-fig-11-3.png, <span class="kw">replace</span></span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb58-1"><a href="why-model-stata.html#cb58-1" tabindex="-1"></a><span class="kw">clear</span></span>
+<span id="cb58-2"><a href="why-model-stata.html#cb58-2" tabindex="-1"></a></span>
+<span id="cb58-3"><a href="why-model-stata.html#cb58-3" tabindex="-1"></a>**Figure 11.3**</span>
+<span id="cb58-4"><a href="why-model-stata.html#cb58-4" tabindex="-1"></a>input A Y</span>
+<span id="cb58-5"><a href="why-model-stata.html#cb58-5" tabindex="-1"></a>3   21  </span>
+<span id="cb58-6"><a href="why-model-stata.html#cb58-6" tabindex="-1"></a>11  54</span>
+<span id="cb58-7"><a href="why-model-stata.html#cb58-7" tabindex="-1"></a>17  33</span>
+<span id="cb58-8"><a href="why-model-stata.html#cb58-8" tabindex="-1"></a>23  101</span>
+<span id="cb58-9"><a href="why-model-stata.html#cb58-9" tabindex="-1"></a>29  85</span>
+<span id="cb58-10"><a href="why-model-stata.html#cb58-10" tabindex="-1"></a>37  65</span>
+<span id="cb58-11"><a href="why-model-stata.html#cb58-11" tabindex="-1"></a>41  157</span>
+<span id="cb58-12"><a href="why-model-stata.html#cb58-12" tabindex="-1"></a>53  120</span>
+<span id="cb58-13"><a href="why-model-stata.html#cb58-13" tabindex="-1"></a>67  111</span>
+<span id="cb58-14"><a href="why-model-stata.html#cb58-14" tabindex="-1"></a>79  200</span>
+<span id="cb58-15"><a href="why-model-stata.html#cb58-15" tabindex="-1"></a>83  140</span>
+<span id="cb58-16"><a href="why-model-stata.html#cb58-16" tabindex="-1"></a>97  220</span>
+<span id="cb58-17"><a href="why-model-stata.html#cb58-17" tabindex="-1"></a>60  230</span>
+<span id="cb58-18"><a href="why-model-stata.html#cb58-18" tabindex="-1"></a>71  217</span>
+<span id="cb58-19"><a href="why-model-stata.html#cb58-19" tabindex="-1"></a>15  11</span>
+<span id="cb58-20"><a href="why-model-stata.html#cb58-20" tabindex="-1"></a>45  190</span>
+<span id="cb58-21"><a href="why-model-stata.html#cb58-21" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb58-22"><a href="why-model-stata.html#cb58-22" tabindex="-1"></a></span>
+<span id="cb58-23"><a href="why-model-stata.html#cb58-23" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">save</span> ./<span class="kw">data</span>/fig3, <span class="kw">replace</span></span>
+<span id="cb58-24"><a href="why-model-stata.html#cb58-24" tabindex="-1"></a></span>
+<span id="cb58-25"><a href="why-model-stata.html#cb58-25" tabindex="-1"></a><span class="kw">scatter</span> Y A, ylab(0(50)250) xlab(0(10)100) <span class="bn">xscale</span>(<span class="kw">range</span>(0 100))</span>
+<span id="cb58-26"><a href="why-model-stata.html#cb58-26" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">gr</span> <span class="kw">export</span> figs/stata-fig-11-3.png, <span class="kw">replace</span></span></code></pre></div>
 <pre><code>             A          Y
   1. 3   21  
   2. 11      54
@@ -530,22 +530,22 @@ For errors contact: ejmurray@bu.edu
 <li>2-parameter linear model</li>
 <li>Creates Figure 11.4, parameter estimates with 95% confidence intervals from Section 11.2, and parameter estimates with 95% confidence intervals from Section 11.3</li>
 </ul>
-<div class="sourceCode" id="cb177"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb177-1"><a href="why-model-stata.html#cb177-1" tabindex="-1"></a>**Section 11.2: parametric estimators**</span>
-<span id="cb177-2"><a href="why-model-stata.html#cb177-2" tabindex="-1"></a>*Reload <span class="kw">data</span></span>
-<span id="cb177-3"><a href="why-model-stata.html#cb177-3" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/fig3, <span class="kw">clear</span></span>
-<span id="cb177-4"><a href="why-model-stata.html#cb177-4" tabindex="-1"></a></span>
-<span id="cb177-5"><a href="why-model-stata.html#cb177-5" tabindex="-1"></a>*Plot the <span class="kw">data</span>*</span>
-<span id="cb177-6"><a href="why-model-stata.html#cb177-6" tabindex="-1"></a><span class="kw">scatter</span> Y A, ylab(0(50)250) xlab(0(10)100) <span class="bn">xscale</span>(<span class="kw">range</span>(0 100))</span>
-<span id="cb177-7"><a href="why-model-stata.html#cb177-7" tabindex="-1"></a></span>
-<span id="cb177-8"><a href="why-model-stata.html#cb177-8" tabindex="-1"></a>*Fit the regression <span class="kw">model</span>*</span>
-<span id="cb177-9"><a href="why-model-stata.html#cb177-9" tabindex="-1"></a><span class="kw">regress</span> Y A, <span class="kw">noheader</span> cformat(%5.2f)</span>
-<span id="cb177-10"><a href="why-model-stata.html#cb177-10" tabindex="-1"></a></span>
-<span id="cb177-11"><a href="why-model-stata.html#cb177-11" tabindex="-1"></a>*Output the estimated <span class="kw">mean</span> Y <span class="ot">value</span> when A = 90*</span>
-<span id="cb177-12"><a href="why-model-stata.html#cb177-12" tabindex="-1"></a><span class="kw">lincom</span> _b[<span class="dt">_cons</span>] + 90*_b[A]</span>
-<span id="cb177-13"><a href="why-model-stata.html#cb177-13" tabindex="-1"></a></span>
-<span id="cb177-14"><a href="why-model-stata.html#cb177-14" tabindex="-1"></a>*Plot the <span class="kw">data</span> with the regression <span class="kw">line</span>: Fig 11.4*</span>
-<span id="cb177-15"><a href="why-model-stata.html#cb177-15" tabindex="-1"></a><span class="kw">scatter</span> Y A, ylab(0(50)250) xlab(0(10)100) <span class="bn">xscale</span>(<span class="kw">range</span>(0 100)) || <span class="kw">lfit</span> Y A</span>
-<span id="cb177-16"><a href="why-model-stata.html#cb177-16" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">gr</span> <span class="kw">export</span> figs/stata-fig-11-4.png, <span class="kw">replace</span></span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb60-1"><a href="why-model-stata.html#cb60-1" tabindex="-1"></a>**Section 11.2: parametric estimators**</span>
+<span id="cb60-2"><a href="why-model-stata.html#cb60-2" tabindex="-1"></a>*Reload <span class="kw">data</span></span>
+<span id="cb60-3"><a href="why-model-stata.html#cb60-3" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/fig3, <span class="kw">clear</span></span>
+<span id="cb60-4"><a href="why-model-stata.html#cb60-4" tabindex="-1"></a></span>
+<span id="cb60-5"><a href="why-model-stata.html#cb60-5" tabindex="-1"></a>*Plot the <span class="kw">data</span>*</span>
+<span id="cb60-6"><a href="why-model-stata.html#cb60-6" tabindex="-1"></a><span class="kw">scatter</span> Y A, ylab(0(50)250) xlab(0(10)100) <span class="bn">xscale</span>(<span class="kw">range</span>(0 100))</span>
+<span id="cb60-7"><a href="why-model-stata.html#cb60-7" tabindex="-1"></a></span>
+<span id="cb60-8"><a href="why-model-stata.html#cb60-8" tabindex="-1"></a>*Fit the regression <span class="kw">model</span>*</span>
+<span id="cb60-9"><a href="why-model-stata.html#cb60-9" tabindex="-1"></a><span class="kw">regress</span> Y A, <span class="kw">noheader</span> cformat(%5.2f)</span>
+<span id="cb60-10"><a href="why-model-stata.html#cb60-10" tabindex="-1"></a></span>
+<span id="cb60-11"><a href="why-model-stata.html#cb60-11" tabindex="-1"></a>*Output the estimated <span class="kw">mean</span> Y <span class="ot">value</span> when A = 90*</span>
+<span id="cb60-12"><a href="why-model-stata.html#cb60-12" tabindex="-1"></a><span class="kw">lincom</span> _b[<span class="dt">_cons</span>] + 90*_b[A]</span>
+<span id="cb60-13"><a href="why-model-stata.html#cb60-13" tabindex="-1"></a></span>
+<span id="cb60-14"><a href="why-model-stata.html#cb60-14" tabindex="-1"></a>*Plot the <span class="kw">data</span> with the regression <span class="kw">line</span>: Fig 11.4*</span>
+<span id="cb60-15"><a href="why-model-stata.html#cb60-15" tabindex="-1"></a><span class="kw">scatter</span> Y A, ylab(0(50)250) xlab(0(10)100) <span class="bn">xscale</span>(<span class="kw">range</span>(0 100)) || <span class="kw">lfit</span> Y A</span>
+<span id="cb60-16"><a href="why-model-stata.html#cb60-16" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">gr</span> <span class="kw">export</span> figs/stata-fig-11-4.png, <span class="kw">replace</span></span></code></pre></div>
 <pre><code>           Y | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
 -------------+----------------------------------------------------------------
            A |       2.14       0.40     5.35   0.000         1.28        2.99
@@ -561,15 +561,15 @@ For errors contact: ejmurray@bu.edu
          (1) |     216.89    20.8614    10.40   0.000     172.1468    261.6333
 ------------------------------------------------------------------------------</code></pre>
 <p><img src="figs/stata-fig-11-4.png" width="85%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb179-1"><a href="why-model-stata.html#cb179-1" tabindex="-1"></a>**Section 11.3: non-parametric estimation*</span>
-<span id="cb179-2"><a href="why-model-stata.html#cb179-2" tabindex="-1"></a>* Reload the <span class="kw">data</span></span>
-<span id="cb179-3"><a href="why-model-stata.html#cb179-3" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/fig1, <span class="kw">clear</span></span>
-<span id="cb179-4"><a href="why-model-stata.html#cb179-4" tabindex="-1"></a></span>
-<span id="cb179-5"><a href="why-model-stata.html#cb179-5" tabindex="-1"></a>*Fit the regression <span class="kw">model</span>*</span>
-<span id="cb179-6"><a href="why-model-stata.html#cb179-6" tabindex="-1"></a><span class="kw">regress</span> Y A, <span class="kw">noheader</span> cformat(%5.2f)</span>
-<span id="cb179-7"><a href="why-model-stata.html#cb179-7" tabindex="-1"></a></span>
-<span id="cb179-8"><a href="why-model-stata.html#cb179-8" tabindex="-1"></a>*E[Y|A=1]*</span>
-<span id="cb179-9"><a href="why-model-stata.html#cb179-9" tabindex="-1"></a><span class="kw">di</span> 67.50 + 78.75</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb62-1"><a href="why-model-stata.html#cb62-1" tabindex="-1"></a>**Section 11.3: non-parametric estimation*</span>
+<span id="cb62-2"><a href="why-model-stata.html#cb62-2" tabindex="-1"></a>* Reload the <span class="kw">data</span></span>
+<span id="cb62-3"><a href="why-model-stata.html#cb62-3" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/fig1, <span class="kw">clear</span></span>
+<span id="cb62-4"><a href="why-model-stata.html#cb62-4" tabindex="-1"></a></span>
+<span id="cb62-5"><a href="why-model-stata.html#cb62-5" tabindex="-1"></a>*Fit the regression <span class="kw">model</span>*</span>
+<span id="cb62-6"><a href="why-model-stata.html#cb62-6" tabindex="-1"></a><span class="kw">regress</span> Y A, <span class="kw">noheader</span> cformat(%5.2f)</span>
+<span id="cb62-7"><a href="why-model-stata.html#cb62-7" tabindex="-1"></a></span>
+<span id="cb62-8"><a href="why-model-stata.html#cb62-8" tabindex="-1"></a>*E[Y|A=1]*</span>
+<span id="cb62-9"><a href="why-model-stata.html#cb62-9" tabindex="-1"></a><span class="kw">di</span> 67.50 + 78.75</span></code></pre></div>
 <pre><code>           Y | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
 -------------+----------------------------------------------------------------
            A |      78.75      27.88     2.82   0.014        18.95      138.55
@@ -584,21 +584,21 @@ For errors contact: ejmurray@bu.edu
 <li>3-parameter linear model</li>
 <li>Creates Figure 11.5 and Parameter estimates for Section 11.4</li>
 </ul>
-<div class="sourceCode" id="cb181"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb181-1"><a href="why-model-stata.html#cb181-1" tabindex="-1"></a>* Reload the <span class="kw">data</span></span>
-<span id="cb181-2"><a href="why-model-stata.html#cb181-2" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/fig3, <span class="kw">clear</span></span>
-<span id="cb181-3"><a href="why-model-stata.html#cb181-3" tabindex="-1"></a></span>
-<span id="cb181-4"><a href="why-model-stata.html#cb181-4" tabindex="-1"></a>*Create the product term*</span>
-<span id="cb181-5"><a href="why-model-stata.html#cb181-5" tabindex="-1"></a><span class="kw">gen</span> Asq = A*A</span>
-<span id="cb181-6"><a href="why-model-stata.html#cb181-6" tabindex="-1"></a></span>
-<span id="cb181-7"><a href="why-model-stata.html#cb181-7" tabindex="-1"></a>*Fit the regression <span class="kw">model</span>*</span>
-<span id="cb181-8"><a href="why-model-stata.html#cb181-8" tabindex="-1"></a><span class="kw">regress</span> Y A Asq, <span class="kw">noheader</span> cformat(%5.2f)</span>
-<span id="cb181-9"><a href="why-model-stata.html#cb181-9" tabindex="-1"></a></span>
-<span id="cb181-10"><a href="why-model-stata.html#cb181-10" tabindex="-1"></a>*Output the estimated <span class="kw">mean</span> Y <span class="ot">value</span> when A = 90*</span>
-<span id="cb181-11"><a href="why-model-stata.html#cb181-11" tabindex="-1"></a><span class="kw">lincom</span> _b[<span class="dt">_cons</span>] + 90*_b[A] + 90*90*_b[Asq]</span>
-<span id="cb181-12"><a href="why-model-stata.html#cb181-12" tabindex="-1"></a></span>
-<span id="cb181-13"><a href="why-model-stata.html#cb181-13" tabindex="-1"></a>*Plot the <span class="kw">data</span> with the regression <span class="kw">line</span>: Fig 11.5*</span>
-<span id="cb181-14"><a href="why-model-stata.html#cb181-14" tabindex="-1"></a><span class="kw">scatter</span> Y A, ylab(0(50)250) xlab(0(10)100) <span class="bn">xscale</span>(<span class="kw">range</span>(0 100)) || qfit Y A</span>
-<span id="cb181-15"><a href="why-model-stata.html#cb181-15" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">gr</span> <span class="kw">export</span> figs/stata-fig-11-5.png, <span class="kw">replace</span></span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode stata"><code class="sourceCode stata"><span id="cb64-1"><a href="why-model-stata.html#cb64-1" tabindex="-1"></a>* Reload the <span class="kw">data</span></span>
+<span id="cb64-2"><a href="why-model-stata.html#cb64-2" tabindex="-1"></a><span class="kw">use</span> ./<span class="kw">data</span>/fig3, <span class="kw">clear</span></span>
+<span id="cb64-3"><a href="why-model-stata.html#cb64-3" tabindex="-1"></a></span>
+<span id="cb64-4"><a href="why-model-stata.html#cb64-4" tabindex="-1"></a>*Create the product term*</span>
+<span id="cb64-5"><a href="why-model-stata.html#cb64-5" tabindex="-1"></a><span class="kw">gen</span> Asq = A*A</span>
+<span id="cb64-6"><a href="why-model-stata.html#cb64-6" tabindex="-1"></a></span>
+<span id="cb64-7"><a href="why-model-stata.html#cb64-7" tabindex="-1"></a>*Fit the regression <span class="kw">model</span>*</span>
+<span id="cb64-8"><a href="why-model-stata.html#cb64-8" tabindex="-1"></a><span class="kw">regress</span> Y A Asq, <span class="kw">noheader</span> cformat(%5.2f)</span>
+<span id="cb64-9"><a href="why-model-stata.html#cb64-9" tabindex="-1"></a></span>
+<span id="cb64-10"><a href="why-model-stata.html#cb64-10" tabindex="-1"></a>*Output the estimated <span class="kw">mean</span> Y <span class="ot">value</span> when A = 90*</span>
+<span id="cb64-11"><a href="why-model-stata.html#cb64-11" tabindex="-1"></a><span class="kw">lincom</span> _b[<span class="dt">_cons</span>] + 90*_b[A] + 90*90*_b[Asq]</span>
+<span id="cb64-12"><a href="why-model-stata.html#cb64-12" tabindex="-1"></a></span>
+<span id="cb64-13"><a href="why-model-stata.html#cb64-13" tabindex="-1"></a>*Plot the <span class="kw">data</span> with the regression <span class="kw">line</span>: Fig 11.5*</span>
+<span id="cb64-14"><a href="why-model-stata.html#cb64-14" tabindex="-1"></a><span class="kw">scatter</span> Y A, ylab(0(50)250) xlab(0(10)100) <span class="bn">xscale</span>(<span class="kw">range</span>(0 100)) || qfit Y A</span>
+<span id="cb64-15"><a href="why-model-stata.html#cb64-15" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">gr</span> <span class="kw">export</span> figs/stata-fig-11-5.png, <span class="kw">replace</span></span></code></pre></div>
 <pre><code>           Y | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
 -------------+----------------------------------------------------------------
            A |       4.11       1.53     2.68   0.019         0.80        7.41
