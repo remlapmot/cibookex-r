@@ -88,16 +88,19 @@ summary(nhefs$ps[nhefs$qsmk==1])
 # install.packages("dplyr")
 library("ggplot2")
 library("dplyr")
-ggplot(nhefs, aes(x = ps, fill = qsmk)) + geom_density(alpha = 0.2) +
-  xlab('Probability of Quitting Smoking During Follow-up') +
-  ggtitle('Propensity Score Distribution by Treatment Group') +
-  scale_fill_discrete('') +
-  theme(legend.position = 'bottom', legend.direction = 'vertical')
 
-# alternative plot with histograms
 nhefs <- nhefs %>% mutate(qsmklabel = ifelse(qsmk == 1,
                        yes = 'Quit Smoking 1971-1982',
                        no = 'Did Not Quit Smoking 1971-1982'))
+
+ggplot(nhefs, aes(x = ps, fill = qsmklabel, color = qsmklabel)) + 
+  geom_density(alpha = 0.2) +
+  xlab('Probability of Quitting Smoking During Follow-up') +
+  ggtitle('Propensity Score Distribution by Treatment Group') +
+  theme(legend.position = 'bottom', legend.direction = 'vertical',
+        legend.title = element_blank())
+
+# alternative plot with histograms
 ggplot(nhefs, aes(x = ps, fill = as.factor(qsmk), color = as.factor(qsmk))) +
   geom_histogram(alpha = 0.3, position = 'identity', bins=15) +
   facet_grid(as.factor(qsmk) ~ .) +
