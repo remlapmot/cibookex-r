@@ -16,8 +16,8 @@ sessioninfo::session_info()
 #>  language (EN)
 #>  collate  en_US.UTF-8
 #>  ctype    en_US.UTF-8
-#>  tz       Europe/London
-#>  date     2024-07-07
+#>  tz       Europe/Berlin
+#>  date     2024-08-01
 #>  pandoc   3.2.1 @ /opt/homebrew/bin/ (via rmarkdown)
 #> 
 #> ─ Packages ───────────────────────────────────────────────────────────────────
@@ -33,8 +33,8 @@ sessioninfo::session_info()
 #>  rmarkdown     2.27    2024-05-17 [1] CRAN (R 4.4.0)
 #>  rstudioapi    0.16.0  2024-03-24 [1] CRAN (R 4.4.0)
 #>  sessioninfo   1.2.2   2021-12-06 [1] CRAN (R 4.4.0)
-#>  xfun          0.45    2024-06-16 [1] CRAN (R 4.4.0)
-#>  yaml          2.3.9   2024-07-05 [1] CRAN (R 4.4.1)
+#>  xfun          0.46    2024-07-18 [1] CRAN (R 4.4.1)
+#>  yaml          2.3.10  2024-07-26 [1] CRAN (R 4.4.1)
 #> 
 #>  [1] /Users/tom/Library/R/arm64/4.4/library
 #>  [2] /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/library

@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2024-07-07" />
+<meta name="date" content="2024-08-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -618,30 +618,28 @@ div.csl-indent {
 <span id="cb31-66"><a href="outcome-regression-and-propensity-scores.html#cb31-66" tabindex="-1"></a><span class="co">#&gt; The following objects are masked from &#39;package:base&#39;:</span></span>
 <span id="cb31-67"><a href="outcome-regression-and-propensity-scores.html#cb31-67" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb31-68"><a href="outcome-regression-and-propensity-scores.html#cb31-68" tabindex="-1"></a><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
-<span id="cb31-69"><a href="outcome-regression-and-propensity-scores.html#cb31-69" tabindex="-1"></a><span class="fu">ggplot</span>(nhefs, <span class="fu">aes</span>(<span class="at">x =</span> ps, <span class="at">fill =</span> qsmk)) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb31-70"><a href="outcome-regression-and-propensity-scores.html#cb31-70" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Probability of Quitting Smoking During Follow-up&#39;</span>) <span class="sc">+</span></span>
-<span id="cb31-71"><a href="outcome-regression-and-propensity-scores.html#cb31-71" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Propensity Score Distribution by Treatment Group&#39;</span>) <span class="sc">+</span></span>
-<span id="cb31-72"><a href="outcome-regression-and-propensity-scores.html#cb31-72" tabindex="-1"></a>  <span class="fu">scale_fill_discrete</span>(<span class="st">&#39;&#39;</span>) <span class="sc">+</span></span>
-<span id="cb31-73"><a href="outcome-regression-and-propensity-scores.html#cb31-73" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>, <span class="at">legend.direction =</span> <span class="st">&#39;vertical&#39;</span>)</span>
-<span id="cb31-74"><a href="outcome-regression-and-propensity-scores.html#cb31-74" tabindex="-1"></a><span class="co">#&gt; Warning: The following aesthetics were dropped during statistical transformation: fill.</span></span>
-<span id="cb31-75"><a href="outcome-regression-and-propensity-scores.html#cb31-75" tabindex="-1"></a><span class="co">#&gt; ℹ This can happen when ggplot fails to infer the correct grouping structure in</span></span>
-<span id="cb31-76"><a href="outcome-regression-and-propensity-scores.html#cb31-76" tabindex="-1"></a><span class="co">#&gt;   the data.</span></span>
-<span id="cb31-77"><a href="outcome-regression-and-propensity-scores.html#cb31-77" tabindex="-1"></a><span class="co">#&gt; ℹ Did you forget to specify a `group` aesthetic or to convert a numerical</span></span>
-<span id="cb31-78"><a href="outcome-regression-and-propensity-scores.html#cb31-78" tabindex="-1"></a><span class="co">#&gt;   variable into a factor?</span></span></code></pre></div>
+<span id="cb31-69"><a href="outcome-regression-and-propensity-scores.html#cb31-69" tabindex="-1"></a></span>
+<span id="cb31-70"><a href="outcome-regression-and-propensity-scores.html#cb31-70" tabindex="-1"></a>nhefs <span class="ot">&lt;-</span> nhefs <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">qsmklabel =</span> <span class="fu">ifelse</span>(qsmk <span class="sc">==</span> <span class="dv">1</span>,</span>
+<span id="cb31-71"><a href="outcome-regression-and-propensity-scores.html#cb31-71" tabindex="-1"></a>                       <span class="at">yes =</span> <span class="st">&#39;Quit Smoking 1971-1982&#39;</span>,</span>
+<span id="cb31-72"><a href="outcome-regression-and-propensity-scores.html#cb31-72" tabindex="-1"></a>                       <span class="at">no =</span> <span class="st">&#39;Did Not Quit Smoking 1971-1982&#39;</span>))</span>
+<span id="cb31-73"><a href="outcome-regression-and-propensity-scores.html#cb31-73" tabindex="-1"></a></span>
+<span id="cb31-74"><a href="outcome-regression-and-propensity-scores.html#cb31-74" tabindex="-1"></a><span class="fu">ggplot</span>(nhefs, <span class="fu">aes</span>(<span class="at">x =</span> ps, <span class="at">fill =</span> qsmklabel, <span class="at">color =</span> qsmklabel)) <span class="sc">+</span> </span>
+<span id="cb31-75"><a href="outcome-regression-and-propensity-scores.html#cb31-75" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb31-76"><a href="outcome-regression-and-propensity-scores.html#cb31-76" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Probability of Quitting Smoking During Follow-up&#39;</span>) <span class="sc">+</span></span>
+<span id="cb31-77"><a href="outcome-regression-and-propensity-scores.html#cb31-77" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Propensity Score Distribution by Treatment Group&#39;</span>) <span class="sc">+</span></span>
+<span id="cb31-78"><a href="outcome-regression-and-propensity-scores.html#cb31-78" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>, <span class="at">legend.direction =</span> <span class="st">&#39;vertical&#39;</span>,</span>
+<span id="cb31-79"><a href="outcome-regression-and-propensity-scores.html#cb31-79" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
 <p><img src="15-prop-scores-r_files/figure-html/unnamed-chunk-3-1.png" width="85%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="outcome-regression-and-propensity-scores.html#cb32-1" tabindex="-1"></a></span>
 <span id="cb32-2"><a href="outcome-regression-and-propensity-scores.html#cb32-2" tabindex="-1"></a><span class="co"># alternative plot with histograms</span></span>
-<span id="cb32-3"><a href="outcome-regression-and-propensity-scores.html#cb32-3" tabindex="-1"></a>nhefs <span class="ot">&lt;-</span> nhefs <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">qsmklabel =</span> <span class="fu">ifelse</span>(qsmk <span class="sc">==</span> <span class="dv">1</span>,</span>
-<span id="cb32-4"><a href="outcome-regression-and-propensity-scores.html#cb32-4" tabindex="-1"></a>                       <span class="at">yes =</span> <span class="st">&#39;Quit Smoking 1971-1982&#39;</span>,</span>
-<span id="cb32-5"><a href="outcome-regression-and-propensity-scores.html#cb32-5" tabindex="-1"></a>                       <span class="at">no =</span> <span class="st">&#39;Did Not Quit Smoking 1971-1982&#39;</span>))</span>
-<span id="cb32-6"><a href="outcome-regression-and-propensity-scores.html#cb32-6" tabindex="-1"></a><span class="fu">ggplot</span>(nhefs, <span class="fu">aes</span>(<span class="at">x =</span> ps, <span class="at">fill =</span> <span class="fu">as.factor</span>(qsmk), <span class="at">color =</span> <span class="fu">as.factor</span>(qsmk))) <span class="sc">+</span></span>
-<span id="cb32-7"><a href="outcome-regression-and-propensity-scores.html#cb32-7" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">position =</span> <span class="st">&#39;identity&#39;</span>, <span class="at">bins=</span><span class="dv">15</span>) <span class="sc">+</span></span>
-<span id="cb32-8"><a href="outcome-regression-and-propensity-scores.html#cb32-8" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="fu">as.factor</span>(qsmk) <span class="sc">~</span> .) <span class="sc">+</span></span>
-<span id="cb32-9"><a href="outcome-regression-and-propensity-scores.html#cb32-9" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Probability of Quitting Smoking During Follow-up&#39;</span>) <span class="sc">+</span></span>
-<span id="cb32-10"><a href="outcome-regression-and-propensity-scores.html#cb32-10" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Propensity Score Distribution by Treatment Group&#39;</span>) <span class="sc">+</span></span>
-<span id="cb32-11"><a href="outcome-regression-and-propensity-scores.html#cb32-11" tabindex="-1"></a>  <span class="fu">scale_fill_discrete</span>(<span class="st">&#39;&#39;</span>) <span class="sc">+</span></span>
-<span id="cb32-12"><a href="outcome-regression-and-propensity-scores.html#cb32-12" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="st">&#39;&#39;</span>) <span class="sc">+</span></span>
-<span id="cb32-13"><a href="outcome-regression-and-propensity-scores.html#cb32-13" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>, <span class="at">legend.direction =</span> <span class="st">&#39;vertical&#39;</span>)</span></code></pre></div>
+<span id="cb32-3"><a href="outcome-regression-and-propensity-scores.html#cb32-3" tabindex="-1"></a><span class="fu">ggplot</span>(nhefs, <span class="fu">aes</span>(<span class="at">x =</span> ps, <span class="at">fill =</span> <span class="fu">as.factor</span>(qsmk), <span class="at">color =</span> <span class="fu">as.factor</span>(qsmk))) <span class="sc">+</span></span>
+<span id="cb32-4"><a href="outcome-regression-and-propensity-scores.html#cb32-4" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">position =</span> <span class="st">&#39;identity&#39;</span>, <span class="at">bins=</span><span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb32-5"><a href="outcome-regression-and-propensity-scores.html#cb32-5" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="fu">as.factor</span>(qsmk) <span class="sc">~</span> .) <span class="sc">+</span></span>
+<span id="cb32-6"><a href="outcome-regression-and-propensity-scores.html#cb32-6" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Probability of Quitting Smoking During Follow-up&#39;</span>) <span class="sc">+</span></span>
+<span id="cb32-7"><a href="outcome-regression-and-propensity-scores.html#cb32-7" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Propensity Score Distribution by Treatment Group&#39;</span>) <span class="sc">+</span></span>
+<span id="cb32-8"><a href="outcome-regression-and-propensity-scores.html#cb32-8" tabindex="-1"></a>  <span class="fu">scale_fill_discrete</span>(<span class="st">&#39;&#39;</span>) <span class="sc">+</span></span>
+<span id="cb32-9"><a href="outcome-regression-and-propensity-scores.html#cb32-9" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="st">&#39;&#39;</span>) <span class="sc">+</span></span>
+<span id="cb32-10"><a href="outcome-regression-and-propensity-scores.html#cb32-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>, <span class="at">legend.direction =</span> <span class="st">&#39;vertical&#39;</span>)</span></code></pre></div>
 <p><img src="15-prop-scores-r_files/figure-html/unnamed-chunk-3-2.png" width="85%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="outcome-regression-and-propensity-scores.html#cb33-1" tabindex="-1"></a><span class="co"># attempt to reproduce plot from the book</span></span>
 <span id="cb33-2"><a href="outcome-regression-and-propensity-scores.html#cb33-2" tabindex="-1"></a>nhefs <span class="sc">%&gt;%</span></span>
@@ -1024,15 +1022,15 @@ div.csl-indent {
 <span id="cb35-58"><a href="outcome-regression-and-propensity-scores.html#cb35-58" tabindex="-1"></a>                                <span class="st">&quot;Treatment - No Treatment&quot;</span>), mean, se, ll, ul))</span>
 <span id="cb35-59"><a href="outcome-regression-and-propensity-scores.html#cb35-59" tabindex="-1"></a>bootstrap</span>
 <span id="cb35-60"><a href="outcome-regression-and-propensity-scores.html#cb35-60" tabindex="-1"></a><span class="co">#&gt;                         V1             mean                se               ll</span></span>
-<span id="cb35-61"><a href="outcome-regression-and-propensity-scores.html#cb35-61" tabindex="-1"></a><span class="co">#&gt; 1                 Observed 2.63384609228479 0.221036561588778 2.20062239230422</span></span>
-<span id="cb35-62"><a href="outcome-regression-and-propensity-scores.html#cb35-62" tabindex="-1"></a><span class="co">#&gt; 2             No Treatment 1.71983636149845 0.135577902605595 1.45410855529201</span></span>
-<span id="cb35-63"><a href="outcome-regression-and-propensity-scores.html#cb35-63" tabindex="-1"></a><span class="co">#&gt; 3                Treatment 5.35072300362985 0.635756798324413 4.10466257598751</span></span>
-<span id="cb35-64"><a href="outcome-regression-and-propensity-scores.html#cb35-64" tabindex="-1"></a><span class="co">#&gt; 4 Treatment - No Treatment  3.6308866421314 0.562051189988497 2.52928655228607</span></span>
+<span id="cb35-61"><a href="outcome-regression-and-propensity-scores.html#cb35-61" tabindex="-1"></a><span class="co">#&gt; 1                 Observed 2.63384609228479  0.12674732888876 2.38542589252617</span></span>
+<span id="cb35-62"><a href="outcome-regression-and-propensity-scores.html#cb35-62" tabindex="-1"></a><span class="co">#&gt; 2             No Treatment 1.71983636149845 0.170254766363251  1.3861431512302</span></span>
+<span id="cb35-63"><a href="outcome-regression-and-propensity-scores.html#cb35-63" tabindex="-1"></a><span class="co">#&gt; 3                Treatment 5.35072300362985 0.297557899399262 4.76752023749191</span></span>
+<span id="cb35-64"><a href="outcome-regression-and-propensity-scores.html#cb35-64" tabindex="-1"></a><span class="co">#&gt; 4 Treatment - No Treatment  3.6308866421314 0.316489254026627 3.01057910274526</span></span>
 <span id="cb35-65"><a href="outcome-regression-and-propensity-scores.html#cb35-65" tabindex="-1"></a><span class="co">#&gt;                 ul</span></span>
-<span id="cb35-66"><a href="outcome-regression-and-propensity-scores.html#cb35-66" tabindex="-1"></a><span class="co">#&gt; 1 3.06706979226537</span></span>
-<span id="cb35-67"><a href="outcome-regression-and-propensity-scores.html#cb35-67" tabindex="-1"></a><span class="co">#&gt; 2  1.9855641677049</span></span>
-<span id="cb35-68"><a href="outcome-regression-and-propensity-scores.html#cb35-68" tabindex="-1"></a><span class="co">#&gt; 3  6.5967834312722</span></span>
-<span id="cb35-69"><a href="outcome-regression-and-propensity-scores.html#cb35-69" tabindex="-1"></a><span class="co">#&gt; 4 4.73248673197673</span></span></code></pre></div>
+<span id="cb35-66"><a href="outcome-regression-and-propensity-scores.html#cb35-66" tabindex="-1"></a><span class="co">#&gt; 1 2.88226629204342</span></span>
+<span id="cb35-67"><a href="outcome-regression-and-propensity-scores.html#cb35-67" tabindex="-1"></a><span class="co">#&gt; 2 2.05352957176671</span></span>
+<span id="cb35-68"><a href="outcome-regression-and-propensity-scores.html#cb35-68" tabindex="-1"></a><span class="co">#&gt; 3  5.9339257697678</span></span>
+<span id="cb35-69"><a href="outcome-regression-and-propensity-scores.html#cb35-69" tabindex="-1"></a><span class="co">#&gt; 4 4.25119418151754</span></span></code></pre></div>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="outcome-regression-and-propensity-scores.html#cb36-1" tabindex="-1"></a><span class="co"># regression on the propensity score (linear term)</span></span>
 <span id="cb36-2"><a href="outcome-regression-and-propensity-scores.html#cb36-2" tabindex="-1"></a>model6 <span class="ot">&lt;-</span> <span class="fu">glm</span>(wt82_71 <span class="sc">~</span> qsmk <span class="sc">+</span> ps, <span class="at">data =</span> nhefs) <span class="co"># p.qsmk</span></span>
 <span id="cb36-3"><a href="outcome-regression-and-propensity-scores.html#cb36-3" tabindex="-1"></a><span class="fu">summary</span>(model6)</span>
@@ -1121,7 +1119,7 @@ div.csl-indent {
 <span id="cb36-86"><a href="outcome-regression-and-propensity-scores.html#cb36-86" tabindex="-1"></a>  }</span>
 <span id="cb36-87"><a href="outcome-regression-and-propensity-scores.html#cb36-87" tabindex="-1"></a>}</span>
 <span id="cb36-88"><a href="outcome-regression-and-propensity-scores.html#cb36-88" tabindex="-1"></a><span class="co">#&gt; 95% CI for the causal mean difference</span></span>
-<span id="cb36-89"><a href="outcome-regression-and-propensity-scores.html#cb36-89" tabindex="-1"></a><span class="co">#&gt; 2.606812 , 4.57888</span></span></code></pre></div>
+<span id="cb36-89"><a href="outcome-regression-and-propensity-scores.html#cb36-89" tabindex="-1"></a><span class="co">#&gt; 2.722654 , 4.493594</span></span></code></pre></div>
 <p>A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.</p>
 
 </div>

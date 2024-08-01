@@ -137,7 +137,7 @@
 
 \title{Causal Inference: What If. R and Stata code for Exercises}
 \author{Book by M. A. Hernán and J. M. Robins \and R code by Joy Shi and Sean McGrath \and Stata code by Eleanor Murray and Roger Logan \and R Markdown code by Tom Palmer}
-\date{07 July 2024}
+\date{01 August 2024}
 
 \begin{document}
 \maketitle
@@ -1743,16 +1743,16 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{    ul}
 \NormalTok{  ))}
 \NormalTok{bootstrap}
-\CommentTok{\#\textgreater{}                         V1             mean                 se               ll}
-\CommentTok{\#\textgreater{} 1                 Observed 2.56188497106099 0.0950425645851467 2.37560496747578}
-\CommentTok{\#\textgreater{} 2             No Treatment 1.65212306626744   0.22465472276569 1.21180790068985}
-\CommentTok{\#\textgreater{} 3                Treatment 5.11474489549336  0.580263439671742 3.97744945219141}
-\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment 3.46262182922592  0.789792629180607 1.91465672077673}
+\CommentTok{\#\textgreater{}                         V1             mean                se               ll}
+\CommentTok{\#\textgreater{} 1                 Observed 2.56188497106099 0.111640397828555  2.3430738120973}
+\CommentTok{\#\textgreater{} 2             No Treatment 1.65212306626744 0.187295557461523  1.2850305191785}
+\CommentTok{\#\textgreater{} 3                Treatment 5.11474489549336   0.1486233480317 4.82344848608946}
+\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment 3.46262182922592 0.309723454082878 2.85557501405613}
 \CommentTok{\#\textgreater{}                 ul}
-\CommentTok{\#\textgreater{} 1  2.7481649746462}
-\CommentTok{\#\textgreater{} 2 2.09243823184502}
-\CommentTok{\#\textgreater{} 3  6.2520403387953}
-\CommentTok{\#\textgreater{} 4 5.01058693767511}
+\CommentTok{\#\textgreater{} 1 2.78069613002468}
+\CommentTok{\#\textgreater{} 2 2.01921561335637}
+\CommentTok{\#\textgreater{} 3 5.40604130489725}
+\CommentTok{\#\textgreater{} 4 4.06966864439571}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2456,16 +2456,17 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{} The following objects are masked from \textquotesingle{}package:base\textquotesingle{}:}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{}     intersect, setdiff, setequal, union}
-\FunctionTok{ggplot}\NormalTok{(nhefs, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ ps, }\AttributeTok{fill =}\NormalTok{ qsmk)) }\SpecialCharTok{+} \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.2}\NormalTok{) }\SpecialCharTok{+}
+
+\NormalTok{nhefs }\OtherTok{\textless{}{-}}\NormalTok{ nhefs }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{qsmklabel =} \FunctionTok{ifelse}\NormalTok{(qsmk }\SpecialCharTok{==} \DecValTok{1}\NormalTok{,}
+                       \AttributeTok{yes =} \StringTok{\textquotesingle{}Quit Smoking 1971{-}1982\textquotesingle{}}\NormalTok{,}
+                       \AttributeTok{no =} \StringTok{\textquotesingle{}Did Not Quit Smoking 1971{-}1982\textquotesingle{}}\NormalTok{))}
+
+\FunctionTok{ggplot}\NormalTok{(nhefs, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ ps, }\AttributeTok{fill =}\NormalTok{ qsmklabel, }\AttributeTok{color =}\NormalTok{ qsmklabel)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.2}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}Probability of Quitting Smoking During Follow{-}up\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{ggtitle}\NormalTok{(}\StringTok{\textquotesingle{}Propensity Score Distribution by Treatment Group\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{scale\_fill\_discrete}\NormalTok{(}\StringTok{\textquotesingle{}\textquotesingle{}}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{\textquotesingle{}bottom\textquotesingle{}}\NormalTok{, }\AttributeTok{legend.direction =} \StringTok{\textquotesingle{}vertical\textquotesingle{}}\NormalTok{)}
-\CommentTok{\#\textgreater{} Warning: The following aesthetics were dropped during statistical transformation: fill.}
-\CommentTok{\#\textgreater{} i This can happen when ggplot fails to infer the correct grouping structure in}
-\CommentTok{\#\textgreater{}   the data.}
-\CommentTok{\#\textgreater{} i Did you forget to specify a \textasciigrave{}group\textasciigrave{} aesthetic or to convert a numerical}
-\CommentTok{\#\textgreater{}   variable into a factor?}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{\textquotesingle{}bottom\textquotesingle{}}\NormalTok{, }\AttributeTok{legend.direction =} \StringTok{\textquotesingle{}vertical\textquotesingle{}}\NormalTok{,}
+        \AttributeTok{legend.title =} \FunctionTok{element\_blank}\NormalTok{())}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2475,9 +2476,6 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \begin{Highlighting}[]
 
 \CommentTok{\# alternative plot with histograms}
-\NormalTok{nhefs }\OtherTok{\textless{}{-}}\NormalTok{ nhefs }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{qsmklabel =} \FunctionTok{ifelse}\NormalTok{(qsmk }\SpecialCharTok{==} \DecValTok{1}\NormalTok{,}
-                       \AttributeTok{yes =} \StringTok{\textquotesingle{}Quit Smoking 1971{-}1982\textquotesingle{}}\NormalTok{,}
-                       \AttributeTok{no =} \StringTok{\textquotesingle{}Did Not Quit Smoking 1971{-}1982\textquotesingle{}}\NormalTok{))}
 \FunctionTok{ggplot}\NormalTok{(nhefs, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ ps, }\AttributeTok{fill =} \FunctionTok{as.factor}\NormalTok{(qsmk), }\AttributeTok{color =} \FunctionTok{as.factor}\NormalTok{(qsmk))) }\SpecialCharTok{+}
   \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.3}\NormalTok{, }\AttributeTok{position =} \StringTok{\textquotesingle{}identity\textquotesingle{}}\NormalTok{, }\AttributeTok{bins=}\DecValTok{15}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{facet\_grid}\NormalTok{(}\FunctionTok{as.factor}\NormalTok{(qsmk) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ .) }\SpecialCharTok{+}
@@ -2890,15 +2888,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
                                 \StringTok{"Treatment {-} No Treatment"}\NormalTok{), mean, se, ll, ul))}
 \NormalTok{bootstrap}
 \CommentTok{\#\textgreater{}                         V1             mean                se               ll}
-\CommentTok{\#\textgreater{} 1                 Observed 2.63384609228479 0.115753263333386 2.40697386505838}
-\CommentTok{\#\textgreater{} 2             No Treatment 1.71983636149845 0.246130465469883  1.2374295136794}
-\CommentTok{\#\textgreater{} 3                Treatment 5.35072300362985 0.649787210667958 4.07716347310591}
-\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment  3.6308866421314 0.878257146640732 1.90953426555065}
+\CommentTok{\#\textgreater{} 1                 Observed 2.63384609228479 0.175014108247247  2.2908247433338}
+\CommentTok{\#\textgreater{} 2             No Treatment 1.71983636149845 0.177132428955144 1.37266318025227}
+\CommentTok{\#\textgreater{} 3                Treatment 5.35072300362985 0.262146499971855 4.83692530501179}
+\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment  3.6308866421314 0.193179871732962 3.25226105099673}
 \CommentTok{\#\textgreater{}                 ul}
-\CommentTok{\#\textgreater{} 1 2.86071831951121}
-\CommentTok{\#\textgreater{} 2  2.2022432093175}
-\CommentTok{\#\textgreater{} 3 6.62428253415379}
-\CommentTok{\#\textgreater{} 4 5.35223901871215}
+\CommentTok{\#\textgreater{} 1 2.97686744123579}
+\CommentTok{\#\textgreater{} 2 2.06700954274464}
+\CommentTok{\#\textgreater{} 3 5.86452070224792}
+\CommentTok{\#\textgreater{} 4 4.00951223326607}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2992,7 +2990,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{  \}}
 \NormalTok{\}}
 \CommentTok{\#\textgreater{} 95\% CI for the causal mean difference}
-\CommentTok{\#\textgreater{} 2.640253 , 4.480888}
+\CommentTok{\#\textgreater{} 2.66653 , 4.488322}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3838,8 +3836,8 @@ For reproducibility.
 \CommentTok{\#\textgreater{}  language (EN)}
 \CommentTok{\#\textgreater{}  collate  en\_US.UTF{-}8}
 \CommentTok{\#\textgreater{}  ctype    en\_US.UTF{-}8}
-\CommentTok{\#\textgreater{}  tz       Europe/London}
-\CommentTok{\#\textgreater{}  date     2024{-}07{-}07}
+\CommentTok{\#\textgreater{}  tz       Europe/Berlin}
+\CommentTok{\#\textgreater{}  date     2024{-}08{-}01}
 \CommentTok{\#\textgreater{}  pandoc   3.2.1 @ /opt/homebrew/bin/ (via rmarkdown)}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} {-} Packages {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
@@ -3855,8 +3853,8 @@ For reproducibility.
 \CommentTok{\#\textgreater{}  rmarkdown     2.27    2024{-}05{-}17 [1] CRAN (R 4.4.0)}
 \CommentTok{\#\textgreater{}  rstudioapi    0.16.0  2024{-}03{-}24 [1] CRAN (R 4.4.0)}
 \CommentTok{\#\textgreater{}  sessioninfo   1.2.2   2021{-}12{-}06 [1] CRAN (R 4.4.0)}
-\CommentTok{\#\textgreater{}  xfun          0.45    2024{-}06{-}16 [1] CRAN (R 4.4.0)}
-\CommentTok{\#\textgreater{}  yaml          2.3.9   2024{-}07{-}05 [1] CRAN (R 4.4.1)}
+\CommentTok{\#\textgreater{}  xfun          0.46    2024{-}07{-}18 [1] CRAN (R 4.4.1)}
+\CommentTok{\#\textgreater{}  yaml          2.3.10  2024{-}07{-}26 [1] CRAN (R 4.4.1)}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{}  [1] /Users/tom/Library/R/arm64/4.4/library}
 \CommentTok{\#\textgreater{}  [2] /Library/Frameworks/R.framework/Versions/4.4{-}arm64/Resources/library}
@@ -8965,7 +8963,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated observ
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 21:14:12
+r; t=0.00 12:04:26
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -8973,7 +8971,7 @@ r; t=0.00 21:14:12
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=23.73 21:14:36
+r; t=20.04 12:04:46
 
 
 
@@ -9219,7 +9217,7 @@ file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 21:14:45
+r; t=0.00 12:04:54
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -9227,7 +9225,7 @@ r; t=0.00 21:14:45
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=25.56 21:15:10
+r; t=23.87 12:05:18
 
 
 
@@ -9266,7 +9264,7 @@ For reproducibility.
 
 \begin{verbatim}
 StataNow/MP 18.5 for Mac (Apple Silicon)
-Revision 25 Jun 2024
+Revision 16 Jul 2024
 Copyright 1985-2023 StataCorp LLC
 
 Total physical memory: 8.01 GB
@@ -9290,8 +9288,8 @@ Serial number: 501809305331
 \CommentTok{\#\textgreater{}  language (EN)}
 \CommentTok{\#\textgreater{}  collate  en\_US.UTF{-}8}
 \CommentTok{\#\textgreater{}  ctype    en\_US.UTF{-}8}
-\CommentTok{\#\textgreater{}  tz       Europe/London}
-\CommentTok{\#\textgreater{}  date     2024{-}07{-}07}
+\CommentTok{\#\textgreater{}  tz       Europe/Berlin}
+\CommentTok{\#\textgreater{}  date     2024{-}08{-}01}
 \CommentTok{\#\textgreater{}  pandoc   3.2.1 @ /opt/homebrew/bin/ (via rmarkdown)}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{} {-} Packages {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
@@ -9308,8 +9306,8 @@ Serial number: 501809305331
 \CommentTok{\#\textgreater{}  rstudioapi      0.16.0  2024{-}03{-}24 [1] CRAN (R 4.4.0)}
 \CommentTok{\#\textgreater{}  sessioninfo     1.2.2   2021{-}12{-}06 [1] CRAN (R 4.4.0)}
 \CommentTok{\#\textgreater{}  Statamarkdown * 0.9.2   2023{-}12{-}04 [1] CRAN (R 4.4.0)}
-\CommentTok{\#\textgreater{}  xfun            0.45    2024{-}06{-}16 [1] CRAN (R 4.4.0)}
-\CommentTok{\#\textgreater{}  yaml            2.3.9   2024{-}07{-}05 [1] CRAN (R 4.4.1)}
+\CommentTok{\#\textgreater{}  xfun            0.46    2024{-}07{-}18 [1] CRAN (R 4.4.1)}
+\CommentTok{\#\textgreater{}  yaml            2.3.10  2024{-}07{-}26 [1] CRAN (R 4.4.1)}
 \CommentTok{\#\textgreater{} }
 \CommentTok{\#\textgreater{}  [1] /Users/tom/Library/R/arm64/4.4/library}
 \CommentTok{\#\textgreater{}  [2] /Library/Frameworks/R.framework/Versions/4.4{-}arm64/Resources/library}

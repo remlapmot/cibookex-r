@@ -317,16 +317,17 @@ library("dplyr")
 #> The following objects are masked from 'package:base':
 #> 
 #>     intersect, setdiff, setequal, union
-ggplot(nhefs, aes(x = ps, fill = qsmk)) + geom_density(alpha = 0.2) +
+
+nhefs <- nhefs %>% mutate(qsmklabel = ifelse(qsmk == 1,
+                       yes = 'Quit Smoking 1971-1982',
+                       no = 'Did Not Quit Smoking 1971-1982'))
+
+ggplot(nhefs, aes(x = ps, fill = qsmklabel, color = qsmklabel)) + 
+  geom_density(alpha = 0.2) +
   xlab('Probability of Quitting Smoking During Follow-up') +
   ggtitle('Propensity Score Distribution by Treatment Group') +
-  scale_fill_discrete('') +
-  theme(legend.position = 'bottom', legend.direction = 'vertical')
-#> Warning: The following aesthetics were dropped during statistical transformation: fill.
-#> ℹ This can happen when ggplot fails to infer the correct grouping structure in
-#>   the data.
-#> ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
-#>   variable into a factor?
+  theme(legend.position = 'bottom', legend.direction = 'vertical',
+        legend.title = element_blank())
 ```
 
 <img src="15-prop-scores-r_files/figure-epub3/unnamed-chunk-3-1.png" width="85%" style="display: block; margin: auto;" />
@@ -334,9 +335,6 @@ ggplot(nhefs, aes(x = ps, fill = qsmk)) + geom_density(alpha = 0.2) +
 ``` r
 
 # alternative plot with histograms
-nhefs <- nhefs %>% mutate(qsmklabel = ifelse(qsmk == 1,
-                       yes = 'Quit Smoking 1971-1982',
-                       no = 'Did Not Quit Smoking 1971-1982'))
 ggplot(nhefs, aes(x = ps, fill = as.factor(qsmk), color = as.factor(qsmk))) +
   geom_histogram(alpha = 0.3, position = 'identity', bins=15) +
   facet_grid(as.factor(qsmk) ~ .) +
@@ -734,15 +732,15 @@ bootstrap <- data.frame(cbind(c("Observed", "No Treatment", "Treatment",
                                 "Treatment - No Treatment"), mean, se, ll, ul))
 bootstrap
 #>                         V1             mean                se               ll
-#> 1                 Observed 2.63384609228479 0.126699366027455 2.38551989800692
-#> 2             No Treatment 1.71983636149845 0.232430410352494  1.2642811282957
-#> 3                Treatment 5.35072300362985 0.359090043162435 4.64691945182455
-#> 4 Treatment - No Treatment  3.6308866421314 0.547716859601361 2.55738132358735
+#> 1                 Observed 2.63384609228479 0.261636418047499 2.12104813586763
+#> 2             No Treatment 1.71983636149845  0.24260296578913 1.24434328600916
+#> 3                Treatment 5.35072300362985 0.496774052474323 4.37706375232617
+#> 4 Treatment - No Treatment  3.6308866421314 0.478056388912057 2.69391333728449
 #>                 ul
-#> 1 2.88217228656266
-#> 2 2.17539159470121
-#> 3 6.05452655543516
-#> 4 4.70439196067545
+#> 1 3.14664404870196
+#> 2 2.19532943698775
+#> 3 6.32438225493354
+#> 4  4.5678599469783
 ```
 
 
@@ -835,7 +833,7 @@ for(i in 1:nboot) {
   }
 }
 #> 95% CI for the causal mean difference
-#> 2.596486 , 4.629337
+#> 2.590947 , 4.499482
 ```
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.
