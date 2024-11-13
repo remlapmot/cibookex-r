@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>17. Causal survival analysis: Stata | Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
   <meta property="og:title" content="17. Causal survival analysis: Stata | Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2024-08-01" />
+<meta name="date" content="2024-11-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -907,7 +907,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated observ
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 12:02:00
+r; t=0.00 6:38:55
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -915,7 +915,7 @@ r; t=0.00 12:02:00
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=21.36 12:02:21
+r; t=20.61 6:39:15
 
 
 
@@ -1147,7 +1147,7 @@ file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 12:02:29
+r; t=0.00 6:39:22
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -1155,7 +1155,7 @@ r; t=0.00 12:02:29
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=24.50 12:02:54
+r; t=23.75 6:39:46
 
 
 

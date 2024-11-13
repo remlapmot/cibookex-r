@@ -31,10 +31,10 @@ library(Hmisc)
 #>     format.pval, units
 describe(nhefs$wt82_71)
 #> nhefs$wt82_71 
-#>        n  missing distinct     Info     Mean      Gmd      .05      .10 
-#>     1566       63     1510        1    2.638    8.337   -9.752   -6.292 
-#>      .25      .50      .75      .90      .95 
-#>   -1.478    2.604    6.690   11.117   14.739 
+#>        n  missing distinct     Info     Mean  pMedian      Gmd      .05 
+#>     1566       63     1510        1    2.638    2.607    8.337   -9.752 
+#>      .10      .25      .50      .75      .90      .95 
+#>   -6.292   -1.478    2.604    6.690   11.117   14.739 
 #> 
 #> lowest : -41.2805 -30.5019 -30.0501 -29.0258 -25.9706
 #> highest: 34.0178  36.9693  37.6505  47.5113  48.5384
@@ -302,10 +302,10 @@ summary(logit.est)
 nhefs$pqsmk <- predict(logit.est, nhefs, type = "response")
 describe(nhefs$pqsmk)
 #> nhefs$pqsmk 
-#>        n  missing distinct     Info     Mean      Gmd      .05      .10 
-#>     1629        0     1629        1   0.2622   0.1302   0.1015   0.1261 
-#>      .25      .50      .75      .90      .95 
-#>   0.1780   0.2426   0.3251   0.4221   0.4965 
+#>        n  missing distinct     Info     Mean  pMedian      Gmd      .05 
+#>     1629        0     1629        1   0.2622   0.2524   0.1302   0.1015 
+#>      .10      .25      .50      .75      .90      .95 
+#>   0.1261   0.1780   0.2426   0.3251   0.4221   0.4965 
 #> 
 #> lowest : 0.0514466 0.0515703 0.0543802 0.0558308 0.0593059
 #> highest: 0.672083  0.686432  0.713913  0.733299  0.78914

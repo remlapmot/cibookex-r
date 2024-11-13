@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>16. Instrumental variables estimation: Stata | Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
   <meta property="og:title" content="16. Instrumental variables estimation: Stata | Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2024-08-01" />
+<meta name="date" content="2024-11-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -496,7 +496,7 @@ r1   2.535729  2.6860178
 <span id="cb116-4"><a href="instrumental-variables-estimation-stata.html#cb116-4" tabindex="-1"></a><span class="co">- first model: qsmk = highprice</span></span>
 <span id="cb116-5"><a href="instrumental-variables-estimation-stata.html#cb116-5" tabindex="-1"></a><span class="co">- second model: wt82_71 = predicted_qsmk */</span></span>
 <span id="cb116-6"><a href="instrumental-variables-estimation-stata.html#cb116-6" tabindex="-1"></a>ivregress 2sls wt82_71 (qsmk = highprice)</span></code></pre></div>
-<pre><code>Instrumental variables 2SLS regression            Number of obs   =      1,476
+<pre><code>Instrumental-variables 2SLS regression            Number of obs   =      1,476
                                                   Wald chi2(1)    =       0.01
                                                   Prob &gt; chi2     =     0.9038
                                                   R-squared       =     0.0213
@@ -579,7 +579,7 @@ Log likelihood = -187.34948                             Pseudo R2     = 0.0000
 (1,476 real changes made)
 
 
-Instrumental variables 2SLS regression            Number of obs   =      1,476
+Instrumental-variables 2SLS regression            Number of obs   =      1,476
                                                   Wald chi2(1)    =       0.06
                                                   Prob &gt; chi2     =     0.8023
                                                   R-squared       =          .
@@ -599,7 +599,7 @@ Exogenous:  highprice
 (1,476 real changes made)
 
 
-Instrumental variables 2SLS regression            Number of obs   =      1,476
+Instrumental-variables 2SLS regression            Number of obs   =      1,476
                                                   Wald chi2(1)    =       0.05
                                                   Prob &gt; chi2     =     0.8274
                                                   R-squared       =          .
@@ -619,7 +619,7 @@ Exogenous:  highprice
 (1,476 real changes made)
 
 
-Instrumental variables 2SLS regression            Number of obs   =      1,476
+Instrumental-variables 2SLS regression            Number of obs   =      1,476
                                                   Wald chi2(1)    =       0.55
                                                   Prob &gt; chi2     =     0.4576
                                                   R-squared       =          .
@@ -639,7 +639,7 @@ Exogenous:  highprice
 (1,476 real changes made)
 
 
-Instrumental variables 2SLS regression            Number of obs   =      1,476
+Instrumental-variables 2SLS regression            Number of obs   =      1,476
                                                   Wald chi2(1)    =       0.29
                                                   Prob &gt; chi2     =     0.5880
                                                   R-squared       =          .
@@ -674,7 +674,7 @@ Exogenous:  highprice</code></pre>
 (1,476 real changes made)
 
 
-Instrumental variables 2SLS regression            Number of obs   =      1,476
+Instrumental-variables 2SLS regression            Number of obs   =      1,476
                                                   Wald chi2(11)   =     135.18
                                                   Prob &gt; chi2     =     0.0000
                                                   R-squared       =     0.0622

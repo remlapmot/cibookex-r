@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>14. G-estimation of Structural Nested Models | Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
   <meta property="og:title" content="14. G-estimation of Structural Nested Models | Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2024-08-01" />
+<meta name="date" content="2024-11-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -334,10 +334,10 @@ div.csl-indent {
 <span id="cb24-15"><a href="g-estimation-of-structural-nested-models.html#cb24-15" tabindex="-1"></a><span class="co">#&gt;     format.pval, units</span></span>
 <span id="cb24-16"><a href="g-estimation-of-structural-nested-models.html#cb24-16" tabindex="-1"></a><span class="fu">describe</span>(nhefs<span class="sc">$</span>wt82_71)</span>
 <span id="cb24-17"><a href="g-estimation-of-structural-nested-models.html#cb24-17" tabindex="-1"></a><span class="co">#&gt; nhefs$wt82_71 </span></span>
-<span id="cb24-18"><a href="g-estimation-of-structural-nested-models.html#cb24-18" tabindex="-1"></a><span class="co">#&gt;        n  missing distinct     Info     Mean      Gmd      .05      .10 </span></span>
-<span id="cb24-19"><a href="g-estimation-of-structural-nested-models.html#cb24-19" tabindex="-1"></a><span class="co">#&gt;     1566       63     1510        1    2.638    8.337   -9.752   -6.292 </span></span>
-<span id="cb24-20"><a href="g-estimation-of-structural-nested-models.html#cb24-20" tabindex="-1"></a><span class="co">#&gt;      .25      .50      .75      .90      .95 </span></span>
-<span id="cb24-21"><a href="g-estimation-of-structural-nested-models.html#cb24-21" tabindex="-1"></a><span class="co">#&gt;   -1.478    2.604    6.690   11.117   14.739 </span></span>
+<span id="cb24-18"><a href="g-estimation-of-structural-nested-models.html#cb24-18" tabindex="-1"></a><span class="co">#&gt;        n  missing distinct     Info     Mean  pMedian      Gmd      .05 </span></span>
+<span id="cb24-19"><a href="g-estimation-of-structural-nested-models.html#cb24-19" tabindex="-1"></a><span class="co">#&gt;     1566       63     1510        1    2.638    2.607    8.337   -9.752 </span></span>
+<span id="cb24-20"><a href="g-estimation-of-structural-nested-models.html#cb24-20" tabindex="-1"></a><span class="co">#&gt;      .10      .25      .50      .75      .90      .95 </span></span>
+<span id="cb24-21"><a href="g-estimation-of-structural-nested-models.html#cb24-21" tabindex="-1"></a><span class="co">#&gt;   -6.292   -1.478    2.604    6.690   11.117   14.739 </span></span>
 <span id="cb24-22"><a href="g-estimation-of-structural-nested-models.html#cb24-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb24-23"><a href="g-estimation-of-structural-nested-models.html#cb24-23" tabindex="-1"></a><span class="co">#&gt; lowest : -41.2805 -30.5019 -30.0501 -29.0258 -25.9706</span></span>
 <span id="cb24-24"><a href="g-estimation-of-structural-nested-models.html#cb24-24" tabindex="-1"></a><span class="co">#&gt; highest: 34.0178  36.9693  37.6505  47.5113  48.5384</span></span>
@@ -599,10 +599,10 @@ div.csl-indent {
 <span id="cb27-47"><a href="g-estimation-of-structural-nested-models.html#cb27-47" tabindex="-1"></a>nhefs<span class="sc">$</span>pqsmk <span class="ot">&lt;-</span> <span class="fu">predict</span>(logit.est, nhefs, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
 <span id="cb27-48"><a href="g-estimation-of-structural-nested-models.html#cb27-48" tabindex="-1"></a><span class="fu">describe</span>(nhefs<span class="sc">$</span>pqsmk)</span>
 <span id="cb27-49"><a href="g-estimation-of-structural-nested-models.html#cb27-49" tabindex="-1"></a><span class="co">#&gt; nhefs$pqsmk </span></span>
-<span id="cb27-50"><a href="g-estimation-of-structural-nested-models.html#cb27-50" tabindex="-1"></a><span class="co">#&gt;        n  missing distinct     Info     Mean      Gmd      .05      .10 </span></span>
-<span id="cb27-51"><a href="g-estimation-of-structural-nested-models.html#cb27-51" tabindex="-1"></a><span class="co">#&gt;     1629        0     1629        1   0.2622   0.1302   0.1015   0.1261 </span></span>
-<span id="cb27-52"><a href="g-estimation-of-structural-nested-models.html#cb27-52" tabindex="-1"></a><span class="co">#&gt;      .25      .50      .75      .90      .95 </span></span>
-<span id="cb27-53"><a href="g-estimation-of-structural-nested-models.html#cb27-53" tabindex="-1"></a><span class="co">#&gt;   0.1780   0.2426   0.3251   0.4221   0.4965 </span></span>
+<span id="cb27-50"><a href="g-estimation-of-structural-nested-models.html#cb27-50" tabindex="-1"></a><span class="co">#&gt;        n  missing distinct     Info     Mean  pMedian      Gmd      .05 </span></span>
+<span id="cb27-51"><a href="g-estimation-of-structural-nested-models.html#cb27-51" tabindex="-1"></a><span class="co">#&gt;     1629        0     1629        1   0.2622   0.2524   0.1302   0.1015 </span></span>
+<span id="cb27-52"><a href="g-estimation-of-structural-nested-models.html#cb27-52" tabindex="-1"></a><span class="co">#&gt;      .10      .25      .50      .75      .90      .95 </span></span>
+<span id="cb27-53"><a href="g-estimation-of-structural-nested-models.html#cb27-53" tabindex="-1"></a><span class="co">#&gt;   0.1261   0.1780   0.2426   0.3251   0.4221   0.4965 </span></span>
 <span id="cb27-54"><a href="g-estimation-of-structural-nested-models.html#cb27-54" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb27-55"><a href="g-estimation-of-structural-nested-models.html#cb27-55" tabindex="-1"></a><span class="co">#&gt; lowest : 0.0514466 0.0515703 0.0543802 0.0558308 0.0593059</span></span>
 <span id="cb27-56"><a href="g-estimation-of-structural-nested-models.html#cb27-56" tabindex="-1"></a><span class="co">#&gt; highest: 0.672083  0.686432  0.713913  0.733299  0.78914</span></span>

@@ -202,7 +202,7 @@ ivregress 2sls wt82_71 (qsmk = highprice)
 ```
 
 ```
-Instrumental variables 2SLS regression            Number of obs   =      1,476
+Instrumental-variables 2SLS regression            Number of obs   =      1,476
                                                   Wald chi2(1)    =       0.01
                                                   Prob > chi2     =     0.9038
                                                   R-squared       =     0.0213
@@ -294,7 +294,7 @@ ivregress 2sls wt82_71 (qsmk = highprice)
 (1,476 real changes made)
 
 
-Instrumental variables 2SLS regression            Number of obs   =      1,476
+Instrumental-variables 2SLS regression            Number of obs   =      1,476
                                                   Wald chi2(1)    =       0.06
                                                   Prob > chi2     =     0.8023
                                                   R-squared       =          .
@@ -314,7 +314,7 @@ Exogenous:  highprice
 (1,476 real changes made)
 
 
-Instrumental variables 2SLS regression            Number of obs   =      1,476
+Instrumental-variables 2SLS regression            Number of obs   =      1,476
                                                   Wald chi2(1)    =       0.05
                                                   Prob > chi2     =     0.8274
                                                   R-squared       =          .
@@ -334,7 +334,7 @@ Exogenous:  highprice
 (1,476 real changes made)
 
 
-Instrumental variables 2SLS regression            Number of obs   =      1,476
+Instrumental-variables 2SLS regression            Number of obs   =      1,476
                                                   Wald chi2(1)    =       0.55
                                                   Prob > chi2     =     0.4576
                                                   R-squared       =          .
@@ -354,7 +354,7 @@ Exogenous:  highprice
 (1,476 real changes made)
 
 
-Instrumental variables 2SLS regression            Number of obs   =      1,476
+Instrumental-variables 2SLS regression            Number of obs   =      1,476
                                                   Wald chi2(1)    =       0.29
                                                   Prob > chi2     =     0.5880
                                                   R-squared       =          .
@@ -394,7 +394,7 @@ ivregress 2sls wt82_71 sex race c.age c.smokeintensity ///
 (1,476 real changes made)
 
 
-Instrumental variables 2SLS regression            Number of obs   =      1,476
+Instrumental-variables 2SLS regression            Number of obs   =      1,476
                                                   Wald chi2(11)   =     135.18
                                                   Prob > chi2     =     0.0000
                                                   R-squared       =     0.0622
