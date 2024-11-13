@@ -78,7 +78,8 @@ Observed time interval: (0, survtime]
   Analysis time _t: survtime
 ```
 
-<img src="./figs/stata-fig-17-1.png" width="85%" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-1} \end{center}
 
 ## Program 17.2
 
@@ -278,7 +279,8 @@ psurv0          float   %9.0g                 psurv, interv == Original observat
 psurv1          float   %9.0g                 psurv, interv == Duplicated observation
 ```
 
-<img src="./figs/stata-fig-17-2.png" width="85%" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-2} \end{center}
 
 ## Program 17.3
 
@@ -620,7 +622,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated observ
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 6:43:12
+r; t=0.00 8:25:46
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -628,7 +630,7 @@ r; t=0.00 6:43:12
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=19.98 6:43:32
+r; t=20.55 8:26:06
 
 
 
@@ -646,7 +648,8 @@ Bootstrap results                                        Number of obs = 1,629
 ------------------------------------------------------------------------------
 ```
 
-<img src="./figs/stata-fig-17-3.png" width="85%" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-3} \end{center}
 
 ## Program 17.4
 
@@ -866,7 +869,7 @@ file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 6:43:39
+r; t=0.00 8:26:13
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -874,7 +877,7 @@ r; t=0.00 6:43:39
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=23.62 6:44:03
+r; t=25.24 8:26:39
 
 
 
@@ -892,4 +895,5 @@ Bootstrap results                                        Number of obs = 1,629
 ------------------------------------------------------------------------------
 ```
 
-<img src="./figs/stata-fig-17-4.png" width="85%" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-17-4} \end{center}
