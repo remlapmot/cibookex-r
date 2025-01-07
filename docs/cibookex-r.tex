@@ -136,7 +136,7 @@
 
 \title{Causal Inference: What If. R and Stata code for Exercises}
 \author{Book by M. A. Hernán and J. M. Robins \and R code by Joy Shi and Sean McGrath \and Stata code by Eleanor Murray and Roger Logan \and R Markdown code by Tom Palmer}
-\date{13 November 2024}
+\date{07 January 2025}
 
 \begin{document}
 \maketitle
@@ -1743,15 +1743,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{  ))}
 \NormalTok{bootstrap}
 \CommentTok{\#\textgreater{}                         V1             mean                se               ll}
-\CommentTok{\#\textgreater{} 1                 Observed 2.56188497106099 0.120597104489459 2.32551898962183}
-\CommentTok{\#\textgreater{} 2             No Treatment 1.65212306626744 0.106947069654509  1.4425106614925}
-\CommentTok{\#\textgreater{} 3                Treatment 5.11474489549336 0.358814454471498 4.41148148759683}
-\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment 3.46262182922592 0.392348048118945  2.6936337855082}
+\CommentTok{\#\textgreater{} 1                 Observed 2.56188497106099 0.122406616274086 2.32197241169436}
+\CommentTok{\#\textgreater{} 2             No Treatment 1.65212306626744 0.128887680985377 1.39950785348521}
+\CommentTok{\#\textgreater{} 3                Treatment 5.11474489549336 0.241106128102578  4.6421855679604}
+\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment 3.46262182922592 0.294465232619007 2.88548057859346}
 \CommentTok{\#\textgreater{}                 ul}
-\CommentTok{\#\textgreater{} 1 2.79825095250014}
-\CommentTok{\#\textgreater{} 2 1.86173547104237}
-\CommentTok{\#\textgreater{} 3 5.81800830338988}
-\CommentTok{\#\textgreater{} 4 4.23160987294364}
+\CommentTok{\#\textgreater{} 1 2.80179753042761}
+\CommentTok{\#\textgreater{} 2 1.90473827904966}
+\CommentTok{\#\textgreater{} 3 5.58730422302631}
+\CommentTok{\#\textgreater{} 4 4.03976307985838}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2887,15 +2887,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
                                 \StringTok{"Treatment {-} No Treatment"}\NormalTok{), mean, se, ll, ul))}
 \NormalTok{bootstrap}
 \CommentTok{\#\textgreater{}                         V1             mean                se               ll}
-\CommentTok{\#\textgreater{} 1                 Observed 2.63384609228479 0.279890742231742  2.0852703179044}
-\CommentTok{\#\textgreater{} 2             No Treatment 1.71983636149845 0.275568960869064 1.17973112293796}
-\CommentTok{\#\textgreater{} 3                Treatment 5.35072300362985 0.314161588160568 4.73497760550923}
-\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment  3.6308866421314 0.451854865413406 2.74526737968193}
+\CommentTok{\#\textgreater{} 1                 Observed 2.63384609228479 0.188738499364127 2.26392543103497}
+\CommentTok{\#\textgreater{} 2             No Treatment 1.71983636149845 0.315338673042449  1.1017839194026}
+\CommentTok{\#\textgreater{} 3                Treatment 5.35072300362985 0.148786261161271 5.05910729035939}
+\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment  3.6308866421314 0.414053795367509 2.81935611554897}
 \CommentTok{\#\textgreater{}                 ul}
-\CommentTok{\#\textgreater{} 1 3.18242186666519}
-\CommentTok{\#\textgreater{} 2 2.25994160005895}
-\CommentTok{\#\textgreater{} 3 5.96646840175047}
-\CommentTok{\#\textgreater{} 4 4.51650590458087}
+\CommentTok{\#\textgreater{} 1 3.00376675353462}
+\CommentTok{\#\textgreater{} 2  2.3378888035943}
+\CommentTok{\#\textgreater{} 3 5.64233871690032}
+\CommentTok{\#\textgreater{} 4 4.44241716871383}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2989,7 +2989,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{  \}}
 \NormalTok{\}}
 \CommentTok{\#\textgreater{} 95\% CI for the causal mean difference}
-\CommentTok{\#\textgreater{} 2.714556 , 4.383686}
+\CommentTok{\#\textgreater{} 2.645228 , 4.42999}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3826,38 +3826,38 @@ For reproducibility.
 \begin{Highlighting}[]
 \CommentTok{\# install.packages("sessioninfo")}
 \NormalTok{sessioninfo}\SpecialCharTok{::}\FunctionTok{session\_info}\NormalTok{()}
-\CommentTok{\#\textgreater{} {-} Session info {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\#\textgreater{} {-} Session info {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \CommentTok{\#\textgreater{}  setting  value}
 \CommentTok{\#\textgreater{}  version  R version 4.4.2 (2024{-}10{-}31)}
-\CommentTok{\#\textgreater{}  os       macOS Sequoia 15.1}
+\CommentTok{\#\textgreater{}  os       macOS Sequoia 15.2}
 \CommentTok{\#\textgreater{}  system   aarch64, darwin20}
 \CommentTok{\#\textgreater{}  ui       X11}
 \CommentTok{\#\textgreater{}  language (EN)}
 \CommentTok{\#\textgreater{}  collate  en\_US.UTF{-}8}
 \CommentTok{\#\textgreater{}  ctype    en\_US.UTF{-}8}
 \CommentTok{\#\textgreater{}  tz       Europe/London}
-\CommentTok{\#\textgreater{}  date     2024{-}11{-}13}
-\CommentTok{\#\textgreater{}  pandoc   3.5 @ /opt/homebrew/bin/ (via rmarkdown)}
+\CommentTok{\#\textgreater{}  date     2025{-}01{-}07}
+\CommentTok{\#\textgreater{}  pandoc   3.6.1 @ /opt/homebrew/bin/ (via rmarkdown)}
 \CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{} {-} Packages {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\#\textgreater{} {-} Packages {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \CommentTok{\#\textgreater{}  package     * version date (UTC) lib source}
-\CommentTok{\#\textgreater{}  bookdown      0.41    2024{-}10{-}16 [1] CRAN (R 4.4.1)}
-\CommentTok{\#\textgreater{}  cli           3.6.3   2024{-}06{-}21 [1] CRAN (R 4.4.0)}
+\CommentTok{\#\textgreater{}  bookdown      0.42    2025{-}01{-}07 [1] CRAN (R 4.4.2)}
+\CommentTok{\#\textgreater{}  cli           3.6.3   2024{-}06{-}21 [1] CRAN (R 4.4.1)}
 \CommentTok{\#\textgreater{}  digest        0.6.37  2024{-}08{-}19 [1] CRAN (R 4.4.1)}
 \CommentTok{\#\textgreater{}  evaluate      1.0.1   2024{-}10{-}10 [1] CRAN (R 4.4.1)}
 \CommentTok{\#\textgreater{}  fastmap       1.2.0   2024{-}05{-}15 [1] CRAN (R 4.4.0)}
 \CommentTok{\#\textgreater{}  htmltools     0.5.8.1 2024{-}04{-}04 [1] CRAN (R 4.4.0)}
-\CommentTok{\#\textgreater{}  knitr         1.49    2024{-}11{-}08 [1] CRAN (R 4.4.1)}
+\CommentTok{\#\textgreater{}  knitr         1.49    2024{-}11{-}08 [1] CRAN (R 4.4.2)}
 \CommentTok{\#\textgreater{}  rlang         1.1.4   2024{-}06{-}04 [1] CRAN (R 4.4.0)}
-\CommentTok{\#\textgreater{}  rmarkdown     2.29    2024{-}11{-}04 [1] CRAN (R 4.4.1)}
+\CommentTok{\#\textgreater{}  rmarkdown     2.29    2024{-}11{-}04 [1] CRAN (R 4.4.2)}
+\CommentTok{\#\textgreater{}  rstudioapi    0.17.1  2024{-}10{-}22 [1] CRAN (R 4.4.1)}
 \CommentTok{\#\textgreater{}  sessioninfo   1.2.2   2021{-}12{-}06 [1] CRAN (R 4.4.0)}
-\CommentTok{\#\textgreater{}  xfun          0.49    2024{-}10{-}31 [1] CRAN (R 4.4.1)}
+\CommentTok{\#\textgreater{}  xfun          0.50    2025{-}01{-}07 [1] CRAN (R 4.4.2)}
 \CommentTok{\#\textgreater{}  yaml          2.3.10  2024{-}07{-}26 [1] CRAN (R 4.4.1)}
 \CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{}  [1] /Users/tom/Library/R/arm64/4.4/library}
-\CommentTok{\#\textgreater{}  [2] /Library/Frameworks/R.framework/Versions/4.4{-}arm64/Resources/library}
+\CommentTok{\#\textgreater{}  [1] /Library/Frameworks/R.framework/Versions/4.4{-}arm64/Resources/library}
 \CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6610,7 +6610,7 @@ coeff -0.030 is generated from psi  5.0
 
 
 results[31,4]
-            psi     B(Hpsi)  AbsB(Hpsi)      pvalue
+            psi      B(Hpsi)  AbsB(Hpsi)     pvalue
  r1           2   .02672188   .02672188   .00177849
  r2         2.1   .02489456   .02489456   .00359089
  r3         2.2   .02306552   .02306552   .00698119
@@ -7816,7 +7816,7 @@ Simulations (500): .........10.........20.........30.........40.........50......
 
 
 pe[1,3]
-        E(Y(a=0))   E(Y(a=1))  difference
+         E(Y(a=0))   E(Y(a=1)) difference
 value   1.7618979   5.2736757   3.5117778
 
 
@@ -8961,7 +8961,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated observ
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 8:25:46
+r; t=0.00 16:25:09
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -8969,7 +8969,7 @@ r; t=0.00 8:25:46
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=20.55 8:26:06
+r; t=19.61 16:25:29
 
 
 
@@ -9204,7 +9204,7 @@ meanS_t1        float   %9.0g                 meanS_t, interv == Duplicated
                                                 observation
 
 
-file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
+file /Users/eptmp/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
     format
 
 (3,132 observations deleted)
@@ -9215,7 +9215,7 @@ file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 8:26:13
+r; t=0.00 16:25:35
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -9223,7 +9223,7 @@ r; t=0.00 8:26:13
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=25.24 8:26:39
+r; t=21.94 16:25:57
 
 
 
@@ -9262,10 +9262,10 @@ For reproducibility.
 
 \begin{verbatim}
 StataNow/MP 18.5 for Mac (Apple Silicon)
-Revision 16 Oct 2024
+Revision 18 Dec 2024
 Copyright 1985-2023 StataCorp LLC
 
-Total physical memory: 8.01 GB
+Total physical memory: 18.00 GB
 
 Stata license: Unlimited-user 2-core network, expiring 29 Jan 2025
 Serial number: 501809305331
@@ -9277,39 +9277,39 @@ Serial number: 501809305331
 \begin{Highlighting}[]
 \CommentTok{\# install.packages("sessioninfo")}
 \NormalTok{sessioninfo}\SpecialCharTok{::}\FunctionTok{session\_info}\NormalTok{()}
-\CommentTok{\#\textgreater{} {-} Session info {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\#\textgreater{} {-} Session info {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \CommentTok{\#\textgreater{}  setting  value}
 \CommentTok{\#\textgreater{}  version  R version 4.4.2 (2024{-}10{-}31)}
-\CommentTok{\#\textgreater{}  os       macOS Sequoia 15.1}
+\CommentTok{\#\textgreater{}  os       macOS Sequoia 15.2}
 \CommentTok{\#\textgreater{}  system   aarch64, darwin20}
 \CommentTok{\#\textgreater{}  ui       X11}
 \CommentTok{\#\textgreater{}  language (EN)}
 \CommentTok{\#\textgreater{}  collate  en\_US.UTF{-}8}
 \CommentTok{\#\textgreater{}  ctype    en\_US.UTF{-}8}
 \CommentTok{\#\textgreater{}  tz       Europe/London}
-\CommentTok{\#\textgreater{}  date     2024{-}11{-}13}
-\CommentTok{\#\textgreater{}  pandoc   3.5 @ /opt/homebrew/bin/ (via rmarkdown)}
+\CommentTok{\#\textgreater{}  date     2025{-}01{-}07}
+\CommentTok{\#\textgreater{}  pandoc   3.6.1 @ /opt/homebrew/bin/ (via rmarkdown)}
 \CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{} {-} Packages {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\#\textgreater{} {-} Packages {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \CommentTok{\#\textgreater{}  package       * version date (UTC) lib source}
-\CommentTok{\#\textgreater{}  bookdown        0.41    2024{-}10{-}16 [1] CRAN (R 4.4.1)}
-\CommentTok{\#\textgreater{}  cli             3.6.3   2024{-}06{-}21 [1] CRAN (R 4.4.0)}
+\CommentTok{\#\textgreater{}  bookdown        0.42    2025{-}01{-}07 [1] CRAN (R 4.4.2)}
+\CommentTok{\#\textgreater{}  cli             3.6.3   2024{-}06{-}21 [1] CRAN (R 4.4.1)}
 \CommentTok{\#\textgreater{}  digest          0.6.37  2024{-}08{-}19 [1] CRAN (R 4.4.1)}
 \CommentTok{\#\textgreater{}  evaluate        1.0.1   2024{-}10{-}10 [1] CRAN (R 4.4.1)}
 \CommentTok{\#\textgreater{}  fastmap         1.2.0   2024{-}05{-}15 [1] CRAN (R 4.4.0)}
 \CommentTok{\#\textgreater{}  htmltools       0.5.8.1 2024{-}04{-}04 [1] CRAN (R 4.4.0)}
-\CommentTok{\#\textgreater{}  knitr           1.49    2024{-}11{-}08 [1] CRAN (R 4.4.1)}
+\CommentTok{\#\textgreater{}  knitr           1.49    2024{-}11{-}08 [1] CRAN (R 4.4.2)}
 \CommentTok{\#\textgreater{}  rlang           1.1.4   2024{-}06{-}04 [1] CRAN (R 4.4.0)}
-\CommentTok{\#\textgreater{}  rmarkdown       2.29    2024{-}11{-}04 [1] CRAN (R 4.4.1)}
+\CommentTok{\#\textgreater{}  rmarkdown       2.29    2024{-}11{-}04 [1] CRAN (R 4.4.2)}
+\CommentTok{\#\textgreater{}  rstudioapi      0.17.1  2024{-}10{-}22 [1] CRAN (R 4.4.1)}
 \CommentTok{\#\textgreater{}  sessioninfo     1.2.2   2021{-}12{-}06 [1] CRAN (R 4.4.0)}
 \CommentTok{\#\textgreater{}  Statamarkdown * 0.9.2   2023{-}12{-}04 [1] CRAN (R 4.4.0)}
-\CommentTok{\#\textgreater{}  xfun            0.49    2024{-}10{-}31 [1] CRAN (R 4.4.1)}
+\CommentTok{\#\textgreater{}  xfun            0.50    2025{-}01{-}07 [1] CRAN (R 4.4.2)}
 \CommentTok{\#\textgreater{}  yaml            2.3.10  2024{-}07{-}26 [1] CRAN (R 4.4.1)}
 \CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{}  [1] /Users/tom/Library/R/arm64/4.4/library}
-\CommentTok{\#\textgreater{}  [2] /Library/Frameworks/R.framework/Versions/4.4{-}arm64/Resources/library}
+\CommentTok{\#\textgreater{}  [1] /Library/Frameworks/R.framework/Versions/4.4{-}arm64/Resources/library}
 \CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \end{Highlighting}
 \end{Shaded}
 

@@ -330,9 +330,7 @@ ggplot(nhefs, aes(x = ps, fill = qsmklabel, color = qsmklabel)) +
         legend.title = element_blank())
 ```
 
-
-
-\begin{center}\includegraphics[width=0.85\linewidth]{15-prop-scores-r_files/figure-latex/unnamed-chunk-3-1} \end{center}
+<img src="15-prop-scores-r_files/figure-epub3/unnamed-chunk-3-1.png" width="85%" style="display: block; margin: auto;" />
 
 ``` r
 
@@ -347,9 +345,7 @@ ggplot(nhefs, aes(x = ps, fill = as.factor(qsmk), color = as.factor(qsmk))) +
   theme(legend.position = 'bottom', legend.direction = 'vertical')
 ```
 
-
-
-\begin{center}\includegraphics[width=0.85\linewidth]{15-prop-scores-r_files/figure-latex/unnamed-chunk-3-2} \end{center}
+<img src="15-prop-scores-r_files/figure-epub3/unnamed-chunk-3-2.png" width="85%" style="display: block; margin: auto;" />
 
 
 ``` r
@@ -736,15 +732,15 @@ bootstrap <- data.frame(cbind(c("Observed", "No Treatment", "Treatment",
                                 "Treatment - No Treatment"), mean, se, ll, ul))
 bootstrap
 #>                         V1             mean                se               ll
-#> 1                 Observed 2.63384609228479 0.279890742231742  2.0852703179044
-#> 2             No Treatment 1.71983636149845 0.275568960869064 1.17973112293796
-#> 3                Treatment 5.35072300362985 0.314161588160568 4.73497760550923
-#> 4 Treatment - No Treatment  3.6308866421314 0.451854865413406 2.74526737968193
+#> 1                 Observed 2.63384609228479 0.222263761975005  2.1982171237454
+#> 2             No Treatment 1.71983636149845 0.128142124026521 1.46868241350401
+#> 3                Treatment 5.35072300362985 0.654986530699356 4.06697299310028
+#> 4 Treatment - No Treatment  3.6308866421314  0.56066313316752 2.53200709366368
 #>                 ul
-#> 1 3.18242186666519
-#> 2 2.25994160005895
-#> 3 5.96646840175047
-#> 4 4.51650590458087
+#> 1 3.06947506082419
+#> 2  1.9709903094929
+#> 3 6.63447301415943
+#> 4 4.72976619059912
 ```
 
 
@@ -837,7 +833,7 @@ for(i in 1:nboot) {
   }
 }
 #> 95% CI for the causal mean difference
-#> 2.714556 , 4.383686
+#> 2.501384 , 4.393222
 ```
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.

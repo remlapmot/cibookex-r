@@ -345,8 +345,7 @@ Log likelihood = -838.44842                             Pseudo R2     = 0.0611
 file ./data/nhefs-ps.dta saved
 ```
 
-
-\begin{center}\includegraphics[width=0.85\linewidth]{./figs/stata-fig-15-2} \end{center}
+<img src="./figs/stata-fig-15-2.png" width="85%" style="display: block; margin: auto;" />
 
 ## Program 15.3
 
@@ -962,7 +961,7 @@ Simulations (500): .........10.........20.........30.........40.........50......
 
 
 pe[1,3]
-        E(Y(a=0))   E(Y(a=1))  difference
+         E(Y(a=0))   E(Y(a=1)) difference
 value   1.7618979   5.2736757   3.5117778
 
 

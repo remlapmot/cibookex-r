@@ -332,7 +332,7 @@ coeff -0.030 is generated from psi  5.0
 
 
 results[31,4]
-            psi     B(Hpsi)  AbsB(Hpsi)      pvalue
+            psi      B(Hpsi)  AbsB(Hpsi)     pvalue
  r1           2   .02672188   .02672188   .00177849
  r2         2.1   .02489456   .02489456   .00359089
  r3         2.2   .02306552   .02306552   .00698119

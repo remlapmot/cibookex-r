@@ -87,11 +87,11 @@ nhefs[which(nhefs$seqn == 24770), c(
   "active",
   "wt71"
 )]
-#> # A tibble: 1 x 11
+#> # A tibble: 1 × 11
 #>   predicted.meanY  qsmk   sex  race   age education smokeintensity smokeyrs
 #>             <dbl> <dbl> <dbl> <dbl> <dbl>     <dbl>          <dbl>    <dbl>
 #> 1           0.342     0     0     0    26         4             15       12
-#> # i 3 more variables: exercise <dbl>, active <dbl>, wt71 <dbl>
+#> # ℹ 3 more variables: exercise <dbl>, active <dbl>, wt71 <dbl>
 
 summary(nhefs$predicted.meanY[nhefs$cens == 0])
 #>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -344,14 +344,14 @@ bootstrap <-
     ul
   ))
 bootstrap
-#>                         V1             mean                se               ll
-#> 1                 Observed 2.56188497106099 0.120597104489459 2.32551898962183
-#> 2             No Treatment 1.65212306626744 0.106947069654509  1.4425106614925
-#> 3                Treatment 5.11474489549336 0.358814454471498 4.41148148759683
-#> 4 Treatment - No Treatment 3.46262182922592 0.392348048118945  2.6936337855082
+#>                         V1             mean                 se               ll
+#> 1                 Observed 2.56188497106099 0.0751708406588407 2.41455283068206
+#> 2             No Treatment 1.65212306626744  0.201727949242146 1.25674355107771
+#> 3                Treatment 5.11474489549336  0.263417469161133 4.59845614303885
+#> 4 Treatment - No Treatment 3.46262182922592  0.448984163089429 2.58262903994178
 #>                 ul
-#> 1 2.79825095250014
-#> 2 1.86173547104237
-#> 3 5.81800830338988
-#> 4 4.23160987294364
+#> 1 2.70921711143991
+#> 2 2.04750258145717
+#> 3 5.63103364794787
+#> 4 4.34261461851006
 ```

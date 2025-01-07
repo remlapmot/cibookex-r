@@ -58,9 +58,7 @@ ggsurvplot(fit, data = nhefs, xlab="Months of follow-up",
            fontsize = 3)
 ```
 
-
-
-\begin{center}\includegraphics[width=0.85\linewidth]{17-causal-surv-r_files/figure-latex/unnamed-chunk-2-1} \end{center}
+<img src="17-causal-surv-r_files/figure-epub3/unnamed-chunk-2-1.png" width="85%" style="display: block; margin: auto;" />
 
 ## Program 17.2
 
@@ -139,9 +137,7 @@ ggplot(hazards.graph, aes(x=time, y=surv)) +
   theme(legend.position="bottom")
 ```
 
-
-
-\begin{center}\includegraphics[width=0.85\linewidth]{17-causal-surv-r_files/figure-latex/unnamed-chunk-3-1} \end{center}
+<img src="17-causal-surv-r_files/figure-epub3/unnamed-chunk-3-1.png" width="85%" style="display: block; margin: auto;" />
 
 ## Program 17.3
 
@@ -238,9 +234,7 @@ ggplot(ipw.graph, aes(x=time, y=surv)) +
   theme(legend.position="bottom")
 ```
 
-
-
-\begin{center}\includegraphics[width=0.85\linewidth]{17-causal-surv-r_files/figure-latex/unnamed-chunk-4-1} \end{center}
+<img src="17-causal-surv-r_files/figure-epub3/unnamed-chunk-4-1.png" width="85%" style="display: block; margin: auto;" />
 
 ## Program 17.4
 
@@ -356,9 +350,7 @@ ggplot(gf.graph, aes(x=time, y=surv)) +
   theme(legend.position="bottom")
 ```
 
-
-
-\begin{center}\includegraphics[width=0.85\linewidth]{17-causal-surv-r_files/figure-latex/unnamed-chunk-5-1} \end{center}
+<img src="17-causal-surv-r_files/figure-epub3/unnamed-chunk-5-1.png" width="85%" style="display: block; margin: auto;" />
 
 ## Program 17.5
 
