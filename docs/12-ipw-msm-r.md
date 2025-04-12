@@ -462,7 +462,7 @@ dens.num <-
 nhefs.nmv.s$sw.a <- dens.num / dens.den
 summary(nhefs.nmv.s$sw.a)
 #>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-#>    0.19    0.89    0.97    1.00    1.05    5.10
+#>   0.194   0.887   0.971   0.997   1.054   5.102
 
 msm.sw.cont <-
   geeglm(
@@ -653,7 +653,7 @@ nhefs.nmv$sw.a <-
 
 summary(nhefs.nmv$sw.a)
 #>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-#>    0.29    0.88    0.96    1.00    1.08    3.80
+#>   0.293   0.875   0.955   0.999   1.080   3.801
 sd(nhefs.nmv$sw.a)
 #> [1] 0.271
 
@@ -881,17 +881,17 @@ nhefs$sw <- nhefs$sw.c * nhefs$sw.a
 
 summary(nhefs$sw.a)
 #>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-#>    0.33    0.86    0.95    1.00    1.08    4.21
+#>   0.331   0.864   0.950   0.999   1.075   4.205
 sd(nhefs$sw.a)
 #> [1] 0.284
 summary(nhefs$sw.c)
 #>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-#>    0.94    0.98    0.99    1.01    1.01    7.58
+#>   0.944   0.978   0.986   1.007   1.005   7.584
 sd(nhefs$sw.c)
 #> [1] 0.178
 summary(nhefs$sw)
 #>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-#>    0.35    0.86    0.94    1.01    1.08   12.86
+#>   0.355   0.857   0.945   1.008   1.077  12.857
 sd(nhefs$sw)
 #> [1] 0.411
 

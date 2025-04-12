@@ -620,7 +620,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated observ
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 6:01:27
+r; t=0.00 6:51:08
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -628,7 +628,7 @@ r; t=0.00 6:01:27
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=19.21 6:01:46
+r; t=13.48 6:51:22
 
 
 
@@ -855,7 +855,7 @@ meanS_t1        float   %9.0g                 meanS_t, interv == Duplicated
                                                 observation
 
 
-file /Users/eptmp/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
+file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
     format
 
 (3,132 observations deleted)
@@ -866,7 +866,7 @@ file /Users/eptmp/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as P
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 6:01:52
+r; t=0.00 6:51:27
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -874,7 +874,7 @@ r; t=0.00 6:01:52
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=22.07 6:02:14
+r; t=15.76 6:51:42
 
 
 

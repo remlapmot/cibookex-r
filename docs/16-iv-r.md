@@ -226,7 +226,7 @@ summary(model2)
 #> 
 #> Residuals:
 #>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-#>  -42.23   -4.29   -0.62    0.00    3.87   46.74 
+#> -42.234  -4.287  -0.619   0.000   3.868  46.738 
 #> 
 #>                       Estimate Std. Error t value Pr(>|t|)    
 #> (Intercept)          17.280330   2.335402   7.399  2.3e-13 ***
