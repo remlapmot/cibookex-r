@@ -23,3 +23,7 @@ pre code {
 div pre {
   line-height: normal;
 }
+.book .book-body .page-wrapper .page-inner section.normal pre>code {
+  line-height: 0em;
+}
+
