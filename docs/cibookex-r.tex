@@ -1743,15 +1743,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{  ))}
 \NormalTok{bootstrap}
 \CommentTok{\#\textgreater{}                         V1             mean                se               ll}
-\CommentTok{\#\textgreater{} 1                 Observed 2.56188497106099 0.225379288539809  2.1201496826617}
-\CommentTok{\#\textgreater{} 2             No Treatment 1.65212306626744 0.235785266429008  1.1899924359814}
-\CommentTok{\#\textgreater{} 3                Treatment 5.11474489549336  0.21378300601293  4.6957379032013}
-\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment 3.46262182922592 0.170036272556802 3.12935685894915}
+\CommentTok{\#\textgreater{} 1                 Observed 2.56188497106099 0.150482579306371 2.26694453531981}
+\CommentTok{\#\textgreater{} 2             No Treatment 1.65212306626744 0.145561506739042 1.36682775552353}
+\CommentTok{\#\textgreater{} 3                Treatment 5.11474489549336 0.435493164192954 4.26119397816178}
+\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment 3.46262182922592 0.451037382021008 2.57860480478351}
 \CommentTok{\#\textgreater{}                 ul}
-\CommentTok{\#\textgreater{} 1 3.00362025946027}
-\CommentTok{\#\textgreater{} 2 2.11425369655347}
-\CommentTok{\#\textgreater{} 3 5.53375188778541}
-\CommentTok{\#\textgreater{} 4 3.79588679950269}
+\CommentTok{\#\textgreater{} 1 2.85682540680217}
+\CommentTok{\#\textgreater{} 2 1.93741837701134}
+\CommentTok{\#\textgreater{} 3 5.96829581282493}
+\CommentTok{\#\textgreater{} 4 4.34663885366833}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2887,15 +2887,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
                                 \StringTok{"Treatment {-} No Treatment"}\NormalTok{), mean, se, ll, ul))}
 \NormalTok{bootstrap}
 \CommentTok{\#\textgreater{}                         V1             mean                se               ll}
-\CommentTok{\#\textgreater{} 1                 Observed 2.63384609228479 0.168553781136165 2.30348675179986}
-\CommentTok{\#\textgreater{} 2             No Treatment 1.71983636149845 0.216504155065647 1.29549601506651}
-\CommentTok{\#\textgreater{} 3                Treatment 5.35072300362985 0.233791350996559 4.89250037577964}
-\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment  3.6308866421314 0.334842384631206 2.97460762775673}
+\CommentTok{\#\textgreater{} 1                 Observed 2.63384609228479 0.172641807471221  2.2954743674153}
+\CommentTok{\#\textgreater{} 2             No Treatment 1.71983636149845 0.173361427166485 1.38005420794368}
+\CommentTok{\#\textgreater{} 3                Treatment 5.35072300362985 0.512960357140376 4.34533917813791}
+\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment  3.6308866421314 0.573554918267686 2.50673965917092}
 \CommentTok{\#\textgreater{}                 ul}
-\CommentTok{\#\textgreater{} 1 2.96420543276972}
-\CommentTok{\#\textgreater{} 2  2.1441767079304}
-\CommentTok{\#\textgreater{} 3 5.80894563148007}
-\CommentTok{\#\textgreater{} 4 4.28716565650607}
+\CommentTok{\#\textgreater{} 1 2.97221781715429}
+\CommentTok{\#\textgreater{} 2 2.05961851505323}
+\CommentTok{\#\textgreater{} 3 6.35610682912179}
+\CommentTok{\#\textgreater{} 4 4.75503362509188}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2989,7 +2989,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{  \}}
 \NormalTok{\}}
 \CommentTok{\#\textgreater{} 95\% CI for the causal mean difference}
-\CommentTok{\#\textgreater{} 2.663485 , 4.484014}
+\CommentTok{\#\textgreater{} 2.595844 , 4.557889}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6999,7 +6999,7 @@ For errors contact: ejmurray@bu.edu
 -----------------------------------------------------------------------------------
 \end{verbatim}
 
-\section{Prorgam 15.2}\label{prorgam-15.2}
+\section{Program 15.2}\label{program-15.2-1}
 
 \begin{itemize}
 \tightlist
@@ -8962,7 +8962,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated observ
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 14:06:27
+r; t=0.00 22:39:15
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -8970,7 +8970,7 @@ r; t=0.00 14:06:27
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=14.90 14:06:42
+r; t=13.77 22:39:29
 
 
 
@@ -9216,7 +9216,7 @@ file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 14:06:47
+r; t=0.00 22:39:34
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -9224,7 +9224,7 @@ r; t=0.00 14:06:47
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=16.29 14:07:04
+r; t=17.41 22:39:51
 
 
 

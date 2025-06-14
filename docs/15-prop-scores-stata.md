@@ -165,7 +165,7 @@ regress wt82_71 qsmk c.smokeintensity##c.smokeintensity ///
 -----------------------------------------------------------------------------------
 ```
 
-## Prorgam 15.2
+## Program 15.2
 
 - Estimating and plotting the propensity score
 - Data from NHEFS
