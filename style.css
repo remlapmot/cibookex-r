@@ -23,3 +23,6 @@ pre code {
 div pre {
   line-height: normal;
 }
+pre, code, .sourceCode, pre.sourceCode, code.sourceCode {
+  line-height: 1 !important;
+}
