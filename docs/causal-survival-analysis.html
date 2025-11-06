@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>17. Causal survival analysis | Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="17. Causal survival analysis | Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2025-06-14" />
+<meta name="date" content="2025-11-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -133,7 +133,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -360,7 +359,16 @@ div.csl-indent {
 <span id="cb44-40"><a href="causal-survival-analysis.html#cb44-40" tabindex="-1"></a><span class="fu">ggsurvplot</span>(fit, <span class="at">data =</span> nhefs, <span class="at">xlab=</span><span class="st">&quot;Months of follow-up&quot;</span>,</span>
 <span id="cb44-41"><a href="causal-survival-analysis.html#cb44-41" tabindex="-1"></a>           <span class="at">ylab=</span><span class="st">&quot;Survival probability&quot;</span>,</span>
 <span id="cb44-42"><a href="causal-survival-analysis.html#cb44-42" tabindex="-1"></a>           <span class="at">title=</span><span class="st">&quot;Product-Limit Survival Estimates&quot;</span>, <span class="at">risk.table =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb44-43"><a href="causal-survival-analysis.html#cb44-43" tabindex="-1"></a>           <span class="at">fontsize =</span> <span class="dv">3</span>)</span></code></pre></div>
+<span id="cb44-43"><a href="causal-survival-analysis.html#cb44-43" tabindex="-1"></a>           <span class="at">fontsize =</span> <span class="dv">3</span>)</span>
+<span id="cb44-44"><a href="causal-survival-analysis.html#cb44-44" tabindex="-1"></a><span class="co">#&gt; Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
+<span id="cb44-45"><a href="causal-survival-analysis.html#cb44-45" tabindex="-1"></a><span class="co">#&gt; ℹ Please use `linewidth` instead.</span></span>
+<span id="cb44-46"><a href="causal-survival-analysis.html#cb44-46" tabindex="-1"></a><span class="co">#&gt; ℹ The deprecated feature was likely used in the ggpubr package.</span></span>
+<span id="cb44-47"><a href="causal-survival-analysis.html#cb44-47" tabindex="-1"></a><span class="co">#&gt;   Please report the issue at &lt;https://github.com/kassambara/ggpubr/issues&gt;.</span></span>
+<span id="cb44-48"><a href="causal-survival-analysis.html#cb44-48" tabindex="-1"></a><span class="co">#&gt; This warning is displayed once every 8 hours.</span></span>
+<span id="cb44-49"><a href="causal-survival-analysis.html#cb44-49" tabindex="-1"></a><span class="co">#&gt; Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span>
+<span id="cb44-50"><a href="causal-survival-analysis.html#cb44-50" tabindex="-1"></a><span class="co">#&gt; generated.</span></span>
+<span id="cb44-51"><a href="causal-survival-analysis.html#cb44-51" tabindex="-1"></a><span class="co">#&gt; Ignoring unknown labels:</span></span>
+<span id="cb44-52"><a href="causal-survival-analysis.html#cb44-52" tabindex="-1"></a><span class="co">#&gt; • colour : &quot;Strata&quot;</span></span></code></pre></div>
 <p><img src="17-causal-surv-r_files/figure-html/unnamed-chunk-2-1.png" width="85%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="program-17.2" class="section level2 hasAnchor">

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>17. Causal survival analysis: Stata | Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="17. Causal survival analysis: Stata | Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2025-06-14" />
+<meta name="date" content="2025-11-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -133,7 +133,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -908,7 +907,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated observ
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 22:37:38
+r; t=0.00 19:50:58
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -916,7 +915,7 @@ r; t=0.00 22:37:38
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=14.01 22:37:52
+r; t=15.64 19:51:13
 
 
 
@@ -1148,7 +1147,7 @@ file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 22:37:57
+r; t=0.00 19:51:19
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -1156,7 +1155,7 @@ r; t=0.00 22:37:57
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=16.25 22:38:13
+r; t=17.83 19:51:37
 
 
 

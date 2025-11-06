@@ -9,32 +9,32 @@ For reproducibility.
 sessioninfo::session_info()
 #> ─ Session info ───────────────────────────────────────────────────────────────
 #>  setting  value
-#>  version  R version 4.5.1 (2025-06-13)
-#>  os       macOS Sequoia 15.5
+#>  version  R version 4.5.2 (2025-10-31)
+#>  os       macOS Tahoe 26.1
 #>  system   aarch64, darwin20
 #>  ui       X11
 #>  language (EN)
 #>  collate  en_US.UTF-8
 #>  ctype    en_US.UTF-8
 #>  tz       Europe/London
-#>  date     2025-06-14
-#>  pandoc   3.7.0.2 @ /opt/homebrew/bin/ (via rmarkdown)
-#>  quarto   1.7.31 @ /usr/local/bin/quarto
+#>  date     2025-11-06
+#>  pandoc   3.8.2.1 @ /opt/homebrew/bin/ (via rmarkdown)
+#>  quarto   1.8.25 @ /usr/local/bin/quarto
 #> 
 #> ─ Packages ───────────────────────────────────────────────────────────────────
 #>  package     * version date (UTC) lib source
-#>  bookdown      0.43    2025-04-15 [1] CRAN (R 4.5.0)
+#>  bookdown      0.45    2025-10-03 [1] CRAN (R 4.5.1)
 #>  cli           3.6.5   2025-04-23 [1] CRAN (R 4.5.0)
 #>  digest        0.6.37  2024-08-19 [1] CRAN (R 4.5.0)
-#>  evaluate      1.0.3   2025-01-10 [1] CRAN (R 4.5.0)
+#>  evaluate      1.0.5   2025-08-27 [1] CRAN (R 4.5.1)
 #>  fastmap       1.2.0   2024-05-15 [1] CRAN (R 4.5.0)
 #>  htmltools     0.5.8.1 2024-04-04 [1] CRAN (R 4.5.0)
 #>  knitr         1.50    2025-03-16 [1] CRAN (R 4.5.0)
 #>  rlang         1.1.6   2025-04-11 [1] CRAN (R 4.5.0)
-#>  rmarkdown     2.29    2024-11-04 [1] CRAN (R 4.5.0)
+#>  rmarkdown     2.30    2025-09-28 [1] CRAN (R 4.5.1)
 #>  rstudioapi    0.17.1  2024-10-22 [1] CRAN (R 4.5.0)
 #>  sessioninfo   1.2.3   2025-02-05 [1] CRAN (R 4.5.0)
-#>  xfun          0.52    2025-04-02 [1] CRAN (R 4.5.0)
+#>  xfun          0.54    2025-10-30 [1] CRAN (R 4.5.0)
 #>  yaml          2.3.10  2024-07-26 [1] CRAN (R 4.5.0)
 #> 
 #>  [1] /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library

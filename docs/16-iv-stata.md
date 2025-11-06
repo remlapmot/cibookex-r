@@ -297,7 +297,6 @@ ivregress 2sls wt82_71 (qsmk = highprice)
 Instrumental-variables 2SLS regression            Number of obs   =      1,476
                                                   Wald chi2(1)    =       0.06
                                                   Prob > chi2     =     0.8023
-                                                  R-squared       =          .
                                                   Root MSE        =     18.593
 
 ------------------------------------------------------------------------------
@@ -317,7 +316,6 @@ Exogenous:  highprice
 Instrumental-variables 2SLS regression            Number of obs   =      1,476
                                                   Wald chi2(1)    =       0.05
                                                   Prob > chi2     =     0.8274
-                                                  R-squared       =          .
                                                   Root MSE        =     20.577
 
 ------------------------------------------------------------------------------
@@ -337,7 +335,6 @@ Exogenous:  highprice
 Instrumental-variables 2SLS regression            Number of obs   =      1,476
                                                   Wald chi2(1)    =       0.55
                                                   Prob > chi2     =     0.4576
-                                                  R-squared       =          .
                                                   Root MSE        =      13.01
 
 ------------------------------------------------------------------------------
@@ -357,7 +354,6 @@ Exogenous:  highprice
 Instrumental-variables 2SLS regression            Number of obs   =      1,476
                                                   Wald chi2(1)    =       0.29
                                                   Prob > chi2     =     0.5880
-                                                  R-squared       =          .
                                                   Root MSE        =     10.357
 
 ------------------------------------------------------------------------------
