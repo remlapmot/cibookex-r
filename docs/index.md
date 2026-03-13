@@ -5,7 +5,7 @@ author:
  - R code by Joy Shi and Sean McGrath
  - Stata code by Eleanor Murray and Roger Logan
  - R Markdown code by Tom Palmer
-date: "06 November 2025"
+date: "13 March 2026"
 site: bookdown::bookdown_site
 documentclass: book
 #biblio-style: apalike
@@ -33,7 +33,7 @@ The Stata code is based on the code by Eleanor Murray and Roger Logan given [her
 
 This repo is rendered at <https://remlapmot.github.io/cibookex-r/>. Click the download button above for the pdf and eBook versions.
 
-<img src="figs/download.png" width="65%" style="display: block; margin: auto;" />
+<img src="figs/download.png" alt="" width="65%" style="display: block; margin: auto;" />
 
 ## Downloading the code
 
@@ -42,12 +42,12 @@ The repo is available on GitHub [here](https://github.com/remlapmot/cibookex-r).
 Either,
 
 * click the green *Clone or download* button then choose to *Open in Desktop* or *Download ZIP*.
-    <img src="figs/clone-or-download.png" width="65%" style="display: block; margin: auto;" />
+    <img src="figs/clone-or-download.png" alt="" width="65%" style="display: block; margin: auto;" />
 
   The *Desktop* option means open in the [GitHub Desktop](https://desktop.github.com/) app (if you have that installed on your machine). The *ZIP* option will give you a zip archive of the repo, which you then unzip.
 
 * or fork the repo into your own GitHub account and then clone or download your forked repo to your machine.
-    <img src="figs/fork.png" width="65%" style="display: block; margin: auto;" />
+    <img src="figs/fork.png" alt="" width="65%" style="display: block; margin: auto;" />
 
 ## Installing dependency packages
 It is easiest to open the repo in RStudio, as an RStudio project, by doubling click the `.Rproj` file. This makes sure that R's working directory is at the top level of the repo. If you don't want to open the repo as a project set the working directory to the top level of the repo directories using `setwd()`. Then run:
@@ -79,6 +79,9 @@ for (i in 1:3) {
   download.file(dataurls[[i]], temp)
   unzip(temp, exdir = "data")
 }
+#> Warning in unzip(temp, exdir = "data"): error 1 in extracting from zip file
+#> Warning in unzip(temp, exdir = "data"): error 1 in extracting from zip file
+#> Warning in unzip(temp, exdir = "data"): error 1 in extracting from zip file
 
 download.file(dataurls[[4]], here("data", "nhefs.csv"))
 ```

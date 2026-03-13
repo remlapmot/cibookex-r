@@ -345,7 +345,7 @@ Log likelihood = -838.44842                             Pseudo R2     = 0.0611
 file ./data/nhefs-ps.dta saved
 ```
 
-<img src="./figs/stata-fig-15-2.png" width="85%" style="display: block; margin: auto;" />
+<img src="./figs/stata-fig-15-2.png" alt="" width="85%" style="display: block; margin: auto;" />
 
 ## Program 15.3
 

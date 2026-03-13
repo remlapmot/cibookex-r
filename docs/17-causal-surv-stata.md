@@ -78,7 +78,7 @@ Observed time interval: (0, survtime]
   Analysis time _t: survtime
 ```
 
-<img src="./figs/stata-fig-17-1.png" width="85%" style="display: block; margin: auto;" />
+<img src="./figs/stata-fig-17-1.png" alt="" width="85%" style="display: block; margin: auto;" />
 
 ## Program 17.2
 
@@ -278,7 +278,7 @@ psurv0          float   %9.0g                 psurv, interv == Original observat
 psurv1          float   %9.0g                 psurv, interv == Duplicated observation
 ```
 
-<img src="./figs/stata-fig-17-2.png" width="85%" style="display: block; margin: auto;" />
+<img src="./figs/stata-fig-17-2.png" alt="" width="85%" style="display: block; margin: auto;" />
 
 ## Program 17.3
 
@@ -620,7 +620,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated observ
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 19:54:38
+r; t=0.00 14:58:34
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -628,7 +628,7 @@ r; t=0.00 19:54:38
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=17.01 19:54:55
+r; t=19.91 14:58:54
 
 
 
@@ -646,7 +646,7 @@ Bootstrap results                                        Number of obs = 1,629
 ------------------------------------------------------------------------------
 ```
 
-<img src="./figs/stata-fig-17-3.png" width="85%" style="display: block; margin: auto;" />
+<img src="./figs/stata-fig-17-3.png" alt="" width="85%" style="display: block; margin: auto;" />
 
 ## Program 17.4
 
@@ -855,7 +855,7 @@ meanS_t1        float   %9.0g                 meanS_t, interv == Duplicated
                                                 observation
 
 
-file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
+file /Users/eptmp/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
     format
 
 (3,132 observations deleted)
@@ -866,7 +866,7 @@ file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 19:55:01
+r; t=0.00 14:59:01
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -874,7 +874,7 @@ r; t=0.00 19:55:01
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=22.95 19:55:24
+r; t=21.94 14:59:23
 
 
 
@@ -892,4 +892,4 @@ Bootstrap results                                        Number of obs = 1,629
 ------------------------------------------------------------------------------
 ```
 
-<img src="./figs/stata-fig-17-4.png" width="85%" style="display: block; margin: auto;" />
+<img src="./figs/stata-fig-17-4.png" alt="" width="85%" style="display: block; margin: auto;" />

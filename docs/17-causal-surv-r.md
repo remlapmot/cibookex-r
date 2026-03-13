@@ -56,18 +56,11 @@ ggsurvplot(fit, data = nhefs, xlab="Months of follow-up",
            ylab="Survival probability",
            title="Product-Limit Survival Estimates", risk.table = TRUE,
            fontsize = 3)
-#> Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-#> ℹ Please use `linewidth` instead.
-#> ℹ The deprecated feature was likely used in the ggpubr package.
-#>   Please report the issue at <https://github.com/kassambara/ggpubr/issues>.
-#> This warning is displayed once every 8 hours.
-#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-#> generated.
 #> Ignoring unknown labels:
 #> • colour : "Strata"
 ```
 
-<img src="17-causal-surv-r_files/figure-epub3/unnamed-chunk-2-1.png" width="85%" style="display: block; margin: auto;" />
+<img src="17-causal-surv-r_files/figure-epub3/unnamed-chunk-2-1.png" alt="" width="85%" style="display: block; margin: auto;" />
 
 ## Program 17.2
 
@@ -146,7 +139,7 @@ ggplot(hazards.graph, aes(x=time, y=surv)) +
   theme(legend.position="bottom")
 ```
 
-<img src="17-causal-surv-r_files/figure-epub3/unnamed-chunk-3-1.png" width="85%" style="display: block; margin: auto;" />
+<img src="17-causal-surv-r_files/figure-epub3/unnamed-chunk-3-1.png" alt="" width="85%" style="display: block; margin: auto;" />
 
 ## Program 17.3
 
@@ -243,7 +236,7 @@ ggplot(ipw.graph, aes(x=time, y=surv)) +
   theme(legend.position="bottom")
 ```
 
-<img src="17-causal-surv-r_files/figure-epub3/unnamed-chunk-4-1.png" width="85%" style="display: block; margin: auto;" />
+<img src="17-causal-surv-r_files/figure-epub3/unnamed-chunk-4-1.png" alt="" width="85%" style="display: block; margin: auto;" />
 
 ## Program 17.4
 
@@ -359,7 +352,7 @@ ggplot(gf.graph, aes(x=time, y=surv)) +
   theme(legend.position="bottom")
 ```
 
-<img src="17-causal-surv-r_files/figure-epub3/unnamed-chunk-5-1.png" width="85%" style="display: block; margin: auto;" />
+<img src="17-causal-surv-r_files/figure-epub3/unnamed-chunk-5-1.png" alt="" width="85%" style="display: block; margin: auto;" />
 
 ## Program 17.5
 

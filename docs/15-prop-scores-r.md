@@ -330,7 +330,7 @@ ggplot(nhefs, aes(x = ps, fill = qsmklabel, color = qsmklabel)) +
         legend.title = element_blank())
 ```
 
-<img src="15-prop-scores-r_files/figure-epub3/unnamed-chunk-3-1.png" width="85%" style="display: block; margin: auto;" />
+<img src="15-prop-scores-r_files/figure-epub3/unnamed-chunk-3-1.png" alt="" width="85%" style="display: block; margin: auto;" />
 
 ``` r
 
@@ -345,7 +345,7 @@ ggplot(nhefs, aes(x = ps, fill = as.factor(qsmk), color = as.factor(qsmk))) +
   theme(legend.position = 'bottom', legend.direction = 'vertical')
 ```
 
-<img src="15-prop-scores-r_files/figure-epub3/unnamed-chunk-3-2.png" width="85%" style="display: block; margin: auto;" />
+<img src="15-prop-scores-r_files/figure-epub3/unnamed-chunk-3-2.png" alt="" width="85%" style="display: block; margin: auto;" />
 
 
 ``` r
@@ -732,15 +732,15 @@ bootstrap <- data.frame(cbind(c("Observed", "No Treatment", "Treatment",
                                 "Treatment - No Treatment"), mean, se, ll, ul))
 bootstrap
 #>                         V1             mean                se               ll
-#> 1                 Observed 2.63384609228479 0.173828185462425 2.29314910928049
-#> 2             No Treatment 1.71983636149844 0.104418087465106 1.51518067073228
-#> 3                Treatment 5.35072300362987 0.441253816614416 4.48588141502477
-#> 4 Treatment - No Treatment 3.63088664213142 0.455776920156748 2.73758029363961
+#> 1                 Observed 2.63384609228479 0.153571765235908 2.33285096338018
+#> 2             No Treatment 1.71983636149845 0.202421879467878  1.3230967680585
+#> 3                Treatment 5.35072300362985 0.384418262163097 4.59727705479071
+#> 4 Treatment - No Treatment  3.6308866421314 0.397541555895254 2.85171951021869
 #>                 ul
-#> 1 2.97454307528909
-#> 2 1.92449205226461
-#> 3 6.21556459223496
-#> 4 4.52419299062324
+#> 1 2.93484122118941
+#> 2  2.1165759549384
+#> 3   6.104168952469
+#> 4 4.41005377404411
 ```
 
 
@@ -833,7 +833,7 @@ for(i in 1:nboot) {
   }
 }
 #> 95% CI for the causal mean difference
-#> 2.535479 , 4.49845
+#> 2.51203 , 4.601106
 ```
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.

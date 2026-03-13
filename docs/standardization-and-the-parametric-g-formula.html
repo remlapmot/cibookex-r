@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>13. Standardization and the parametric G-formula | Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="13. Standardization and the parametric G-formula | Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2025-11-06" />
+<meta name="date" content="2026-03-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -451,9 +451,9 @@ div.csl-indent {
 <span id="cb20-40"><a href="standardization-and-the-parametric-g-formula.html#cb20-40" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
 <span id="cb20-41"><a href="standardization-and-the-parametric-g-formula.html#cb20-41" tabindex="-1"></a><span class="co">#&gt;               Estimate Std. Error t value Pr(&gt;|t|)</span></span>
 <span id="cb20-42"><a href="standardization-and-the-parametric-g-formula.html#cb20-42" tabindex="-1"></a><span class="co">#&gt; (Intercept)  2.500e-01  2.552e-01   0.980    0.342</span></span>
-<span id="cb20-43"><a href="standardization-and-the-parametric-g-formula.html#cb20-43" tabindex="-1"></a><span class="co">#&gt; A            6.018e-17  3.608e-01   0.000    1.000</span></span>
+<span id="cb20-43"><a href="standardization-and-the-parametric-g-formula.html#cb20-43" tabindex="-1"></a><span class="co">#&gt; A            3.957e-17  3.608e-01   0.000    1.000</span></span>
 <span id="cb20-44"><a href="standardization-and-the-parametric-g-formula.html#cb20-44" tabindex="-1"></a><span class="co">#&gt; L            4.167e-01  3.898e-01   1.069    0.301</span></span>
-<span id="cb20-45"><a href="standardization-and-the-parametric-g-formula.html#cb20-45" tabindex="-1"></a><span class="co">#&gt; A:L         -6.483e-17  4.959e-01   0.000    1.000</span></span>
+<span id="cb20-45"><a href="standardization-and-the-parametric-g-formula.html#cb20-45" tabindex="-1"></a><span class="co">#&gt; A:L         -1.313e-16  4.959e-01   0.000    1.000</span></span>
 <span id="cb20-46"><a href="standardization-and-the-parametric-g-formula.html#cb20-46" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb20-47"><a href="standardization-and-the-parametric-g-formula.html#cb20-47" tabindex="-1"></a><span class="co">#&gt; (Dispersion parameter for gaussian family taken to be 0.2604167)</span></span>
 <span id="cb20-48"><a href="standardization-and-the-parametric-g-formula.html#cb20-48" tabindex="-1"></a><span class="co">#&gt; </span></span>
@@ -640,15 +640,15 @@ div.csl-indent {
 <span id="cb22-71"><a href="standardization-and-the-parametric-g-formula.html#cb22-71" tabindex="-1"></a>  ))</span>
 <span id="cb22-72"><a href="standardization-and-the-parametric-g-formula.html#cb22-72" tabindex="-1"></a>bootstrap</span>
 <span id="cb22-73"><a href="standardization-and-the-parametric-g-formula.html#cb22-73" tabindex="-1"></a><span class="co">#&gt;                         V1             mean                se               ll</span></span>
-<span id="cb22-74"><a href="standardization-and-the-parametric-g-formula.html#cb22-74" tabindex="-1"></a><span class="co">#&gt; 1                 Observed 2.56188497106099 0.181519541417092 2.20611320739326</span></span>
-<span id="cb22-75"><a href="standardization-and-the-parametric-g-formula.html#cb22-75" tabindex="-1"></a><span class="co">#&gt; 2             No Treatment 1.65212306626743 0.183753660797274 1.29197250907739</span></span>
-<span id="cb22-76"><a href="standardization-and-the-parametric-g-formula.html#cb22-76" tabindex="-1"></a><span class="co">#&gt; 3                Treatment 5.11474489549336 0.211266328633789 4.70067050022513</span></span>
-<span id="cb22-77"><a href="standardization-and-the-parametric-g-formula.html#cb22-77" tabindex="-1"></a><span class="co">#&gt; 4 Treatment - No Treatment 3.46262182922593 0.217193045254391 3.03693128283474</span></span>
+<span id="cb22-74"><a href="standardization-and-the-parametric-g-formula.html#cb22-74" tabindex="-1"></a><span class="co">#&gt; 1                 Observed 2.56188497106099 0.228472587180664  2.1140869287322</span></span>
+<span id="cb22-75"><a href="standardization-and-the-parametric-g-formula.html#cb22-75" tabindex="-1"></a><span class="co">#&gt; 2             No Treatment 1.65212306626744 0.145369828192275  1.3672034385718</span></span>
+<span id="cb22-76"><a href="standardization-and-the-parametric-g-formula.html#cb22-76" tabindex="-1"></a><span class="co">#&gt; 3                Treatment 5.11474489549336 0.600920030196391 3.93696327871971</span></span>
+<span id="cb22-77"><a href="standardization-and-the-parametric-g-formula.html#cb22-77" tabindex="-1"></a><span class="co">#&gt; 4 Treatment - No Treatment 3.46262182922592 0.482483135619584 2.51697226026358</span></span>
 <span id="cb22-78"><a href="standardization-and-the-parametric-g-formula.html#cb22-78" tabindex="-1"></a><span class="co">#&gt;                 ul</span></span>
-<span id="cb22-79"><a href="standardization-and-the-parametric-g-formula.html#cb22-79" tabindex="-1"></a><span class="co">#&gt; 1 2.91765673472871</span></span>
-<span id="cb22-80"><a href="standardization-and-the-parametric-g-formula.html#cb22-80" tabindex="-1"></a><span class="co">#&gt; 2 2.01227362345748</span></span>
-<span id="cb22-81"><a href="standardization-and-the-parametric-g-formula.html#cb22-81" tabindex="-1"></a><span class="co">#&gt; 3 5.52881929076159</span></span>
-<span id="cb22-82"><a href="standardization-and-the-parametric-g-formula.html#cb22-82" tabindex="-1"></a><span class="co">#&gt; 4 3.88831237561711</span></span></code></pre></div>
+<span id="cb22-79"><a href="standardization-and-the-parametric-g-formula.html#cb22-79" tabindex="-1"></a><span class="co">#&gt; 1 3.00968301338978</span></span>
+<span id="cb22-80"><a href="standardization-and-the-parametric-g-formula.html#cb22-80" tabindex="-1"></a><span class="co">#&gt; 2 1.93704269396307</span></span>
+<span id="cb22-81"><a href="standardization-and-the-parametric-g-formula.html#cb22-81" tabindex="-1"></a><span class="co">#&gt; 3   6.292526512267</span></span>
+<span id="cb22-82"><a href="standardization-and-the-parametric-g-formula.html#cb22-82" tabindex="-1"></a><span class="co">#&gt; 4 4.40827139818826</span></span></code></pre></div>
 
 </div>
 </div>

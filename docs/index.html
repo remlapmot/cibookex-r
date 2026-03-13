@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2025-11-06" />
+<meta name="date" content="2026-03-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -314,7 +314,7 @@ div.csl-indent {
 <p class="author"><em>R code by Joy Shi and Sean McGrath</em></p>
 <p class="author"><em>Stata code by Eleanor Murray and Roger Logan</em></p>
 <p class="author"><em>R Markdown code by Tom Palmer</em></p>
-<p class="date"><em>06 November 2025</em></p>
+<p class="date"><em>13 March 2026</em></p>
 </div>
 <div id="preface" class="section level1 unnumbered hasAnchor">
 <h1>Preface<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -323,17 +323,17 @@ div.csl-indent {
 <p>The R code is based on the code by Joy Shi and Sean McGrath given <a href="https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/1268/20/Rcode_CIpart2.zip">here</a>.</p>
 <p>The Stata code is based on the code by Eleanor Murray and Roger Logan given <a href="https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/2019/11/stata_part2.zip">here</a>.</p>
 <p>This repo is rendered at <a href="https://remlapmot.github.io/cibookex-r/" class="uri">https://remlapmot.github.io/cibookex-r/</a>. Click the download button above for the pdf and eBook versions.</p>
-<p><img src="figs/download.png" width="65%" style="display: block; margin: auto;" /></p>
+<p><img src="figs/download.png" alt="" width="65%" style="display: block; margin: auto;" /></p>
 <div id="downloading-the-code" class="section level2 hasAnchor">
 <h2>Downloading the code<a href="index.html#downloading-the-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The repo is available on GitHub <a href="https://github.com/remlapmot/cibookex-r">here</a>. There are a number of ways to download the code.</p>
 <p>Either,</p>
 <ul>
 <li><p>click the green <em>Clone or download</em> button then choose to <em>Open in Desktop</em> or <em>Download ZIP</em>.
-<img src="figs/clone-or-download.png" width="65%" style="display: block; margin: auto;" /></p>
+<img src="figs/clone-or-download.png" alt="" width="65%" style="display: block; margin: auto;" /></p>
 <p>The <em>Desktop</em> option means open in the <a href="https://desktop.github.com/">GitHub Desktop</a> app (if you have that installed on your machine). The <em>ZIP</em> option will give you a zip archive of the repo, which you then unzip.</p></li>
 <li><p>or fork the repo into your own GitHub account and then clone or download your forked repo to your machine.
-<img src="figs/fork.png" width="65%" style="display: block; margin: auto;" /></p></li>
+<img src="figs/fork.png" alt="" width="65%" style="display: block; margin: auto;" /></p></li>
 </ul>
 </div>
 <div id="installing-dependency-packages" class="section level2 hasAnchor">
@@ -358,8 +358,11 @@ div.csl-indent {
 <span id="cb3-10"><a href="index.html#cb3-10" tabindex="-1"></a>  <span class="fu">download.file</span>(dataurls[[i]], temp)</span>
 <span id="cb3-11"><a href="index.html#cb3-11" tabindex="-1"></a>  <span class="fu">unzip</span>(temp, <span class="at">exdir =</span> <span class="st">&quot;data&quot;</span>)</span>
 <span id="cb3-12"><a href="index.html#cb3-12" tabindex="-1"></a>}</span>
-<span id="cb3-13"><a href="index.html#cb3-13" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="index.html#cb3-14" tabindex="-1"></a><span class="fu">download.file</span>(dataurls[[<span class="dv">4</span>]], <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;nhefs.csv&quot;</span>))</span></code></pre></div>
+<span id="cb3-13"><a href="index.html#cb3-13" tabindex="-1"></a><span class="co">#&gt; Warning in unzip(temp, exdir = &quot;data&quot;): error 1 in extracting from zip file</span></span>
+<span id="cb3-14"><a href="index.html#cb3-14" tabindex="-1"></a><span class="co">#&gt; Warning in unzip(temp, exdir = &quot;data&quot;): error 1 in extracting from zip file</span></span>
+<span id="cb3-15"><a href="index.html#cb3-15" tabindex="-1"></a><span class="co">#&gt; Warning in unzip(temp, exdir = &quot;data&quot;): error 1 in extracting from zip file</span></span>
+<span id="cb3-16"><a href="index.html#cb3-16" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="index.html#cb3-17" tabindex="-1"></a><span class="fu">download.file</span>(dataurls[[<span class="dv">4</span>]], <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;nhefs.csv&quot;</span>))</span></code></pre></div>
 
 </div>
 </div>
