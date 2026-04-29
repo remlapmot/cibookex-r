@@ -48,3 +48,4 @@ _bookdown_files
 dependency.log
 
 *.Rout
+.positai
