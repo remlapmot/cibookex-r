@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2026-03-13" />
+<meta name="date" content="2026-04-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -324,7 +324,7 @@ div.csl-indent {
 <span id="cb38-5"><a href="instrumental-variables-estimation.html#cb38-5" tabindex="-1"></a><span class="co"># some preprocessing of the data</span></span>
 <span id="cb38-6"><a href="instrumental-variables-estimation.html#cb38-6" tabindex="-1"></a>nhefs<span class="sc">$</span>cens <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(nhefs<span class="sc">$</span>wt82), <span class="dv">1</span>, <span class="dv">0</span>)</span>
 <span id="cb38-7"><a href="instrumental-variables-estimation.html#cb38-7" tabindex="-1"></a><span class="fu">summary</span>(nhefs<span class="sc">$</span>price82)</span>
-<span id="cb38-8"><a href="instrumental-variables-estimation.html#cb38-8" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s </span></span>
+<span id="cb38-8"><a href="instrumental-variables-estimation.html#cb38-8" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.     NAs </span></span>
 <span id="cb38-9"><a href="instrumental-variables-estimation.html#cb38-9" tabindex="-1"></a><span class="co">#&gt;   1.452   1.740   1.815   1.806   1.868   2.103      92</span></span>
 <span id="cb38-10"><a href="instrumental-variables-estimation.html#cb38-10" tabindex="-1"></a></span>
 <span id="cb38-11"><a href="instrumental-variables-estimation.html#cb38-11" tabindex="-1"></a><span class="co"># for simplicity, ignore subjects with missing outcome or missing instrument</span></span>

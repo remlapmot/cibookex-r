@@ -21,7 +21,7 @@ nhefs <- read_excel(here("data", "NHEFS.xls"))
 # some preprocessing of the data
 nhefs$cens <- ifelse(is.na(nhefs$wt82), 1, 0)
 summary(nhefs$price82)
-#>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+#>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.     NAs 
 #>   1.452   1.740   1.815   1.806   1.868   2.103      92
 
 # for simplicity, ignore subjects with missing outcome or missing instrument

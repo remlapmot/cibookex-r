@@ -137,7 +137,7 @@
 
 \title{Causal Inference: What If. R and Stata code for Exercises}
 \author{Book by M. A. Hernán and J. M. Robins \and R code by Joy Shi and Sean McGrath \and Stata code by Eleanor Murray and Roger Logan \and R Markdown code by Tom Palmer}
-\date{13 March 2026}
+\date{29 April 2026}
 
 \begin{document}
 \maketitle
@@ -1745,16 +1745,16 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{    ul}
 \NormalTok{  ))}
 \NormalTok{bootstrap}
-\CommentTok{\#\textgreater{}                         V1             mean                 se               ll}
-\CommentTok{\#\textgreater{} 1                 Observed 2.56188497106099 0.0776964040872152 2.40960281732177}
-\CommentTok{\#\textgreater{} 2             No Treatment 1.65212306626744   0.11542633650344 1.42589160385329}
-\CommentTok{\#\textgreater{} 3                Treatment 5.11474489549336  0.336562191327253 4.45509512193406}
-\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment 3.46262182922592  0.420047092125832 2.63934465684851}
+\CommentTok{\#\textgreater{}                         V1             mean                se               ll}
+\CommentTok{\#\textgreater{} 1                 Observed 2.56188497106099 0.263696976607446 2.04504839407829}
+\CommentTok{\#\textgreater{} 2             No Treatment 1.65212306626744 0.260496569884121 1.14155917119834}
+\CommentTok{\#\textgreater{} 3                Treatment 5.11474489549336 0.515339047582605 4.10469892240428}
+\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment 3.46262182922592  0.58916597243238 2.30787774234194}
 \CommentTok{\#\textgreater{}                 ul}
-\CommentTok{\#\textgreater{} 1  2.7141671248002}
-\CommentTok{\#\textgreater{} 2 1.87835452868158}
-\CommentTok{\#\textgreater{} 3 5.77439466905265}
-\CommentTok{\#\textgreater{} 4 4.28589900160333}
+\CommentTok{\#\textgreater{} 1 3.07872154804368}
+\CommentTok{\#\textgreater{} 2 2.16268696133654}
+\CommentTok{\#\textgreater{} 3 6.12479086858244}
+\CommentTok{\#\textgreater{} 4  4.6173659161099}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2544,103 +2544,103 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \CommentTok{\#\textgreater{}  Descriptive statistics by group }
 \CommentTok{\#\textgreater{} : 1}
 \CommentTok{\#\textgreater{} : 0}
-\CommentTok{\#\textgreater{}    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se}
-\CommentTok{\#\textgreater{} X1    1 151  0.1 0.02   0.11     0.1 0.02 0.05 0.13  0.08 {-}0.55    {-}0.53  0}
+\CommentTok{\#\textgreater{}     vars   n mean    sd median trimmed   mad min max range skew kurtosis   se}
+\CommentTok{\#\textgreater{} X1*    1 151   76 43.73     76      76 56.34   1 151   150    0    {-}1.22 3.56}
 \CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} }
 \CommentTok{\#\textgreater{} : 2}
 \CommentTok{\#\textgreater{} : 0}
-\CommentTok{\#\textgreater{}    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se}
-\CommentTok{\#\textgreater{} X1    1 136 0.15 0.01   0.15    0.15 0.01 0.13 0.17  0.04 {-}0.04    {-}1.23  0}
+\CommentTok{\#\textgreater{}     vars   n mean   sd median trimmed   mad min max range skew kurtosis   se}
+\CommentTok{\#\textgreater{} X1*    1 136 68.5 39.4   68.5    68.5 50.41   1 136   135    0    {-}1.23 3.38}
 \CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} }
 \CommentTok{\#\textgreater{} : 3}
 \CommentTok{\#\textgreater{} : 0}
-\CommentTok{\#\textgreater{}    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se}
-\CommentTok{\#\textgreater{} X1    1 134 0.18 0.01   0.18    0.18 0.01 0.17 0.19  0.03 {-}0.08    {-}1.34  0}
+\CommentTok{\#\textgreater{}     vars   n mean    sd median trimmed   mad min max range skew kurtosis   se}
+\CommentTok{\#\textgreater{} X1*    1 134 67.5 38.83   67.5    67.5 49.67   1 134   133    0    {-}1.23 3.35}
 \CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} }
 \CommentTok{\#\textgreater{} : 4}
 \CommentTok{\#\textgreater{} : 0}
-\CommentTok{\#\textgreater{}    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se}
-\CommentTok{\#\textgreater{} X1    1 129 0.21 0.01   0.21    0.21 0.01 0.19 0.22  0.02 {-}0.04    {-}1.13  0}
+\CommentTok{\#\textgreater{}     vars   n mean    sd median trimmed   mad min max range skew kurtosis   se}
+\CommentTok{\#\textgreater{} X1*    1 129   65 37.38     65      65 47.44   1 129   128    0    {-}1.23 3.29}
 \CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} }
 \CommentTok{\#\textgreater{} : 5}
 \CommentTok{\#\textgreater{} : 0}
-\CommentTok{\#\textgreater{}    vars   n mean   sd median trimmed  mad  min  max range skew kurtosis se}
-\CommentTok{\#\textgreater{} X1    1 120 0.23 0.01   0.23    0.23 0.01 0.22 0.25  0.03 0.24    {-}1.22  0}
+\CommentTok{\#\textgreater{}     vars   n mean    sd median trimmed   mad min max range skew kurtosis   se}
+\CommentTok{\#\textgreater{} X1*    1 120 60.5 34.79   60.5    60.5 44.48   1 120   119    0    {-}1.23 3.18}
 \CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} }
 \CommentTok{\#\textgreater{} : 6}
 \CommentTok{\#\textgreater{} : 0}
-\CommentTok{\#\textgreater{}    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se}
-\CommentTok{\#\textgreater{} X1    1 117 0.26 0.01   0.26    0.26 0.01 0.25 0.27  0.03 {-}0.11    {-}1.29  0}
+\CommentTok{\#\textgreater{}     vars   n mean    sd median trimmed mad min max range skew kurtosis   se}
+\CommentTok{\#\textgreater{} X1*    1 117   59 33.92     59      59  43   1 117   116    0    {-}1.23 3.14}
 \CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} }
 \CommentTok{\#\textgreater{} : 7}
 \CommentTok{\#\textgreater{} : 0}
-\CommentTok{\#\textgreater{}    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se}
-\CommentTok{\#\textgreater{} X1    1 120 0.29 0.01   0.29    0.29 0.01 0.27 0.31  0.03 {-}0.23    {-}1.19  0}
+\CommentTok{\#\textgreater{}     vars   n mean    sd median trimmed   mad min max range skew kurtosis   se}
+\CommentTok{\#\textgreater{} X1*    1 120 60.5 34.79   60.5    60.5 44.48   1 120   119    0    {-}1.23 3.18}
 \CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} }
 \CommentTok{\#\textgreater{} : 8}
 \CommentTok{\#\textgreater{} : 0}
-\CommentTok{\#\textgreater{}    vars   n mean   sd median trimmed  mad  min  max range skew kurtosis se}
-\CommentTok{\#\textgreater{} X1    1 112 0.33 0.01   0.33    0.33 0.02 0.31 0.35  0.04 0.15     {-}1.1  0}
+\CommentTok{\#\textgreater{}     vars   n mean    sd median trimmed   mad min max range skew kurtosis   se}
+\CommentTok{\#\textgreater{} X1*    1 112 56.5 32.48   56.5    56.5 41.51   1 112   111    0    {-}1.23 3.07}
 \CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} }
 \CommentTok{\#\textgreater{} : 9}
 \CommentTok{\#\textgreater{} : 0}
-\CommentTok{\#\textgreater{}    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se}
-\CommentTok{\#\textgreater{} X1    1 96 0.38 0.02   0.38    0.38 0.02 0.35 0.42  0.06 0.13    {-}1.15  0}
+\CommentTok{\#\textgreater{}     vars  n mean    sd median trimmed   mad min max range skew kurtosis   se}
+\CommentTok{\#\textgreater{} X1*    1 96 48.5 27.86   48.5    48.5 35.58   1  96    95    0    {-}1.24 2.84}
 \CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} }
 \CommentTok{\#\textgreater{} : 10}
 \CommentTok{\#\textgreater{} : 0}
-\CommentTok{\#\textgreater{}    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se}
-\CommentTok{\#\textgreater{} X1    1 86 0.49 0.06   0.47    0.48 0.05 0.42 0.66  0.24  1.1     0.47 0.01}
+\CommentTok{\#\textgreater{}     vars  n mean    sd median trimmed   mad min max range skew kurtosis   se}
+\CommentTok{\#\textgreater{} X1*    1 86 43.5 24.97   43.5    43.5 31.88   1  86    85    0    {-}1.24 2.69}
 \CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} }
 \CommentTok{\#\textgreater{} : 1}
 \CommentTok{\#\textgreater{} : 1}
-\CommentTok{\#\textgreater{}    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se}
-\CommentTok{\#\textgreater{} X1    1 12  0.1 0.02   0.11     0.1 0.03 0.06 0.13  0.07 {-}0.5    {-}1.36 0.01}
+\CommentTok{\#\textgreater{}     vars  n mean   sd median trimmed  mad min max range skew kurtosis   se}
+\CommentTok{\#\textgreater{} X1*    1 12  6.5 3.61    6.5     6.5 4.45   1  12    11    0     {-}1.5 1.04}
 \CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} }
 \CommentTok{\#\textgreater{} : 2}
 \CommentTok{\#\textgreater{} : 1}
-\CommentTok{\#\textgreater{}    vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis se}
-\CommentTok{\#\textgreater{} X1    1 27 0.15 0.01   0.15    0.15 0.01 0.13 0.17  0.03 {-}0.03    {-}1.34  0}
+\CommentTok{\#\textgreater{}     vars  n mean   sd median trimmed   mad min max range skew kurtosis   se}
+\CommentTok{\#\textgreater{} X1*    1 27   14 7.94     14      14 10.38   1  27    26    0    {-}1.33 1.53}
 \CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} }
 \CommentTok{\#\textgreater{} : 3}
 \CommentTok{\#\textgreater{} : 1}
-\CommentTok{\#\textgreater{}    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se}
-\CommentTok{\#\textgreater{} X1    1 29 0.18 0.01   0.18    0.18 0.01 0.17 0.19  0.03 0.01    {-}1.34  0}
+\CommentTok{\#\textgreater{}     vars  n mean   sd median trimmed   mad min max range skew kurtosis   se}
+\CommentTok{\#\textgreater{} X1*    1 29   15 8.51     15      15 10.38   1  29    28    0    {-}1.32 1.58}
 \CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} }
 \CommentTok{\#\textgreater{} : 4}
 \CommentTok{\#\textgreater{} : 1}
-\CommentTok{\#\textgreater{}    vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis se}
-\CommentTok{\#\textgreater{} X1    1 34 0.21 0.01   0.21    0.21 0.01 0.19 0.22  0.02 {-}0.31    {-}1.23  0}
+\CommentTok{\#\textgreater{}     vars  n mean   sd median trimmed  mad min max range skew kurtosis   se}
+\CommentTok{\#\textgreater{} X1*    1 34 17.5 9.96   17.5    17.5 12.6   1  34    33    0    {-}1.31 1.71}
 \CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} }
 \CommentTok{\#\textgreater{} : 5}
 \CommentTok{\#\textgreater{} : 1}
-\CommentTok{\#\textgreater{}    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se}
-\CommentTok{\#\textgreater{} X1    1 43 0.23 0.01   0.23    0.23 0.01 0.22 0.25  0.03 0.11    {-}1.23  0}
+\CommentTok{\#\textgreater{}     vars  n mean    sd median trimmed   mad min max range skew kurtosis   se}
+\CommentTok{\#\textgreater{} X1*    1 43   22 12.56     22      22 16.31   1  43    42    0    {-}1.28 1.91}
 \CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} }
 \CommentTok{\#\textgreater{} : 6}
 \CommentTok{\#\textgreater{} : 1}
-\CommentTok{\#\textgreater{}    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se}
-\CommentTok{\#\textgreater{} X1    1 45 0.26 0.01   0.26    0.26 0.01 0.25 0.27  0.03  0.2    {-}1.12  0}
+\CommentTok{\#\textgreater{}     vars  n mean    sd median trimmed   mad min max range skew kurtosis   se}
+\CommentTok{\#\textgreater{} X1*    1 45   23 13.13     23      23 16.31   1  45    44    0    {-}1.28 1.96}
 \CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} }
 \CommentTok{\#\textgreater{} : 7}
 \CommentTok{\#\textgreater{} : 1}
-\CommentTok{\#\textgreater{}    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se}
-\CommentTok{\#\textgreater{} X1    1 43 0.29 0.01   0.29    0.29 0.01 0.27 0.31  0.03 0.16    {-}1.25  0}
+\CommentTok{\#\textgreater{}     vars  n mean    sd median trimmed   mad min max range skew kurtosis   se}
+\CommentTok{\#\textgreater{} X1*    1 43   22 12.56     22      22 16.31   1  43    42    0    {-}1.28 1.91}
 \CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} }
 \CommentTok{\#\textgreater{} : 8}
 \CommentTok{\#\textgreater{} : 1}
-\CommentTok{\#\textgreater{}    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se}
-\CommentTok{\#\textgreater{} X1    1 51 0.33 0.01   0.33    0.33 0.02 0.31 0.35  0.04 0.11    {-}1.19  0}
+\CommentTok{\#\textgreater{}     vars  n mean    sd median trimmed   mad min max range skew kurtosis   se}
+\CommentTok{\#\textgreater{} X1*    1 51   26 14.87     26      26 19.27   1  51    50    0    {-}1.27 2.08}
 \CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} }
 \CommentTok{\#\textgreater{} : 9}
 \CommentTok{\#\textgreater{} : 1}
-\CommentTok{\#\textgreater{}    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se}
-\CommentTok{\#\textgreater{} X1    1 67 0.38 0.02   0.38    0.38 0.03 0.35 0.42  0.06 0.19    {-}1.27  0}
+\CommentTok{\#\textgreater{}     vars  n mean    sd median trimmed  mad min max range skew kurtosis   se}
+\CommentTok{\#\textgreater{} X1*    1 67   34 19.49     34      34 25.2   1  67    66    0    {-}1.25 2.38}
 \CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-} }
 \CommentTok{\#\textgreater{} : 10}
 \CommentTok{\#\textgreater{} : 1}
-\CommentTok{\#\textgreater{}    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se}
-\CommentTok{\#\textgreater{} X1    1 77 0.52 0.08   0.51    0.51 0.08 0.42 0.79  0.38 0.88     0.81 0.01}
+\CommentTok{\#\textgreater{}     vars  n mean    sd median trimmed   mad min max range skew kurtosis   se}
+\CommentTok{\#\textgreater{} X1*    1 77   39 22.37     39      39 28.17   1  77    76    0    {-}1.25 2.55}
 
 \CommentTok{\# function to create deciles easily}
 \NormalTok{decile }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{}
@@ -2890,15 +2890,15 @@ We assume that you have downloaded the data from the Causal Inference Book websi
                                 \StringTok{"Treatment {-} No Treatment"}\NormalTok{), mean, se, ll, ul))}
 \NormalTok{bootstrap}
 \CommentTok{\#\textgreater{}                         V1             mean                se               ll}
-\CommentTok{\#\textgreater{} 1                 Observed 2.63384609228479 0.206743266412006 2.22863673607109}
-\CommentTok{\#\textgreater{} 2             No Treatment 1.71983636149845 0.202073089401582 1.32378038402661}
-\CommentTok{\#\textgreater{} 3                Treatment 5.35072300362985 0.698745571320194 3.98120684948541}
-\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment  3.6308866421314 0.741815497580958 2.17695498369906}
+\CommentTok{\#\textgreater{} 1                 Observed 2.63384609228479 0.179665083076649 2.28170900017517}
+\CommentTok{\#\textgreater{} 2             No Treatment 1.71983636149845 0.108810133024448 1.50657241961752}
+\CommentTok{\#\textgreater{} 3                Treatment 5.35072300362985 0.323597167999064 4.71648420885253}
+\CommentTok{\#\textgreater{} 4 Treatment {-} No Treatment  3.6308866421314 0.308089510241345 3.02704229804378}
 \CommentTok{\#\textgreater{}                 ul}
-\CommentTok{\#\textgreater{} 1  3.0390554484985}
-\CommentTok{\#\textgreater{} 2  2.1158923389703}
-\CommentTok{\#\textgreater{} 3  6.7202391577743}
-\CommentTok{\#\textgreater{} 4 5.08481830056374}
+\CommentTok{\#\textgreater{} 1 2.98598318439442}
+\CommentTok{\#\textgreater{} 2 1.93310030337938}
+\CommentTok{\#\textgreater{} 3 5.98496179840718}
+\CommentTok{\#\textgreater{} 4 4.23473098621902}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2992,7 +2992,7 @@ We assume that you have downloaded the data from the Causal Inference Book websi
 \NormalTok{  \}}
 \NormalTok{\}}
 \CommentTok{\#\textgreater{} 95\% CI for the causal mean difference}
-\CommentTok{\#\textgreater{} 2.543286 , 4.491402}
+\CommentTok{\#\textgreater{} 2.718656 , 4.564824}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3026,7 +3026,7 @@ A more flexible and elegant way to do this is to write a function to perform the
 \CommentTok{\# some preprocessing of the data}
 \NormalTok{nhefs}\SpecialCharTok{$}\NormalTok{cens }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{wt82), }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
 \FunctionTok{summary}\NormalTok{(nhefs}\SpecialCharTok{$}\NormalTok{price82)}
-\CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA\textquotesingle{}s }
+\CommentTok{\#\textgreater{}    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.     NAs }
 \CommentTok{\#\textgreater{}   1.452   1.740   1.815   1.806   1.868   2.103      92}
 
 \CommentTok{\# for simplicity, ignore subjects with missing outcome or missing instrument}
@@ -3831,41 +3831,40 @@ For reproducibility.
 \begin{Highlighting}[]
 \CommentTok{\# install.packages("sessioninfo")}
 \NormalTok{sessioninfo}\SpecialCharTok{::}\FunctionTok{session\_info}\NormalTok{()}
-\CommentTok{\#\textgreater{} {-} Session info {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\#\textgreater{} {-} Session info {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \CommentTok{\#\textgreater{}  setting  value}
-\CommentTok{\#\textgreater{}  version  R version 4.5.3 (2026{-}03{-}11)}
-\CommentTok{\#\textgreater{}  os       macOS Tahoe 26.3.1}
-\CommentTok{\#\textgreater{}  system   aarch64, darwin20}
+\CommentTok{\#\textgreater{}  version  R version 4.6.0 (2026{-}04{-}24)}
+\CommentTok{\#\textgreater{}  os       macOS Tahoe 26.4.1}
+\CommentTok{\#\textgreater{}  system   aarch64, darwin23}
 \CommentTok{\#\textgreater{}  ui       X11}
 \CommentTok{\#\textgreater{}  language (EN)}
-\CommentTok{\#\textgreater{}  collate  en\_US.UTF{-}8}
-\CommentTok{\#\textgreater{}  ctype    en\_US.UTF{-}8}
+\CommentTok{\#\textgreater{}  collate  C.UTF{-}8}
+\CommentTok{\#\textgreater{}  ctype    C.UTF{-}8}
 \CommentTok{\#\textgreater{}  tz       Europe/London}
-\CommentTok{\#\textgreater{}  date     2026{-}03{-}13}
-\CommentTok{\#\textgreater{}  pandoc   3.9 @ /opt/homebrew/bin/ (via rmarkdown)}
-\CommentTok{\#\textgreater{}  quarto   1.8.27 @ /usr/local/bin/quarto}
+\CommentTok{\#\textgreater{}  date     2026{-}04{-}29}
+\CommentTok{\#\textgreater{}  pandoc   3.9.0.2 @ /opt/homebrew/bin/ (via rmarkdown)}
+\CommentTok{\#\textgreater{}  quarto   1.9.37 @ /usr/local/bin/quarto}
 \CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{} {-} Packages {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\#\textgreater{} {-} Packages {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \CommentTok{\#\textgreater{}  package     * version date (UTC) lib source}
-\CommentTok{\#\textgreater{}  bookdown      0.46    2025{-}12{-}05 [1] CRAN (R 4.5.2)}
-\CommentTok{\#\textgreater{}  cli           3.6.5   2025{-}04{-}23 [1] CRAN (R 4.5.0)}
-\CommentTok{\#\textgreater{}  digest        0.6.39  2025{-}11{-}19 [1] CRAN (R 4.5.2)}
-\CommentTok{\#\textgreater{}  evaluate      1.0.5   2025{-}08{-}27 [1] CRAN (R 4.5.1)}
-\CommentTok{\#\textgreater{}  fastmap       1.2.0   2024{-}05{-}15 [1] CRAN (R 4.5.0)}
-\CommentTok{\#\textgreater{}  htmltools     0.5.9   2025{-}12{-}04 [1] CRAN (R 4.5.2)}
-\CommentTok{\#\textgreater{}  knitr         1.51    2025{-}12{-}20 [1] CRAN (R 4.5.2)}
-\CommentTok{\#\textgreater{}  otel          0.2.0   2025{-}08{-}29 [1] CRAN (R 4.5.0)}
-\CommentTok{\#\textgreater{}  rlang         1.1.7   2026{-}01{-}09 [1] CRAN (R 4.5.2)}
-\CommentTok{\#\textgreater{}  rmarkdown     2.30    2025{-}09{-}28 [1] CRAN (R 4.5.1)}
-\CommentTok{\#\textgreater{}  rstudioapi    0.18.0  2026{-}01{-}16 [1] CRAN (R 4.5.2)}
-\CommentTok{\#\textgreater{}  sessioninfo   1.2.3   2025{-}02{-}05 [1] CRAN (R 4.5.0)}
-\CommentTok{\#\textgreater{}  xfun          0.56    2026{-}01{-}18 [1] CRAN (R 4.5.2)}
-\CommentTok{\#\textgreater{}  yaml          2.3.12  2025{-}12{-}10 [1] CRAN (R 4.5.2)}
+\CommentTok{\#\textgreater{}  bookdown      0.46    2025{-}12{-}05 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  cli           3.6.6   2026{-}04{-}09 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  digest        0.6.39  2025{-}11{-}19 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  evaluate      1.0.5   2025{-}08{-}27 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  fastmap       1.2.0   2024{-}05{-}15 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  htmltools     0.5.9   2025{-}12{-}04 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  knitr         1.51    2025{-}12{-}20 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  otel          0.2.0   2025{-}08{-}29 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  rlang         1.2.0   2026{-}04{-}06 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  rmarkdown     2.31    2026{-}03{-}26 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  sessioninfo   1.2.3   2025{-}02{-}05 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  xfun          0.57    2026{-}03{-}20 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  yaml          2.3.12  2025{-}12{-}10 [1] CRAN (R 4.6.0)}
 \CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{}  [1] /Users/eptmp/Library/R/arm64/4.5/library}
-\CommentTok{\#\textgreater{}  [2] /Library/Frameworks/R.framework/Versions/4.5{-}arm64/Resources/library}
+\CommentTok{\#\textgreater{}  [1] /Users/eptmp/Library/R/arm64/4.6/library}
+\CommentTok{\#\textgreater{}  [2] /Library/Frameworks/R.framework/Versions/4.6/Resources/library}
 \CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -8965,7 +8964,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated observ
  26. drop if newseqn != 1  /* only need one pair */
  27.         
 
-r; t=0.00 14:56:00
+r; t=0.00 11:56:21
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -8973,7 +8972,7 @@ r; t=0.00 14:56:00
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=20.31 14:56:20
+r; t=20.15 11:56:41
 
 
 
@@ -9219,7 +9218,7 @@ file /Users/eptmp/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as P
   5. drop if time != 0       
   6. /*only predict on new version of data */
 
-r; t=0.00 14:56:27
+r; t=0.00 11:56:48
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -9227,7 +9226,7 @@ r; t=0.00 14:56:27
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=22.11 14:56:49
+r; t=22.80 11:57:11
 
 
 
@@ -9266,7 +9265,7 @@ For reproducibility.
 
 \begin{verbatim}
 StataNow/MP 19.5 for Mac (Apple Silicon)
-Revision 18 Feb 2026
+Revision 15 Apr 2026
 Copyright 1985-2025 StataCorp LLC
 
 Total physical memory: 18.00 GB
@@ -9281,43 +9280,42 @@ Serial number: 501909307934
 \begin{Highlighting}[]
 \CommentTok{\# install.packages("sessioninfo")}
 \NormalTok{sessioninfo}\SpecialCharTok{::}\FunctionTok{session\_info}\NormalTok{()}
-\CommentTok{\#\textgreater{} {-} Session info {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\#\textgreater{} {-} Session info {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \CommentTok{\#\textgreater{}  setting  value}
-\CommentTok{\#\textgreater{}  version  R version 4.5.3 (2026{-}03{-}11)}
-\CommentTok{\#\textgreater{}  os       macOS Tahoe 26.3.1}
-\CommentTok{\#\textgreater{}  system   aarch64, darwin20}
+\CommentTok{\#\textgreater{}  version  R version 4.6.0 (2026{-}04{-}24)}
+\CommentTok{\#\textgreater{}  os       macOS Tahoe 26.4.1}
+\CommentTok{\#\textgreater{}  system   aarch64, darwin23}
 \CommentTok{\#\textgreater{}  ui       X11}
 \CommentTok{\#\textgreater{}  language (EN)}
-\CommentTok{\#\textgreater{}  collate  en\_US.UTF{-}8}
-\CommentTok{\#\textgreater{}  ctype    en\_US.UTF{-}8}
+\CommentTok{\#\textgreater{}  collate  C.UTF{-}8}
+\CommentTok{\#\textgreater{}  ctype    C.UTF{-}8}
 \CommentTok{\#\textgreater{}  tz       Europe/London}
-\CommentTok{\#\textgreater{}  date     2026{-}03{-}13}
-\CommentTok{\#\textgreater{}  pandoc   3.9 @ /opt/homebrew/bin/ (via rmarkdown)}
-\CommentTok{\#\textgreater{}  quarto   1.8.27 @ /usr/local/bin/quarto}
+\CommentTok{\#\textgreater{}  date     2026{-}04{-}29}
+\CommentTok{\#\textgreater{}  pandoc   3.9.0.2 @ /opt/homebrew/bin/ (via rmarkdown)}
+\CommentTok{\#\textgreater{}  quarto   1.9.37 @ /usr/local/bin/quarto}
 \CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{} {-} Packages {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\#\textgreater{} {-} Packages {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \CommentTok{\#\textgreater{}  package       * version date (UTC) lib source}
-\CommentTok{\#\textgreater{}  bookdown        0.46    2025{-}12{-}05 [1] CRAN (R 4.5.2)}
-\CommentTok{\#\textgreater{}  cli             3.6.5   2025{-}04{-}23 [1] CRAN (R 4.5.0)}
-\CommentTok{\#\textgreater{}  digest          0.6.39  2025{-}11{-}19 [1] CRAN (R 4.5.2)}
-\CommentTok{\#\textgreater{}  evaluate        1.0.5   2025{-}08{-}27 [1] CRAN (R 4.5.1)}
-\CommentTok{\#\textgreater{}  fastmap         1.2.0   2024{-}05{-}15 [1] CRAN (R 4.5.0)}
-\CommentTok{\#\textgreater{}  htmltools       0.5.9   2025{-}12{-}04 [1] CRAN (R 4.5.2)}
-\CommentTok{\#\textgreater{}  knitr           1.51    2025{-}12{-}20 [1] CRAN (R 4.5.2)}
-\CommentTok{\#\textgreater{}  otel            0.2.0   2025{-}08{-}29 [1] CRAN (R 4.5.0)}
-\CommentTok{\#\textgreater{}  rlang           1.1.7   2026{-}01{-}09 [1] CRAN (R 4.5.2)}
-\CommentTok{\#\textgreater{}  rmarkdown       2.30    2025{-}09{-}28 [1] CRAN (R 4.5.1)}
-\CommentTok{\#\textgreater{}  rstudioapi      0.18.0  2026{-}01{-}16 [1] CRAN (R 4.5.2)}
-\CommentTok{\#\textgreater{}  sessioninfo     1.2.3   2025{-}02{-}05 [1] CRAN (R 4.5.0)}
-\CommentTok{\#\textgreater{}  Statamarkdown * 0.9.6   2025{-}10{-}07 [1] CRAN (R 4.5.0)}
-\CommentTok{\#\textgreater{}  xfun            0.56    2026{-}01{-}18 [1] CRAN (R 4.5.2)}
-\CommentTok{\#\textgreater{}  yaml            2.3.12  2025{-}12{-}10 [1] CRAN (R 4.5.2)}
+\CommentTok{\#\textgreater{}  bookdown        0.46    2025{-}12{-}05 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  cli             3.6.6   2026{-}04{-}09 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  digest          0.6.39  2025{-}11{-}19 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  evaluate        1.0.5   2025{-}08{-}27 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  fastmap         1.2.0   2024{-}05{-}15 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  htmltools       0.5.9   2025{-}12{-}04 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  knitr           1.51    2025{-}12{-}20 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  otel            0.2.0   2025{-}08{-}29 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  rlang           1.2.0   2026{-}04{-}06 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  rmarkdown       2.31    2026{-}03{-}26 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  sessioninfo     1.2.3   2025{-}02{-}05 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  Statamarkdown * 0.9.6   2025{-}10{-}07 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  xfun            0.57    2026{-}03{-}20 [1] CRAN (R 4.6.0)}
+\CommentTok{\#\textgreater{}  yaml            2.3.12  2025{-}12{-}10 [1] CRAN (R 4.6.0)}
 \CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{}  [1] /Users/eptmp/Library/R/arm64/4.5/library}
-\CommentTok{\#\textgreater{}  [2] /Library/Frameworks/R.framework/Versions/4.5{-}arm64/Resources/library}
+\CommentTok{\#\textgreater{}  [1] /Users/eptmp/Library/R/arm64/4.6/library}
+\CommentTok{\#\textgreater{}  [2] /Library/Frameworks/R.framework/Versions/4.6/Resources/library}
 \CommentTok{\#\textgreater{}  * {-}{-} Packages attached to the search path.}
 \CommentTok{\#\textgreater{} }
-\CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\#\textgreater{} {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \end{Highlighting}
 \end{Shaded}
 

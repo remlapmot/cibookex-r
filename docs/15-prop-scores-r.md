@@ -393,103 +393,103 @@ describeBy(nhefs$ps, list(nhefs$ps.dec, nhefs$qsmk))
 #>  Descriptive statistics by group 
 #> : 1
 #> : 0
-#>    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se
-#> X1    1 151  0.1 0.02   0.11     0.1 0.02 0.05 0.13  0.08 -0.55    -0.53  0
+#>     vars   n mean    sd median trimmed   mad min max range skew kurtosis   se
+#> X1*    1 151   76 43.73     76      76 56.34   1 151   150    0    -1.22 3.56
 #> ------------------------------------------------------------ 
 #> : 2
 #> : 0
-#>    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se
-#> X1    1 136 0.15 0.01   0.15    0.15 0.01 0.13 0.17  0.04 -0.04    -1.23  0
+#>     vars   n mean   sd median trimmed   mad min max range skew kurtosis   se
+#> X1*    1 136 68.5 39.4   68.5    68.5 50.41   1 136   135    0    -1.23 3.38
 #> ------------------------------------------------------------ 
 #> : 3
 #> : 0
-#>    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se
-#> X1    1 134 0.18 0.01   0.18    0.18 0.01 0.17 0.19  0.03 -0.08    -1.34  0
+#>     vars   n mean    sd median trimmed   mad min max range skew kurtosis   se
+#> X1*    1 134 67.5 38.83   67.5    67.5 49.67   1 134   133    0    -1.23 3.35
 #> ------------------------------------------------------------ 
 #> : 4
 #> : 0
-#>    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se
-#> X1    1 129 0.21 0.01   0.21    0.21 0.01 0.19 0.22  0.02 -0.04    -1.13  0
+#>     vars   n mean    sd median trimmed   mad min max range skew kurtosis   se
+#> X1*    1 129   65 37.38     65      65 47.44   1 129   128    0    -1.23 3.29
 #> ------------------------------------------------------------ 
 #> : 5
 #> : 0
-#>    vars   n mean   sd median trimmed  mad  min  max range skew kurtosis se
-#> X1    1 120 0.23 0.01   0.23    0.23 0.01 0.22 0.25  0.03 0.24    -1.22  0
+#>     vars   n mean    sd median trimmed   mad min max range skew kurtosis   se
+#> X1*    1 120 60.5 34.79   60.5    60.5 44.48   1 120   119    0    -1.23 3.18
 #> ------------------------------------------------------------ 
 #> : 6
 #> : 0
-#>    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se
-#> X1    1 117 0.26 0.01   0.26    0.26 0.01 0.25 0.27  0.03 -0.11    -1.29  0
+#>     vars   n mean    sd median trimmed mad min max range skew kurtosis   se
+#> X1*    1 117   59 33.92     59      59  43   1 117   116    0    -1.23 3.14
 #> ------------------------------------------------------------ 
 #> : 7
 #> : 0
-#>    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se
-#> X1    1 120 0.29 0.01   0.29    0.29 0.01 0.27 0.31  0.03 -0.23    -1.19  0
+#>     vars   n mean    sd median trimmed   mad min max range skew kurtosis   se
+#> X1*    1 120 60.5 34.79   60.5    60.5 44.48   1 120   119    0    -1.23 3.18
 #> ------------------------------------------------------------ 
 #> : 8
 #> : 0
-#>    vars   n mean   sd median trimmed  mad  min  max range skew kurtosis se
-#> X1    1 112 0.33 0.01   0.33    0.33 0.02 0.31 0.35  0.04 0.15     -1.1  0
+#>     vars   n mean    sd median trimmed   mad min max range skew kurtosis   se
+#> X1*    1 112 56.5 32.48   56.5    56.5 41.51   1 112   111    0    -1.23 3.07
 #> ------------------------------------------------------------ 
 #> : 9
 #> : 0
-#>    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se
-#> X1    1 96 0.38 0.02   0.38    0.38 0.02 0.35 0.42  0.06 0.13    -1.15  0
+#>     vars  n mean    sd median trimmed   mad min max range skew kurtosis   se
+#> X1*    1 96 48.5 27.86   48.5    48.5 35.58   1  96    95    0    -1.24 2.84
 #> ------------------------------------------------------------ 
 #> : 10
 #> : 0
-#>    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
-#> X1    1 86 0.49 0.06   0.47    0.48 0.05 0.42 0.66  0.24  1.1     0.47 0.01
+#>     vars  n mean    sd median trimmed   mad min max range skew kurtosis   se
+#> X1*    1 86 43.5 24.97   43.5    43.5 31.88   1  86    85    0    -1.24 2.69
 #> ------------------------------------------------------------ 
 #> : 1
 #> : 1
-#>    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
-#> X1    1 12  0.1 0.02   0.11     0.1 0.03 0.06 0.13  0.07 -0.5    -1.36 0.01
+#>     vars  n mean   sd median trimmed  mad min max range skew kurtosis   se
+#> X1*    1 12  6.5 3.61    6.5     6.5 4.45   1  12    11    0     -1.5 1.04
 #> ------------------------------------------------------------ 
 #> : 2
 #> : 1
-#>    vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis se
-#> X1    1 27 0.15 0.01   0.15    0.15 0.01 0.13 0.17  0.03 -0.03    -1.34  0
+#>     vars  n mean   sd median trimmed   mad min max range skew kurtosis   se
+#> X1*    1 27   14 7.94     14      14 10.38   1  27    26    0    -1.33 1.53
 #> ------------------------------------------------------------ 
 #> : 3
 #> : 1
-#>    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se
-#> X1    1 29 0.18 0.01   0.18    0.18 0.01 0.17 0.19  0.03 0.01    -1.34  0
+#>     vars  n mean   sd median trimmed   mad min max range skew kurtosis   se
+#> X1*    1 29   15 8.51     15      15 10.38   1  29    28    0    -1.32 1.58
 #> ------------------------------------------------------------ 
 #> : 4
 #> : 1
-#>    vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis se
-#> X1    1 34 0.21 0.01   0.21    0.21 0.01 0.19 0.22  0.02 -0.31    -1.23  0
+#>     vars  n mean   sd median trimmed  mad min max range skew kurtosis   se
+#> X1*    1 34 17.5 9.96   17.5    17.5 12.6   1  34    33    0    -1.31 1.71
 #> ------------------------------------------------------------ 
 #> : 5
 #> : 1
-#>    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se
-#> X1    1 43 0.23 0.01   0.23    0.23 0.01 0.22 0.25  0.03 0.11    -1.23  0
+#>     vars  n mean    sd median trimmed   mad min max range skew kurtosis   se
+#> X1*    1 43   22 12.56     22      22 16.31   1  43    42    0    -1.28 1.91
 #> ------------------------------------------------------------ 
 #> : 6
 #> : 1
-#>    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se
-#> X1    1 45 0.26 0.01   0.26    0.26 0.01 0.25 0.27  0.03  0.2    -1.12  0
+#>     vars  n mean    sd median trimmed   mad min max range skew kurtosis   se
+#> X1*    1 45   23 13.13     23      23 16.31   1  45    44    0    -1.28 1.96
 #> ------------------------------------------------------------ 
 #> : 7
 #> : 1
-#>    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se
-#> X1    1 43 0.29 0.01   0.29    0.29 0.01 0.27 0.31  0.03 0.16    -1.25  0
+#>     vars  n mean    sd median trimmed   mad min max range skew kurtosis   se
+#> X1*    1 43   22 12.56     22      22 16.31   1  43    42    0    -1.28 1.91
 #> ------------------------------------------------------------ 
 #> : 8
 #> : 1
-#>    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se
-#> X1    1 51 0.33 0.01   0.33    0.33 0.02 0.31 0.35  0.04 0.11    -1.19  0
+#>     vars  n mean    sd median trimmed   mad min max range skew kurtosis   se
+#> X1*    1 51   26 14.87     26      26 19.27   1  51    50    0    -1.27 2.08
 #> ------------------------------------------------------------ 
 #> : 9
 #> : 1
-#>    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se
-#> X1    1 67 0.38 0.02   0.38    0.38 0.03 0.35 0.42  0.06 0.19    -1.27  0
+#>     vars  n mean    sd median trimmed  mad min max range skew kurtosis   se
+#> X1*    1 67   34 19.49     34      34 25.2   1  67    66    0    -1.25 2.38
 #> ------------------------------------------------------------ 
 #> : 10
 #> : 1
-#>    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
-#> X1    1 77 0.52 0.08   0.51    0.51 0.08 0.42 0.79  0.38 0.88     0.81 0.01
+#>     vars  n mean    sd median trimmed   mad min max range skew kurtosis   se
+#> X1*    1 77   39 22.37     39      39 28.17   1  77    76    0    -1.25 2.55
 
 # function to create deciles easily
 decile <- function(x) {
@@ -732,15 +732,15 @@ bootstrap <- data.frame(cbind(c("Observed", "No Treatment", "Treatment",
                                 "Treatment - No Treatment"), mean, se, ll, ul))
 bootstrap
 #>                         V1             mean                se               ll
-#> 1                 Observed 2.63384609228479 0.153571765235908 2.33285096338018
-#> 2             No Treatment 1.71983636149845 0.202421879467878  1.3230967680585
-#> 3                Treatment 5.35072300362985 0.384418262163097 4.59727705479071
-#> 4 Treatment - No Treatment  3.6308866421314 0.397541555895254 2.85171951021869
+#> 1                 Observed 2.63384609228479 0.279109441833243 2.08680163854656
+#> 2             No Treatment 1.71983636149845 0.267185981211787 1.19616146114936
+#> 3                Treatment 5.35072300362985 0.278598214000864 4.80468053803098
+#> 4 Treatment - No Treatment  3.6308866421314 0.219415884359752 3.20083941115028
 #>                 ul
-#> 1 2.93484122118941
-#> 2  2.1165759549384
-#> 3   6.104168952469
-#> 4 4.41005377404411
+#> 1 3.18089054602303
+#> 2 2.24351126184755
+#> 3 5.89676546922873
+#> 4 4.06093387311252
 ```
 
 
@@ -833,7 +833,7 @@ for(i in 1:nboot) {
   }
 }
 #> 95% CI for the causal mean difference
-#> 2.51203 , 4.601106
+#> 2.752943 , 4.373549
 ```
 
 A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.
