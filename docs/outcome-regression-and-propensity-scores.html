@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>15. Outcome regression and propensity scores | Causal Inference: What If. R and Stata code for Exercises</title>
   <meta name="description" content="Code examples from Causal Inference: What If by M. A. Hernán and J. M. Robins https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/" />
-  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
   <meta property="og:title" content="15. Outcome regression and propensity scores | Causal Inference: What If. R and Stata code for Exercises" />
   <meta property="og:type" content="book" />
@@ -26,7 +26,7 @@
 <meta name="author" content="R Markdown code by Tom Palmer" />
 
 
-<meta name="date" content="2026-04-29" />
+<meta name="date" content="2026-07-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -684,103 +684,103 @@ div.csl-indent {
 <span id="cb34-16"><a href="outcome-regression-and-propensity-scores.html#cb34-16" tabindex="-1"></a><span class="co">#&gt;  Descriptive statistics by group </span></span>
 <span id="cb34-17"><a href="outcome-regression-and-propensity-scores.html#cb34-17" tabindex="-1"></a><span class="co">#&gt; : 1</span></span>
 <span id="cb34-18"><a href="outcome-regression-and-propensity-scores.html#cb34-18" tabindex="-1"></a><span class="co">#&gt; : 0</span></span>
-<span id="cb34-19"><a href="outcome-regression-and-propensity-scores.html#cb34-19" tabindex="-1"></a><span class="co">#&gt;     vars   n mean    sd median trimmed   mad min max range skew kurtosis   se</span></span>
-<span id="cb34-20"><a href="outcome-regression-and-propensity-scores.html#cb34-20" tabindex="-1"></a><span class="co">#&gt; X1*    1 151   76 43.73     76      76 56.34   1 151   150    0    -1.22 3.56</span></span>
+<span id="cb34-19"><a href="outcome-regression-and-propensity-scores.html#cb34-19" tabindex="-1"></a><span class="co">#&gt;    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se</span></span>
+<span id="cb34-20"><a href="outcome-regression-and-propensity-scores.html#cb34-20" tabindex="-1"></a><span class="co">#&gt; X1    1 151  0.1 0.02   0.11     0.1 0.02 0.05 0.13  0.08 -0.55    -0.53  0</span></span>
 <span id="cb34-21"><a href="outcome-regression-and-propensity-scores.html#cb34-21" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------ </span></span>
 <span id="cb34-22"><a href="outcome-regression-and-propensity-scores.html#cb34-22" tabindex="-1"></a><span class="co">#&gt; : 2</span></span>
 <span id="cb34-23"><a href="outcome-regression-and-propensity-scores.html#cb34-23" tabindex="-1"></a><span class="co">#&gt; : 0</span></span>
-<span id="cb34-24"><a href="outcome-regression-and-propensity-scores.html#cb34-24" tabindex="-1"></a><span class="co">#&gt;     vars   n mean   sd median trimmed   mad min max range skew kurtosis   se</span></span>
-<span id="cb34-25"><a href="outcome-regression-and-propensity-scores.html#cb34-25" tabindex="-1"></a><span class="co">#&gt; X1*    1 136 68.5 39.4   68.5    68.5 50.41   1 136   135    0    -1.23 3.38</span></span>
+<span id="cb34-24"><a href="outcome-regression-and-propensity-scores.html#cb34-24" tabindex="-1"></a><span class="co">#&gt;    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se</span></span>
+<span id="cb34-25"><a href="outcome-regression-and-propensity-scores.html#cb34-25" tabindex="-1"></a><span class="co">#&gt; X1    1 136 0.15 0.01   0.15    0.15 0.01 0.13 0.17  0.04 -0.04    -1.23  0</span></span>
 <span id="cb34-26"><a href="outcome-regression-and-propensity-scores.html#cb34-26" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------ </span></span>
 <span id="cb34-27"><a href="outcome-regression-and-propensity-scores.html#cb34-27" tabindex="-1"></a><span class="co">#&gt; : 3</span></span>
 <span id="cb34-28"><a href="outcome-regression-and-propensity-scores.html#cb34-28" tabindex="-1"></a><span class="co">#&gt; : 0</span></span>
-<span id="cb34-29"><a href="outcome-regression-and-propensity-scores.html#cb34-29" tabindex="-1"></a><span class="co">#&gt;     vars   n mean    sd median trimmed   mad min max range skew kurtosis   se</span></span>
-<span id="cb34-30"><a href="outcome-regression-and-propensity-scores.html#cb34-30" tabindex="-1"></a><span class="co">#&gt; X1*    1 134 67.5 38.83   67.5    67.5 49.67   1 134   133    0    -1.23 3.35</span></span>
+<span id="cb34-29"><a href="outcome-regression-and-propensity-scores.html#cb34-29" tabindex="-1"></a><span class="co">#&gt;    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se</span></span>
+<span id="cb34-30"><a href="outcome-regression-and-propensity-scores.html#cb34-30" tabindex="-1"></a><span class="co">#&gt; X1    1 134 0.18 0.01   0.18    0.18 0.01 0.17 0.19  0.03 -0.08    -1.34  0</span></span>
 <span id="cb34-31"><a href="outcome-regression-and-propensity-scores.html#cb34-31" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------ </span></span>
 <span id="cb34-32"><a href="outcome-regression-and-propensity-scores.html#cb34-32" tabindex="-1"></a><span class="co">#&gt; : 4</span></span>
 <span id="cb34-33"><a href="outcome-regression-and-propensity-scores.html#cb34-33" tabindex="-1"></a><span class="co">#&gt; : 0</span></span>
-<span id="cb34-34"><a href="outcome-regression-and-propensity-scores.html#cb34-34" tabindex="-1"></a><span class="co">#&gt;     vars   n mean    sd median trimmed   mad min max range skew kurtosis   se</span></span>
-<span id="cb34-35"><a href="outcome-regression-and-propensity-scores.html#cb34-35" tabindex="-1"></a><span class="co">#&gt; X1*    1 129   65 37.38     65      65 47.44   1 129   128    0    -1.23 3.29</span></span>
+<span id="cb34-34"><a href="outcome-regression-and-propensity-scores.html#cb34-34" tabindex="-1"></a><span class="co">#&gt;    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se</span></span>
+<span id="cb34-35"><a href="outcome-regression-and-propensity-scores.html#cb34-35" tabindex="-1"></a><span class="co">#&gt; X1    1 129 0.21 0.01   0.21    0.21 0.01 0.19 0.22  0.02 -0.04    -1.13  0</span></span>
 <span id="cb34-36"><a href="outcome-regression-and-propensity-scores.html#cb34-36" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------ </span></span>
 <span id="cb34-37"><a href="outcome-regression-and-propensity-scores.html#cb34-37" tabindex="-1"></a><span class="co">#&gt; : 5</span></span>
 <span id="cb34-38"><a href="outcome-regression-and-propensity-scores.html#cb34-38" tabindex="-1"></a><span class="co">#&gt; : 0</span></span>
-<span id="cb34-39"><a href="outcome-regression-and-propensity-scores.html#cb34-39" tabindex="-1"></a><span class="co">#&gt;     vars   n mean    sd median trimmed   mad min max range skew kurtosis   se</span></span>
-<span id="cb34-40"><a href="outcome-regression-and-propensity-scores.html#cb34-40" tabindex="-1"></a><span class="co">#&gt; X1*    1 120 60.5 34.79   60.5    60.5 44.48   1 120   119    0    -1.23 3.18</span></span>
+<span id="cb34-39"><a href="outcome-regression-and-propensity-scores.html#cb34-39" tabindex="-1"></a><span class="co">#&gt;    vars   n mean   sd median trimmed  mad  min  max range skew kurtosis se</span></span>
+<span id="cb34-40"><a href="outcome-regression-and-propensity-scores.html#cb34-40" tabindex="-1"></a><span class="co">#&gt; X1    1 120 0.23 0.01   0.23    0.23 0.01 0.22 0.25  0.03 0.24    -1.22  0</span></span>
 <span id="cb34-41"><a href="outcome-regression-and-propensity-scores.html#cb34-41" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------ </span></span>
 <span id="cb34-42"><a href="outcome-regression-and-propensity-scores.html#cb34-42" tabindex="-1"></a><span class="co">#&gt; : 6</span></span>
 <span id="cb34-43"><a href="outcome-regression-and-propensity-scores.html#cb34-43" tabindex="-1"></a><span class="co">#&gt; : 0</span></span>
-<span id="cb34-44"><a href="outcome-regression-and-propensity-scores.html#cb34-44" tabindex="-1"></a><span class="co">#&gt;     vars   n mean    sd median trimmed mad min max range skew kurtosis   se</span></span>
-<span id="cb34-45"><a href="outcome-regression-and-propensity-scores.html#cb34-45" tabindex="-1"></a><span class="co">#&gt; X1*    1 117   59 33.92     59      59  43   1 117   116    0    -1.23 3.14</span></span>
+<span id="cb34-44"><a href="outcome-regression-and-propensity-scores.html#cb34-44" tabindex="-1"></a><span class="co">#&gt;    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se</span></span>
+<span id="cb34-45"><a href="outcome-regression-and-propensity-scores.html#cb34-45" tabindex="-1"></a><span class="co">#&gt; X1    1 117 0.26 0.01   0.26    0.26 0.01 0.25 0.27  0.03 -0.11    -1.29  0</span></span>
 <span id="cb34-46"><a href="outcome-regression-and-propensity-scores.html#cb34-46" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------ </span></span>
 <span id="cb34-47"><a href="outcome-regression-and-propensity-scores.html#cb34-47" tabindex="-1"></a><span class="co">#&gt; : 7</span></span>
 <span id="cb34-48"><a href="outcome-regression-and-propensity-scores.html#cb34-48" tabindex="-1"></a><span class="co">#&gt; : 0</span></span>
-<span id="cb34-49"><a href="outcome-regression-and-propensity-scores.html#cb34-49" tabindex="-1"></a><span class="co">#&gt;     vars   n mean    sd median trimmed   mad min max range skew kurtosis   se</span></span>
-<span id="cb34-50"><a href="outcome-regression-and-propensity-scores.html#cb34-50" tabindex="-1"></a><span class="co">#&gt; X1*    1 120 60.5 34.79   60.5    60.5 44.48   1 120   119    0    -1.23 3.18</span></span>
+<span id="cb34-49"><a href="outcome-regression-and-propensity-scores.html#cb34-49" tabindex="-1"></a><span class="co">#&gt;    vars   n mean   sd median trimmed  mad  min  max range  skew kurtosis se</span></span>
+<span id="cb34-50"><a href="outcome-regression-and-propensity-scores.html#cb34-50" tabindex="-1"></a><span class="co">#&gt; X1    1 120 0.29 0.01   0.29    0.29 0.01 0.27 0.31  0.03 -0.23    -1.19  0</span></span>
 <span id="cb34-51"><a href="outcome-regression-and-propensity-scores.html#cb34-51" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------ </span></span>
 <span id="cb34-52"><a href="outcome-regression-and-propensity-scores.html#cb34-52" tabindex="-1"></a><span class="co">#&gt; : 8</span></span>
 <span id="cb34-53"><a href="outcome-regression-and-propensity-scores.html#cb34-53" tabindex="-1"></a><span class="co">#&gt; : 0</span></span>
-<span id="cb34-54"><a href="outcome-regression-and-propensity-scores.html#cb34-54" tabindex="-1"></a><span class="co">#&gt;     vars   n mean    sd median trimmed   mad min max range skew kurtosis   se</span></span>
-<span id="cb34-55"><a href="outcome-regression-and-propensity-scores.html#cb34-55" tabindex="-1"></a><span class="co">#&gt; X1*    1 112 56.5 32.48   56.5    56.5 41.51   1 112   111    0    -1.23 3.07</span></span>
+<span id="cb34-54"><a href="outcome-regression-and-propensity-scores.html#cb34-54" tabindex="-1"></a><span class="co">#&gt;    vars   n mean   sd median trimmed  mad  min  max range skew kurtosis se</span></span>
+<span id="cb34-55"><a href="outcome-regression-and-propensity-scores.html#cb34-55" tabindex="-1"></a><span class="co">#&gt; X1    1 112 0.33 0.01   0.33    0.33 0.02 0.31 0.35  0.04 0.15     -1.1  0</span></span>
 <span id="cb34-56"><a href="outcome-regression-and-propensity-scores.html#cb34-56" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------ </span></span>
 <span id="cb34-57"><a href="outcome-regression-and-propensity-scores.html#cb34-57" tabindex="-1"></a><span class="co">#&gt; : 9</span></span>
 <span id="cb34-58"><a href="outcome-regression-and-propensity-scores.html#cb34-58" tabindex="-1"></a><span class="co">#&gt; : 0</span></span>
-<span id="cb34-59"><a href="outcome-regression-and-propensity-scores.html#cb34-59" tabindex="-1"></a><span class="co">#&gt;     vars  n mean    sd median trimmed   mad min max range skew kurtosis   se</span></span>
-<span id="cb34-60"><a href="outcome-regression-and-propensity-scores.html#cb34-60" tabindex="-1"></a><span class="co">#&gt; X1*    1 96 48.5 27.86   48.5    48.5 35.58   1  96    95    0    -1.24 2.84</span></span>
+<span id="cb34-59"><a href="outcome-regression-and-propensity-scores.html#cb34-59" tabindex="-1"></a><span class="co">#&gt;    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se</span></span>
+<span id="cb34-60"><a href="outcome-regression-and-propensity-scores.html#cb34-60" tabindex="-1"></a><span class="co">#&gt; X1    1 96 0.38 0.02   0.38    0.38 0.02 0.35 0.42  0.06 0.13    -1.15  0</span></span>
 <span id="cb34-61"><a href="outcome-regression-and-propensity-scores.html#cb34-61" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------ </span></span>
 <span id="cb34-62"><a href="outcome-regression-and-propensity-scores.html#cb34-62" tabindex="-1"></a><span class="co">#&gt; : 10</span></span>
 <span id="cb34-63"><a href="outcome-regression-and-propensity-scores.html#cb34-63" tabindex="-1"></a><span class="co">#&gt; : 0</span></span>
-<span id="cb34-64"><a href="outcome-regression-and-propensity-scores.html#cb34-64" tabindex="-1"></a><span class="co">#&gt;     vars  n mean    sd median trimmed   mad min max range skew kurtosis   se</span></span>
-<span id="cb34-65"><a href="outcome-regression-and-propensity-scores.html#cb34-65" tabindex="-1"></a><span class="co">#&gt; X1*    1 86 43.5 24.97   43.5    43.5 31.88   1  86    85    0    -1.24 2.69</span></span>
+<span id="cb34-64"><a href="outcome-regression-and-propensity-scores.html#cb34-64" tabindex="-1"></a><span class="co">#&gt;    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se</span></span>
+<span id="cb34-65"><a href="outcome-regression-and-propensity-scores.html#cb34-65" tabindex="-1"></a><span class="co">#&gt; X1    1 86 0.49 0.06   0.47    0.48 0.05 0.42 0.66  0.24  1.1     0.47 0.01</span></span>
 <span id="cb34-66"><a href="outcome-regression-and-propensity-scores.html#cb34-66" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------ </span></span>
 <span id="cb34-67"><a href="outcome-regression-and-propensity-scores.html#cb34-67" tabindex="-1"></a><span class="co">#&gt; : 1</span></span>
 <span id="cb34-68"><a href="outcome-regression-and-propensity-scores.html#cb34-68" tabindex="-1"></a><span class="co">#&gt; : 1</span></span>
-<span id="cb34-69"><a href="outcome-regression-and-propensity-scores.html#cb34-69" tabindex="-1"></a><span class="co">#&gt;     vars  n mean   sd median trimmed  mad min max range skew kurtosis   se</span></span>
-<span id="cb34-70"><a href="outcome-regression-and-propensity-scores.html#cb34-70" tabindex="-1"></a><span class="co">#&gt; X1*    1 12  6.5 3.61    6.5     6.5 4.45   1  12    11    0     -1.5 1.04</span></span>
+<span id="cb34-69"><a href="outcome-regression-and-propensity-scores.html#cb34-69" tabindex="-1"></a><span class="co">#&gt;    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se</span></span>
+<span id="cb34-70"><a href="outcome-regression-and-propensity-scores.html#cb34-70" tabindex="-1"></a><span class="co">#&gt; X1    1 12  0.1 0.02   0.11     0.1 0.03 0.06 0.13  0.07 -0.5    -1.36 0.01</span></span>
 <span id="cb34-71"><a href="outcome-regression-and-propensity-scores.html#cb34-71" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------ </span></span>
 <span id="cb34-72"><a href="outcome-regression-and-propensity-scores.html#cb34-72" tabindex="-1"></a><span class="co">#&gt; : 2</span></span>
 <span id="cb34-73"><a href="outcome-regression-and-propensity-scores.html#cb34-73" tabindex="-1"></a><span class="co">#&gt; : 1</span></span>
-<span id="cb34-74"><a href="outcome-regression-and-propensity-scores.html#cb34-74" tabindex="-1"></a><span class="co">#&gt;     vars  n mean   sd median trimmed   mad min max range skew kurtosis   se</span></span>
-<span id="cb34-75"><a href="outcome-regression-and-propensity-scores.html#cb34-75" tabindex="-1"></a><span class="co">#&gt; X1*    1 27   14 7.94     14      14 10.38   1  27    26    0    -1.33 1.53</span></span>
+<span id="cb34-74"><a href="outcome-regression-and-propensity-scores.html#cb34-74" tabindex="-1"></a><span class="co">#&gt;    vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis se</span></span>
+<span id="cb34-75"><a href="outcome-regression-and-propensity-scores.html#cb34-75" tabindex="-1"></a><span class="co">#&gt; X1    1 27 0.15 0.01   0.15    0.15 0.01 0.13 0.17  0.03 -0.03    -1.34  0</span></span>
 <span id="cb34-76"><a href="outcome-regression-and-propensity-scores.html#cb34-76" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------ </span></span>
 <span id="cb34-77"><a href="outcome-regression-and-propensity-scores.html#cb34-77" tabindex="-1"></a><span class="co">#&gt; : 3</span></span>
 <span id="cb34-78"><a href="outcome-regression-and-propensity-scores.html#cb34-78" tabindex="-1"></a><span class="co">#&gt; : 1</span></span>
-<span id="cb34-79"><a href="outcome-regression-and-propensity-scores.html#cb34-79" tabindex="-1"></a><span class="co">#&gt;     vars  n mean   sd median trimmed   mad min max range skew kurtosis   se</span></span>
-<span id="cb34-80"><a href="outcome-regression-and-propensity-scores.html#cb34-80" tabindex="-1"></a><span class="co">#&gt; X1*    1 29   15 8.51     15      15 10.38   1  29    28    0    -1.32 1.58</span></span>
+<span id="cb34-79"><a href="outcome-regression-and-propensity-scores.html#cb34-79" tabindex="-1"></a><span class="co">#&gt;    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se</span></span>
+<span id="cb34-80"><a href="outcome-regression-and-propensity-scores.html#cb34-80" tabindex="-1"></a><span class="co">#&gt; X1    1 29 0.18 0.01   0.18    0.18 0.01 0.17 0.19  0.03 0.01    -1.34  0</span></span>
 <span id="cb34-81"><a href="outcome-regression-and-propensity-scores.html#cb34-81" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------ </span></span>
 <span id="cb34-82"><a href="outcome-regression-and-propensity-scores.html#cb34-82" tabindex="-1"></a><span class="co">#&gt; : 4</span></span>
 <span id="cb34-83"><a href="outcome-regression-and-propensity-scores.html#cb34-83" tabindex="-1"></a><span class="co">#&gt; : 1</span></span>
-<span id="cb34-84"><a href="outcome-regression-and-propensity-scores.html#cb34-84" tabindex="-1"></a><span class="co">#&gt;     vars  n mean   sd median trimmed  mad min max range skew kurtosis   se</span></span>
-<span id="cb34-85"><a href="outcome-regression-and-propensity-scores.html#cb34-85" tabindex="-1"></a><span class="co">#&gt; X1*    1 34 17.5 9.96   17.5    17.5 12.6   1  34    33    0    -1.31 1.71</span></span>
+<span id="cb34-84"><a href="outcome-regression-and-propensity-scores.html#cb34-84" tabindex="-1"></a><span class="co">#&gt;    vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis se</span></span>
+<span id="cb34-85"><a href="outcome-regression-and-propensity-scores.html#cb34-85" tabindex="-1"></a><span class="co">#&gt; X1    1 34 0.21 0.01   0.21    0.21 0.01 0.19 0.22  0.02 -0.31    -1.23  0</span></span>
 <span id="cb34-86"><a href="outcome-regression-and-propensity-scores.html#cb34-86" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------ </span></span>
 <span id="cb34-87"><a href="outcome-regression-and-propensity-scores.html#cb34-87" tabindex="-1"></a><span class="co">#&gt; : 5</span></span>
 <span id="cb34-88"><a href="outcome-regression-and-propensity-scores.html#cb34-88" tabindex="-1"></a><span class="co">#&gt; : 1</span></span>
-<span id="cb34-89"><a href="outcome-regression-and-propensity-scores.html#cb34-89" tabindex="-1"></a><span class="co">#&gt;     vars  n mean    sd median trimmed   mad min max range skew kurtosis   se</span></span>
-<span id="cb34-90"><a href="outcome-regression-and-propensity-scores.html#cb34-90" tabindex="-1"></a><span class="co">#&gt; X1*    1 43   22 12.56     22      22 16.31   1  43    42    0    -1.28 1.91</span></span>
+<span id="cb34-89"><a href="outcome-regression-and-propensity-scores.html#cb34-89" tabindex="-1"></a><span class="co">#&gt;    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se</span></span>
+<span id="cb34-90"><a href="outcome-regression-and-propensity-scores.html#cb34-90" tabindex="-1"></a><span class="co">#&gt; X1    1 43 0.23 0.01   0.23    0.23 0.01 0.22 0.25  0.03 0.11    -1.23  0</span></span>
 <span id="cb34-91"><a href="outcome-regression-and-propensity-scores.html#cb34-91" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------ </span></span>
 <span id="cb34-92"><a href="outcome-regression-and-propensity-scores.html#cb34-92" tabindex="-1"></a><span class="co">#&gt; : 6</span></span>
 <span id="cb34-93"><a href="outcome-regression-and-propensity-scores.html#cb34-93" tabindex="-1"></a><span class="co">#&gt; : 1</span></span>
-<span id="cb34-94"><a href="outcome-regression-and-propensity-scores.html#cb34-94" tabindex="-1"></a><span class="co">#&gt;     vars  n mean    sd median trimmed   mad min max range skew kurtosis   se</span></span>
-<span id="cb34-95"><a href="outcome-regression-and-propensity-scores.html#cb34-95" tabindex="-1"></a><span class="co">#&gt; X1*    1 45   23 13.13     23      23 16.31   1  45    44    0    -1.28 1.96</span></span>
+<span id="cb34-94"><a href="outcome-regression-and-propensity-scores.html#cb34-94" tabindex="-1"></a><span class="co">#&gt;    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se</span></span>
+<span id="cb34-95"><a href="outcome-regression-and-propensity-scores.html#cb34-95" tabindex="-1"></a><span class="co">#&gt; X1    1 45 0.26 0.01   0.26    0.26 0.01 0.25 0.27  0.03  0.2    -1.12  0</span></span>
 <span id="cb34-96"><a href="outcome-regression-and-propensity-scores.html#cb34-96" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------ </span></span>
 <span id="cb34-97"><a href="outcome-regression-and-propensity-scores.html#cb34-97" tabindex="-1"></a><span class="co">#&gt; : 7</span></span>
 <span id="cb34-98"><a href="outcome-regression-and-propensity-scores.html#cb34-98" tabindex="-1"></a><span class="co">#&gt; : 1</span></span>
-<span id="cb34-99"><a href="outcome-regression-and-propensity-scores.html#cb34-99" tabindex="-1"></a><span class="co">#&gt;     vars  n mean    sd median trimmed   mad min max range skew kurtosis   se</span></span>
-<span id="cb34-100"><a href="outcome-regression-and-propensity-scores.html#cb34-100" tabindex="-1"></a><span class="co">#&gt; X1*    1 43   22 12.56     22      22 16.31   1  43    42    0    -1.28 1.91</span></span>
+<span id="cb34-99"><a href="outcome-regression-and-propensity-scores.html#cb34-99" tabindex="-1"></a><span class="co">#&gt;    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se</span></span>
+<span id="cb34-100"><a href="outcome-regression-and-propensity-scores.html#cb34-100" tabindex="-1"></a><span class="co">#&gt; X1    1 43 0.29 0.01   0.29    0.29 0.01 0.27 0.31  0.03 0.16    -1.25  0</span></span>
 <span id="cb34-101"><a href="outcome-regression-and-propensity-scores.html#cb34-101" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------ </span></span>
 <span id="cb34-102"><a href="outcome-regression-and-propensity-scores.html#cb34-102" tabindex="-1"></a><span class="co">#&gt; : 8</span></span>
 <span id="cb34-103"><a href="outcome-regression-and-propensity-scores.html#cb34-103" tabindex="-1"></a><span class="co">#&gt; : 1</span></span>
-<span id="cb34-104"><a href="outcome-regression-and-propensity-scores.html#cb34-104" tabindex="-1"></a><span class="co">#&gt;     vars  n mean    sd median trimmed   mad min max range skew kurtosis   se</span></span>
-<span id="cb34-105"><a href="outcome-regression-and-propensity-scores.html#cb34-105" tabindex="-1"></a><span class="co">#&gt; X1*    1 51   26 14.87     26      26 19.27   1  51    50    0    -1.27 2.08</span></span>
+<span id="cb34-104"><a href="outcome-regression-and-propensity-scores.html#cb34-104" tabindex="-1"></a><span class="co">#&gt;    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se</span></span>
+<span id="cb34-105"><a href="outcome-regression-and-propensity-scores.html#cb34-105" tabindex="-1"></a><span class="co">#&gt; X1    1 51 0.33 0.01   0.33    0.33 0.02 0.31 0.35  0.04 0.11    -1.19  0</span></span>
 <span id="cb34-106"><a href="outcome-regression-and-propensity-scores.html#cb34-106" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------ </span></span>
 <span id="cb34-107"><a href="outcome-regression-and-propensity-scores.html#cb34-107" tabindex="-1"></a><span class="co">#&gt; : 9</span></span>
 <span id="cb34-108"><a href="outcome-regression-and-propensity-scores.html#cb34-108" tabindex="-1"></a><span class="co">#&gt; : 1</span></span>
-<span id="cb34-109"><a href="outcome-regression-and-propensity-scores.html#cb34-109" tabindex="-1"></a><span class="co">#&gt;     vars  n mean    sd median trimmed  mad min max range skew kurtosis   se</span></span>
-<span id="cb34-110"><a href="outcome-regression-and-propensity-scores.html#cb34-110" tabindex="-1"></a><span class="co">#&gt; X1*    1 67   34 19.49     34      34 25.2   1  67    66    0    -1.25 2.38</span></span>
+<span id="cb34-109"><a href="outcome-regression-and-propensity-scores.html#cb34-109" tabindex="-1"></a><span class="co">#&gt;    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis se</span></span>
+<span id="cb34-110"><a href="outcome-regression-and-propensity-scores.html#cb34-110" tabindex="-1"></a><span class="co">#&gt; X1    1 67 0.38 0.02   0.38    0.38 0.03 0.35 0.42  0.06 0.19    -1.27  0</span></span>
 <span id="cb34-111"><a href="outcome-regression-and-propensity-scores.html#cb34-111" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------ </span></span>
 <span id="cb34-112"><a href="outcome-regression-and-propensity-scores.html#cb34-112" tabindex="-1"></a><span class="co">#&gt; : 10</span></span>
 <span id="cb34-113"><a href="outcome-regression-and-propensity-scores.html#cb34-113" tabindex="-1"></a><span class="co">#&gt; : 1</span></span>
-<span id="cb34-114"><a href="outcome-regression-and-propensity-scores.html#cb34-114" tabindex="-1"></a><span class="co">#&gt;     vars  n mean    sd median trimmed   mad min max range skew kurtosis   se</span></span>
-<span id="cb34-115"><a href="outcome-regression-and-propensity-scores.html#cb34-115" tabindex="-1"></a><span class="co">#&gt; X1*    1 77   39 22.37     39      39 28.17   1  77    76    0    -1.25 2.55</span></span>
+<span id="cb34-114"><a href="outcome-regression-and-propensity-scores.html#cb34-114" tabindex="-1"></a><span class="co">#&gt;    vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se</span></span>
+<span id="cb34-115"><a href="outcome-regression-and-propensity-scores.html#cb34-115" tabindex="-1"></a><span class="co">#&gt; X1    1 77 0.52 0.08   0.51    0.51 0.08 0.42 0.79  0.38 0.88     0.81 0.01</span></span>
 <span id="cb34-116"><a href="outcome-regression-and-propensity-scores.html#cb34-116" tabindex="-1"></a></span>
 <span id="cb34-117"><a href="outcome-regression-and-propensity-scores.html#cb34-117" tabindex="-1"></a><span class="co"># function to create deciles easily</span></span>
 <span id="cb34-118"><a href="outcome-regression-and-propensity-scores.html#cb34-118" tabindex="-1"></a>decile <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
@@ -1022,15 +1022,15 @@ div.csl-indent {
 <span id="cb35-58"><a href="outcome-regression-and-propensity-scores.html#cb35-58" tabindex="-1"></a>                                <span class="st">&quot;Treatment - No Treatment&quot;</span>), mean, se, ll, ul))</span>
 <span id="cb35-59"><a href="outcome-regression-and-propensity-scores.html#cb35-59" tabindex="-1"></a>bootstrap</span>
 <span id="cb35-60"><a href="outcome-regression-and-propensity-scores.html#cb35-60" tabindex="-1"></a><span class="co">#&gt;                         V1             mean                se               ll</span></span>
-<span id="cb35-61"><a href="outcome-regression-and-propensity-scores.html#cb35-61" tabindex="-1"></a><span class="co">#&gt; 1                 Observed 2.63384609228479 0.221903213692339 2.19892378539411</span></span>
-<span id="cb35-62"><a href="outcome-regression-and-propensity-scores.html#cb35-62" tabindex="-1"></a><span class="co">#&gt; 2             No Treatment 1.71983636149845 0.183362409319646 1.36045264311346</span></span>
-<span id="cb35-63"><a href="outcome-regression-and-propensity-scores.html#cb35-63" tabindex="-1"></a><span class="co">#&gt; 3                Treatment 5.35072300362985 0.352024049657682 4.66076854460886</span></span>
-<span id="cb35-64"><a href="outcome-regression-and-propensity-scores.html#cb35-64" tabindex="-1"></a><span class="co">#&gt; 4 Treatment - No Treatment  3.6308866421314 0.204782650536598 3.22952002242102</span></span>
+<span id="cb35-61"><a href="outcome-regression-and-propensity-scores.html#cb35-61" tabindex="-1"></a><span class="co">#&gt; 1                 Observed 2.63384609228479 0.128827962939785 2.38134792472116</span></span>
+<span id="cb35-62"><a href="outcome-regression-and-propensity-scores.html#cb35-62" tabindex="-1"></a><span class="co">#&gt; 2             No Treatment 1.71983636149845 0.139440040298464 1.44653890451065</span></span>
+<span id="cb35-63"><a href="outcome-regression-and-propensity-scores.html#cb35-63" tabindex="-1"></a><span class="co">#&gt; 3                Treatment 5.35072300362985 0.107730495087577 5.13957511322153</span></span>
+<span id="cb35-64"><a href="outcome-regression-and-propensity-scores.html#cb35-64" tabindex="-1"></a><span class="co">#&gt; 4 Treatment - No Treatment  3.6308866421314 0.190662289474938 3.25719542155057</span></span>
 <span id="cb35-65"><a href="outcome-regression-and-propensity-scores.html#cb35-65" tabindex="-1"></a><span class="co">#&gt;                 ul</span></span>
-<span id="cb35-66"><a href="outcome-regression-and-propensity-scores.html#cb35-66" tabindex="-1"></a><span class="co">#&gt; 1 3.06876839917547</span></span>
-<span id="cb35-67"><a href="outcome-regression-and-propensity-scores.html#cb35-67" tabindex="-1"></a><span class="co">#&gt; 2 2.07922007988345</span></span>
-<span id="cb35-68"><a href="outcome-regression-and-propensity-scores.html#cb35-68" tabindex="-1"></a><span class="co">#&gt; 3 6.04067746265085</span></span>
-<span id="cb35-69"><a href="outcome-regression-and-propensity-scores.html#cb35-69" tabindex="-1"></a><span class="co">#&gt; 4 4.03225326184178</span></span></code></pre></div>
+<span id="cb35-66"><a href="outcome-regression-and-propensity-scores.html#cb35-66" tabindex="-1"></a><span class="co">#&gt; 1 2.88634425984843</span></span>
+<span id="cb35-67"><a href="outcome-regression-and-propensity-scores.html#cb35-67" tabindex="-1"></a><span class="co">#&gt; 2 1.99313381848626</span></span>
+<span id="cb35-68"><a href="outcome-regression-and-propensity-scores.html#cb35-68" tabindex="-1"></a><span class="co">#&gt; 3 5.56187089403817</span></span>
+<span id="cb35-69"><a href="outcome-regression-and-propensity-scores.html#cb35-69" tabindex="-1"></a><span class="co">#&gt; 4 4.00457786271223</span></span></code></pre></div>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="outcome-regression-and-propensity-scores.html#cb36-1" tabindex="-1"></a><span class="co"># regression on the propensity score (linear term)</span></span>
 <span id="cb36-2"><a href="outcome-regression-and-propensity-scores.html#cb36-2" tabindex="-1"></a>model6 <span class="ot">&lt;-</span> <span class="fu">glm</span>(wt82_71 <span class="sc">~</span> qsmk <span class="sc">+</span> ps, <span class="at">data =</span> nhefs) <span class="co"># p.qsmk</span></span>
 <span id="cb36-3"><a href="outcome-regression-and-propensity-scores.html#cb36-3" tabindex="-1"></a><span class="fu">summary</span>(model6)</span>
@@ -1119,7 +1119,7 @@ div.csl-indent {
 <span id="cb36-86"><a href="outcome-regression-and-propensity-scores.html#cb36-86" tabindex="-1"></a>  }</span>
 <span id="cb36-87"><a href="outcome-regression-and-propensity-scores.html#cb36-87" tabindex="-1"></a>}</span>
 <span id="cb36-88"><a href="outcome-regression-and-propensity-scores.html#cb36-88" tabindex="-1"></a><span class="co">#&gt; 95% CI for the causal mean difference</span></span>
-<span id="cb36-89"><a href="outcome-regression-and-propensity-scores.html#cb36-89" tabindex="-1"></a><span class="co">#&gt; 2.529802 , 4.579674</span></span></code></pre></div>
+<span id="cb36-89"><a href="outcome-regression-and-propensity-scores.html#cb36-89" tabindex="-1"></a><span class="co">#&gt; 2.629991 , 4.538062</span></span></code></pre></div>
 <p>A more flexible and elegant way to do this is to write a function to perform the model fitting, prediction, bootstrapping, and reporting all at once.</p>
 
 </div>

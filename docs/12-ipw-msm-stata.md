@@ -66,10 +66,6 @@ foreach var of varlist years male  white university kg cigs meansmkyrs noexer in
 ```
 
 ```
-  2.   tabdisp qsmk, cell(`var') format(%3.1f)
-  3. }
-
----------------------------------
 quit smoking between |
 baseline and 1982    | Age, years
 ---------------------+-----------

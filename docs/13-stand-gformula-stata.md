@@ -705,8 +705,6 @@ bstat, stat(pe) n(1629)
 ```
 
 ```
- 12. 
-
       Command: bootstdz
         EY_a0: r(boot_0)
         EY_a1: r(boot_1)
