@@ -931,8 +931,8 @@ Smoking cessation  |  -2.038829   3.649684    -0.56   0.576    -9.197625    5.11
 observe[4,2]
                interv      value
   observed         -1  2.6382998
- E(Y(a=0))          0  1.7618979
- E(Y(a=1))          1  5.2736757
+  E(Y(a=0))         0  1.7618979
+  E(Y(a=1))         1  5.2736757
 difference          .  3.5117778
 
 (3,132 observations deleted)

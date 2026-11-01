@@ -612,7 +612,7 @@ psurv1          float   %9.0g                 psurv, interv == Duplicated observ
 
 
 
-r; t=0.00 9:52:02
+r; t=0.00 5:47:22
 
       Command: bootipw_surv
        PrY_a0: r(boot_0)
@@ -620,7 +620,7 @@ r; t=0.00 9:52:02
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=13.55 9:52:15
+r; t=13.72 5:47:36
 
 
 
@@ -856,7 +856,7 @@ file /Users/tom/Documents/GitHub/cibookex-r/figs/stata-fig-17-4.png saved as PNG
 
 
 
-r; t=0.00 9:52:20
+r; t=0.00 5:47:41
 
       Command: bootstdz_surv
        PrY_a0: r(boot_0)
@@ -864,7 +864,7 @@ r; t=0.00 9:52:20
    difference: r(boot_diff)
 
 Simulations (10): .........10 done
-r; t=15.28 9:52:35
+r; t=16.08 5:47:57
 
 
 

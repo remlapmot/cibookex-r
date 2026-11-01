@@ -5,7 +5,7 @@ author:
  - R code by Joy Shi and Sean McGrath
  - Stata code by Eleanor Murray and Roger Logan
  - R Markdown code by Tom Palmer
-date: "17 July 2026"
+date: "01 November 2026"
 site: bookdown::bookdown_site
 documentclass: book
 #biblio-style: apalike
@@ -67,23 +67,15 @@ library(here)
 
 
 ``` r
-dataurls <- list()
-stub <- "https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1268/"
-dataurls[[1]] <- paste0(stub, "2012/10/nhefs_sas.zip")
-dataurls[[2]] <- paste0(stub, "2012/10/nhefs_stata.zip")
-dataurls[[3]] <- paste0(stub, "2017/01/nhefs_excel.zip")
-dataurls[[4]] <- paste0(stub, "1268/20/nhefs.csv")
+stub <- "https://miguelhernan.org/s/"
 
 temp <- tempfile()
-for (i in 1:3) {
-  download.file(dataurls[[i]], temp)
-  unzip(temp, exdir = "data")
-}
-#> Warning in unzip(temp, exdir = "data"): error 1 in extracting from zip file
-#> Warning in unzip(temp, exdir = "data"): error 1 in extracting from zip file
-#> Warning in unzip(temp, exdir = "data"): error 1 in extracting from zip file
+download.file(paste0(stub, "nhefs_sas.zip"), temp, mode = "wb")
+unzip(temp, exdir = "data")
 
-download.file(dataurls[[4]], here("data", "nhefs.csv"))
+for (f in c("nhefs.dta", "NHEFS.xls", "nhefs.csv")) {
+  download.file(paste0(stub, f), here("data", f), mode = "wb")
+}
 ```
 
 \mainmatter

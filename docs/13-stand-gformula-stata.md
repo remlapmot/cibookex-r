@@ -360,8 +360,8 @@ Duplicated observation |         20       33.33      100.00
 observe[4,2]
                interv      value
   observed         -1  .50000001
- E(Y(a=0))          0  .50000001
- E(Y(a=1))          1  .50000001
+  E(Y(a=0))         0  .50000001
+  E(Y(a=1))         1  .50000001
 difference          .          0
 ```
 
@@ -605,8 +605,8 @@ Smoking cessation  |   .0466628   .0351448     1.33   0.184    -.0222737    .115
 observe[4,2]
                interv      value
   observed         -1  2.6382998
- E(Y(a=0))          0  1.7562131
- E(Y(a=1))          1  5.2735873
+  E(Y(a=0))         0  1.7562131
+  E(Y(a=1))         1  5.2735873
 difference          .  3.5173742
 
 
