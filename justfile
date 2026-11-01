@@ -1,6 +1,7 @@
 depstata:
     stata-mp -b "do dependency"
 depr:
-    R -e "source('dependency.R')"
+    Rscript -e "source('dependency.R')"
+deps: depr depstata
 render:
-    R -e "rmarkdown::render_site(encoding = 'UTF-8')"
+    Rscript -e "rmarkdown::render_site(encoding = 'UTF-8')"
